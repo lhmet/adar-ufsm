@@ -15,7 +15,6 @@ Jônatan Tatsch
 > ## fecha janela gráfica
 > graphics.off()
 > # pacotes para R markdown
-> require(printr)
 > require(pander)
 ```
 
@@ -72,12 +71,12 @@ attached base packages:
 
 other attached packages:
  [1] psych_1.5.6         gcookbook_1.0       ggplot2_1.0.1      
- [4] pander_0.5.2        printr_0.0.4        rasterVis_0.35     
- [7] latticeExtra_0.6-26 RColorBrewer_1.1-2  lattice_0.20-33    
-[10] raster_2.4-15       sp_1.1-1            dplyr_0.4.2        
-[13] plyr_1.8.3          stringr_1.0.0       lubridate_1.3.3    
-[16] magrittr_1.5        R.utils_2.1.0       R.oo_1.19.0        
-[19] R.methodsS3_1.7.0   knitcitations_1.0.6 knitr_1.10.5       
+ [4] pander_0.5.2        rasterVis_0.35      latticeExtra_0.6-26
+ [7] RColorBrewer_1.1-2  lattice_0.20-33     raster_2.4-15      
+[10] sp_1.1-1            dplyr_0.4.2         plyr_1.8.3         
+[13] stringr_1.0.0       lubridate_1.3.3     magrittr_1.5       
+[16] R.utils_2.1.0       R.oo_1.19.0         R.methodsS3_1.7.0  
+[19] knitcitations_1.0.6 knitr_1.10.5       
 
 loaded via a namespace (and not attached):
  [1] Rcpp_0.12.0       formatR_1.2       bitops_1.0-6     
@@ -108,14 +107,15 @@ A <- sin(seq(from = -1, to = 1, length.out = length(x1)))
   head(dados)
 ```
 
-      x1           y1
---------  -----------
- -100.00   -0.0014007
-  -99.95   -0.0015255
-  -99.90   -0.0016477
-  -99.85   -0.0017669
-  -99.80   -0.0018827
-  -99.75   -0.0019949
+```
+       x1           y1
+1 -100.00 -0.001400686
+2  -99.95 -0.001525511
+3  -99.90 -0.001647681
+4  -99.85 -0.001766860
+5  -99.80 -0.001882718
+6  -99.75 -0.001994927
+```
 
   + Dados de qualidade do ar em NY
 
@@ -125,16 +125,15 @@ A <- sin(seq(from = -1, to = 1, length.out = length(x1)))
 head(airquality)
 ```
 
-
-
- Ozone   Solar.R   Wind   Temp   Month   Day
-------  --------  -----  -----  ------  ----
-    41       190    7.4     67       5     1
-    36       118    8.0     72       5     2
-    12       149   12.6     74       5     3
-    18       313   11.5     62       5     4
-    NA        NA   14.3     56       5     5
-    28        NA   14.9     66       5     6
+```
+  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6
+```
 
 ```r
 # conversão da Temp de Farenheith para Celsius
@@ -152,16 +151,15 @@ aq <- data.frame(date = aq[,"date"], aq[, -ncol(aq)])
 head(aq)
 ```
 
-
-
-date          Ozone   Solar.R   Wind   Temp
------------  ------  --------  -----  -----
-1973-05-01       41       190    7.4    7.0
-1973-05-02       36       118    8.0    8.0
-1973-05-03       12       149   12.6    8.4
-1973-05-04       18       313   11.5    6.0
-1973-05-05       NA        NA   14.3    4.8
-1973-05-06       28        NA   14.9    6.8
+```
+        date Ozone Solar.R Wind Temp
+1 1973-05-01    41     190  7.4  7.0
+2 1973-05-02    36     118  8.0  8.0
+3 1973-05-03    12     149 12.6  8.4
+4 1973-05-04    18     313 11.5  6.0
+5 1973-05-05    NA      NA 14.3  4.8
+6 1973-05-06    28      NA 14.9  6.8
+```
 
   + Séries de dados aleatórios acumulados (**random walk**)
 
@@ -176,14 +174,15 @@ mat <- sapply(1:5, function(i) cumsum(rnorm(100)))
 head(as.data.frame(mat))
 ```
 
-         V1         V2          V3          V4           V5
------------  ---------  ----------  ----------  -----------
- -1.4805676   1.926719   -2.986456   -1.481392    0.0871258
-  0.0966019   1.978149   -3.037003   -2.411725   -1.2810586
- -0.8601426   3.778673   -1.737491   -3.428340   -2.6711420
- -1.7801479   3.227215   -3.088892   -3.640028   -2.3658743
- -3.7777899   3.334274   -4.038691   -1.987162   -2.2105029
- -4.0500860   4.123398   -2.352589   -1.261865   -1.9960508
+```
+           V1       V2        V3        V4          V5
+1 -1.48056759 1.926719 -2.986456 -1.481392  0.08712577
+2  0.09660188 1.978149 -3.037003 -2.411725 -1.28105859
+3 -0.86014260 3.778673 -1.737490 -3.428340 -2.67114205
+4 -1.78014785 3.227215 -3.088892 -3.640028 -2.36587429
+5 -3.77778995 3.334274 -4.038690 -1.987162 -2.21050291
+6 -4.05008599 4.123398 -2.352589 -1.261865 -1.99605084
+```
 
   + Precipitação climatológica mensal das estações climatológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=clima/normaisClimatologicas) 
 
@@ -194,16 +193,15 @@ prec <- readRDS("data/PrecAccInmet_61_90.rds")
 head(prec)
 ```
 
-
-
-codigo   nome              estado   mes    value
--------  ----------------  -------  ----  ------
-82704    Cruzeiro do Sul   AC       jan    257.9
-82915    Rio Branco        AC       jan    289.0
-82807    Tarauacá          AC       jan    286.6
-83098    Coruripe          AL       jan     21.6
-82994    Maceió            AL       jan     78.1
-82988    Mata Grande       AL       jan     62.1
+```
+  codigo            nome estado mes value
+1  82704 Cruzeiro do Sul     AC jan 257.9
+2  82915      Rio Branco     AC jan 289.0
+3  82807        Tarauacá     AC jan 286.6
+4  83098        Coruripe     AL jan  21.6
+5  82994          Maceió     AL jan  78.1
+6  82988     Mata Grande     AL jan  62.1
+```
 
 ```r
 ## dados rain
@@ -211,16 +209,15 @@ rain <- read.csv(file = "data/cityrain.csv", head = T)
 head(rain)
 ```
 
-
-
-Month    Tokyo   NewYork   London   Berlin
-------  ------  --------  -------  -------
-Jan       49.9      83.6     48.9     42.4
-Feb       71.5      78.8     38.8     33.2
-Mar      106.4      98.5     39.3     34.5
-Apr      129.2      93.4     42.4     39.7
-May      144.0     106.0     47.0     52.6
-Jun      176.0      84.5     48.3     70.5
+```
+  Month Tokyo NewYork London Berlin
+1   Jan  49.9    83.6   48.9   42.4
+2   Feb  71.5    78.8   38.8   33.2
+3   Mar 106.4    98.5   39.3   34.5
+4   Apr 129.2    93.4   42.4   39.7
+5   May 144.0   106.0   47.0   52.6
+6   Jun 176.0    84.5   48.3   70.5
+```
 
   + anomalias de temperatura do ar global Global de 1800 a 2011
 
@@ -231,16 +228,13 @@ data(climate, package = "gcookbook")
 head(climate)
 ```
 
-
-
-Source      Year   Anomaly1y   Anomaly5y   Anomaly10y   Unc10y
----------  -----  ----------  ----------  -----------  -------
-Berkeley    1800          NA          NA       -0.435    0.505
-Berkeley    1801          NA          NA       -0.453    0.493
-Berkeley    1802          NA          NA       -0.460    0.486
-Berkeley    1803          NA          NA       -0.493    0.489
-Berkeley    1804          NA          NA       -0.536    0.483
-Berkeley    1805          NA          NA       -0.541    0.475
+    Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y
+1 Berkeley 1800        NA        NA     -0.435  0.505
+2 Berkeley 1801        NA        NA     -0.453  0.493
+3 Berkeley 1802        NA        NA     -0.460  0.486
+4 Berkeley 1803        NA        NA     -0.493  0.489
+5 Berkeley 1804        NA        NA     -0.536  0.483
+6 Berkeley 1805        NA        NA     -0.541  0.475
 
   
 # Sistemas Gráficos 
@@ -285,129 +279,29 @@ attached base packages:
 
 other attached packages:
  [1] psych_1.5.6         gcookbook_1.0       ggplot2_1.0.1      
- [4] pander_0.5.2        printr_0.0.4        rasterVis_0.35     
- [7] latticeExtra_0.6-26 RColorBrewer_1.1-2  lattice_0.20-33    
-[10] raster_2.4-15       sp_1.1-1            dplyr_0.4.2        
-[13] plyr_1.8.3          stringr_1.0.0       lubridate_1.3.3    
-[16] magrittr_1.5        R.utils_2.1.0       R.oo_1.19.0        
-[19] R.methodsS3_1.7.0   knitcitations_1.0.6 knitr_1.10.5       
+ [4] pander_0.5.2        rasterVis_0.35      latticeExtra_0.6-26
+ [7] RColorBrewer_1.1-2  lattice_0.20-33     raster_2.4-15      
+[10] sp_1.1-1            dplyr_0.4.2         plyr_1.8.3         
+[13] stringr_1.0.0       lubridate_1.3.3     magrittr_1.5       
+[16] R.utils_2.1.0       R.oo_1.19.0         R.methodsS3_1.7.0  
+[19] knitcitations_1.0.6 knitr_1.10.5       
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.0       highr_0.5         formatR_1.2      
- [4] bitops_1.0-6      tools_3.2.1       digest_0.6.8     
- [7] gtable_0.1.2      evaluate_0.7      memoise_0.2.1    
-[10] bibtex_0.4.0      DBI_0.3.1         yaml_2.1.13      
-[13] parallel_3.2.1    hexbin_1.27.0     proto_0.3-10     
-[16] RefManageR_0.8.63 httr_1.0.0        grid_3.2.1       
-[19] R6_2.1.0          XML_3.98-1.3      rmarkdown_0.7    
-[22] RJSONIO_1.3-0     reshape2_1.4.1    MASS_7.3-43      
-[25] scales_0.2.5      htmltools_0.2.6   mnormt_1.5-3     
-[28] assertthat_0.1    colorspace_1.2-6  stringi_0.5-5    
-[31] munsell_0.4.2     RCurl_1.95-4.7    zoo_1.7-12       
+ [1] Rcpp_0.12.0       formatR_1.2       bitops_1.0-6     
+ [4] tools_3.2.1       digest_0.6.8      gtable_0.1.2     
+ [7] evaluate_0.7      memoise_0.2.1     bibtex_0.4.0     
+[10] DBI_0.3.1         yaml_2.1.13       parallel_3.2.1   
+[13] hexbin_1.27.0     proto_0.3-10      RefManageR_0.8.63
+[16] httr_1.0.0        grid_3.2.1        R6_2.1.0         
+[19] XML_3.98-1.3      rmarkdown_0.7     RJSONIO_1.3-0    
+[22] reshape2_1.4.1    MASS_7.3-43       scales_0.2.5     
+[25] htmltools_0.2.6   mnormt_1.5-3      assertthat_0.1   
+[28] colorspace_1.2-6  stringi_0.5-5     munsell_0.4.2    
+[31] RCurl_1.95-4.7    zoo_1.7-12       
 ```
 
 ```r
 library(help = "graphics")
-```
-
-```
-		Information on package 'graphics'
-
-Description:
-
-Package:       graphics
-Version:       3.2.1
-Priority:      base
-Title:         The R Graphics Package
-Author:        R Core Team and contributors worldwide
-Maintainer:    R Core Team <R-core@r-project.org>
-Description:   R functions for base graphics.
-Imports:       grDevices
-License:       Part of R 3.2.1
-Built:         R 3.2.1; x86_64-pc-linux-gnu; 2015-07-05 15:32:16
-               UTC; unix
-
-Index:
-
-Axis                    Generic Function to Add an Axis to a Plot
-abline                  Add Straight Lines to a Plot
-arrows                  Add Arrows to a Plot
-assocplot               Association Plots
-axTicks                 Compute Axis Tickmark Locations
-axis                    Add an Axis to a Plot
-axis.POSIXct            Date and Date-time Plotting Functions
-barplot                 Bar Plots
-box                     Draw a Box around a Plot
-boxplot                 Box Plots
-boxplot.matrix          Draw a Boxplot for each Column (Row) of a
-                        Matrix
-bxp                     Draw Box Plots from Summaries
-cdplot                  Conditional Density Plots
-clip                    Set Clipping Region
-contour                 Display Contours
-coplot                  Conditioning Plots
-curve                   Draw Function Plots
-dotchart                Cleveland's Dot Plots
-filled.contour          Level (Contour) Plots
-fourfoldplot            Fourfold Plots
-frame                   Create / Start a New Plot Frame
-graphics-package        The R Graphics Package
-grconvertX              Convert between Graphics Coordinate Systems
-grid                    Add Grid to a Plot
-hist                    Histograms
-hist.POSIXt             Histogram of a Date or Date-Time Object
-identify                Identify Points in a Scatter Plot
-image                   Display a Color Image
-layout                  Specifying Complex Plot Arrangements
-legend                  Add Legends to Plots
-lines                   Add Connected Line Segments to a Plot
-locator                 Graphical Input
-matplot                 Plot Columns of Matrices
-mosaicplot              Mosaic Plots
-mtext                   Write Text into the Margins of a Plot
-pairs                   Scatterplot Matrices
-panel.smooth            Simple Panel Plot
-par                     Set or Query Graphical Parameters
-persp                   Perspective Plots
-pie                     Pie Charts
-plot                    Generic X-Y Plotting
-plot.data.frame         Plot Method for Data Frames
-plot.default            The Default Scatterplot Function
-plot.design             Plot Univariate Effects of a Design or Model
-plot.factor             Plotting Factor Variables
-plot.formula            Formula Notation for Scatterplots
-plot.histogram          Plot Histograms
-plot.raster             Plotting Raster Images
-plot.table              Plot Methods for 'table' Objects
-plot.window             Set up World Coordinates for Graphics Window
-plot.xy                 Basic Internal Plot Function
-points                  Add Points to a Plot
-polygon                 Polygon Drawing
-polypath                Path Drawing
-rasterImage             Draw One or More Raster Images
-rect                    Draw One or More Rectangles
-rug                     Add a Rug to a Plot
-screen                  Creating and Controlling Multiple Screens on a
-                        Single Device
-segments                Add Line Segments to a Plot
-smoothScatter           Scatterplots with Smoothed Densities Color
-                        Representation
-spineplot               Spine Plots and Spinograms
-stars                   Star (Spider/Radar) Plots and Segment Diagrams
-stem                    Stem-and-Leaf Plots
-stripchart              1-D Scatter Plots
-strwidth                Plotting Dimensions of Character Strings and
-                        Math Expressions
-sunflowerplot           Produce a Sunflower Scatter Plot
-symbols                 Draw Symbols (Circles, Squares, Stars,
-                        Thermometers, Boxplots)
-text                    Add Text to a Plot
-title                   Plot Annotation
-xinch                   Graphical Units
-xspline                 Draw an X-spline
-```
-
-```r
 demo("graphics")
 ```
 
@@ -1138,8 +1032,12 @@ Nem todas funções de alto nível permitem especificar todos parâmetros gráfi
 ```
 Help on topic 'plot' was found in the following packages:
 
-  * raster
-  * graphics
+  Package               Library
+  raster                /home/hidrometeorologista/.R/libs
+  graphics              /usr/lib/R/library
+
+
+Using the first match ...
 ```
 
 A seguir veremos alguns importantes parâmetros gráficos que podemos configurar.

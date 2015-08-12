@@ -49,7 +49,6 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/")
 ## fecha janela gráfica
 graphics.off()
 # pacotes para R markdown
-require(printr)
 require(pander)
 ```
 
