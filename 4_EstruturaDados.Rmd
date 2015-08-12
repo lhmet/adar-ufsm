@@ -30,7 +30,7 @@ invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 #            style = "html", 
 #            hyperlink = "to.bib")
 # configuraçoes knitr
-opts_chunk$set(cache = FALSE)
+opts_chunk$set(cache = FALSE, fig.path = "figs/")
 ```
 
 - - -

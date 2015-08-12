@@ -4,6 +4,8 @@ Jônatan Tatsch
 
 
 
+
+
 - - -
 
 ![](figs/adar.png)
@@ -150,7 +152,7 @@ A partir desse momento começamos uma sessão no R. Vamos gerar uma sequência d
 plot(1:10)
 ```
 
-<img src="1_Rinstall_files/figure-html/Chunck4-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunck4-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 # RStudio no Ubuntu
 

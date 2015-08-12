@@ -2,6 +2,8 @@
 Jônatan Tatsch  
 14-05-2015  
 
+
+
 - - -
 
 ![](figs/adar.png)
@@ -313,8 +315,8 @@ ls()
 ```
 
 ```
-[1] "joga_moeda" "mais_1"     "mais_cte"   "mais_um"    "pitagoras" 
-[6] "plus_1"     "plus_one"   "x"         
+[1] "joga_moeda" "mais_1"     "mais_cte"   "mais_um"    "pcks"      
+[6] "pitagoras"  "plus_1"     "plus_one"   "x"         
 ```
 
 Note que apesar de criarmos dentro da função as variáveis `sorteio` e `result` elas não foram criadas em nosso ambiente de trabalho. As atribuições feitas dentro da função são locais e temporárias, sendo perdidas após sair da função.
@@ -390,7 +392,7 @@ my_plot <- function(..., pch = 20, col = 2) plot(..., pch = pch, col = col)
 my_plot(1:10, lwd = 3, type = "o")
 ```
 
-![](6_Funcoes_files/figure-html/Chunk9-1.png) 
+![](figs/Chunk9-1.png) 
 
 Vamos ver outro exemplo de uso do `...`, em que criamos uma função para montar a frase: 
 
@@ -650,7 +652,7 @@ is.function(emp_cum_dist_fn)
 plot(emp_cum_dist_fn)
 ```
 
-![](6_Funcoes_files/figure-html/Chunk16-1.png) 
+![](figs/Chunk16-1.png) 
 
 ```r
 emp_cum_dist_fn(v = 1)
@@ -902,7 +904,7 @@ hoje
 ```
 
 ```
-[1] "2015-08-12 01:03:16 BRT"
+[1] "2015-08-12 04:29:50 GMT"
 ```
 
 ```r
@@ -1113,7 +1115,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.345   0.000   0.346 
+  0.433   0.000   0.433 
 ```
 
 ```r
@@ -1130,7 +1132,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.091   0.001   0.091 
+  0.101   0.000   0.101 
 ```
 
 ```r
@@ -1147,7 +1149,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.009   0.000   0.009 
+  0.009   0.000   0.008 
 ```
  
 Os três laços fazem a  mesma coisa, mas no segundo e terceiro laço o R tem que aumentar o tamanho do vetor de saída por um elemento em cada iteração. Para fazer isso o R tem que encontrar um novo local na memória do computador que possa conter um objeto maior. O R então tem que copiar esse vetor de saída e apagar a versão antiga do vetor de saída antes de ir para próxima iteração do laço. No fim do laço o R reescreveu o vetor saída na memória do computador    10000.0 vezes.
@@ -1352,7 +1354,7 @@ temp_mm <- cbind(temp, mm)
 matplot(temp_mm, type = "l", lwd = 2)
 ```
 
-![](6_Funcoes_files/figure-html/Chunk34-1.png) 
+![](figs/Chunk34-1.png) 
 
 
 Para aplicar uma função a cada elemento em um vetor ou uma lista e retornar uma lista podemos usar a função `lapply()`. Uma situação prática de uso do `lapply()` é quando o resultado esperado da aplicação da função a uma parte do objeto pode ter uma saída de tamanhos diferentes em cada iteração do `lapply()`.

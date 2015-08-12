@@ -438,7 +438,7 @@ demo("graphics")
 > plot(x, ann = FALSE, type = "n")
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -465,7 +465,7 @@ demo("graphics")
 > pie(rep(1,24), col = rainbow(24), radius = 0.9)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-2.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-2.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -486,7 +486,7 @@ demo("graphics")
 +     col = c("purple","violetred1","green3","cornsilk","cyan","white"))
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-3.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-3.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -509,7 +509,7 @@ demo("graphics")
 > boxplot(split(x,g), col="lavender", notch=TRUE)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-4.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-4.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -532,7 +532,7 @@ demo("graphics")
 > plot(xx, yy, type="n", xlab="Time", ylab="Distance")
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-5.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-5.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -552,7 +552,7 @@ demo("graphics")
 > plot(x, type="n", axes=FALSE, ann=FALSE)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-6.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-6.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -584,7 +584,7 @@ demo("graphics")
 > hist(x, xlim=range(-4, 4, x), col="lavender", main="")
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-7.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-7.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -596,7 +596,7 @@ demo("graphics")
 > pairs(iris[1:4], main="Edgar Anderson's Iris Data", font.main=4, pch=19)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-8.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-8.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -604,7 +604,7 @@ demo("graphics")
 +       bg = c("red", "green3", "blue")[unclass(iris$Species)])
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-9.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-9.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -640,7 +640,7 @@ demo("graphics")
 +      type = "n", ann = FALSE)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-10.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-10.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -666,7 +666,7 @@ demo("graphics")
 > coplot(lat ~ long | depth, data = quakes, pch = 21, bg = "green3")
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk131-11.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk131-11.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 
@@ -679,7 +679,7 @@ demo("graphics")
 with(dados, plot(x = x1, y = y1))
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk132-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk132-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ### grid
 
@@ -707,7 +707,7 @@ grid.text("y1", x = unit(-3, "lines"), rot = 90)
 grid.points(x = dados$x1, y = dados$y1, name = "dataSymbols")
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk133-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk133-1.png" title="" alt="" style="display: block; margin: auto;" />
 
     
 ### [lattice](http://lattice.r-forge.r-project.org/)
@@ -727,7 +727,7 @@ require(lattice)
 xyplot(y1 ~ x1, data = dados)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk134-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk134-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 ### [ggplot2](http://ggplot2.org/)
@@ -744,7 +744,7 @@ require(ggplot2)
 qplot(x = x1, y = y1, data = dados)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk135-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk135-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 # Terminologia: funções de alto e baixo nível
@@ -757,7 +757,7 @@ qplot(x = x1, y = y1, data = dados)
 plot(x1, y1, las = 1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk31-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk31-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 - Funções de baixo nível adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. 
 
@@ -776,7 +776,7 @@ title(main = "Grafico a partir de funçoes de baixo nível")      # adiciona tí
 box(lwd = 2)                      # adiciona retângulo em torna da região do gráfico, com linha mais larga
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk32-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk32-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Ambos sistemas *base* e *grid* fornecem funções gráficas de baixo nível. O sistema *grid* também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem).
 A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.
@@ -796,7 +796,7 @@ A função `plot()` é o carro chefe do sistema base do R. Quando especificamos 
 plot(y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4110-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4110-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Gerando um gráfico especificando os parâmetros x e y. 
 
@@ -805,7 +805,7 @@ Gerando um gráfico especificando os parâmetros x e y.
 plot(x = x1, y = y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4111-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4111-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex.: `y1 ~ x1` que pode ser interpretada como y1 (variável) em função x1.
 
@@ -814,7 +814,7 @@ Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex
 plot(y1 ~ x1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4112-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4112-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Aplicando a `plot()` a um `data.frame` com duas variáveis resulta um gráfico equivalente ao caso anterior.
 
@@ -823,7 +823,7 @@ Aplicando a `plot()` a um `data.frame` com duas variáveis resulta um gráfico e
 plot(dados)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4113-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4113-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ### Gráficos de dispersão
 
@@ -835,7 +835,7 @@ Aplicando a `plot()` a um `data.frame` com mais de duas variáveis resulta um gr
 plot(aq[, -1])
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4114-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4114-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Cada gráfico desses é chamado de gráfico de dispersão. Através dele pode-se visualizar a relação entre duas variáveis. Nesse caso o gráfico resultante é uma matriz de gráficos de dispersão.
 
@@ -847,7 +847,7 @@ Existe uma função gráfica específica para produção deste tipo de gráfico:
 pairs(aq[, -1])  # exclui coluna date
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4115-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4115-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 A função `pairs.panels()` do pacote `psych` fornece um gráfico de pares bastante informativo e foi expandida a partir da função `pairs()`.
 
@@ -856,7 +856,7 @@ A função `pairs.panels()` do pacote `psych` fornece um gráfico de pares basta
 pairs.panels(x = aq[, -1])
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk4116-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk4116-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Para fechar as janelas gráficas abertas:
 
@@ -1106,7 +1106,7 @@ old_par <- par(no.readonly = TRUE)
   with(aq, plot(x = date, y = Wind, type = "b"))    # linha e ponto desconectados
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk61-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk61-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # restabelecendo parâmetros originais
@@ -1126,7 +1126,7 @@ Poderíamos gerar o mesmo gráfico anterior  da seguinte forma:
 with(aq, plot(x = date, y = Wind, type = "b", lty = 3, pch = 17))
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk62-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk62-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Nem todas funções de alto nível permitem especificar todos parâmetros gráficos. Veja  o `help(plot)` para determinar quais parâmetros gráficos podem configurados dessa forma.
 
@@ -1191,7 +1191,7 @@ pchShow <-
 pchShow()
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk610-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk610-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 As opções de tipo de linha são mostradas abaixo.
 
@@ -1212,7 +1212,7 @@ mtext('Nº do tipo de linha (lty = )', side=2, line=2, cex=1.5,font=2)
 abline(h=1:6, lty=1:6)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk611-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk611-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1225,7 +1225,7 @@ Exemplo com as opções.
 with(aq, plot(x = date, y = Temp, type = "b", lty = 3, pch = 15, cex = 2))
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk612-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk612-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 ## Cores
@@ -1283,7 +1283,7 @@ points(dados$x1[1:n], dados$y1[1:n],
        )
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk520-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk520-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1306,7 +1306,7 @@ plot(dados$x1[1:n], dados$y1[1:n],
      cex = (1:n)/60 * 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk521-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk521-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 plot(dados$x1[1:n], dados$y1[1:n], 
@@ -1320,7 +1320,7 @@ plot(dados$x1[1:n], dados$y1[1:n],
      cex = (1:n)/60 * 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk521-2.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk521-2.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 plot(dados$x1[1:n], dados$y1[1:n], 
@@ -1334,7 +1334,7 @@ plot(dados$x1[1:n], dados$y1[1:n],
      cex = (1:n)/60 * 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk521-3.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk521-3.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 plot(dados$x1[1:n], dados$y1[1:n], 
@@ -1348,7 +1348,7 @@ plot(dados$x1[1:n], dados$y1[1:n],
      cex = (1:n)/60 * 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk521-4.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk521-4.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 plot(dados$x1[1:n], dados$y1[1:n], 
@@ -1362,7 +1362,7 @@ plot(dados$x1[1:n], dados$y1[1:n],
      cex = (1:n)/60 * 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk521-5.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk521-5.png" title="" alt="" style="display: block; margin: auto;" />
 
 ## Características de texto
 
@@ -1403,7 +1403,7 @@ plot(dados$x1[1:n], dados$y1[1:n],
      cex = (1:n)/60 * 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk600-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk600-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1420,28 +1420,28 @@ Até aqui já vimos como criar gráficos de dispersão com a função `plot()`. 
 barplot(BOD$demand, names.arg = BOD$Time, col = 1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # gráfico de uma tabela de contagem
 barplot(table(mtcars$cyl))
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-2.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-2.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # histograma
 hist(mtcars$mpg)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-3.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-3.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # Especificando o número aproximado de classes com parâmetro breaks
 hist(mtcars$mpg, breaks = 10)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-4.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-4.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # boxplots
@@ -1449,21 +1449,21 @@ hist(mtcars$mpg, breaks = 10)
 boxplot(aq[, -1])
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-5.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-5.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # usando formula
 boxplot(Temp ~ Month, data = airquality)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-6.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-6.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # Curvas
 curve(x^3 - 5*x,from=-4,to=4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-7.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-7.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # plot de uma função criada
@@ -1475,7 +1475,7 @@ curve(minhafun(x),from=0,to=20)
 curve(1-minhafun(x),add = TRUE,col = "red")
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-8.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-8.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 # Imagem
@@ -1498,7 +1498,7 @@ box()
 title(main = "Maunga Whau Volcano", font.main = 4)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk17-9.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk17-9.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 ### Telas gráficas 
@@ -1515,7 +1515,7 @@ x11()
  plot(y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1000-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1000-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
  # fechando tela gráfica
@@ -1532,7 +1532,7 @@ png
 plot(y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1001-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1001-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 #### Um gráfico em cada tela
 
@@ -1543,7 +1543,7 @@ A execução do comando `plot()` abre automaticamente uma tela gráfica sem a ne
 plot(y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1002-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1002-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 x11(); plot(sqrt(y1^2))
@@ -1554,13 +1554,13 @@ x11(); plot(sqrt(y1^2))
 plot(y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1003-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1003-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 plot(sqrt(y1^2))
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1003-2.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1003-2.png" title="" alt="" style="display: block; margin: auto;" />
 
 - - - 
 
@@ -1599,7 +1599,7 @@ sapply(1:ncol(mat),
       )# fim do apply
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1006-1.png" title="" alt="" style="display: block; margin: auto;" /><img src="7_Graficos_files/figure-html/Chunk1006-2.png" title="" alt="" style="display: block; margin: auto;" /><img src="7_Graficos_files/figure-html/Chunk1006-3.png" title="" alt="" style="display: block; margin: auto;" /><img src="7_Graficos_files/figure-html/Chunk1006-4.png" title="" alt="" style="display: block; margin: auto;" /><img src="7_Graficos_files/figure-html/Chunk1006-5.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1006-1.png" title="" alt="" style="display: block; margin: auto;" /><img src="figs/Chunk1006-2.png" title="" alt="" style="display: block; margin: auto;" /><img src="figs/Chunk1006-3.png" title="" alt="" style="display: block; margin: auto;" /><img src="figs/Chunk1006-4.png" title="" alt="" style="display: block; margin: auto;" /><img src="figs/Chunk1006-5.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```
 [1] 1 2 3 4 5
@@ -1623,7 +1623,7 @@ O R pode exportar um gráfico para diferentes saídas gráficas (png, pdf, ps, j
 plot(y1)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1008-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1008-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 Vamos usar o exemplo da matriz `mat` para salvar os gráficos das variáveis em cada coluna em um único arquivo **pdf**.
 
@@ -1748,7 +1748,7 @@ plot(1:10, 1:10,  type = "n", frame = F,axes = F, xlab = "", ylab = "")
 text(5,5, "Gráficos \n em uma \n página", cex = 3)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1011-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1011-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 ```r
 par()
@@ -1984,7 +1984,7 @@ mtext(text = "Ozônio", line = -2, adj = 0.2)
 mtext(text = "Temp", col =2, line = -1, adj = 0.2)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1012-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1012-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 - - - 
 
@@ -2007,7 +2007,7 @@ legend("topright",
        lwd = 2)
 ```
 
-<img src="7_Graficos_files/figure-html/Chunk1013-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunk1013-1.png" title="" alt="" style="display: block; margin: auto;" />
 
 
 

@@ -14,6 +14,27 @@ output:
     toc: yes
 ---
 
+```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
+rm(list=ls())
+# definindo globalmente tz = "GMT"
+Sys.setenv(TZ = 'GMT')
+# data manipulation packages
+pcks <- c("knitr", "knitcitations",
+          #"printr",
+          "R.utils", "magrittr", "lubridate","stringr", 
+          "plyr", "dplyr", "raster", "lattice",
+          "rasterVis")
+invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+# configuraçoes knitcitations
+#cleanbib()
+#cite_options(citation_format = "text",
+#            cite.style = "authoryear", 
+#            style = "html", 
+#            hyperlink = "to.bib")
+# configuraçoes knitr
+opts_chunk$set(cache = FALSE, fig.path = "figs/")
+```
+
 - - -
 
 ![](figs/adar.png)
