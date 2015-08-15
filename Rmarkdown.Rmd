@@ -5,6 +5,8 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
     fig_height: 4
+    keep_md: yes
+    number_sections: yes
     toc: yes
     variant: markdown_github
 ---
@@ -40,7 +42,7 @@ Este documento foi escrito em R Markdown. [R Markdown](http://rmarkdown.rstudio.
   * relatório = linguagem computacional + descrição/discussão dos resultados
   * **documentos reproduzíveis**
 
-Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkdown` digitamos o seguinte trecho  no corpo do texto do arquivo Rmd criado no RStudio. 
+Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkdown` digitamos o seguinte trecho  no corpo do texto do arquivo `.Rmd` criado no RStudio. 
 
 
 ```{r, echo=FALSE,comment=""}
@@ -89,11 +91,11 @@ writeLines(
   *  `message = TRUE`  mostra as mensagens de erro (*default* TRUE).   
   *  `echo = TRUE`  se FALSE permite eliminar as saídas do chunk (*default* FALSE).   
   
-  O resto das opções são mostradas ao pressior a tecla `tab` com o mouse posicionado dentro dos colchetes da linha do **chunk**. Para uma lista completa os parâmetros do *chunck* consulte <http://yihui.name/knitr/options/>.
+  O resto das opções são mostradas ao pressionar a tecla `tab` com o mouse posicionado dentro dos colchetes da linha do **chunk**. Para uma lista completa os parâmetros do *chunck* consulte <http://yihui.name/knitr/options/>.
 
 ```{r chunck2, echo=FALSE,comment=""}
 writeLines(c(
-"```{r chunk2, eval=TRUE, cache=TRUE, message = TRUE, echo = TRUE}"
+"```{r chunk2, eval=TRUE, message = TRUE, echo = TRUE}"
 ,"letters"
 ,"## letras em maiúsculo"
 ,"LETRAS <- toupper(letters)"
@@ -106,7 +108,7 @@ writeLines(c(
 
 O *chunck2* será impresso da seguinte forma:
 
-```{r chunk2, eval=TRUE, cache=TRUE, message = TRUE, echo = TRUE}
+```{r chunk2, eval=TRUE, message = TRUE, echo = TRUE}
 letters
 ## letras em maiúsculo
 LETRAS <- toupper(letters)
@@ -219,7 +221,7 @@ ficará:
 
 ## Cabeçalhos
 
-  **Cabeçalhos** (ou *headers* em inglês) são definidos para construção do índice de seções ou capítulos do documento (table of content, TOC) que são 'linkados' às seções.
+  **Cabeçalhos** (ou *headers* em inglês) são definidos para construção do índice de seções ou capítulos do documento (*table of content, TOC*) que são 'lincados' às seções.
   
 ```
  # Seção - nível 1
@@ -485,7 +487,7 @@ O procedimento para inserir figuras do seu computador é o mesmo, só o endereç
  * <http://elevatorlady.ca/doc/refcard/expressions.html>
  * [Editor online de equações](http://www.codecogs.com/latex/eqneditor.php?lang=pt-br)
  
-Para expressões dentro de uma linha as equações são escritas entr os símbolos `$ $`, por exemplo, $y=f(x)$ foi gerada com `$y=f(x)$`. 
+Para expressões dentro de uma linha as equações são escritas entre os símbolos `$ $`, por exemplo, $y=f(x)$ foi gerada com `$y=f(x)$`. 
 Mas se a equação for muito complexa é melhor colocá-la sozinha entre parágrafos de texto, duplicando o mesmo símbolo `$$ $$`, exemplo:
 
 ```tex
@@ -504,7 +506,7 @@ produz:
 
 A resolução das listas do curso deverão ser entregues no formato R Markdown. O arquivo `.Rmd` deverá ser enviado via [Moodle](http://nte.ufsm.br/moodle2_UAB/). O arquivo deve ser nomeado seguindo o padrão `nomedoaluno_lista1.Rmd`. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido de sua resolução que deve incluir a descrição, comentários e a interpretação dos resultados quando for o caso.
 
-Vamos fazer um documento Rmd simulando a resolução da lista de exercícios abaixo.
+Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios abaixo.
 
 ## Lista 1. Exercícios da Unidade 1 do Curso de ADAR-UFSM.
 
