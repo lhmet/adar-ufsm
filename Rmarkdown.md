@@ -1,0 +1,536 @@
+-   Introdução
+-   A essência do *R Markdown*
+-   Inserir código R no documento.
+    -   Opções do **Chunk**
+    -   Saídas dos **chunks**
+    -   Códigos R dentro de linhas
+-   Markdown
+    -   Cabeçalhos
+    -   Parágrafos
+    -   Aparência
+    -   Blocos de códigos sem execução (Verbatim)
+    -   Listas
+    -   Linhas horizontais
+    -   Citações diretas
+    -   Tabelas
+    -   Ênfase de texto
+    -   Links
+    -   Figuras
+    -   Expressões matemáticas
+-   Simulação da resolução de uma Lista de exercícios.
+    -   Lista 1. Exercícios da Unidade 1 do Curso de ADAR-UFSM.
+-   Referências importantes
+
+Introdução
+==========
+
+Este documento foi escrito em R Markdown. [R Markdown](http://rmarkdown.rstudio.com/) combina sintaxe do [Markdown](http://daringfireball.net/projects/markdown), um formato de texto de escrita fácil para produção de textos em `html`, com trechos de códigos [R](http://www.r-project.org) que são executados e o resultado é impresso no documento final. O R Markdown está disponível no RStudio e sua implementação é baseada no [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). Os arquivos gerados com R Markdown recebem a extensão `.Rmd`. Um texto elaborado em R Markdown é produzido clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio.
+
+A essência do *R Markdown*
+==========================
+
+-   documentos dinâmicos = código + texto, ou
+-   relatório = linguagem computacional + descrição/discussão dos resultados
+-   **documentos reproduzíveis**
+
+Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkdown` digitamos o seguinte trecho no corpo do texto do arquivo Rmd criado no RStudio.
+
+    ```{r}
+    install.packages('rmarkdown', dependencies = TRUE)
+    install.packages('gcookbook', dependencies = TRUE)
+    ```
+
+Que aparecerá da seguinte forma no documento `html`:
+
+``` r
+install.packages('rmarkdown', dependencies = TRUE)
+install.packages('gcookbook', dependencies = TRUE)
+```
+
+Um documento dinâmico tem duas partes fundamentais:
+
+-   a **primeira** contém a **descrição** do trabalho, discussões que sejam necessárias, teoria, etc.
+-   a **segunda** parte é composta pelos **blocos de código R** (ou ***Chunks*** em inglês), geralmente intercalados ao texto.
+
+Nesse documento mostramos os principais elementos de ***Markdown*** e como construir os ***Chunks***.
+
+------------------------------------------------------------------------
+
+Inserir código R no documento.
+==============================
+
+O código R é inserido através dos *chunks*. Um *chunk* tem a seguinte estrutura:
+
+    ```{r}
+    Aqui vai o código em R
+    ```
+
+------------------------------------------------------------------------
+
+Opções do **Chunk**
+-------------------
+
+Cada *chunk* possui parâmetros que permitem definir opções de execução para aquele *chunck*, as principais são as seguintes:
+
+-   `chunk2` identificador (ID) do *chunk* que permite encontrar ele mais fácil se ocorrer algum erro (opcional) durante a geração do documento.
+-   `eval = TRUE` opção para executar o *chunk* quando compilar o documento (default TRUE).
+-   `cache=TRUE` opção que permite ao *chunk* guardar os dados uma vez calculados (*default* FALSE).
+-   `message = TRUE` mostra as mensagens de erro (*default* TRUE).
+-   `echo = TRUE` se FALSE permite eliminar as saídas do chunk (*default* FALSE).
+
+O resto das opções são mostradas ao pressior a tecla `tab` com o mouse posicionado dentro dos colchetes da linha do **chunk**. Para uma lista completa os parâmetros do *chunck* consulte <http://yihui.name/knitr/options/>.
+
+    ```{r chunk2, eval=TRUE, cache=TRUE, message = TRUE, echo = TRUE}
+    letters
+    ## letras em maiúsculo
+    LETRAS <- toupper(letters)
+    LETRAS
+    x <- LETRAS[LETRAS %in% c('U', 'F', 'S', 'M')]
+    x
+    ```
+
+O *chunck2* será impresso da seguinte forma:
+
+``` r
+letters
+```
+
+    ##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+    ## [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
+
+``` r
+## letras em maiúsculo
+LETRAS <- toupper(letters)
+LETRAS
+```
+
+    ##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
+    ## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+
+``` r
+x <- LETRAS[LETRAS %in% c("U", "F", "S", "M")]
+x
+```
+
+    ## [1] "F" "M" "S" "U"
+
+------------------------------------------------------------------------
+
+Saídas dos **chunks**
+---------------------
+
+    ```{r, warning=FALSE, message=FALSE,comment=''}
+        ## carregando a pacote 'ggplot2' para gráficos elegante
+        library(ggplot2)
+        ## pacote que contém conjunto de dados de temperatura
+        library(gcookbook)
+        ## Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote
+        head(climate)
+        ## Usando a função qplot() para plotar a série de temperatura global
+        qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
+        ## Usando apenas a função plot()
+        plot(x = climate$Year, y = climate$Anomaly1)
+        ## regressão linear
+        reg <- lm(Anomaly1y ~ Year, data = climate)
+        ## extraindo o coeficiente angular (°C/ano) da reta
+        ## convertendo para °C/100 anos
+        tendencia <- coef(reg)[2] * 100
+    ```
+
+``` r
+    ## Carregando a pacote 'ggplot2' para gráficos elegante
+    library(ggplot2)
+    ## pacote que contém conjunto de dados de temperatura
+    library(gcookbook)
+    ## Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote
+    head(climate)
+```
+
+        Source Year Anomaly1y Anomaly5y Anomaly10y Unc10y
+    1 Berkeley 1800        NA        NA     -0.435  0.505
+    2 Berkeley 1801        NA        NA     -0.453  0.493
+    3 Berkeley 1802        NA        NA     -0.460  0.486
+    4 Berkeley 1803        NA        NA     -0.493  0.489
+    5 Berkeley 1804        NA        NA     -0.536  0.483
+    6 Berkeley 1805        NA        NA     -0.541  0.475
+
+``` r
+    ## Usando a função qplot() para plotar a série de temperatura global
+    qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
+```
+
+![](Rmarkdown_files/figure-markdown_github/chunck4-1.png)
+
+``` r
+    ## Usando apenas a função plot()
+    plot(x = climate$Year, y = climate$Anomaly1y) 
+```
+
+![](Rmarkdown_files/figure-markdown_github/chunck4-2.png)
+
+``` r
+    ## regressão linear
+    reg <- lm(Anomaly1y ~ Year, data = climate)
+    ## extraindo o coeficiente angular (°C/ano) da reta
+    ## convertendo para °C/100 anos
+    tendencia <- coef(reg)[2] * 100
+    tendencia
+```
+
+         Year 
+    0.5929518 
+
+Podemos fazer outro **chunk** para mostrar as tabelas.
+
+    ```{r}
+        ## pacote com a função kable para saída de tabelas
+        library(knitr)
+        ## Aplicando a função 'summary()' ao dataframe airquality.
+        s <- summary(airquality)
+        ## Convertendo o formato da saída das tabelas
+        kable(s, caption = 'Tabela 1: Resumo estatístico dos de qualidade do ar')
+    ```
+
+``` r
+## pacote com a função kable para saída de tabelas
+library(knitr)
+## pacote com dados de temperatura global
+library(gcookbook)
+## Aplicando a função 'summary()' ao dataframe airquality.
+s <- summary(airquality)
+## Convertendo o formato da saída das tabelas
+kable(s, caption = "Tabela 1: Resumo estatístico dos dados de 'qualidade do ar' de NY")
+```
+
+|     |      Ozone     |    Solar.R    |      Wind      |      Temp     |     Month     |      Day     |
+|-----|:--------------:|:-------------:|:--------------:|:-------------:|:-------------:|:------------:|
+|     |   Min. : 1.00  |   Min. : 7.0  |  Min. : 1.700  |  Min. :56.00  |  Min. :5.000  |  Min. : 1.0  |
+|     | 1st Qu.: 18.00 | 1st Qu.:115.8 | 1st Qu.: 7.400 | 1st Qu.:72.00 | 1st Qu.:6.000 | 1st Qu.: 8.0 |
+|     | Median : 31.50 | Median :205.0 | Median : 9.700 | Median :79.00 | Median :7.000 | Median :16.0 |
+|     |  Mean : 42.13  |  Mean :185.9  |  Mean : 9.958  |  Mean :77.88  |  Mean :6.993  |  Mean :15.8  |
+|     | 3rd Qu.: 63.25 | 3rd Qu.:258.8 | 3rd Qu.:11.500 | 3rd Qu.:85.00 | 3rd Qu.:8.000 | 3rd Qu.:23.0 |
+|     |  Max. :168.00  |  Max. :334.0  |  Max. :20.700  |  Max. :97.00  |  Max. :9.000  |  Max. :31.0  |
+|     |    NA's :37    |    NA's :7    |       NA       |       NA      |       NA      |      NA      |
+
+------------------------------------------------------------------------
+
+Códigos R dentro de linhas
+--------------------------
+
+Podemos usar o R em expressões dentro de uma linha de texto, para mostrar o valor de uma variável ou efetuar um cálculo. Por exemplo, para obtermos o valor resultante de 2 + 2 escrevemos \` r 2 + 2 \` e o R colocará o resultado naquela posição do texto.
+
+Por exemplo, a sentença:
+
+-   A tendência da temperatura do ar média global é de \` r round(tendencia, 2) \` °C/100 anos.
+
+ficará
+
+-   A tendência da temperatura do ar média global é de 0.59 °C/100 anos.
+
+Assim como,
+
+-   A média de uma sequência de números inteiros 1 até 10 é \` r mean(1:10) \`.
+
+ficará:
+
+-   A média de uma sequência de números inteiros de 1 até 10 é 5.5.
+
+------------------------------------------------------------------------
+
+Markdown
+========
+
+Cabeçalhos
+----------
+
+**Cabeçalhos** (ou *headers* em inglês) são definidos para construção do índice de seções ou capítulos do documento (table of content, TOC) que são 'linkados' às seções.
+
+     # Seção - nível 1
+     ## Subseção - nível 2 
+     ### Subsubseção - nível 3
+     e assim por diante
+     ...
+
+------------------------------------------------------------------------
+
+Parágrafos
+----------
+
+Um parágrafo é uma ou mais linhas de texto, seguido de uma ou mais linha em branco.
+
+**Novas linhas são tratadas como espaços**, para que possa organizar seus parágrafos como você gosta.
+
+Se você precisar de uma quebra de linha, insira **dois ou mais espaços no final de uma linha**.
+
+------------------------------------------------------------------------
+
+Aparência
+---------
+
+``` python
+    ---
+    title: "Meu novo projeto"
+    author: Nome Sobrenome
+    output:
+         html_document:
+            theme: united [default, cerulean, journal, flatly, readable, spacelab, united, cosmo]
+            highlight: tango [default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate]
+            number_sections: true
+            toc: true
+            fig_width: 7
+            fig_height: 6
+            fig_caption: true
+    ---
+```
+
+------------------------------------------------------------------------
+
+Blocos de códigos sem execução (Verbatim)
+-----------------------------------------
+
+Para inserir um trecho de código de uma linguagem de programação é preciso inserir 4 espaços antes das linhas de código.
+
+``` fortran
+        if ( a .lt. 3) then
+          write(*,*) y,w
+        end if  
+```
+
+O código impresso no html aparecerá da seguinte forma:
+
+``` fortran
+    if ( a .lt. 3) then
+      write(*,*) y,w
+    end if  
+```
+
+------------------------------------------------------------------------
+
+Listas
+------
+
+Para produzir uma lista são usados os símbolos: `+` , `*` , `-`. Uma lista suporta vários níveis de subitens. Os subitens devem separados por quatro espaços ou um *tab*.
+
+     * one
+         - subitem
+     * two
+         - subitem
+             - subsubitem
+     * three
+
+-   one
+    -   subitem
+-   two
+    -   subitem
+        -   subsubitem
+-   three
+
+Linhas horizontais
+------------------
+
+------------------------------------------------------------------------
+
+Para inserir uma linha horizontal pode-se usar:
+
+------------------------------------------------------------------------
+
+``` md
+ 
+ * * *
+ 
+ ou
+ 
+ - - -
+ 
+```
+
+É importante ter quebras de linha entre cada linha de caracteres.
+
+------------------------------------------------------------------------
+
+Citações diretas
+----------------
+
+Citação direta curta:
+
+> É eRRando que se aprende R. (Jônatan Tatsch)
+
+Citação direta longa em blocos:
+
+> Esta é uma citação com dois parágrafos. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+>
+> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem consectetuer libero luctus adipiscing.
+
+------------------------------------------------------------------------
+
+Tabelas
+-------
+
+As tabelas devem ter uma linha para cada fila, com alinhamento definido pela posição relativa a linha pontilhada dos nomes das colunas. A descrição da tabela precisa ter o formato `Table:` ou apenas `:`, a posição definida é acima da tabela.
+
+``` md
+direita     esquerda   Centro    Default
+-------     ------   ---------   -------
+     12     12          12           12
+    123     123         123         123
+      1     1            1            1
+
+Table:  Demonstração da sintaxe para uma tabela.
+```
+
+| direita | esquerda | Centro | Default |
+|---------|----------|:------:|---------|
+| 12      | 12       |   12   | 12      |
+| 123     | 123      |   123  | 123     |
+| 1       | 1        |    1   | 1       |
+
+<table>
+<caption>Amostra de tabela com grades.</caption>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Fruit</th>
+<th align="left">Price</th>
+<th align="left">Advantages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>Bananas</p></td>
+<td align="left"><p>$1.34</p></td>
+<td align="left"><ul>
+<li>built-in wrapper</li>
+<li>bright color</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td align="left"><p>Oranges</p></td>
+<td align="left"><p>$2.10</p></td>
+<td align="left"><ul>
+<li>cures scurvy</li>
+<li>tasty</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+Uma facilidade para construir tabelas em Markdown é o <http://www.tablesgenerator.com/markdown_tables>. Crie sua tabela e cole o texto gerado no seu documento `.Rmd`.
+
+------------------------------------------------------------------------
+
+Ênfase de texto
+---------------
+
+Para destacar texto usa-se geralmente as palavras em *itálico* (`_itálico_`) ou em **negrito** (`**negrito**`).
+
+Um texto sobrescrito (2<sup>10</sup>) é definido `2^10^` e o subscrito (H<sub>2</sub>O) da forma `H~2~O`.
+
+------------------------------------------------------------------------
+
+Links
+-----
+
+Para incluir link de um site és só fechar o endereço da web entre `< >`:
+
+    <http://google.com>
+
+    <sam@green.eggs.ham>
+
+<http://google.com>
+
+<sam@green.eggs.ham>
+
+As vezes queremos dar a determinada frase um link que vincula uma explicação melhor do que foi abordado.
+
+"O *R Markdown* tem ampla documentação ([Reference Card](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf), [site oficial](http://rmarkdown.rstudio.com/)) que pode ser consultada em qualquer momento na internet."
+
+Aqui tem um link dentro da linha de texto a outra [reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf), além disso podemos botar um título [reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter essas Reference Card para consultas").
+
+     Aqui tem um link dentro da linha de texto a outra [reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf), além disso podemos botar um título [reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter essas Reference Card para consultas").
+     
+
+------------------------------------------------------------------------
+
+Figuras
+-------
+
+Para a inserir figuras o procedimento é exatamente como o de um link, só que precedido por um símbolo `!`.
+
+Vamos criar um link para o endereço da imagem:
+
+    [Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)
+
+[Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)
+
+Ao acrescentarmos o símbolo `!` no início, obtemos a imagem no documento.
+
+``` md
+
+![Figura 1. Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)
+```
+
+![Figura 1. Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)
+
+O procedimento para inserir figuras do seu computador é o mesmo, só o endereço é substituído pelo caminho até o nome do arquivo.
+
+------------------------------------------------------------------------
+
+Expressões matemáticas
+----------------------
+
+Nossa área de estudo geralmente requer análises baseadas em equações. Para inserir expressões matemáticas no *R Markdown* é da mesma forma usada em [Latex](http://pt.wikipedia.org/wiki/LaTeX). Existem diversos tutoriais sobre equações em Latex:
+
+-   <http://web.eecs.utk.edu/~mgates3/docs/latex.pdf>(pag 16-25)
+-   <http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference>
+-   <ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf>
+-   <http://elevatorlady.ca/doc/refcard/expressions.html>
+-   [Editor online de equações](http://www.codecogs.com/latex/eqneditor.php?lang=pt-br)
+
+Para expressões ao longo da linha as equações são escritas dentro dos símbolos `$ $`, por exemplo, \(y=f(x)\) foi gerada com `$y=f(x)$`. Mas se a equação for muito complexa é melhor colocá-la sozinha entre parágrafos de texto, duplicando o mesmo símbolo `$$ $$`, exemplo:
+
+``` tex
+
+ $$\psi = \psi_e \left(\dfrac{\theta}{\theta_s}\right)^{-b}$$
+ 
+```
+
+produz:
+
+\[\psi = \psi_e \left(\dfrac{\theta}{\theta_s}\right)^{-b}\]
+
+------------------------------------------------------------------------
+
+Simulação da resolução de uma Lista de exercícios.
+==================================================
+
+A resolução das listas do curso deverão ser entregues no formato R Markdown. O arquivo .Rmd deverá ser enviado via Moodle para aqueles matriculados e por email para os ouvintes. O arquivo deve ser nomeado seguindo o padrão `nomedoaluno_lista1.Rmd`. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido de sua resolução que deve incluir a descrição, comentários e a interpretação dos resultados quando for o caso.
+
+Vamos gerar um documento Rmd simulando a resolução da lista de exercícios abaixo.
+
+Lista 1. Exercícios da Unidade 1 do Curso de ADAR-UFSM.
+-------------------------------------------------------
+
+1.  Gere uma sequência numérica 1 a 365 com 2 repetições de cada dia.
+
+2.  Gere uma sequência x de -100 até 100, com intervalo de 0,5.
+
+3.  Gere uma variável A que resulta do seno de uma sequência numérica de -1 até 1 com mesmo tamanho do vetor x da questão anterior.
+
+4.  Calcule o vetor resultante \(y = exp(-0.07Ax)cos(x+\frac{\pi }{2}))\).
+
+5.  Faça um gráfico do tipo linha relacionando as duas variáveis.
+
+Referências importantes
+=======================
+
+-   [documentação básica](http://rmarkdown.rstudio.com/)
+-   [knitr manual](bit.ly/114GNdP)
+-   [knitr graphics manual](http://yihui.name/knitr/)
+-   [exemplos](https://github.com/yihui/knitr-examples)
+-   [latex-mathjax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
+-   [latex-guia curta de escritura de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf),
+-   [latex-expressões](http://elevatorlady.ca/doc/refcard/expressions.html).
