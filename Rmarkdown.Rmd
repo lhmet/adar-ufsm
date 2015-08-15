@@ -68,7 +68,7 @@ Um documento dinâmico tem duas partes fundamentais:
   
   Nesse documento mostramos os principais elementos de _**Markdown**_ e como construir os _**Chunks**_.
  
-- - - 
+ 
 
 # Inserir código R no documento.
 
@@ -82,7 +82,7 @@ writeLines(
   ))
 ```
 
-- - - 
+ 
 
 ## Opções do **Chunk**
 
@@ -119,7 +119,7 @@ LETRAS
 x <- LETRAS[LETRAS %in% c("U", "F", "S", "M")]
 x
 ```
-- - - 
+ 
 
 ## Saídas dos **chunks**
 
@@ -196,7 +196,7 @@ s <- summary(airquality)
 kable(s, caption = "Tabela 1: Resumo estatístico dos dados de 'qualidade do ar' de NY")
 ```
  
-- - - 
+ 
  
 ## Códigos R dentro de linhas
 
@@ -218,7 +218,7 @@ ficará:
 
 * A média de uma sequência de números inteiros de 1 até 10 é `r mean(1:10)`.
  
-- - - 
+ 
     
 # Markdown
 
@@ -234,7 +234,7 @@ ficará:
  ...
 ```
 
-- - - 
+ 
 
 ## Parágrafos
  
@@ -271,7 +271,7 @@ A aparência e formato do documento final impresso é definido por parâmetros d
     ---
 ```
 
-- - - 
+ 
 
 ## Blocos de códigos sem execução (*Verbatim*)
 
@@ -296,7 +296,7 @@ O código impresso no `html` aparecerá da seguinte forma:
     end if  
 ```
 
-- - - 
+ 
 
 ## Listas
 
@@ -360,7 +360,7 @@ Citação direta longa em blocos:
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 > id sem consectetuer libero luctus adipiscing.
 
-- - - 
+ 
 
 ## Tabelas
 
@@ -419,7 +419,7 @@ c(
 
 Uma facilidade para construir tabelas em Markdown é o <http://www.tablesgenerator.com/markdown_tables> que permite montar a tabela e criar o código para você colá-lo no seu documento `.Rmd`.
 
-- - - 
+ 
 
 ## Ênfase de texto 
 
@@ -427,7 +427,7 @@ Para destacar texto usa-se geralmente as palavras em _itálico_ (`_itálico_` ou
  
 Um texto sobrescrito 2^10^ é definido `2^10^` e o subscrito (H~2~O) da forma `H~2~O`.
 
-- - - 
+ 
  
 ## Links
 
@@ -453,7 +453,7 @@ Para incluir link de um site és só fechar o endereço da web entre `< >`:
  
 ```
 
-- - - 
+ 
 
 ## Figuras
 
@@ -478,7 +478,7 @@ Ao acrescentarmos o símbolo `!` no início, obtemos a imagem no documento.
 
 O procedimento para inserir figuras do seu computador é o mesmo, só o endereço é substituído pelo caminho até o nome do arquivo.
 
-- - - 
+ 
 
 ## Expressões matemáticas
 
