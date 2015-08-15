@@ -17,13 +17,10 @@ Este documento foi escrito em R Markdown. [R Markdown](http://rmarkdown.rstudio.
 Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkdown` digitamos o seguinte trecho  no corpo do texto do arquivo `.Rmd` criado no RStudio. 
 
 
-
-````
 ```{r}
 install.packages('rmarkdown', dependencies = TRUE)
 install.packages('gcookbook', dependencies = TRUE)
 ```
-````
 
 
 Que aparecerá da seguinte forma no documento `html`:
@@ -371,7 +368,7 @@ Uma lista suporta vários níveis de subitens. Os subitens devem separados por q
 
 que será impresso como
 
-- - - 
+- - -
 
 ou
 
