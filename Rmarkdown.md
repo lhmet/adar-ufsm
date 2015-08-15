@@ -25,12 +25,12 @@ install.packages('gcookbook', dependencies = TRUE)
 ```                                              
                                                  
 ````
-
-
+  
+  
 Que aparecerá da seguinte forma no documento `html`:
-
-
-
+  
+  
+  
 
 ```r
 install.packages('rmarkdown', dependencies = TRUE)
