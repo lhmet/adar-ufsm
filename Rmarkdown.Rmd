@@ -336,7 +336,7 @@ Uma lista suporta vários níveis de subitens. Os subitens devem separados por q
 
 que será impresso como
 
-- - - 
+- - -
 
 ou
 

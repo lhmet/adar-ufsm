@@ -43,7 +43,7 @@ Um documento dinâmico tem duas partes fundamentais:
   
   Nesse documento mostramos os principais elementos de _**Markdown**_ e como construir os _**Chunks**_.
  
-- - - 
+ 
 
 # Inserir código R no documento.
 
@@ -56,7 +56,7 @@ Aqui vai o código em R
 ```
 ````
 
-- - - 
+ 
 
 ## Opções do **Chunk**
 
@@ -113,7 +113,7 @@ x
 ```
 ## [1] "F" "M" "S" "U"
 ```
-- - - 
+ 
 
 ## Saídas dos **chunks**
 
@@ -232,7 +232,7 @@ Table: Tabela 1: Resumo estatístico dos dados de 'qualidade do ar' de NY
      Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00   Max.   :9.000   Max.   :31.0 
      NA's   :37       NA's   :7       NA               NA              NA              NA           
  
-- - - 
+ 
  
 ## Códigos R dentro de linhas
 
@@ -254,7 +254,7 @@ ficará:
 
 * A média de uma sequência de números inteiros de 1 até 10 é 5.5.
  
-- - - 
+ 
     
 # Markdown
 
@@ -270,7 +270,7 @@ ficará:
  ...
 ```
 
-- - - 
+ 
 
 ## Parágrafos
  
@@ -307,7 +307,7 @@ A aparência e formato do documento final impresso é definido por parâmetros d
     ---
 ```
 
-- - - 
+ 
 
 ## Blocos de códigos sem execução (*Verbatim*)
 
@@ -331,7 +331,7 @@ O código impresso no `html` aparecerá da seguinte forma:
     end if  
 ```
 
-- - - 
+ 
 
 ## Listas
 
@@ -395,7 +395,7 @@ Citação direta longa em blocos:
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 > id sem consectetuer libero luctus adipiscing.
 
-- - - 
+ 
 
 ## Tabelas
 
@@ -450,7 +450,7 @@ Table: Tabela 1.  Demonstração da sintaxe para uma tabela.
 
 Uma facilidade para construir tabelas em Markdown é o <http://www.tablesgenerator.com/markdown_tables> que permite montar a tabela e criar o código para você colá-lo no seu documento `.Rmd`.
 
-- - - 
+ 
 
 ## Ênfase de texto 
 
@@ -458,7 +458,7 @@ Para destacar texto usa-se geralmente as palavras em _itálico_ (`_itálico_` ou
  
 Um texto sobrescrito 2^10^ é definido `2^10^` e o subscrito (H~2~O) da forma `H~2~O`.
 
-- - - 
+ 
  
 ## Links
 
@@ -484,7 +484,7 @@ Para incluir link de um site és só fechar o endereço da web entre `< >`:
  
 ```
 
-- - - 
+ 
 
 ## Figuras
 
@@ -509,7 +509,7 @@ Ao acrescentarmos o símbolo `!` no início, obtemos a imagem no documento.
 
 O procedimento para inserir figuras do seu computador é o mesmo, só o endereço é substituído pelo caminho até o nome do arquivo.
 
-- - - 
+ 
 
 ## Expressões matemáticas
 
