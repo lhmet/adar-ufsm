@@ -25,7 +25,10 @@ install.packages('gcookbook', dependencies = TRUE)
 ```
 ````
 
+
 Que aparecerá da seguinte forma no documento `html`:
+
+
 
 
 ```r

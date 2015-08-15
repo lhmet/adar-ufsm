@@ -51,7 +51,10 @@ writeLines(
              "install.packages('gcookbook', dependencies = TRUE)", "```"))
 ```
 
+
 Que aparecerá da seguinte forma no documento `html`:
+
+
 
 ```{r, eval = FALSE}
 install.packages('rmarkdown', dependencies = TRUE)
