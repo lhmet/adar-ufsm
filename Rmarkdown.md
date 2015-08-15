@@ -23,6 +23,7 @@ Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkd
 install.packages('rmarkdown', dependencies = TRUE)
 install.packages('gcookbook', dependencies = TRUE)
 ```                                              
+                                                 
 ````
 
 
