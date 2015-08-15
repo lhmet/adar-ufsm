@@ -45,7 +45,7 @@ Este documento foi escrito em R Markdown. [R Markdown](http://rmarkdown.rstudio.
 Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkdown` digitamos o seguinte trecho  no corpo do texto do arquivo `.Rmd` criado no RStudio. 
 
 
-```{r, echo=FALSE,comment="",results='asis'}
+```{r, echo=FALSE,comment="",eval = TRUE, results='markup'}
 writeLines(
   c("```{r}","install.packages('rmarkdown', dependencies = TRUE)", 
              "install.packages('gcookbook', dependencies = TRUE)", "```"))
