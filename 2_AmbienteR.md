@@ -304,7 +304,7 @@ source("R/script1.R")
     * Session
     * Plots
 
-![Paineis](/home/hidrometeorologista/Pictures/Rstudio_panels.png)
+![Paineis](figs/Rstudio_panels.png)
 
 
 

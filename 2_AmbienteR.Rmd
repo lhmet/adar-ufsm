@@ -127,15 +127,21 @@ read#<tab> pressione <tab> para ver as opções de comandos que iniciam com o te
 
 ## Programa, script e código
 
-A definição mais básica de um **programa** é uma seqüência de comandos R criados para fazer alguma coisa. Suponha que você está fazendo uma pesquisa sobre geada e está interessado no horário de maior frequência de ocorrência da temperatura mínima (Tmin) no RS. Você pode escrever um programa em R para ler o arquivo com dados de Tmin, encontrar o horário de ocorrência da Tmin para cada dia e fazer a contagem do número de casos em cada hora do dia. Assim de forma rápida e precisa você pode usar o(s) fim(ns) de semana para divertir-se ao invés de fazer isso manualmente e por inspeção visual, o que estaria sujeito a erros e levaria muito mais tempo.  
+A definição mais básica de um **programa** é uma seqüência de comandos R criados para fazer alguma coisa. Suponha que você está fazendo uma pesquisa sobre geada e está interessado no horário de maior frequência de ocorrência da temperatura mínima (Tmin) no RS. Você pode escrever um programa em R para ler o arquivo com dados de Tmin, encontrar o horário de ocorrência da Tmin para cada dia e fazer a contagem do número de casos em cada hora do dia. 
+
+Assim de forma rápida e precisa você pode usar o(s) fim(ns) de semana para divertir-se ao invés de fazer isso manualmente e por inspeção visual, o que estaria sujeito a erros e levaria muito mais tempo.
 
 Para escrever um **programa** é conveniente usar um editor de texto para escrever os comandos em um arquivo, o qual chamamos de **script**. Por convenção scripts R são salvos com a extensão `.R`. O **código** refere-se ao conjunto de expressões e atribuições, que seguem os padrões de sintaxe da linguagem R, contidas no **script**. 
 
 # R no modo *Batch*
 
-O uso da linha de comando do R é conveniente durante a análise de dados. Mas para algumas tarefas digitar cada comando pode se tornar incoveniente. Por exemplo, você precisa ler os dados de uma estação meteorológica (EM) armazenados em um arquivo, fazer algumas conversões de unidades, plotar a série temporal de três variáveis e salvá-las em um arquivo `pdf`. 
+O uso da linha de comando do R é conveniente durante a análise de dados. Mas para algumas tarefas digitar cada comando pode se tornar incoveniente. Por exemplo, você precisa visualizar graficamente os padrões de variaçao temporal de três variáveis meteorológicas antes e após a passagem sistemas meteorológicos precipitantes.
 
-Suponha que você precise repetir esse processo para outras EM. Com o R há uma forma de rodar um conjunto de comandos em sequência e salvar os resultados em um arquivo. Isso é possível através do modo **Batch**, ou seja execução dos comandos sem inciar o R e sem a intervenção manual. Esse modo facilita a automatização de tarefas. Nesse caso, alterando apenas a variável que define o nome do arquivo da estação meteorológica, podemos reaplicar os mesmos comandos para outra EM. os gráficos poderiam ser gerados para  
+Para esse propósito você precisará ler os dados da estação meteorológica (EM) que estão armazenados em um arquivo, fazer algumas conversões de unidades, plotar o gráfico com as séries temporais das variáveis e poderá salvá-lo em um arquivo `pdf`.
+
+Suponha que você precise repetir esse processo para outras EM. Com o R, assim como em outras linguagem de programação, há uma forma de rodar um conjunto de comandos em sequência e salvar os resultados em um arquivo. Isso é possível através do modo **Batch**, ou seja a execução dos comandos sem inciar o R e sem a intervenção manual. 
+
+Esse modo facilita a automatização de tarefas. Nesse caso, alterando apenas a variável que define o nome do arquivo da estação meteorológica, podemos reaplicar os mesmos comandos para outra EM.
 
 Por exemplo, para rodar o script `gera_graficos.R`, sem abrir o R, utilizaríamos o comando:
 
@@ -175,7 +181,7 @@ O R rodará os comando dentro do arquivo especificado `script1.R` e criará um a
 $ R CMD BATCH script1.R script1_`date "+%y%m%d"`.log
 ~~~~~~~
 
-Para mais informações sobre rodar o R na linha de comando do Linux digite `$ R --help`.
+Para mais informações sobre rodar o R na linha de comando do Linux digite no terminal `$ R --help`.
 
 ## Rodando script de dentro do R
 
@@ -202,7 +208,7 @@ source("R/script1.R")
     * Session
     * Plots
 
-![Paineis](/home/hidrometeorologista/Pictures/Rstudio_panels.png)
+![Paineis](figs/Rstudio_panels.png)
 
 
 
