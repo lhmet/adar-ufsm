@@ -1,5 +1,3 @@
-
-
 ---
 title: "Instalando R e RStudio"
 author: "Jônatan Tatsch"
