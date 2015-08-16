@@ -289,6 +289,7 @@ source("R/script1.R")
 
 # RStudio
 
+
 * Editor de texto
     * Abrindo/Criando um script
     * Rodando código por partes (Ctrl + `<enter>`)
@@ -304,7 +305,8 @@ source("R/script1.R")
     * Session
     * Plots
 
-![Paineis](figs/Rstudio_panels.png)
+
+![paineis](figs/Rstudio_panels.png)
 
 
 
