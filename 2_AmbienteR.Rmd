@@ -193,6 +193,7 @@ source("R/script1.R")
 
 # RStudio
 
+
 * Editor de texto
     * Abrindo/Criando um script
     * Rodando código por partes (Ctrl + `<enter>`)
@@ -207,6 +208,7 @@ source("R/script1.R")
         * mostrar linhas, alterar realce da sintaxe
     * Session
     * Plots
+
 
 ![Paineis](figs/Rstudio_panels.png)
 
