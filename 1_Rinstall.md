@@ -145,7 +145,7 @@ plot(1:10)
 
 <img src="figs/Chunck4-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-# RStudio no Ubuntu
+# Rstudio no Ubuntu
 
 O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.sciviews.org/_rgui/projects/Editors.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
 
@@ -171,4 +171,4 @@ Abra o RStudio digitando no terminal:
 Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece.
 
 
- 
+ Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)
