@@ -2,7 +2,7 @@
 layout: page
 author: Jônatan Tatsch
 date: "1º Semestre de 2016"
-title: "Análise de dados ambientais com R (ADAR)"
+title: "ADAR"
 description: "Análise de dados ambientais com R"
 ---
 
@@ -22,8 +22,6 @@ Durante o aprendizado serão utilizados dados ambientais para aplicação das fe
 ## Local
 
 O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) junto a biblioteca setorial. 
-
-
 
 
 <p align="center">
