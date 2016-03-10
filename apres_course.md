@@ -148,7 +148,6 @@ Logo, requer ferramentas específicas para:
 * manipulação de dados espacias
 <br/>  
 * análise de séries temporais
-
 <br/>  
 * importação e ferramentas de [SIG](https://pt.wikipedia.org/wiki/Sistema_de_informa%C3%A7%C3%A3o_geogr%C3%A1fica)
 <br/>  
@@ -251,4 +250,9 @@ Para saber mais sobre o R
 **Fóruns:** 
 - lista Brasileira de discussão do programa R: [**R-br**](https://listas.inf.ufpr.br/cgi-bin/mailman/listinfo/r-br)
 - [stackoverflow](http://stackoverflow.com/questions/tagged/r)
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+Próximo: [Instalando o R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
