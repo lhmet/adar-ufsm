@@ -179,7 +179,7 @@ Para mais informações sobre rodar o R na linha de comando do Linux digite no t
 
 No modo iterativo, ou seja pela linha de comando, também é possível rodar comandos no modo *Batch* através da função `source()`.
 
-```{r Chunk21, message=FALSE, comment="",eval = TRUE, prompt=FALSE}
+```{r Chunk21, message=FALSE, comment="",eval = FALSE, prompt=FALSE}
 source("R/script1.R")
 ```
 
