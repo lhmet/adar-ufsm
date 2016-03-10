@@ -6,7 +6,7 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-date: Santa Maria, 10, Mar de 2016
+date: `r format(Sys.Date(), format="Santa Maria, %d, %b de %Y")`
 
 </style>
 <div class="midcenter" style="margin-left:10px; margin-top:100px;">
@@ -136,8 +136,7 @@ Por que um meteorologista usaria o R?
 =======================
 <br/>  
 A meteorologia é 4D: 
-
-```r
+``` {r, eval = FALSE}
 meteorologia <- function(x, y, z, t){
   ...muita coisa para caber em um slide...
 }
