@@ -6,8 +6,6 @@ title: "Análise de dados ambientais com R (ADAR)"
 description: "Análise de dados ambientais com R"
 ---
 
-
-
 # Informações do curso
 
 A disciplina **FSC1104-Análise de dados ambientais com R** é oferecida pelo Departamento de Física da Universidade Federal de Santa Maria ([UFSM](http://site.ufsm.br/)) no âmbito dos Programas de [Graduação](http://w3.ufsm.br/meteorologia/) e [Pós-graduação](http://w3.ufsm.br/meteorologia/pos/index.php) em Meteorologia, mas é aberta a alunos de outros cursos.
@@ -19,11 +17,11 @@ Durante o aprendizado serão utilizados dados ambientais para aplicação das fe
 
 ## Horários
 
-- 17:30-19:30 (2a e 5a-feira)
+- 17:30-19:30 (2^a^ e 5^a^-feira)
 
 ## Local
 
-O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) junto a biblioteca setorial. O LSI possui *Desktops* com sistema operacional Linux [Ubuntu](http://ubuntu-br.org/).
+O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) junto a biblioteca setorial. 
 
 
 
@@ -34,7 +32,7 @@ O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro d
 
 - - - 
 
-Acesse: [Introdução ao curso](https://rawgit.com/jdtatsch/adar-ufsm/master/introducao_resbmet.html)
+Acesse: [Introdução ao curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
 
 
  
