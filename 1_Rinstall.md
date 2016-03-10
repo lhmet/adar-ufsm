@@ -1,6 +1,14 @@
 # Instalando *R* e RStudio
 Jônatan Tatsch  
-07-03-2016  
+10-03-2016  
+
+
+- - -
+
+![](figs/adar.png)
+
+
+
 
 
 
