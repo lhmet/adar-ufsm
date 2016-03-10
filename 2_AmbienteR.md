@@ -302,4 +302,4 @@ source("R/script1.R")
 
 
 
-Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/3_Rbasico.html)
+Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/3_RBasico.html)
