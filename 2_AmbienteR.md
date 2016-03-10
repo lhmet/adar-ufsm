@@ -11,7 +11,7 @@ Jônatan Tatsch
 
 - - -
 
-# R no modo iterativo
+# R no modo interativo
 
 ## Linha de comando do R
 
@@ -181,15 +181,7 @@ O R inclui o preenchimento automático de nomes de funções e arquivos por meio
 > read#<tab> pressione <tab> para ver as opções de comandos que iniciam com o termo read
 ```
 
-## Programa, script e código
-
-A definição mais básica de um **programa** é uma seqüência de comandos R criados para fazer alguma coisa. Suponha que você está fazendo uma pesquisa sobre geada e está interessado no horário de maior frequência de ocorrência da temperatura mínima (Tmin) no RS. Você pode escrever um programa em R para ler o arquivo com dados de Tmin, encontrar o horário de ocorrência da Tmin para cada dia e fazer a contagem do número de casos em cada hora do dia. 
-
-Assim de forma rápida e precisa você pode usar o(s) fim(ns) de semana para divertir-se ao invés de fazer isso manualmente e por inspeção visual, o que estaria sujeito a erros e levaria muito mais tempo.
-
-Para escrever um **programa** é conveniente usar um editor de texto para escrever os comandos em um arquivo, o qual chamamos de **script**. Por convenção scripts R são salvos com a extensão `.R`. O **código** refere-se ao conjunto de expressões e atribuições, que seguem os padrões de sintaxe da linguagem R, contidas no **script**. 
-
-# R no modo *Batch*
+# R no modo não interativo (*Batch*)
 
 O uso da linha de comando do R é conveniente durante a análise de dados. Mas para algumas tarefas digitar cada comando pode se tornar incoveniente. Por exemplo, você precisa visualizar graficamente os padrões de variaçao temporal de três variáveis meteorológicas antes e após a passagem sistemas meteorológicos precipitantes.
 
@@ -273,7 +265,7 @@ $ R CMD BATCH script1.R
 O R rodará os comando dentro do arquivo especificado `script1.R` e criará um arquivo de saída chamado `script1.Rout` com os resultados. Você também pode especificar o nome do arquivo de saída.
 
 ~~~~~~~
-$ R CMD BATCH script1.R script1_`date "+%y%m%d"`.log
+$ R CMD BATCH script1.R saida_script1_`date "+%y%m%d"`.log
 ~~~~~~~
 
 Para mais informações sobre rodar o R na linha de comando do Linux digite no terminal `$ R --help`.
@@ -306,7 +298,7 @@ source("R/script1.R")
     * Plots
 
 
-![paineis](figs/Rstudio_panels.png)
+![Figura 1. Rstudio](figs/Rstudio_panels.png)
 
 
 
