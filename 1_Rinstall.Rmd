@@ -147,7 +147,7 @@ Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquiv
     
 Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.     
 
-## Iniciando o *R*
+## Testando o *R*
 
 Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
@@ -160,6 +160,12 @@ A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequênc
 1:10
 # gráfico
 plot(1:10)
+```
+
+Vamos sair do R sem salvar os dados da seção.
+
+```{r Chunck5, comment="", eval = FALSE}
+q(save = "no")
 ```
 
 # Rstudio no Ubuntu

@@ -28,7 +28,7 @@ O *R* pode ser instalado a partir dos binários pré-compilados ou do código fo
 
 # *R* sempre atualizado
 
-O [R](http://www.r-project.org/) é um software multiplataforma (Windows, Linux e MacOS) distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.2.3 (2015-12-10). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do sistema. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+O [R](http://www.r-project.org/) é um software multiplataforma (Windows, Linux e MacOS) distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.2.4 (2016-03-10). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do sistema. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ## Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
@@ -128,7 +128,7 @@ Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquiv
     
 Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.     
 
-## Iniciando o *R*
+## Testando o *R*
 
 Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
@@ -152,6 +152,13 @@ plot(1:10)
 ```
 
 <img src="figs/Chunck4-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+Vamos sair do R sem salvar os dados da seção.
+
+
+```r
+q(save = "no")
+```
 
 # Rstudio no Ubuntu
 
