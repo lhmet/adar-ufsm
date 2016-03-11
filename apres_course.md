@@ -6,7 +6,8 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-date: Santa Maria, 10, março de 2016
+#date: Santa Maria, 11, março de 2016
+date: Santa Maria, 7, de março de 2016
 
 </style>
 <div class="midcenter" style="margin-left:10px; margin-top:100px;">
@@ -256,3 +257,4 @@ Para saber mais sobre o R
 <br/>
 <br/>
 Próximo: [Instalando o R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
+
