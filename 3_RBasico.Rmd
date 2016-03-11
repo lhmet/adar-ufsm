@@ -124,6 +124,8 @@ args(sample)
 ```
 
 
+<span style="color:red; font-size:1.7em;">Fim da 2a aula [GitHub](https://github.com/jdtatsch/adar-ufsm) </span>
+
 ## Valores numéricos especiais
 
 Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`e `NaN` que resultam de operações como: 
@@ -213,7 +215,8 @@ abr; jun; set
 Nós estamos definindo o objeto, digitando o nome do objeto na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de definir um objeto e ao mesmo tempo já  mostrar o seu resultado. Isso pode ser feito cercando a atribuição por parênteses:
 
 ```{r chunk27, message=FALSE, comment=""}
-(tar <- -50:60)
+(tar <- -10:10)
+0.5*(x <- 4)^2 + 2*x + 5
 ```
 
 Quando usamos o próprio objeto numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes dos objetos já usados use a função `ls()`:
@@ -276,6 +279,9 @@ Não se preocupe se você não entendeu completamente a expressão acima, pois a
 1oAno <- 1990
 raizDe10 <- srt(2)
 variavel teste <- 67
+```
+
+```{r chunk213a, message=FALSE, comment="", prompt=FALSE, eval=FALSE}
 # nomes alternativos para as variaveis
 ano1 <- 1990
 variavel_teste <- 67
@@ -308,3 +314,4 @@ verão <- "DJF"
 verão
 ```
    
+
