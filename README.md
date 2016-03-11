@@ -26,7 +26,7 @@ Durante o aprendizado serão utilizados dados ambientais para aplicação das fe
 
 - [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
-- [R Básico](https://rawgit.com/jdtatsch/adar-ufsm/master/2_.html)
+- [R Básico](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)
 
 ## Horários
 
