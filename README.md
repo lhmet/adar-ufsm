@@ -1,15 +1,21 @@
+
+<p style="font-family: verdana; font-size: 45px; font-weight: bold; font-style: italic; background: whitesmoke; color: black; line-height: 50px;width: 900px;padding-left: 320px;">ADAR</p> 
+
 ---
 layout: page
-author: Jônatan Tatsch
-date: "1º Semestre de 2016"
-title: "Análise de dados ambientais com R (ADAR)"
-description: "Análise de dados ambientais com R"
 ---
 
 <p align="center">
-  <img src="figs/logo_ufsm.png" alt="Resbmet"/>
+  <img src="figs/adar.png" alt="Resbmet"/>
 </p>
 
+Professor Responsável: *Jônatan Tatsch*
+
+Período: *1º Semestre de 2016*
+<br/> 
+<br/>
+
+- - -
 
 ## Informações do curso
 
@@ -17,12 +23,12 @@ A disciplina **FSC1104-Análise de dados ambientais com R** é oferecida pelo De
 
 ## Objetivo
 
-Ensinar o essencial sobre programação e como usar efetivamente o sistema computacional R para análise de dados ambientais. O curso aborda a programação em R, leitura e escrita de dados, criação de gráficos informativos, acesso a pacotes do R, criação de funções, organização e documentação de códigos R.
-Durante o aprendizado serão utilizados dados ambientais para aplicação das ferramentas de análise de dados de diferentes áreas (meteorologia, climatologia, hidrologia).
+Ensinar o essencial sobre programação e como usar efetivamente o sistema computacional R para manipulação e análise de dados ambientais. O curso aborda aspectos básicos de programação em R, leitura e escrita de dados, criação de gráficos, funções, padronização e organização de conjunto de dados e elaboração de relatórios dinâmicos.
+Durante o curso serão utilizados dados ambientais para aplicação das ferramentas de análise de dados de diferentes áreas (meteorologia, climatologia, hidrologia).
 
 ## Conteúdo (em construção)
 
-- [Introdução ao curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
+[Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
 
 - [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
