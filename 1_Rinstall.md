@@ -17,28 +17,32 @@ Jônatan Tatsch
 
 # Introdução
 
-Nesse documento descreve-se como instalar o R e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
+Nessa seção descreve-se como instalar o R e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
 
-[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa. O *R* é um software livre, de código fonte  aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
+\"[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa\". Além disso, o *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
-O [RStudio](http://www.rstudio.com/) é um ambiente de desenvolvimento integrado (IDE) para o *R* e será utilizado no curso.
+O usuário interage com o R pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
-O *R* pode ser instalado a partir dos binários pré-compilados ou do código fonte. Aqui descreve-se a instalação do *R* a partir dos binários e como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados.
+O *R* pode ser instalado a partir dos binários pré-compilados ou do código fonte. Aqui, descreve-se a instalação do *R* a partir dos binários e como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
 
+O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não a tenha, consulte o administrador do sistema.
+Alguns comandos linux intuitivos serão utilizados, por isso, mesmo quem não é usuário linux será capaz de entendê-los. 
+
+Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são as 12.04 (abril de 2012, *codename* `precise`), 14.04 (abril de 2014, *codename* `trusty`) e a 15.04 (abril de 2015, *codename* `vivid`). Para saber mais sobre as versões de Ubuntu [clique aqui](http://releases.ubuntu.com/).
 
 # *R* sempre atualizado
 
-O [R](http://www.r-project.org/) é um software multiplataforma (Windows, Linux e MacOS) distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.2.4 (2016-03-10). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do sistema. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+O [R](http://www.r-project.org/) é distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.2.4 (2016-03-10). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ## Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
-A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos abrir um terminal linux (use o atalho `Ctr+Alt+t`) e ver o conteúdo desse arquivo pelo seguinte comando no terminal linux:
+A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando no terminal linux:
    
 ~~~~~~~
 $ cat /etc/apt/sources.list 
 ~~~~~~~
 
-Desde o *R* as primeiras linhas desse arquivo podem ser lidas com o comando abaixo:
+Também é possível fazer isso a partir do *R*, conforme o comando abaixo que mostra as primeiras 15 linhas desse arquivo:
 
 
 ```
@@ -59,19 +63,24 @@ Desde o *R* as primeiras linhas desse arquivo podem ser lidas com o comando abai
 [15] ## review or updates from the Ubuntu security team.                                                
 ```
 
-Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são as 12.04 (abril de 2012, *codename* `precise`), 14.04 (abril de 2014, *codename* `trusty`) e a 15.04 (abril de 2015, *codename* `vivid`). Para saber mais sobre as versões de Ubuntu [clique aqui](http://releases.ubuntu.com/). Para saber a versão do sistema operacional (SO) digite na terminal linux o seguinte comando:
+Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando [^1]:
+
+[^1]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
 
 ~~~~~~~
 $ lsb_release --codename | cut -f2
 ~~~~~~~
 
-Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool), usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux, fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
+Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes 
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^2] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
 
-Vamos adicionar o endereço do repositório da UFPR na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio), ou seja você precisa da senha de administrador do sistema. Vamos trocar do seu usuário para o superusuário. 
+[^2]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+
+O endereço do repositório da UFPR será inserido na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
     $ sudo su
 
-Vamos definir na terminal uma variável com o endereço do repositório.
+Vamos definir na terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
 
     # repos="deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/"
  
@@ -79,7 +88,9 @@ Note que a variável `repos` é uma sequência de caracteres com as seguintes in
 
     deb `linkRepositorioSelecionado`/bin/linux/ubuntu `versaoUbuntu`/
 
-A versão de Ubuntu é dada pelo comando entre crases, pode ver a linha com o comando: `$repos`, verifique se a última palavra corresponde a um dos codenames das versões Ubuntu. Para acrescentar essa informação no final do arquivo `sources.list` digite no terminal linux:
+O valor da variável `repos` é mostrado pelo comando: `$repos`. Certifique-se de que a última palavra corresponde ao nome da sua versão Ubuntu. 
+
+Para acrescentar essa informação no final do arquivo `sources.list` digite no terminal linux:
 
     # echo $repos >> /etc/apt/sources.list
 
@@ -89,7 +100,7 @@ Podemos retornar a sessão de usuário comum (*lsi*):
 
 ## [APT protegido](https://wiki.debian.org/SecureApt) (adaptado da [CRAN](http://cran.r-project.org) seção Secure Apt).  
 
-Os arquivos para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave. Para adicionar essa chave no seu sistema digite o seguinte comando (requer senha de super usuário):
+Os arquivos binários do R para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^3]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
         
@@ -105,7 +116,12 @@ Se aparecer a mensagem de que a chave pública foi importada, então não há ne
 Se os comandos acima falharem você pode tentar:
 
     $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-    
+
+
+[^3]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+
+ 
+
 ## Atualização da lista de repositórios do Ubuntu e instalação do *R*
 
 Após fazer as configurações da lista de repositórios e adicionar a chave é necessário fazer a atualização dessa lista (requer poderes de super usuário):
