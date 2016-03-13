@@ -17,11 +17,11 @@ Jônatan Tatsch
 
 # Introdução
 
-Nessa seção descreve-se como instalar o R e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
+Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
 
 \"[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa\". Além disso, o *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
-O usuário interage com o R pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
+O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
 O *R* pode ser instalado a partir dos binários pré-compilados ou do código fonte. Aqui, descreve-se a instalação do *R* a partir dos binários e como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
 
@@ -100,7 +100,7 @@ Podemos retornar a sessão de usuário comum (*lsi*):
 
 ## [APT protegido](https://wiki.debian.org/SecureApt) (adaptado da [CRAN](http://cran.r-project.org) seção Secure Apt).  
 
-Os arquivos binários do R para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^3]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^3]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
         
@@ -169,7 +169,7 @@ plot(1:10)
 
 <img src="figs/Chunck4-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-Vamos sair do R sem salvar os dados da seção.
+Vamos sair do *R* sem salvar os dados da seção.
 
 
 ```r
