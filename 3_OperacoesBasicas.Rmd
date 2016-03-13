@@ -49,9 +49,11 @@ Nesta seção veremos:
 
 # CalculadoRa
 
+O R é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o R, essa uma forma de familiarizar-se com a linha de comandos do R.
+
 ## Aritmética básica
 
-Todas operações que realizamos com uma calculadora podem ser feitas diretamente na linha de comando do R.
+Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do R.
 
 ```{r chunk1, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
 10 + 2 + 4
@@ -68,20 +70,40 @@ Todas operações que realizamos com uma calculadora podem ser feitas diretament
 ```
 
 Conheça mais operadores aritméticos, digitando na linha de comando:
+
 ```{r chunk12, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
 ?"Arithmetic"
 ```
 
+A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R. Para sair dessa tela digite `q`
+
 ## Constantes
 
-O R tem 4 constantes pré-definidas:
+O R possui algumas constantes pré-definidas, como o a constante pi (π).
+
 ```{r chunk13, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
 pi
-# vetores predefinidos no R
+```
+
+O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos são:
+
+```{r chunk131, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
 LETTERS
 letters
 month.abb
 month.name
+```
+
+Note que caracteres estão sempre entre aspas: `""`.
+
+
+```{r chunk132, message=FALSE, comment="",prompt=FALSE, highlight=TRUE, error=TRUE}
+vogais <- abcde
+```
+
+```{r chunk133, message=FALSE, comment="",prompt=FALSE, highlight=TRUE, error=TRUE}
+vogais <- "abcde"
+vogais
 ```
 
 
@@ -157,6 +179,18 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 1.2E6
 ```
 
+
+
+```{r chunk191, message=FALSE, comment="",prompt=FALSE}
+# opção de dígitos padrão
+getOption("digits")
+exp(1)
+options(digits = 7)
+exp(1)
+getOption("digits")
+```
+
+
 # Variáveis
 
 ## Formas de atribuição 
@@ -166,33 +200,32 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em um objeto dentro do R. O que é um objeto? É um nome usado para guardar os dados, ou seja a nossa variável. Por exemplo para atribuir o valor 2 ao objeto chamado "a" usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-` entre os dois números. Esse é o símbolo de atribuição a um objeto.
 
 ```{r chunk20, message=FALSE, comment="",prompt=FALSE,eval=TRUE, echo=TRUE}
-# a recebe 2
-a <- 2
-a
+p <- 1013
 ```
 
-O R diferencia letras maiúsculas de minúsculas. Portanto `a` e `A` são variáveis diferentes.
+O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
 
 ```{r chunk21, message=FALSE, comment="",prompt=FALSE, eval=TRUE, echo=TRUE, error=TRUE}
-a
-A
+p
+P
 ```
 
-Como criamos apenas a variável `a`, `A` não foi encontrado. 
+Como criamos apenas a variável `p`, `P` não foi encontrada. 
 
-A variável `a` pode ser utilizado para criar outros objetos.
+A variável `p` pode ser utilizado para criar outras variáveis.
 
 ```{r chunk22, message=FALSE, comment="",prompt=FALSE}
-x <- 10*a
-x
+p_pa <- p * 100
+# pressão em Pascal
+p_pa
 ```
 
 A seta de atribuição pode ser usada em qualquer sentido. Parênteses são também utilizados para indicar a prioridade dos cálculos.
 
 ```{r chunk23, message=FALSE, comment="",prompt=FALSE}
- (7/3) + 0.6 -> y1
+7/3 + 0.6 -> y1
  y1
-7/3 + 0.6 -> y2
+(7/3) + 0.6 -> y2
  y2
 7/(3 + 0.6) -> y3
  y3
@@ -226,8 +259,9 @@ abr; jun; set
 Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
 
 ```{r chunk27, message=FALSE, comment=""}
-(tar <- -10:10)
-0.5*(x <- 4)^2 + 2*x + 5
+(tar <- 20)
+# Equação de Tetens
+(es <- 0.611 * exp(17.2694 * ((tar+273.16)-273.16) / ((tar+273.16)-35.86)))
 ```
 
 Quando usamos a própria variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes das variáveis já usados use a função `ls()` para verificar as variáveis existentes:
@@ -259,9 +293,9 @@ Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas 
 Outra forma de atribuição é através da função `assign()`:
 
 ```{r chunk211, message=FALSE, comment=""}
-y1
-assign(x = "x", value = 10*y1)
-x
+es
+assign(x = "es_hpa", value = es/10)
+es_hpa
 ```
 
 Para ilustrar um caso em que a função `assign` pode ser útil, vamos supor que você tenha um vetor com os nomes que você deseja usar para definir alguns objetos, cujo resultado já está em um vetor previamente criado. 
@@ -272,7 +306,8 @@ Considere os nomes dos meses do ano (`r month.abb`) para serem usados como nomes
 # vetor de 1 a 12
 nums <- 1:12
 # laço em cada elemento de nums
-for (i in 1 : length(nums)) assign(month.abb[i], i)
+intervalo <- 1 : length(nums)
+for (i in intervalo) assign(month.abb[i], i)
 # verificando os valores dos objetos criados
 Jan
 Feb
@@ -280,7 +315,7 @@ Mar
 Apr
 ```
 
-A função `for()` utilizada para fazer laços será explorada futuramente.
+A função `for()` será explorada futuramente.
 
 ## Nomeando variáveis
 

@@ -22,9 +22,11 @@ Nesta seção veremos:
 
 # CalculadoRa
 
+O R é uma calculadora turbinada com diversas funções matemáticas disponíveis. Para quem não conhece o R, essa uma forma de familiarizar-se com a linha de comandos do R.
+
 ## Aritmética básica
 
-Todas operações que realizamos com uma calculadora podem ser feitas diretamente na linha de comando do R.
+Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do R.
 
 
 ```r
@@ -89,13 +91,17 @@ Todas operações que realizamos com uma calculadora podem ser feitas diretament
 
 Conheça mais operadores aritméticos, digitando na linha de comando:
 
+
 ```r
 ?"Arithmetic"
 ```
 
+A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R. Para sair dessa tela digite `q`
+
 ## Constantes
 
-O R tem 4 constantes pré-definidas:
+O R possui algumas constantes pré-definidas, como o a constante pi (π).
+
 
 ```r
 pi
@@ -105,8 +111,10 @@ pi
 [1] 3.141593
 ```
 
+O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos são:
+
+
 ```r
-# vetores predefinidos no R
 LETTERS
 ```
 
@@ -141,6 +149,28 @@ month.name
  [1] "January"   "February"  "March"     "April"     "May"      
  [6] "June"      "July"      "August"    "September" "October"  
 [11] "November"  "December" 
+```
+
+Note que caracteres estão sempre entre aspas: `""`.
+
+
+
+```r
+vogais <- abcde
+```
+
+```
+Error in eval(expr, envir, enclos): object 'abcde' not found
+```
+
+
+```r
+vogais <- "abcde"
+vogais
+```
+
+```
+[1] "abcde"
 ```
 
 
@@ -366,6 +396,44 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 [1] 1200000
 ```
 
+
+
+
+```r
+# opção de dígitos padrão
+getOption("digits")
+```
+
+```
+[1] 7
+```
+
+```r
+exp(1)
+```
+
+```
+[1] 2.718282
+```
+
+```r
+options(digits = 7)
+exp(1)
+```
+
+```
+[1] 2.718282
+```
+
+```r
+getOption("digits")
+```
+
+```
+[1] 7
+```
+
+
 # Variáveis
 
 ## Formas de atribuição 
@@ -376,53 +444,48 @@ Até agora nós usamos expressões para fazer uma operação e obter um resultad
 
 
 ```r
-# a recebe 2
-a <- 2
-a
+p <- 1013
 ```
 
-```
-[1] 2
-```
-
-O R diferencia letras maiúsculas de minúsculas. Portanto `a` e `A` são variáveis diferentes.
+O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
 
 
 ```r
-a
+p
 ```
 
 ```
-[1] 2
+[1] 1013
 ```
 
 ```r
-A
+P
 ```
 
 ```
-Error in eval(expr, envir, enclos): object 'A' not found
+Error in eval(expr, envir, enclos): object 'P' not found
 ```
 
-Como criamos apenas a variável `a`, `A` não foi encontrado. 
+Como criamos apenas a variável `p`, `P` não foi encontrada. 
 
-A variável `a` pode ser utilizado para criar outros objetos.
+A variável `p` pode ser utilizado para criar outras variáveis.
 
 
 ```r
-x <- 10*a
-x
+p_pa <- p * 100
+# pressão em Pascal
+p_pa
 ```
 
 ```
-[1] 20
+[1] 101300
 ```
 
 A seta de atribuição pode ser usada em qualquer sentido. Parênteses são também utilizados para indicar a prioridade dos cálculos.
 
 
 ```r
- (7/3) + 0.6 -> y1
+7/3 + 0.6 -> y1
  y1
 ```
 
@@ -431,7 +494,7 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses são tamb
 ```
 
 ```r
-7/3 + 0.6 -> y2
+(7/3) + 0.6 -> y2
  y2
 ```
 
@@ -511,20 +574,20 @@ Nós estamos definindo a variável, digitando o nome dela na linha de comando e 
 
 
 ```r
-(tar <- -10:10)
+(tar <- 20)
 ```
 
 ```
- [1] -10  -9  -8  -7  -6  -5  -4  -3  -2  -1   0   1   2   3   4   5   6
-[18]   7   8   9  10
+[1] 20
 ```
 
 ```r
-0.5*(x <- 4)^2 + 2*x + 5
+# Equação de Tetens
+(es <- 0.611 * exp(17.2694 * ((tar+273.16)-273.16) / ((tar+273.16)-35.86)))
 ```
 
 ```
-[1] 21
+[1] 2.338938
 ```
 
 Quando usamos a própria variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes das variáveis já usados use a função `ls()` para verificar as variáveis existentes:
@@ -535,9 +598,10 @@ ls()
 ```
 
 ```
- [1] "a"    "abr"  "ago"  "dez"  "jan"  "jul"  "jun"  "mar"  "may"  "nd3" 
-[11] "nd4"  "nov"  "out"  "pcks" "set"  "tar"  "totd" "x"    "y1"   "y2"  
-[21] "y3"  
+ [1] "abr"    "ago"    "dez"    "es"     "jan"    "jul"    "jun"   
+ [8] "mar"    "may"    "nd3"    "nd4"    "nov"    "out"    "p"     
+[15] "pcks"   "p_pa"   "set"    "tar"    "totd"   "vogais" "y1"    
+[22] "y2"     "y3"    
 ```
 
 As variáveis criadas também estão disponíveis no painel *Environment* do RStudio.
@@ -570,20 +634,20 @@ Outra forma de atribuição é através da função `assign()`:
 
 
 ```r
-y1
+es
 ```
 
 ```
-[1] 2.933333
+[1] 2.338938
 ```
 
 ```r
-assign(x = "x", value = 10*y1)
-x
+assign(x = "es_hpa", value = es/10)
+es_hpa
 ```
 
 ```
-[1] 29.33333
+[1] 0.2338938
 ```
 
 Para ilustrar um caso em que a função `assign` pode ser útil, vamos supor que você tenha um vetor com os nomes que você deseja usar para definir alguns objetos, cujo resultado já está em um vetor previamente criado. 
@@ -595,7 +659,8 @@ Considere os nomes dos meses do ano (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep
 # vetor de 1 a 12
 nums <- 1:12
 # laço em cada elemento de nums
-for (i in 1 : length(nums)) assign(month.abb[i], i)
+intervalo <- 1 : length(nums)
+for (i in intervalo) assign(month.abb[i], i)
 # verificando os valores dos objetos criados
 Jan
 ```
@@ -628,7 +693,7 @@ Apr
 [1] 4
 ```
 
-A função `for()` utilizada para fazer laços será explorada futuramente.
+A função `for()` será explorada futuramente.
 
 ## Nomeando variáveis
 
