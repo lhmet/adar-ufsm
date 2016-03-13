@@ -258,3 +258,4 @@ Para saber mais sobre o R
 <br/>
 Próximo: [Instalando o R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
+
