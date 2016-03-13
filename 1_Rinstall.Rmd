@@ -26,20 +26,8 @@ output:
 rm(list=ls())
 # definindo globalmente tz = "GMT"
 Sys.setenv(TZ = 'GMT')
-# data manipulation packages
-pcks <- c("knitr"#, "knitcitations",
-          #"printr",
-          #"R.utils", "magrittr", "lubridate","stringr", 
-          #"plyr", "dplyr", "raster", "lattice",
-          #"rasterVis"
-          )
+pcks <- c("knitr")
 invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
-# configuraçoes knitcitations
-#cleanbib()
-#cite_options(citation_format = "text",
-#            cite.style = "authoryear", 
-#            style = "html", 
-#            hyperlink = "to.bib")
 # configuraçoes knitr
 opts_chunk$set(cache = FALSE, fig.path = "figs/")
 ```
@@ -52,6 +40,8 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/")
 Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
 
 \"[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa\". Além disso, o *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
+
+R é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em R não precisa ser compilado antes de ser rodado.
 
 O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 

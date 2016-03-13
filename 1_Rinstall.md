@@ -21,6 +21,8 @@ Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.c
 
 \"[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa\". Além disso, o *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
+R é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em R não precisa ser compilado antes de ser rodado.
+
 O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
 O *R* pode ser instalado a partir dos binários pré-compilados ou do código fonte. Aqui, descreve-se a instalação do *R* a partir dos binários e como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
