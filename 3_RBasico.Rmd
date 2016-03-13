@@ -128,7 +128,8 @@ args(sample)
 
 ## Valores numéricos especiais
 
-Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`e `NaN` que resultam de operações como: 
+Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`e `NaN` que resultam de operações como:
+
 ```{r chunk18, message=FALSE, comment="",prompt=FALSE}
 2/0
 -12/0
