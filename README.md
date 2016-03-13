@@ -32,7 +32,7 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
-- [R Básico](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)
+- [O ambiente R](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)
 
 ## Horários
 
@@ -42,10 +42,12 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) na biblioteca setorial. 
 
+<br/> 
 
-- - - 
 
-Próximo: [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)</p> 
+
+
 
 
  
