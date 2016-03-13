@@ -32,7 +32,7 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
-- [O ambiente R](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)
+- [Interface do Usuário](https://rawgit.com/jdtatsch/adar-ufsm/master/2_InterfaceUsuario.html)
 
 ## Horários
 

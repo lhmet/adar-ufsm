@@ -204,4 +204,4 @@ Agora você está pronto para começar a programar com *R* aproveitando as facil
 <br/> 
 
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Interface do Usuário](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Interface do Usuário](https://rawgit.com/jdtatsch/adar-ufsm/master/2_InterfaceUsuario.html)</p> 
