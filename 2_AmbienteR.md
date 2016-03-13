@@ -244,16 +244,12 @@ Copie os comandos abaixo no arquivo recém criado no gedit.
 [1] 1
 ```
 
+
 ```r
 ## salvando um gráfico da sequência de 1 a 100 em um arquivo pdf
 pdf("plot_script1.pdf") # cria e abre um arquivo pdf
  plot(1:100)            # faz o gráfico
 dev.off()               # fecha o arquivo pdf
-```
-
-```
-png 
-  2 
 ```
 
 Rode o R em modo **Batch** informando o nome do script.
