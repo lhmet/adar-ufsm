@@ -183,28 +183,27 @@ O R inclui o preenchimento automático de nomes de funções e arquivos por meio
 
 # R no modo não interativo (*Batch*)
 
-O uso da linha de comando do R é conveniente durante a análise de dados. Mas para algumas tarefas digitar cada comando pode se tornar incoveniente. Por exemplo, você precisa visualizar graficamente os padrões de variaçao temporal de três variáveis meteorológicas antes e após a passagem sistemas meteorológicos precipitantes.
+O uso da linha de comando do R é conveniente durante a análise de dados. Mas para algumas tarefas digitar cada comando pode se tornar incoveniente. 
 
-Para esse propósito você precisará ler os dados da estação meteorológica (EM) que estão armazenados em um arquivo, fazer algumas conversões de unidades, plotar o gráfico com as séries temporais das variáveis e poderá salvá-lo em um arquivo `pdf`.
+Por exemplo, você precisa visualizar graficamente os padrões de variaçao temporal de três variáveis meteorológicas antes e após a passagem sistemas meteorológicos precipitantes. Para esse propósito você precisará ler os dados da estação meteorológica (EM) que estão armazenados em um arquivo, fazer algumas conversões de unidades, plotar o gráfico com as séries temporais das variáveis e salvá-lo em um arquivo `pdf`.
 
-Suponha que você precise repetir esse processo para outras EM. Com o R, assim como em outras linguagem de programação, há uma forma de rodar um conjunto de comandos em sequência e salvar os resultados em um arquivo. Isso é possível através do modo **Batch**, ou seja a execução dos comandos sem inciar o R e sem a intervenção manual. 
-
+Suponha que você precise repetir esse processo para outras EM. Com o R, assim como em outras linguagem de programação, há uma forma de rodar um conjunto de comandos em sequência e salvar os resultados em um arquivo. Isso é possível através do modo *Batch*, ou seja a execução dos comandos sem inciar o R e sem a intervenção manual. 
 Esse modo facilita a automatização de tarefas. Nesse caso, alterando apenas a variável que define o nome do arquivo da estação meteorológica, podemos reaplicar os mesmos comandos para outra EM.
 
-Por exemplo, para rodar o script `gera_graficos.R`, sem abrir o R, utilizaríamos o comando:
+Por exemplo, para rodar um suposto script `gera_graficos.R`, sem ter que abrir o R e digitar os comandos para fazer o gráfico, utilizaríamos o comando:
 
 ~~~~~~~
 $ R CMD BATCH gera_graficos.R
 ~~~~~~~
 
-Podemos criar um arquivo texto chamado script1.R e digitar todos comandos dessa aula nele. 
+Podemos criar um arquivo texto chamado `script1.R` e digitar todos comandos dessa aula nele. 
 
 ~~~~~~~
 $ cd /home/lsi/nomealuno
 $ gedit script1.R &
 ~~~~~~~
 
-Copie os comandos abaixo no arquivo recém criado no gedit.
+Copie os comandos abaixo no arquivo recém criado no gedit ou outro editor de texto do Linux.
 
 
 ```r
@@ -258,7 +257,7 @@ Rode o R em modo **Batch** informando o nome do script.
 $ R CMD BATCH script1.R
 ~~~~~~~
 
-O R rodará os comando dentro do arquivo especificado `script1.R` e criará um arquivo de saída chamado `script1.Rout` com os resultados. Você também pode especificar o nome do arquivo de saída.
+O R rodará os comandos dentro do arquivo especificado `script1.R` e criará um arquivo de saída chamado `script1.Rout` com os resultados. Você também pode especificar o nome daquele arquivo de saída. Por exemplo vamos salvar o arquivo de saída como `saida_script1_aDataDeHoje.log`
 
 ~~~~~~~
 $ R CMD BATCH script1.R saida_script1_`date "+%y%m%d"`.log
