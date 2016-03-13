@@ -45,7 +45,7 @@ O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro d
 
 - - - 
 
-Próximo: [Introdução ao curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
+Próximo: [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
 
 
  
