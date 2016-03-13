@@ -6,12 +6,12 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-#date: Santa Maria, 11, março de 2016
+#date: Santa Maria, 12, março de 2016
 date: Santa Maria, 7, de março de 2016
 
 </style>
-<div class="midcenter" style="margin-left:10px; margin-top:100px;">
-<img src="figs/logo_ufsm.png" height="400px" width="2600px" />
+<div class="midcenter" style="margin-left:5px; margin-top:100px;">
+<img src="figs/logo_ufsm.png" height="400px" width="3000px" />
 </div>
 
 
