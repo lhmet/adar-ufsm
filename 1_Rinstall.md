@@ -1,5 +1,5 @@
 # Instalando *R* e RStudio
-Jônatan Tatsch  
+Jônatan Tatsch, Roilan Valdés  
 10-03-2016  
 
 

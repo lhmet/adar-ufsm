@@ -1,6 +1,6 @@
 ---
 title: "Instalando *R* e RStudio"
-author: "Jônatan Tatsch"
+author: "Jônatan Tatsch, Roilan Valdés"
 date: "10-03-2016"
 output:
   html_document:
