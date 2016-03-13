@@ -1,5 +1,5 @@
 ---
-title: "Básico de R"
+title: "Operações Básicas"
 author: "Jônatan Tatsch"
 date: "19-03-2015"
 output:
@@ -37,6 +37,16 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/")
 
 - - -
 
+# Objetivos
+
+Nesta seção veremos:
+
+- como realizar operações aritméticas básicas com R
+- atribuir valores a uma variável
+- utilizar funções matemáticas internas do R
+- alguns valores numéricos especiais do R
+- os cuidados ao nomear variáveis
+
 # CalculadoRa
 
 ## Aritmética básica
@@ -52,7 +62,6 @@ Todas operações que realizamos com uma calculadora podem ser feitas diretament
 4^0.5
 # operador artimético para se determinar o resto de uma divisao
 10 %% 2
-11 %% 2
 2001 %% 2
 # operador de divisão inteira
 11 %/% 2
@@ -98,23 +107,21 @@ Para ver a lista completa de funções trigonométricas:
 ?"Trig"
 ```
 
-O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 10. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
+O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
 
 ```{r chunk16, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
 set.seed(seed = 5)
-# sorteio de um número dentro da sequência de 1 a 10
+# sorteio de um número dentro da sequência de 1 a 6
 sample(x = 1:6, size = 1)
-# sorteio de 5 números dentro da sequência de 1 a 10
+# sorteio de 5 números dentro da sequência de 1 a 6
 sample(x = 1:6, size = 5)
-# sorteio de 10 números dentro da sequência de 1 a 10
+# sorteio de 5 números dentro da sequência de 1 a 6
 # resultado sem números repetidos
 sample(x = 1:6, size = 5, replace = TRUE)
-# resultado com números repetidos
-sample(x = 1:10, size = 10, replace = TRUE)
-# sorteio de 20 números dentro da sequência de 1 a 10
-# nesse caso a reposição deve ser feita (size > n) então podem 
+# sorteio de 20 números dentro da sequência de 1 a 6
+# nesse caso a reposição deve ser feita (size > 6) então podem 
 # ocorrer números repetidos
-sample(x = 1:10, size = 20, replace = TRUE)
+sample(x = 1:6, size = 20, replace = TRUE)
 ```
 
 Os argumentos de uma função são obtidos pela função `args()`. Por exemplo quais são os argumentos da função `sample()`?
@@ -150,28 +157,30 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 1.2E6
 ```
 
-# Objetos
+# Variáveis
 
 ## Formas de atribuição 
 
-### Objeto recebe valor
+### Variável recebe valor
 
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em um objeto dentro do R. O que é um objeto? É um nome usado para guardar os dados, ou seja a nossa variável. Por exemplo para atribuir o valor 2 ao objeto chamado "a". Usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-`. Esse é o símbolo de atribuição a um objeto.
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em um objeto dentro do R. O que é um objeto? É um nome usado para guardar os dados, ou seja a nossa variável. Por exemplo para atribuir o valor 2 ao objeto chamado "a" usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-` entre os dois números. Esse é o símbolo de atribuição a um objeto.
+
 ```{r chunk20, message=FALSE, comment="",prompt=FALSE,eval=TRUE, echo=TRUE}
 # a recebe 2
 a <- 2
 a
 ```
 
-O R diferencia letras maiúsculas de minúsculas. Portanto `a` e `A` são objetos diferentes.
+O R diferencia letras maiúsculas de minúsculas. Portanto `a` e `A` são variáveis diferentes.
+
 ```{r chunk21, message=FALSE, comment="",prompt=FALSE, eval=TRUE, echo=TRUE, error=TRUE}
 a
 A
 ```
 
-Como criamos apenas o objeto **a**, o objeto A não foi encontrado. 
+Como criamos apenas a variável `a`, `A` não foi encontrado. 
 
-O objeto **a** pode ser utilizado para criar outros objetos.
+A variável `a` pode ser utilizado para criar outros objetos.
 
 ```{r chunk22, message=FALSE, comment="",prompt=FALSE}
 x <- 10*a
@@ -189,20 +198,21 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses são tamb
  y3
 ```
 
-Vamos criar um objeto chamado `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
+Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
 
 ```{r chunck24, message=FALSE, comment="",prompt=FALSE}
 nd3 <- 31
 nd4 <- 30
 ```
 
-O total de dias nos meses de março e abril serão armazenados no objeto totdias:
+O total de dias nos meses de março e abril será armazenado na variável `totdias`:
+
 ```{r chunck25, message=FALSE, comment="",prompt=FALSE}
 totd <- nd3 + nd4
 totd
 ```
 
-A atribuição de um mesmo valor para diferentes objetos pode ser feita da seguinte forma:
+A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
 
 ```{r chunck26, message=FALSE, comment="",prompt=FALSE}
 # número de dias em cada mês
@@ -213,20 +223,21 @@ jan; mar; jul
 abr; jun; set
 ```
 
-Nós estamos definindo o objeto, digitando o nome do objeto na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de definir um objeto e ao mesmo tempo já  mostrar o seu resultado. Isso pode ser feito cercando a atribuição por parênteses:
+Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
 
 ```{r chunk27, message=FALSE, comment=""}
 (tar <- -10:10)
 0.5*(x <- 4)^2 + 2*x + 5
 ```
 
-Quando usamos o próprio objeto numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes dos objetos já usados use a função `ls()`:
+Quando usamos a própria variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes das variáveis já usados use a função `ls()` para verificar as variáveis existentes:
 
 ```{r chunck28, message=FALSE, comment="",prompt=FALSE}
 ls()
 ```
 
-Os objetos criados também estão disponíveis no painel **Environment** do RStudio.
+As variáveis criadas também estão disponíveis no painel *Environment* do RStudio.
+
 ```{r chunck29, message=FALSE, comment="",prompt=FALSE}
 totdias <- nd3; totd <- totd + nd4; totd <- totd + 365
 totd
@@ -246,6 +257,7 @@ Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas 
 ### Atribuição com a função `assign`
 
 Outra forma de atribuição é através da função `assign()`:
+
 ```{r chunk211, message=FALSE, comment=""}
 y1
 assign(x = "x", value = 10*y1)
@@ -268,11 +280,11 @@ Mar
 Apr
 ```
 
-Não se preocupe se você não entendeu completamente a expressão acima, pois as funções `assign` e `for`(para fazer laços) serão exploradas futuramente.
+A função `for()` utilizada para fazer laços será explorada futuramente.
 
-## Nomeando objetos
+## Nomeando variáveis
 
-É preciso ter cuidado ao nomear objetos no R porque existem algumas regras:
+É preciso ter cuidado ao nomear variáveis no R porque existem algumas regras:
 
 * não iniciar com um número e não conter espaços
 
