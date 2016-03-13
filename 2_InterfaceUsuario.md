@@ -4,7 +4,6 @@ Jônatan Tatsch
 
 
 
-
 - - -
 
 ![](figs/adar.png)
@@ -292,10 +291,9 @@ source("R/script1.R")
     * Session
     * Plots
 
-
 ![Figura 1. Rstudio](figs/Rstudio_panels.png)
 
 <br/>
 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Operações Básicas](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)</p> 
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/3_RBasico.html)</p> 
