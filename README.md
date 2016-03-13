@@ -48,7 +48,7 @@ O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro d
 <p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)</p> 
 
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/2_AmbienteR.html)</p> 
+
 
  
  
