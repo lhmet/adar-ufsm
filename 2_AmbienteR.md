@@ -1,4 +1,4 @@
-# Interface do Usuário
+# O ambiente R
 Jônatan Tatsch  
 12-03-2015  
 
