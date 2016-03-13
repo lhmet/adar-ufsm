@@ -19,11 +19,11 @@ No Linux o R pode ser aberto simplesmente digitando em um terminal a letra `R`. 
 
 
 ```r
-> 15 + 4
+> 62 + 38
 ```
 
 ```
-[1] 19
+[1] 100
 ```
 
 A expressão é avaliada pelo R, o resultado é mostrado, mas o seu valor é perdido.
@@ -75,11 +75,11 @@ Podemos executar todas expressões anteriores em apenas uma linha, usando o pont
 
 
 ```r
-> 15 + 4; 1:100; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
+> 62 + 38; 1:100; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
 ```
 
 ```
-[1] 19
+[1] 100
 ```
 
 ```
@@ -103,11 +103,11 @@ As expressões também podem ser separadas por uma nova linha (`<enter>`) entre 
 
 
 ```r
-> 15 + 4
+> 62 + 38
 ```
 
 ```
-[1] 19
+[1] 100
 ```
 
 ```r
@@ -152,7 +152,7 @@ Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluíd
 > #digite <Ctr + l>
 ```
 
-Para parar ou cancelar a execução de uma expressão utilize `Ctrl + C`.
+Para parar ou cancelar a execução de uma expressão utilize as teclas `Ctrl + C`. As teclas `Ctrl + l` tem o efeito de limpar a tela.
 
 ## Comentários
 
@@ -207,11 +207,11 @@ Copie os comandos abaixo no arquivo recém criado no gedit ou outro editor de te
 
 
 ```r
-15 + 4
+62 + 38
 ```
 
 ```
-[1] 19
+[1] 100
 ```
 
 ```r
@@ -295,6 +295,7 @@ source("R/script1.R")
 
 ![Figura 1. Rstudio](figs/Rstudio_panels.png)
 
+<br/>
 
 
-Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/3_RBasico.html)
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [R básico](https://rawgit.com/jdtatsch/adar-ufsm/master/3_RBasico.html)</p> 
