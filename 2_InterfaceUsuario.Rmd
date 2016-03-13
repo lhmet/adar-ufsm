@@ -17,8 +17,7 @@ output:
 
 ```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
 rm(list=ls())
-pcks <- c("knitr", "knitcitations")
-invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+library("knitr")
 opts_chunk$set(cache = FALSE, fig.path = "figs/")
 ```
 
@@ -194,3 +193,4 @@ source("R/script1.R")
 
 <p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Operações Básicas](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)</p> 
 
+                                                      
