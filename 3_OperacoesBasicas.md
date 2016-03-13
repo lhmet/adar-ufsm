@@ -377,6 +377,8 @@ Inf/Inf
 [1] NaN
 ```
  
+## Notação científica e precisão
+
 Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:
 
 
@@ -396,7 +398,7 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 [1] 1200000
 ```
 
-
+É possível mudar a precisão dos cálculos no R para `n` digítos usando a função `options()`.
 
 
 ```r
@@ -417,12 +419,13 @@ exp(1)
 ```
 
 ```r
-options(digits = 7)
+# alterando para 14
+options(digits = 14)
 exp(1)
 ```
 
 ```
-[1] 2.718282
+[1] 2.718281828459
 ```
 
 ```r
@@ -430,7 +433,12 @@ getOption("digits")
 ```
 
 ```
-[1] 7
+[1] 14
+```
+
+```r
+# redefinindo para o valor padrão
+options(digits = 7)
 ```
 
 

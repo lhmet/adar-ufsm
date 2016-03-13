@@ -172,6 +172,8 @@ Inf-Inf
 Inf/Inf
 ```
  
+## Notação científica e precisão
+
 Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:
 
 ```{r chunk19, message=FALSE, comment="",prompt=FALSE}
@@ -179,15 +181,18 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 1.2E6
 ```
 
-
+É possível mudar a precisão dos cálculos no R para `n` digítos usando a função `options()`.
 
 ```{r chunk191, message=FALSE, comment="",prompt=FALSE}
 # opção de dígitos padrão
 getOption("digits")
 exp(1)
-options(digits = 7)
+# alterando para 14
+options(digits = 14)
 exp(1)
 getOption("digits")
+# redefinindo para o valor padrão
+options(digits = 7)
 ```
 
 
