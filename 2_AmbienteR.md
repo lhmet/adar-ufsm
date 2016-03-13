@@ -1,4 +1,4 @@
-# O ambiente R
+# Interface do usuário
 Jônatan Tatsch  
 12-03-2015  
 

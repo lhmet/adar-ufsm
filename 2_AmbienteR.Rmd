@@ -1,6 +1,6 @@
 
 ---
-title: "O ambiente R"
+title: "Interface do usuário"
 author: "Jônatan Tatsch"
 date: "12-03-2015"
 output:
