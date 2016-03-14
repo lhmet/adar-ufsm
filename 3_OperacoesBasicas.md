@@ -230,6 +230,8 @@ Para ver a lista completa de funções trigonométricas:
 ?"Trig"
 ```
 
+### Sorteando números aleatoriamente
+
 O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
 
 
@@ -377,7 +379,9 @@ Inf/Inf
 [1] NaN
 ```
  
-## Notação científica e precisão
+A demostração das diferentes formas de se obter essas constantes especiais o ajudará a encontrar a causa de resultados inesperados com esses valores.
+
+## Notação científica e número de dígitos
 
 Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:
 
@@ -448,11 +452,28 @@ options(digits = 7)
 
 ### Variável recebe valor
 
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em um objeto dentro do R. O que é um objeto? É um nome usado para guardar os dados, ou seja a nossa variável. Por exemplo para atribuir o valor 2 ao objeto chamado "a" usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-` entre os dois números. Esse é o símbolo de atribuição a um objeto.
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em uma variável dentro do R. 
+
+O que é uma variável? É um nome usado para guardar os dados. Por exemplo para atribuir o valor 1013 a variável chamado `p` usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-` entre os dois números. Esse é o símbolo de atribuição a uma variável.
 
 
 ```r
 p <- 1013
+# para mostrar a variável digite o nome da variável
+p
+```
+
+```
+[1] 1013
+```
+
+```r
+# ou use a função print()
+print(p)
+```
+
+```
+[1] 1013
 ```
 
 O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
@@ -502,8 +523,8 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de
 ```
 
 ```r
-7/(3 + 0.6) -> y3
- y3
+7/(3 + 0.6) -> y2
+ y2
 ```
 
 ```
@@ -535,14 +556,11 @@ A atribuição de um mesmo valor para diferentes variáveis pode ser feita da se
 
 ```r
 # número de dias em cada mês
-jan <- mar <- may <- jul <- ago <- out <- dez <- 31
+jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
 abr <- jun <- set <- nov <- 30
+fev <- 28
 # verificação
-jan; mar; jul
-```
-
-```
-[1] 31
+jan; jul
 ```
 
 ```
@@ -554,7 +572,7 @@ jan; mar; jul
 ```
 
 ```r
-abr; jun; set
+jun; set
 ```
 
 ```
@@ -565,8 +583,12 @@ abr; jun; set
 [1] 30
 ```
 
+```r
+fev
 ```
-[1] 30
+
+```
+[1] 28
 ```
 
 Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
@@ -580,16 +602,28 @@ Nós estamos definindo a variável, digitando o nome dela na linha de comando e 
 [1] 20
 ```
 
+Na expressão note como a variável `tk` definida e já utilizada.
+
+
 ```r
-# Equação de Tetens
-(es <- 0.611 * exp(17.2694 * ((tar+273.16)-273.16) / ((tar+273.16)-35.86)))
+(es <- 0.611 * exp(17.2694 * ((tk <- tar+273.16)-273.16) / ((tk)-35.86)))
 ```
 
 ```
 [1] 2.338938
 ```
 
-Quando usamos a própria variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes das variáveis já usados use a função `ls()` para verificar as variáveis existentes:
+```r
+tk
+```
+
+```
+[1] 293.16
+```
+
+Essa é mais uma utilidade dos `()` no R. Na expressão acima, conhecida como [fórmula de Teten](http://www.met.wau.nl/metlukweb/Reading/Clausius-Clapeyron.pdf) além de já mostrar o resultado da expressão, nós criamos as variáveis `tk` e `es` simultaneamente.
+
+Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função `ls()`[^1] para verificar as variáveis existentes:
 
 
 ```r
@@ -597,22 +631,23 @@ ls()
 ```
 
 ```
- [1] "abr"    "ago"    "dez"    "es"     "jan"    "jul"    "jun"   
- [8] "mar"    "may"    "nd3"    "nd4"    "nov"    "out"    "p"     
-[15] "pcks"   "p_pa"   "set"    "tar"    "totd"   "vogais" "y1"    
-[22] "y3"    
+ [1] "abr"    "ago"    "dez"    "es"     "fev"    "jan"    "jul"   
+ [8] "jun"    "mai"    "mar"    "nd3"    "nd4"    "nov"    "out"   
+[15] "p"      "pcks"   "p_pa"   "set"    "tar"    "tk"     "totd"  
+[22] "vogais" "y1"     "y2"    
 ```
 
-As variáveis criadas também estão disponíveis no painel *Environment* do RStudio.
+[^1]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
+
 
 
 ```r
-totdias <- nd3; totd <- totd + nd4; totd <- totd + 365
+totd <- jan*7; totd <- totd + fev; totd <- totd + 4*abr
 totd
 ```
 
 ```
-[1] 456
+[1] 365
 ```
 
 Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas com colchetes.
@@ -649,17 +684,25 @@ es_hpa
 [1] 0.2338938
 ```
 
+```r
+# usando função assign sem nome dos parâmetros
+assign("u", 2.5)
+u
+```
+
+```
+[1] 2.5
+```
+
 Para ilustrar um caso em que a função `assign` pode ser útil, vamos supor que você tenha um vetor com os nomes que você deseja usar para definir alguns objetos, cujo resultado já está em um vetor previamente criado. 
 
-Considere os nomes dos meses do ano (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto `nums`, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto `nums` são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição `Jan <- 1; Feb <- 2, Mar <- 3, ...`, podemos fazer um laço (ou *looping*) de 1 até o tamanho do vetor `nums` (ou seja 1:12) e usar o vetor `month.abb` para nomear os objetos.
+Considere os nomes dos meses do ano (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto `nums`, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto `nums` são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição `jan <- 1; fev <- 2, mar <- 3, ...`, podemos fazer um laço (ou *looping*) de 1 até o tamanho do vetor `nums` (ou seja 1:12) e usar o vetor `month.abb` para nomear os objetos.
 
 
 ```r
 # vetor de 1 a 12
 nums <- 1:12
-# laço em cada elemento de nums
-intervalo <- 1 : length(nums)
-for (i in intervalo) assign(month.abb[i], i)
+for (i in nums) assign(month.abb[i], i)
 # verificando os valores dos objetos criados
 Jan
 ```
@@ -692,7 +735,83 @@ Apr
 [1] 4
 ```
 
+```r
+ls()
+```
+
+```
+ [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "es"    
+ [8] "es_hpa" "Feb"    "fev"    "i"      "jan"    "Jan"    "jul"   
+[15] "Jul"    "jun"    "Jun"    "mai"    "mar"    "Mar"    "May"   
+[22] "nd3"    "nd4"    "nov"    "Nov"    "nums"   "Oct"    "out"   
+[29] "p"      "pcks"   "p_pa"   "Sep"    "set"    "tar"    "tk"    
+[36] "totd"   "u"      "vogais" "y1"     "y2"    
+```
+
 A função `for()` será explorada futuramente.
+
+## Removendo variáveis
+
+Para remover variáveis usa-se a função `rm()`.
+
+
+```r
+# lista de variáveis existentes
+ls()
+```
+
+```
+ [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "es"    
+ [8] "es_hpa" "Feb"    "fev"    "i"      "jan"    "Jan"    "jul"   
+[15] "Jul"    "jun"    "Jun"    "mai"    "mar"    "Mar"    "May"   
+[22] "nd3"    "nd4"    "nov"    "Nov"    "nums"   "Oct"    "out"   
+[29] "p"      "pcks"   "p_pa"   "Sep"    "set"    "tar"    "tk"    
+[36] "totd"   "u"      "vogais" "y1"     "y2"    
+```
+
+```r
+rm(u)
+# lista de variáveis existentes, sem u
+ls()
+```
+
+```
+ [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "es"    
+ [8] "es_hpa" "Feb"    "fev"    "i"      "jan"    "Jan"    "jul"   
+[15] "Jul"    "jun"    "Jun"    "mai"    "mar"    "Mar"    "May"   
+[22] "nd3"    "nd4"    "nov"    "Nov"    "nums"   "Oct"    "out"   
+[29] "p"      "pcks"   "p_pa"   "Sep"    "set"    "tar"    "tk"    
+[36] "totd"   "vogais" "y1"     "y2"    
+```
+
+```r
+rm(es_hpa, es, tar, y1, y2)
+# lista de variáveis existentes, sem es_hpa, es, tar, y1, y2
+ls()
+```
+
+```
+ [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "Feb"   
+ [8] "fev"    "i"      "jan"    "Jan"    "jul"    "Jul"    "jun"   
+[15] "Jun"    "mai"    "mar"    "Mar"    "May"    "nd3"    "nd4"   
+[22] "nov"    "Nov"    "nums"   "Oct"    "out"    "p"      "pcks"  
+[29] "p_pa"   "Sep"    "set"    "tk"     "totd"   "vogais"
+```
+
+Para remover todas variáveis do espaço de trabalho (use com cautela):
+
+
+```r
+# apagando tudo
+rm(list = ls())
+ls()
+```
+
+```
+character(0)
+```
+
+
 
 ## Nomeando variáveis
 
@@ -754,4 +873,51 @@ verão
 [1] "DJF"
 ```
    
+Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Style guide**](http://adv-r.had.co.nz/Style.html) do livro [**R Advanced**](http://adv-r.had.co.nz/).
+
+# Funções e operadores utilizados
+
+Matemática
+
+- `+`
+- `-`
+- `^`
+- `/`
+- `%%`
+- `%/%`
+- `*`
+- `sin()`
+- `cos()`
+- `sqrt()`
+- `exp()`
+- `log()`
+- `factorial()`
+
+Sequência regular
+
+- `:`
+
+Geração de números aleatórios
+
+- `set.seed()`
+- `sample()`
+
+Argumentos de uma função
+- `args()`
+
+Opções de configuração
+
+- `getOption()`
+- `options()`
+
+Atribuição
+
+- `<-`
+- `assign()`
+
+Ambiente de trabalho
+
+- `ls()`
+- `rm()`
+
 

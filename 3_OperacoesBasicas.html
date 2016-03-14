@@ -147,17 +147,21 @@ $(document).ready(function () {
 <li><a href="#calculadora"><span class="toc-section-number">2</span> CalculadoRa</a><ul>
 <li><a href="#aritmetica-basica"><span class="toc-section-number">2.1</span> Aritmética básica</a></li>
 <li><a href="#constantes"><span class="toc-section-number">2.2</span> Constantes</a></li>
-<li><a href="#funcoes-matematicas-internas"><span class="toc-section-number">2.3</span> Funções matemáticas internas</a></li>
+<li><a href="#funcoes-matematicas-internas"><span class="toc-section-number">2.3</span> Funções matemáticas internas</a><ul>
+<li><a href="#sorteando-numeros-aleatoriamente"><span class="toc-section-number">2.3.1</span> Sorteando números aleatoriamente</a></li>
+</ul></li>
 <li><a href="#valores-numericos-especiais"><span class="toc-section-number">2.4</span> Valores numéricos especiais</a></li>
-<li><a href="#notacao-cientifica-e-precisao"><span class="toc-section-number">2.5</span> Notação científica e precisão</a></li>
+<li><a href="#notacao-cientifica-e-numero-de-digitos"><span class="toc-section-number">2.5</span> Notação científica e número de dígitos</a></li>
 </ul></li>
 <li><a href="#variaveis"><span class="toc-section-number">3</span> Variáveis</a><ul>
 <li><a href="#formas-de-atribuicao"><span class="toc-section-number">3.1</span> Formas de atribuição</a><ul>
 <li><a href="#variavel-recebe-valor"><span class="toc-section-number">3.1.1</span> Variável recebe valor</a></li>
 <li><a href="#atribuicao-com-a-funcao-assign"><span class="toc-section-number">3.1.2</span> Atribuição com a função <code>assign</code></a></li>
 </ul></li>
-<li><a href="#nomeando-variaveis"><span class="toc-section-number">3.2</span> Nomeando variáveis</a></li>
+<li><a href="#removendo-variaveis"><span class="toc-section-number">3.2</span> Removendo variáveis</a></li>
+<li><a href="#nomeando-variaveis"><span class="toc-section-number">3.3</span> Nomeando variáveis</a></li>
 </ul></li>
+<li><a href="#funcoes-e-operadores-utilizados"><span class="toc-section-number">4</span> Funções e operadores utilizados</a></li>
 </ul>
 </div>
 
@@ -252,6 +256,8 @@ vogais</code></pre></div>
 <p>No R você verá que parênteses são frequentemente utilizados. Isso ocorre eles estão sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.</p>
 <p>Para ver a lista completa de funções trigonométricas:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="st">&quot;Trig&quot;</span></code></pre></div>
+<div id="sorteando-numeros-aleatoriamente" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Sorteando números aleatoriamente</h3>
 <p>O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função <code>set.seed()</code> especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento <em>seed</em> da função <code>set.seed</code>) os números sorteados serão reproduzidos igualmente na sua máquina.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dt">seed =</span> <span class="dv">5</span>)
 <span class="co"># sorteio de um número dentro da sequência de 1 a 6</span>
@@ -274,6 +280,7 @@ vogais</code></pre></div>
 <pre><code>function (x, size, replace = FALSE, prob = NULL) 
 NULL</code></pre>
 <p><span style="color:red; font-size:1.7em;">Fim da 2ª aula (<a href="https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html">site do curso</a>) </span></p>
+</div>
 </div>
 <div id="valores-numericos-especiais" class="section level2">
 <h2><span class="header-section-number">2.4</span> Valores numéricos especiais</h2>
@@ -299,9 +306,10 @@ NULL</code></pre>
 <pre><code>[1] NaN</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">Inf</span>/<span class="ot">Inf</span></code></pre></div>
 <pre><code>[1] NaN</code></pre>
+<p>A demostração das diferentes formas de se obter essas constantes especiais o ajudará a encontrar a causa de resultados inesperados com esses valores.</p>
 </div>
-<div id="notacao-cientifica-e-precisao" class="section level2">
-<h2><span class="header-section-number">2.5</span> Notação científica e precisão</h2>
+<div id="notacao-cientifica-e-numero-de-digitos" class="section level2">
+<h2><span class="header-section-number">2.5</span> Notação científica e número de dígitos</h2>
 <p>Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">1.2e-6</span></code></pre></div>
 <pre><code>[1] 1.2e-06</code></pre>
@@ -329,8 +337,15 @@ NULL</code></pre>
 <h2><span class="header-section-number">3.1</span> Formas de atribuição</h2>
 <div id="variavel-recebe-valor" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Variável recebe valor</h3>
-<p>Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em um objeto dentro do R. O que é um objeto? É um nome usado para guardar os dados, ou seja a nossa variável. Por exemplo para atribuir o valor 2 ao objeto chamado “a” usamos a combinação dos símbolos menor (<code>&lt;</code>) e menos (<code>-</code>) <code>&lt;-</code> entre os dois números. Esse é o símbolo de atribuição a um objeto.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="dv">1013</span></code></pre></div>
+<p>Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em uma variável dentro do R.</p>
+<p>O que é uma variável? É um nome usado para guardar os dados. Por exemplo para atribuir o valor 1013 a variável chamado <code>p</code> usamos a combinação dos símbolos menor (<code>&lt;</code>) e menos (<code>-</code>) <code>&lt;-</code> entre os dois números. Esse é o símbolo de atribuição a uma variável.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="dv">1013</span>
+<span class="co"># para mostrar a variável digite o nome da variável</span>
+p</code></pre></div>
+<pre><code>[1] 1013</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ou use a função print()</span>
+<span class="kw">print</span>(p)</code></pre></div>
+<pre><code>[1] 1013</code></pre>
 <p>O R diferencia letras maiúsculas de minúsculas. Portanto <code>p</code> e <code>P</code> são variáveis diferentes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p</code></pre></div>
 <pre><code>[1] 1013</code></pre>
@@ -346,8 +361,8 @@ p_pa</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span>/<span class="dv">3</span> +<span class="st"> </span><span class="fl">0.6</span> -&gt;<span class="st"> </span>y1
  y1</code></pre></div>
 <pre><code>[1] 2.933333</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span>/(<span class="dv">3</span> +<span class="st"> </span><span class="fl">0.6</span>) -&gt;<span class="st"> </span>y3
- y3</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span>/(<span class="dv">3</span> +<span class="st"> </span><span class="fl">0.6</span>) -&gt;<span class="st"> </span>y2
+ y2</code></pre></div>
 <pre><code>[1] 1.944444</code></pre>
 <p>Vamos criar uma variável chamada <code>ndias3</code> que recebe o nº de dias no mês de Março e <code>ndias4</code> que recebe o nº de dias no mês de Abril.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nd3 &lt;-<span class="st"> </span><span class="dv">31</span>
@@ -358,33 +373,36 @@ totd</code></pre></div>
 <pre><code>[1] 61</code></pre>
 <p>A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># número de dias em cada mês</span>
-jan &lt;-<span class="st"> </span>mar &lt;-<span class="st"> </span>may &lt;-<span class="st"> </span>jul &lt;-<span class="st"> </span>ago &lt;-<span class="st"> </span>out &lt;-<span class="st"> </span>dez &lt;-<span class="st"> </span><span class="dv">31</span>
+jan &lt;-<span class="st"> </span>mar &lt;-<span class="st"> </span>mai &lt;-<span class="st"> </span>jul &lt;-<span class="st"> </span>ago &lt;-<span class="st"> </span>out &lt;-<span class="st"> </span>dez &lt;-<span class="st"> </span><span class="dv">31</span>
 abr &lt;-<span class="st"> </span>jun &lt;-<span class="st"> </span>set &lt;-<span class="st"> </span>nov &lt;-<span class="st"> </span><span class="dv">30</span>
+fev &lt;-<span class="st"> </span><span class="dv">28</span>
 <span class="co"># verificação</span>
-jan; mar; jul</code></pre></div>
+jan; jul</code></pre></div>
 <pre><code>[1] 31</code></pre>
 <pre><code>[1] 31</code></pre>
-<pre><code>[1] 31</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">abr; jun; set</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jun; set</code></pre></div>
 <pre><code>[1] 30</code></pre>
 <pre><code>[1] 30</code></pre>
-<pre><code>[1] 30</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fev</code></pre></div>
+<pre><code>[1] 28</code></pre>
 <p>Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(tar &lt;-<span class="st"> </span><span class="dv">20</span>)</code></pre></div>
 <pre><code>[1] 20</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equação de Tetens</span>
-(es &lt;-<span class="st"> </span><span class="fl">0.611</span> *<span class="st"> </span><span class="kw">exp</span>(<span class="fl">17.2694</span> *<span class="st"> </span>((tar<span class="fl">+273.16</span>)-<span class="fl">273.16</span>) /<span class="st"> </span>((tar<span class="fl">+273.16</span>)-<span class="fl">35.86</span>)))</code></pre></div>
+<p>Na expressão note como a variável <code>tk</code> definida e já utilizada.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(es &lt;-<span class="st"> </span><span class="fl">0.611</span> *<span class="st"> </span><span class="kw">exp</span>(<span class="fl">17.2694</span> *<span class="st"> </span>((tk &lt;-<span class="st"> </span>tar<span class="fl">+273.16</span>)-<span class="fl">273.16</span>) /<span class="st"> </span>((tk)-<span class="fl">35.86</span>)))</code></pre></div>
 <pre><code>[1] 2.338938</code></pre>
-<p>Quando usamos a própria variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes. Para saber nomes das variáveis já usados use a função <code>ls()</code> para verificar as variáveis existentes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tk</code></pre></div>
+<pre><code>[1] 293.16</code></pre>
+<p>Essa é mais uma utilidade dos <code>()</code> no R. Na expressão acima, conhecida como <a href="http://www.met.wau.nl/metlukweb/Reading/Clausius-Clapeyron.pdf">fórmula de Teten</a> além de já mostrar o resultado da expressão, nós criamos as variáveis <code>tk</code> e <code>es</code> simultaneamente.</p>
+<p>Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função <code>ls()</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> para verificar as variáveis existentes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
-<pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;dez&quot;    &quot;es&quot;     &quot;jan&quot;    &quot;jul&quot;    &quot;jun&quot;   
- [8] &quot;mar&quot;    &quot;may&quot;    &quot;nd3&quot;    &quot;nd4&quot;    &quot;nov&quot;    &quot;out&quot;    &quot;p&quot;     
-[15] &quot;pcks&quot;   &quot;p_pa&quot;   &quot;set&quot;    &quot;tar&quot;    &quot;totd&quot;   &quot;vogais&quot; &quot;y1&quot;    
-[22] &quot;y3&quot;    </code></pre>
-<p>As variáveis criadas também estão disponíveis no painel <em>Environment</em> do RStudio.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">totdias &lt;-<span class="st"> </span>nd3; totd &lt;-<span class="st"> </span>totd +<span class="st"> </span>nd4; totd &lt;-<span class="st"> </span>totd +<span class="st"> </span><span class="dv">365</span>
+<pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;dez&quot;    &quot;es&quot;     &quot;fev&quot;    &quot;jan&quot;    &quot;jul&quot;   
+ [8] &quot;jun&quot;    &quot;mai&quot;    &quot;mar&quot;    &quot;nd3&quot;    &quot;nd4&quot;    &quot;nov&quot;    &quot;out&quot;   
+[15] &quot;p&quot;      &quot;pcks&quot;   &quot;p_pa&quot;   &quot;set&quot;    &quot;tar&quot;    &quot;tk&quot;     &quot;totd&quot;  
+[22] &quot;vogais&quot; &quot;y1&quot;     &quot;y2&quot;    </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">totd &lt;-<span class="st"> </span>jan*<span class="dv">7</span>; totd &lt;-<span class="st"> </span>totd +<span class="st"> </span>fev; totd &lt;-<span class="st"> </span>totd +<span class="st"> </span><span class="dv">4</span>*abr
 totd</code></pre></div>
-<pre><code>[1] 456</code></pre>
+<pre><code>[1] 365</code></pre>
 <p>Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas com colchetes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{
   tmax &lt;-<span class="st"> </span><span class="dv">32</span>
@@ -401,13 +419,15 @@ totd</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;es_hpa&quot;</span>, <span class="dt">value =</span> es/<span class="dv">10</span>)
 es_hpa</code></pre></div>
 <pre><code>[1] 0.2338938</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># usando função assign sem nome dos parâmetros</span>
+<span class="kw">assign</span>(<span class="st">&quot;u&quot;</span>, <span class="fl">2.5</span>)
+u</code></pre></div>
+<pre><code>[1] 2.5</code></pre>
 <p>Para ilustrar um caso em que a função <code>assign</code> pode ser útil, vamos supor que você tenha um vetor com os nomes que você deseja usar para definir alguns objetos, cujo resultado já está em um vetor previamente criado.</p>
-<p>Considere os nomes dos meses do ano (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto <code>nums</code>, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto <code>nums</code> são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição <code>Jan &lt;- 1; Feb &lt;- 2, Mar &lt;- 3, ...</code>, podemos fazer um laço (ou <em>looping</em>) de 1 até o tamanho do vetor <code>nums</code> (ou seja 1:12) e usar o vetor <code>month.abb</code> para nomear os objetos.</p>
+<p>Considere os nomes dos meses do ano (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto <code>nums</code>, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto <code>nums</code> são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição <code>jan &lt;- 1; fev &lt;- 2, mar &lt;- 3, ...</code>, podemos fazer um laço (ou <em>looping</em>) de 1 até o tamanho do vetor <code>nums</code> (ou seja 1:12) e usar o vetor <code>month.abb</code> para nomear os objetos.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de 1 a 12</span>
 nums &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">12</span>
-<span class="co"># laço em cada elemento de nums</span>
-intervalo &lt;-<span class="st"> </span><span class="dv">1</span> :<span class="st"> </span><span class="kw">length</span>(nums)
-for (i in intervalo) <span class="kw">assign</span>(month.abb[i], i)
+for (i in nums) <span class="kw">assign</span>(month.abb[i], i)
 <span class="co"># verificando os valores dos objetos criados</span>
 Jan</code></pre></div>
 <pre><code>[1] 1</code></pre>
@@ -417,11 +437,52 @@ Jan</code></pre></div>
 <pre><code>[1] 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Apr</code></pre></div>
 <pre><code>[1] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
+<pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;Apr&quot;    &quot;Aug&quot;    &quot;Dec&quot;    &quot;dez&quot;    &quot;es&quot;    
+ [8] &quot;es_hpa&quot; &quot;Feb&quot;    &quot;fev&quot;    &quot;i&quot;      &quot;jan&quot;    &quot;Jan&quot;    &quot;jul&quot;   
+[15] &quot;Jul&quot;    &quot;jun&quot;    &quot;Jun&quot;    &quot;mai&quot;    &quot;mar&quot;    &quot;Mar&quot;    &quot;May&quot;   
+[22] &quot;nd3&quot;    &quot;nd4&quot;    &quot;nov&quot;    &quot;Nov&quot;    &quot;nums&quot;   &quot;Oct&quot;    &quot;out&quot;   
+[29] &quot;p&quot;      &quot;pcks&quot;   &quot;p_pa&quot;   &quot;Sep&quot;    &quot;set&quot;    &quot;tar&quot;    &quot;tk&quot;    
+[36] &quot;totd&quot;   &quot;u&quot;      &quot;vogais&quot; &quot;y1&quot;     &quot;y2&quot;    </code></pre>
 <p>A função <code>for()</code> será explorada futuramente.</p>
 </div>
 </div>
+<div id="removendo-variaveis" class="section level2">
+<h2><span class="header-section-number">3.2</span> Removendo variáveis</h2>
+<p>Para remover variáveis usa-se a função <code>rm()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de variáveis existentes</span>
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;Apr&quot;    &quot;Aug&quot;    &quot;Dec&quot;    &quot;dez&quot;    &quot;es&quot;    
+ [8] &quot;es_hpa&quot; &quot;Feb&quot;    &quot;fev&quot;    &quot;i&quot;      &quot;jan&quot;    &quot;Jan&quot;    &quot;jul&quot;   
+[15] &quot;Jul&quot;    &quot;jun&quot;    &quot;Jun&quot;    &quot;mai&quot;    &quot;mar&quot;    &quot;Mar&quot;    &quot;May&quot;   
+[22] &quot;nd3&quot;    &quot;nd4&quot;    &quot;nov&quot;    &quot;Nov&quot;    &quot;nums&quot;   &quot;Oct&quot;    &quot;out&quot;   
+[29] &quot;p&quot;      &quot;pcks&quot;   &quot;p_pa&quot;   &quot;Sep&quot;    &quot;set&quot;    &quot;tar&quot;    &quot;tk&quot;    
+[36] &quot;totd&quot;   &quot;u&quot;      &quot;vogais&quot; &quot;y1&quot;     &quot;y2&quot;    </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(u)
+<span class="co"># lista de variáveis existentes, sem u</span>
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;Apr&quot;    &quot;Aug&quot;    &quot;Dec&quot;    &quot;dez&quot;    &quot;es&quot;    
+ [8] &quot;es_hpa&quot; &quot;Feb&quot;    &quot;fev&quot;    &quot;i&quot;      &quot;jan&quot;    &quot;Jan&quot;    &quot;jul&quot;   
+[15] &quot;Jul&quot;    &quot;jun&quot;    &quot;Jun&quot;    &quot;mai&quot;    &quot;mar&quot;    &quot;Mar&quot;    &quot;May&quot;   
+[22] &quot;nd3&quot;    &quot;nd4&quot;    &quot;nov&quot;    &quot;Nov&quot;    &quot;nums&quot;   &quot;Oct&quot;    &quot;out&quot;   
+[29] &quot;p&quot;      &quot;pcks&quot;   &quot;p_pa&quot;   &quot;Sep&quot;    &quot;set&quot;    &quot;tar&quot;    &quot;tk&quot;    
+[36] &quot;totd&quot;   &quot;vogais&quot; &quot;y1&quot;     &quot;y2&quot;    </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(es_hpa, es, tar, y1, y2)
+<span class="co"># lista de variáveis existentes, sem es_hpa, es, tar, y1, y2</span>
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;Apr&quot;    &quot;Aug&quot;    &quot;Dec&quot;    &quot;dez&quot;    &quot;Feb&quot;   
+ [8] &quot;fev&quot;    &quot;i&quot;      &quot;jan&quot;    &quot;Jan&quot;    &quot;jul&quot;    &quot;Jul&quot;    &quot;jun&quot;   
+[15] &quot;Jun&quot;    &quot;mai&quot;    &quot;mar&quot;    &quot;Mar&quot;    &quot;May&quot;    &quot;nd3&quot;    &quot;nd4&quot;   
+[22] &quot;nov&quot;    &quot;Nov&quot;    &quot;nums&quot;   &quot;Oct&quot;    &quot;out&quot;    &quot;p&quot;      &quot;pcks&quot;  
+[29] &quot;p_pa&quot;   &quot;Sep&quot;    &quot;set&quot;    &quot;tk&quot;     &quot;totd&quot;   &quot;vogais&quot;</code></pre>
+<p>Para remover todas variáveis do espaço de trabalho (use com cautela):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando tudo</span>
+<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code>character(0)</code></pre>
+</div>
 <div id="nomeando-variaveis" class="section level2">
-<h2><span class="header-section-number">3.2</span> Nomeando variáveis</h2>
+<h2><span class="header-section-number">3.3</span> Nomeando variáveis</h2>
 <p>É preciso ter cuidado ao nomear variáveis no R porque existem algumas regras:</p>
 <ul>
 <li>não iniciar com um número e não conter espaços</li>
@@ -453,7 +514,58 @@ break  else  for  function  if  in  next  repeat  while</code></pre></li>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">verão &lt;-<span class="st"> &quot;DJF&quot;</span>
 verão</code></pre></div>
 <pre><code>[1] &quot;DJF&quot;</code></pre>
+<p>Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção <a href="http://adv-r.had.co.nz/Style.html"><strong>Style guide</strong></a> do livro <a href="http://adv-r.had.co.nz/"><strong>R Advanced</strong></a>.</p>
 </div>
+</div>
+<div id="funcoes-e-operadores-utilizados" class="section level1">
+<h1><span class="header-section-number">4</span> Funções e operadores utilizados</h1>
+<p>Matemática</p>
+<ul>
+<li><code>+</code></li>
+<li><code>-</code></li>
+<li><code>^</code></li>
+<li><code>/</code></li>
+<li><code>%%</code></li>
+<li><code>%/%</code></li>
+<li><code>*</code></li>
+<li><code>sin()</code></li>
+<li><code>cos()</code></li>
+<li><code>sqrt()</code></li>
+<li><code>exp()</code></li>
+<li><code>log()</code></li>
+<li><code>factorial()</code></li>
+</ul>
+<p>Sequência regular</p>
+<ul>
+<li><code>:</code></li>
+</ul>
+<p>Geração de números aleatórios</p>
+<ul>
+<li><code>set.seed()</code></li>
+<li><code>sample()</code></li>
+</ul>
+<p>Argumentos de uma função - <code>args()</code></p>
+<p>Opções de configuração</p>
+<ul>
+<li><code>getOption()</code></li>
+<li><code>options()</code></li>
+</ul>
+<p>Atribuição</p>
+<ul>
+<li><code>&lt;-</code></li>
+<li><code>assign()</code></li>
+</ul>
+<p>Ambiente de trabalho</p>
+<ul>
+<li><code>ls()</code></li>
+<li><code>rm()</code></li>
+</ul>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Essa lista de variáveis também é mostrada no painel <em>Environment</em> do RStudio (canto direito superior, aba <em>Environment</em>).<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
 
