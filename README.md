@@ -38,7 +38,7 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 ## Horários
 
-- 17:30-20:50 (5ª feira)
+- 17:30-20:50 (5ª-feira)
 
 ## Local
 
