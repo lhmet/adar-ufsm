@@ -286,7 +286,7 @@ NULL
 ```
 
 
-<span style="color:red; font-size:1.7em;">Fim da 2a aula [GitHub](https://github.com/jdtatsch/adar-ufsm) </span>
+<span style="color:red; font-size:1.7em;">Fim da 2ª aula ([site do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)) </span>
 
 ## Valores numéricos especiais
 
@@ -398,7 +398,7 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 [1] 1200000
 ```
 
-É possível mudar a precisão dos cálculos no R para `n` digítos usando a função `options()`.
+R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` digítos usando a função `options()`, conforme exemplo abaixo.
 
 
 ```r
@@ -489,21 +489,12 @@ p_pa
 [1] 101300
 ```
 
-A seta de atribuição pode ser usada em qualquer sentido. Parênteses são também utilizados para indicar a prioridade dos cálculos.
+A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
 
 
 ```r
 7/3 + 0.6 -> y1
  y1
-```
-
-```
-[1] 2.933333
-```
-
-```r
-(7/3) + 0.6 -> y2
- y2
 ```
 
 ```
@@ -609,7 +600,7 @@ ls()
  [1] "abr"    "ago"    "dez"    "es"     "jan"    "jul"    "jun"   
  [8] "mar"    "may"    "nd3"    "nd4"    "nov"    "out"    "p"     
 [15] "pcks"   "p_pa"   "set"    "tar"    "totd"   "vogais" "y1"    
-[22] "y2"     "y3"    
+[22] "y3"    
 ```
 
 As variáveis criadas também estão disponíveis no painel *Environment* do RStudio.

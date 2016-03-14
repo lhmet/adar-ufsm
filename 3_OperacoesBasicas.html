@@ -273,7 +273,7 @@ vogais</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(sample)</code></pre></div>
 <pre><code>function (x, size, replace = FALSE, prob = NULL) 
 NULL</code></pre>
-<p><span style="color:red; font-size:1.7em;">Fim da 2a aula <a href="https://github.com/jdtatsch/adar-ufsm">GitHub</a> </span></p>
+<p><span style="color:red; font-size:1.7em;">Fim da 2ª aula (<a href="https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html">site do curso</a>) </span></p>
 </div>
 <div id="valores-numericos-especiais" class="section level2">
 <h2><span class="header-section-number">2.4</span> Valores numéricos especiais</h2>
@@ -307,7 +307,7 @@ NULL</code></pre>
 <pre><code>[1] 1.2e-06</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">1.2E6</span></code></pre></div>
 <pre><code>[1] 1200000</code></pre>
-<p>É possível mudar a precisão dos cálculos no R para <code>n</code> digítos usando a função <code>options()</code>.</p>
+<p>R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela <code>getOptions()</code>. É possível mudar para <code>n</code> digítos usando a função <code>options()</code>, conforme exemplo abaixo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># opção de dígitos padrão</span>
 <span class="kw">getOption</span>(<span class="st">&quot;digits&quot;</span>)</code></pre></div>
 <pre><code>[1] 7</code></pre>
@@ -342,12 +342,9 @@ NULL</code></pre>
 <span class="co"># pressão em Pascal</span>
 p_pa</code></pre></div>
 <pre><code>[1] 101300</code></pre>
-<p>A seta de atribuição pode ser usada em qualquer sentido. Parênteses são também utilizados para indicar a prioridade dos cálculos.</p>
+<p>A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span>/<span class="dv">3</span> +<span class="st"> </span><span class="fl">0.6</span> -&gt;<span class="st"> </span>y1
  y1</code></pre></div>
-<pre><code>[1] 2.933333</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">7</span>/<span class="dv">3</span>) +<span class="st"> </span><span class="fl">0.6</span> -&gt;<span class="st"> </span>y2
- y2</code></pre></div>
 <pre><code>[1] 2.933333</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span>/(<span class="dv">3</span> +<span class="st"> </span><span class="fl">0.6</span>) -&gt;<span class="st"> </span>y3
  y3</code></pre></div>
@@ -383,7 +380,7 @@ jan; mar; jul</code></pre></div>
 <pre><code> [1] &quot;abr&quot;    &quot;ago&quot;    &quot;dez&quot;    &quot;es&quot;     &quot;jan&quot;    &quot;jul&quot;    &quot;jun&quot;   
  [8] &quot;mar&quot;    &quot;may&quot;    &quot;nd3&quot;    &quot;nd4&quot;    &quot;nov&quot;    &quot;out&quot;    &quot;p&quot;     
 [15] &quot;pcks&quot;   &quot;p_pa&quot;   &quot;set&quot;    &quot;tar&quot;    &quot;totd&quot;   &quot;vogais&quot; &quot;y1&quot;    
-[22] &quot;y2&quot;     &quot;y3&quot;    </code></pre>
+[22] &quot;y3&quot;    </code></pre>
 <p>As variáveis criadas também estão disponíveis no painel <em>Environment</em> do RStudio.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">totdias &lt;-<span class="st"> </span>nd3; totd &lt;-<span class="st"> </span>totd +<span class="st"> </span>nd4; totd &lt;-<span class="st"> </span>totd +<span class="st"> </span><span class="dv">365</span>
 totd</code></pre></div>
