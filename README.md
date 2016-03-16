@@ -1,12 +1,11 @@
 ---
+layout: page
 output: html_document
 ---
 
 <p style="font-family: verdana; font-size: 45px; font-weight: bold; font-style: italic; background: whitesmoke; color: black; line-height: 50px;width: 900px;padding-left: 320px;">ADAR</p> 
 
----
-layout: page
----
+
 
 <p align="center">
   <img src="figs/adar.png" alt="Resbmet"/>
