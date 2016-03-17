@@ -336,7 +336,7 @@ log(0)
 ```
 
 ```r
-(0:3)^Inf;
+(0:3)^Inf
 ```
 
 ```
@@ -378,8 +378,54 @@ Inf/Inf
 ```
 [1] NaN
 ```
- 
-A demonstração das diferentes formas de se obter essas constantes especiais é útil para compreensão de situações em que esses valores surgirem durante a execução de um script.
+
+`NaN` é a abreviação para *Not a Number*. Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
+
+A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
+
+Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA`.
+
+
+```r
+NA + 5
+```
+
+```
+[1] NA
+```
+
+```r
+NA - Inf
+```
+
+```
+[1] NA
+```
+
+```r
+sqrt(NA)
+```
+
+```
+[1] NA
+```
+
+```r
+NA^2
+```
+
+```
+[1] NA
+```
+
+```r
+NA/NaN
+```
+
+```
+[1] NA
+```
+
 
 ## Notação científica e número de dígitos
 
@@ -445,18 +491,13 @@ getOption("digits")
 options(digits = 7)
 ```
 
-
 # Variáveis
 
 ## Formas de atribuição 
 
-O termo \"expressão\" significa uma sentença de código que pode ser executada.
-
-Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada \"atribuição\".
-
 ### Variável recebe valor
 
-Até agora nós usamos expressões para fazer uma operação e obter um resultado. O resultado não foi armazenado para que pudéssemos reutilizá-lo posteriormente. Podemos armazenar dados em uma variável dentro do R. 
+Até agora nós usamos expressões para fazer uma operação e obter um resultado. O termo \"expressão\" significa uma sentença de código que pode ser executada. Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada \"atribuição\". O resultado da \"atribuição\" é armazenado e pode ser utilizado posteriormente. 
 
 O que é uma variável? É um nome usado para guardar os dados. Por exemplo para atribuir o valor 1013 a variável chamado `p` usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-` entre os dois números. Esse é o símbolo de atribuição a uma variável.
 
@@ -533,6 +574,16 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de
 
 ```
 [1] 1.944444
+```
+
+Os espaços em torno do símbolo de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código.
+
+
+```r
+x <- 1
+x < -1
+# atribuição ou menor que?
+x<-1 
 ```
 
 Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.

@@ -39,6 +39,33 @@ Nesta seção veremos:
 
 # Tipos de dados
 
+# Expressões lógicas
+
+# NA e NaN
+
+In general, if our calculation involves a missing value, then the results will also
+be missing:
+c(NA + 1, NA * 5, NA +Inf)
+
+When arithmetic involves NAand NaN, the answer is one of those two values, but which
+of those two is system dependent:
+c(NA + NA, NaN + NaN, NaN + NA, NA + NaN)
+
+There are functions available to check for these special values. Notice that NaN and NA are neither finite nor infinite, and NaNis missing but NA isa number:
+
+x <-c(0,Inf, -Inf, NaN, NA)
+
+# Testes sobre tipos de dados
+
+is.finite(x)
+
+is.infinite(x)
+
+is.nan(x)
+
+is.na(x)
+
+
 # Funções e operadores utilizados
 
 Matemática
