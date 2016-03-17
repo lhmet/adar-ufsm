@@ -1,5 +1,5 @@
 ---
-title: "Tipos e estrutura de dados"
+title: "Tipos de dados"
 author: "Jônatan Tatsch"
 date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
 output:

@@ -1,4 +1,4 @@
-# Tipos e estrutura de dados
+# Tipos de dados
 Jônatan Tatsch  
 `r format(Sys.Date(), format = '%d-%m-%Y')`  
 
@@ -12,10 +12,11 @@ Jônatan Tatsch
 
 # Objetivos
 
-Nesta seção veremos:
+Nesta seção vamos:
 
-- os tipos de dados mais usados no R
-- as estruturas usadas para o armazenamento 
+- conhecer os tipos de dados mais usados no R
+- como descobrir qual tipo de dado de uma variável
+- aprender a fazer testes com operadores lógicos
 
 # Tipos de dados
 
@@ -337,7 +338,7 @@ Valores lógicos resultam da comparação de números ou caracteres.
 
 
 ```r
-4 == 3 # operador == (identico a)
+4 == 3 # 4 é idêntico a 3?
 ```
 
 ```
