@@ -838,7 +838,9 @@ Conversão de dados
 
 
 
+<br/>
 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Estruturas de Dados](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)</p> 
 
 
 
