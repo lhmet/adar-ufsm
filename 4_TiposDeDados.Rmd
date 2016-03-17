@@ -1,0 +1,89 @@
+---
+title: "Operações Básicas"
+author: "Jônatan Tatsch"
+date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
+output:
+  html_document:
+    fig_caption: yes
+    fig_width: 6
+    highlight: kate
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
+rm(list=ls())
+# definindo globalmente tz = "GMT"
+Sys.setenv(TZ = 'GMT')
+# data manipulation packages
+pcks <- c("knitr", "knitcitations", "printr")
+invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+# configuraçoes knitr
+opts_chunk$set(cache = FALSE, fig.path = "figs/")
+```
+
+- - -
+
+![](figs/adar.png)
+
+- - -
+
+# Objetivos
+
+Nesta seção veremos:
+
+- tipos de dados no R
+
+# Tipos de dados
+
+# Funções e operadores utilizados
+
+Matemática
+
+- `+`
+- `-`
+- `^`
+- `/`
+- `%%`
+- `%/%`
+- `*`
+- `sin()`
+- `cos()`
+- `sqrt()`
+- `exp()`
+- `log()`
+- `factorial()`
+
+Sequência regular
+
+- `:`
+
+Geração de números aleatórios
+
+- `set.seed()`
+- `sample()`
+
+Argumentos de uma função
+- `args()`
+
+Opções de configuração
+
+- `getOption()`
+- `options()`
+
+Atribuição
+
+- `<-`
+- `assign()`
+
+Ambiente de trabalho
+
+- `ls()`
+- `rm()`
+
+
+
+
