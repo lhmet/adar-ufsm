@@ -402,7 +402,7 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 [1] 1200000
 ```
 
-R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` digítos usando a função `options()`, conforme exemplo abaixo.
+R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 
 ```r
