@@ -38,6 +38,7 @@ Nesta seção vamos:
 - conhecer os tipos de dados mais usados no R
 - como descobrir qual tipo de dado de uma variável
 - aprender a fazer testes com operadores lógicos
+- saber como converter uma variável de um tipo para outro
 
 # Tipos de dados
 
@@ -230,8 +231,11 @@ Além função `typeof()`, a família `is.*()` também permite descobrir o tipo 
 x; typeof(x)
 vl; typeof(vl)
 data1; typeof(data1)
-
 x; is.numeric(x)
+# checar se um nº é real
+is.double(x/5)
+is.double(5L)
+is.character("12.34")
 charf; is.factor(charf)
 i; is.integer(i)
 is.function(sqrt)
@@ -239,6 +243,39 @@ is.finite(i)
 is.nan(x)
 is.na(x)
 ```
+
+## Conversão entre tipos de dados
+
+Em algumas circustâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
+
+```{r, message=FALSE, comment="", prompt=FALSE, echo = TRUE}
+# de character para numeric
+as.numeric("12.34") 
+# ou
+as("12.34", "numeric")
+# de factor para character
+as.character(charf)
+# character para factor
+as.factor("a")
+# de double para integer
+typeof(x)
+typeof(as.integer(x))
+as.integer(x) == 51L
+as.integer("12.34")
+# arredondamento
+as.integer(12.34)
+# lógico para inteiro
+as.integer(TRUE)
+# numérico para lógico
+as.logical(0:2)
+# character para numérico?
+as.numeric("a")
+# de character para data
+dt_char <- "2016-03-17"
+d <- as.Date(dt_char)
+d
+```
+
 
 # Funções e operadores novos utilizados
 
@@ -261,7 +298,9 @@ Teste dos tipos de dados
 - `is.numeric()`; `is.character()`; `is.logical()`; `is.integer()`; `is.factor()`; `is.function()`
 - `is.finite()`; `is.nan()`; `is.na()`
 
+Conversão de dados
 
+- `as()`; `as.numeric()`; `as.character()`; `as.integer()`; `as.factor()`
 
 
 

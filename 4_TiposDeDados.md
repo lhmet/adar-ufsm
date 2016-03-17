@@ -17,6 +17,7 @@ Nesta seção vamos:
 - conhecer os tipos de dados mais usados no R
 - como descobrir qual tipo de dado de uma variável
 - aprender a fazer testes com operadores lógicos
+- saber como converter uma variável de um tipo para outro
 
 # Tipos de dados
 
@@ -588,6 +589,31 @@ x; is.numeric(x)
 ```
 
 ```r
+# checar se um nº é real
+is.double(x/5)
+```
+
+```
+[1] TRUE
+```
+
+```r
+is.double(5L)
+```
+
+```
+[1] FALSE
+```
+
+```r
+is.character("12.34")
+```
+
+```
+[1] TRUE
+```
+
+```r
 charf; is.factor(charf)
 ```
 
@@ -644,6 +670,133 @@ is.na(x)
 [1] FALSE
 ```
 
+## Conversão entre tipos de dados
+
+Em algumas circustâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
+
+
+```r
+# de character para numeric
+as.numeric("12.34") 
+```
+
+```
+[1] 12.34
+```
+
+```r
+# ou
+as("12.34", "numeric")
+```
+
+```
+[1] 12.34
+```
+
+```r
+# de factor para character
+as.character(charf)
+```
+
+```
+[1] "Vai chover hoje?"
+```
+
+```r
+# character para factor
+as.factor("a")
+```
+
+```
+[1] a
+Levels: a
+```
+
+```r
+# de double para integer
+typeof(x)
+```
+
+```
+[1] "double"
+```
+
+```r
+typeof(as.integer(x))
+```
+
+```
+[1] "integer"
+```
+
+```r
+as.integer(x) == 51L
+```
+
+```
+[1] TRUE
+```
+
+```r
+as.integer("12.34")
+```
+
+```
+[1] 12
+```
+
+```r
+# arredondamento
+as.integer(12.34)
+```
+
+```
+[1] 12
+```
+
+```r
+# lógico para inteiro
+as.integer(TRUE)
+```
+
+```
+[1] 1
+```
+
+```r
+# numérico para lógico
+as.logical(0:2)
+```
+
+```
+[1] FALSE  TRUE  TRUE
+```
+
+```r
+# character para numérico?
+as.numeric("a")
+```
+
+```
+Warning: NAs introduced by coercion
+```
+
+```
+[1] NA
+```
+
+```r
+# de character para data
+dt_char <- "2016-03-17"
+d <- as.Date(dt_char)
+d
+```
+
+```
+[1] "2016-03-17"
+```
+
+
 # Funções e operadores novos utilizados
 
 Tipos de dados
@@ -665,7 +818,9 @@ Teste dos tipos de dados
 - `is.numeric()`; `is.character()`; `is.logical()`; `is.integer()`; `is.factor()`; `is.function()`
 - `is.finite()`; `is.nan()`; `is.na()`
 
+Conversão de dados
 
+- `as()`; `as.numeric()`; `as.character()`; `as.integer()`; `as.factor()`
 
 
 
