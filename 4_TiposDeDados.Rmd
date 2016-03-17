@@ -97,6 +97,8 @@ typeof(prod_i)
 typeof(5L)
 typeof(2L)
 typeof(5L/2L)
+# número complexo
+typeof(3 + 2i)
 ```
 
 

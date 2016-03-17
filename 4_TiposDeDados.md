@@ -159,6 +159,15 @@ typeof(5L/2L)
 [1] "double"
 ```
 
+```r
+# número complexo
+typeof(3 + 2i)
+```
+
+```
+[1] "complex"
+```
+
 
 ## character
 
