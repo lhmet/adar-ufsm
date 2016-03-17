@@ -216,7 +216,7 @@ class(data2)
 as.numeric(data2)
 ```
 
-A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através dos pacotes `lubridate` e `chron`, o que será visto posteriromente no curso.
+A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através dos pacotes `lubridate` e `chron`, o que será visto posteriormente no curso.
 
 Funções como `as.numeric()` e `as.Date()` não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.
 
@@ -248,7 +248,7 @@ is.na(x)
 
 # Conversão entre tipos de dados
 
-Em algumas circustâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
+Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
 
 ```{r, message=FALSE, comment="", prompt=FALSE, echo = TRUE}
 # de character para numeric
