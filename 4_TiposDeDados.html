@@ -148,11 +148,10 @@ $(document).ready(function () {
 <li><a href="#numeric"><span class="toc-section-number">2.1</span> numeric</a></li>
 <li><a href="#character"><span class="toc-section-number">2.2</span> character</a></li>
 <li><a href="#logical"><span class="toc-section-number">2.3</span> logical</a></li>
-<li><a href="#testes-sobre-tipos-de-dados"><span class="toc-section-number">2.4</span> Testes sobre tipos de dados</a></li>
-<li><a href="#date"><span class="toc-section-number">2.5</span> Date</a></li>
+<li><a href="#date"><span class="toc-section-number">2.4</span> Date</a></li>
+<li><a href="#testes-sobre-tipos-de-dados"><span class="toc-section-number">2.5</span> Testes sobre tipos de dados</a></li>
 </ul></li>
-<li><a href="#vetores"><span class="toc-section-number">3</span> Vetores</a></li>
-<li><a href="#funcoes-e-operadores-utilizados"><span class="toc-section-number">4</span> Funções e operadores utilizados</a></li>
+<li><a href="#funcoes-e-operadores-novos-utilizados"><span class="toc-section-number">3</span> Funções e operadores novos utilizados</a></li>
 </ul>
 </div>
 
@@ -166,7 +165,8 @@ $(document).ready(function () {
 <h1><span class="header-section-number">1</span> Objetivos</h1>
 <p>Nesta seção veremos:</p>
 <ul>
-<li>tipos de dados no R</li>
+<li>os tipos de dados mais usados no R</li>
+<li>as estruturas usadas para o armazenamento</li>
 </ul>
 </div>
 <div id="tipos-de-dados" class="section level1">
@@ -199,41 +199,41 @@ $(document).ready(function () {
 <p>Mesmo com o objeto <code>i</code> sendo inteiro, ele também passa na verificação <code>is.numeric()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.numeric</span>(i)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
-<p>O R converte inteiros para numéricos quando necessário. Por exemplo:</p>
+<p>O R converte inteiros para numéricos quando necessário. Vamos usar a função <code>typeof()</code> para determinar o tipo de dado e as conversões que o R faz. Por exemplo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## integer * numeric
-<span class="kw">class</span>(5L)</code></pre></div>
+<span class="kw">typeof</span>(5L)</code></pre></div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="fl">4.5</span>)</code></pre></div>
-<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(<span class="fl">4.5</span>)</code></pre></div>
+<pre><code>[1] &quot;double&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(prod_i &lt;-<span class="st"> </span>5L *<span class="st"> </span><span class="fl">4.5</span>)</code></pre></div>
 <pre><code>[1] 22.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(prod_i)</code></pre></div>
-<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(prod_i)</code></pre></div>
+<pre><code>[1] &quot;double&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## integer/integer
-<span class="kw">class</span>(5L)</code></pre></div>
+<span class="kw">typeof</span>(5L)</code></pre></div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(2L)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(2L)</code></pre></div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(5L/2L)</code></pre></div>
-<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(5L/2L)</code></pre></div>
+<pre><code>[1] &quot;double&quot;</code></pre>
 </div>
 <div id="character" class="section level2">
 <h2><span class="header-section-number">2.2</span> character</h2>
 <p>O tipo de dado <em>character</em> (<em>string</em>) é bastante utilizado e deve ser manipulado com cuidado. No R há duas principais formas de lidar com caracteres: a função <code>character()</code> e <code>factor()</code>. Embora pareçam similares eles são tratados de forma diferente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(char &lt;-<span class="st"> &quot;Vai chover hoje?&quot;</span>)</code></pre></div>
 <pre><code>[1] &quot;Vai chover hoje?&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">charf &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;Analise de dados&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">charf &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="st">&quot;Vai chover hoje?&quot;</span>)
 charf</code></pre></div>
-<pre><code>[1] Analise de dados
-Levels: Analise de dados</code></pre>
+<pre><code>[1] Vai chover hoje?
+Levels: Vai chover hoje?</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(charf)</code></pre></div>
-<pre><code>[1] &quot;Analise de dados&quot;</code></pre>
+<pre><code>[1] &quot;Vai chover hoje?&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ordered</span>(charf)</code></pre></div>
-<pre><code>[1] Analise de dados
-Levels: Analise de dados</code></pre>
+<pre><code>[1] Vai chover hoje?
+Levels: Vai chover hoje?</code></pre>
 <p><code>char</code> contém as palavras &quot;Vai chover hoje?&quot;, enquanto, <code>charf</code> tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (<em>levels</em>) de <code>charf</code>. Nós veremos esse tipos de dado futuramente em vetores.</p>
 <blockquote>
-<p><strong>Lembre-se que caracteres em letras minúsculas e maiúsculas são coisas diferetes no R.</strong></p>
+<p><strong>Lembre-se que caracteres em letras minúsculas e maiúsculas são coisas diferentes no R.</strong></p>
 </blockquote>
 <p>Para encontrar o tamanho de um <code>character</code> usamos a função <code>nchar()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(char)</code></pre></div>
@@ -254,6 +254,10 @@ vl &lt;-<span class="st"> </span><span class="ot">FALSE</span></code></pre></div
 <pre><code>[1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> *<span class="st"> </span><span class="dv">5</span></code></pre></div>
 <pre><code>[1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> +<span class="st"> </span><span class="ot">TRUE</span></code></pre></div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">FALSE</span> -<span class="st"> </span><span class="ot">TRUE</span></code></pre></div>
+<pre><code>[1] -1</code></pre>
 <p>Assim como as outras classes de dados existe um teste associado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(vl)</code></pre></div>
 <pre><code>[1] &quot;logical&quot;</code></pre>
@@ -352,15 +356,8 @@ teste2d2</code></pre></div>
 </tbody>
 </table>
 </div>
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">2.4</span> Testes sobre tipos de dados</h2>
-<p>is.finite(x)</p>
-<p>is.infinite(x)</p>
-<p>is.nan(x)</p>
-<p>is.na(x)</p>
-</div>
 <div id="date" class="section level2">
-<h2><span class="header-section-number">2.5</span> Date</h2>
+<h2><span class="header-section-number">2.4</span> Date</h2>
 <p>Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no R.</p>
 <p>As mais úteis são:</p>
 <ul>
@@ -382,59 +379,65 @@ data2</code></pre></div>
 <pre><code>[1] &quot;POSIXct&quot; &quot;POSIXt&quot; </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(data2)</code></pre></div>
 <pre><code>[1] 1340905320</code></pre>
-<p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) é mais versátil usando-se os pacotes <code>lubridate</code> e <code>chron</code>. Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
+<p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através dos pacotes <code>lubridate</code> e <code>chron</code>, o que será visto posteriromente no curso.</p>
+<p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(data1)</code></pre></div>
 <pre><code>[1] &quot;Date&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))</code></pre></div>
 <pre><code>[1] &quot;numeric&quot;</code></pre>
-<hr />
+</div>
+<div id="testes-sobre-tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">2.5</span> Testes sobre tipos de dados</h2>
+<p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x; <span class="kw">typeof</span>(x)</code></pre></div>
+<pre><code>[1] 51</code></pre>
+<pre><code>[1] &quot;double&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vl; <span class="kw">typeof</span>(vl)</code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<pre><code>[1] &quot;logical&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data1; <span class="kw">typeof</span>(data1)</code></pre></div>
+<pre><code>[1] &quot;2012-06-28&quot;</code></pre>
+<pre><code>[1] &quot;double&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x; <span class="kw">is.numeric</span>(x)</code></pre></div>
+<pre><code>[1] 51</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">charf; <span class="kw">is.factor</span>(charf)</code></pre></div>
+<pre><code>[1] Vai chover hoje?
+Levels: Vai chover hoje?</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i; <span class="kw">is.integer</span>(i)</code></pre></div>
+<pre><code>[1] 3</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.function</span>(sqrt)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.finite</span>(i)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.nan</span>(x)</code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(x)</code></pre></div>
+<pre><code>[1] FALSE</code></pre>
 </div>
 </div>
-<div id="vetores" class="section level1">
-<h1><span class="header-section-number">3</span> Vetores</h1>
-</div>
-<div id="funcoes-e-operadores-utilizados" class="section level1">
-<h1><span class="header-section-number">4</span> Funções e operadores utilizados</h1>
-<p>Matemática</p>
+<div id="funcoes-e-operadores-novos-utilizados" class="section level1">
+<h1><span class="header-section-number">3</span> Funções e operadores novos utilizados</h1>
+<p>Tipos de dados</p>
 <ul>
-<li><code>+</code></li>
-<li><code>-</code></li>
-<li><code>^</code></li>
-<li><code>/</code></li>
-<li><code>%%</code></li>
-<li><code>%/%</code></li>
-<li><code>*</code></li>
-<li><code>sin()</code></li>
-<li><code>cos()</code></li>
-<li><code>sqrt()</code></li>
-<li><code>exp()</code></li>
-<li><code>log()</code></li>
-<li><code>factorial()</code></li>
+<li><code>class()</code></li>
+<li><code>factor()</code>; <code>levels()</code>; <code>ordered()</code></li>
+<li><code>nchar()</code></li>
+<li><code>==</code>; <code>!=</code>; <code>&lt;</code>; <code>&gt;</code>; <code>&gt;=</code>; <code>&lt;=</code>; <code>|</code>;<code>&amp;</code></li>
 </ul>
-<p>Sequência regular</p>
+<p>Datas e horas</p>
 <ul>
-<li><code>:</code></li>
+<li><code>as.Date()</code></li>
+<li><code>as.POSIXct()</code></li>
+<li><code>as.numeric()</code></li>
 </ul>
-<p>Geração de números aleatórios</p>
+<p>Teste dos tipos de dados</p>
 <ul>
-<li><code>set.seed()</code></li>
-<li><code>sample()</code></li>
-</ul>
-<p>Argumentos de uma função - <code>args()</code></p>
-<p>Opções de configuração</p>
-<ul>
-<li><code>getOption()</code></li>
-<li><code>options()</code></li>
-</ul>
-<p>Atribuição</p>
-<ul>
-<li><code>&lt;-</code></li>
-<li><code>assign()</code></li>
-</ul>
-<p>Ambiente de trabalho</p>
-<ul>
-<li><code>ls()</code></li>
-<li><code>rm()</code></li>
+<li><code>typeof()</code></li>
+<li><code>is.numeric()</code>; <code>is.character()</code>; <code>is.logical()</code>; <code>is.integer()</code>; <code>is.factor()</code>; <code>is.function()</code></li>
+<li><code>is.finite()</code>; <code>is.nan()</code>; <code>is.na()</code></li>
 </ul>
 </div>
 

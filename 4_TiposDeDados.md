@@ -14,7 +14,8 @@ Jônatan Tatsch
 
 Nesta seção veremos:
 
-- tipos de dados no R
+- os tipos de dados mais usados no R
+- as estruturas usadas para o armazenamento 
 
 # Tipos de dados
 
@@ -95,12 +96,12 @@ is.numeric(i)
 [1] TRUE
 ```
 
-O R converte inteiros para numéricos quando necessário. Por exemplo:
+O R converte inteiros para numéricos quando necessário. Vamos usar a função `typeof()` para determinar o tipo de dado e as conversões que o R faz. Por exemplo:
 
 
 ```r
 ## integer * numeric
-class(5L)
+typeof(5L)
 ```
 
 ```
@@ -108,11 +109,11 @@ class(5L)
 ```
 
 ```r
-class(4.5)
+typeof(4.5)
 ```
 
 ```
-[1] "numeric"
+[1] "double"
 ```
 
 ```r
@@ -124,16 +125,16 @@ class(4.5)
 ```
 
 ```r
-class(prod_i)
+typeof(prod_i)
 ```
 
 ```
-[1] "numeric"
+[1] "double"
 ```
 
 ```r
 ## integer/integer
-class(5L)
+typeof(5L)
 ```
 
 ```
@@ -141,7 +142,7 @@ class(5L)
 ```
 
 ```r
-class(2L)
+typeof(2L)
 ```
 
 ```
@@ -149,11 +150,11 @@ class(2L)
 ```
 
 ```r
-class(5L/2L)
+typeof(5L/2L)
 ```
 
 ```
-[1] "numeric"
+[1] "double"
 ```
 
 
@@ -171,13 +172,13 @@ O tipo de dado *character* (*string*) é bastante utilizado e deve ser manipulad
 ```
 
 ```r
-charf <- factor("Analise de dados")
+charf <- factor("Vai chover hoje?")
 charf
 ```
 
 ```
-[1] Analise de dados
-Levels: Analise de dados
+[1] Vai chover hoje?
+Levels: Vai chover hoje?
 ```
 
 ```r
@@ -185,7 +186,7 @@ levels(charf)
 ```
 
 ```
-[1] "Analise de dados"
+[1] "Vai chover hoje?"
 ```
 
 ```r
@@ -193,13 +194,14 @@ ordered(charf)
 ```
 
 ```
-[1] Analise de dados
-Levels: Analise de dados
+[1] Vai chover hoje?
+Levels: Vai chover hoje?
 ```
 
 `char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
 
-> **Lembre-se que caracteres em letras minúsculas e maiúsculas são coisas diferetes no R.**
+
+> **Lembre-se que caracteres em letras minúsculas e maiúsculas são coisas diferentes no R.**
 
 Para encontrar o tamanho de um `character` usamos a função `nchar()`.
         
@@ -258,6 +260,22 @@ TRUE * 5
 
 ```
 [1] 5
+```
+
+```r
+TRUE + TRUE
+```
+
+```
+[1] 2
+```
+
+```r
+FALSE - TRUE
+```
+
+```
+[1] -1
 ```
 
 Assim como as outras classes de dados existe um teste associado.
@@ -429,15 +447,7 @@ isTRUE(x)  teste se x é verdadeiro
 
 Table: Tabela 1. Operadores Lógicos
 
-## Testes sobre tipos de dados
 
-is.finite(x)
-
-is.infinite(x)
-
-is.nan(x)
-
-is.na(x)
 
 ## Date
 
@@ -502,8 +512,10 @@ as.numeric(data2)
 [1] 1340905320
 ```
 
-A manipulação de dados da classe de datas e horários (`Date-time`) é mais versátil usando-se os pacotes `lubridate` e `chron`.
+A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através dos pacotes `lubridate` e `chron`, o que será visto posteriromente no curso.
+
 Funções como `as.numeric()` e `as.Date()` não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.
+
 
 ```r
 class(data1)
@@ -521,59 +533,144 @@ class(as.numeric(data1))
 [1] "numeric"
 ```
 
-- - - 
+## Testes sobre tipos de dados
+
+Além função `typeof()`, a família `is.*()` também permite descobrir o tipo de dado, p.ex.: `is.numeric()`, `is.character()` e etc.
 
 
-# Vetores
+```r
+x; typeof(x)
+```
+
+```
+[1] 51
+```
+
+```
+[1] "double"
+```
+
+```r
+vl; typeof(vl)
+```
+
+```
+[1] FALSE
+```
+
+```
+[1] "logical"
+```
+
+```r
+data1; typeof(data1)
+```
+
+```
+[1] "2012-06-28"
+```
+
+```
+[1] "double"
+```
+
+```r
+x; is.numeric(x)
+```
+
+```
+[1] 51
+```
+
+```
+[1] TRUE
+```
+
+```r
+charf; is.factor(charf)
+```
+
+```
+[1] Vai chover hoje?
+Levels: Vai chover hoje?
+```
+
+```
+[1] TRUE
+```
+
+```r
+i; is.integer(i)
+```
+
+```
+[1] 3
+```
+
+```
+[1] TRUE
+```
+
+```r
+is.function(sqrt)
+```
+
+```
+[1] TRUE
+```
+
+```r
+is.finite(i)
+```
+
+```
+[1] TRUE
+```
+
+```r
+is.nan(x)
+```
+
+```
+[1] FALSE
+```
+
+```r
+is.na(x)
+```
+
+```
+[1] FALSE
+```
+
+# Funções e operadores novos utilizados
+
+Tipos de dados
+
+- `class()`
+- `factor()`; `levels()`; `ordered()`
+- `nchar()`
+- `==`; `!=`; `<`; `>`; `>=`; `<=`; `|`;`&`
+
+Datas e horas
+
+- `as.Date()`
+- `as.POSIXct()`
+- `as.numeric()`
+
+Teste dos tipos de dados
+
+- `typeof()`
+- `is.numeric()`; `is.character()`; `is.logical()`; `is.integer()`; `is.factor()`; `is.function()`
+- `is.finite()`; `is.nan()`; `is.na()`
 
 
 
 
 
-# Funções e operadores utilizados
 
-Matemática
 
-- `+`
-- `-`
-- `^`
-- `/`
-- `%%`
-- `%/%`
-- `*`
-- `sin()`
-- `cos()`
-- `sqrt()`
-- `exp()`
-- `log()`
-- `factorial()`
 
-Sequência regular
-
-- `:`
-
-Geração de números aleatórios
-
-- `set.seed()`
-- `sample()`
-
-Argumentos de uma função
-- `args()`
-
-Opções de configuração
-
-- `getOption()`
-- `options()`
-
-Atribuição
-
-- `<-`
-- `assign()`
-
-Ambiente de trabalho
-
-- `ls()`
-- `rm()`
 
 
 
