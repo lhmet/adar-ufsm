@@ -40,6 +40,8 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Operações Básicas](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)
 
+- [Tipos de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html)
+
 # Horários
 
 - 17:30-20:50 (5ª-feira)
