@@ -356,6 +356,18 @@ Warning in log(-0.5): NaNs produced
 ```
 
 ```r
+sqrt(-1)
+```
+
+```
+Warning in sqrt(-1): NaNs produced
+```
+
+```
+[1] NaN
+```
+
+```r
 0/0 
 ```
 
