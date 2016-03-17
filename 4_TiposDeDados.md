@@ -15,7 +15,7 @@ Jônatan Tatsch
 Nesta seção vamos:
 
 - conhecer os tipos de dados mais usados no R
-- como descobrir qual tipo de dado de uma variável
+- descobrir qual é o tipo de dado de uma variável
 - aprender a fazer testes com operadores lógicos
 - saber como converter uma variável de um tipo para outro
 
