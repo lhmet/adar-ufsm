@@ -42,6 +42,8 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Tipos de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html)
 
+- [Estrutura de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)
+
 # Horários
 
 - 17:30-20:50 (5ª-feira)
