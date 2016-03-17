@@ -174,7 +174,7 @@ Inf-Inf
 Inf/Inf
 ```
  
-A demostração das diferentes formas de se obter essas constantes especiais o ajudará a encontrar a causa de resultados inesperados com esses valores.
+A demonstração das diferentes formas de se obter essas constantes especiais é útil para compreensão de situações em que esses valores surgirem durante a execução de um script.
 
 ## Notação científica e número de dígitos
 
@@ -185,7 +185,7 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 1.2E6
 ```
 
-R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` digítos usando a função `options()`, conforme exemplo abaixo.
+R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 ```{r chunk191, message=FALSE, comment="",prompt=FALSE}
 # opção de dígitos padrão

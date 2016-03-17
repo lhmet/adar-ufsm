@@ -379,7 +379,7 @@ Inf/Inf
 [1] NaN
 ```
  
-A demostração das diferentes formas de se obter essas constantes especiais o ajudará a encontrar a causa de resultados inesperados com esses valores.
+A demonstração das diferentes formas de se obter essas constantes especiais é útil para compreensão de situações em que esses valores surgirem durante a execução de um script.
 
 ## Notação científica e número de dígitos
 
