@@ -149,10 +149,10 @@ $(document).ready(function () {
 <li><a href="#character"><span class="toc-section-number">2.2</span> character</a></li>
 <li><a href="#logical"><span class="toc-section-number">2.3</span> logical</a></li>
 <li><a href="#date"><span class="toc-section-number">2.4</span> Date</a></li>
-<li><a href="#testes-sobre-tipos-de-dados"><span class="toc-section-number">2.5</span> Testes sobre tipos de dados</a></li>
-<li><a href="#conversao-entre-tipos-de-dados"><span class="toc-section-number">2.6</span> Conversão entre tipos de dados</a></li>
 </ul></li>
-<li><a href="#funcoes-e-operadores-novos-utilizados"><span class="toc-section-number">3</span> Funções e operadores novos utilizados</a></li>
+<li><a href="#testes-sobre-tipos-de-dados"><span class="toc-section-number">3</span> Testes sobre tipos de dados</a></li>
+<li><a href="#conversao-entre-tipos-de-dados"><span class="toc-section-number">4</span> Conversão entre tipos de dados</a></li>
+<li><a href="#funcoes-e-operadores-novos-utilizados"><span class="toc-section-number">5</span> Funções e operadores novos utilizados</a></li>
 </ul>
 </div>
 
@@ -389,8 +389,9 @@ data2</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as.numeric</span>(data1))</code></pre></div>
 <pre><code>[1] &quot;numeric&quot;</code></pre>
 </div>
-<div id="testes-sobre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">2.5</span> Testes sobre tipos de dados</h2>
+</div>
+<div id="testes-sobre-tipos-de-dados" class="section level1">
+<h1><span class="header-section-number">3</span> Testes sobre tipos de dados</h1>
 <p>Além função <code>typeof()</code>, a família <code>is.*()</code> também permite descobrir o tipo de dado, p.ex.: <code>is.numeric()</code>, <code>is.character()</code> e etc.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x; <span class="kw">typeof</span>(x)</code></pre></div>
 <pre><code>[1] 51</code></pre>
@@ -427,8 +428,8 @@ Levels: Vai chover hoje?</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(x)</code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div id="conversao-entre-tipos-de-dados" class="section level2">
-<h2><span class="header-section-number">2.6</span> Conversão entre tipos de dados</h2>
+<div id="conversao-entre-tipos-de-dados" class="section level1">
+<h1><span class="header-section-number">4</span> Conversão entre tipos de dados</h1>
 <p>Em algumas circustâncias precisamos alterar o tipo de uma variável. A maioria das funções <code>is.*()</code> possui uma função <code>as.*()</code> correspondente de conversão para aquele tipo de dado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de character para numeric</span>
 <span class="kw">as.numeric</span>(<span class="st">&quot;12.34&quot;</span>) </code></pre></div>
@@ -475,9 +476,8 @@ data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span
 data_hora</code></pre></div>
 <pre><code>[1] &quot;2016-03-17 15:30:00 GMT&quot;</code></pre>
 </div>
-</div>
 <div id="funcoes-e-operadores-novos-utilizados" class="section level1">
-<h1><span class="header-section-number">3</span> Funções e operadores novos utilizados</h1>
+<h1><span class="header-section-number">5</span> Funções e operadores novos utilizados</h1>
 <p>Tipos de dados</p>
 <ul>
 <li><code>class()</code></li>

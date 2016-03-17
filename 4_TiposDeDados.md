@@ -535,7 +535,7 @@ class(as.numeric(data1))
 [1] "numeric"
 ```
 
-## Testes sobre tipos de dados
+# Testes sobre tipos de dados
 
 Além função `typeof()`, a família `is.*()` também permite descobrir o tipo de dado, p.ex.: `is.numeric()`, `is.character()` e etc.
 
@@ -670,7 +670,7 @@ is.na(x)
 [1] FALSE
 ```
 
-## Conversão entre tipos de dados
+# Conversão entre tipos de dados
 
 Em algumas circustâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
 
