@@ -1,5 +1,5 @@
 ---
-title: "Operações Básicas"
+title: "Tipos e estrutura de dados"
 author: "Jônatan Tatsch"
 date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
 output:
@@ -19,7 +19,7 @@ rm(list=ls())
 # definindo globalmente tz = "GMT"
 Sys.setenv(TZ = 'GMT')
 # data manipulation packages
-pcks <- c("knitr", "knitcitations", "printr")
+pcks <- c("knitr", "knitcitations", "printr", "pander", "htmlTable")
 invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 # configuraçoes knitr
 opts_chunk$set(cache = FALSE, fig.path = "figs/")
@@ -39,23 +39,151 @@ Nesta seção veremos:
 
 # Tipos de dados
 
-# Expressões lógicas
+Existem vários classes de dados no R. As mais utilizadas são:
 
-# NA e NaN
+* `numeric`
 
-In general, if our calculation involves a missing value, then the results will also
-be missing:
-c(NA + 1, NA * 5, NA +Inf)
+* `character` (sequência de caracteres)
 
-When arithmetic involves NAand NaN, the answer is one of those two values, but which
-of those two is system dependent:
-c(NA + NA, NaN + NaN, NaN + NA, NA + NaN)
+* `logical` (TRUE/FALSE)
 
-There are functions available to check for these special values. Notice that NaN and NA are neither finite nor infinite, and NaNis missing but NA isa number:
+* `Date` (datas)
 
-x <-c(0,Inf, -Inf, NaN, NA)
+* `POSIXct` (datas e horários) 
 
-# Testes sobre tipos de dados
+A classe dos dados de um objeto é verificada com a função `class()`.
+
+```{r chunk6, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+x <- 51
+class(x)
+```
+ 
+## numeric
+
+É a classe de objeto mais usada. Essa classe é similar a *float* ou *double* em outras linguagens. Ele lida com inteiros e decimais, positivos e negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função `is.numeric()`.
+
+```{r chunk61, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+is.numeric(x)
+is.numeric(pi)
+```
+
+Outro tipo é o `integer` (inteiro), ou seja não há parte decimal. Para definir um objeto como inteiro é necessário acrescentar ao valor numérico um `L`. Analogamente, uma forma de verificação se o objeto é inteiro é através função `is.integer()`.
+
+
+```{r chunk62, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+i <- 3L
+is.integer(i)
+is.integer(pi)
+```
+ 
+Mesmo com o objeto `i` sendo inteiro, ele também passa na verificação `is.numeric()`.
+
+```{r chunk63, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+is.numeric(i)
+```
+
+O R converte inteiros para numéricos quando necessário. Por exemplo:
+
+```{r chunk64, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+## integer * numeric
+class(5L)
+class(4.5)
+(prod_i <- 5L * 4.5)
+class(prod_i)
+## integer/integer
+class(5L)
+class(2L)
+class(5L/2L)
+```
+
+
+## character
+
+O tipo de dado *character* (*string*) é bastante utilizado e deve ser manipulado com cuidado. No R há duas principais formas de lidar com caracteres: a função `character()` e `factor()`. Embora pareçam similares eles são tratados de forma diferente.
+
+```{r chunk65, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+(char <- "Vai chover hoje?")
+charf <- factor("Analise de dados")
+charf
+levels(charf)
+ordered(charf)
+```
+
+`char` contém as palavras  \"Vai chover hoje?\", enquanto, `charf` tem as mesmas palavras porém sem as aspas e a segunda linha de informação sobre os níveis (*levels*) de `charf`. Nós veremos esse tipos de dado futuramente em vetores.
+
+> **Lembre-se que caracteres em letras minúsculas e maiúsculas são coisas diferetes no R.**
+
+Para encontrar o tamanho de um `character` usamos a função `nchar()`.
+        
+```{r chunk66, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+nchar(char)
+nchar("abc")
+```       
+
+Esta função não funcionará para um objeto do tipo `factor`.
+
+```{r chunk67, message=FALSE, comment="",eval = TRUE, echo=TRUE,error=TRUE}
+nchar(charf)
+```       
+
+## logical
+   
+`logical` (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). Numericamente, TRUE é o mesmo que 1 e FALSE é o mesmo que 0.
+
+```{r chunk681, message=FALSE, comment="",prompt=FALSE }
+# variável lógica
+vl <- FALSE
+``` 
+
+Então: 
+
+```{r chunk68, message=FALSE, comment="",prompt=FALSE }
+vl * 5
+TRUE * 5
+```
+
+Assim como as outras classes de dados existe um teste associado.
+
+```{r chunk69, message=FALSE, comment="",prompt=FALSE }
+class(vl)
+is.logical(vl)
+```
+
+O R aceita as abreviaturas T e F para representar TRUE e FALSE, respectivamente, mas não é recomendado usá-las, conforme exemplo abaixo.
+
+```{r chunk610, message=FALSE, comment="",prompt=FALSE }
+TRUE
+T
+class(T)
+T <- 10
+class(T)
+```
+
+Valores lógicos resultam da comparação de números ou caracteres.
+
+```{r chunk611, message=FALSE, comment="",prompt=FALSE }
+4 == 3 # operador == (identico a)
+teste2i2 <- 2*2 == 2+2
+teste2i2
+teste2d2 <- 2*2 != 2+2 # operador: diferente de
+teste2d2
+4 < 3
+4 > 3
+4 >= 3 & 4 <= 5
+4 <= 3 | 4 <= 5
+"abc" == "defg"
+"abc" < "defg"
+nchar("abc") < nchar("defg")
+```
+
+```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE}
+oper <- c("<", "<=", ">", ">=", "==","!=","!x","x | y","x & y","isTRUE(x)", "%in%") 
+desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico","diferente","não é x (negação)","x ou y","x e y","teste se x é verdadeiro", "está contido em") 
+operadores_logicos <- data.frame(Operador = oper, Descrição = desc, stringsAsFactors = FALSE)
+pander(operadores_logicos, caption = "Tabela 1. Operadores Lógicos")
+```
+
+## Testes sobre tipos de dados
 
 is.finite(x)
 
@@ -64,6 +192,44 @@ is.infinite(x)
 is.nan(x)
 
 is.na(x)
+
+## Date
+
+Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no R.
+
+As mais úteis são:
+  
+  * `Date`
+  
+  * `POSIXct`
+  
+
+`Date` armazena apenas a data enquanto `POSIXct` armazena a data e o horário. Ambos dados são representados como o número de dias (Date) ou segundos (POSIXct) decorridos  desde 1 de Janeiro de 1970.
+```{r chunk612, message=FALSE, comment="",prompt=FALSE }
+data1 <- as.Date("2012-06-28")
+data1
+class(data1)
+as.numeric(data1)
+data2 <- as.POSIXct("2012-06-28 17:42")
+data2
+class(data2)
+as.numeric(data2)
+```
+
+A manipulação de dados da classe de datas e horários (`Date-time`) é mais versátil usando-se os pacotes `lubridate` e `chron`.
+Funções como `as.numeric()` e `as.Date()` não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.
+```{r chunk613, message=FALSE, comment="",prompt=FALSE }
+class(data1)
+class(as.numeric(data1))
+```
+
+- - - 
+
+
+# Vetores
+
+
+
 
 
 # Funções e operadores utilizados
