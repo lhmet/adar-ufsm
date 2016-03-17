@@ -1,7 +1,7 @@
 ---
 title: "Operações Básicas"
 author: "Jônatan Tatsch"
-date: "19-03-2015"
+date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
 output:
   html_document:
     fig_caption: yes
@@ -203,6 +203,10 @@ options(digits = 7)
 # Variáveis
 
 ## Formas de atribuição 
+
+O termo \"expressão\" significa uma sentença de código que pode ser executada.
+
+Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada \"atribuição\".
 
 ### Variável recebe valor
 

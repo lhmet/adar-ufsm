@@ -1,6 +1,6 @@
 # Operações Básicas
 Jônatan Tatsch  
-19-03-2015  
+`r format(Sys.Date(), format = '%d-%m-%Y')`  
 
 
 
@@ -449,6 +449,10 @@ options(digits = 7)
 # Variáveis
 
 ## Formas de atribuição 
+
+O termo \"expressão\" significa uma sentença de código que pode ser executada.
+
+Se a avaliação de uma expressão é salva usando o operador `<-`, esta combinação é chamada \"atribuição\".
 
 ### Variável recebe valor
 
