@@ -465,11 +465,15 @@ Levels: a</code></pre>
 <span class="kw">as.numeric</span>(<span class="st">&quot;a&quot;</span>)</code></pre></div>
 <pre><code>Warning: NAs introduced by coercion</code></pre>
 <pre><code>[1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de character para data</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de character para date</span>
 dt_char &lt;-<span class="st"> &quot;2016-03-17&quot;</span>
-d &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dt_char)
-d</code></pre></div>
+dt &lt;-<span class="st"> </span><span class="kw">as.Date</span>(dt_char)
+dt</code></pre></div>
 <pre><code>[1] &quot;2016-03-17&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de character para date-time</span>
+data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2016-03-17 15:30:00&quot;</span>)
+data_hora</code></pre></div>
+<pre><code>[1] &quot;2016-03-17 15:30:00 GMT&quot;</code></pre>
 </div>
 </div>
 <div id="funcoes-e-operadores-novos-utilizados" class="section level1">
@@ -496,6 +500,7 @@ d</code></pre></div>
 <p>Conversão de dados</p>
 <ul>
 <li><code>as()</code>; <code>as.numeric()</code>; <code>as.character()</code>; <code>as.integer()</code>; <code>as.factor()</code></li>
+<li><code>as.Date()</code>; <code>as.POSIXct()</code></li>
 </ul>
 </div>
 

@@ -786,14 +786,24 @@ Warning: NAs introduced by coercion
 ```
 
 ```r
-# de character para data
+# de character para date
 dt_char <- "2016-03-17"
-d <- as.Date(dt_char)
-d
+dt <- as.Date(dt_char)
+dt
 ```
 
 ```
 [1] "2016-03-17"
+```
+
+```r
+# de character para date-time
+data_hora <- as.POSIXct("2016-03-17 15:30:00")
+data_hora
+```
+
+```
+[1] "2016-03-17 15:30:00 GMT"
 ```
 
 
@@ -821,6 +831,7 @@ Teste dos tipos de dados
 Conversão de dados
 
 - `as()`; `as.numeric()`; `as.character()`; `as.integer()`; `as.factor()`
+- `as.Date()`; `as.POSIXct()`
 
 
 

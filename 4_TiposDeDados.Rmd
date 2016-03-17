@@ -17,7 +17,7 @@ output:
 ```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
 rm(list=ls())
 # definindo globalmente tz = "GMT"
-Sys.setenv(TZ = 'GMT')
+#Sys.setenv(TZ = 'GMT')
 # data manipulation packages
 pcks <- c("knitr", "knitcitations", "printr", "pander", "htmlTable")
 invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
@@ -270,10 +270,13 @@ as.integer(TRUE)
 as.logical(0:2)
 # character para numérico?
 as.numeric("a")
-# de character para data
+# de character para date
 dt_char <- "2016-03-17"
-d <- as.Date(dt_char)
-d
+dt <- as.Date(dt_char)
+dt
+# de character para date-time
+data_hora <- as.POSIXct("2016-03-17 15:30:00")
+data_hora
 ```
 
 
@@ -301,6 +304,7 @@ Teste dos tipos de dados
 Conversão de dados
 
 - `as()`; `as.numeric()`; `as.character()`; `as.integer()`; `as.factor()`
+- `as.Date()`; `as.POSIXct()`
 
 
 
