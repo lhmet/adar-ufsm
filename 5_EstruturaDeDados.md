@@ -14,8 +14,8 @@ Jônatan Tatsch
 
 Nesta seção vamos:
 
-- como os dados são estruturados
-- vetores
+- como os dados podem ser estruturados no R, e
+- como manipular essas estruturas
 
 
 # Estruturas de dados
@@ -35,7 +35,7 @@ Estruturas de dados
 
 <br/>
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Estruturas de Dados](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Manipulacao de Dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_ManipulacaoDeDados.html)</p> 
 
 
 
