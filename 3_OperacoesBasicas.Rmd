@@ -311,7 +311,7 @@ Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas 
 }
 ```
 
-### Atribuição com a função `assign`
+### Atribuição com a função `assign()`
 
 Outra forma de atribuição é através da função `assign()`:
 
@@ -458,5 +458,7 @@ Ambiente de trabalho
 
 - `ls()`
 - `rm()`
+
+
 
 
