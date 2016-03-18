@@ -1314,7 +1314,11 @@ Jan Fev Mar Abr Jul Ago Set Out Dez
 300 150 210  12  12  22  80 100 280 
 ```
 
-Para selecionar os casos em que a `prec` foi registrada entre um intervalo de valores, ou seja queremos testar mais de uma relação ao mesmo tempo. Isso é feito usando os operadores lógicos `&` e `&&` (**e**), `|` e `||` (**ou**). A ordem das operações podem ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores). As diferenças entre são mostradas nos exemplos a seguir.
+<span style="color:red; font-size:1.7em;">Fim da 3ª aula ([site do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)) </span>
+
+Para selecionar os casos em que a `prec` foi registrada entre um intervalo de valores, ou seja queremos testar mais de uma relação ao mesmo tempo. Isso é feito usando os operadores lógicos `&` e `&&` (**e**), `|` e `||` (**ou**). 
+
+A ordem das operações pode ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores). As diferenças entre são mostradas nos exemplos a seguir.
 
 
 ```r
@@ -1339,7 +1343,7 @@ Abr Jul Ago Set Out
  12  12  22  80 100 
 ```
 
-A forma dupla (`&&` ou `||`) comparam somente um elemento de cada lado, enquanto a forma normal (`&` e `|`), compara cada elemento dos vetores em cada lado.
+A forma dupla (`&&` ou `||`) compara somente um elemento de cada lado, enquanto a forma normal (`&` e `|`), compara cada elemento dos vetores em cada lado.
 
 
 ```r
