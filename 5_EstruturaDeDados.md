@@ -320,8 +320,8 @@ names(a)
 ```
 
 ```r
-a_novo <- unname(a)
-a_novo
+a_sn <- unname(a)
+a_sn
 ```
 
 ```
@@ -329,7 +329,7 @@ a_novo
 ```
 
 ```r
-names(a_novo)
+names(a_sn)
 ```
 
 ```
@@ -376,6 +376,15 @@ x/4
 ```
 
 ```r
+2^(x/4)
+```
+
+```
+ [1] 1.189207 1.414214 1.681793 2.000000 2.378414 2.828427 3.363586
+ [8] 4.000000 4.756828 5.656854
+```
+
+```r
 x^2
 ```
 
@@ -392,7 +401,8 @@ sqrt(x)
  [8] 2.828427 3.000000 3.162278
 ```
 
-Operações vetoriais podem ser extendidas para dois vetores por exemplo.
+Operações vetoriais podem ser estendidas para mais de um vetor.
+
 
 ```r
 # criando 2 vetores de mesmo tamanho
@@ -440,6 +450,14 @@ x^y
 ```
 
 ```r
+2^x
+```
+
+```
+ [1]    2    4    8   16   32   64  128  256  512 1024
+```
+
+```r
 x %% y
 ```
 
@@ -448,6 +466,7 @@ x %% y
 ```
 
 ```r
+# tamanho dos vetores
 length(x)
 ```
 
@@ -471,7 +490,7 @@ length(x + y)
 [1] 10
 ```
 
-Note como as coisas funcionam para vetores de tamanhos diferentes. O vetor menor é reciclado, ou seja seus elementos são repetidos em ordem até eles atingirem o tamanho do vetor mais longo envolvido na operação. Se o vetor mais longo não é múltiplo do mais curto, o R imprime um aviso.
+Uma peculiaridade do R é o tratamento de operações com vetores de tamanhos diferentes. O vetor menor é reciclado, de forma que seus elementos sejam repetidos em ordem até atingirem o tamanho do vetor mais longo envolvido na operação. 
 
 
 ```r
@@ -484,7 +503,7 @@ v1 + v2
 [1]  5  6 90 91
 ```
 
-Se os tamanhos dos vetores não são múltiplos um do outro, o R imprime um aviso.
+Se o vetor mais longo não é múltiplo do mais curto, o R imprime um aviso.
 
 
 ```r
@@ -502,11 +521,18 @@ object length
 [1]  5  6 91 92
 ```
 
-A reciclagem é intrinsicamente aplicada a operação envolvendo vetores.
+A reciclagem é intrinsicamente usada em operações envolvendo vetores.
 
 
 ```r
-v1 <- c(3, 5, 88, 90)
+v1
+```
+
+```
+[1]  3  5 88 90
+```
+
+```r
 cte <- 4
 v1 * cte
 ```
@@ -565,6 +591,27 @@ x < y
 
 ```
  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+```
+
+Entre os operadores vistos na [seção 4](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log)
+
+
+```r
+# 2:4 são elementos de x?
+is.element(2:4, x)
+```
+
+```
+## [1] TRUE TRUE TRUE
+```
+
+```r
+# equivalente ao operador está contido em 
+2:4 %in% x
+```
+
+```
+## [1] TRUE TRUE TRUE
 ```
 
 A função `nchar()` também funciona sobre cada elemento do vetor. Esse é mais um exemplo de função vetorizada do R.
@@ -820,7 +867,7 @@ seq_len(length.out = 6)
 ```
 
 ```r
-# gerando uma sequencia a partir de um número
+# gerando uma sequência a partir de um número
 seq(6)
 ```
 
@@ -846,7 +893,7 @@ seq(along = 0) #! melhor opção para gerar sequencias do tamanho do vetor
 ```
 
 ```r
-seq(0) #! cuidado
+seq(0) #! cuidado, veja ?seq para entender a razão desse resultado inusitado
 ```
 
 ```
@@ -856,8 +903,8 @@ seq(0) #! cuidado
 ```r
 # conflito entre parâmetros
 # a <-seq(from = -5, to = 5, by = 0.05, length.out=200)
-s5_by <- seq(from = -5, to = 5, by = 0.05)
-length(s5_by)
+s5by <- seq(from = -5, to = 5, by = 0.05)
+length(s5by)
 ```
 
 ```
@@ -865,7 +912,7 @@ length(s5_by)
 ```
 
 ```r
-tail(s5_by)
+tail(s5by)
 ```
 
 ```
@@ -873,8 +920,8 @@ tail(s5_by)
 ```
 
 ```r
-s5_len <- seq(from = -5, to = 5, length.out = 200)
-length(s5_len)
+s5len <- seq(from = -5, to = 5, length.out = 200)
+length(s5len)
 ```
 
 ```
@@ -882,7 +929,7 @@ length(s5_len)
 ```
 
 ```r
-tail(s5_len)
+tail(s5len)
 ```
 
 ```
@@ -1734,7 +1781,7 @@ ls()
 
 ```
  [1] "a"             "above80"       "an"            "anos"         
- [5] "anos_dec"      "a_novo"        "b"             "below100"     
+ [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cte"           "day_below20"  
 [13] "dda"           "decd"          "desc"          "frac_d30mn"   
 [17] "horas"         "k"             "meses"         "months"       
@@ -1742,8 +1789,8 @@ ls()
 [25] "pent"          "pos"           "pos2"          "prec"         
 [29] "prec_1"        "prec_cond1"    "prec_jja"      "prec_med"     
 [33] "prect_jja"     "prec_ult"      "quais1"        "rep_e31"      
-[37] "rep_t13"       "rep_t13_t4"    "rep_t4"        "s5_by"        
-[41] "s5_len"        "seco"          "seco01"        "seqn"         
+[37] "rep_t13"       "rep_t13_t4"    "rep_t4"        "s5by"         
+[41] "s5len"         "seco"          "seco01"        "seqn"         
 [45] "si_dec"        "snum_b"        "tar_hor"       "temp"         
 [49] "temp_1"        "temp_djf"      "tempm_djf"     "temp_ult"     
 [53] "v"             "v1"            "v_123"         "v_123a"       
@@ -2054,7 +2101,7 @@ ls()
 
 ```
  [1] "a"             "above80"       "an"            "anos"         
- [5] "anos_dec"      "a_novo"        "b"             "below100"     
+ [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cte"           "day_below20"  
 [13] "dda"           "decd"          "desc"          "eh.na"        
 [17] "faltante"      "frac_d30mn"    "horas"         "k"            
@@ -2063,7 +2110,7 @@ ls()
 [29] "pos2"          "prec"          "prec_1"        "prec_cond1"   
 [33] "prec_jja"      "prec_med"      "prect_jja"     "prec_ult"     
 [37] "quais1"        "rep_e31"       "rep_t13"       "rep_t13_t4"   
-[41] "rep_t4"        "s5_by"         "s5_len"        "seco"         
+[41] "rep_t4"        "s5by"          "s5len"         "seco"         
 [45] "seco01"        "seqn"          "si_dec"        "snum_b"       
 [49] "tar_hor"       "temp"          "temp_1"        "temp_djf"     
 [53] "tempm_djf"     "temp_orig"     "temp_ult"      "umvetor"      
@@ -2090,7 +2137,7 @@ ls()
 
 ```
  [1] "a"             "above80"       "an"            "anos"         
- [5] "anos_dec"      "a_novo"        "b"             "below100"     
+ [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cte"           "day_below20"  
 [13] "dda"           "decd"          "desc"          "eh.na"        
 [17] "faltante"      "frac_d30mn"    "horas"         "k"            
@@ -2099,7 +2146,7 @@ ls()
 [29] "pos2"          "prec"          "prec_1"        "prec_cond1"   
 [33] "prec_jja"      "prec_med"      "prect_jja"     "prec_ult"     
 [37] "quais1"        "rep_e31"       "rep_t13"       "rep_t13_t4"   
-[41] "rep_t4"        "s5_by"         "s5_len"        "seco"         
+[41] "rep_t4"        "s5by"          "s5len"         "seco"         
 [45] "seco01"        "seqn"          "si_dec"        "snum_b"       
 [49] "tar_hor"       "temp"          "temp_1"        "temp_djf"     
 [53] "tempm_djf"     "temp_orig"     "temp_ult"      "umvetor"      
