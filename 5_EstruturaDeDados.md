@@ -593,8 +593,17 @@ x < y
  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
-Entre os operadores vistos na [seção 4](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log)
+Entre os operadores lógicos vistos na [tabela 1 do tópico 4](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log) alguns deles não foram vistos. Vamos então usar o operador `%in%` para verificar se um vetor está contido parcial ou totalmente em outro vetor.
 
+
+```r
+# operador está contido em 
+2:4 %in% x
+```
+
+```
+[1] TRUE TRUE TRUE
+```
 
 ```r
 # 2:4 são elementos de x?
@@ -602,16 +611,7 @@ is.element(2:4, x)
 ```
 
 ```
-## [1] TRUE TRUE TRUE
-```
-
-```r
-# equivalente ao operador está contido em 
-2:4 %in% x
-```
-
-```
-## [1] TRUE TRUE TRUE
+[1] TRUE TRUE TRUE
 ```
 
 A função `nchar()` também funciona sobre cada elemento do vetor. Esse é mais um exemplo de função vetorizada do R.
@@ -636,6 +636,7 @@ nchar(y)
 ### Operadores `any` e `all`
 
 
+
 ```r
 vetor <- c(0, 1, -1, -2, 3, 5, -5)
 all(vetor < 0)  # todas as posições são maiores que 0 ?
@@ -652,6 +653,13 @@ any(vetor > 0)  # alguma posição é maior que 0?
 ```
 [1] TRUE
 ```
+
+Ambas as funções sintetizam a informação:
+
+- `all()` verifica se a condição avaliada é válida para todos elementos do vetor;
+- `any()` verifica se a condição avaliada é válida para pelo menos um dos elementos do vetor;
+
+As funções fornecem um único valor (vetor lógico de tamanho 1) para resumir ou descrever o resultado da condição aplicada ao vetor.
 
 - - -
 

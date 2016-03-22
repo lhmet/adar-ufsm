@@ -439,13 +439,13 @@ v1 *<span class="st"> </span>cte</code></pre></div>
 <pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;<span class="st"> </span>y</code></pre></div>
 <pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<p>Entre os operadores vistos na <a href="https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log">seção 4</a></p>
+<p>Entre os operadores lógicos vistos na <a href="https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html#tab_oper_log">tabela 1 do tópico 4</a> alguns deles não foram vistos. Vamos então usar o operador <code>%in%</code> para verificar se um vetor está contido parcial ou totalmente em outro vetor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># operador está contido em </span>
+<span class="dv">2</span>:<span class="dv">4</span> %in%<span class="st"> </span>x</code></pre></div>
+<pre><code>[1] TRUE TRUE TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2:4 são elementos de x?</span>
 <span class="kw">is.element</span>(<span class="dv">2</span>:<span class="dv">4</span>, x)</code></pre></div>
-<pre><code>## [1] TRUE TRUE TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># equivalente ao operador está contido em </span>
-<span class="dv">2</span>:<span class="dv">4</span> %in%<span class="st"> </span>x</code></pre></div>
-<pre><code>## [1] TRUE TRUE TRUE</code></pre>
+<pre><code>[1] TRUE TRUE TRUE</code></pre>
 <p>A função <code>nchar()</code> também funciona sobre cada elemento do vetor. Esse é mais um exemplo de função vetorizada do R.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nchar</span>(month.name)</code></pre></div>
 <pre><code> [1] 7 8 5 5 3 4 4 6 9 7 8 8</code></pre>
@@ -458,6 +458,12 @@ v1 *<span class="st"> </span>cte</code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">any</span>(vetor &gt;<span class="st"> </span><span class="dv">0</span>)  <span class="co"># alguma posição é maior que 0?</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
+<p>Ambas as funções sintetizam a informação:</p>
+<ul>
+<li><code>all()</code> verifica se a condição avaliada é válida para todos elementos do vetor;</li>
+<li><code>any()</code> verifica se a condição avaliada é válida para pelo menos um dos elementos do vetor;</li>
+</ul>
+<p>As funções fornecem um único valor (vetor lógico de tamanho 1) para resumir ou descrever o resultado da condição aplicada ao vetor.</p>
 <hr />
 </div>
 </div>
