@@ -430,6 +430,7 @@ nchar("abc") < nchar("defg")
 ```
 
 
+
 ----------------------------------
  Operador         Descrição       
 ---------- -----------------------
@@ -504,7 +505,7 @@ data2
 ```
 
 ```
-[1] "2012-06-28 17:42:00 GMT"
+[1] "2012-06-28 17:42:00 BRT"
 ```
 
 ```r
@@ -520,7 +521,7 @@ as.numeric(data2)
 ```
 
 ```
-[1] 1340905320
+[1] 1340916120
 ```
 
 A manipulação de dados da classe de datas e horários (`Date-time`) torna-se mais versátil através dos pacotes `lubridate` e `chron`, o que será visto posteriormente no curso.
@@ -812,7 +813,7 @@ data_hora
 ```
 
 ```
-[1] "2016-03-17 15:30:00 GMT"
+[1] "2016-03-17 15:30:00 BRT"
 ```
 
 

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Jônatan Tatsch" />
 
@@ -137,7 +137,7 @@ $(document).ready(function () {
 
 <h1 class="title">Tipos de dados</h1>
 <h4 class="author"><em>Jônatan Tatsch</em></h4>
-<h4 class="date"><em>17-03-2016</em></h4>
+<h4 class="date"><em>22-03-2016</em></h4>
 
 </div>
 
@@ -380,11 +380,11 @@ data1</code></pre></div>
 <pre><code>[1] 15519</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data2 &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-28 17:42&quot;</span>)
 data2</code></pre></div>
-<pre><code>[1] &quot;2012-06-28 17:42:00 GMT&quot;</code></pre>
+<pre><code>[1] &quot;2012-06-28 17:42:00 BRT&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(data2)</code></pre></div>
 <pre><code>[1] &quot;POSIXct&quot; &quot;POSIXt&quot; </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(data2)</code></pre></div>
-<pre><code>[1] 1340905320</code></pre>
+<pre><code>[1] 1340916120</code></pre>
 <p>A manipulação de dados da classe de datas e horários (<code>Date-time</code>) torna-se mais versátil através dos pacotes <code>lubridate</code> e <code>chron</code>, o que será visto posteriormente no curso.</p>
 <p>Funções como <code>as.numeric()</code> e <code>as.Date()</code> não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(data1)</code></pre></div>
@@ -477,7 +477,7 @@ dt</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># de character para date-time</span>
 data_hora &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2016-03-17 15:30:00&quot;</span>)
 data_hora</code></pre></div>
-<pre><code>[1] &quot;2016-03-17 15:30:00 GMT&quot;</code></pre>
+<pre><code>[1] &quot;2016-03-17 15:30:00 BRT&quot;</code></pre>
 </div>
 <div id="funcoes-e-operadores-novos-utilizados" class="section level1">
 <h1><span class="header-section-number">5</span> Funções e operadores novos utilizados</h1>

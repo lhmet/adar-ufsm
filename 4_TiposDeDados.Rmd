@@ -184,6 +184,7 @@ teste2d2
 nchar("abc") < nchar("defg")
 ```
 
+
 ```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE}
 oper <- c("<", "<=", ">", ">=", "==","!=","!x","x | y","x & y","isTRUE(x)", "%in%") 
 desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico","diferente","não é x (negação)","x ou y","x e y","teste se x é verdadeiro", "está contido em") 
