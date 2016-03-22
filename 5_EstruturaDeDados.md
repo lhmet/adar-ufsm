@@ -1005,15 +1005,17 @@ rep_t13_t4
 
 ## Indexação de vetores {.tabset}
 
-Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. Podemos selecionar partes de um vetor por números (posição), caracteres (nome) e vetores lógicos. 
+Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. 
 
-Nessa seção veremos o operador `[` que permite acessar ou filtrar elementos de um vetor. O operador colchete `[` aplicado a um vetor retornará um vetor.
+Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos. 
+
+Através do operador `[` podemos acessar ou filtrar elementos de um vetor. O operador colchete `[` aplicado a um vetor retornará um vetor.
 
 Considere os seguintes vetores como exemplo:
 
 
 ```r
-# vetor de chuva mensal de um ano qualquer
+# vetor de chuva mensal para um dado ano 
 prec <- c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 0, 280)
 meses <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago", "Set", "Out", "Nov", "Dez")
 names(prec) <- meses
@@ -1034,7 +1036,7 @@ box()
 ![](figs/chunk720-1.png)<!-- -->
 
 ```r
-# vetor de temperatura do ar média mensal de um ano qualquer  
+# temperatura do ar média mensal para um dado ano
 temp <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
 names(temp) <- meses
 temp
@@ -1053,7 +1055,7 @@ plot(temp, type = "o")
 
 Como selecionar o valor de chuva e temperatura só para janeiro?
 
-Vamos usar a seguinte sintaxe: 
+Usando a seguinte sintaxe: 
 
 `vetor[i]`
 
@@ -1063,12 +1065,12 @@ onde `i` representa os elementos a serem selecionados.
 
 #### Positivos
 
+Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:
 
 
 ```r
-# vetor de chuva mensal de um ano qualquer
-prec_1 <- prec[1]
- prec_1
+prec_jan <- prec[1]
+prec_jan
 ```
 
 ```
@@ -1077,9 +1079,8 @@ Jan
 ```
 
 ```r
-# vetor de temperatura do ar média mensal de um ano qualquer  
-temp_1 <- temp[1]
- temp_1
+temp_jan <- temp[1]
+temp_jan
 ```
 
 ```
@@ -1089,10 +1090,11 @@ Jan
 
 Como selecionar os últimos valores dos vetores de chuva e temperatura?
 
+
 ```r
-# vetor de temperatura do ar média mensal de um ano qualquer  
-temp_ult <- temp[length(temp)]
- temp_ult
+# vetor de temperatura do ar média mensal de um ano qualquer
+temp_dez <- temp[length(temp)]
+temp_dez
 ```
 
 ```
@@ -1101,8 +1103,8 @@ temp_ult <- temp[length(temp)]
 ```
 
 ```r
-prec_ult <- prec[length(prec)]
-prec_ult
+prec_dez <- prec[length(prec)]
+prec_dez
 ```
 
 ```
@@ -1112,11 +1114,11 @@ Dez
 
 Como selecionar os valores de chuva do trimestre JJA e de temperatura para o trimestre DJF?
 
+
 ```r
+sel_prec <- c(6,7,8)
 # vetor de chuva JJA
-# posicoes de interesse
-pos <- c(6,7,8)
-prec_jja <- prec[pos]
+prec_jja <- prec[sel_prec]
 prec_jja
 ```
 
@@ -1126,9 +1128,9 @@ Jun Jul Ago
 ```
 
 ```r
-# qual o total de chuva trimestral nesse ano?
-prect_jja <- sum(prec_jja)
-  prect_jja
+# total de chuva trimestral nesse ano
+prect_jja_tot <- sum(prec_jja)
+prect_jja_tot
 ```
 
 ```
@@ -1137,8 +1139,8 @@ prect_jja <- sum(prec_jja)
 
 ```r
 # vetor de temperatura DJF
-pos2 <- c(12,1,2)
-temp_djf <- temp[pos2]
+sel_temp <- c(12,1,2)
+temp_djf <- temp[sel_temp]
 temp_djf
 ```
 
@@ -1148,8 +1150,9 @@ temp_djf
 ```
 
 ```r
-tempm_djf <- mean(temp_djf)
-tempm_djf
+# temp média trimestral nesse ano
+temp_djf_med <- mean(temp_djf)
+temp_djf_med
 ```
 
 ```
@@ -1160,8 +1163,9 @@ tempm_djf
 
 Como selecionar todos valores menos o primeiro e o último?
 
+
 ```r
-# todos valores exceto o primeiro e ultimo
+# exceto o primeiro e ultimo
 prec[-c(1, length(prec))]
 ```
 
@@ -1171,7 +1175,7 @@ Fev Mar Abr Mai Jun Jul Ago Set Out Nov
 ```
 
 ```r
-# todos valores exceto os 3 primeiro meses
+# exceto os 3 primeiros meses
 temp[-c(1:3)]
 ```
 
@@ -1181,7 +1185,7 @@ temp[-c(1:3)]
 ```
 
 ```r
-# todos valores exceto os 3 últimos meses
+# exceto os 3 últimos meses
 temp[-c(length(temp):(length(temp)-2))]
 ```
 
@@ -1190,13 +1194,33 @@ temp[-c(length(temp):(length(temp)-2))]
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 
 ```
 
-###  Indexação por vetores lógicos
-
-Vamos criar um vetor lógico e usá-lo para exemplificar a seleção de elementos de um vetor. 
+###  Indexação por nomes
 
 
 ```r
-# vetor logico
+prec["Jan"]
+```
+
+```
+Jan 
+300 
+```
+
+```r
+prec[c("Dez", "Fev", "Jun")]
+```
+
+```
+Dez Fev Jun 
+280 150   0 
+```
+
+###  Indexação por vetores lógicos
+
+Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor. 
+
+
+```r
 vetor_l <- c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, 
     FALSE, TRUE)
 meses[vetor_l]
@@ -1206,7 +1230,7 @@ meses[vetor_l]
 [1] "Jan" "Abr" "Mai" "Jul" "Set" "Dez"
 ```
 
-Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando a função `sum()` a um vetor lógico obtemos o total de elementos verdadeiros:
+Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando-se a função `sum()` a um vetor lógico obtemos o total de elementos verdadeiros:
 
 
 ```r
@@ -1217,7 +1241,7 @@ sum(vetor_l)
 [1] 6
 ```
 
-Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`):
+Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`) e relembrar da **coerção** de vetores.
 
 
 ```r
@@ -1257,30 +1281,7 @@ temp[c(rep(F,3),T)]
 21.0 19.7 26.8 
 ```
 
-###  Indexação por nomes
-
-
-```r
-prec["Jan"]
-```
-
-```
-Jan 
-300 
-```
-
-```r
-prec[c("Dez", "Fev", "Jun")]
-```
-
-```
-Dez Fev Jun 
-280 150   0 
-```
-
-###  Indexação por comparação
-
-Por exemplo:
+A indexação pode ser feita também por comparações:
 
 
 ```r
@@ -1335,7 +1336,7 @@ FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 ```
 
 ```r
-# extraindo valores atendidos ao teste
+# extraindo valores que atendem a condição
 prec[below_avg]
 ```
 
@@ -1355,7 +1356,7 @@ Abr Mai Jun
 ```
 
 ```r
-# forma equivalente
+# forma equivalente em uma linha só
 prec[prec < mean(prec)][1:3]
 ```
 
@@ -1376,9 +1377,22 @@ Jan Fev Mar Abr Jul Ago Set Out Dez
 
 <span style="color:red; font-size:1.7em;">Fim da 3ª aula ([site do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)) </span>
 
-Nos exemplo acima vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto quando frequentemente precisamos testar mais condições. Por exemplo, para selecionar o intervalo $0.5 < prec \leq 100$ usamos os operadores lógicos `&` e `&&` (**e**), `|` e `||` (**ou**).
+###  Indexação com múltiplas condições
 
-A ordem das operações pode ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores). As diferenças entre são mostradas nos exemplos a seguir.
+Nos exemplo acima vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto frequentemente precisamos testar mais condições. Por exemplo, para condições do tipo:
+
+- $0.5 < prec \leq 100$ 
+- $temp < 5$  ou $temp \geq 25$ 
+
+precisamos usar os operadores relacionais:
+
+- `&` e `&&` (\"e"\)
+
+- `|` e `||` (\"ou"\)
+
+A ordem das operações pode ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores de mesmo tamanho que os vetores testados). 
+
+As diferenças entre os operadores são mostradas nos exemplos a seguir.
 
 
 ```r
@@ -1428,6 +1442,8 @@ a == 1 && b == 1
 ```
 
 
+
+
 ----------------------------------------------------------
  a   b   a==1   b==1   a == 1 & b == 1   a == 1 && b == 1 
 --- --- ------ ------ ----------------- ------------------
@@ -1442,42 +1458,21 @@ a == 1 && b == 1
 
 Table: Demostração da diferença entre & e &&.
 
-Outra diferença entre as formas dupla e normal é como elas são processadas. 
+Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. Sem parênteses, a ordem das operações é semelhante a das operações matemáticas:
 
-  * forma normal: ambos os lados do operador são sempre testadas (função vetorizada);
-  * forma dupla: às vezes apenas o lado esquerdo precisa ser testado (função não vetorizada)
+- **PEMDAS**: Parênteses > Expoentes > Multiplicação > Divisão > Adição e Subtração 
 
-
-```r
-# exemplo em que o lado esquerdo não atende ao teste então nem há
-# necessidade de testar o lado direito
-1 == 0 && 2 == 2
-```
-
-```
-[1] FALSE
-```
-
-```r
-# exemplo em que o lado esquerdo é atendido, então não há razão para testar
-# o lado direito
-3 == 3 || 0 == 0
-```
-
-```
-[1] TRUE
-```
-
-Esse aspecto pode ser útil quando o lado direito resultasse em erro se o lado esquerdo falhasse.
-
-Podem haver mais que duas condições a serem testadas. Várias condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. Sem parênteses, a ordem das operações é semelhante a das operações matemáticas (Parênteses, Expoentes, Multiplicação, Divisão, Adição e Subtração:  **PEMDAS**), onde `&`é equivalente à multiplicação e `|` é equivalente à adição, assim **e** tem precedência sobre **ou**.
+Onde `&`é equivalente à **multiplicação** e `|` é equivalente à **adição**, logo **e** tem precedência sobre **ou**.
 
 
 ```r
 # vetor de horas
-horas <- 0 : 23
+horas <- 0:23
 # vetor de temperaturas horárias
-tar_hor <- c(19.9, 19.8, 19.5, 19.4, 19.4, 19.3, 19.2, 19, 19.2, 19.5, 20.1, 20.6, 20.9, 21.8, 22.5, 22.6, 22.5, 22, 21.4, 20.1, 20, 19.8, 19.6, 19.4)
+tar_hor <- c(19.9, 19.8, 19.5, 19.4, 19.4, 19.3, 
+             19.2, 19, 19.2, 19.5, 20.1, 20.6, 20.9, 
+             21.8, 22.5, 22.6, 22.5, 22, 21.4, 20.1, 
+             20, 19.8, 19.6, 19.4)
 # gráfico do varição horária da temperatura do ar
 plot(horas, tar_hor, type = "o", pch = 20)
 # temperaturas noturnas abaixo de 20ºC
@@ -1514,7 +1509,7 @@ abline(h = 20, col = "gray")
 
 ![](figs/chunk7292-1.png)<!-- -->
 
-Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto em alguns casos o interesse é na posição dentro do vetor  na qual a condição ocorre. Nós podemos fazer isso usando a função `which()`:
+Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto em alguns casos o interesse é na posição dentro do vetor  na qual a condição ocorre. Nós podemos localizar essas ocorrências usando a função `which()`:
 
 
 ```r
@@ -1557,8 +1552,8 @@ prec[which(prec > prec_med)]
 
 ```r
 # Qual a temp quando a chuva ou a temp foi acima da media?
-pos2 <- which(prec > prec_med | !temp < mean(temp))
-pos2
+sel <- which(prec > prec_med | !temp < mean(temp))
+sel
 ```
 
 ```
@@ -1567,7 +1562,7 @@ Jan Fev Mar Out Nov Dez
 ```
 
 ```r
-prec[pos2]
+prec[sel]
 ```
 
 ```
@@ -1584,6 +1579,7 @@ which(prec == 0)
 ```
 
 ```r
+# quando ocorreu a prec max
 which(prec == max(prec))
 ```
 
@@ -1617,36 +1613,35 @@ prec
  [1] 300 150 210  12   0   0  12  22  80 100   0 280
 ```
 
-Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como "está contdo em". O **resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste**. 
+Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como \"está contido em\". O **resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste**. 
 
 
 ```r
 # compare o tamanho dos vetores resultantes
-meses %in% c("JAN", "Feb", "Mar")
+which(meses %in% c("JAN", "Feb", "Mar"))
 ```
 
 ```
- [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[12] FALSE
+[1] 3
 ```
 
 ```r
 # note a diferença
-c("JAN", "Feb", "Mar") %in% meses
+which(c("JAN", "Feb", "Mar") %in% meses)
 ```
 
 ```
-[1] FALSE FALSE  TRUE
+[1] 3
 ```
 
 ```r
-quais1 <- !meses %in% c("JAN", "Feb", "Mar")
-quais1
+cond <- !meses %in% c("JAN", "Feb", "Mar")
+quais <- which(cond)
+quais
 ```
 
 ```
- [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-[12]  TRUE
+ [1]  1  2  4  5  6  7  8  9 10 11 12
 ```
 
 ```r
@@ -1664,8 +1659,8 @@ prec[names(temp) %in% c("Jun", "Jul", "Ago")]
 # posição a ser alterada
 pos <- 10
 # valor da temperatura naquela posição
-valor <- temp[pos]   
-valor
+old_temp <- temp[pos]   
+old_temp
 ```
 
 ```
@@ -1685,9 +1680,9 @@ temp
 
 ```r
 # substituição do valor original por um novo valor
-novo_valor <- 30
+new_temp <- 30
 # alterando temperatura do mês de outubro
-temp[pos] <- novo_valor
+temp[pos] <- new_temp
 temp
 ```
 
@@ -1790,22 +1785,22 @@ ls()
 ```
  [1] "a"             "above80"       "an"            "anos"         
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
- [9] "below_avg"     "chuva"         "cte"           "day_below20"  
-[13] "dda"           "decd"          "desc"          "frac_d30mn"   
-[17] "horas"         "k"             "meses"         "months"       
-[21] "night_below20" "novo_valor"    "oper"          "pcks"         
-[25] "pent"          "pos"           "pos2"          "prec"         
-[29] "prec_1"        "prec_cond1"    "prec_jja"      "prec_med"     
-[33] "prect_jja"     "prec_ult"      "quais1"        "rep_e31"      
-[37] "rep_t13"       "rep_t13_t4"    "rep_t4"        "s5by"         
-[41] "s5len"         "seco"          "seco01"        "seqn"         
-[45] "si_dec"        "snum_b"        "tar_hor"       "temp"         
-[49] "temp_1"        "temp_djf"      "tempm_djf"     "temp_ult"     
-[53] "v"             "v1"            "v_123"         "v_123a"       
-[57] "v_123b"        "v2"            "v3"            "valor"        
-[61] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
-[65] "vetor_log"     "vetor_num"     "x"             "y"            
-[69] "z"            
+ [9] "below_avg"     "chuva"         "cond"          "cte"          
+[13] "day_below20"   "dda"           "decd"          "desc"         
+[17] "frac_d30mn"    "horas"         "k"             "meses"        
+[21] "months"        "new_temp"      "night_below20" "old_temp"     
+[25] "oper"          "pcks"          "pent"          "pos"          
+[29] "prec"          "prec_cond1"    "prec_dez"      "prec_jan"     
+[33] "prec_jja"      "prec_med"      "prect_jja_tot" "quais"        
+[37] "rep_e31"       "rep_t13"       "rep_t13_t4"    "rep_t4"       
+[41] "s5by"          "s5len"         "seco"          "seco01"       
+[45] "sel"           "sel_prec"      "sel_temp"      "seqn"         
+[49] "si_dec"        "snum_b"        "tar_hor"       "temp"         
+[53] "temp_dez"      "temp_djf"      "temp_djf_med"  "temp_jan"     
+[57] "v"             "v1"            "v_123"         "v_123a"       
+[61] "v_123b"        "v2"            "v3"            "vetor"        
+[65] "vetor_char"    "vetor_int"     "vetor_l"       "vetor_log"    
+[69] "vetor_num"     "x"             "y"             "z"            
 ```
 
 ```r
@@ -1952,17 +1947,9 @@ umvetor
 
 ## Vetores nulos e elementos faltantes
 
-Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador (feriados), falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. 
+Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador, falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. 
 No R dados faltantes são representados pela string `NA`.
 
-
-```r
-5 + NA
-```
-
-```
-[1] NA
-```
 
 ```r
 v1 <- c(1:8,NA)
@@ -2110,23 +2097,23 @@ ls()
 ```
  [1] "a"             "above80"       "an"            "anos"         
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
- [9] "below_avg"     "chuva"         "cte"           "day_below20"  
-[13] "dda"           "decd"          "desc"          "eh.na"        
-[17] "faltante"      "frac_d30mn"    "horas"         "k"            
-[21] "meses"         "months"        "night_below20" "novo_valor"   
-[25] "oper"          "pcks"          "pent"          "pos"          
-[29] "pos2"          "prec"          "prec_1"        "prec_cond1"   
-[33] "prec_jja"      "prec_med"      "prect_jja"     "prec_ult"     
-[37] "quais1"        "rep_e31"       "rep_t13"       "rep_t13_t4"   
-[41] "rep_t4"        "s5by"          "s5len"         "seco"         
-[45] "seco01"        "seqn"          "si_dec"        "snum_b"       
-[49] "tar_hor"       "temp"          "temp_1"        "temp_djf"     
-[53] "tempm_djf"     "temp_orig"     "temp_ult"      "umvetor"      
-[57] "v"             "v1"            "v_123"         "v_123a"       
-[61] "v_123b"        "v2"            "v3"            "valor"        
-[65] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
-[69] "vetor_log"     "vetor_num"     "x"             "y"            
-[73] "z"            
+ [9] "below_avg"     "chuva"         "cond"          "cte"          
+[13] "day_below20"   "dda"           "decd"          "desc"         
+[17] "eh.na"         "faltante"      "frac_d30mn"    "horas"        
+[21] "k"             "meses"         "months"        "new_temp"     
+[25] "night_below20" "old_temp"      "oper"          "pcks"         
+[29] "pent"          "pos"           "prec"          "prec_cond1"   
+[33] "prec_dez"      "prec_jan"      "prec_jja"      "prec_med"     
+[37] "prect_jja_tot" "quais"         "rep_e31"       "rep_t13"      
+[41] "rep_t13_t4"    "rep_t4"        "s5by"          "s5len"        
+[45] "seco"          "seco01"        "sel"           "sel_prec"     
+[49] "sel_temp"      "seqn"          "si_dec"        "snum_b"       
+[53] "tar_hor"       "temp"          "temp_dez"      "temp_djf"     
+[57] "temp_djf_med"  "temp_jan"      "temp_orig"     "umvetor"      
+[61] "v"             "v1"            "v_123"         "v_123a"       
+[65] "v_123b"        "v2"            "v3"            "vetor"        
+[69] "vetor_char"    "vetor_int"     "vetor_l"       "vetor_log"    
+[73] "vetor_num"     "x"             "y"             "z"            
 ```
 
 ```r
@@ -2146,23 +2133,23 @@ ls()
 ```
  [1] "a"             "above80"       "an"            "anos"         
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
- [9] "below_avg"     "chuva"         "cte"           "day_below20"  
-[13] "dda"           "decd"          "desc"          "eh.na"        
-[17] "faltante"      "frac_d30mn"    "horas"         "k"            
-[21] "meses"         "months"        "night_below20" "novo_valor"   
-[25] "oper"          "pcks"          "pent"          "pos"          
-[29] "pos2"          "prec"          "prec_1"        "prec_cond1"   
-[33] "prec_jja"      "prec_med"      "prect_jja"     "prec_ult"     
-[37] "quais1"        "rep_e31"       "rep_t13"       "rep_t13_t4"   
-[41] "rep_t4"        "s5by"          "s5len"         "seco"         
-[45] "seco01"        "seqn"          "si_dec"        "snum_b"       
-[49] "tar_hor"       "temp"          "temp_1"        "temp_djf"     
-[53] "tempm_djf"     "temp_orig"     "temp_ult"      "umvetor"      
-[57] "v"             "v1"            "v_123"         "v_123a"       
-[61] "v_123b"        "v2"            "v3"            "valor"        
-[65] "vetor"         "vetor_char"    "vetor_int"     "vetor_l"      
-[69] "vetor_log"     "vetor_num"     "x"             "y"            
-[73] "z"            
+ [9] "below_avg"     "chuva"         "cond"          "cte"          
+[13] "day_below20"   "dda"           "decd"          "desc"         
+[17] "eh.na"         "faltante"      "frac_d30mn"    "horas"        
+[21] "k"             "meses"         "months"        "new_temp"     
+[25] "night_below20" "old_temp"      "oper"          "pcks"         
+[29] "pent"          "pos"           "prec"          "prec_cond1"   
+[33] "prec_dez"      "prec_jan"      "prec_jja"      "prec_med"     
+[37] "prect_jja_tot" "quais"         "rep_e31"       "rep_t13"      
+[41] "rep_t13_t4"    "rep_t4"        "s5by"          "s5len"        
+[45] "seco"          "seco01"        "sel"           "sel_prec"     
+[49] "sel_temp"      "seqn"          "si_dec"        "snum_b"       
+[53] "tar_hor"       "temp"          "temp_dez"      "temp_djf"     
+[57] "temp_djf_med"  "temp_jan"      "temp_orig"     "umvetor"      
+[61] "v"             "v1"            "v_123"         "v_123a"       
+[65] "v_123b"        "v2"            "v3"            "vetor"        
+[69] "vetor_char"    "vetor_int"     "vetor_l"       "vetor_log"    
+[73] "vetor_num"     "x"             "y"             "z"            
 ```
 
 ```r

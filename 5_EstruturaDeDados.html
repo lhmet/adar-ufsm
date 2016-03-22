@@ -162,9 +162,9 @@ $(document).ready(function () {
 </ul></li>
 <li><a href="#indexacao-de-vetores"><span class="toc-section-number">3.4</span> Indexação de vetores</a><ul>
 <li><a href="#indexacao-por-vetores-inteiros"><span class="toc-section-number">3.4.1</span> Indexação por vetores inteiros</a></li>
-<li><a href="#indexacao-por-vetores-logicos"><span class="toc-section-number">3.4.2</span> Indexação por vetores lógicos</a></li>
-<li><a href="#indexacao-por-nomes"><span class="toc-section-number">3.4.3</span> Indexação por nomes</a></li>
-<li><a href="#indexacao-por-comparacao"><span class="toc-section-number">3.4.4</span> Indexação por comparação</a></li>
+<li><a href="#indexacao-por-nomes"><span class="toc-section-number">3.4.2</span> Indexação por nomes</a></li>
+<li><a href="#indexacao-por-vetores-logicos"><span class="toc-section-number">3.4.3</span> Indexação por vetores lógicos</a></li>
+<li><a href="#indexacao-com-multiplas-condicoes"><span class="toc-section-number">3.4.4</span> Indexação com múltiplas condições</a></li>
 </ul></li>
 <li><a href="#substituicao-de-elementos-de-um-vetor"><span class="toc-section-number">3.5</span> Substituição de elementos de um vetor</a></li>
 <li><a href="#criacao-de-vetores-com-vector"><span class="toc-section-number">3.6</span> Criação de vetores com <code>vector</code></a></li>
@@ -649,10 +649,11 @@ rep_t13_t4</code></pre></div>
 </div>
 <div id="indexacao-de-vetores" class="section level2 tabset">
 <h2><span class="header-section-number">3.4</span> Indexação de vetores</h2>
-<p>Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. Podemos selecionar partes de um vetor por números (posição), caracteres (nome) e vetores lógicos.</p>
-<p>Nessa seção veremos o operador <code>[</code> que permite acessar ou filtrar elementos de um vetor. O operador colchete <code>[</code> aplicado a um vetor retornará um vetor.</p>
+<p>Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R.</p>
+<p>Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos.</p>
+<p>Através do operador <code>[</code> podemos acessar ou filtrar elementos de um vetor. O operador colchete <code>[</code> aplicado a um vetor retornará um vetor.</p>
 <p>Considere os seguintes vetores como exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de chuva mensal de um ano qualquer</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de chuva mensal para um dado ano </span>
 prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">150</span>, <span class="dv">210</span>, <span class="dv">12</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">80</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">280</span>)
 meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>,<span class="st">&quot;Ago&quot;</span>, <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span>)
 <span class="kw">names</span>(prec) &lt;-<span class="st"> </span>meses
@@ -663,7 +664,7 @@ prec</code></pre></div>
 <span class="kw">barplot</span>(prec)
 <span class="kw">box</span>()</code></pre></div>
 <p><img src="data:image/png;base64,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" alt /><!-- --></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura do ar média mensal de um ano qualquer  </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperatura do ar média mensal para um dado ano</span>
 temp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="fl">23.2</span>, <span class="fl">22.5</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="fl">17.6</span>, <span class="dv">18</span>, <span class="fl">19.7</span>, <span class="fl">21.3</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="fl">26.8</span>)
 <span class="kw">names</span>(temp) &lt;-<span class="st"> </span>meses
 temp</code></pre></div>
@@ -672,84 +673,91 @@ temp</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(temp, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</code></pre></div>
 <p><img src="data:image/png;base64,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" alt /><!-- --></p>
 <p>Como selecionar o valor de chuva e temperatura só para janeiro?</p>
-<p>Vamos usar a seguinte sintaxe:</p>
+<p>Usando a seguinte sintaxe:</p>
 <p><code>vetor[i]</code></p>
 <p>onde <code>i</code> representa os elementos a serem selecionados.</p>
 <div id="indexacao-por-vetores-inteiros" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Indexação por vetores inteiros</h3>
 <div id="positivos" class="section level4">
 <h4><span class="header-section-number">3.4.1.1</span> Positivos</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de chuva mensal de um ano qualquer</span>
-prec_1 &lt;-<span class="st"> </span>prec[<span class="dv">1</span>]
- prec_1</code></pre></div>
+<p>Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_jan &lt;-<span class="st"> </span>prec[<span class="dv">1</span>]
+prec_jan</code></pre></div>
 <pre><code>Jan 
 300 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura do ar média mensal de um ano qualquer  </span>
-temp_1 &lt;-<span class="st"> </span>temp[<span class="dv">1</span>]
- temp_1</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_jan &lt;-<span class="st"> </span>temp[<span class="dv">1</span>]
+temp_jan</code></pre></div>
 <pre><code>Jan 
  25 </code></pre>
 <p>Como selecionar os últimos valores dos vetores de chuva e temperatura?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura do ar média mensal de um ano qualquer  </span>
-temp_ult &lt;-<span class="st"> </span>temp[<span class="kw">length</span>(temp)]
- temp_ult</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura do ar média mensal de um ano qualquer</span>
+temp_dez &lt;-<span class="st"> </span>temp[<span class="kw">length</span>(temp)]
+temp_dez</code></pre></div>
 <pre><code> Dez 
 26.8 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_ult &lt;-<span class="st"> </span>prec[<span class="kw">length</span>(prec)]
-prec_ult</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec_dez &lt;-<span class="st"> </span>prec[<span class="kw">length</span>(prec)]
+prec_dez</code></pre></div>
 <pre><code>Dez 
 280 </code></pre>
 <p>Como selecionar os valores de chuva do trimestre JJA e de temperatura para o trimestre DJF?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de chuva JJA</span>
-<span class="co"># posicoes de interesse</span>
-pos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)
-prec_jja &lt;-<span class="st"> </span>prec[pos]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel_prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)
+<span class="co"># vetor de chuva JJA</span>
+prec_jja &lt;-<span class="st"> </span>prec[sel_prec]
 prec_jja</code></pre></div>
 <pre><code>Jun Jul Ago 
   0  12  22 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># qual o total de chuva trimestral nesse ano?</span>
-prect_jja &lt;-<span class="st"> </span><span class="kw">sum</span>(prec_jja)
-  prect_jja</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># total de chuva trimestral nesse ano</span>
+prect_jja_tot &lt;-<span class="st"> </span><span class="kw">sum</span>(prec_jja)
+prect_jja_tot</code></pre></div>
 <pre><code>[1] 34</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura DJF</span>
-pos2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>,<span class="dv">1</span>,<span class="dv">2</span>)
-temp_djf &lt;-<span class="st"> </span>temp[pos2]
+sel_temp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>,<span class="dv">1</span>,<span class="dv">2</span>)
+temp_djf &lt;-<span class="st"> </span>temp[sel_temp]
 temp_djf</code></pre></div>
 <pre><code> Dez  Jan  Fev 
 26.8 25.0 23.2 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempm_djf &lt;-<span class="st"> </span><span class="kw">mean</span>(temp_djf)
-tempm_djf</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temp média trimestral nesse ano</span>
+temp_djf_med &lt;-<span class="st"> </span><span class="kw">mean</span>(temp_djf)
+temp_djf_med</code></pre></div>
 <pre><code>[1] 25</code></pre>
 </div>
 <div id="negativos" class="section level4">
 <h4><span class="header-section-number">3.4.1.2</span> Negativos</h4>
 <p>Como selecionar todos valores menos o primeiro e o último?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># todos valores exceto o primeiro e ultimo</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exceto o primeiro e ultimo</span>
 prec[-<span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(prec))]</code></pre></div>
 <pre><code>Fev Mar Abr Mai Jun Jul Ago Set Out Nov 
 150 210  12   0   0  12  22  80 100   0 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># todos valores exceto os 3 primeiro meses</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exceto os 3 primeiros meses</span>
 temp[-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>)]</code></pre></div>
 <pre><code> Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># todos valores exceto os 3 últimos meses</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exceto os 3 últimos meses</span>
 temp[-<span class="kw">c</span>(<span class="kw">length</span>(temp):(<span class="kw">length</span>(temp)-<span class="dv">2</span>))]</code></pre></div>
 <pre><code> Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 </code></pre>
 </div>
 </div>
+<div id="indexacao-por-nomes" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Indexação por nomes</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="st">&quot;Jan&quot;</span>]</code></pre></div>
+<pre><code>Jan 
+300 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">c</span>(<span class="st">&quot;Dez&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Jun&quot;</span>)]</code></pre></div>
+<pre><code>Dez Fev Jun 
+280 150   0 </code></pre>
+</div>
 <div id="indexacao-por-vetores-logicos" class="section level3">
-<h3><span class="header-section-number">3.4.2</span> Indexação por vetores lógicos</h3>
-<p>Vamos criar um vetor lógico e usá-lo para exemplificar a seleção de elementos de um vetor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor logico</span>
-vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, 
+<h3><span class="header-section-number">3.4.3</span> Indexação por vetores lógicos</h3>
+<p>Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, 
     <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)
 meses[vetor_l]</code></pre></div>
 <pre><code>[1] &quot;Jan&quot; &quot;Abr&quot; &quot;Mai&quot; &quot;Jul&quot; &quot;Set&quot; &quot;Dez&quot;</code></pre>
-<p>Os elementos de <code>vetor_l</code> correspondentes a <code>TRUE</code> foram selecionados. Aplicando a função <code>sum()</code> a um vetor lógico obtemos o total de elementos verdadeiros:</p>
+<p>Os elementos de <code>vetor_l</code> correspondentes a <code>TRUE</code> foram selecionados. Aplicando-se a função <code>sum()</code> a um vetor lógico obtemos o total de elementos verdadeiros:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(vetor_l)</code></pre></div>
 <pre><code>[1] 6</code></pre>
-<p>Vamos considerar agora a seguinte forma do vetor lógico (<code>vetor_l</code>):</p>
+<p>Vamos considerar agora a seguinte forma do vetor lógico (<code>vetor_l</code>) e relembrar da <strong>coerção</strong> de vetores.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
 vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(T, F)
 meses[vetor_l]</code></pre></div>
@@ -763,19 +771,7 @@ meses[vetor_l]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp[<span class="kw">c</span>(<span class="kw">rep</span>(F,<span class="dv">3</span>),T)]</code></pre></div>
 <pre><code> Abr  Ago  Dez 
 21.0 19.7 26.8 </code></pre>
-</div>
-<div id="indexacao-por-nomes" class="section level3">
-<h3><span class="header-section-number">3.4.3</span> Indexação por nomes</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="st">&quot;Jan&quot;</span>]</code></pre></div>
-<pre><code>Jan 
-300 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">c</span>(<span class="st">&quot;Dez&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Jun&quot;</span>)]</code></pre></div>
-<pre><code>Dez Fev Jun 
-280 150   0 </code></pre>
-</div>
-<div id="indexacao-por-comparacao" class="section level3">
-<h3><span class="header-section-number">3.4.4</span> Indexação por comparação</h3>
-<p>Por exemplo:</p>
+<p>A indexação pode ser feita também por comparações:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor prec</span>
 prec</code></pre></div>
 <pre><code>Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
@@ -797,7 +793,7 @@ prec[above80]</code></pre></div>
 (below_avg &lt;-<span class="st"> </span>prec &lt;<span class="st"> </span>prec_med)</code></pre></div>
 <pre><code>  Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
 FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extraindo valores atendidos ao teste</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extraindo valores que atendem a condição</span>
 prec[below_avg]</code></pre></div>
 <pre><code>Abr Mai Jun Jul Ago Set Nov 
  12   0   0  12  22  80   0 </code></pre>
@@ -805,7 +801,7 @@ prec[below_avg]</code></pre></div>
 prec[below_avg][<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
 <pre><code>Abr Mai Jun 
  12   0   0 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># forma equivalente</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># forma equivalente em uma linha só</span>
 prec[prec &lt;<span class="st"> </span><span class="kw">mean</span>(prec)][<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
 <pre><code>Abr Mai Jun 
  12   0   0 </code></pre>
@@ -814,8 +810,21 @@ prec[prec !=<span class="st"> </span><span class="dv">0</span>]</code></pre></di
 <pre><code>Jan Fev Mar Abr Jul Ago Set Out Dez 
 300 150 210  12  12  22  80 100 280 </code></pre>
 <p><span style="color:red; font-size:1.7em;">Fim da 3ª aula (<a href="https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html">site do curso</a>) </span></p>
-<p>Nos exemplo acima vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto quando frequentemente precisamos testar mais condições. Por exemplo, para selecionar o intervalo <span class="math inline">\(0.5 &lt; prec \leq 100\)</span> usamos os operadores lógicos <code>&amp;</code> e <code>&amp;&amp;</code> (<strong>e</strong>), <code>|</code> e <code>||</code> (<strong>ou</strong>).</p>
-<p>A ordem das operações pode ser controladas por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores). As diferenças entre são mostradas nos exemplos a seguir.</p>
+</div>
+<div id="indexacao-com-multiplas-condicoes" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Indexação com múltiplas condições</h3>
+<p>Nos exemplo acima vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto frequentemente precisamos testar mais condições. Por exemplo, para condições do tipo:</p>
+<ul>
+<li><span class="math inline">\(0.5 &lt; prec \leq 100\)</span></li>
+<li><span class="math inline">\(temp &lt; 5\)</span> ou <span class="math inline">\(temp \geq 25\)</span></li>
+</ul>
+<p>precisamos usar os operadores relacionais:</p>
+<ul>
+<li><p><code>&amp;</code> e <code>&amp;&amp;</code> (&quot;e“)</p></li>
+<li><p><code>|</code> e <code>||</code> (&quot;ou“)</p></li>
+</ul>
+<p>A ordem das operações pode ser controladas por parênteses. Os operadores <code>&amp;</code> e <code>|</code> são vetorizados (retornam vetores de mesmo tamanho que os vetores testados).</p>
+<p>As diferenças entre os operadores são mostradas nos exemplos a seguir.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec</span>
 prec</code></pre></div>
 <pre><code>Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
@@ -891,25 +900,18 @@ a ==<span class="st"> </span><span class="dv">1</span> &amp;&amp;<span class="st
 </tr>
 </tbody>
 </table>
-<p>Outra diferença entre as formas dupla e normal é como elas são processadas.</p>
+<p>Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos <code>&amp;</code> ou <code>|</code>. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. Sem parênteses, a ordem das operações é semelhante a das operações matemáticas:</p>
 <ul>
-<li>forma normal: ambos os lados do operador são sempre testadas (função vetorizada);</li>
-<li>forma dupla: às vezes apenas o lado esquerdo precisa ser testado (função não vetorizada)</li>
+<li><strong>PEMDAS</strong>: Parênteses &gt; Expoentes &gt; Multiplicação &gt; Divisão &gt; Adição e Subtração</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exemplo em que o lado esquerdo não atende ao teste então nem há</span>
-<span class="co"># necessidade de testar o lado direito</span>
-<span class="dv">1</span> ==<span class="st"> </span><span class="dv">0</span> &amp;&amp;<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>[1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exemplo em que o lado esquerdo é atendido, então não há razão para testar</span>
-<span class="co"># o lado direito</span>
-<span class="dv">3</span> ==<span class="st"> </span><span class="dv">3</span> ||<span class="st"> </span><span class="dv">0</span> ==<span class="st"> </span><span class="dv">0</span></code></pre></div>
-<pre><code>[1] TRUE</code></pre>
-<p>Esse aspecto pode ser útil quando o lado direito resultasse em erro se o lado esquerdo falhasse.</p>
-<p>Podem haver mais que duas condições a serem testadas. Várias condições podem ser combinadas usando múltiplos <code>&amp;</code> ou <code>|</code>. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. Sem parênteses, a ordem das operações é semelhante a das operações matemáticas (Parênteses, Expoentes, Multiplicação, Divisão, Adição e Subtração: <strong>PEMDAS</strong>), onde <code>&amp;</code>é equivalente à multiplicação e <code>|</code> é equivalente à adição, assim <strong>e</strong> tem precedência sobre <strong>ou</strong>.</p>
+<p>Onde <code>&amp;</code>é equivalente à <strong>multiplicação</strong> e <code>|</code> é equivalente à <strong>adição</strong>, logo <strong>e</strong> tem precedência sobre <strong>ou</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de horas</span>
-horas &lt;-<span class="st"> </span><span class="dv">0</span> :<span class="st"> </span><span class="dv">23</span>
+horas &lt;-<span class="st"> </span><span class="dv">0</span>:<span class="dv">23</span>
 <span class="co"># vetor de temperaturas horárias</span>
-tar_hor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">19.9</span>, <span class="fl">19.8</span>, <span class="fl">19.5</span>, <span class="fl">19.4</span>, <span class="fl">19.4</span>, <span class="fl">19.3</span>, <span class="fl">19.2</span>, <span class="dv">19</span>, <span class="fl">19.2</span>, <span class="fl">19.5</span>, <span class="fl">20.1</span>, <span class="fl">20.6</span>, <span class="fl">20.9</span>, <span class="fl">21.8</span>, <span class="fl">22.5</span>, <span class="fl">22.6</span>, <span class="fl">22.5</span>, <span class="dv">22</span>, <span class="fl">21.4</span>, <span class="fl">20.1</span>, <span class="dv">20</span>, <span class="fl">19.8</span>, <span class="fl">19.6</span>, <span class="fl">19.4</span>)
+tar_hor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">19.9</span>, <span class="fl">19.8</span>, <span class="fl">19.5</span>, <span class="fl">19.4</span>, <span class="fl">19.4</span>, <span class="fl">19.3</span>, 
+             <span class="fl">19.2</span>, <span class="dv">19</span>, <span class="fl">19.2</span>, <span class="fl">19.5</span>, <span class="fl">20.1</span>, <span class="fl">20.6</span>, <span class="fl">20.9</span>, 
+             <span class="fl">21.8</span>, <span class="fl">22.5</span>, <span class="fl">22.6</span>, <span class="fl">22.5</span>, <span class="dv">22</span>, <span class="fl">21.4</span>, <span class="fl">20.1</span>, 
+             <span class="dv">20</span>, <span class="fl">19.8</span>, <span class="fl">19.6</span>, <span class="fl">19.4</span>)
 <span class="co"># gráfico do varição horária da temperatura do ar</span>
 <span class="kw">plot</span>(horas, tar_hor, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="dt">pch =</span> <span class="dv">20</span>)
 <span class="co"># temperaturas noturnas abaixo de 20ºC</span>
@@ -931,7 +933,7 @@ day_below20 &lt;-<span class="st"> </span>tar_hor &lt;<span class="st"> </span><
 <span class="co"># adicionando linha horizontal ao longo da temperatura = 20ºC</span>
 <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</code></pre></div>
 <p><img src="data:image/png;base64,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" alt /><!-- --></p>
-<p>Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto em alguns casos o interesse é na posição dentro do vetor na qual a condição ocorre. Nós podemos fazer isso usando a função <code>which()</code>:</p>
+<p>Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto em alguns casos o interesse é na posição dentro do vetor na qual a condição ocorre. Nós podemos localizar essas ocorrências usando a função <code>which()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prec sem nomes</span>
 <span class="kw">names</span>(prec) &lt;-<span class="st"> </span><span class="ot">NULL</span>
 <span class="co"># combinação de operador lógico e relacional</span>
@@ -947,16 +949,17 @@ FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE </code><
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">which</span>(prec &gt;<span class="st"> </span>prec_med)]</code></pre></div>
 <pre><code>[1] 300 150 210 100 280</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Qual a temp quando a chuva ou a temp foi acima da media?</span>
-pos2 &lt;-<span class="st"> </span><span class="kw">which</span>(prec &gt;<span class="st"> </span>prec_med |<span class="st"> </span>!temp &lt;<span class="st"> </span><span class="kw">mean</span>(temp))
-pos2</code></pre></div>
+sel &lt;-<span class="st"> </span><span class="kw">which</span>(prec &gt;<span class="st"> </span>prec_med |<span class="st"> </span>!temp &lt;<span class="st"> </span><span class="kw">mean</span>(temp))
+sel</code></pre></div>
 <pre><code>Jan Fev Mar Out Nov Dez 
   1   2   3  10  11  12 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[pos2]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[sel]</code></pre></div>
 <pre><code>[1] 300 150 210 100   0 280</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># quais posições do vetor prec não choveu</span>
 <span class="kw">which</span>(prec ==<span class="st"> </span><span class="dv">0</span>)</code></pre></div>
 <pre><code>[1]  5  6 11</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(prec ==<span class="st"> </span><span class="kw">max</span>(prec))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># quando ocorreu a prec max</span>
+<span class="kw">which</span>(prec ==<span class="st"> </span><span class="kw">max</span>(prec))</code></pre></div>
 <pre><code>[1] 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># equivalente a ...</span>
 <span class="kw">which.max</span>(prec)</code></pre></div>
@@ -966,18 +969,17 @@ pos2</code></pre></div>
 <pre><code>[1] 5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec</code></pre></div>
 <pre><code> [1] 300 150 210  12   0   0  12  22  80 100   0 280</code></pre>
-<p>Um outro operador útil para comparação entre vetores é o operador <code>%in%</code>, que pode ser interpretado como “está contdo em”. O <strong>resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste</strong>.</p>
+<p>Um outro operador útil para comparação entre vetores é o operador <code>%in%</code>, que pode ser interpretado como &quot;está contido em&quot;. O <strong>resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># compare o tamanho dos vetores resultantes</span>
-meses %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)</code></pre></div>
-<pre><code> [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[12] FALSE</code></pre>
+<span class="kw">which</span>(meses %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>))</code></pre></div>
+<pre><code>[1] 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note a diferença</span>
-<span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>) %in%<span class="st"> </span>meses</code></pre></div>
-<pre><code>[1] FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quais1 &lt;-<span class="st"> </span>!meses %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
-quais1</code></pre></div>
-<pre><code> [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-[12]  TRUE</code></pre>
+<span class="kw">which</span>(<span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>) %in%<span class="st"> </span>meses)</code></pre></div>
+<pre><code>[1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cond &lt;-<span class="st"> </span>!meses %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
+quais &lt;-<span class="st"> </span><span class="kw">which</span>(cond)
+quais</code></pre></div>
+<pre><code> [1]  1  2  4  5  6  7  8  9 10 11 12</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">names</span>(temp) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)]</code></pre></div>
 <pre><code>[1]  0 12 22</code></pre>
 </div>
@@ -987,8 +989,8 @@ quais1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># posição a ser alterada</span>
 pos &lt;-<span class="st"> </span><span class="dv">10</span>
 <span class="co"># valor da temperatura naquela posição</span>
-valor &lt;-<span class="st"> </span>temp[pos]   
-valor</code></pre></div>
+old_temp &lt;-<span class="st"> </span>temp[pos]   
+old_temp</code></pre></div>
 <pre><code>Out 
  22 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor de temperatura</span>
@@ -996,9 +998,9 @@ temp</code></pre></div>
 <pre><code> Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># substituição do valor original por um novo valor</span>
-novo_valor &lt;-<span class="st"> </span><span class="dv">30</span>
+new_temp &lt;-<span class="st"> </span><span class="dv">30</span>
 <span class="co"># alterando temperatura do mês de outubro</span>
-temp[pos] &lt;-<span class="st"> </span>novo_valor
+temp[pos] &lt;-<span class="st"> </span>new_temp
 temp</code></pre></div>
 <pre><code> Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 30.0 24.0 26.8 </code></pre>
@@ -1041,22 +1043,22 @@ k &lt;-<span class="st"> </span><span class="kw">vector</span>()
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;a&quot;             &quot;above80&quot;       &quot;an&quot;            &quot;anos&quot;         
  [5] &quot;anos_dec&quot;      &quot;a_sn&quot;          &quot;b&quot;             &quot;below100&quot;     
- [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cte&quot;           &quot;day_below20&quot;  
-[13] &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;          &quot;frac_d30mn&quot;   
-[17] &quot;horas&quot;         &quot;k&quot;             &quot;meses&quot;         &quot;months&quot;       
-[21] &quot;night_below20&quot; &quot;novo_valor&quot;    &quot;oper&quot;          &quot;pcks&quot;         
-[25] &quot;pent&quot;          &quot;pos&quot;           &quot;pos2&quot;          &quot;prec&quot;         
-[29] &quot;prec_1&quot;        &quot;prec_cond1&quot;    &quot;prec_jja&quot;      &quot;prec_med&quot;     
-[33] &quot;prect_jja&quot;     &quot;prec_ult&quot;      &quot;quais1&quot;        &quot;rep_e31&quot;      
-[37] &quot;rep_t13&quot;       &quot;rep_t13_t4&quot;    &quot;rep_t4&quot;        &quot;s5by&quot;         
-[41] &quot;s5len&quot;         &quot;seco&quot;          &quot;seco01&quot;        &quot;seqn&quot;         
-[45] &quot;si_dec&quot;        &quot;snum_b&quot;        &quot;tar_hor&quot;       &quot;temp&quot;         
-[49] &quot;temp_1&quot;        &quot;temp_djf&quot;      &quot;tempm_djf&quot;     &quot;temp_ult&quot;     
-[53] &quot;v&quot;             &quot;v1&quot;            &quot;v_123&quot;         &quot;v_123a&quot;       
-[57] &quot;v_123b&quot;        &quot;v2&quot;            &quot;v3&quot;            &quot;valor&quot;        
-[61] &quot;vetor&quot;         &quot;vetor_char&quot;    &quot;vetor_int&quot;     &quot;vetor_l&quot;      
-[65] &quot;vetor_log&quot;     &quot;vetor_num&quot;     &quot;x&quot;             &quot;y&quot;            
-[69] &quot;z&quot;            </code></pre>
+ [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cond&quot;          &quot;cte&quot;          
+[13] &quot;day_below20&quot;   &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;         
+[17] &quot;frac_d30mn&quot;    &quot;horas&quot;         &quot;k&quot;             &quot;meses&quot;        
+[21] &quot;months&quot;        &quot;new_temp&quot;      &quot;night_below20&quot; &quot;old_temp&quot;     
+[25] &quot;oper&quot;          &quot;pcks&quot;          &quot;pent&quot;          &quot;pos&quot;          
+[29] &quot;prec&quot;          &quot;prec_cond1&quot;    &quot;prec_dez&quot;      &quot;prec_jan&quot;     
+[33] &quot;prec_jja&quot;      &quot;prec_med&quot;      &quot;prect_jja_tot&quot; &quot;quais&quot;        
+[37] &quot;rep_e31&quot;       &quot;rep_t13&quot;       &quot;rep_t13_t4&quot;    &quot;rep_t4&quot;       
+[41] &quot;s5by&quot;          &quot;s5len&quot;         &quot;seco&quot;          &quot;seco01&quot;       
+[45] &quot;sel&quot;           &quot;sel_prec&quot;      &quot;sel_temp&quot;      &quot;seqn&quot;         
+[49] &quot;si_dec&quot;        &quot;snum_b&quot;        &quot;tar_hor&quot;       &quot;temp&quot;         
+[53] &quot;temp_dez&quot;      &quot;temp_djf&quot;      &quot;temp_djf_med&quot;  &quot;temp_jan&quot;     
+[57] &quot;v&quot;             &quot;v1&quot;            &quot;v_123&quot;         &quot;v_123a&quot;       
+[61] &quot;v_123b&quot;        &quot;v2&quot;            &quot;v3&quot;            &quot;vetor&quot;        
+[65] &quot;vetor_char&quot;    &quot;vetor_int&quot;     &quot;vetor_l&quot;       &quot;vetor_log&quot;    
+[69] &quot;vetor_num&quot;     &quot;x&quot;             &quot;y&quot;             &quot;z&quot;            </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># alocando o valor 45 no 3º elemento de k</span>
 k[<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">45</span>
 k</code></pre></div>
@@ -1118,9 +1120,7 @@ umvetor</code></pre></div>
 </div>
 <div id="vetores-nulos-e-elementos-faltantes" class="section level2">
 <h2><span class="header-section-number">3.7</span> Vetores nulos e elementos faltantes</h2>
-<p>Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador (feriados), falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. No R dados faltantes são representados pela string <code>NA</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> +<span class="st"> </span><span class="ot">NA</span></code></pre></div>
-<pre><code>[1] NA</code></pre>
+<p>Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador, falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. No R dados faltantes são representados pela string <code>NA</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">8</span>,<span class="ot">NA</span>)
 v1 &gt;<span class="st"> </span><span class="dv">5</span>    <span class="co"># NA sai na resposta</span></code></pre></div>
 <pre><code>[1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE    NA</code></pre>
@@ -1177,23 +1177,23 @@ x ==<span class="st"> </span>-<span class="dv">999</span></code></pre></div>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;a&quot;             &quot;above80&quot;       &quot;an&quot;            &quot;anos&quot;         
  [5] &quot;anos_dec&quot;      &quot;a_sn&quot;          &quot;b&quot;             &quot;below100&quot;     
- [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cte&quot;           &quot;day_below20&quot;  
-[13] &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;          &quot;eh.na&quot;        
-[17] &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;         &quot;k&quot;            
-[21] &quot;meses&quot;         &quot;months&quot;        &quot;night_below20&quot; &quot;novo_valor&quot;   
-[25] &quot;oper&quot;          &quot;pcks&quot;          &quot;pent&quot;          &quot;pos&quot;          
-[29] &quot;pos2&quot;          &quot;prec&quot;          &quot;prec_1&quot;        &quot;prec_cond1&quot;   
-[33] &quot;prec_jja&quot;      &quot;prec_med&quot;      &quot;prect_jja&quot;     &quot;prec_ult&quot;     
-[37] &quot;quais1&quot;        &quot;rep_e31&quot;       &quot;rep_t13&quot;       &quot;rep_t13_t4&quot;   
-[41] &quot;rep_t4&quot;        &quot;s5by&quot;          &quot;s5len&quot;         &quot;seco&quot;         
-[45] &quot;seco01&quot;        &quot;seqn&quot;          &quot;si_dec&quot;        &quot;snum_b&quot;       
-[49] &quot;tar_hor&quot;       &quot;temp&quot;          &quot;temp_1&quot;        &quot;temp_djf&quot;     
-[53] &quot;tempm_djf&quot;     &quot;temp_orig&quot;     &quot;temp_ult&quot;      &quot;umvetor&quot;      
-[57] &quot;v&quot;             &quot;v1&quot;            &quot;v_123&quot;         &quot;v_123a&quot;       
-[61] &quot;v_123b&quot;        &quot;v2&quot;            &quot;v3&quot;            &quot;valor&quot;        
-[65] &quot;vetor&quot;         &quot;vetor_char&quot;    &quot;vetor_int&quot;     &quot;vetor_l&quot;      
-[69] &quot;vetor_log&quot;     &quot;vetor_num&quot;     &quot;x&quot;             &quot;y&quot;            
-[73] &quot;z&quot;            </code></pre>
+ [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cond&quot;          &quot;cte&quot;          
+[13] &quot;day_below20&quot;   &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;         
+[17] &quot;eh.na&quot;         &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;        
+[21] &quot;k&quot;             &quot;meses&quot;         &quot;months&quot;        &quot;new_temp&quot;     
+[25] &quot;night_below20&quot; &quot;old_temp&quot;      &quot;oper&quot;          &quot;pcks&quot;         
+[29] &quot;pent&quot;          &quot;pos&quot;           &quot;prec&quot;          &quot;prec_cond1&quot;   
+[33] &quot;prec_dez&quot;      &quot;prec_jan&quot;      &quot;prec_jja&quot;      &quot;prec_med&quot;     
+[37] &quot;prect_jja_tot&quot; &quot;quais&quot;         &quot;rep_e31&quot;       &quot;rep_t13&quot;      
+[41] &quot;rep_t13_t4&quot;    &quot;rep_t4&quot;        &quot;s5by&quot;          &quot;s5len&quot;        
+[45] &quot;seco&quot;          &quot;seco01&quot;        &quot;sel&quot;           &quot;sel_prec&quot;     
+[49] &quot;sel_temp&quot;      &quot;seqn&quot;          &quot;si_dec&quot;        &quot;snum_b&quot;       
+[53] &quot;tar_hor&quot;       &quot;temp&quot;          &quot;temp_dez&quot;      &quot;temp_djf&quot;     
+[57] &quot;temp_djf_med&quot;  &quot;temp_jan&quot;      &quot;temp_orig&quot;     &quot;umvetor&quot;      
+[61] &quot;v&quot;             &quot;v1&quot;            &quot;v_123&quot;         &quot;v_123a&quot;       
+[65] &quot;v_123b&quot;        &quot;v2&quot;            &quot;v3&quot;            &quot;vetor&quot;        
+[69] &quot;vetor_char&quot;    &quot;vetor_int&quot;     &quot;vetor_l&quot;       &quot;vetor_log&quot;    
+[73] &quot;vetor_num&quot;     &quot;x&quot;             &quot;y&quot;             &quot;z&quot;            </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exists</span>(<span class="st">&quot;v1&quot;</span>)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vamos anular todo v1</span>
@@ -1201,23 +1201,23 @@ v1 &lt;-<span class="st"> </span><span class="ot">NULL</span>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;a&quot;             &quot;above80&quot;       &quot;an&quot;            &quot;anos&quot;         
  [5] &quot;anos_dec&quot;      &quot;a_sn&quot;          &quot;b&quot;             &quot;below100&quot;     
- [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cte&quot;           &quot;day_below20&quot;  
-[13] &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;          &quot;eh.na&quot;        
-[17] &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;         &quot;k&quot;            
-[21] &quot;meses&quot;         &quot;months&quot;        &quot;night_below20&quot; &quot;novo_valor&quot;   
-[25] &quot;oper&quot;          &quot;pcks&quot;          &quot;pent&quot;          &quot;pos&quot;          
-[29] &quot;pos2&quot;          &quot;prec&quot;          &quot;prec_1&quot;        &quot;prec_cond1&quot;   
-[33] &quot;prec_jja&quot;      &quot;prec_med&quot;      &quot;prect_jja&quot;     &quot;prec_ult&quot;     
-[37] &quot;quais1&quot;        &quot;rep_e31&quot;       &quot;rep_t13&quot;       &quot;rep_t13_t4&quot;   
-[41] &quot;rep_t4&quot;        &quot;s5by&quot;          &quot;s5len&quot;         &quot;seco&quot;         
-[45] &quot;seco01&quot;        &quot;seqn&quot;          &quot;si_dec&quot;        &quot;snum_b&quot;       
-[49] &quot;tar_hor&quot;       &quot;temp&quot;          &quot;temp_1&quot;        &quot;temp_djf&quot;     
-[53] &quot;tempm_djf&quot;     &quot;temp_orig&quot;     &quot;temp_ult&quot;      &quot;umvetor&quot;      
-[57] &quot;v&quot;             &quot;v1&quot;            &quot;v_123&quot;         &quot;v_123a&quot;       
-[61] &quot;v_123b&quot;        &quot;v2&quot;            &quot;v3&quot;            &quot;valor&quot;        
-[65] &quot;vetor&quot;         &quot;vetor_char&quot;    &quot;vetor_int&quot;     &quot;vetor_l&quot;      
-[69] &quot;vetor_log&quot;     &quot;vetor_num&quot;     &quot;x&quot;             &quot;y&quot;            
-[73] &quot;z&quot;            </code></pre>
+ [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cond&quot;          &quot;cte&quot;          
+[13] &quot;day_below20&quot;   &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;         
+[17] &quot;eh.na&quot;         &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;        
+[21] &quot;k&quot;             &quot;meses&quot;         &quot;months&quot;        &quot;new_temp&quot;     
+[25] &quot;night_below20&quot; &quot;old_temp&quot;      &quot;oper&quot;          &quot;pcks&quot;         
+[29] &quot;pent&quot;          &quot;pos&quot;           &quot;prec&quot;          &quot;prec_cond1&quot;   
+[33] &quot;prec_dez&quot;      &quot;prec_jan&quot;      &quot;prec_jja&quot;      &quot;prec_med&quot;     
+[37] &quot;prect_jja_tot&quot; &quot;quais&quot;         &quot;rep_e31&quot;       &quot;rep_t13&quot;      
+[41] &quot;rep_t13_t4&quot;    &quot;rep_t4&quot;        &quot;s5by&quot;          &quot;s5len&quot;        
+[45] &quot;seco&quot;          &quot;seco01&quot;        &quot;sel&quot;           &quot;sel_prec&quot;     
+[49] &quot;sel_temp&quot;      &quot;seqn&quot;          &quot;si_dec&quot;        &quot;snum_b&quot;       
+[53] &quot;tar_hor&quot;       &quot;temp&quot;          &quot;temp_dez&quot;      &quot;temp_djf&quot;     
+[57] &quot;temp_djf_med&quot;  &quot;temp_jan&quot;      &quot;temp_orig&quot;     &quot;umvetor&quot;      
+[61] &quot;v&quot;             &quot;v1&quot;            &quot;v_123&quot;         &quot;v_123a&quot;       
+[65] &quot;v_123b&quot;        &quot;v2&quot;            &quot;v3&quot;            &quot;vetor&quot;        
+[69] &quot;vetor_char&quot;    &quot;vetor_int&quot;     &quot;vetor_l&quot;       &quot;vetor_log&quot;    
+[73] &quot;vetor_num&quot;     &quot;x&quot;             &quot;y&quot;             &quot;z&quot;            </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1</code></pre></div>
 <pre><code>NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NULL</span>

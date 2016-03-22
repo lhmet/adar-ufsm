@@ -396,14 +396,16 @@ rep_t13_t4
 
 ## Indexação de vetores {.tabset}
 
-Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. Podemos selecionar partes de um vetor por números (posição), caracteres (nome) e vetores lógicos. 
+Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. 
 
-Nessa seção veremos o operador `[` que permite acessar ou filtrar elementos de um vetor. O operador colchete `[` aplicado a um vetor retornará um vetor.
+Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos. 
+
+Através do operador `[` podemos acessar ou filtrar elementos de um vetor. O operador colchete `[` aplicado a um vetor retornará um vetor.
 
 Considere os seguintes vetores como exemplo:
 
 ```{r chunk720, message=FALSE, comment="",prompt=FALSE, tidy=FALSE}
-# vetor de chuva mensal de um ano qualquer
+# vetor de chuva mensal para um dado ano 
 prec <- c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 0, 280)
 meses <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago", "Set", "Out", "Nov", "Dez")
 names(prec) <- meses
@@ -411,7 +413,7 @@ prec
 # gráfico de barras
 barplot(prec)
 box()
-# vetor de temperatura do ar média mensal de um ano qualquer  
+# temperatura do ar média mensal para um dado ano
 temp <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
 names(temp) <- meses
 temp
@@ -420,7 +422,7 @@ plot(temp, type = "o")
 
 Como selecionar o valor de chuva e temperatura só para janeiro?
 
-Vamos usar a seguinte sintaxe: 
+Usando a seguinte sintaxe: 
 
 `vetor[i]`
 
@@ -430,73 +432,80 @@ onde `i` representa os elementos a serem selecionados.
 
 #### Positivos
 
+Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:
 
 ```{r chunk721, message=FALSE, comment="",prompt=FALSE, tidy=FALSE}
-# vetor de chuva mensal de um ano qualquer
-prec_1 <- prec[1]
- prec_1
-# vetor de temperatura do ar média mensal de um ano qualquer  
-temp_1 <- temp[1]
- temp_1
+prec_jan <- prec[1]
+prec_jan
+temp_jan <- temp[1]
+temp_jan
 ```
 
 Como selecionar os últimos valores dos vetores de chuva e temperatura?
+
 ```{r Chun722, message=FALSE, comment="",prompt=FALSE, tidy=FALSE}
-# vetor de temperatura do ar média mensal de um ano qualquer  
-temp_ult <- temp[length(temp)]
- temp_ult
-prec_ult <- prec[length(prec)]
-prec_ult
+# vetor de temperatura do ar média mensal de um ano qualquer
+temp_dez <- temp[length(temp)]
+temp_dez
+prec_dez <- prec[length(prec)]
+prec_dez
 ```
 
 Como selecionar os valores de chuva do trimestre JJA e de temperatura para o trimestre DJF?
+
 ```{r chunk723, message=FALSE, comment="",prompt=FALSE, tidy=FALSE}
+sel_prec <- c(6,7,8)
 # vetor de chuva JJA
-# posicoes de interesse
-pos <- c(6,7,8)
-prec_jja <- prec[pos]
+prec_jja <- prec[sel_prec]
 prec_jja
-# qual o total de chuva trimestral nesse ano?
-prect_jja <- sum(prec_jja)
-  prect_jja
+# total de chuva trimestral nesse ano
+prect_jja_tot <- sum(prec_jja)
+prect_jja_tot
 # vetor de temperatura DJF
-pos2 <- c(12,1,2)
-temp_djf <- temp[pos2]
+sel_temp <- c(12,1,2)
+temp_djf <- temp[sel_temp]
 temp_djf
-tempm_djf <- mean(temp_djf)
-tempm_djf
+# temp média trimestral nesse ano
+temp_djf_med <- mean(temp_djf)
+temp_djf_med
 ```
 
 #### Negativos
 
 Como selecionar todos valores menos o primeiro e o último?
-```{r chunk724, message=FALSE, comment="",prompt=FALSE, tidy=FALSE}
-# todos valores exceto o primeiro e ultimo
-prec[-c(1, length(prec))]
 
-# todos valores exceto os 3 primeiro meses
+```{r chunk724, message=FALSE, comment="",prompt=FALSE, tidy=FALSE}
+# exceto o primeiro e ultimo
+prec[-c(1, length(prec))]
+# exceto os 3 primeiros meses
 temp[-c(1:3)]
-# todos valores exceto os 3 últimos meses
+# exceto os 3 últimos meses
 temp[-c(length(temp):(length(temp)-2))]
+```
+
+###  Indexação por nomes
+
+```{r chunk727c, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
+prec["Jan"]
+prec[c("Dez", "Fev", "Jun")]
 ```
 
 ###  Indexação por vetores lógicos
 
-Vamos criar um vetor lógico e usá-lo para exemplificar a seleção de elementos de um vetor. 
+Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor. 
 
 ```{r chunk725, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
-# vetor logico
 vetor_l <- c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE)
 meses[vetor_l]
 ```        
 
-Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando a função `sum()` a um vetor lógico obtemos o total de elementos verdadeiros:
+Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando-se a função `sum()` a um vetor lógico obtemos o total de elementos verdadeiros:
 
 ```{r chunk726, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
 sum(vetor_l)
 ```       
 
-Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`):
+Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`) e relembrar da **coerção** de vetores.
 
 ```{r chunk727, message=FALSE, comment="",prompt=FALSE}
 # vetor lógico
@@ -508,16 +517,7 @@ prec[c(T,F)]
 temp[c(rep(F,3),T)]
 ``` 
 
-###  Indexação por nomes
-
-```{r chunk727c, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
-prec["Jan"]
-prec[c("Dez", "Fev", "Jun")]
-```
-
-###  Indexação por comparação
-
-Por exemplo:
+A indexação pode ser feita também por comparações:
 
 ```{r chunk728, message=FALSE, comment="",prompt=FALSE}
 # vetor prec
@@ -532,11 +532,11 @@ prec[above80]
 (prec_med <- mean(prec))
 # salvando resultado do teste
 (below_avg <- prec < prec_med)
-# extraindo valores atendidos ao teste
+# extraindo valores que atendem a condição
 prec[below_avg]
 # extraindo os 3 primeiros meses com prec abaixo da média
 prec[below_avg][1:3]
-# forma equivalente
+# forma equivalente em uma linha só
 prec[prec < mean(prec)][1:3]
 # teste para meses com prec diferente de zero
 prec[prec != 0]
@@ -544,9 +544,22 @@ prec[prec != 0]
 
 <span style="color:red; font-size:1.7em;">Fim da 3ª aula ([site do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)) </span>
 
-Nos exemplo acima vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto quando frequentemente precisamos testar mais condições. Por exemplo, para selecionar o intervalo $0.5 < prec \leq 100$ usamos os operadores lógicos `&` e `&&` (**e**), `|` e `||` (**ou**).
+###  Indexação com múltiplas condições
 
-A ordem das operações pode ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores). As diferenças entre são mostradas nos exemplos a seguir.
+Nos exemplo acima vimos como buscar os os elementos de um vetor para apenas uma condição. Entretanto frequentemente precisamos testar mais condições. Por exemplo, para condições do tipo:
+
+- $0.5 < prec \leq 100$ 
+- $temp < 5$  ou $temp \geq 25$ 
+
+precisamos usar os operadores relacionais:
+
+- `&` e `&&` (\"e"\)
+
+- `|` e `||` (\"ou"\)
+
+A ordem das operações pode ser controladas por parênteses. Os operadores `&` e `|` são vetorizados (retornam vetores de mesmo tamanho que os vetores testados). 
+
+As diferenças entre os operadores são mostradas nos exemplos a seguir.
 
 ```{r chunk729, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
 # prec
@@ -569,6 +582,14 @@ a == 1 & b == 1
 a == 1 && b == 1
 ```
 
+```{r chunk729011, message=FALSE, comment="",prompt=FALSE, echo=FALSE, eval=FALSE}
+(prec[1:3] > 200) & (prec[10:length(prec)] > 200)
+(prec[1:3] > 200) | (prec[10:length(prec)] > 200)
+(prec[1:3] > 200) && (prec[10:length(prec)] > 200)
+(prec[1:3] > 200) && (prec[10:length(prec)] > 200)
+all(prec[1:3] > 100) & all(prec[10:length(prec)] > 200)
+```
+
 ```{r chunk72901, message=FALSE, comment="",prompt=FALSE, echo=FALSE, out.width=200}
 oper <- c("a", "b", "a==1", "b==1", "a == 1 & b == 1", "a == 1 && b == 1") 
 desc <- data.frame(
@@ -583,29 +604,20 @@ desc[2:nrow(desc),6] <- ""
 pander(desc, caption = "Demostração da diferença entre & e &&.")
 ```
 
-Outra diferença entre as formas dupla e normal é como elas são processadas. 
+Podem haver mais que duas condições a serem testadas. As condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. Sem parênteses, a ordem das operações é semelhante a das operações matemáticas:
 
-  * forma normal: ambos os lados do operador são sempre testadas (função vetorizada);
-  * forma dupla: às vezes apenas o lado esquerdo precisa ser testado (função não vetorizada)
+- **PEMDAS**: Parênteses > Expoentes > Multiplicação > Divisão > Adição e Subtração 
 
-```{r chunk7291, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
-# exemplo em que o lado esquerdo não atende ao teste
-# então nem há necessidade de testar o lado direito
-1 == 0 && 2 == 2
-# exemplo em que o lado esquerdo é atendido, 
-# então não há razão para testar o lado direito
-3 == 3 || 0 == 0
-```
-
-Esse aspecto pode ser útil quando o lado direito resultasse em erro se o lado esquerdo falhasse.
-
-Podem haver mais que duas condições a serem testadas. Várias condições podem ser combinadas usando múltiplos `&` ou `|`. As diferentes condições podem ser agrupadas por parênteses assim como operações matemáticas. Sem parênteses, a ordem das operações é semelhante a das operações matemáticas (Parênteses, Expoentes, Multiplicação, Divisão, Adição e Subtração:  **PEMDAS**), onde `&`é equivalente à multiplicação e `|` é equivalente à adição, assim **e** tem precedência sobre **ou**.
+Onde `&`é equivalente à **multiplicação** e `|` é equivalente à **adição**, logo **e** tem precedência sobre **ou**.
 
 ```{r chunk7292, message=FALSE, comment="",prompt=FALSE}
 # vetor de horas
-horas <- 0 : 23
+horas <- 0:23
 # vetor de temperaturas horárias
-tar_hor <- c(19.9, 19.8, 19.5, 19.4, 19.4, 19.3, 19.2, 19, 19.2, 19.5, 20.1, 20.6, 20.9, 21.8, 22.5, 22.6, 22.5, 22, 21.4, 20.1, 20, 19.8, 19.6, 19.4)
+tar_hor <- c(19.9, 19.8, 19.5, 19.4, 19.4, 19.3, 
+             19.2, 19, 19.2, 19.5, 20.1, 20.6, 20.9, 
+             21.8, 22.5, 22.6, 22.5, 22, 21.4, 20.1, 
+             20, 19.8, 19.6, 19.4)
 # gráfico do varição horária da temperatura do ar
 plot(horas, tar_hor, type = "o", pch = 20)
 # temperaturas noturnas abaixo de 20ºC
@@ -624,7 +636,7 @@ points(horas[day_below20], tar_hor[day_below20], pch = 20, col = "red", cex = 2)
 abline(h = 20, col = "gray")
 ```
 
-Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto em alguns casos o interesse é na posição dentro do vetor  na qual a condição ocorre. Nós podemos fazer isso usando a função `which()`:
+Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça uma (ou várias) condição(ões). Entretanto em alguns casos o interesse é na posição dentro do vetor  na qual a condição ocorre. Nós podemos localizar essas ocorrências usando a função `which()`:
 
 ```{r chunk730, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
 # prec sem nomes
@@ -636,11 +648,12 @@ which(below100)
 which(prec > prec_med)
 prec[which(prec > prec_med)]
 # Qual a temp quando a chuva ou a temp foi acima da media?
-pos2 <- which(prec > prec_med | !temp < mean(temp))
-pos2
-prec[pos2]
+sel <- which(prec > prec_med | !temp < mean(temp))
+sel
+prec[sel]
 # quais posições do vetor prec não choveu
 which(prec == 0)
+# quando ocorreu a prec max
 which(prec == max(prec))
 # equivalente a ...
 which.max(prec)
@@ -649,15 +662,16 @@ which.min(prec)
 prec
 ``` 
 
-Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como "está contdo em". O **resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste**. 
+Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como \"está contido em\". O **resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste**. 
 
 ```{r chunk731, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
 # compare o tamanho dos vetores resultantes
-meses %in% c("JAN", "Feb", "Mar")
+which(meses %in% c("JAN", "Feb", "Mar"))
 # note a diferença 
-c("JAN", "Feb", "Mar") %in% meses
-quais1 <- !meses %in% c("JAN", "Feb", "Mar")                    
-quais1
+which(c("JAN", "Feb", "Mar") %in% meses)
+cond <- !meses %in% c("JAN", "Feb", "Mar")
+quais <- which(cond)
+quais
 prec[names(temp) %in% c( "Jun","Jul","Ago")]
 ``` 
 
@@ -667,14 +681,14 @@ prec[names(temp) %in% c( "Jun","Jul","Ago")]
 # posição a ser alterada
 pos <- 10
 # valor da temperatura naquela posição
-valor <- temp[pos]   
-valor
+old_temp <- temp[pos]   
+old_temp
 # vetor de temperatura
 temp
 # substituição do valor original por um novo valor
-novo_valor <- 30
+new_temp <- 30
 # alterando temperatura do mês de outubro
-temp[pos] <- novo_valor
+temp[pos] <- new_temp
 temp
 ```
   
@@ -728,7 +742,6 @@ temp_orig  <- temp
 # mostrando o vetor temp
 temp
 temp[] 
-
 # substituir todos elementos do vetor temp por um vetor com apenas um valor
 temp <- 0 
 temp
@@ -738,7 +751,7 @@ temp[1:length(temp)] <- 0
 temp
 # qual diferença de x <- 0 e x[] <-0 ?
 temp <- temp_orig
-temp[]<-0 
+temp[] <- 0  
 temp
 # Um vetor com tamanho pre-definido e do tipo numeric
 umvetor <- vector(mode = "numeric", length=100)
@@ -751,11 +764,10 @@ umvetor
 
 ## Vetores nulos e elementos faltantes
 
-Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador (feriados), falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. 
+Seja qual for a razão, ao realizar um experimento em condições reais sempre haverá situações em que não conhecemos o valor de uma determinada variável. Por exemplo, a série de uma variável meteorológica medida em estação de superfície, sempre ocorrem datas em que não há registro da variável. Falha instrumental, dado não coletado pelo observador, falta de energia, são causas inerentes de falhas em séries climáticas de longo prazo. 
 No R dados faltantes são representados pela string `NA`.
 
 ```{r chunk735, message=FALSE, comment="",prompt=FALSE, error = TRUE}
-5 + NA
 v1 <- c(1:8,NA)
 v1 > 5    # NA sai na resposta
 # teste lógico com o operador idêntico "=="
