@@ -40,7 +40,7 @@ Um vetor é uma coleção de elementos. Os vetores são amplamente usados e comp
 
 Os vetores podem ser de dois tipos: **vetores atômicos** e **listas**. 
 
-## Vetores atômicos 
+## Vetores atômicos {.tabset}
 
 Os **vetores atômicos** são constituem a estrutura de dados mais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos `double`, ou `integer`, ou `logical`, etc). 
 
@@ -2301,7 +2301,7 @@ length(b)
 
 Vetores são objetos unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão são as linhas e a outra as colunas. Os dados armazenados em uma matriz são de uma única classe (ou `numeric`, ou `character`, por exemplo).
 
-## Criação de matrizes
+## Criação de matrizes {.tabset}
 
 ### Função `dim()` 
 
@@ -3186,7 +3186,7 @@ of vector length (arg 2)
 [5,]    6    5    0
 ```
 
-## Operações matriciais
+## Operações matriciais {.tabset}
 
 A primeira entre as diversas funções de álgebra matricial no R é a transposta `t()`.
 
@@ -5336,8 +5336,6 @@ List of 8
 
 ## Indexação
 
-> ver função purrr::map
-
 ### Operador `[`
 
 Assim como em vetores, podemos acessar os elementos de uma lista usando os colchetes `[` com índices numéricos positivos, negativos, caracteres (nomes dos elementos) e lógicos. As expressões abaixo, ilustram o uso dessas diferentes formas de seleção de elementos e produzem o mesmo resultado.
@@ -5643,7 +5641,9 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 [12,]  30
 ```
 
-### `vector()`
+### ver função purrr::map()
+
+## `vector()`
 
 Outra forma de criar uma lista é usando a função `vector`. Para acessar os elementos da lista usamos o operador "[[" ou o operador "$".
 
@@ -5668,6 +5668,8 @@ $b
 ## usando '$' para criar o elemento chamado c
 z$c <- c(F, T)
 ```
+
+
 
 ## Conversão de lista para vetor e vice-versa.
 
@@ -5778,7 +5780,7 @@ length(vet.list)
 [1] 9
 ```
 
-## Conversão de `list` para `data.frame`.
+## Conversão de `list` para `data.frame`
 
 
 ```r
@@ -5873,11 +5875,11 @@ sm_df
 
 # Data-frame (*tabela de dados*)
 
-Um `data-frame` é um objeto do R que é normalmente usado para guardar conjunto de dados na forma de tabela. 
+Um `data frame` é um objeto do R que é normalmente usado para guardar conjunto de dados na forma de tabela. 
 
-A estrutura de um `data-frame`, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do `data-frame` é possibilidade de armazenar dados de diferentes modos (`character`, `numeric`, `logical` e etc) nas suas colunas, o que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêneos. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
+A estrutura de um `data frame`, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do `data frame` é possibilidade de armazenar dados de diferentes modos (`character`, `numeric`, `logical` e etc) nas suas colunas, o que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêneos. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
 
-Cada linha do `data-frame` corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
+Cada linha do `data frame` corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
 
 ## Criação
 

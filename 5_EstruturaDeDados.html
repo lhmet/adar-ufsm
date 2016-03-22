@@ -200,10 +200,11 @@ $(document).ready(function () {
 <li><a href="#indexacao-1"><span class="toc-section-number">6.2</span> Indexação</a><ul>
 <li><a href="#operador"><span class="toc-section-number">6.2.1</span> Operador <code>[</code></a></li>
 <li><a href="#operador-e"><span class="toc-section-number">6.2.2</span> Operador <code>[[</code> e <code>$</code></a></li>
-<li><a href="#vector"><span class="toc-section-number">6.2.3</span> <code>vector()</code></a></li>
+<li><a href="#ver-funcao-purrrmap"><span class="toc-section-number">6.2.3</span> ver função purrr::map()</a></li>
 </ul></li>
-<li><a href="#conversao-de-lista-para-vetor-e-vice-versa."><span class="toc-section-number">6.3</span> Conversão de lista para vetor e vice-versa.</a></li>
-<li><a href="#conversao-de-list-para-data.frame."><span class="toc-section-number">6.4</span> Conversão de <code>list</code> para <code>data.frame</code>.</a></li>
+<li><a href="#vector"><span class="toc-section-number">6.3</span> <code>vector()</code></a></li>
+<li><a href="#conversao-de-lista-para-vetor-e-vice-versa."><span class="toc-section-number">6.4</span> Conversão de lista para vetor e vice-versa.</a></li>
+<li><a href="#conversao-de-list-para-data.frame"><span class="toc-section-number">6.5</span> Conversão de <code>list</code> para <code>data.frame</code></a></li>
 </ul></li>
 <li><a href="#data-frame-tabela-de-dados"><span class="toc-section-number">7</span> Data-frame (<em>tabela de dados</em>)</a><ul>
 <li><a href="#criacao-3"><span class="toc-section-number">7.1</span> Criação</a></li>
@@ -254,7 +255,7 @@ $(document).ready(function () {
 <h1><span class="header-section-number">3</span> Vetor</h1>
 <p>Um vetor é uma coleção de elementos. Os vetores são amplamente usados e compõem a estrutura básica de dados do R, por ser uma linguagem vetorizada.</p>
 <p>Os vetores podem ser de dois tipos: <strong>vetores atômicos</strong> e <strong>listas</strong>.</p>
-<div id="vetores-atomicos" class="section level2">
+<div id="vetores-atomicos" class="section level2 tabset">
 <h2><span class="header-section-number">3.1</span> Vetores atômicos</h2>
 <p>Os <strong>vetores atômicos</strong> são constituem a estrutura de dados mais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos <code>double</code>, ou <code>integer</code>, ou <code>logical</code>, etc).</p>
 <p>Como linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou <em>loopings</em>) ao longo do vetor. Esse conceito pode ser estranho para quem vem de outras linguagens, mas é uma das grandes vantagens do R.</p>
@@ -1298,7 +1299,7 @@ b</code></pre></div>
 <div id="matrix" class="section level1">
 <h1><span class="header-section-number">4</span> Matrix</h1>
 <p>Vetores são objetos unidimensionais. Vetores multidimensionais são denominados <em>arrays</em>. As matrizes são um caso especial de <em>array</em> em que o número de dimensões é igual a 2, uma dimensão são as linhas e a outra as colunas. Os dados armazenados em uma matriz são de uma única classe (ou <code>numeric</code>, ou <code>character</code>, por exemplo).</p>
-<div id="criacao-de-matrizes" class="section level2">
+<div id="criacao-de-matrizes" class="section level2 tabset">
 <h2><span class="header-section-number">4.1</span> Criação de matrizes</h2>
 <div id="funcao-dim" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Função <code>dim()</code></h3>
@@ -1754,7 +1755,7 @@ of vector length (arg 2)</code></pre>
 [4,]    7    4    0
 [5,]    6    5    0</code></pre>
 </div>
-<div id="operacoes-matriciais" class="section level2">
+<div id="operacoes-matriciais" class="section level2 tabset">
 <h2><span class="header-section-number">4.6</span> Operações matriciais</h2>
 <p>A primeira entre as diversas funções de álgebra matricial no R é a transposta <code>t()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat</code></pre></div>
@@ -3414,9 +3415,6 @@ $dados
 </div>
 <div id="indexacao-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> Indexação</h2>
-<blockquote>
-<p>ver função purrr::map</p>
-</blockquote>
 <div id="operador" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Operador <code>[</code></h3>
 <p>Assim como em vetores, podemos acessar os elementos de uma lista usando os colchetes <code>[</code> com índices numéricos positivos, negativos, caracteres (nomes dos elementos) e lógicos. As expressões abaixo, ilustram o uso dessas diferentes formas de seleção de elementos e produzem o mesmo resultado.</p>
@@ -3594,8 +3592,12 @@ $dados
 [11,]  27
 [12,]  30</code></pre>
 </div>
-<div id="vector" class="section level3">
-<h3><span class="header-section-number">6.2.3</span> <code>vector()</code></h3>
+<div id="ver-funcao-purrrmap" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> ver função purrr::map()</h3>
+</div>
+</div>
+<div id="vector" class="section level2">
+<h2><span class="header-section-number">6.3</span> <code>vector()</code></h2>
 <p>Outra forma de criar uma lista é usando a função <code>vector</code>. Para acessar os elementos da lista usamos o operador “[[” ou o operador “$”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>)
 ## usando '[[' para criar os elementos que serão chamados a e b
@@ -3610,9 +3612,8 @@ $b
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## usando '$' para criar o elemento chamado c
 z$c &lt;-<span class="st"> </span><span class="kw">c</span>(F, T)</code></pre></div>
 </div>
-</div>
 <div id="conversao-de-lista-para-vetor-e-vice-versa." class="section level2">
-<h2><span class="header-section-number">6.3</span> Conversão de lista para vetor e vice-versa.</h2>
+<h2><span class="header-section-number">6.4</span> Conversão de lista para vetor e vice-versa.</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vet &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
 vet</code></pre></div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -3684,8 +3685,8 @@ vet.list</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(vet.list)</code></pre></div>
 <pre><code>[1] 9</code></pre>
 </div>
-<div id="conversao-de-list-para-data.frame." class="section level2">
-<h2><span class="header-section-number">6.4</span> Conversão de <code>list</code> para <code>data.frame</code>.</h2>
+<div id="conversao-de-list-para-data.frame" class="section level2">
+<h2><span class="header-section-number">6.5</span> Conversão de <code>list</code> para <code>data.frame</code></h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l</code></pre></div>
 <pre><code>$coords
 [1] -45 -23
@@ -3761,9 +3762,9 @@ sm_df</code></pre></div>
 </div>
 <div id="data-frame-tabela-de-dados" class="section level1">
 <h1><span class="header-section-number">7</span> Data-frame (<em>tabela de dados</em>)</h1>
-<p>Um <code>data-frame</code> é um objeto do R que é normalmente usado para guardar conjunto de dados na forma de tabela.</p>
-<p>A estrutura de um <code>data-frame</code>, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do <code>data-frame</code> é possibilidade de armazenar dados de diferentes modos (<code>character</code>, <code>numeric</code>, <code>logical</code> e etc) nas suas colunas, o que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêneos. <em>Matrix</em>, <em>arrays</em> e <em>vector</em> só armazenam dados homogêneos.</p>
-<p>Cada linha do <code>data-frame</code> corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.</p>
+<p>Um <code>data frame</code> é um objeto do R que é normalmente usado para guardar conjunto de dados na forma de tabela.</p>
+<p>A estrutura de um <code>data frame</code>, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do <code>data frame</code> é possibilidade de armazenar dados de diferentes modos (<code>character</code>, <code>numeric</code>, <code>logical</code> e etc) nas suas colunas, o que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêneos. <em>Matrix</em>, <em>arrays</em> e <em>vector</em> só armazenam dados homogêneos.</p>
+<p>Cada linha do <code>data frame</code> corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.</p>
 <div id="criacao-3" class="section level2">
 <h2><span class="header-section-number">7.1</span> Criação</h2>
 <p>Uma das formas mais simples de se criar um data frame é através da função <code>data.frame()</code>.</p>
