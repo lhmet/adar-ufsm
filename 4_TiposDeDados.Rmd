@@ -187,7 +187,9 @@ nchar("abc") < nchar("defg")
 ```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE}
 oper <- c("<", "<=", ">", ">=", "==","!=","!x","x | y","x & y","isTRUE(x)", "%in%") 
 desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico","diferente","não é x (negação)","x ou y","x e y","teste se x é verdadeiro", "está contido em") 
-operadores_logicos <- data.frame(Operador = oper, Descrição = desc, stringsAsFactors = FALSE)
+operadores_logicos <- data.frame(Operador = oper, 
+                                 Descrição = desc, 
+                                 stringsAsFactors = FALSE)
 pander(operadores_logicos, caption = "Tabela 1. Operadores Lógicos")
 ```
 
