@@ -189,7 +189,34 @@ $(document).ready(function () {
 </ul></li>
 <li><a href="#conversao-de-matrix-para-vector"><span class="toc-section-number">4.7</span> Conversão de <code>matrix</code> para <code>vector</code></a></li>
 </ul></li>
-<li><a href="#funcoes-utilizadas"><span class="toc-section-number">5</span> Funções utilizadas</a></li>
+<li><a href="#array"><span class="toc-section-number">5</span> Array</a><ul>
+<li><a href="#criacao-1"><span class="toc-section-number">5.1</span> Criação</a></li>
+<li><a href="#indexacao"><span class="toc-section-number">5.2</span> Indexação</a></li>
+</ul></li>
+<li><a href="#list"><span class="toc-section-number">6</span> List</a><ul>
+<li><a href="#criacao-2"><span class="toc-section-number">6.1</span> Criação</a><ul>
+<li><a href="#list-1"><span class="toc-section-number">6.1.1</span> <code>list()</code></a></li>
+</ul></li>
+<li><a href="#indexacao-1"><span class="toc-section-number">6.2</span> Indexação</a><ul>
+<li><a href="#operador"><span class="toc-section-number">6.2.1</span> Operador <code>[</code></a></li>
+<li><a href="#operador-e"><span class="toc-section-number">6.2.2</span> Operador <code>[[</code> e <code>$</code></a></li>
+<li><a href="#vector"><span class="toc-section-number">6.2.3</span> <code>vector()</code></a></li>
+</ul></li>
+<li><a href="#conversao-de-lista-para-vetor-e-vice-versa."><span class="toc-section-number">6.3</span> Conversão de lista para vetor e vice-versa.</a></li>
+<li><a href="#conversao-de-list-para-data.frame."><span class="toc-section-number">6.4</span> Conversão de <code>list</code> para <code>data.frame</code>.</a></li>
+</ul></li>
+<li><a href="#data-frame-tabela-de-dados"><span class="toc-section-number">7</span> Data-frame (<em>tabela de dados</em>)</a><ul>
+<li><a href="#criacao-3"><span class="toc-section-number">7.1</span> Criação</a></li>
+<li><a href="#atributos-de-um-data-frame"><span class="toc-section-number">7.2</span> Atributos de um <code>data frame</code></a></li>
+<li><a href="#acesso-as-variaveis-de-um-dataframe"><span class="toc-section-number">7.3</span> Acesso as variáveis de um <code>dataframe</code></a><ul>
+<li><a href="#funcao-with"><span class="toc-section-number">7.3.1</span> Função <code>with()</code></a></li>
+<li><a href="#editando-um-data-frame-manualmente"><span class="toc-section-number">7.3.2</span> Editando um <code>data frame</code> manualmente</a></li>
+</ul></li>
+<li><a href="#indexacao-selecao-e-alteracao"><span class="toc-section-number">7.4</span> Indexação, seleção e alteração</a></li>
+<li><a href="#combinando-dataframes"><span class="toc-section-number">7.5</span> Combinando <code>dataframes</code></a></li>
+<li><a href="#teste-e-coercao"><span class="toc-section-number">7.6</span> Teste e Coerção</a></li>
+</ul></li>
+<li><a href="#funcoes-utilizadas"><span class="toc-section-number">8</span> Funções utilizadas</a></li>
 </ul>
 </div>
 
@@ -2030,11 +2057,2206 @@ tempdat &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class=
 [34,]    10 22.50     3      2.0
 [35,]    11 24.07     3      2.0
 [36,]    12 20.08     3      2.0</code></pre>
+</div>
+</div>
+<div id="array" class="section level1">
+<h1><span class="header-section-number">5</span> Array</h1>
+<p><em>Arrays</em> são multidimensionais e matrizes são casos particulares de <em>arrays</em> com 2 dimensões: linhas e colunas. Mas podemos ter dados com n dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa <em>array</em> possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).</p>
+<div id="criacao-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Criação</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">12</span>
+## atribuindo novas dimensões ao vetor
+<span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)  <span class="co"># 1a dim: 3 linhas , 2a dim: 2 colunas, 3a dim: 2</span>
+v</code></pre></div>
+<pre><code>, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8
+
+, , 3
+
+     [,1] [,2]
+[1,]    9   11
+[2,]   10   12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ou
+a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> v, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>))
+<span class="kw">dim</span>(a)</code></pre></div>
+<pre><code>[1] 3 2 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(a)</code></pre></div>
+<pre><code>[1] 12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre></div>
+<pre><code>[1] &quot;array&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(a)</code></pre></div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## exemplo de inicialização de uma array
+<span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>))</code></pre></div>
+<pre><code>, , 1
+
+     [,1] [,2] [,3] [,4]
+[1,]    0    0    0    0
+[2,]    0    0    0    0
+[3,]    0    0    0    0
+
+, , 2
+
+     [,1] [,2] [,3] [,4]
+[1,]    0    0    0    0
+[2,]    0    0    0    0
+[3,]    0    0    0    0</code></pre>
+</div>
+<div id="indexacao" class="section level2">
+<h2><span class="header-section-number">5.2</span> Indexação</h2>
+<p>Suponha os campos espaciais médios mensais de temperatura. Podemos usar as mesmos procedimentos de seleção de matrizes para <em>arrays</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tempVals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">22.34</span>, <span class="fl">19.8</span>, <span class="fl">22.22</span>, <span class="fl">19.27</span>, <span class="fl">19.53</span>, <span class="fl">19.81</span>, <span class="fl">21.18</span>, <span class="fl">24.44</span>, <span class="fl">23.91</span>, 
+<span class="fl">21.97</span>, <span class="fl">21.14</span>, <span class="fl">24.54</span>, <span class="fl">23.46</span>, <span class="fl">16.2</span>, <span class="fl">19.93</span>, <span class="fl">20.54</span>, <span class="fl">19.71</span>, <span class="fl">24.94</span>, 
+<span class="fl">18.71</span>, <span class="fl">21.8</span>, <span class="fl">19.52</span>, <span class="fl">23.44</span>, <span class="fl">19.64</span>, <span class="fl">15.88</span>, <span class="fl">21.83</span>, <span class="fl">19.16</span>, <span class="fl">18.66</span>, 
+<span class="fl">18.82</span>, <span class="fl">22.73</span>, <span class="fl">19.34</span>, <span class="fl">18.89</span>, <span class="fl">16.7</span>, <span class="fl">21.41</span>, <span class="fl">21.88</span>, <span class="fl">14.95</span>, <span class="fl">18.54</span>, 
+<span class="fl">23.17</span>, <span class="fl">17.67</span>, <span class="fl">21.91</span>, <span class="fl">19.93</span>, <span class="fl">19.76</span>, <span class="fl">24.32</span>, <span class="fl">21.97</span>, <span class="fl">19.65</span>, <span class="fl">21.29</span>, 
+<span class="fl">23.24</span>, <span class="fl">22.59</span>, <span class="fl">24.51</span>, <span class="fl">22.47</span>, <span class="fl">20.34</span>, <span class="fl">19.82</span>, <span class="fl">20.87</span>, <span class="fl">18.46</span>, <span class="fl">19.87</span>, 
+<span class="fl">21.79</span>, <span class="fl">21.94</span>, <span class="fl">18.72</span>, <span class="fl">20.17</span>, <span class="fl">17.82</span>, <span class="fl">16.17</span>, <span class="fl">23.26</span>, <span class="fl">19.83</span>, <span class="fl">16.78</span>, 
+<span class="fl">16.02</span>, <span class="fl">19.61</span>, <span class="fl">14.89</span>, <span class="fl">19.17</span>, <span class="fl">18.55</span>, <span class="fl">17.01</span>, <span class="fl">18.64</span>, <span class="fl">18.35</span>, <span class="fl">21.26</span>, 
+<span class="fl">21.95</span>, <span class="fl">18.05</span>, <span class="fl">21.57</span>, <span class="fl">17.86</span>, <span class="fl">21.25</span>, <span class="fl">21.62</span>, <span class="fl">22.22</span>, <span class="fl">23.26</span>, <span class="fl">19.67</span>, 
+<span class="fl">18.45</span>, <span class="fl">20.38</span>, <span class="fl">19.37</span>, <span class="fl">19.74</span>, <span class="fl">20.91</span>, <span class="fl">16.01</span>, <span class="fl">25.97</span>, <span class="fl">21.9</span>, <span class="fl">24.11</span>, 
+<span class="fl">24.06</span>, <span class="fl">17.95</span>, <span class="fl">18.06</span>, <span class="fl">20.06</span>, <span class="fl">20.04</span>, <span class="fl">21.24</span>, <span class="fl">17.12</span>, <span class="fl">21.29</span>, <span class="fl">19.93</span>, 
+<span class="fl">20.12</span>, <span class="fl">20.3</span>, <span class="fl">23.04</span>, <span class="fl">19.16</span>, <span class="fl">20.71</span>, <span class="fl">22.74</span>, <span class="fl">19.9</span>, <span class="fl">20.89</span>, <span class="fl">23.46</span>, 
+<span class="fl">14.76</span>, <span class="fl">19.71</span>, <span class="fl">16.71</span>, <span class="fl">19.72</span>, <span class="fl">16.94</span>, <span class="fl">23.89</span>, <span class="fl">12.42</span>, <span class="fl">17.01</span>, <span class="fl">20.9</span>, 
+<span class="fl">19.45</span>, <span class="fl">14.89</span>, <span class="fl">23.27</span>, <span class="fl">20.22</span>, <span class="fl">18.67</span>, <span class="fl">24.12</span>, <span class="fl">21.92</span>, <span class="fl">26.68</span>, <span class="fl">20.73</span>, 
+<span class="fl">18.42</span>, <span class="fl">19.51</span>, <span class="fl">15.56</span>, <span class="fl">20.6</span>, <span class="fl">23.65</span>, <span class="fl">19.54</span>, <span class="fl">20.92</span>, <span class="fl">17.52</span>, <span class="fl">21.15</span>, 
+<span class="fl">21.76</span>, <span class="fl">23.05</span>, <span class="fl">18.22</span>, <span class="fl">20.3</span>, <span class="fl">21.62</span>, <span class="fl">19.75</span>, <span class="fl">17.2</span>, <span class="fl">22.08</span>, <span class="fl">19.12</span>, 
+<span class="fl">23.12</span>, <span class="fl">19.25</span>, <span class="fl">21.2</span>, <span class="fl">15.85</span>, <span class="fl">17.1</span>, <span class="fl">18.59</span>, <span class="fl">22.24</span>, <span class="fl">15.2</span>, <span class="fl">20.12</span>, <span class="fl">18.19</span>, 
+<span class="fl">20.14</span>, <span class="fl">17.98</span>, <span class="fl">17.11</span>, <span class="fl">17.47</span>, <span class="fl">20.25</span>, <span class="fl">18.27</span>, <span class="fl">22.37</span>, <span class="fl">20.42</span>, <span class="fl">19.87</span>, 
+<span class="fl">20.94</span>, <span class="fl">19.39</span>, <span class="fl">17.53</span>, <span class="fl">15.99</span>, <span class="fl">21.01</span>, <span class="fl">20.22</span>, <span class="fl">15.18</span>, <span class="fl">25.06</span>, <span class="fl">19.89</span>, 
+<span class="fl">15.15</span>, <span class="fl">22.52</span>, <span class="fl">20.95</span>, <span class="fl">22.72</span>, <span class="fl">23.39</span>, <span class="fl">25.14</span>, <span class="fl">18.41</span>, <span class="fl">14.28</span>, <span class="fl">19.46</span>, 
+<span class="fl">20.77</span>, <span class="fl">18.81</span>, <span class="fl">19.74</span>, <span class="fl">20.73</span>, <span class="fl">15.97</span>, <span class="fl">16.88</span>, <span class="fl">21.55</span>, <span class="fl">18.8</span>, <span class="fl">19.53</span>, 
+<span class="fl">20.31</span>, <span class="fl">20.34</span>, <span class="fl">17.27</span>, <span class="fl">19.33</span>, <span class="fl">22.75</span>, <span class="fl">24.29</span>, <span class="fl">15.87</span>, <span class="fl">16.4</span>, <span class="fl">22.8</span>, 
+<span class="fl">22.84</span>, <span class="fl">17.79</span>, <span class="fl">18.97</span>, <span class="fl">19.2</span>, <span class="fl">20.59</span>, <span class="fl">19.79</span>, <span class="fl">17.8</span>, <span class="fl">19.36</span>, <span class="fl">22.8</span>, <span class="fl">17.28</span>, 
+<span class="fl">18.15</span>, <span class="fl">16.48</span>, <span class="fl">19.09</span>, <span class="fl">21.19</span>, <span class="fl">21.23</span>, <span class="fl">22.4</span>, <span class="fl">17.89</span>, <span class="fl">21.42</span>, <span class="fl">16.67</span>, 
+<span class="fl">17.89</span>, <span class="fl">17.18</span>, <span class="fl">22.05</span>, <span class="fl">19.62</span>, <span class="fl">22.73</span>, <span class="fl">20.12</span>, <span class="fl">23.35</span>, <span class="fl">19.07</span>, <span class="fl">20.34</span>, 
+<span class="fl">17.1</span>, <span class="fl">15.33</span>, <span class="fl">16.97</span>, <span class="fl">22.93</span>, <span class="fl">19.59</span>, <span class="fl">17.13</span>, <span class="fl">25.41</span>, <span class="fl">18.74</span>, <span class="fl">20.56</span>, 
+<span class="fl">14.46</span>, <span class="fl">19.47</span>, <span class="fl">23.96</span>, <span class="fl">17.15</span>)
+## array de temperaturas
+atemp &lt;-<span class="st"> </span><span class="kw">array</span>(tempVals, <span class="dt">dim=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">12</span>))
+atemp</code></pre></div>
+<pre><code>, , 1
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 22.34 19.53 23.91 23.46 19.71
+[2,] 19.80 19.81 21.97 16.20 24.94
+[3,] 22.22 21.18 21.14 19.93 18.71
+[4,] 19.27 24.44 24.54 20.54 21.80
+
+, , 2
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 19.52 21.83 22.73 21.41 23.17
+[2,] 23.44 19.16 19.34 21.88 17.67
+[3,] 19.64 18.66 18.89 14.95 21.91
+[4,] 15.88 18.82 16.70 18.54 19.93
+
+, , 3
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 19.76 21.29 22.47 18.46 18.72
+[2,] 24.32 23.24 20.34 19.87 20.17
+[3,] 21.97 22.59 19.82 21.79 17.82
+[4,] 19.65 24.51 20.87 21.94 16.17
+
+, , 4
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 23.26 19.61 17.01 21.95 21.25
+[2,] 19.83 14.89 18.64 18.05 21.62
+[3,] 16.78 19.17 18.35 21.57 22.22
+[4,] 16.02 18.55 21.26 17.86 23.26
+
+, , 5
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 19.67 19.74 21.90 18.06 17.12
+[2,] 18.45 20.91 24.11 20.06 21.29
+[3,] 20.38 16.01 24.06 20.04 19.93
+[4,] 19.37 25.97 17.95 21.24 20.12
+
+, , 6
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 20.30 22.74 14.76 16.94 20.90
+[2,] 23.04 19.90 19.71 23.89 19.45
+[3,] 19.16 20.89 16.71 12.42 14.89
+[4,] 20.71 23.46 19.72 17.01 23.27
+
+, , 7
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 20.22 26.68 15.56 20.92 23.05
+[2,] 18.67 20.73 20.60 17.52 18.22
+[3,] 24.12 18.42 23.65 21.15 20.30
+[4,] 21.92 19.51 19.54 21.76 21.62
+
+, , 8
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 19.75 23.12 17.10 20.12 17.11
+[2,] 17.20 19.25 18.59 18.19 17.47
+[3,] 22.08 21.20 22.24 20.14 20.25
+[4,] 19.12 15.85 15.20 17.98 18.27
+
+, , 9
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 22.37 19.39 20.22 15.15 23.39
+[2,] 20.42 17.53 15.18 22.52 25.14
+[3,] 19.87 15.99 25.06 20.95 18.41
+[4,] 20.94 21.01 19.89 22.72 14.28
+
+, , 10
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 19.46 20.73 18.80 17.27 15.87
+[2,] 20.77 15.97 19.53 19.33 16.40
+[3,] 18.81 16.88 20.31 22.75 22.80
+[4,] 19.74 21.55 20.34 24.29 22.84
+
+, , 11
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 17.79 19.79 17.28 21.19 21.42
+[2,] 18.97 17.80 18.15 21.23 16.67
+[3,] 19.20 19.36 16.48 22.40 17.89
+[4,] 20.59 22.80 19.09 17.89 17.18
+
+, , 12
+
+      [,1]  [,2]  [,3]  [,4]  [,5]
+[1,] 22.05 23.35 15.33 17.13 14.46
+[2,] 19.62 19.07 16.97 25.41 19.47
+[3,] 22.73 20.34 22.93 18.74 23.96
+[4,] 20.12 17.10 19.59 20.56 17.15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(atemp) &lt;-<span class="st"> </span>-<span class="dv">45</span>:-<span class="dv">41</span>
+<span class="kw">rownames</span>(atemp) &lt;-<span class="st"> </span>-<span class="dv">19</span>:-<span class="dv">22</span>
+atemp</code></pre></div>
+<pre><code>, , 1
+
+      -45   -44   -43   -42   -41
+-19 22.34 19.53 23.91 23.46 19.71
+-20 19.80 19.81 21.97 16.20 24.94
+-21 22.22 21.18 21.14 19.93 18.71
+-22 19.27 24.44 24.54 20.54 21.80
+
+, , 2
+
+      -45   -44   -43   -42   -41
+-19 19.52 21.83 22.73 21.41 23.17
+-20 23.44 19.16 19.34 21.88 17.67
+-21 19.64 18.66 18.89 14.95 21.91
+-22 15.88 18.82 16.70 18.54 19.93
+
+, , 3
+
+      -45   -44   -43   -42   -41
+-19 19.76 21.29 22.47 18.46 18.72
+-20 24.32 23.24 20.34 19.87 20.17
+-21 21.97 22.59 19.82 21.79 17.82
+-22 19.65 24.51 20.87 21.94 16.17
+
+, , 4
+
+      -45   -44   -43   -42   -41
+-19 23.26 19.61 17.01 21.95 21.25
+-20 19.83 14.89 18.64 18.05 21.62
+-21 16.78 19.17 18.35 21.57 22.22
+-22 16.02 18.55 21.26 17.86 23.26
+
+, , 5
+
+      -45   -44   -43   -42   -41
+-19 19.67 19.74 21.90 18.06 17.12
+-20 18.45 20.91 24.11 20.06 21.29
+-21 20.38 16.01 24.06 20.04 19.93
+-22 19.37 25.97 17.95 21.24 20.12
+
+, , 6
+
+      -45   -44   -43   -42   -41
+-19 20.30 22.74 14.76 16.94 20.90
+-20 23.04 19.90 19.71 23.89 19.45
+-21 19.16 20.89 16.71 12.42 14.89
+-22 20.71 23.46 19.72 17.01 23.27
+
+, , 7
+
+      -45   -44   -43   -42   -41
+-19 20.22 26.68 15.56 20.92 23.05
+-20 18.67 20.73 20.60 17.52 18.22
+-21 24.12 18.42 23.65 21.15 20.30
+-22 21.92 19.51 19.54 21.76 21.62
+
+, , 8
+
+      -45   -44   -43   -42   -41
+-19 19.75 23.12 17.10 20.12 17.11
+-20 17.20 19.25 18.59 18.19 17.47
+-21 22.08 21.20 22.24 20.14 20.25
+-22 19.12 15.85 15.20 17.98 18.27
+
+, , 9
+
+      -45   -44   -43   -42   -41
+-19 22.37 19.39 20.22 15.15 23.39
+-20 20.42 17.53 15.18 22.52 25.14
+-21 19.87 15.99 25.06 20.95 18.41
+-22 20.94 21.01 19.89 22.72 14.28
+
+, , 10
+
+      -45   -44   -43   -42   -41
+-19 19.46 20.73 18.80 17.27 15.87
+-20 20.77 15.97 19.53 19.33 16.40
+-21 18.81 16.88 20.31 22.75 22.80
+-22 19.74 21.55 20.34 24.29 22.84
+
+, , 11
+
+      -45   -44   -43   -42   -41
+-19 17.79 19.79 17.28 21.19 21.42
+-20 18.97 17.80 18.15 21.23 16.67
+-21 19.20 19.36 16.48 22.40 17.89
+-22 20.59 22.80 19.09 17.89 17.18
+
+, , 12
+
+      -45   -44   -43   -42   -41
+-19 22.05 23.35 15.33 17.13 14.46
+-20 19.62 19.07 16.97 25.41 19.47
+-21 22.73 20.34 22.93 18.74 23.96
+-22 20.12 17.10 19.59 20.56 17.15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## serie temporal do 1o ponto
+atemp[<span class="dv">1</span>,<span class="dv">1</span>,]</code></pre></div>
+<pre><code> [1] 22.34 19.52 19.76 23.26 19.67 20.30 20.22 19.75 22.37 19.46 17.79
+[12] 22.05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">atemp[<span class="st">&quot;-19&quot;</span>,<span class="st">&quot;-45&quot;</span>, ]</code></pre></div>
+<pre><code> [1] 22.34 19.52 19.76 23.26 19.67 20.30 20.22 19.75 22.37 19.46 17.79
+[12] 22.05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## para 1a faixa de latitude (-19), selecionamos
+## os valores de temp de todas longitudes e todos tempos 
+## longitudes ao longo das linhas e tempo ao longo das colunas
+atemp[<span class="dv">1</span>,,]</code></pre></div>
+<pre><code>     [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
+-45 22.34 19.52 19.76 23.26 19.67 20.30 20.22 19.75 22.37 19.46 17.79
+-44 19.53 21.83 21.29 19.61 19.74 22.74 26.68 23.12 19.39 20.73 19.79
+-43 23.91 22.73 22.47 17.01 21.90 14.76 15.56 17.10 20.22 18.80 17.28
+-42 23.46 21.41 18.46 21.95 18.06 16.94 20.92 20.12 15.15 17.27 21.19
+-41 19.71 23.17 18.72 21.25 17.12 20.90 23.05 17.11 23.39 15.87 21.42
+    [,12]
+-45 22.05
+-44 23.35
+-43 15.33
+-42 17.13
+-41 14.46</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## plot de cada ponto
+<span class="kw">matplot</span>(<span class="kw">t</span>(atemp[<span class="dv">1</span>, , ]), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAHgCAIAAADCDEUSAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAgAElEQVR4nOzdd0AUVxMA8AErVgSkgwhWLESNvZfYawBL7AUs2EvAksQuYu+C2CV2gy2JghLyYQWjwYIioBFEei8HV+b7A0Xg2t7d3u2dzu8v2Nt9bxS4uX373jw9RARCCCFE1+hzHQAhhBCiDEpghBBCdBIlMEIIITqJEhghhBCdRAmMEEKITqIERgghRCdRAiOEEKKTKIERQgjRSZTACCGE6CRKYIQQQnQSJTBCCCE6iRIYIYQQnUQJjBBCiE6iBEYIIUQnUQIjhBCikyiBEUII0UmUwAghhOgkSmCEEEJ0EiUwQgghOokSGCGEEJ1ECYwQQohOogRGCCFEJ1ECI4QQopMogRFCCNFJlMAIIYToJEpghBBCdBIlMEIIITqJEhghhBCdRAmMEEKITqIERgghRCdRAiOEEKKTKIERQgjRSZTACCGE6CRKYIQQQnQSJTBCCCE6iRIYIYQQnUQJjBBCiE6iBEYIIUQnUQIjhBCikyiBEUII0UmUwAghhOgkSmCEEEJ0EiUwQgghOokSGCGEEJ1ECYwQQohOogRGCCFEJ1ECI4QQopMogRFCCNFJlMAIIYToJEpghBBCdBIlMEIIITqJEhghhBCdRAmMEEKITqIERgghRCdRAiOEEKKTKIERQgjRSZTACCGE6CRKYIQQQnQSJTBCCCE6iRIYIYQQnUQJjBBCiE6iBEYIIUQnUQIjhBCikyiBEUII0UmUwAghhOgkSmCEEEJ0EiUwQgghOokSGCGEEJ1ECYwQQohOogRGCCFEJ1ECI4QQopMogRFCCNFJlMAIIYToJEpghBBCdBIlMEIIITqJEhghhBCdRAmMEEKITqrMdQCas3jx4r///pvrKAgh5ItSuXLlwMBAc3NzDrrWfJdcuXfv3ty5c1u1asV1IIQQ8uUYN25cSkoKJTC1a9asWbt27biOghBCvhwGBgZcdU3PwAghhOgkSmCEEEJ0EiUwQgghOokSGCGEEJ1ECYwQQohOogRGCCFEJ1ECI4QQopMogRFCCNFJlMAI+YLw+eDvz3UQhGgIJTBCviCFhbBuHdy5w3UchGgCJTBCviB16sCaNbB+PddxEKIJlMAI+bKMHw9RUfDPP1zHQYjaUQIj5Euxeze8ewdVqsAvv8Dz51xHQ4jafV3V6An5YqWlwerVMH48AMDUqVxHQ4gm0B0YIV8EX18YPRqMjbmOgxDNoQRGiO4TCsHfH2bPLnfwwgVIT+coIEI0QUsTmEAgeP369YcPHxCR61gI0Xr//gsODuDkVO7gnTvg48NRQIRoglYkMKFQ6O3t7eLiAgACgeCXX36pU6dOkyZNLC0tbW1tAwICuA6QEO3Wti0EB1c8uHQpHDoEaWlcBESIJmhFAtuwYcPy5csbNmwIAOvXr9+4ceOsWbOuXLly8eLFnj17Tpgw4dKlS1zHSIiusbKCkSNh/36u4yBEXbRiFqK/v/+cOXO2bNkCAH5+fitXrly9enXJS99//32VKlU2bdr0/fffcxkiIVorOhoaNQJ9SR9GFy2CMWPg5581HhMhmqAVd2B5eXnt2rUDAKFQmJ6e3rFjx7Kv9u3b9+XLlxyFRoh2y86Gzp0hK0vyq61a0Ypm8gXTigTWtWvXS5cuCYXCSpUqdezY8a+//ir76s2bNx0dHTkKjRDt5u8PgwaBkZHUE6pX12A0hGiUVgwhbtq0qVevXn369Jk5c+asWbPc3NwEAsGgQYN4PN6vv/56+vTpU6dOcR0jIdpHJIKDB+H4cTmnFRRARgZYW2skJkI0RyvuwFq2bHnnzp2mTZvOmjVr/PjxBQUF27dv/+6774YNG/b8+fOAgIDxJfUFCCFlBQVB3brQpYuc0yIiYNgwoBUp5IujFXdgANC0aVM/P789e/YkJCQkJSVlZWXVr1/fwsLC2tpaT0+PYSMhISHOzs7SXs3Ozn78+HGnTp1YCpkQrjk5AZNFJt27g54e/PknDBqk/pgI0RxtSWAAIBAIEhMTLSwsHBwcyh7Pz8/Pzc01NzeX20KvXr1iY2OlvWpra1ulShUWAiVES5ibA4O/C9DTg1WrYM0aSmDkC6MVQ4hCoXDt2rV16tSxt7evV6/eokWL+Hx+6asHDhywsLBg0o6enl496dQWPiFab8QIyMiA8HCu4yCETVpxB7Zv377Vq1fPmzeve/fud+7c2bNnT2pqKk3cIESq3Fzo1w/u3weGA+yVKsGff8qarEiIDtKKBObr6ztnzpxdu3YBgIuLi5OT09SpU52dnUeNGsV1aIRopSNHwN6eafYqYW+vtmgI4YZWDCG+efOmW7dupd9OmTLF2dl56dKlPB6Pw6gI0VKIcPBgxdrzDJUZnCdE12lFArO1tX3w4EHZIzt37szIyPDw8KBq9IRUFBQE1apBjx7KXOvkBHFxbAdECDe0YgjRzc1t2bJlBQUFgwcP7t+/v4GBgbW1ta+v75gxY/T09KpWrcp1gIRok4wMWLtWyWuHD4dt22DfPlYDIoQbWpHAFixYwOfzN2/e7OfnFxUV1axZMwAYPXq0np7e3LlzU1JSuA6QEG0ydqzy1y5bBk2bwqpVwGxmLyHaTCuGECtXruzl5ZWRkZGQkGBnZ1d63NXVNT4+Pjg42M/Pj7voCPmCGBvD6NFw4ADXcRDCAq1IYCX09PSsrKyql689WrVq1b59+7q5uXEVFSFahMeDw4dVbWTVKmjenI1oCOGYFiUwQogcp0+D6pu7WlrCuHFsREMIxyiBEaIjEGHbNli4kOs4CNEWlMAI0RF370JxMfTty05rp07BhQvsNEUIRyiBEaIjTp+G+fNBn6W/WXt7WL4chEJ2WiOEC1oxjZ4QIt+2bcDimsguXcDcHM6fV2lSPiGcojswQnREtWqKFT+Ua8UKWLsWRCI22yREgyiBEaL1ECE5mf1mBw4ER0fIzma/ZUI0ghIYIVovIAA8PNhvVk8PLlwA2iqP6CxKYIRovW3bYPp0roMgROtQAiNEu92/Dzk5MGCAutovKIDjx9XVOCHqRAmMEO22bx94eLA2e16cvj4sXw4vX6qrfULUhhIYIdpt/HiYOVON7VevDvPmgY+PGrsgRD1oHRgh2m3gQLV3MXcuODjA27dQZi8IQrQf3YER8tWrXRtmzoSLF7mOgxDF0B0YIdoqKAgiImD5ck30tW6dJnohhFV0B0aItlq7Fho35joIQrQXJTBCtNLTpxAXByNGaLTTyEgoKtJoj4SogBIYIVpp716YNQuqVNFop7t2we7dGu2REBVQAiNEK+XkgLu7pjtduBB27gQeT9P9EqIUSmCEaKXTp8HMTNOdtmoF334Lhw9rul9ClEIJjBBSxuLFsHcv10EQwgglMEK0zIsX8OwZZ7337AlnznDWOyGKoARGiJZZsAAiI7kMwMmJy94JYYwSGCHapOT2y8WF6zgA+HyuIyBEDkpghGiTvXvB3R2qVuU4jNu3YfhwjmMgRB5KYIRoDaEQzp1Tb+15hnr0gFevIDyc6zgIkYUSGCFao1IliIoCS0uu4wCoXBmWLgVvb67jIEQW7U1gfD4/MDAwLS2N60AI0aD69bmO4JOpU+HePdrokmgz7U1g+fn5o0aNesbhfGJCNKmgAIRCroMow8AATp3i/mkcIdJpxXYqEyZMED9YXFwMABs2bPD39weAU6dOaTosQjRp4kSYOhWGDuU6jjL69OE6AkJk0YoE9uHDh9u3b9eqVcupzAIUgUAAAElJSYWFhdyFRohGREfD3btw+jTXcRCiS7RiCDEoKGj//v0A4ODgcOXKlbCwsLCwsD///BMA9uzZU/It1zESok7+/jBpkpaO140aBampXAdBiARakcD09fVnz54dGRkZHx/fokWLK1eucB0RIRpUWAhHj8KsWVzHIYWJCezZw3UQhEigFQmsRMOGDYODg3/66acffvhh4sSJ6enpXEdEiEbw+bBhAzRsyHUcUixbBgcPQn4+13EQUpEWJTAA0NfXnzNnztOnT9+/f9++fXuuwyFEI+rU4WDrL+aaNIF+/eDgQa7jIKQi7UpgJUpuxbZu3bpkyRIbGxvmF4aEhFSqVElPiry8vIyMDPWFTcgXa8UKyM3lOghCKtKKWYglBAJBfHy8mZlZjRo19PX1p02bVnI8Pz8/NzfX3Nxcbgu9e/cWSl9JU7t2bSMjI9bCJYQVa9bAlCnQoAHXccjUsiW0bMl1EIRUpBV3YEKhcO3atXXq1LG3t69Xr96iRYv4ZSphHzhwwMLCgpPApv037Wj6UU66Jl+FN29g3z4tqr5BiE7RigS2b9++1atXu7m5nT9/fs6cOXv27Jk6dSrXQQEALDJd9LjgMddRkC+Xnx/88APUqMF1HMz89Rfcu8d1EIR8phVDiL6+vnPmzNm1axcAuLi4ODk5TZ061dnZedSoUdwG1sqg1W6b3QAQnBssROGAOgO4jYd8UXg8OHIEdGiNY24u/PgjPHzIdRyEfKQVd2Bv3rzp1q1b6bdTpkxxdnZeunQpj8fjMKqyaujXmB8//23xW64DIV+Qp09h8GBo3JjrOBgbOhTy8yE4mOs4CPlIKxKYra3tgwcPyh7ZuXNnRkaGh4cHInIVVVldanZ51eKVXVW7IiyKL47nOhzyRWjfHo7q1BNWPT1YvhzWr+c6DkI+0ooE5ubmtmvXrpkzZ16+fLmk8qG1tbWvr++RI0fc3Nzi4uK4DvCz2KLY9q/a/5nzJ9eBEMKF0aMhPp4qSxEtoRXPwBYsWMDn8zdv3uzn5xcVFdWsWTMAGD16tJ6e3ty5c1NSUrgO8DPH6o7hTcOr6FXhOhCi427fhp49oVIlruNQUNWqEBvLdRCEfKQVd2CVK1f28vLKyMhISEiws7MrPe7q6hofHx8cHOzn58dddBXZVLUxr2IuAlGzF80CswK5DofooMREcHEBrXnES4iO0ooEVkJPT8/Kyqp69eplD1atWrVv375ubm5cRSWNPugH2AVkCbO4DoToID8/GDsWatbkOg5lCYUQEcF1EIRoUwLTOe1qtJtiPAUA9qXuu5dP62MIM3w+HDoEHh5cx6GCwkIYOBA+fOA6DvK1owQmy4kTkJkp/zSHag6LEhYhaMWESaLtrl2DJk2gRQuu41BBrVoweTJs3851HORrRwlMlshIWLxY/mkD6wy83/S+Hui957+nSfZEjh494ORJroNQ2eLFcOwYo893hKgNJTBZfHxgzRoFzo8sjGzzss1z3nO1RUR0n7ExWFtzHYTKrKxg1Cg4coTrOMhXjRKYLPr6YGsLKSnw11+Mzh9UZ9DjZo8bV9Od2gqEKG37dpg8mZOe3wJsAMjmpO8vXp8+8OoV10EwRQlMvvx8GDsWHj1idLJNVZuqelVjimIsn1rezb+r5tCITklLg2bNuA6CPbVqgYkJJz0vAVgH8DcnfX/xVq+GJk24DoIpSmDyNWwIJ0/CiBEQz/jxVqNqjc40PKMHeuqMS4ft3r179erVXEehcf7+0Lkz10GwTeMbXQoBQgBmANDHQ7Xo0QP0dOaNixIYI999B+7uMHo0FBczvaRHrR6da3YGgHnx8/4p+EeNwemagoICb2/vvXv3Zn5VUwAEAjhwAObN4zoOtnl4wIkTmuwwAsAaYAQArVwhlMCY+uknGDRImY+bnWt2PpB2QA0R6aqDBw/27dvX1dW1ZAOdr8WVK2BjA23bch0H26ZPB29vEIk01mEwQD+AjgD/AAg01uvXYNw4uH2b6yAUQwmMKT09+PlnMDZW+MIfjH44ZHsIAMLywmRvyCIE8AJ4DKC5NwON4/F427ZtW7FixbJlyw4cOJCXl8d1RJpSvTps2sR1EGrQsycYGsLlyxrrMASgN0AdABsAmu/Lmqgo+OsvnRvipgSmsG7d4NYtZS6M4kV1etWpQFQg7YRzAA8BfgK4qHx02u748eMdOnRo3ry5vb197969j3w987AHD4bu3bkOQj0WL4adOzXTVSHAQ4CeAADQmUYRWbR5M3h4gIEB13EohhKYwry9ofzmZUy5mbjFtYiroV9DiMJirPgwTQSwEWAFwA8Ax1SPUisJBAIfH58VK1aUfLt8+fKtW7cWM3+uSOS5CbBN872OHAnTp2umq3sArQDqAABAZ4DHmun1i/fuHVy5AnPmcB2HwiiBKaxbN/j0DqywGvo1AOBGzg3HF47RRdFlXwoEqAnQD2AUwAOARNUD1T5nzpxxcHBo3759ybdOTk7NmjU7e/Yst1GpXVYWbNiggX7eAkwG6KqBniqoXBkmTdJMV80Bdnz6eiLAlzgmy4XCQtixA4yMuI5DYZTAlBQaCuPHg3L7RQ+uO/iQ7aGSZFYCATYArAQAAAMAFwDdrzVUkUgk2rhx44ryyd/T03PTpk0iDU4B4MDhwxpYGcoDcAZYBVAb4JS6O+OOBUCHT19XBdC9d1zt1LQpV2vSVUQJTEndukFmpvK3Yr1r97auYp0mSOsf0/8l7+XvAAKAoZ9enfIljiJevnzZyMioV69eZQ/27du3Zs2av//+O0dBqZ9IpJnZ83MBmgN4AOQAeKu7M4lu3IB169TaQ5bYP201wP/U2iXRbpTAlFSpEpw6BRcuqFQNzqSyiauha1he2HqAFfB52XMnAAC4r3KQWmXTpk1eXl7ixz09PTdv3qz5eDTkxg0wMYFPo6ZqcgTgAYAvAAB0AEgCSFBrfxI1bw47dqi1vO9NgDtiB6+rr7+vQUEBzJ7NdRDKowSmPCMjOHsWPD1V+pt1M3GbbjLjOwBexqkUQUrp8akAZ1iIUVsEBQUJhcKhQ4eKv/T9998nJyffuSP+1vRFuHwZlixRaw//AKwAuAhQsj9mJYB+ADfU2qVEtrYweDCoc/P0khVgZXX+4j7naZq/P2RkcB2E8iiBqaRtW3jxAurVU6kRPYC1AO+L3w2PHV56cCGAhLsVnbVx48Yff/xR4kv6+vpLly718fHRcEgacvAguLqqtYdwgEMAZavXDeQkgQGAlxfs3Ak8npqavwXQt/wRWs6skqIi2LIFVq7kOg7lUQJTVf36AACnTwOfr8zlzz897lphvuJ+0/sA8DD/4U+JP8XwXpizFiPHwsLCPnz44OLiIu2EyZMnP3r06NmzZ5qM6osxE2BY+SMDAG4BCDUfSsuWMGYMJCero+04gEKACtuAGgLYAkSqo7+vwenT0KIFtG7NdRzKowTGjsuXlXyAvRygQuKzrGpZQ79GjjDnCUDHoliLpxaBWYEAEMWLupp9NV+Uz0K4muXt7f3jjz9WqlRJ2gnVqlWbN2/e1q1bNRmV2iUmQlSUWntYD3BU0nELAFsApRYrqmznTmjQQB0N3wLoAxLKY9MoovKio0HHa2pX5jqAL8TRo5CervBV/wL8C3Ch/EHrKtbLzZcDAA8grprD780ft9SvCwBxRXEH0w7W0q/Vu3bvg2kH/8j+Y4PlhpYGLXOFuQhYp1IdVv4hrPvnn3+eP3/+22+/yT5t9uzZjRo1evfuna2trWYCUzt3dxg6FJo3V1PzVwAOAERIeXUIwAOALmrqmwvBAIMkHe8MEAKge0twtcHGjVxHoCq6A2OHgQFYW8OHD/DkiQJXbQJYAlBVyqvVAVwBblY2N9A3AIAhdYdcd7jeu3ZvABhZd+RU46lmVcwAYG/q3iYvmjwpfAIAV7OvHkg9kCfSogKDmzdvXrx4cZUqVWSfVqdOnWnTpu3UVEUitQsOhtev1VefIgZgBsBZAAspJ6wGmKumvuXi8eD4cdZbfSw2g6NED4CvaVMDUg4lMDa9ewcDBkBcHKOTXwH8DTBD5jmTAY4DiK+WNq9iPtJwZP3K9QFgufnypFZJ3xh8AwC19Wu/LHqZKcgEgNnvZrd72S6+OB4AnhQ+eVzAQdmdV69e3blzx83NjcnJixYtOnHiRFpamrqjUjuhEJYsAR8fkJe2lVMA4ALwE0A36edUBlBL30zo6YGnJ+trtyMBrCUdbwRwjd2evgbPnsEXMe9XfgJDxNzc3NzcXFSu7MTXpGNH2LwZBg+GbAa7nXsDLACoIfOcjgCVJa19kaZX7V67rHfZVLUBAB8rn8MNDltWsQSAwKzAWfGzkvnJALA8cfnyxOU8EQ8ACkWFjNtWho+Pj4eHR/Xq1ZmcbGZm5uzsfOCA7m89ExwMJiYwYoSamp8N0BJA7tLoJQCX1BSBbNWqwaxZrJf3lfE7VARQxG5nX7wFCyA6Wv5p2g8lEYlEt2/fXrRoUZs2bQw+1Sc2MDBo27btokWLbt++LRKJJF6ozWrVqnXo0CENdDRzJjo7yznnDaIpYjaD1rwRp7EQ1GcP8x8eTjtcJCpCxP6v+1tEWvBEPFZ7+Ojt27empqbZ2Uz+lR/Fxsaamprm5eWpIx7NEQqxqEhNbfsiOiHmMzjTD3G8moKQKzkZjYwwNZWt9oYjPpb+6k7EVWz19DV48ACtrVn8FW3duvW///7LVmsKqXgHJhKJjh071rx58/HjxyclJU2YMOHXX38NDQ0NDQ0NCAgoOTh+/HhHR8fjx49/4SXslLVnD1hZQYHUXVMAAHIAdn0qqi3bBIBLACxOPWxfo/0042lV9aoCwI1GNxJbJVbTq8Ze859t27bN3d29Th0FZpfY29v36NHj6FGJc+t0h74+VJX2ZFNVQoBL8m7cSwwECOJqbzlTU3BxgQsX5J/JQCFACIC99BOaA4Sx0tNXYtMmWLxYfb+iGlUhoXXp0mXMmDEhISECgUBa0hMIBCEhIWPGjOnataua8yubNHYHxrqDzO7VlBaRH/Fjwo/stpmammpiYpKUlKTohffu3XNwcJDx66fVMjMxPJzrID5rgchZNHw+8vmstBSE2KX8kcLCwgsXLpR+m4VYG5Gdzr54GRlobo6sDnJo0R3Y4cOHz5w506tXLxmrdipVqtSrV68zZ874+/uzmEoFAsGbN28KxO5c8vPzk5KSWOyIublz58bGxip9eZs2EClpjaUvQIwi7cxkdq+mNIsqFpeyWH5csmvXrrFjx5qZmSl6YadOnaytrS+w9OFd0zw91bQ3sQhgGECQglcNBPhTHdEwUbkyVGZnlY54Bak1a9a4urrev/9xAVhdWs7MXL168OYN1KzJdRzsqPgb9uTJkyeKzARv1qyZ6kEIhcINGzZ4e3sXFhZWrVp1zpw5Pj4+pROvDxw4sGzZMuRiCknDhg1nzZoVFKTo+8ZHK1fC339XXOeeDLBc8a3QjwAMBlBTbQ7LKpZPmz9lscHMzMyDBw8q9ItU1sqVK5csWTJ69Gg9PfF1q1rs6VO4elVNi5fXAOQD9FbwqoEAqwFWqSMghl6/hsaNVWzjVvldOiMiIo4fP75jx445c+ZERETo6+vDp92Z26rY01eC2aQq3VDhjgwA9PX1KzFQ8nvDym3grl279PT05s+ff/78+YULF1aqVGn8+M+Pn7ds2cJKR0oMIfL5/FatWl26dEn13kt5Is5R/KrZiGtYDEKSYlExW02tW7fOzc1NlRbatWv3+++/sxWPhvTvj/v3q6Phq4jWiAqPxiLyEOsiZrAfEWM9euCVK6o0kI5YB7F0vkFxcXHr1q1PnTolEom6du3q7+9fctyfwxkrOuT1a1TD/DsOhxAlJLBwZoP44eHhbCUwR0dHDw+P0m9LnuGXpg0OExgi3rp1y9bWVpV5cZcv49KlH7/OQDRG/E/xRh4g2iOqb+pnCj+l2fNmrDSVm5tramoaGxurSiNnzpzp2bMnK/FoSGQktmzJ1lOfsl4j1ke8o+zlGxDfsxmOgk6fxt69VWngPOLgMt96e3sPGzas5Ov79++bmZllZWUh4nNEe1W6+RpkZKCJCWaw/3lGi56BTZ482djYmMmtm7Gx8WSWNvF88+ZNt26fF2VOmTLF2dl56dKlPLWVtWauT58+HTp0KEmiyrYAN27A3r0AAHsARgIoUSupA0B1de7dV79yfcsqlqyU8Dh06FC/fv3s7WXMGpPPxcUlMTHx7t27qsejIa1aQXg4W099SuUDfA+wSoWiUCsALNmMSEEuLhAbC4+VX0SvDzD109cxMTHbtm3bW/K3BNCxY8f+/ftv3LgRAJoBDFY11i/d3r0wcqSqe2doG07SZgVNmzZduHBh2SPx8fGGhobTpk0TiUTc3oEh4rt370xMTFS5pXjzBi0t8XoomiLGKNuID9sLwtSBx+PZ2Ng8f/5c9aYOHDgwcuRI1dvRaZMQx6ncSJA6793l27IFJ09WvRmRSNSzZ88dO3aUPZiQkGBkZBQdHa16+1+4vDw0M0P1/Edp0R0YJ9zc3Hbt2jVz5szLly8XFhYCgLW1ta+v75EjR9zc3OIYlmZSGxsbGw8PD09PT6VbsLODY8fgh//BdwgOyjYyEeA3VheEiUviqzrbMyAgoHXr1o6OjqoHM2nSpPv3779+/Vr1ptQrPx/C1LUMqQ/AIZUbmc/tDD0PD5g5U7lLC8pMdwoICMjJyZk7t1yJRysrq7lz565cuRIA8gDUW/xfp504Ab16MZlQk5ubq4FwWMNJ2qyAz+dv2rTJ0NAQAKKiokqPnzt3ztTUlK04VVkHVlBQ0LBhw+DgYFUC8E5DlZ4LIQ5FPKFaC7JZRVp9KP6g9OUCgaBJkyZhYWFsxbN27Vp3d3e2WlMXLy+cxv69cQ57Tc1H9GavNU3yRZyKiIipqanm5uaPHj0SPyc/P9/GxiY0NPQWYg8Nx6dD3r1jWBjF0dFR0REULZrEwSGRSJSQkFBYWFj2YFFRUXBwsJ+fH5MWgoODZWfrzZs3Kx3e1atXGzVqxOOpWnXp7Fnlr72OOE/F7mXamrT1Fe+V0pefOnWqX79+LMaTnZ1tYmLy339KzHrRlJgYrFcP37M8TyIFsYEKo80VXEfsxVJTGjYa8WjJF6NHr1ixQtppZ8+edXR0TOXzayGyNpX2qxQSEtKiRQtFr9KZBJaVlZWampqZmamOWoh8Pj8uLi4/v2KZt7y8vF74OtAAACAASURBVA8flL8tKKV6JY6hQ4du2rRJiQt5iCsREVEkwk6d1DTXmmNCobB58+a3bt1icvLx48jwR7Fs2bIlS5aoFJlaTZyIq1iuwydA/I7V4n75iHVYvaVTho8PHjmi0BVCRBPEeMTAwMDmzZvL/uzYs2fP/fv3t0SMUC3ML1Mx07Q+fvz47du3K9q8ziSwvn37AoCzs3NJJQ62ghAIBGvWrCmpGly1atWFCxcWl/kf53wSR6mYmBgjI6O3b98qeuEBxEGfvk5NRcUb+IyP+Eb5q+ULzQ0tqfOrqMDAQIalxXg8tLLCkBBGzX748KF+/foZbMz99XrvJUSh6u18lpyM1taYm8tmm4grEfsju4Fif8RAVhtU2L176OCAilQIe4TYDDErK8vKyio0NFT2yY8fPzYxMZlYWLhHtTC/QIGBOHo0kxPT09MNDQ3T0tIU7UFnJnEMGjRo+vTpFy5cuH37dmYma9vI7du3b/Xq1W5ubufPn58zZ86ePXumTp0q/zKNc3BwmDNnjpeXl0JXCQB8ylRDMDGBBg0gPh7i4yWdjQgCgYzWXgP0k7RDGFt8kn2uZSuzv9KGDRsYznM5fhxatoRevRg1a25uPnz48P379ysRUgWXMi/FFilfGEwCU1N4/Rpq1WKxyasApwAC2N6pj8uaUiU6dQIzM4XqbN0C6AuwatWqwYMH9+jRQ/bJ33zzzYgRI5J+++2eamF+gTZuBFdXJicGBAQMGDCA4TIqbcFJ2qxAmxcyV1BQUGBnZ3f79m3mlxxH7CN28OJFbNxY0prCpUuxXj2cOFFG/YLWiHI+jqogNDf0Ub6ER+WyBQUFtWnThsnAskCADg4YGopJSfI3nSnx8uVLc3PzgoICRaOq4L+i/wQira4RHINohvhADS2/QGyshmYVc+ECKlL+uz/ixhcvbGxsSpYqy5WcnGzYqZO12jay0UkhIdi0KQoZ3c+3atUqKChIiU50ZghRTQwMDE6fPl32iLOzs729fcmEDq1KYIh4/vz5Fi1aFDMbVhYiNkOUmO7mz8eBA8uPqSQkoIMDRkejnx9OmICl81nK97UDcYpyoatN7969K/wEpeHzcedOREShEB0dkeHiuu+//37fvn1Kh1csKh4bN1bpyyW1WIw3b7LZIKIQsQ3iAXYbLeOh2lpmSiBADw+Gb6ZFiLURG7dvf/78eeY9bPbxqZKTo0TNrS/WoEF4+DCTEx88eNCoUSPlJjd87QlMyxcyixs4cODOkrdhec4jSvvMyedj//7o6SmvCR4PjYxwwAD098e0NERMRqyHyPKDlzICswIVmosYFhbWpEkTtW6A8vDhw4YNG/KVLdT0d+7f3V51KxQWDo0Zyk5Au3fjiBHsNPWJCPE3dlvUZSLEcadPK7qSvaioyGLevIt//qmmqHTPrl0MN650c3Nbv369cp187Qls69atenp67u7ugYGBpSNFZ8+eBYDp06fPnj1b2xLYixcvjI2NExMTZZ8mQvwG8Q/pJ2RkoJsbg+qamZl48iQ6O6OhIa5ejYgjP00vVofViau93nsxP3/o0KGlNVVlCw3Fo0fLHcnIQIYLE3r16sXwJk+cQCTIEmSJUGQZaZkpyFSukc+ystDcHJ89U7WdMjRQrjBep7Ytfv78uampqdw/MXGBgYFNmzZlOEBCSuTk5NSrV0/pyd5fewLT/oXM4pYuXTp16lTZ5xQh/sKwOT8/RtPyCgpKnpsFIvbMzkYfH3zzhmEPzKXyU58VMn13fvToUYMGDRi+X/Tvj7+Vv8v4+WdcvpxRR3/88YeTk5OK6zcKhYXyT5LLywtVq7VfQRiiMSIbkcmSiVhH/b3I9/o1HpAzUCoUCq0PHdrFbPVnBfmIzffurVBxish26NCh4cOHK325ziQwta4DU30hs2zsJrCcnBxra+t79+6p3hQ/7H6bypHx9xOYX1KMaMbnv1u4EI2MsH179PFBZg+6WTd27FiGo6mIKD5BNzoaTU2xkNnbatu2bf9UfHQoKCdo6ls5HzUUwOejpSUqfmcgTRKiFSKbG/ZI1w2R5Qd3SkhKQiMjTE+XccqWI0cq5eXxmD0tqyAbsaZQWN/CIiUlRdkQvwhr12IE00VxHTt2vKLCrjc6k8DUtA5MM9hNYIh48uTJtm3bSnv28wCRUc2NzExs2HDblEgFV3liVEnRAT4fg4NxyRJ89empFRuZLCgn6FzGObmnvXr1ysLCQnztuUQ5UlbSDhpUcVxRml9//bW34ntzeCd5B6QHlHydUJzQ/3V/RVtQHz5iL0Rmt6AsWI+4WFN9yTJtGm7cKO3F+Pj4utOn91RhA6NWiK7e3rNmzVK6BZ33/j0aG8v+lFDq8ePHVlZWSj9gRh1KYFu3bp0+fToiikSiA/LGAbQN6wmspDy2r6+vxFe7I55k0sq4cThHiR0upRs+HB0c0MsLJRWOY+hG9g0mb/TTp0/fsGEDkwbv3sVOnSS/dO0afvsto6gEAkGjRo1UuestFhVbRVqJOC3OXtYyxO8QNTa1PwLRUVN9yfL0KVpZSZtcMGTIkG8jIhSuBlGGG+Lm/HxTU1Ou3lW5t2QJlp8WJ8P8+fNXrlypSm86k8B0GusJDBGfPn1qamqaKlYl82/ERoiMPtKcPFk6gnb4MO7erUDvCxElv5c/fYo//4zNmyu07KYsIQqT+cmyz3n79m39+vWzs7OZNDh0KEqb5yEUMr0DQ8R9+/Y5M1w+hoiImYJMdp57IaJIhBcusNMUIiJeRLRDVLjsgQqEiKZK7afKPhcXlFT0uWSNioNIpMrb4RHEHxB37typxP36lyA9HevVQ2YVRPPz842MjOLi4lTpkBKYJqgjgSHi3Llz54jdQg1AZDQtr7yEBLS0ROZPebYiTpR9Rung3vv3OGcO/v470zl/DMyfP19GfdWyHj9GW1uGs3nlKCwstLCwePHiBcPzv4/9XnwstFik1BS18+eZ3ioykIJoiqj8PbKyJiBKHjHQAhkZGZaWlr89fmym2gZmLxAbIvL5/JYtW5bWQ/iK3LuHXkxnEZ86deq7775TsUNKYJqgpgSWkZFhbm7++PHj0iPhiA3kVsXm8yUu4g0KwgYNmE5qSEKsy7BIa0EB7tyJXbuioSGOHYtlopXmn/x/ZMx9SE5Orl+/PsOyaWPHyr+zXLmSaUn3devWzZgxg9GpiMvfL88RlPsfepT/SJnHYDwe2tsjs1LFTPAR2ZyGz9glxB+56JeJGTNmzJ0711/lPTxFiPUQExGDgoJK6yHoqBVqHmHu1avXWVU2yEBESmCaoaYEhoiHDh3q0qVL6czMkYjyi0YsXChtKrazM/r4MO16OKJikz8SEnD37s9T9tPSpNWiTeenN3rWSFozy5cvX7BgAcM+r12Tn5IXLECGhf4zMjJMTEzeK7uDSbYgu1+04nu+bNmCQ4Yo16M47otiaInw8NIvg4ODbW1tc3JyZiEeU7nhQYjXERFxyJAh3t46uhsarkI0UWd9/ejoaFNT0yKVx0Y4TGB6iOUKwy5dulRu+cStW7eyWo5RQ2rXrr1jx44ZM2aw3rJIJOrSpYuHh8fEiROfAQwEiAGoLuOCq1dh7lx4/BiMjMRf/PABYmKge3dGXf8GsBMgVLm4AWD3bvjlF+jZEw4eBHNzhhdlZWU1btz48ePH1tbWSvdcQVER8PlM6+IuWbKkUqVKPj4+sk8Lzg3uVatXZb3KLMTXvDlcuAAtWqjekh/AYYAHqjekLB6APkBV7gL4SCQCa2u4dQuaNy8sLHRyctq1a9egQYOKAKoC6KnWdhJAXQADgJiYmE6dOj19+tTCwoKdsDUlB8AGYDhAO4CFDK8RCODIEXB3Z3i6l5cXn8/ftm2bsjF+5OTkdPLkydatW6vYjjIqJLSlS5fWq1cPAIyMjByk4CLRskB9d2CIGBERYWFhkZWVdR/xsuxT4+PRzAz/9z9W+i1CNEXVNnrOy0MvL2zWTOLaJomPi9avX89wEC8+HmfOlHA8BFHion+G9RMSEhJMTEwyM2XV1Ejnpxs+McwTSpiNLRAJcoXqK8Uly0NEM/Z2qlTOdkRGjy41YM0adHdHxBUrVowZM0ZNnSxatGiaGrbMVrdziIMQAxC/Z35NQAD2Ea8cLllxcbG5ufnLly+Viq4c7RpCjI6OrlSp0pYtWzQfjVqpNYEh4owZMxhtvbh2LTIY03B1xchIRv0uYF7vQwZJUWULsq0irSrsoZWbm2tmZhYTw+hNeP16FJ/n8Q7RGFF80/IXL7BtW6bxTp06daP0tUSImCPIuZh5UeJL17KujYodxbQn9qQh2iEqv16UJXcRv+E6ho9SUtDIKPLWLVNT06SkJETcg8jW+47zp+fQmZmZpqamDx/q2MDtBMT9iO8Q6zOc0iISYatWzGtMX7x4keEGfnJpVwJDxC5dulACU1RaWlrtn38OLlMKSxXHjjGtsRSLeJCVLiUZFzcuQ1Bu05cdO3aMG8f0KXtxsYQtDAch/oyYhlihUoJIhI6OyHCnGlX2WEkqTvJ45yH/vBIXLzIsoC6bELG/dtz6CBCNEVkrJaIakZvbXmvrw58qpn/H3sabToilT9gOHDjQuXNnddQPUhM+ojHimTsYHo4NERlNur16VaFZsoMGDTrKfP2KTFqXwEJDQ58+farhUNRN3QksDrFmYWFPtouUa1pysqRtyj4qKiqysbFh+MsqsTToMcTWiEWIxxDFK40fOIDM64+PGDHi4EHJuTudn745aTPThmQIC0M7O+Y7ssvwE2I/Da5Zlm2MOotBK2T/hg0/dOtWkloKEWsjslUSbRZi6dRXgUDg5OSkQ8WDQhG/QXRywnPncHgms5UPY8diINPs//btW2NjY9X32CuhdQnsi6TuBDYTcblI5OTkJHkHo+xsdHVlUHm+nMuXGb15ZiHKr/vE0MmT2LIlJn9exVx2a5VDhw4NGzaMSTMZGWhqWrF8VCKiKeI/iIiYg1gPMb78VXl5aGzMtEDxgwcP7O3tJZbA8U31nfBmgoxrswRZScXy9o0SibBjR1S2BH5ZJSsrtKc231FEdT1xUkRsbGz9+vVLV9HeQuzCXuPHEH8o8+3t27dtbGzyVKhQpUlLEH9CfPQIg4Ox4TpkvSjW6tWrZ8+ezVZrWpTAACC8zNxWGcLDw8XngGgztSawBERjxFTEsLAwW1tbCX8n48ej4sXZXFxw2zb5p6Uh1mO4IIyJdeuwRYvSHGb/zP417zUi8vl8e3v7Bw8Y7Ri8dm3J4/lyRiD+VObbWYirxS68cAFfv2YaaY8ePSSuYkkqTpJdSeRY2rFJbybJaT0gADt1UvQzh0RFiFLvarmQiGisBbeDAwcO/DjHvbgYEVcg/sxe468QG5Y/MmrUqDVr1rDXgxo5I5Ys1RSJsFETvMPqineBQGBtbf1IhVJzFXCYwCTMMP79999fvnwpd/piXFwc2zMiddg2gCkAJgAmXbt2797d29t73bp1n18+eRIiI+GBwnOnN22Crl1h0iQwMZF1mjFAb4DzANMUDlySVatAIIDeveHOHTA0XGK6hI98ADh//rydnV2HDh3kNpCXB/v2wd275Q5eAngDcK7MkZkAwwBWApT9LXR2ViBST0/PFStWuLq66umVm3dtVsVM9oV9avdJFiTLad3PD7ZvBz2VZnTnAzwA6KMN09bLsACwBngI0Jm7GAICAlJSUpYsWQIA8MMPMGVK8JAhLC7QaQyQA5AEULo6ZOvWrd9+++2UKVNsbW3Z60cttr8DDw+4ehX09GCmG/jvhS5HpJ+dkgI8HjD+RwUFBZmamrZt25aVUDlWIaFVUxAnWVc56rsDS0E0LjMv/MOHD/Xr139VWh7+7Vs0N8fn4tPuGFm6lFGx3yuI3ZXrQBo/v7IT64VCoaOjY3BwMJNLd+zACWIDeHGIb8TO7CTpoX1ICN64wTTMNm3aBAUFlT1yKv2Uf5oSlbzUYhziXK5jkOgyIjvTjZSSnJxsbm7+5MmTj9+fPZs5eLCh3Po1Choitsm1l5fX+PHjWe2EfTmIyzxx0aKP36amYnVvPCPjcdWYMbhrF/P2nZ2d9+/fr1KI5WnREOIXTH0JbKXYm5SPj8/nZ0UpKaqs+srKQjs7lLtjCR/RHJHx2Jti/sj+4+zVs126MH1CERWFSeUfMEmr+HsUcaDYwZAQBebTnzp1ql+/cpU1BscMDs6Rn2ijedFvi94y7UYp/ojfanYPyXfvPj6z0/LySRMnTiy35oTP/69LlxXK7ggszXbEClvV5ebmWlpa/o+lVZhq0luAhiOx7EIVz/c4Q9pIdnQ0Ghsjs5raiJiYmFi3bt0sVrcP1N4ElpGRERYWdubMmdDQUIaF77SW+hLYHrEt4YuLi5s3b37t2jV1dCfNUkSVNkWQZvt2l6jhDvMcLl+Ws0RbmgBEaeVCCxBNJM1uYLbMDBGRz+fb2dmVfXDLsPz81qSt8+PnS37t2jVUeYKWANFB2nYBauPhgevXIyJ26YKj5C11O83ic1NF/Pnnnw4ODhW3kdu+HX/4QcoVbDpy5Ejbtm2FbCyNUIcsRIMiHOxS7uBjxGbSLpgxQ8JaS+k2b948ZcoUpcOTSBsTmFAo9PLyMjAwKB1srF69+o8//qi1P3i51D0LsYLg4OABNjaFYjutKCc5Wf7UhmeINojs/3jWrw/ra912gD2TZTTFxdipU7n7xSREU8S70i9JVa30OCLu3r3b1dX1YwCMK83H8GLOZ0qaL/rqFZqaoswyH0z8hthZxSYUlJ2NxsYfVy/w+R/3g8vMxOvXJa9kG4UYoNEAERFzc3Pt7Oxuiy33e5ifj/vk1xBVlPhvg1Ao7NChw/Hjx1nvixVnEB1j8G75PxgBYrUCvCa+FDs9HQ0Ny84Zlk0kEjVp0iRM0kY2qtDGBFYyB2Hx4sWRkZEZGRnPnj0rKZPIcANDLaSOBJaNKHVWU2JiZvXqfvPmsdLRzZvYrJmERcEVdFNPjfOTDRtm2toigz3aw8KwwnZdLohLleq0a1d8y2yELz8/39zcPDo6GhG7vOzyslC16jgjR+LWrSq1gIiIPVhc28DM7t04dmzFg2/eoJMTtmiBJ09ihRUHB+Vux6MGixcvnjSp4vzPN4hW6umuH6L4O+vdu3fNzc0ZbmWnYT8g+kk67pSAQ8TrdgsETAv2ICLiX3/95ejI/p6m2pjAGjdu7OFRsVrBnDlzmjRpouaQ1EUdCWyTtK0fhEL87rusxYtNTEzeMnwblufwYfkJTB3u3LnTuHHjy7td/h3D+MHUJ+cRmyLKHYybKqnA0uLFuGwZ047WrFnj7u7OE/EGvR4kZHwXei/v3ruid+UOhYSgg4Pqe5dFIDZguKMpe7p2lbhJJIpEeOUKduqEDg7l9vB5g2imjlt26cLDwy0tLcUfRviXX7PFopmIeyQdHzt2LMPd7D7KycEZM9DbW/WxZRn4iLWL8D9JgwjeiEx3f5BuwoQJ25isy1GQNiYwY2PjU6dOVTh46tSpevXqqTkkdWE9geUjmiNKLliyZQv26oUCwdq1a0ePHs1ip3LlqDwiV8Hw4cP9/Py2JW+b/2yy7DMTEsqtXE5FtJA5eFgqAFG8BGlsLJqYIMOFp+np6cbGxomS6hHLsPz98tWJ5ZeijRmDbGyBGIQoaXRSveRO3AgP/zi6Gxz88X24qTp366iguLi4devWAQEShi3HllYGuXoVz7F543pMSmqMj483NjZmuhNxfj62aIGTJ6OLC9rayihVo6KzyVj5keQZW3cQ21SobqNggZj09HRDQ0N1TGXQxgQ2evTo0aNHV3jsMWHChFFyHw1rK9YT2C5phaJFIuzRAxMSEJHH4zVp0uRP5rssy3TtGv7yi5xzZkgZglDOv//+26BBg+Li4ixBVtmSHBK1a1eukuEPjAcPeYimiOKtjxiBUmpFSbBw4UK3DZK3WJPmNe91WC7LzwO4kqPIfIyxY7FzZ0TEBYjr1RSQmE2bNkks4yJCNEX8eCP88CE2bMjiUIP4cuZSv/zyi4uLi5QXyysq+lwkNzaWlbXtEnnwcJqUlFqE+F0BWlp+SluFhWhnh4pMJty9e7eaPkxrYwJ7/vx5o0aNBg4cePr06b///vvChQvOzs61atW6du1aeBmajFVF7CawIkQbZlvCX7lyxdHRsZiNenrJyWhigq9k5pHfETup3tMn48aN27FjR7lD0dHYvbv4h9A//8Q2bT7/aYsQZzIYPCy1DHGx2MGICPRlVAYOEfHmm5uVLleSvceKZlwWK5GlbnFxaGenzIV7Y9EuHtPT2Q5ITFRUlImJyX///Sf+0pMKU+y6dUOJxdiUIkI0kVK5uKCgoEGDBiGlm7tKJOPPNiICp09HSf8ipf1Rmsil6N370w3q/v3yp5mW16pVqworJtmijQlMuXXQ2ozdBHYIkfkGvUOGDGFr6HnzZjnlbgWIlgzLV8sTHR1tbm5eOt35ZvZN31RfFIlw3jxs27bC21737iq97cQgmqi2ZCqyILLnup6bNytWw/d0xumPj8Fu3GDljTwPsb6kJdtqFRqKu3fLP03cf6lYhYfG5rhgAdMpM0oQiUQ9e/as+Enok60VllFeuvTx9pAlQxElb6uDGBAQ4OTkJJB4w5efj+PHS9s2HRGxoABXr0YTE/TyUuhOSJpLl1B2dfhixENXsW9fRD4f7e2RWVG3Eg8ePHBwcFBTPX5tTGBvmNFgqKpiMYFJXeJz8qTE2oUxMTH169dX9AmNRDweOjhgaKisc5YheqreE+KMGTPWr/88wnQ37263V90QEUUiXLAA27TBT+Pp9+9js2af52qvlbTdl1z9EU+IHSwslPNXXdaLFy8sLCwKFVnEO+u/WbuSd2FiIhoZMa0iLNNeRGf5Z2mROMTERFyyBA0N2b2d+Mzf379z587SVuAMqVCNRSjEPn1YfM60QfpQtkgk6t69u5+f2KB7bCw6OeEPP8ivIJCYiDNmoLk586XE0tjPxv0ynxiHIXYToZUVvtp6Bfv2VahxNze3sn/L7NLGBIaIPB4vOjo6SozGgmMXiwksB1HCXoovX2L9+vhM8jz2lStXTp48mZXew8JQ9rDHM0RLlUu1/vfff/Xr168w1TiN/+kJsEiEy5bhp4I02dlY+jj8BqI9ohIbHl9EFN9fr7AQ69eXn1neFb27kX0DEYcNGybh/Ui6t0Vv44ri0M0NF4sPYSpMiNgEUcNP1R4/Lje3UEV8Pv74I7K4mdL79+9NTEwipc/2vqHIULMSniD6SH/10aNH5ubm5SpT/PsvmpqilPtFyVRe7vn332gQjn/IvEHKRayF+PttTAgMl/Y+I1FOTo6hoeEHtgudlNLGBHb27NmaNWvq+rBhWepdyFxUhG3bovS3zoKCAjs7u1DZt07saY94XbUWFi5cuJzhlpplZCM2QGS2J2VFfLHKdSUePpQ/F3FJwpKfE39GxLCwMAcHB8mDQtI8e4ampqx85L+C2EH1VhTUoQPzbXglKBSrk7J9OzLZWpyh0aNHr1yplhIxbJk8efLSpWVu0t6/x3/+UbKt//0Pv/tOictHzUADHvLkndYBUYl3EH9/f4a7IClHGxOYra1t586dQ0JCnorRZHwsYiuBhSBKqBC1ciWOkbPF0rlz59q0aaPYe6t048djrvTbnL2IYktaFZCcnGxiYpIstsI/siByaMzQCgdHDysIuf5xpMUNkUHlYfbdzbubyv/4Kbhbt24XLlxgfu0Wv+7vD0m4o1ZCb0QWdg9TxIMH2LixqtPi7KQ8NL1wAYcMUaWQJwYGBjZv3pzHk/rOfFbaTKi8PLyu4mewz15Jr8aJiElJSSYmJq9evGBh622hEA8dQgsLnDGjYj1QmZqtx2EMpnktQVyPeOkSXhFfOCldp06dlK4Dx4Q2JrC6deuyNflbISKRKDs7Oz09nfXnjawkMBGiE+JV8RciIphMZB4wYABbdaCnT8cDB6S+mo+owBNeMStXrpw/X0KdwHxhfusXrcseKSrCbg0TCr/thpmZNxAbKjV4WNYsRPHHDr6+eEL8+ZgUV69ebd++PfMex8aNPZVeccmjEh4j2rBdT12uSZMY7Rgn2yzE7ZKO8/l48iS2aIE9eypzk5eZmWllZSV71KEDYojEF1JT0cgIWVq0NF+sqm8Fe5cujalbF8VWviopOxt//BHNzOQ/QvtkNKJ4nQ1xgS9f9n/16sYN7NGDaSxPnjyxsrKSuO8rWzhMYHooZcLh8OHDO3XqtGLFCsV2Z1FWTEyMv7//xYsX4+Pji4qKAKBq1arW1tYuLi7u7u4ODg6qd1G7du0dO3bMmDFDlUauAvwM8A+AcptERUZGDhw48Pnz5/Xq1VMlDAAQCAAAKkvY0E1Vubm5jRo1evDggZ2dHdNrVqzICQ1t/b//HdHX76Na70MBvhfb2CwsDKZNg5cvQV9fwiUHUg90rtX5G4NvSr4ViUQtWrTw9fXt0aMHkx4T+AkGegbGlY1VCxwCAIo+Rc7j8X777bfjx4+/fv26Zs2aNWrUqF27dt26dUu+rlu3bu3atUu+rlevXs2aNWvWrFmrVq2SE2rWrFmnTh0mPeblga0txMSAkZFKkV8G2A9wQ8qrIhFcvgxHj8KJE2BoqECzixYtysrKOnr0qLQTMgHsAFKlbZY2ezaYmcHq1Qp0KcVJgOsAZ6S9/NtvOGPGCoD+Fy707t1b9e4UIhDA42cw4Bt4CWAq7+R0V1f7X39Nr1IlOx2Mmf3CLlmypEqVKt7e3ipHKpWTk9PJkydbt26tvi6kkZrAkpOTO3ToMGrUqC5dulStWu4XbOTIkewGER4e3q9fv1q1ag0dOtTR0dHIyAgRs7KyXr16df369aysrNu3b6u+/RorCawTwDKAz3suikQQEgJ9+zJvoeTOZs+ePaqEUerRI2jXTvJLaQCeAIcVb3PLli3Pnj07fvy4tBNyhbm1K9UG6Pn4+gAAIABJREFUgJQUSEqC1q0BELcGBr4VCPYOGQI1aije52dXAdYBPBQ73q4drF0LQ4ZIuKTBswa3Gt9qVK1R6ZEjR45cvHjx+vXrcjq7cwesrIB5nmbg/v37x44du3DhQvv27adMmdK+ffu8vLyCgoK8vLysrKz8/PyCgoKcnJycnJySr7OysiSeUJLhatasaWhoKDHDlZxQUGDauHGV0hMMDQ2rV69eQ8EfQS6ANcAHALmXZWbCwIHw44/y9x19+PDhyJEjnz59aiz9jfYiwGGA36W9/OIF9OsHb95AtWriL/KRX0Wvirx4P3oN0A/gP4mvnTgBnp4QEHAmJcXb2/vRo0eVKlVi2CxTN2/CqlXg7Q19JHy6O3ECDkYDrod7ctt5+hQGDGj1/v0RPb32zHouKiqysbEpqQanYNAK4DCBSR1C3L9/v6KXKK1Xr149e/bMlfRIh8fjjRgxok8f8UpDClN9CDEY0bFC7bgNG3DAAIUayczMtLCwYOuO294e79yR/FLJgjBFn1gWFhZaWlq+eCF1IRlPxDP917Sk6PvUqfh5aq5IhHv2qL6USoBoK6m+0fHj2L+/5EvEt/UqKiqytraW85+cm4tWVvjkCSLO/G9mhkClSRxXUlPXbtvWrFmzZs2abdq0KSEhQZXWEDE7OzsxMTEmJiYiIuKvv/66fv36uXPn/Pz8duzYsX79ek9Pz9mzZ0+aNMnFxaVfv36dOnVq1aqVvb29kZFRrVq1unTpsnbt2ocPHzLfO6IX4u/Mzrx792Oxrbw8qcWrSqpGnT4t54HgLEQ5w5+DBqGkx5l38+5+G/Utk2hLlCxnlvwjefIE4+MRUSQSde3a9SDz0i8KdC/CM2ewQQMcOhTF/rKCg3FWIm5i0s6ECbh586VPqwybNJH/13bmzJnevXsrHrFitPEZWMOGDZ2dnT98+MAXw3oQderU8feXuoXu1atX69atq3ovqiew3ojlxsjv30dzc1T8rerEiROdO3dm5SHf2bPYoYPUZ/g/Kl4JfteuXWPkzUaZ9d+sZH7y27doZITp6Vgg7TGGstYhii8f5fFw7FgFZivs3LlTzj/kl1/wU1n0ga8HlszCV1Rubq6vr2+brl31U1NneXs/U2Rys4quXMEZMyS/9OzZM29v7379+hkaGvbr12/nzp1yl2x6I0rZG02qY8fQ0hK9vSWsgFq9ejWTmnONJJWKLyc3V2Lx3DMZZ65lXUNFds8ZWqE6paQSG0+ePDExMVHXxocFBbhuHdrbi3ddzHDRy7RpZf+vJ0yQv2tC7969z5w5o2CgCtPGBGZhYXFTlcm5imjfvv348eOlvaEvWrSoQwcWJiermMDuIDYu+3uWnY0ODnhVwnwOuUoKExxlvkBXVlPYrZvUCQ4vEC0UqYleMuDA8HfRw+Njtfj5iDMrvObtrVhtvvISEQ0RmdQ24Iv4nV925osk/BPz8/PNzMxeS9tFLTERTUzw3cfCPVmCLImNSCMSiYKCglxdXevUqePq6rrgxYsRaquPJ83y5fKnouXl5V25csXd3d3W1tbe3t7d3f3cuXM5kn40L5Uqdh4Tg25uaGaGt259Pvjs2TMzMzO5y/bfIJqpXHh6dNzoZQmM9izYULZW2e3baG4ucXWhu7v7PJa2QGJi2zZ8/17+aRX8iihCvHsXGzWSNXEyOjra1NS0SOWtFeTSxgQ2f/78hQsXaiaIc+fO6enp9e3b99ChQ3fu3Hnx4kVUVNTdu3ePHDkydOhQfX3982zURlMxgYUglsvnf/whv7CudE+fPrW0tGSlcF94ODZtKvXVToosCPP39x86tOIseYlCUyLq1cMPHzAU0Rqx4ujbrFnYubMqtQmcEfdKOh4SUm7YKrIgcnDMYGmN/PLLL7Nnz5b82s6duHq15Jdkio2N9fT0tLGxadu2ra+vb0ZGhgixmVKrczQsNjbW19d36NChJbdl3t7eERHsVKI/fx7XfNoWTygUduzY8YCMCbKfXGS+G1mZXySBSLDhw+ctCVP5qT5JMpYpf3YLsQsiikS4dSuameENyTfcKSkpxsbGMpZds+a33xIcehjVKtpcKG8cVUyTT5Vu2rTBP/6QepqXl9diNpbny6WNCezo0aPW1tYDBw5cs2bNpvLUEce1a9ckzv/p3bv3tWsSll0pQcM7Msvl4eGxaNEiVpqSMRR+EJFhAWo+n+/g4HD//n0mJzs+d7z24lk+YiNECQtMhEJ0c8NOnZSuEReOKPEtcNw43Cl7QnQZCu2x0v1V93yh1EnPJUOFXbt2NTMz8/T0LDtUeB2xHdOIWPPkifIV2wsKCoKCgjw9Pdu1a2dubj5x4sRz585lZmbmSXtKpIh9+/Z1796dybM3ISLTW4OmTUsLT5zLOPexnll5N7NvxhfLKqFcWLJEz90d27SRXdll69atfRUs1KScleNi5xr/2uXp0xuy63Mj4pkzZautTP/01xEUhMHBkq8oLi42NzfXTOEkbUxgDtKpL5q0tLR///335s2bN2/efPLkiaKD0aGhobJnrGzZskW5wDYisl6wOyMjw9zcnK0ffFaW5DUnmYiG4ndIkpw+fZrh816RCE+mnI4qjJovYx9CkQhnzkS21//HxpZbV5stkHOTN3/+fIb7FnZ/1f1JwZMKB0uGCidOnGhsbOzq6nrlyhXxAZl+FZ6Mql9ODhoZqV69CBExLi7O19fX1dXVyMio0aJFTV69ioiIUOLpbGEhZmTgu3fvTE1NX8l9O1bU+vWlj/syBBmlK9bL2p+yv9GzRiK5Q5K3bsndkbKoqKhp06ZXlXo6wByPh2ZmePeV0LCoiNe1q6zPI1lZaGJStk7lUQb7f166dKlrV/HSbGqhjQlM8/h8flxcXL7Y23BeXh4rVbyUvgP7F9G8tFxbYWHpXl+q8/X17d69OyuzObZswQkTJL+0lkFxepFI1Lp1a4a7LWzciGvW4N+I5oiy3kVFImS4YaAk+RIXjJdxOevyyFiZlfkR3717Z2JiUq7SXXg4k0o/cXFxnp6etra233zzja+vb7qUm9xIRCuNL17etw+d2S4YzOfzQx4/rlZY2LZzZ1NTU1dXV19fX+blpy9dwhEjcPDgwWtKBxNleipWv0qWtDQ0MsLkZNlTNj4X6hRXXIyIkRILcEty9epVBwcHGQVEVBcaisOG4dEKpZ8FAgmzSzZtwonlRltjEK0/ff3mjeSKJYMHD2blKTsTWp3AiouL37x5U1hYqKZS/IgoEAjWrFljYGAAAFWrVl24cGHZ3bO2bNnCytx9pRPYmLLFQOfPR1dX1YMpIRQKO3TowMo0oZwcZPbWIdnVq1c7M97Dwt0do6LRUph/RKBi2Q1ZUhENJd34vn+PXl6IiAHpASVT0WSbMGHC5ztvPh+bN0fpJWby8vKkDRVKtFVeiQfWiUTo6CinmrPSuiIGISYnJ587d27ixIkmJibt2rXz9PQMCgqSvaFdbi6OGBHVokULhlMGtihacmzWrPQNnhaRFrlCOb9yPyX+tCO5fB3enTuxSRNEPI7I/E934MCBW+VO8lPZ94jHyn5/4QLa2uKJE5/nZhQUoLk5ij2Ts0Qs+WwYFYVWVhWncvz333/GxsYF8u412aKlCez48eMODg76+voAEBUVNWnSpA0bNqgjje3atUtPT2/+/Pnnz59fuHBhpUqVxo8fX/oqtwnsFaJpaXmk69fR3h5Z3TIxPDzc1tZW4ho4Fv0PUXZdto4dO/72m8RSupKJEPuk7DmQKv9ZPSJiRAT27y+rdKMU4xDFS4KXjL0wH9uPjIy0trb++Ma6bx/26yd+jkgkuhF0o3ZwbeP6H4cK1frpWxV//YUtW6qr8XWIZav4CgSCiIiI0hn5Q4cO9fX1ffdOwp6LGRkZlpaWDB+gIuIAxEsKRZaQEB68e02i/M9ob4vejo0b+3FOacmeXq1bY0wMIkYj2jDu8MWLF0ZGRmqq4J6bi9nZWIhYBzGlwmt372Lnzti27ccPKX/8gSNGiLcwBvH4p6/Fi1WuWbNm1qxZ7MYsgzYmsFOnTgHAxIkTr169WqVKlaioqFOnTlWrVm3Xrl2sB+Ho6Ojh4VH6bUntmUuXPv6Gc5vApiKuK/kqJwetrJDxnyhz06ZNY/icRq6AAMnjCatkLgi7fft2q1atmHw0KSrCwMCPI2bRvOjnhcy2/RIIcNIk7N5d0Rz2F2IzSTOtV63C8TOzxNcvSzNkyJDDhw9jVhaamVUYP3zz5s0vv/zSpEkTJycnh9sOT+IrPgaTIUblPWuUkJyMz5XYbI2ZcMQWUl5KS0s7d+6cu7u7tbW1vb39/Pnzg4KCStP8jBkzPDwWMNzvl4dYG1HdO2e/yo7M6tyq7J5espYzSzJv3jx3d3d1xDZ5Mh48iL+XTIwUJxLh+fPYv7+MZY97EKUlKIFAYGNjw9YUUya0MYG1aNFiypQpJV9Xq1atZDbLsmXLmjdvznoQBgYGFRbtOzs729vbl+xMyGECe4tYv3RBklCI6vkhJSYmmpqaxqnwuKhUSAja2UmojxAtaUFYRkbGgwcPAgICOnTocOzYsYrXSHLgAA4ehS0RFZ5lLBTilCnYtatC68NEiM0lrZJ+/x6r1M31jTvLsJ3bt2+3aNFCdOYMzvy4Yq24uDgwMHDEiBH16tWbPHnyX3/9pejQQgGimbwN4HWOENFU3j9KIBDcvXv3559/7tixo4mJyejRo9etW2dtbZ2YmF23LqNNaW4hdlIwsFPpp2Q94pJk74ddLR/aFQrL/TEMq7CcWaaUlBQTExN17L+xYgVmZ2OIIsFUkIsYU+bbGTPw5cuPXwcFBbVu3VrSReqijQnMwMDg7NmPbxClCezs2bMGBgasB9G0adMKa87i4+MNDQ2nTZsmEok4TGAeiKtU75iBbdu2jZA0UKCEUaPQ27viwf+3d58BUVxdGIDfpVdhQSmKFUXF3sWGPfbeJRp7jbFGTWJJMWok0aifFY0mdrFEYw32ElvsDSxgAxSQKmXb/X6sImXL7O7szi45z69l5s7MQZc9O3fuPTc5Obl2evqMM2e+++67kJCQxo0be3p6urq61qlTp1+/fvPmzdP8hENJKmXly7OQFx8fJOxP2X8xQ+MisnnJ5WzcOF0Lfi9jTGU5jdaj7hw58eGzKSeHxcUpu4ne27yZff45GzCAtWzJmjRh6ekNGzY8cOAAY+zmzZuTJ0/29vZWziUv0HmbJuOaX9czZsQVltT46Se2f7/2ZoYIYYz7H0liYuL27dtHjhx55MgRxlivXpyWz56t459VdE601y2vFFkK+/ZbTlXxP7yZL2dclucv/fZj/j5SrX755Ze2qvqczc3cuWzixPev+/fvv3z5clNe3RwTWO3atXNnpOcmsDlz5hgjt4eGhopEotGjR+/fvz/3wePOnTsBjBgxYty4cUIlsCXKQQS3bxeuYMYviUQSGBh4RMOkRM5u3kwXi6Xr1u37/vvvhw4dGhQUVKJECWdn59Lz55f6559Zs2Zt2LDhzJkzenTub97M6oxm3ozlrhK2JmHNiJgRhseswVvG3Bl7/fQpO3CAbdjAfvyRzZjx8TZu0CDm7MxsbZmXF6tW7eOEuK1b2a+/sq1bWUSE8nFZeHh4lSpV6tSpU65cublz5z5RtYZxgjSh7J2yXKJSMFZN33U7DVGtGlNXWoQv9z5MktXD9u2sY0ftzRowdlqX02Yrsh9kPWCMsd27WTMVk8A+ysxkQ4ey/Eufb3u77Y+kP5SvT6nrtVNDIpFUrlyZx8W0JBK2YQNjjMUxdtawU63MM33+xQvm4cEyMlhCQoKbm9tbPlZn5c4cE9j69esBzJgx486dO3Z2dqdPnw4LC3NycjLGMzCpVLpw4UJ3d3flaJHc7bt27fLy8uKrgrCeoxCTk1m5chrGrfElIiIiICBAp7ov6enp169f37Vr14IFC4YNG9asWTMvLy9HR8dSpRa0bDlz5syZ69evP336tLKwbCpjYsYMqfLWOJiVTWdb82x5J38Xma3XpJ+YGBYfz6Ki2KVL7OhRlvtbL1vGunRhjRuz8uWZl5eyzM7njO3esoV16cI++4x9+SVbtmx17PJUWerr1yzmQSbH52pyufyHH344efKk5jm2XR935VJe7yhjtblc9T8mPZ25uWmfvD6M+xTmAtUOZTJWvjy7rGapu5gYVrcu69u3wFsiMjuy/oP6SdIkxlgGYy4F6nFrc+jQoYoVK/JVkGnbNqasTP5t3tJWegnNX/2re3e2bh37+eefQ9TNpzEac0xgCoUiNDTUzc0tdxawk5PT3LlzjTeYXqFQvHz5Miv/A5ycnJyIiIh169YZfn49E1j//kzV0o7GMGjQoO+++07lridPnvz9999r166dOXNm375969Wr5+7u7u7u3rRp09GjRy9atGjXrl3Xrl3T/M3rU8YM6VmYnMm6GXB4Pt9+y8Ri5u/PGjZknTqx3PlG//zDDhxgFy+yx4/VPS1LliW733RPl6fv3s1MUjBBhU/yjAEzGQMqc+lmM2MPtbdS7eJFxm+577ZRbc+k5ynUtWyZ6qXP791j3t5syRINAx+y5FnZimwdRul80LVr1wULFmhvx0FQ0Pta/vUZU1NDg6vLjNXJ8+PZs2zuXBYQEHDOkCW09WKOCSw5OVkmk6WlpV26dGn37t0XLlxITk6WSCQp+hYHEpw+CWzjRla3LjPViOpnz555eXlFRUXdunVrz549ixYtGjlyZHBwcKlSpezt7QMDA7t37z5t2rQ1a9ZEREQ8e/ZMw5eJjAwVlRrP6DR7NL/T71hxxgrXHf077e8f437U96xcZeap7StVSJUP3nJyGO/dAQqmiJNo6Vy9y1hJXe4heHHtGqtVy0TXms3YHKOd/IaqFbfVSZGl9HzSU6bIM9gzLY19GFyWT1wc0zbubk3CmnoP6nF/zJnr/v37np6e8fGap6Jod/UqK1uWyWQsljGxwfPfpYy55a95ff78+YCAAOPdY6hjjgkMQOFK3hEREa6urkYOyVj0SWBTpjDe6+Jo9OOPP9rZ2VWpUqVr165Tp05dtWrV33//HR0dzX1hJyWZjNWowc4W6mVXs36TFsePs8DFbJeqXXcy7zR40ECvs+rgD8Z6GfsajDHG7mfdr35fyzSrGYwZPWMX8tlnKsbmGMkZxgz5Hx01StNYxADd16jTRCbjXhRSwRQbEzdelqXN0/06X3zxxUh1q9focJL3C6CsY2yAgedijDHWLv8qbkOGDB89WssabMZgRgls+/bt3bt37969O4A2bdp0z69SpUoVK1YUJFDDmVsxX2N7/Vp11Tc9vvdt2MAOq1/usMBIZWNIZcydsVeMJUgTxjzLt3jLggWchm5zJFVIh0QP0dwmW8eHKIZLSGBiMT/FD7mQMOZeeIItZ/37M3UrWT5jrATnf73z6efvZGpMds+esQYN2MaNOoX3iDEfRY6uy7+9ffvWy8uL+0xtlbKz35fM6MbyPUvW2/eMzfrwOiUlxc2ttJubwmTvk1wCJjCrAuVu7ezsXFxcXFxcACgXKc8rKChoxYoVmgvmEjPh5QVHR8TH59uYDFQApLqc5y7wejg6dlTbwMHKQb8IuSsG9APCgCNpRzIVmXl3PXqEtWt5u5CNyGZzuc0aGqQD9kDBPxsj27ABPXqgeHETXc4WaAUc1/fwDRvQs6fqXRFAG27/egxsyLMhKfIU1bsjI7FkCRo1Qq9e+OwzncLzB3JgNTT2q8jsSO5HicXi1atXd+/e/ebNmzpdLld6OuztYWWFLOAMoP7vSQfNgXMfXm/fvr1NmwYbN4pEIj5ObSnUZbZGjRqprBljuf5rd2CMsaQk5uNTcLGVJoxxn0okYaxMItuosZMmMjuyZVRL/SLk7jpjpRnLVkgLjBL8919WpgyfAwcy5Bn3s1TPmshirKTm+sXGceKE5gVA+LeW+2JduhjAmNqV1wvJN3ajgOvXmbe32qVEtOnK2DbOSznndejQIf3uwyQSVr48U05diWCMr7+WTMbKfnhdo0YNky1BXIAZ3YHlunTpUunSpQtsvHXrVmhoqJFTKuGNhwcGDMD8+fk2fgZousXI74s4JNzGp0xTmwp2FTIVmQwaGxmsDlASOCaysRXZ5t1ety7KlMH+/bxd6N/Mf0c/H61y1zagDmCqG6GPWrdGuXImvWIH4Big0Pfw2bOxbVvBjQw4CbTjfJIWLi3U7qtTB/HxaNNGv/CCgGsiWwD7U/Z3f9K9wD29Bp06ddq0aVO3bt0uX76s0xXj49G1K3x8AKAJsF3HgNVxBGIAAFevXs3MzGzbti2ArVvx7788XcDs2ajboVAotm/ffuvWLYXi49v49OnTcXFx06dPN0lshAdz5yIwEOPGoWrV91v6ATOARA4fxLeBjc6Y+wI2at8mAGAjsrlcWbe/Z/1USj853a5MN/uKBbZPm4Z9+9CnDz9Xqe9Uv1OxToW3M2AZsJSfi+jg668xZYrp+g+VygDeQDTgr9fhDRpgzRoMGpRv4y3AHSjD4fBF8YtsRDbTvY31OdMY+BoA0Nmt87+Z/z6TPKvqUFXLMR907NhRmcMOHDjQqFEjjkeVLo1ff33/2hFw1DVijaRAWFjYZ599puw9zMrCd9/hzz95vYbZUndrNnfuXAA1atSwt7f39vZu0KCBs7OzWCw+pmYpbvP3H+xCVFqxouDyUYM5TAiTMBaYxdxnqKisqJLW0eeGG/9yuptCavTLqHGcMZMWmGOMMfb8OStZUsUSUSZgyMiczEwmFrM3+ceB/Mx5CZUuj7tE50QbcH0t0hlzZizv5JgEaQLXytSMMcYOHz7MvS8xLo7duPH+9V3GPud+GQ6uMtZeKnV3d3/5YZHCjAzm6cliuFa65oE5diFu3rx53Lhxt2/f3rhxY4MGDa5cuRIdHV28ePG8N2TEIowbh2+/zbflMw69iIuAzJeYWxIOHIZoKKCoer9qhiJD3xg5+V+pJbdENiXU7I2N5e1Cr6SvbmXdKrBxKTCZtytwVaoUbt+Gra32lrwzZGSOoyM6d8bevfk2dgW+5Hb4Qf+D5ezKGXB9LVyA6sDzPFtipbFtHrW5kXmD4xly78MuXbqktfE33+Do0fevdxn2D1tYJeCcQtE0OLhUqVLKLc7OCAnhc2STWVOX2Wxtbbdt28Y+1EpXTo5btmyZyZap5t1/9g5MKe+3eDljZTROx8lkrDhj0bqcf8bLGa8khSc68+a1VNOCvO/eMbG44HAVve1L3tflcZe8W+4z5pv/O/t/QW3G9J6hcPEiW7FC56PiJfGaxm4Y09Ocpyky3ao0HDlyxMvL659/NK3znJiY72a0jsElEAtzjowMPZPvHy0ykgUH830Z9czxDszT0zMyMhKAr6+vSCS6c+cOALFYrPcoUiKsCROwZs3711bAdsBTfWNH4Eocyuly/p9K/VTStqT+8WnT/lH7m1k3AUwDjhTa6+SEr79GYiI/12rl2irEIyTvlrXAWMCen9NztXkzhH3c7AdE6HtsUBAmTvz44z1gA4ejZsXOOpdxTns7IyhvV97N2u1W1q1xz8dlK7K5HNKhQ4fNmzf36NFDw31YWBi6dUOJEgDwAngONOErYgDArVu3cO6colmzvBsDAnD6NK+XMVdqE1i3bt2WL18eFhYGoF69er/++uuLFy/Cw8NLljTihxQxnokT8fLlxx+bAL5qWp4HnsShYU1IJLpd4mT6SYX+I9c0YWDBrsH1nOoBqAP8oqrNtGkICODncm7Wbv3F/fNumQHM5OfcOggN1TT9zgQ6AEe1t1LrzRvcu/f+9Q7gCYdDBokHTfGaYsA1uUoBAlVtr2xfOZtln8k4w/E8HTp02LRpk4YcFhaGzz9///ovoCNgrUe46v3222+fODpesFLxSc5jp7r5UndrlpqaOmLEiB49ejDGbt686eTkBMDa2lrZr2iJ/uNdiIX9xtiFQhsjGfNi7OSD94s+6KThw4Zn03nvICkoi7ESjEWp2nXlCvv3X36uciPzxpV3V/g5l15OnWKBgRoq05rCY8ZKqVoRm6OjRz8uftKYsRM8RcULBWMlNC7dKWfy19LX6vfnc/ToUW9vb5V9iXkn8HVkbIcuQWqVlZVVvHjxK8+eFVf131ShghEX787LHLsQixUrFhYWtm/fPgC1atWKjY09fvz4o0ePBg4caLrsSvj2xx+IiXn/mgFL8u9VACOAeUCrKhg+XOeTz/edX0LtGAuD7EnZk/vaARgKrFPVLCYGk3kaaHE98/ryN8sB5ACBwDt+zqqDlSsxYQKErargDzgCd/Q9vHVrDBgAACnAPaCpxsYX310c/kz395y+REBjQMMAjKjsqFoPal3LvMblbJ988om6vsTcCXwZwDmgg17RqrNv375atWo1KFPGE7hfaO+8eUhO5vV65qdgAluzZk1OTk7hdm5ubu3atStfvnzulpycnNWrVxs3OsK3V68w5UMPTV/gDJCQZ+9KwBooEY6HD/U5ecdiHas4VDE8yAJuZd2a8XJG3i2jgc1A4bdpz56IiQEvT2l7ufcaVXwUgB1AWcCZh1PqplYtDBli8qsWYkgvoq0tJkwAgFNAE21PEP9M+bOzW2d9L6WPII0JrIpDlf0V9rtZu6lvkk/hHHbnDtrlmbadCAwGuJ6Om/Xr148cORLAaKBwf/+QIWiq+VuD5SuYwJ4/fx4YGDh37tx79+4xpqK2AmPs7t27c+bMCQwMfJn3oQqxBJMn4+ZNnDkDAC5AL+D3D7seAN8Dq95h4gROQ+dV2peyL1bKc9e7p43n+rLr826pBNQDdhRqaWODceOwfDkPF3W3dm/h0kJ5kzpDe3P+zZkDFxchLpxfJ+CwAYfn5GD5chwH2mtrubjU4t7uvQ24lM6aAhc0Nmjk3KiSfaUEWcJPr3+SM7nWE37yySe///57bg67fBndu3/cWw5Yo+5IvTx69OjevXsaoDmwAAAgAElEQVS9evUCMBWoo6rN/fs4J8yYGBMpWGLhxx9//Oyzz5YuXdq4cWNnZ+cGDRqUL19eLBYDSE5OfvLkybVr17KyskJCQo4ePVqpUiUhYib6c3DA4sWYNg1XrsDKCp8CXwDTAAZMBL4G/vofOnTQv3DRqfRT0ZLoqV5TeYzZz9bPz9avwMYRwHJgaKHGo0ahWjXIZFqqh3CxP2X/K4fKcKjaytAz6UYqxapV+OIL015VjWDglAGHW1nhu+9QbDzGqP/vkDLp2YyzbVz1rAult3rAXSBH262hs5XzwdSD7tbuo4urLjCWV/v27ZU5bN++fSNHBuVuZ8ADNcNG9LZx48bBgwfb2dkpf7wKNCjUJj4ekyfj9m1eL2xW1D0cS09PP3jw4LRp0zp37tygQYOGDRt26dJl+vTpBw8eTOe2iLu5oUEcSgoFGzyYPX7MGGMKxiowdp2xMMaaMJaRyUqWZA8e6H/y5znPH2bpvZyvCo+zH69PUPG/JmFM3SoaHEuHaBUaH1o+667p3zHh4axtW5Nf1WiGTGBu6ZpGgoQlhrV7pPdKqwapy5imOVz6OnbsmFjc5NixjysjX2GsHq+XkEgkPj4+D/L8rVZQNbJJoWCVK7Pz53m9diECDuJQ+71IJpN17NixS5cueTdKpdLMzEwXc+jaIPoSibBly4fXwFBgE/ApsA24dBHt26OKAY+xStsVLABtoLCksALVe5VsgWFqDnFwQHo6XF0NvXRw8VGLrJxDtDfkWaNGqFfP5FdVLxO4acDspUFdEdUOon/UNqjtWLulS0t9T2+QAQCnCV8AgDhpXOtHrQ/5H6pgX0Fzy7Zt2zs6Nh8w4JN9+74PDg4GcECXKsZcHDp0qEKFClXy/K02Bs4BBfrERCKMGYM1a4rswzC1oxDFYnF0dHSBjWfPni1cop5Yojdv3ldwHw68A+oDZYE2bfDbb4aeeW/K3mNpxwyPUGlM8TEzvNQ+hJoLqCwkPnIkdu409NK/WxcbL7I2+lpnhfj5mbr2vGYvgcEGHN66NZ4+xZs3ahvUc6rnb69f0WBDzQBacm7sa+v7jc83UTlRWlsePoyyZR137pzTp0+fM2fOADgIdNU/TBXCwsKUwzdyNQfOq2o5dCgOHYKqkXlFQcE7sB07duzY8f7p+NixYwvcbN2/f9/b29tEoRFjkssxejSCguDnjTAAwMOH8PPjYeBADssJTwr/pNgnBscIAJpr4v0L7FR1KzZ2LO7eNfTSfYGriRtuONWt46TyAblRfPUVOnZE8+Ymu6B2AQADHgJ63JkzINAW1+6jhIeKvYmyxEExg45X1HvtTB5EAdynvw/2GAwgh+U8yH5Q27G2umYrVmDCBLRr127btm19+vT538GDcY0bN+YjWqXnz59funRp9+7deTe2AH5W1djDA48ewd7EVWRMhVZk/o/y9cVff8Htw6heuRxdu+o5er6Avu59F5dazMOJgEXxiyLSNRUzGqNmZFerVh/LH+itOZAifXYo7ZChJ+IsKQlr1hjUhWskeg+mV84hK+2pekLbkbQj1RyqGRAXD9oBr3Q8JFGW2PFxR3XvzEePcPs2+vYFgHbt2u3Zs2fkn3/Wi4/ncRXvTZs29e3b19Ex36osVYFUIE5Ve09PSHVahd2CqHs4Risy/6dkZ7PlWldYMbma92s+zn6soYGMsdKMXVe1KyuLHTqk53VljHViTMJYqiw1UZqo51l0t3gxGzrUZFfTwT7GPtHrwJ8ZG8sYY6xbN2aeHyfdGdut+1GPsx/H5KhesCQtjV27lm9Lw7dv3YcNO336tD7xFSKTyUqXLn2twDUYY4z1ZGynmqN692aHD/NyfRXMsRKHyhWZSRFz/TqCg8EY7O15uGXJdTL95PRXPJShvVX1luanI9bASDU3YTk5GDJEz/K+e4F0wBYoZl3M00ZD0WM+yeVYvfr9zF9z0xr4B8jS/cAIoC0AoHJlXLyYb9eld5eMvYo3F0GA+vElavnb+5e1K/tC8uLn1z8X+C1cXfONwckEHorFO0aM6N+//2k+KuxGREQUL168nqpxPuoegwEICUFkpOEXNzs83tcSy1OnDnJyMH48/viDz9NWsK9wKt2Q6UMAIGWcej1GAruAtELb3dzQpw/WqSw5pc1SILeg7JSXU+5mGfw8jYPERHTogAaF5/KYgWJAHeC0jkdJgAtAawDATz+hf57yyPey7/V82jNHIfzQAv0SmJLYRrwrZdeu5F25W377DRs35mtjD+wHPmnadPfu3QMGDDA8hxUevpFrANBXzVE9evBWZc2sUAL7TxOJEBqKNWt4LvpQzq7cv1X+NeQMEiYpf7f8O4X2GoQlgVbAVlW7JkzA6tU69/5fAt4A3T78yMAuvruo6QCeeHvDnEuzdQBO6HjIRaAKIP7w47t3kH8oZ+Fs5byt3DYHK9OP8SyoPnBHVVkyLlysXC5Xvpx34YLff0e1/A/1rAHlRPjmzZsbnsPevHkTERExeLDqYaG+gIbRP1lZRXBGMyWw/7pmzXDqFHr04P/MHG+hVIqXxndy6+RsxakG4ZdAuqrtNWqgYkUcKbx6mEZLgUl51rxYUmrJcE+jF5l9+xZXrxr7IgYZpX7inTq5/YdKCxZgyYfq0eXsyrVyNXGFE9WcgCrAdcNOcj3z+iePP0mVp546hUaNPm6XA+PzNDM8h23evLlbt25ubmpLKh4C1HUXxMWhffuiNp7efBNYSkrKgwcPJLquSUV017Il/1XPn0ueN4pspL2dGmXsyqwrw7X7r7H6tep370br1jpc9xlwMv8nta3I1kZkcFkqbRYufD8tz2x5ArqOFyyZv0erY0coZ+gMiB7wQvKCv9AMZUgvolJtp9pNnZueiSn4lOmfQg+lDMlhjDEN/YdKN4DNanZVqIAaNbBnj5rdlslcEtiBAwd69OjRsWPHrVu3Ali8eLG3t3dgYKCrq+v8+fPlcu2VNIlZKW1XuoRNCf1uwhRQKBdf5k4CqFyCsHhx3XpHVwKfAQWKePR40uNxzmOd4tFVy5aYymf9SKMIB3SaUjAeyDtVqmlTJCbi0O3Hj3IelbIrxXNwBhgOGFj5xApWfZLnftG2YaYiM29u/kvV/OXmzZuHh4frkcPOnTtnY2PTXOMkwebAWfV7x4/HqlU6XdPcmUUC27lzZ/fu3WNjY21sbIYNGzZhwoT58+fPnTv38OHDU6ZM+eGHH5QLQxMLIoLoWMVjKqtAabU/Zf+sV7N0OiQd6AGoXPzo4EGMGsX1PLWAaYU2Frcpfj+78HJLfOrcGZ4mGu2ovxxgo/ZW770CYvJvsbJC7964/mfFf6v8a2UenzxKtYFgg0+yciWGDsW97HuNIhtFZr+/FVNXgKNZs2Z65LCwsLDh2pbpawjcV798XdeueP4c9437XjYtQQbvF1CrVq2QkBCFQsEY2759O4CFCxfm7p04cWLNmjUNvwrNAzO9yOxIPY46kXbiVNopXY/qz9gyVdvfvmXBwXpEYToTJrB374QOgoM3jLkzJuHWeCJjvxTaePjWk7A/eKq1zKuDjKUYcHhyMhOLWWwsY4xdzLj4QvKCMfaEMW/G5OqPOnfunLe398mTJ7lc4u3bt+7u7omJ2mclNmPsb/V7Hz5kGRlcLqgDc5wHZkpRUVEdOnQQiUQAOnToACAo6ONKBE2bNn382LgdOMRIGj9snCjTeSpWa9fWLV1b6nrUWGAtVEwsEovB5WuuHJih6nAlQwakaHb2LE6cQP6iCmaqBFCJ8+OiiEK3NTksZ5xV67q9HvAfmcE2AoaU79y0CR07wtcXAIKcg/xs/R7lPPoh61YXjX1czZo127Nnz8CBA0+d0j7nZNu2be3atfPkcJ+uuRexcmU4m355VqMxiwTm5+d35877hctv374N4NGjR7l7Hz165OdXcDkoYhFm+szMZtzrfQPAraxbVzP1GZAXDDD1f7o3bkDzg9QDwEVA3ViWOg/qxElVlukx1MqVmDCB/0E0RsKxptQLIDH/AzAAMiab5TPL/XWdE7qOxze+xoaN42jQAN9/n2+Lnchuuzw9IFvL5OGmTZvu2bNn0KBBWnPYunXrNA/fyNUC0LyG5YoV2L6dy5ksgSD3fQUsXrzY2tp6zJgxc+bM8fLyatiwoa+v7/HjxxMSEsLDw4sVKzZ79mzDr0JdiBah55OemxI36XfsUsYGqNnVuTP7/XdNxzbXWFJo9LPRNzJv6BeVBi9fMg8PlprK+4mN5QJjdTg0+42xfmp2XbzIqlfnMSJ+nGWsMd/nrMEUGtdB++j8+fM+Pj4a+hKvXr3q7++vfMiiVSpj7hobnDrFOnXiciauBOxCNIsEJpVK586dW7JkyeLFi0+ZMkUqlSrXyVbq3LlzBh+9tpTABPF32t85ihyd2mfJ9XxM8pYxN8Zeq9p14ACrX59JpaoPvMpYOcZk+l3VADt3slmzTH5VA8gY82AsTluzQYyty79l+Zvlx1OPM8YUCnbwoJGi0987xlwYy9br2K++Yi9eqN17OPXw+OfjZQotby7NOWz06NHfffcd95DiuTflw389geXK/YqhUChOnz69efPma9eucfzeoTzqrXqUwATRKqrV4VSjlREtZBRjKm/f5HLWpw+rV4/dv69i7yBVIw4KiJNo/dz+TxjJ2CmNDRSMeTMWnWeLnMl9b/s+zzHLar4f1Gfsou5HvX7NSpZUsQh42ocXGfKMYTHD7mXd03qqCxcuqMxhaWlp7u7uL1++1D06TeL4eztTAuNHRESEWD2RSLR48WKhY/zPuZBxgftYxPmx819JXhkvmK1b2Z9/Ftz4gjFPxrR243nc8kiXp/MYTGwsSzFk6Ju5ustYxUIb895VZ2ezzz83ZUScqBw2yUVSUsEtUsa8GSvQa5Qhz0iVaXmXqcxhGzZs6NKli04h3WNsjMYGMhnz9OQth/3XRyHypU2bNhruwJydnT08VC2rR4ypiXOTAHtOSwZmKbJ+ffOrm7XaMjkcydTXTR80CN26AcD8+fgwbAgrgSFAMW2nDfEISZWnGhhbXgMG4Jzmp+3mSmXhrlzlgLxDBFLlqW9kb/KWPbSzw59/8rDiKL8aA1d0P0oqReEPlQuAH1BgrN/h1MNBkUHJcpWTFd9r0qRJ4TEdWqtvFFYc2AloGLRkbY1evbBhg05nNUdFKoER87Q7eXeMJEZrM0crx8hqkRzrH2qwB/hMW5uqVbFgwfvXLnlqz2vwq9+vpWz5rB8RHIxP+Fm22tS6A5fV73UG6uf5cezzsTuTd+ZtIBKhb1/s2gWz0gOYo+Mh69ZhxgwV21XOX+4r7jvPd56caSkq1KRJk7179w4aNOjkyZMA7t69++zZs86dO+sUmBfg82E1UXXGjsX69VqG5po/oxd542L6dO1rR4WGhpogEmIM17OuP8h+MNd3rtaWJWxKGH65DsBYIB7wUd+mf//3q3vcuIEetihdndOZo3KiON5NcvHdd3ydydQaAYcBlZUupcA0YHmeLdUdq4/wHFGgWb9+GDrUvP4FnIFAXdozhqVLsXatil0HgW2qDukn7gfgbtbdTEVmQ+eG6s4cFBS0d+/eXr16bd269eDBg0OHDrWx0fmDWjkbrLb6BnXrwtsbR49Cx+RoXswigYlEog0bNiQnJ3t4eIjFYpVtKIFZri9KfKG18y1eGj8oZtDJSicNv5wb0Af4DZitraUC2GyHnW0xbhxmz4atxrpXmYrMBg8bJNVMMry2b2oqtm7F+PHaW5qnDsCXwLeqdl0CCqw987XP14WbNWgAxvDyJcxqhufvQAWgGbfGx4/D3h4tWhTcHglkAHXVH5iuSO/6pOvNqjf9bNX+8kFBQTt27Bg4cGBOTs4//+gzRa0F8CcwSWOblSvhIPyCNgYxiy7EJUuWXL582draevbs2Y/VEDpGoj8fW5/KDpU1t7meeb2mY02+rjgWWA8otDU7CFyphuvXcfkyGjbUslqSk5XT2OJjJYyH5RE2bMClS4afRjBNgChAZYWVvEuoXH53eW2iqjsUQCTCw4fmlb0AxAG7OTdesUL1IuYHgS7qZ8QDCHIOehD4QGt3dHBw8I4dO0JCQgIC9Lnpbw6cU19ZRqlBA9Sooce5zYhZJDAAlSpVatRI/9U3iJkLTwnPu3BtYZ3cOi3zW8bX5eoBxYHj2potBSYDvr44dAgTJuCvv7S0X1xqsZOVk4GxMYbVqzFhgoGnEZIt0ErNP2/eBDYvbp6HtaZhU7quNWpsQQD37xXt22PQIBXblQlMsxI2JUQQbX27dUXCCg3NWrRo8euvv3KOKJ+ygAMQpa3Z1auw6Erp5pLAACxcuFBZCJEUPXYiu+3JasvXyJgsSZbE7xXHAJrXE7sOxAC5E+ZHjsRXXwHA77+rHSAnYZKzGRrqzHFy/DjEYlj6tzWVNaVSgTt5uuD2VdjXV6xujXsAaNUKN3VbNse46gP31A9hLWDSJNUVLAcC7bidIdg1eFfyrgRZAucAddMXeK2tjacn5s0z0vVNwYwSWIsWLapX5/YwnViarm5dN5RRO2h3ecLyBfEL1O3VzwDgnMY/4KXA56oeAtvYoH9/KFT1P76Rvekf3V/FDl3s2oUvvjDwHMLrABwv1El7GmgMOAAMLF4a72ilpUTx4MF4/txoIerOCajKYXXmzMyClQ/zGgtwfK7kZ+t3LuBcCZsSmYpMGZNxDpOrJUChJ3QFVahgXt8hdGVGCYwUYSKIPGzU9iYpmCLEI4TfKzoDpwDVI4KAWOAIoHJyzaBBuHcPVlZISEBMTL5dfrZ+X3qrW/yZq//9D4MHG3gO4ZVRtXBabv/hqoRVX7zUnqXHjXs/Lc98cFmdeedOtY9Lw4C3ul90+Zvl3Z500zrCXg9c5i2W4GHkr2AogRETOZ9xftzzcSp3TfeeXtdJw7gtPVUH7NTs+h8wGNA8ZfrhQzRujNDQfHNlpnhxmTOmVnq6xY/7yjWj0MfHXUD5DMDByoHLrAkA0dFI1jS119S4PAbr3h3r16vYLgFmAHoM8pnhPaNdsXY5LEf3Q7WoB7zk0KxdO7ObV84RJTBiIgEOAf9m/lt4+82sm29lenxt5eRb4G9V2+OBydqObd4cly/jyBE0a4YHHxaxSpIlHU3jsqKICllZCAhAKp/VPIQkA37Lv+UUoBxIOsJzRDWHalxOsnXrxxnl5qApoHW9Mg8PuLur2H4WCNA4+1Ada5H1FK8pTlZON7NuPpfw2alaR9vSKkotWmDVKh4vazqUwIiJeNl4XamioljP0JihD7KNtchhBUDl/MENQHkOh5cti4gIDByIOR+KNLySvpryUs+bsLg4DBkCN0NLZZkLGTAJSPnwoxRgwBvZm2/jVM4QU61HD4SHg2ke7m1CZQAVX7LyGD4cFy6o3qWyAIdOrmdeD4oM4vFWTPPilrlGjcKuXUjXXCLMLFECIyaVLi/4VzLcc3iQS5DKxobrC9wAnubZogB0Wk9RJMKkSQgPB4ArV2D3ovpXPl/pF0yFCli8WL9DzZED0ASI+PDjWOAQsCphlU4DSqtXh5MTLmuoTGVyGrp4Y2Jw4ABqq6lv8ZfBCWy45/DTAaftRfaGneaj5tzuwHx80LYttm7l67KmQwmMmM5r6etaD2qx/NMrv/D6wspo70MH4FMg70SXw8A3+p4tJgbBza3a5nyqx7HR0bh2Td8Lm6vcwfQMOALUAKZ5TVvit0Snk/Trh93c5w8b3w5A3TeUVaswdCicVVXrvAfIgVoGX72SfSUAqxNWH0s7ZvDJUBN4pWbKeQGzZmmpRGOeKIER0/G29a7jVCdL8XGmTejrUIX2ihkGmQBsAHI7ZZYAU/U9Vb9+iIlBhsejPQkHdB168NVX0KskkFnrDBwCGHAHKAaI5Wmu1q663kCMHYv27Y0UoD7KqHlumpmJ335TOwP9T6AHfzHUd64/7eU0w8clWgNNuPUi1q6NEQUrVloASmDEpPZU2JNbzOJe9r3ViauNd/ulVAGoDhwEANwCog37oHF0xCvJqx8uhVetilWruD68iY/HsWP4VJ87N7MWANgDd4GTQA1ZYu0HGorHquXjY15V+esAD1RNZ377FpMmoUIF1UddADrxF0MDpwZ3A+9ai6wNP1VTQM0zu4LS0y2vF5ESGDG1q5lXlS/K2ZU77H/YBFccCyhL8i0FJgAG9pQ0c2m2stWYixexezfatMHTp9oPCQtDnz6qh65ZOmUvYgRQRfpyYamF+p3k/n38/ju/cenPEQhUNZTDz+/jWJ7CdgPGuI0cHDN4R/IOQ87QR2NN+rwYw+efI5FLh6PZoARGTK3bk24vpS8BOFs5ay3yy4seQDAQDxwERht8NhuRTVOXphUq4ORJ9OmDnj21H7JpkwXXntesA3ACOA9McazdX6xnmRKRyLwKGjXOP51ZKsWnn2qZr2ZoiUw1vvb5+kIGxzso1QIAjnf+xYrh0CEU07q0qzmhBEZM7Tvf7xRMcTfr7lexeg7n05Ut8A2wChiovjaHTs5lnNuXsk8kwvjxuHULAOLjNVVFiohQO3TN0nUFQsCcpK9cDKjTX7UqIiK0NzOZAvU49u+HRKLpBvpTboP99BDoELiitKaCv1xcBZ5xaxkUBDt1k//NEiUwYmqjio8qY1dmX8o+VytXU173PMBXDcJkefKmpE15t9y6hXr1cOOG6vblyvF0YfNjDbx9d9U+YY2tyKCuWX9/viLiQeP89Tj69sXOnRCpWSIlB/gLqGrMeJJkSQ0fNtR7vv/h/ANxixJKYEQAf6X+9YXXFzN9ZpryoieBSjydqmOxjstK51v85ZNPcPMmqlYFgKw8AwDu3UObNjxd1VyNcKx2xWuSSNMaWNpJpejcWXUNZdMrD9QHJMCtW/jtNy2NzwDVgeLGjMfTxrOHe48zGWf0O7yZ0W4QBUcJjAhgfeL64+nHjT3+0HhsRbbl7QqW8ihVCg4OSEiAnx9Wrnw/QPHKFbOrV8ujP1P/PJl+0tnKuYSNoRVhbW3x+jXOn+clLh4cANKT0KsXPDStaAYAfwLdjR/PVz5f9XTn8LhVlSbAdSCb34DMg6V+ghCL9l3J72o5Gj7pU0jbk7fvTdlbeHuJErh2Dfv2oWlTREVh2LCisHiKSrHS2EkvJvna+vJ1woEDsW0bXyczVI4UnYZh6FB015adDvM6gF6zlQkr9Vh4yBGoBhS5afQAJTAiiFqOtZQVByyXnMn/SlW9hHP58jh+HL16ITi46JTuLaykbcln1Z9VdeDt6U+vXti/HzL+F8bSx+cbEbkE32ir2nIXsAICTRISgAHiAWczzkp0Hy/DsaaUxaEERog+BooH/uL3i7q91taYPh1Pnxad0r15zXw1c9mbZdrb6ah8eTRrhthY3k+sjzY+kAQgS9sH5H6T9B/mKm5T/FjFY3YinUcKBgOnjRCP4CiBEaIPa5G1u7WWmckql5y3dKny1FfSV0M9hxrj5OHhKFPGGCfWQUYGFAr0747qIqgZVfqRD+dZVvzq9qRbVE4U9/ZNgCuA2RT95w0lMEL09G3ctwdSDwgdhelkK7ITZYlu1m5bym0RW/MyoU6Fx4+NdGJO0tNRr977qpVcVmceCdQxflSF9RX33Zy0mXt7MbAfho0TNUuUwAjRU3Gb4v+8K3IFetWQM3mHxx3WJ6paiphXI0fib5XFdE0iJQUTJqBpU6DQbLDC7gMxpghKhU89Pl1QUrfRHMFGCkVQlMAI0dOEEhMWltSz+p/FEYlE40qMM8HUvalThVzfsnRpTJr0/rXWO7BvONyiGdWld5fGPB/DuHUNPgeK3puVEhghRJOnOU//Sv3LClb9xf1NMHWvWzdhVlc5fLjgdcsB1kC0mvaZwAkTDqBXqaZjzeeS53ey7nBpbAcsLXKPwSiBEaK/Ec9GnEjXaYVnC8PA2jxqkyJPMeVFb9xAtLq8YRwxMRg2DF9/XXD71+oXaD4N1AKEHWTqZOV0pOKRmo41uTT2AYoBOgz8sASUwAjRXzXHao9zBB11YGQiiK5WuRriEWLKi545gwU6z9bVX3Y2+vTB7NkILvSYaCygbp62aQpwcDQvbt7p9NNam7UscoPpKYERor+pXlPHFB8jdBRGcSzt2JzYOQCK2xi1zp8KvXvjzz8hlZrocqGhqFwZkyer2MUAFdVWAGbaAhxatXFts/C19idc3Be3tBSUwAgxSLo8XegQjOKn1z91chPmI7p0aQQE4ISpumZnzFC7nKYEGKJqdeYbgIORK9DrpIVLi2MVj2ltVvTqcVACI8QgvZ72KmKD6aVMCuBEpRNBzkFCxdC3L/bsMfpVrl/HlSuwt4e1teoG9kA1VaszHwe6GDk2PaTKU0c9H5WtUFu2tyIgAdSvW2d5KIERYpBObp3S5GlCR8GbBfEL+kX3EzoKjB6NqVONewmJBD17IiNDS7PGqsbKhwCFBnwIr5h1sSxF1tbkrRratARumyoeE7AROgDVZDJZdHS0i4uLj4+PSN1CcoSYgSleU4QOgU/OVs5ry6wVOgo4Ob1fXM147Ozw998ICNDSLAjYVWijn3FCMpAIoi3ltmhu85vZfujrxSzuwORy+aJFi/r06QNAJpPNmzevWLFiAQEBJUuWLFOmzNatmr5QECK4l9KXQodgKAmTnEw/CWCy12QvGy+hwwGA69cxf76xTh4RAUB79oKqO7DdwBpjxMSffSn7tr5V/bFpZyYf+jwxi99lwYIFs2fPLl++PIAffvjhxx9/HDt27IEDB/bs2RMcHBwSErJ3r8qhQISYhc6PO9/Lvid0FAYZEjNky1stX95NzNcX641TuOqPP/DFF1xXfy4HiPJPZ94k9PQvrQIdAr989WWWovDoEwBoBLw2cUDGw8xA6dKlx48fr3zt6+s7b968vHs/++yz+vXrG34VFxeX9evXG34eQgoIjQ+9kXlD6CgMcivzlkwhEzqKgjIz+T/n9cD25jEAABT3SURBVOvM25s9fKjDIT0Z2/HhdQZjroy95T8u0+nK2G5eT1izZs1bt27xekquzOIOLCMjo169egDkcnlSUlKjRo3y7m3Tps3Dhw8FCo0Q7aZ5T6vtWFvoKPQRJ42bFzcPQE3HmtYiNUPxhMP7ejRJSejdG2vWoHJlHY5aCLT48PoEUB8wVil+vs2Onf1G9qbAxqI0mN4sEljTpk337t0rl8utra0bNWp0+vTpvHuPHz8eGGiyJU8J0cfVzKtCh6CPqS+nulq5Ch2FWnI5KlZEluqeMH3cvo0JE9Cjh25HVc5Tj2M/oOPRQrIT2X316qsCG4OBM4JEYwRmMSBl4cKFLVu2bN269ZgxY8aOHTtq1CiZTNaxY8fs7Oxt27Zt3759yxbz6p0npIAeT3pcqnyptF1poQPRzfby24UOQRNra1SsiIMH0Y+ngf2tWqFVK30O/Br4BnAAjgIFE4IZ+9b328Ib6wDRQKrZP8njwizuwKpXr37hwoXKlSuPHTt28ODBmZmZv/zyS7t27bp27Xrv3r2tW7cOHjxY6BgJ0eQbn29sRGbxdZCLiPSIJpFNhI6Ck969wcsQrr178ZUBmec0cBm4AngCFXkIx6SicqKWvlma+6Mt0Kio1JQylz+5ypUrr1u3bsWKFS9fvoyPj09JSSlRooSvr6+fnx/3eWCMsZQUk5bNJkRpXIlxQoegg9tZt0P9QoWOgpOePfHll8jMhJOTQef54w/MmaP/4Q2By0ANYJRBUQijhE2J/yX8r7lL8/pO9ZVblEURzaeWo97MJYEp2dvb+/v7+/v763f46dOne/furW7vu3fv3r59q29ohGgRnhLex72P0FFoEZkdWdmh8lQvI1e54E/x4hgzBomJKFPGoPPs22fQ4UHANsDoq3kah9hafLfqXXsr+9wtnYGDAgbEH7PoQuRLq1at3qrn7Ozs4eEhdIykaJIz+fBnw828ptS6xHVdn3TluICv+Vi0SP/sxRgmT8arV4bGoJzO/MzQ0wjGwcpBBNHmpM0Psx8CqA+oeDhmgYpUAiNEKNYi61WlV5nhSPS8Ah0CTwecFsHyarOdO6fn6ioLF+LSJZQoYWgAZQAbYJGhpxGYjchmYPRA5es4oAgso2AWXYjTp0/X2iY01DK67Ml/lolXfeROxmSrElaNLzG+mUszoWPR06JFGDpU57GIERFYuRJXrsDOjocY+lj+Q6PBHoN7ufdSvl4N2AIGPBY0C2aRwEQi0YYNG5KTkz08PMRi1XMEKYERM5fDcnYm7xziMUToQAr6If6Ha5nXJnpNFDoQ/ekx/iIhAUOHYvt2+PFUefdXfk4jMEcrx2xF9sqElY28p/0CESUwHixZsmT06NFVq1adPXs2l7sxQsxQjiJnwvMJA8UDbUW2QseSz2yf2TawsbLk5wWNG+t8iKMjdu1C06ZGiMbC2VnZHUg9YG/jdcVziATg4+5UMObynq5UqVKBClKEWJZi1sW2lt9qPrPB4qXx7R+3T5Wn2ovszfzhHBenTuHaNa6No6Lg4kLZSzUrWB2teHS4uHdFVWt1WhZzSWAAFi5c2KFDB6GjIER/3dy6mc8QiYOpB9u4tnGzLgL1FgAgNhYLF3JqGRaG0aONHI2Fc7JycrZyriJ784ckRuhYDGJGCaxFixbVq1cXOgpC9Pda+vrXN8I/K1GO5h9VfNRMbwuduaRCt244dQrpHEbOeXtj0yajx1ME1JCnbMiOMvO5H5qZUQIjxNLJIFv0WuCx1jcyb1S+XzlWGitsGLxzdUVwMP76S1ObrCzIZOjaFeXKmSgqizbMPsCpWFsXa/Ot5qwVJTBCeFPKttSRikeEjSFTkbml3JaStiWFDcMYBgzAQfUFJKRStG+Pw4dNGJCF8wV+gpUVRL8l/ZatyBY6HH2YywNnQooGoRYGm/RiUlRO1NGKR5u6FNmhC/36oX17tXunToW3N7p2NWFAlk9Z2vHiu4vXM6+vKL1C4Gh0RwmMED7dzbp7NO3odG8TzQZ5Lnnua+trK7Jt4tJknu8801xUKCIR1EwTxfr1uHgR58+Dc+lvAgApwN/A/0r/77X0tdCx6IO6EAnhk5XIalPSJtNc65c3vzSKbBQjiQEwQDzA08bTNNcV0JUrKupxKBT48Uds28b/Cs5F3ltgMmAnsittVzpRlngs7ZjQEemGEhghfAp0CDxY0biVvi9kXIhIjwAw0nPkk2pPKtlXMurlzEpgIKKiCm60skJ0NCpXFiIgC1cBsAEeAQCyWfbwZ8NvZ90WOCZdUAIjhGfl7cob7+QxkpiJLyZKFBIAxayLOVkZtkyWpXFxwc2bH3+Uy7FggZ51folSM+AsAMDP1u985fNGfffyjhIYITw7nnZ8yesl/J7zUOqhTo87yZm8nF25G1VvdHKz9LqyBnn94XnNunU4cwY29CjfAM2Bcx9el7cr72pRo+opgRHCM1dr16NpR3k5lYzJFFAAiMyJnOQ1qQhUhDIcY6hWDcq1aYcMwYEDNHDDIC3yJDCLQwmMEJ4FOQcd8j9k+Hkuvbvkf89/f8p+AFO9pnYoRoXWAEAkQqtWWLYMly/D2RkODkIHZOGqAhnAC6HD0A8lMEL452Cl/8dqujz9yrsrAErblf7T/8/cBZxIrn798P33ePRI6DiKBBEQZLFVfSmBEcK/DUkblr5ZqseBciYPvB+4M3kngFK2pYSaFm3munRBeDhCzHQBUcuzDmgndAz6oQRGCP/K2pW9l3WPe/sEWcK8uHmvpa+tRdaPqj362e9n48VWBDg6ondvoYMoQrwAZ6Fj0A8lMEL419a1bVjZMO7tt77dmipPVQ4AM6T7kRD9DAVShI5BDzT+lBCjkDGZtchaw/Jgb2VvJ76YWMepzgzvGZO9JpsyNkIKiAPOAt2EDkNXdAdGiFF8H//9qoRVKnclyZIASJgk2DV4fInxpo2LEBWaW+ZgekpghBhFQ6eGyfLkwts/jfm0WVQzAD62PmOKj3G2stCnD6RIsdDZYNSFSIhRdHbr3Nmts/I1A4tIi6jsULmMXZn5vvPL2JURNjZCCmgM3APSAUuqw0F3YIQYT4IsQcZkALa93TYrdla6Ih2Av72/rchW6NAIycceqA1cFjoMXVECI8RYvor9asrLKQAGewz+t8q/1RyqCR0RIWpZYi8idSESYiyTvSZnKjKFjoIQTtoCO4SOQVeUwAgxFrrlIhakFdBK6Bh0RV2IhBBCAEAGMKFj0AklMEIIIQDwI6BPBU/hUAIjhBACALWAE0LHoBNKYIQQQgCgKXABkAsdBneUwAghhABAccAXeCh0GNxRAiOEEPLebqCC0DFwZ74JTCqV7t+/PzExUehACCHkv6I64Ch0DNyZbwJ79+5dz5497969K3QghBBCzJFZTGQOUbU2uEQiAbBgwYKwsDAAW7ZsMXVYhBBCzJhZJLC4uLiTJ0+6uLjUqlUrd6NMJgMQHx+flZUlXGiEEELMlFkksL///nvt2rVffvmlv7//0qVLPTw8AKSkpIjF4hUrVrRs2VLoAAkhhJgds3gGZmVlNW7cuNu3b7948aJatWoHDhwQOiJCCCHmziwSmFL58uUjIiLmzJkzaNCgTz/9NCkpSeiICCGEmC8zSmAArKysxo8ff+fOnVevXjVo0EDocAghhJgvs3gGVoDyVmzTpk33798vXbo09wMZY8+ePVMoFOr28hQgIYQQ4ZljAgNgZWU1fPhwXY86c+bMiBEj1O3Nzs4+dOiQmfdMxsbGXr9+3dXVVehAjCszM1OhULi4uAgdiHFlZGRYWVk5OTkJHYhxpaWl2dnZOTg4CB2IcaWkpDg5OdnZ2QkdiHGlpqa2atVKp4+gN2/eGC8ezUT/nfuSzZs3P3jwQOgotLh48WJkZGSFChZUzEUfsbGxMpmsTJkyQgdiXM+fP7e2ti5VqpTQgRjX06dPXVxcvLy8hA7EuKKiojw9PT09PYUOxLju37/fpk2bgIAA7oeIRKLZs2cXK1bMeFGpvfR/J4FZhLCwsMuXL69fv17oQIzrp59+SkpKWrx4sdCBGNfs2bPd3NxmzZoldCDGNWbMmHr16o0ePVroQIyrb9++/fv379Onj9CBGFfr1q3nzJnTqpVlLM5sFl2I06dP19omNDTUBJEQQgixFGaRwEQi0YYNG5KTkz08PMRisco2lMAIIYTkZRYJbMmSJaNHj65aters2bO53I0RQggh5jIPrFKlSo0aNRI6CkIIIRbDLO7AlBYuXKisgkgIIYRoZUYJrEWLFkKHQAghxGKYSxciIYQQohNKYObFxsbGxsaMbouNhH7NooR+zaLEsn5NmshsXiQSSU5OTpEvJZWdnS2Xy52dnYUOxLjevXtnbW1d5Gsspaen29vb/xdqLDk7O1vQh7t+3r59KxaLRSKR0IFwQgmMEEKIRaIuREIIIRaJEhghhBCLRAmMEEKIRaIERgghxCJRAiOEEGKRKIERQgixSJTACCGEWCRKYIQQQiwSJTBCCCEWiRIYIYQQi0QJjBBCiEWiBGYu5HL5L7/8EhgY6OzsXKNGjZUrV8rlcqGDMiKFQtGmTZuQkBChAzGKu3fvduvWzdPTs2zZst9//71CoRA6Iv7JZLLQ0NDKlSs7OzvXrVt3165dQkfEvxkzZkyfPr3AxvDw8MaNG7u7u7dp0+batWuCBMavwr+mpXwcUQIzF0uWLJk+fXq7du3CwsKaN28+adKkBQsWCB2UEa1du/bkyZNCR2EUkZGRrVq1ksvlP/30U+fOnefOnbtkyRKhg+LfDz/8MGvWrO7du69duzYwMLB///5//fWX0EHx6fHjxxs3biyw8dChQ/379/f39w8NDZVKpW3btn38+LEg4fFF5a9pMR9HjJgBhUIhFotHjRqVu+Xzzz93dHSUSqUCRmU8T58+dXFxcXFxGTx4sNCx8G/UqFEtWrSQyWTKH6dNm9a7d29hQzKGkiVLjhkzRvlaoVDUr1+/R48ewobElzNnzjRr1ky5csq0adPy7mrVqlXr1q0VCgVjLC0tzdfXd+bMmQKFaSh1v6YFfRzRHZhZiI2NTU5O7ty5c+6WFi1aZGVlvXjxQsCojEShUIwYMaJnz561atUSOhb+5eTk7NixY8yYMdbW1spel9DQ0PDwcKHj4hljTCKReHl5KX8UiUQ+Pj7Z2dnCRsUXDw+P7t27L1y40MPDI+/2pKSkU6dODRgwQLlclqura9euXffs2SNQmIZS92ta0McRJTCz4Onp+eDBg/bt2+duuXDhgp2dnbe3t4BRGcmaNWsePHiwbNkyoQMxilevXqWnpwNo0aKFk5OTn5/ft99+K5PJhI6LZyKRKCQkZN26defOnUtNTd25c+exY8cGDx4sdFz8qF69+vTp06dPny4Wi/Nuf/XqFYBq1arlbgkMDHzx4gWzzFUV1f2aFvRxVMRXF7UUDg4OVapUyf1x06ZNK1asmDhxopOTk4BRGUN0dPSXX365devWAl/6ioy4uDgAo0aNGj9+/KxZsy5fvvzDDz8oFIpvv/1W6NB4tmTJkosXL7Zo0UL54/jx44vqkJxcr1+/BpD3497DwyMnJyc9Pb1YsWLCxcUzC/o4ogRmXl69ejV58uTw8PBBgwb99NNPQofDM2XnYY8ePbp37y50LMaSkpICYMyYMcqBG506dUpLSwsNDZ0zZ05RWo2eMTZgwIDnz5+vXbs2ICDg4sWL33//fZkyZWbOnCl0aEan7D9UUt57SaVS4cIxIvP/OCo6f1FFwO7du0ePHu3h4bF3796ePXsKHQ7/Nm3adPPmzfXr1ys/5WUymUQiSUlJcXZ2trW1FTo6fpQoUQJAp06dcre0bt162bJl0dHRlSpVEi4unp07d27Pnj3Hjh1TdjS1bNmSMTZ37tyxY8e6ubkJHZ2xKJ/5JScn525JSUmxs7Mrkt0JFvFxRM/AzEV4eHi/fv169ep17949s327GOj+/fvJyckVK1YUi8Visfjy5cu7d+8Wi8WHDh0SOjTe+Pr6Asg7nEH59dzFxUWwmIwgJiYGQN26dXO31K1bVyKRxMbGChaT8fn5+QGIjIzM3RIVFeXn55f3nqxosJSPI0pgZkEikUyYMGHEiBFhYWEODg5Ch2Ms48aNO5VH9erV27Zte+rUqWbNmgkdGm/8/Pxq1qy5bdu23C379u3z8/Pz8fERMCreBQYGAjh79mzulrNnz9rZ2fn7+wsXlNF5enq2bNkyd9hhTk7OoUOHevfuLWxUvLOgjyPqQjQL58+ff/PmjZ2d3c8//5x3+7hx45ydnYWKinf+/v55P+Dc3Ny8vb1btmwpXET8E4lEM2fOHDx4sK2tbfv27U+ePLlly5YtW7YUsS/p9erV69ix47Bhwx48eFCxYsULFy6sWrXq66+/trOzEzo045o+fXrXrl2nTZvWunXrsLCw5OTkMWPGCB0Uzyzo44gSmFl48uQJgNWrVxfYHhISYm7vGKLVoEGDFArF8uXL9+7dGxAQsHv37j59+ggdFM9EItGuXbsWLFiwefPmly9f+vv7L1++vOh9lBfWuXPnHTt2LFmyJCwsrF69eidOnCh6N50W9HEkstAZDIQQQv7j6BkYIYQQi0QJjBBCiEWiBEYIIcQiUQIjhBBikSiBEUIIsUiUwAghhFgkSmCEEEIsEiUwQgghFokSGCGEEItECYwQQohFogRGCCHEIlECI4QQYpEogRFCCLFIlMAIIYRYJEpghBBCLBIlMEIIIRaJEhghhBCLRAmMEEKIRaIERgghxCJRAiOEEGKRKIERQgixSJTACCGEWCRKYIQQQiwSJTBCCCEWiRIYIYQQi0QJjBBCiEWiBEYIIcQiUQIjhBBikSiBEUIIsUiUwAghhFgkSmCEEEIsEiUwQgghFokSGCGEEItECYwQQohFogRGCCHEIlECI4QQYpEogRFCCLFIlMAIIYRYJEpghBBCLBIlMEIIIRaJEhghhBCLRAmMEEKIRaIERgghxCJRAiOEEGKRKIERQgixSJTACCGEWCRKYIQQQiwSJTBCCCEWiRIYIYQQi0QJjBBCiEWiBEYIIcQiUQIjhBBikSiBEUIIsUiUwAghhFgkSmCEEEIsEiUwQgghFokSGCGEEItECYwQQohFogRGCCHEIlECI4QQYpEogRFCCLFIlMAIIYRYpP8D1aF7RyhPMugAAAAASUVORK5CYII=" alt /><!-- --></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## media zonal 
+<span class="kw">boxplot</span>(atemp[<span class="dv">1</span>, , ])</code></pre></div>
+<p><img src="data:image/png;base64,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" alt /><!-- --></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para 2a faixa de longitude (-44), todas longitudes e tempos </span>
+atemp[ , <span class="dv">2</span>, ]</code></pre></div>
+<pre><code>     [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
+-19 19.53 21.83 21.29 19.61 19.74 22.74 26.68 23.12 19.39 20.73 19.79
+-20 19.81 19.16 23.24 14.89 20.91 19.90 20.73 19.25 17.53 15.97 17.80
+-21 21.18 18.66 22.59 19.17 16.01 20.89 18.42 21.20 15.99 16.88 19.36
+-22 24.44 18.82 24.51 18.55 25.97 23.46 19.51 15.85 21.01 21.55 22.80
+    [,12]
+-19 23.35
+-20 19.07
+-21 20.34
+-22 17.10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## média meridional
+<span class="kw">colMeans</span>(atemp[ , <span class="dv">2</span>, ])</code></pre></div>
+<pre><code> [1] 21.2400 19.6175 22.9075 18.0550 20.6575 21.7475 21.3350 19.8550
+ [9] 18.4800 18.7825 19.9375 19.9650</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subdominio
+atemp[<span class="dv">3</span>:<span class="dv">4</span>, <span class="dv">2</span>:<span class="dv">3</span>, ]</code></pre></div>
+<pre><code>, , 1
+
+      -44   -43
+-21 21.18 21.14
+-22 24.44 24.54
+
+, , 2
+
+      -44   -43
+-21 18.66 18.89
+-22 18.82 16.70
+
+, , 3
+
+      -44   -43
+-21 22.59 19.82
+-22 24.51 20.87
+
+, , 4
+
+      -44   -43
+-21 19.17 18.35
+-22 18.55 21.26
+
+, , 5
+
+      -44   -43
+-21 16.01 24.06
+-22 25.97 17.95
+
+, , 6
+
+      -44   -43
+-21 20.89 16.71
+-22 23.46 19.72
+
+, , 7
+
+      -44   -43
+-21 18.42 23.65
+-22 19.51 19.54
+
+, , 8
+
+      -44   -43
+-21 21.20 22.24
+-22 15.85 15.20
+
+, , 9
+
+      -44   -43
+-21 15.99 25.06
+-22 21.01 19.89
+
+, , 10
+
+      -44   -43
+-21 16.88 20.31
+-22 21.55 20.34
+
+, , 11
+
+      -44   -43
+-21 19.36 16.48
+-22 22.80 19.09
+
+, , 12
+
+      -44   -43
+-21 20.34 22.93
+-22 17.10 19.59</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## sem a primeira linha
+## sem a última coluna
+## sem o primeiro e ultimo mes
+atemp[ -<span class="dv">1</span>, -<span class="dv">5</span>, -<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">12</span>)]</code></pre></div>
+<pre><code>, , 1
+
+      -45   -44   -43   -42
+-20 23.44 19.16 19.34 21.88
+-21 19.64 18.66 18.89 14.95
+-22 15.88 18.82 16.70 18.54
+
+, , 2
+
+      -45   -44   -43   -42
+-20 24.32 23.24 20.34 19.87
+-21 21.97 22.59 19.82 21.79
+-22 19.65 24.51 20.87 21.94
+
+, , 3
+
+      -45   -44   -43   -42
+-20 19.83 14.89 18.64 18.05
+-21 16.78 19.17 18.35 21.57
+-22 16.02 18.55 21.26 17.86
+
+, , 4
+
+      -45   -44   -43   -42
+-20 18.45 20.91 24.11 20.06
+-21 20.38 16.01 24.06 20.04
+-22 19.37 25.97 17.95 21.24
+
+, , 5
+
+      -45   -44   -43   -42
+-20 23.04 19.90 19.71 23.89
+-21 19.16 20.89 16.71 12.42
+-22 20.71 23.46 19.72 17.01
+
+, , 6
+
+      -45   -44   -43   -42
+-20 18.67 20.73 20.60 17.52
+-21 24.12 18.42 23.65 21.15
+-22 21.92 19.51 19.54 21.76
+
+, , 7
+
+      -45   -44   -43   -42
+-20 17.20 19.25 18.59 18.19
+-21 22.08 21.20 22.24 20.14
+-22 19.12 15.85 15.20 17.98
+
+, , 8
+
+      -45   -44   -43   -42
+-20 20.42 17.53 15.18 22.52
+-21 19.87 15.99 25.06 20.95
+-22 20.94 21.01 19.89 22.72
+
+, , 9
+
+      -45   -44   -43   -42
+-20 20.77 15.97 19.53 19.33
+-21 18.81 16.88 20.31 22.75
+-22 19.74 21.55 20.34 24.29
+
+, , 10
+
+      -45   -44   -43   -42
+-20 18.97 17.80 18.15 21.23
+-21 19.20 19.36 16.48 22.40
+-22 20.59 22.80 19.09 17.89</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## compare
+<span class="kw">mean</span>(atemp[ , , <span class="dv">1</span>])</code></pre></div>
+<pre><code>[1] 21.272</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(atemp[, , <span class="dv">2</span>])</code></pre></div>
+<pre><code>[1] 19.7035</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## demanchando uma array (conversão para vetor)
+<span class="kw">c</span>(atemp)</code></pre></div>
+<pre><code>  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
+ [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44
+ [23] 19.64 15.88 21.83 19.16 18.66 18.82 22.73 19.34 18.89 16.70 21.41
+ [34] 21.88 14.95 18.54 23.17 17.67 21.91 19.93 19.76 24.32 21.97 19.65
+ [45] 21.29 23.24 22.59 24.51 22.47 20.34 19.82 20.87 18.46 19.87 21.79
+ [56] 21.94 18.72 20.17 17.82 16.17 23.26 19.83 16.78 16.02 19.61 14.89
+ [67] 19.17 18.55 17.01 18.64 18.35 21.26 21.95 18.05 21.57 17.86 21.25
+ [78] 21.62 22.22 23.26 19.67 18.45 20.38 19.37 19.74 20.91 16.01 25.97
+ [89] 21.90 24.11 24.06 17.95 18.06 20.06 20.04 21.24 17.12 21.29 19.93
+[100] 20.12 20.30 23.04 19.16 20.71 22.74 19.90 20.89 23.46 14.76 19.71
+[111] 16.71 19.72 16.94 23.89 12.42 17.01 20.90 19.45 14.89 23.27 20.22
+[122] 18.67 24.12 21.92 26.68 20.73 18.42 19.51 15.56 20.60 23.65 19.54
+[133] 20.92 17.52 21.15 21.76 23.05 18.22 20.30 21.62 19.75 17.20 22.08
+[144] 19.12 23.12 19.25 21.20 15.85 17.10 18.59 22.24 15.20 20.12 18.19
+[155] 20.14 17.98 17.11 17.47 20.25 18.27 22.37 20.42 19.87 20.94 19.39
+[166] 17.53 15.99 21.01 20.22 15.18 25.06 19.89 15.15 22.52 20.95 22.72
+[177] 23.39 25.14 18.41 14.28 19.46 20.77 18.81 19.74 20.73 15.97 16.88
+[188] 21.55 18.80 19.53 20.31 20.34 17.27 19.33 22.75 24.29 15.87 16.40
+[199] 22.80 22.84 17.79 18.97 19.20 20.59 19.79 17.80 19.36 22.80 17.28
+[210] 18.15 16.48 19.09 21.19 21.23 22.40 17.89 21.42 16.67 17.89 17.18
+[221] 22.05 19.62 22.73 20.12 23.35 19.07 20.34 17.10 15.33 16.97 22.93
+[232] 19.59 17.13 25.41 18.74 20.56 14.46 19.47 23.96 17.15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(atemp[ , , <span class="dv">1</span>])</code></pre></div>
+<pre><code> [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
+[12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## para entender a forma como a matriz é convertida para vetor
+matref &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">12</span>, <span class="dt">each =</span> <span class="dv">20</span>), 
+                <span class="dt">elemat =</span> <span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">12</span>),  
+                <span class="dt">valores =</span> <span class="kw">c</span>(atemp), 
+                <span class="dt">elearr =</span> <span class="dv">1</span>:(<span class="kw">cumprod</span>(<span class="kw">dim</span>(atemp))[<span class="dv">3</span>]))
+matref</code></pre></div>
+<pre><code>       mes elemat valores elearr
+  [1,]   1      1   22.34      1
+  [2,]   1      2   19.80      2
+  [3,]   1      3   22.22      3
+  [4,]   1      4   19.27      4
+  [5,]   1      5   19.53      5
+  [6,]   1      6   19.81      6
+  [7,]   1      7   21.18      7
+  [8,]   1      8   24.44      8
+  [9,]   1      9   23.91      9
+ [10,]   1     10   21.97     10
+ [11,]   1     11   21.14     11
+ [12,]   1     12   24.54     12
+ [13,]   1     13   23.46     13
+ [14,]   1     14   16.20     14
+ [15,]   1     15   19.93     15
+ [16,]   1     16   20.54     16
+ [17,]   1     17   19.71     17
+ [18,]   1     18   24.94     18
+ [19,]   1     19   18.71     19
+ [20,]   1     20   21.80     20
+ [21,]   2      1   19.52     21
+ [22,]   2      2   23.44     22
+ [23,]   2      3   19.64     23
+ [24,]   2      4   15.88     24
+ [25,]   2      5   21.83     25
+ [26,]   2      6   19.16     26
+ [27,]   2      7   18.66     27
+ [28,]   2      8   18.82     28
+ [29,]   2      9   22.73     29
+ [30,]   2     10   19.34     30
+ [31,]   2     11   18.89     31
+ [32,]   2     12   16.70     32
+ [33,]   2     13   21.41     33
+ [34,]   2     14   21.88     34
+ [35,]   2     15   14.95     35
+ [36,]   2     16   18.54     36
+ [37,]   2     17   23.17     37
+ [38,]   2     18   17.67     38
+ [39,]   2     19   21.91     39
+ [40,]   2     20   19.93     40
+ [41,]   3      1   19.76     41
+ [42,]   3      2   24.32     42
+ [43,]   3      3   21.97     43
+ [44,]   3      4   19.65     44
+ [45,]   3      5   21.29     45
+ [46,]   3      6   23.24     46
+ [47,]   3      7   22.59     47
+ [48,]   3      8   24.51     48
+ [49,]   3      9   22.47     49
+ [50,]   3     10   20.34     50
+ [51,]   3     11   19.82     51
+ [52,]   3     12   20.87     52
+ [53,]   3     13   18.46     53
+ [54,]   3     14   19.87     54
+ [55,]   3     15   21.79     55
+ [56,]   3     16   21.94     56
+ [57,]   3     17   18.72     57
+ [58,]   3     18   20.17     58
+ [59,]   3     19   17.82     59
+ [60,]   3     20   16.17     60
+ [61,]   4      1   23.26     61
+ [62,]   4      2   19.83     62
+ [63,]   4      3   16.78     63
+ [64,]   4      4   16.02     64
+ [65,]   4      5   19.61     65
+ [66,]   4      6   14.89     66
+ [67,]   4      7   19.17     67
+ [68,]   4      8   18.55     68
+ [69,]   4      9   17.01     69
+ [70,]   4     10   18.64     70
+ [71,]   4     11   18.35     71
+ [72,]   4     12   21.26     72
+ [73,]   4     13   21.95     73
+ [74,]   4     14   18.05     74
+ [75,]   4     15   21.57     75
+ [76,]   4     16   17.86     76
+ [77,]   4     17   21.25     77
+ [78,]   4     18   21.62     78
+ [79,]   4     19   22.22     79
+ [80,]   4     20   23.26     80
+ [81,]   5      1   19.67     81
+ [82,]   5      2   18.45     82
+ [83,]   5      3   20.38     83
+ [84,]   5      4   19.37     84
+ [85,]   5      5   19.74     85
+ [86,]   5      6   20.91     86
+ [87,]   5      7   16.01     87
+ [88,]   5      8   25.97     88
+ [89,]   5      9   21.90     89
+ [90,]   5     10   24.11     90
+ [91,]   5     11   24.06     91
+ [92,]   5     12   17.95     92
+ [93,]   5     13   18.06     93
+ [94,]   5     14   20.06     94
+ [95,]   5     15   20.04     95
+ [96,]   5     16   21.24     96
+ [97,]   5     17   17.12     97
+ [98,]   5     18   21.29     98
+ [99,]   5     19   19.93     99
+[100,]   5     20   20.12    100
+[101,]   6      1   20.30    101
+[102,]   6      2   23.04    102
+[103,]   6      3   19.16    103
+[104,]   6      4   20.71    104
+[105,]   6      5   22.74    105
+[106,]   6      6   19.90    106
+[107,]   6      7   20.89    107
+[108,]   6      8   23.46    108
+[109,]   6      9   14.76    109
+[110,]   6     10   19.71    110
+[111,]   6     11   16.71    111
+[112,]   6     12   19.72    112
+[113,]   6     13   16.94    113
+[114,]   6     14   23.89    114
+[115,]   6     15   12.42    115
+[116,]   6     16   17.01    116
+[117,]   6     17   20.90    117
+[118,]   6     18   19.45    118
+[119,]   6     19   14.89    119
+[120,]   6     20   23.27    120
+[121,]   7      1   20.22    121
+[122,]   7      2   18.67    122
+[123,]   7      3   24.12    123
+[124,]   7      4   21.92    124
+[125,]   7      5   26.68    125
+[126,]   7      6   20.73    126
+[127,]   7      7   18.42    127
+[128,]   7      8   19.51    128
+[129,]   7      9   15.56    129
+[130,]   7     10   20.60    130
+[131,]   7     11   23.65    131
+[132,]   7     12   19.54    132
+[133,]   7     13   20.92    133
+[134,]   7     14   17.52    134
+[135,]   7     15   21.15    135
+[136,]   7     16   21.76    136
+[137,]   7     17   23.05    137
+[138,]   7     18   18.22    138
+[139,]   7     19   20.30    139
+[140,]   7     20   21.62    140
+[141,]   8      1   19.75    141
+[142,]   8      2   17.20    142
+[143,]   8      3   22.08    143
+[144,]   8      4   19.12    144
+[145,]   8      5   23.12    145
+[146,]   8      6   19.25    146
+[147,]   8      7   21.20    147
+[148,]   8      8   15.85    148
+[149,]   8      9   17.10    149
+[150,]   8     10   18.59    150
+[151,]   8     11   22.24    151
+[152,]   8     12   15.20    152
+[153,]   8     13   20.12    153
+[154,]   8     14   18.19    154
+[155,]   8     15   20.14    155
+[156,]   8     16   17.98    156
+[157,]   8     17   17.11    157
+[158,]   8     18   17.47    158
+[159,]   8     19   20.25    159
+[160,]   8     20   18.27    160
+[161,]   9      1   22.37    161
+[162,]   9      2   20.42    162
+[163,]   9      3   19.87    163
+[164,]   9      4   20.94    164
+[165,]   9      5   19.39    165
+[166,]   9      6   17.53    166
+[167,]   9      7   15.99    167
+[168,]   9      8   21.01    168
+[169,]   9      9   20.22    169
+[170,]   9     10   15.18    170
+[171,]   9     11   25.06    171
+[172,]   9     12   19.89    172
+[173,]   9     13   15.15    173
+[174,]   9     14   22.52    174
+[175,]   9     15   20.95    175
+[176,]   9     16   22.72    176
+[177,]   9     17   23.39    177
+[178,]   9     18   25.14    178
+[179,]   9     19   18.41    179
+[180,]   9     20   14.28    180
+[181,]  10      1   19.46    181
+[182,]  10      2   20.77    182
+[183,]  10      3   18.81    183
+[184,]  10      4   19.74    184
+[185,]  10      5   20.73    185
+[186,]  10      6   15.97    186
+[187,]  10      7   16.88    187
+[188,]  10      8   21.55    188
+[189,]  10      9   18.80    189
+[190,]  10     10   19.53    190
+[191,]  10     11   20.31    191
+[192,]  10     12   20.34    192
+[193,]  10     13   17.27    193
+[194,]  10     14   19.33    194
+[195,]  10     15   22.75    195
+[196,]  10     16   24.29    196
+[197,]  10     17   15.87    197
+[198,]  10     18   16.40    198
+[199,]  10     19   22.80    199
+[200,]  10     20   22.84    200
+[201,]  11      1   17.79    201
+[202,]  11      2   18.97    202
+[203,]  11      3   19.20    203
+[204,]  11      4   20.59    204
+[205,]  11      5   19.79    205
+[206,]  11      6   17.80    206
+[207,]  11      7   19.36    207
+[208,]  11      8   22.80    208
+[209,]  11      9   17.28    209
+[210,]  11     10   18.15    210
+[211,]  11     11   16.48    211
+[212,]  11     12   19.09    212
+[213,]  11     13   21.19    213
+[214,]  11     14   21.23    214
+[215,]  11     15   22.40    215
+[216,]  11     16   17.89    216
+[217,]  11     17   21.42    217
+[218,]  11     18   16.67    218
+[219,]  11     19   17.89    219
+[220,]  11     20   17.18    220
+[221,]  12      1   22.05    221
+[222,]  12      2   19.62    222
+[223,]  12      3   22.73    223
+[224,]  12      4   20.12    224
+[225,]  12      5   23.35    225
+[226,]  12      6   19.07    226
+[227,]  12      7   20.34    227
+[228,]  12      8   17.10    228
+[229,]  12      9   15.33    229
+[230,]  12     10   16.97    230
+[231,]  12     11   22.93    231
+[232,]  12     12   19.59    232
+[233,]  12     13   17.13    233
+[234,]  12     14   25.41    234
+[235,]  12     15   18.74    235
+[236,]  12     16   20.56    236
+[237,]  12     17   14.46    237
+[238,]  12     18   19.47    238
+[239,]  12     19   23.96    239
+[240,]  12     20   17.15    240</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleção lógica e substituição
+atemp &gt;<span class="st"> </span><span class="dv">18</span></code></pre></div>
+<pre><code>, , 1
+
+     -45  -44  -43   -42  -41
+-19 TRUE TRUE TRUE  TRUE TRUE
+-20 TRUE TRUE TRUE FALSE TRUE
+-21 TRUE TRUE TRUE  TRUE TRUE
+-22 TRUE TRUE TRUE  TRUE TRUE
+
+, , 2
+
+      -45  -44   -43   -42   -41
+-19  TRUE TRUE  TRUE  TRUE  TRUE
+-20  TRUE TRUE  TRUE  TRUE FALSE
+-21  TRUE TRUE  TRUE FALSE  TRUE
+-22 FALSE TRUE FALSE  TRUE  TRUE
+
+, , 3
+
+     -45  -44  -43  -42   -41
+-19 TRUE TRUE TRUE TRUE  TRUE
+-20 TRUE TRUE TRUE TRUE  TRUE
+-21 TRUE TRUE TRUE TRUE FALSE
+-22 TRUE TRUE TRUE TRUE FALSE
+
+, , 4
+
+      -45   -44   -43   -42  -41
+-19  TRUE  TRUE FALSE  TRUE TRUE
+-20  TRUE FALSE  TRUE  TRUE TRUE
+-21 FALSE  TRUE  TRUE  TRUE TRUE
+-22 FALSE  TRUE  TRUE FALSE TRUE
+
+, , 5
+
+     -45   -44   -43  -42   -41
+-19 TRUE  TRUE  TRUE TRUE FALSE
+-20 TRUE  TRUE  TRUE TRUE  TRUE
+-21 TRUE FALSE  TRUE TRUE  TRUE
+-22 TRUE  TRUE FALSE TRUE  TRUE
+
+, , 6
+
+     -45  -44   -43   -42   -41
+-19 TRUE TRUE FALSE FALSE  TRUE
+-20 TRUE TRUE  TRUE  TRUE  TRUE
+-21 TRUE TRUE FALSE FALSE FALSE
+-22 TRUE TRUE  TRUE FALSE  TRUE
+
+, , 7
+
+     -45  -44   -43   -42  -41
+-19 TRUE TRUE FALSE  TRUE TRUE
+-20 TRUE TRUE  TRUE FALSE TRUE
+-21 TRUE TRUE  TRUE  TRUE TRUE
+-22 TRUE TRUE  TRUE  TRUE TRUE
+
+, , 8
+
+      -45   -44   -43   -42   -41
+-19  TRUE  TRUE FALSE  TRUE FALSE
+-20 FALSE  TRUE  TRUE  TRUE FALSE
+-21  TRUE  TRUE  TRUE  TRUE  TRUE
+-22  TRUE FALSE FALSE FALSE  TRUE
+
+, , 9
+
+     -45   -44   -43   -42   -41
+-19 TRUE  TRUE  TRUE FALSE  TRUE
+-20 TRUE FALSE FALSE  TRUE  TRUE
+-21 TRUE FALSE  TRUE  TRUE  TRUE
+-22 TRUE  TRUE  TRUE  TRUE FALSE
+
+, , 10
+
+     -45   -44  -43   -42   -41
+-19 TRUE  TRUE TRUE FALSE FALSE
+-20 TRUE FALSE TRUE  TRUE FALSE
+-21 TRUE FALSE TRUE  TRUE  TRUE
+-22 TRUE  TRUE TRUE  TRUE  TRUE
+
+, , 11
+
+      -45   -44   -43   -42   -41
+-19 FALSE  TRUE FALSE  TRUE  TRUE
+-20  TRUE FALSE  TRUE  TRUE FALSE
+-21  TRUE  TRUE FALSE  TRUE FALSE
+-22  TRUE  TRUE  TRUE FALSE FALSE
+
+, , 12
+
+     -45   -44   -43   -42   -41
+-19 TRUE  TRUE FALSE FALSE FALSE
+-20 TRUE  TRUE FALSE  TRUE  TRUE
+-21 TRUE  TRUE  TRUE  TRUE  TRUE
+-22 TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(atemp &gt;<span class="st"> </span><span class="dv">18</span>)</code></pre></div>
+<pre><code>  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  15  16  17  18
+ [18]  19  20  21  22  23  25  26  27  28  29  30  31  33  34  36  37  39
+ [35]  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56
+ [52]  57  58  61  62  65  67  68  70  71  72  73  74  75  77  78  79  80
+ [69]  81  82  83  84  85  86  88  89  90  91  93  94  95  96  98  99 100
+ [86] 101 102 103 104 105 106 107 108 110 112 114 117 118 120 121 122 123
+[103] 124 125 126 127 128 130 131 132 133 135 136 137 138 139 140 141 143
+[120] 144 145 146 147 150 151 153 154 155 159 160 161 162 163 164 165 168
+[137] 169 171 172 174 175 176 177 178 179 181 182 183 184 185 188 189 190
+[154] 191 192 194 195 196 199 200 202 203 204 205 207 208 210 212 213 214
+[171] 215 217 221 222 223 224 225 226 227 231 232 234 235 236 238 239</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">atemp[atemp &gt;<span class="st"> </span><span class="dv">18</span>]</code></pre></div>
+<pre><code>  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
+ [12] 24.54 23.46 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44 19.64
+ [23] 21.83 19.16 18.66 18.82 22.73 19.34 18.89 21.41 21.88 18.54 23.17
+ [34] 21.91 19.93 19.76 24.32 21.97 19.65 21.29 23.24 22.59 24.51 22.47
+ [45] 20.34 19.82 20.87 18.46 19.87 21.79 21.94 18.72 20.17 23.26 19.83
+ [56] 19.61 19.17 18.55 18.64 18.35 21.26 21.95 18.05 21.57 21.25 21.62
+ [67] 22.22 23.26 19.67 18.45 20.38 19.37 19.74 20.91 25.97 21.90 24.11
+ [78] 24.06 18.06 20.06 20.04 21.24 21.29 19.93 20.12 20.30 23.04 19.16
+ [89] 20.71 22.74 19.90 20.89 23.46 19.71 19.72 23.89 20.90 19.45 23.27
+[100] 20.22 18.67 24.12 21.92 26.68 20.73 18.42 19.51 20.60 23.65 19.54
+[111] 20.92 21.15 21.76 23.05 18.22 20.30 21.62 19.75 22.08 19.12 23.12
+[122] 19.25 21.20 18.59 22.24 20.12 18.19 20.14 20.25 18.27 22.37 20.42
+[133] 19.87 20.94 19.39 21.01 20.22 25.06 19.89 22.52 20.95 22.72 23.39
+[144] 25.14 18.41 19.46 20.77 18.81 19.74 20.73 21.55 18.80 19.53 20.31
+[155] 20.34 19.33 22.75 24.29 22.80 22.84 18.97 19.20 20.59 19.79 19.36
+[166] 22.80 18.15 19.09 21.19 21.23 22.40 21.42 22.05 19.62 22.73 20.12
+[177] 23.35 19.07 20.34 22.93 19.59 25.41 18.74 20.56 19.47 23.96</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## verificando na matref
+matref[<span class="kw">which</span>(atemp &gt;<span class="st"> </span><span class="dv">18</span>), <span class="st">&quot;valores&quot;</span>]</code></pre></div>
+<pre><code>  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
+ [12] 24.54 23.46 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44 19.64
+ [23] 21.83 19.16 18.66 18.82 22.73 19.34 18.89 21.41 21.88 18.54 23.17
+ [34] 21.91 19.93 19.76 24.32 21.97 19.65 21.29 23.24 22.59 24.51 22.47
+ [45] 20.34 19.82 20.87 18.46 19.87 21.79 21.94 18.72 20.17 23.26 19.83
+ [56] 19.61 19.17 18.55 18.64 18.35 21.26 21.95 18.05 21.57 21.25 21.62
+ [67] 22.22 23.26 19.67 18.45 20.38 19.37 19.74 20.91 25.97 21.90 24.11
+ [78] 24.06 18.06 20.06 20.04 21.24 21.29 19.93 20.12 20.30 23.04 19.16
+ [89] 20.71 22.74 19.90 20.89 23.46 19.71 19.72 23.89 20.90 19.45 23.27
+[100] 20.22 18.67 24.12 21.92 26.68 20.73 18.42 19.51 20.60 23.65 19.54
+[111] 20.92 21.15 21.76 23.05 18.22 20.30 21.62 19.75 22.08 19.12 23.12
+[122] 19.25 21.20 18.59 22.24 20.12 18.19 20.14 20.25 18.27 22.37 20.42
+[133] 19.87 20.94 19.39 21.01 20.22 25.06 19.89 22.52 20.95 22.72 23.39
+[144] 25.14 18.41 19.46 20.77 18.81 19.74 20.73 21.55 18.80 19.53 20.31
+[155] 20.34 19.33 22.75 24.29 22.80 22.84 18.97 19.20 20.59 19.79 19.36
+[166] 22.80 18.15 19.09 21.19 21.23 22.40 21.42 22.05 19.62 22.73 20.12
+[177] 23.35 19.07 20.34 22.93 19.59 25.41 18.74 20.56 19.47 23.96</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## substituindo temperaturas acima de 18 por 18
+atemp[atemp &gt;<span class="st"> </span><span class="dv">18</span>] &lt;-<span class="st"> </span><span class="dv">18</span>
+atemp</code></pre></div>
+<pre><code>, , 1
+
+    -45 -44 -43  -42 -41
+-19  18  18  18 18.0  18
+-20  18  18  18 16.2  18
+-21  18  18  18 18.0  18
+-22  18  18  18 18.0  18
+
+, , 2
+
+      -45 -44  -43   -42   -41
+-19 18.00  18 18.0 18.00 18.00
+-20 18.00  18 18.0 18.00 17.67
+-21 18.00  18 18.0 14.95 18.00
+-22 15.88  18 16.7 18.00 18.00
+
+, , 3
+
+    -45 -44 -43 -42   -41
+-19  18  18  18  18 18.00
+-20  18  18  18  18 18.00
+-21  18  18  18  18 17.82
+-22  18  18  18  18 16.17
+
+, , 4
+
+      -45   -44   -43   -42 -41
+-19 18.00 18.00 17.01 18.00  18
+-20 18.00 14.89 18.00 18.00  18
+-21 16.78 18.00 18.00 18.00  18
+-22 16.02 18.00 18.00 17.86  18
+
+, , 5
+
+    -45   -44   -43 -42   -41
+-19  18 18.00 18.00  18 17.12
+-20  18 18.00 18.00  18 18.00
+-21  18 16.01 18.00  18 18.00
+-22  18 18.00 17.95  18 18.00
+
+, , 6
+
+    -45 -44   -43   -42   -41
+-19  18  18 14.76 16.94 18.00
+-20  18  18 18.00 18.00 18.00
+-21  18  18 16.71 12.42 14.89
+-22  18  18 18.00 17.01 18.00
+
+, , 7
+
+    -45 -44   -43   -42 -41
+-19  18  18 15.56 18.00  18
+-20  18  18 18.00 17.52  18
+-21  18  18 18.00 18.00  18
+-22  18  18 18.00 18.00  18
+
+, , 8
+
+     -45   -44  -43   -42   -41
+-19 18.0 18.00 17.1 18.00 17.11
+-20 17.2 18.00 18.0 18.00 17.47
+-21 18.0 18.00 18.0 18.00 18.00
+-22 18.0 15.85 15.2 17.98 18.00
+
+, , 9
+
+    -45   -44   -43   -42   -41
+-19  18 18.00 18.00 15.15 18.00
+-20  18 17.53 15.18 18.00 18.00
+-21  18 15.99 18.00 18.00 18.00
+-22  18 18.00 18.00 18.00 14.28
+
+, , 10
+
+    -45   -44 -43   -42   -41
+-19  18 18.00  18 17.27 15.87
+-20  18 15.97  18 18.00 16.40
+-21  18 16.88  18 18.00 18.00
+-22  18 18.00  18 18.00 18.00
+
+, , 11
+
+      -45  -44   -43   -42   -41
+-19 17.79 18.0 17.28 18.00 18.00
+-20 18.00 17.8 18.00 18.00 16.67
+-21 18.00 18.0 16.48 18.00 17.89
+-22 18.00 18.0 18.00 17.89 17.18
+
+, , 12
+
+    -45  -44   -43   -42   -41
+-19  18 18.0 15.33 17.13 14.46
+-20  18 18.0 16.97 18.00 18.00
+-21  18 18.0 18.00 18.00 18.00
+-22  18 17.1 18.00 18.00 17.15</code></pre>
+</div>
+</div>
+<div id="list" class="section level1">
+<h1><span class="header-section-number">6</span> List</h1>
+<p>Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os <strong>vetores atômicos</strong>, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:</p>
+<ol style="list-style-type: decimal">
+<li>Os elementos podem ser de diferentes classes de objetos (p.ex.: um elemento <code>numeric</code>, outro <code>character</code>);</li>
+<li>Cada elemento pode ter um tamanho diferente;</li>
+<li>Os elementos podem conter diferentes estrutura de dados (p.ex.: um elemento <code>matrix</code>, outro <code>vector</code>);</li>
+</ol>
+<p>Dentro da lista o conjunto de objetos são ordenados e cada elemento pode conter sub-elementos.</p>
+<div id="criacao-2" class="section level2">
+<h2><span class="header-section-number">6.1</span> Criação</h2>
+<div id="list-1" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> <code>list()</code></h3>
+<p>As vezes precisamos de um <em>container</em> para armazenar diferentes tipos de dados do R e com diferente tamanhos. As <em>listas</em> servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de data frames, sub-listas, matrizes e vetores.</p>
+<p>Listas podem ser criadas com a função <code>list()</code>. A especificação do conteúdo de uma lista é muito similar a da função <code>c()</code> vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função <code>list()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista de dados heterogêneos
+lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="fl">2.3</span>, <span class="fl">5.9</span>), <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="st">&quot;R&quot;</span>, <span class="kw">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))
+lst</code></pre></div>
+<pre><code>[[1]]
+[1] 1 2 3 4
+
+[[2]]
+[1] 1.1 2.3 5.9
+
+[[3]]
+[1]  TRUE FALSE
+
+[[4]]
+[1] &quot;R&quot;
+
+[[5]]
+[[5]][[1]]
+[1] 0
+
+[[5]][[2]]
+[1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## estrutura da lista
+<span class="kw">str</span>(lst)</code></pre></div>
+<pre><code>List of 5
+ $ : int [1:4] 1 2 3 4
+ $ : num [1:3] 1.1 2.3 5.9
+ $ : logi [1:2] TRUE FALSE
+ $ : chr &quot;R&quot;
+ $ :List of 2
+  ..$ : num 0
+  ..$ : num 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## tamanho da lista (num. de componentes ou elementos)
+<span class="kw">length</span>(lst)</code></pre></div>
+<pre><code>[1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## atribuindo nomes a lista
+<span class="kw">names</span>(lst)</code></pre></div>
+<pre><code>NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(lst) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vetor_int&quot;</span>, <span class="st">&quot;vetor_num&quot;</span>, <span class="st">&quot;logico&quot;</span>, <span class="st">&quot;char&quot;</span>, <span class="st">&quot;lista&quot;</span>)</code></pre></div>
+<p>Os índices em colchetes duplos <code>[[]]</code> identificam o elemento ou a componente da lista. Os índices em colchete simples <code>[]</code> indicam qual sub-elemento da lista está sendo mostrado. Por exemplo <code>1.1</code> é o primeiro sub-elemento do segundo elemento da lista <code>lst</code>. Desse aninhamento de elementos surge o sistema de indexação de listas. A estrutura de uma lista pode se tornar complicada com o aumento do grau de sub-elementos. Mas essa flexibilidade, faz das listas uma ferramenta de armazenamento de dados para todos propósitos. Veremos que no R, listas são frequentemente usadas para armazenar a saída de funções com diversos resultados.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista é recursiva?
+<span class="kw">is.recursive</span>(lst)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<p>Vamos ver um exemplo onde criamos uma lista com informações de duas estações meteorológicas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## matriz de dados meteorológicos da estação de Santa Maria
+dados_sm &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">tar =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">33</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>), 
+                  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">210</span>, <span class="dv">110</span>, <span class="dv">180</span>, <span class="dv">140</span>, <span class="dv">80</span>, <span class="dv">160</span>, <span class="dv">150</span>, <span class="dv">100</span>))
+dados_sm</code></pre></div>
+<pre><code>      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista com informações da estação de santa maria
+sm_l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(-<span class="dv">45</span>, -<span class="dv">23</span>), <span class="dv">113</span>, <span class="st">&quot;Santa Maria&quot;</span>, dados_sm)
+sm_l</code></pre></div>
+<pre><code>[[1]]
+[1] -45 -23
+
+[[2]]
+[1] 113
+
+[[3]]
+[1] &quot;Santa Maria&quot;
+
+[[4]]
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## adicionar nomes aos elementos
+<span class="kw">names</span>(sm_l) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;coords&quot;</span>, <span class="st">&quot;alt&quot;</span>, <span class="st">&quot;cidade&quot;</span>, <span class="st">&quot;dados&quot;</span>)
+sm_l</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;
+
+$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## matriz de dados meteorológicos da estação de Júlio de Castilhos
+dados_jc &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">tar  =</span> <span class="kw">c</span>(<span class="fl">22.5</span>, <span class="dv">20</span>, <span class="fl">18.75</span>, <span class="dv">18</span>, <span class="fl">20.25</span>, <span class="fl">17.75</span>, <span class="fl">19.5</span>, <span class="fl">18.5</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="fl">18.75</span>, <span class="fl">17.5</span>),
+                  <span class="dt">prec =</span> <span class="kw">c</span>(<span class="dv">360</span>, <span class="dv">310</span>, <span class="dv">285</span>, <span class="dv">270</span>, <span class="dv">315</span>, <span class="dv">265</span>, <span class="dv">300</span>, <span class="dv">280</span>, <span class="dv">250</span>, <span class="dv">290</span>, <span class="dv">285</span>, <span class="dv">260</span>))
+jc_l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">coords =</span> <span class="kw">c</span>(-<span class="fl">45.1</span>, -<span class="fl">23.2</span>),
+             <span class="dt">alt =</span> <span class="dv">900</span>,
+             <span class="dt">cidade =</span> <span class="st">&quot;Júlio de Castilhos&quot;</span>,
+             <span class="dt">dados =</span> dados_jc)
+## adicionar nomes aos elementos
+<span class="kw">names</span>(jc_l) &lt;-<span class="st"> </span><span class="kw">names</span>(sm_l)
+jc_l</code></pre></div>
+<pre><code>$coords
+[1] -45.1 -23.2
+
+$alt
+[1] 900
+
+$cidade
+[1] &quot;Júlio de Castilhos&quot;
+
+$dados
+        tar prec
+ [1,] 22.50  360
+ [2,] 20.00  310
+ [3,] 18.75  285
+ [4,] 18.00  270
+ [5,] 20.25  315
+ [6,] 17.75  265
+ [7,] 19.50  300
+ [8,] 18.50  280
+ [9,] 17.00  250
+[10,] 19.00  290
+[11,] 18.75  285
+[12,] 17.50  260</code></pre>
+<p>As informações de cada estação estão armazenadas em 2 listas. Mas é mais prático termos todas estações em um única lista:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## combinando listas mantendo os elementos separadamente
+dados_l &lt;-<span class="st"> </span><span class="kw">list</span>(sm_l, jc_l)
+dados_l</code></pre></div>
+<pre><code>[[1]]
+[[1]]$coords
+[1] -45 -23
+
+[[1]]$alt
+[1] 113
+
+[[1]]$cidade
+[1] &quot;Santa Maria&quot;
+
+[[1]]$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100
+
+
+[[2]]
+[[2]]$coords
+[1] -45.1 -23.2
+
+[[2]]$alt
+[1] 900
+
+[[2]]$cidade
+[1] &quot;Júlio de Castilhos&quot;
+
+[[2]]$dados
+        tar prec
+ [1,] 22.50  360
+ [2,] 20.00  310
+ [3,] 18.75  285
+ [4,] 18.00  270
+ [5,] 20.25  315
+ [6,] 17.75  265
+ [7,] 19.50  300
+ [8,] 18.50  280
+ [9,] 17.00  250
+[10,] 19.00  290
+[11,] 18.75  285
+[12,] 17.50  260</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dados_l)</code></pre></div>
+<pre><code>NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dados_l) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sm&quot;</span>, <span class="st">&quot;jc&quot;</span>)
+dados_l</code></pre></div>
+<pre><code>$sm
+$sm$coords
+[1] -45 -23
+
+$sm$alt
+[1] 113
+
+$sm$cidade
+[1] &quot;Santa Maria&quot;
+
+$sm$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100
+
+
+$jc
+$jc$coords
+[1] -45.1 -23.2
+
+$jc$alt
+[1] 900
+
+$jc$cidade
+[1] &quot;Júlio de Castilhos&quot;
+
+$jc$dados
+        tar prec
+ [1,] 22.50  360
+ [2,] 20.00  310
+ [3,] 18.75  285
+ [4,] 18.00  270
+ [5,] 20.25  315
+ [6,] 17.75  265
+ [7,] 19.50  300
+ [8,] 18.50  280
+ [9,] 17.00  250
+[10,] 19.00  290
+[11,] 18.75  285
+[12,] 17.50  260</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## como a lista é um tipo vetor, a função length() 
+## fornece o número de elementos da lista
+<span class="kw">length</span>(dados_l)</code></pre></div>
+<pre><code>[1] 2</code></pre>
+<p>Para resumir a estrutura de uma lista (ou <em>data frame</em>) podemos usar a função <code>str()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados_l)</code></pre></div>
+<pre><code>List of 2
+ $ sm:List of 4
+  ..$ coords: num [1:2] -45 -23
+  ..$ alt   : num 113
+  ..$ cidade: chr &quot;Santa Maria&quot;
+  ..$ dados : num [1:12, 1:2] 31 35 21 23 33 17 18 16 20 25 ...
+  .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. ..$ : NULL
+  .. .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;
+ $ jc:List of 4
+  ..$ coords: num [1:2] -45.1 -23.2
+  ..$ alt   : num 900
+  ..$ cidade: chr &quot;Júlio de Castilhos&quot;
+  ..$ dados : num [1:12, 1:2] 22.5 20 18.8 18 20.2 ...
+  .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. ..$ : NULL
+  .. .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</code></pre>
+<p>As listas também poderiam ser combinadas com função concatena ou combina <code>c()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l2 &lt;-<span class="st"> </span><span class="kw">c</span>(sm_l, jc_l)
+dados_l2</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;
+
+$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100
+
+$coords
+[1] -45.1 -23.2
+
+$alt
+[1] 900
+
+$cidade
+[1] &quot;Júlio de Castilhos&quot;
+
+$dados
+        tar prec
+ [1,] 22.50  360
+ [2,] 20.00  310
+ [3,] 18.75  285
+ [4,] 18.00  270
+ [5,] 20.25  315
+ [6,] 17.75  265
+ [7,] 19.50  300
+ [8,] 18.50  280
+ [9,] 17.00  250
+[10,] 19.00  290
+[11,] 18.75  285
+[12,] 17.50  260</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados_l2)</code></pre></div>
+<pre><code>List of 8
+ $ coords: num [1:2] -45 -23
+ $ alt   : num 113
+ $ cidade: chr &quot;Santa Maria&quot;
+ $ dados : num [1:12, 1:2] 31 35 21 23 33 17 18 16 20 25 ...
+  ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;
+ $ coords: num [1:2] -45.1 -23.2
+ $ alt   : num 900
+ $ cidade: chr &quot;Júlio de Castilhos&quot;
+ $ dados : num [1:12, 1:2] 22.5 20 18.8 18 20.2 ...
+  ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:2] &quot;tar&quot; &quot;prec&quot;</code></pre>
+</div>
+</div>
+<div id="indexacao-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Indexação</h2>
+<blockquote>
+<p>ver função purrr::map</p>
+</blockquote>
+<div id="operador" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Operador <code>[</code></h3>
+<p>Assim como em vetores, podemos acessar os elementos de uma lista usando os colchetes <code>[</code> com índices numéricos positivos, negativos, caracteres (nomes dos elementos) e lógicos. As expressões abaixo, ilustram o uso dessas diferentes formas de seleção de elementos e produzem o mesmo resultado.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[-(<span class="dv">3</span>:<span class="kw">length</span>(sm_l))]</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)]</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[<span class="kw">c</span>(<span class="st">&quot;coords&quot;</span>, <span class="st">&quot;alt&quot;</span>, <span class="st">&quot;cidade&quot;</span>)]</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;</code></pre>
+<p>O resultado da seleção do 1º e 2º elemento é uma lista menor que a original. Isso não é muito útil, uma vez que muitas funções do R não lidam com listas. Por exemplo, se quiséssemos calcular a soma do vetor contido do primeiro elemento da lista <code>lst</code> obtém-se um erro.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleção do 1º elemento da lst
+lst[<span class="dv">1</span>]</code></pre></div>
+<pre><code>$vetor_int
+[1] 1 2 3 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## o resultado da seleção é uma lista
+<span class="kw">mode</span>(lst[<span class="dv">1</span>])</code></pre></div>
+<pre><code>[1] &quot;list&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## a função sum() espera como entrada um vetor
+<span class="kw">sum</span>(lst[<span class="dv">1</span>])</code></pre></div>
+<pre><code>Error in sum(lst[1]): invalid 'type' (list) of argument</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## acessando elemento inexistente
+lst[<span class="dv">6</span>]</code></pre></div>
+<pre><code>$&lt;NA&gt;
+NULL</code></pre>
+<p>Então ao selecionar elementos de uma lista com o operador <code>[</code> o resultado preserva a estrutura original do objeto. <code>lst</code> é uma lista e o resultado da seleção <code>lst[1]</code> também é uma lista. <strong>Portanto, a seleção de elementos com o operador <code>[</code> preserva a estrutura do objeto original</strong>.</p>
+</div>
+<div id="operador-e" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Operador <code>[[</code> e <code>$</code></h3>
+<p>Entretanto na maioria das vezes estamos interessados no conteúdo dos elementos de uma lista. Para fazer isso há dois operadores: o duplo colchetes <code>[[</code> e o <code>$</code>. Para acessar elementos individuais de uma lista usamos o duplo colchetes <code>[[</code> especificando o número do elemento ou o nome. Essa forma de seleção de dados permite o acesso a um elemento por vez.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 1º elemento de sm_l
+sm_l[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>[1] -45 -23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[[<span class="st">&quot;coords&quot;</span>]]</code></pre></div>
+<pre><code>[1] -45 -23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## modo de sm_l
+<span class="kw">mode</span>(sm_l)</code></pre></div>
+<pre><code>[1] &quot;list&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ultimo elemento de sm_l
+sm_l[[<span class="kw">length</span>(sm_l)]]</code></pre></div>
+<pre><code>      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l[[<span class="st">&quot;dados&quot;</span>]]</code></pre></div>
+<pre><code>      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subelementos
+dados_l[[<span class="st">&quot;sm&quot;</span>]][[<span class="st">&quot;cidade&quot;</span>]]</code></pre></div>
+<pre><code>[1] &quot;Santa Maria&quot;</code></pre>
+<p>Para acessar o conteúdo de elementos de uma lista que possui nomes podemos também usar o operador <code>$</code>. Ele funciona de forma similar ao duplo colchetes usado com o nome do elemento da lista. Mas esse operador tem duas vantagens: a IDE RStudio autocompleta o nome do elemento (usando a tecla <code>&lt;tab&gt;</code>) e o R aceita o nome parcial dos nomes dos elementos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleção de dados por nomes usando o símbolo $
+dados_l$s</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;
+
+$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l$j</code></pre></div>
+<pre><code>$coords
+[1] -45.1 -23.2
+
+$alt
+[1] 900
+
+$cidade
+[1] &quot;Júlio de Castilhos&quot;
+
+$dados
+        tar prec
+ [1,] 22.50  360
+ [2,] 20.00  310
+ [3,] 18.75  285
+ [4,] 18.00  270
+ [5,] 20.25  315
+ [6,] 17.75  265
+ [7,] 19.50  300
+ [8,] 18.50  280
+ [9,] 17.00  250
+[10,] 19.00  290
+[11,] 18.75  285
+[12,] 17.50  260</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l$sm$dados</code></pre></div>
+<pre><code>      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l$sm$dados[<span class="dv">5</span>:<span class="dv">8</span>,<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
+<pre><code>     tar prec
+[1,]  33  210
+[2,]  17  110
+[3,]  18  180
+[4,]  16  140</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l$sm$dados[, <span class="st">&quot;tar&quot;</span>]</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 20 25 27 30</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados_l$sm$dados[, <span class="st">&quot;tar&quot;</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]</code></pre></div>
+<pre><code>      tar
+ [1,]  31
+ [2,]  35
+ [3,]  21
+ [4,]  23
+ [5,]  33
+ [6,]  17
+ [7,]  18
+ [8,]  16
+ [9,]  20
+[10,]  25
+[11,]  27
+[12,]  30</code></pre>
+</div>
+<div id="vector" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> <code>vector()</code></h3>
+<p>Outra forma de criar uma lista é usando a função <code>vector</code>. Para acessar os elementos da lista usamos o operador “[[” ou o operador “$”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>)
+## usando '[[' para criar os elementos que serão chamados a e b
+z[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+z[[<span class="st">&quot;b&quot;</span>]] &lt;-<span class="st"> &quot;teste&quot;</span>
+z</code></pre></div>
+<pre><code>[[1]]
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$b
+[1] &quot;teste&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## usando '$' para criar o elemento chamado c
+z$c &lt;-<span class="st"> </span><span class="kw">c</span>(F, T)</code></pre></div>
+</div>
+</div>
+<div id="conversao-de-lista-para-vetor-e-vice-versa." class="section level2">
+<h2><span class="header-section-number">6.3</span> Conversão de lista para vetor e vice-versa.</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vet &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+vet</code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vet.list &lt;-<span class="st"> </span><span class="kw">as.list</span>(vet)
+vet.list</code></pre></div>
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3
+
+[[4]]
+[1] 4
+
+[[5]]
+[1] 5
+
+[[6]]
+[1] 6
+
+[[7]]
+[1] 7
+
+[[8]]
+[1] 8
+
+[[9]]
+[1] 9
+
+[[10]]
+[1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## desmanchando a lista
+<span class="kw">unlist</span>(vet.list)</code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## deletando um elemento de uma lista
+<span class="kw">length</span>(vet.list)</code></pre></div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vet.list[<span class="dv">8</span>] &lt;-<span class="st"> </span><span class="ot">NULL</span>
+vet.list</code></pre></div>
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3
+
+[[4]]
+[1] 4
+
+[[5]]
+[1] 5
+
+[[6]]
+[1] 6
+
+[[7]]
+[1] 7
+
+[[8]]
+[1] 9
+
+[[9]]
+[1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(vet.list)</code></pre></div>
+<pre><code>[1] 9</code></pre>
+</div>
+<div id="conversao-de-list-para-data.frame." class="section level2">
+<h2><span class="header-section-number">6.4</span> Conversão de <code>list</code> para <code>data.frame</code>.</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l</code></pre></div>
+<pre><code>$coords
+[1] -45 -23
+
+$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;
+
+$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ao inves da componente coords, criamos uma lon e lat
+sm_l$lon &lt;-<span class="st"> </span>sm_l$coords[<span class="dv">1</span>]
+sm_l$lat &lt;-<span class="st"> </span>sm_l$coords[<span class="dv">2</span>]
+sm_l$coords &lt;-<span class="st"> </span><span class="ot">NULL</span>
+sm_l</code></pre></div>
+<pre><code>$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;
+
+$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100
+
+$lon
+[1] -45
+
+$lat
+[1] -23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## convertendo para data.frame
+sm_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(sm_l)
+sm_df</code></pre></div>
+<pre><code>   alt      cidade dados.tar dados.prec lon lat
+1  113 Santa Maria        31        300 -45 -23
+2  113 Santa Maria        35        200 -45 -23
+3  113 Santa Maria        21        150 -45 -23
+4  113 Santa Maria        23        120 -45 -23
+5  113 Santa Maria        33        210 -45 -23
+6  113 Santa Maria        17        110 -45 -23
+7  113 Santa Maria        18        180 -45 -23
+8  113 Santa Maria        16        140 -45 -23
+9  113 Santa Maria        20         80 -45 -23
+10 113 Santa Maria        25        160 -45 -23
+11 113 Santa Maria        27        150 -45 -23
+12 113 Santa Maria        30        100 -45 -23</code></pre>
+</div>
+</div>
+<div id="data-frame-tabela-de-dados" class="section level1">
+<h1><span class="header-section-number">7</span> Data-frame (<em>tabela de dados</em>)</h1>
+<p>Um <code>data-frame</code> é um objeto do R que é normalmente usado para guardar conjunto de dados na forma de tabela.</p>
+<p>A estrutura de um <code>data-frame</code>, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do <code>data-frame</code> é possibilidade de armazenar dados de diferentes modos (<code>character</code>, <code>numeric</code>, <code>logical</code> e etc) nas suas colunas, o que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêneos. <em>Matrix</em>, <em>arrays</em> e <em>vector</em> só armazenam dados homogêneos.</p>
+<p>Cada linha do <code>data-frame</code> corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.</p>
+<div id="criacao-3" class="section level2">
+<h2><span class="header-section-number">7.1</span> Criação</h2>
+<p>Uma das formas mais simples de se criar um data frame é através da função <code>data.frame()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## criando um dataframe
+dados.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-02&quot;</span>, <span class="st">&quot;2013-01-03&quot;</span>, <span class="st">&quot;2013-01-04&quot;</span>, <span class="st">&quot;2013-01-05&quot;</span>, 
+                                 <span class="st">&quot;2013-01-06&quot;</span>, <span class="st">&quot;2013-01-07&quot;</span>, <span class="st">&quot;2013-01-08&quot;</span>, <span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-10&quot;</span>, 
+                                 <span class="st">&quot;2013-01-11&quot;</span>, <span class="st">&quot;2013-01-12&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-14&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>), 
+                       <span class="dt">cidade =</span> <span class="kw">rep</span>(<span class="st">&quot;Santa Maria&quot;</span>, <span class="dv">15</span>),    
+                       <span class="dt">tar =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">33</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">34</span>, <span class="dv">27</span>, <span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">32</span>))  
+dados.df</code></pre></div>
+<pre><code>        dates      cidade tar
+1  2013-01-01 Santa Maria  31
+2  2013-01-02 Santa Maria  35
+3  2013-01-03 Santa Maria  21
+4  2013-01-04 Santa Maria  23
+5  2013-01-05 Santa Maria  33
+6  2013-01-06 Santa Maria  17
+7  2013-01-07 Santa Maria  18
+8  2013-01-08 Santa Maria  16
+9  2013-01-09 Santa Maria  34
+10 2013-01-10 Santa Maria  27
+11 2013-01-11 Santa Maria  15
+12 2013-01-12 Santa Maria  28
+13 2013-01-13 Santa Maria  22
+14 2013-01-14 Santa Maria  29
+15 2013-01-15 Santa Maria  32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dados.df)</code></pre></div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.data.frame</span>(dados.df)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<p>Para um diagnóstico rápido das variáveis de um <code>data frame</code> usamos a função <code>str()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Obtendo informações sobre o conjunto de dados
+<span class="kw">str</span>(dados.df)</code></pre></div>
+<pre><code>'data.frame':   15 obs. of  3 variables:
+ $ dates : Factor w/ 15 levels &quot;2013-01-01&quot;,&quot;2013-01-02&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ cidade: Factor w/ 1 level &quot;Santa Maria&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...</code></pre>
+<p>A saída da função <code>str()</code>indica que há duas variáveis da classe <code>factor</code>. Em um <em>data frame</em> vetores do tipo <code>character</code> são automaticamente convertidos em <code>factor</code>. Este comportamento <em>default</em> pode ser modificado configurando o parâmetro <code>stringsAsFactors = FALSE</code> na função <code>data.frame()</code>. Vamos recriar o <em>data frame</em> <code>dados.df</code> sem a conversão de <code>character</code> para <code>factor</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## criando um dataframe
+dados.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-02&quot;</span>, <span class="st">&quot;2013-01-03&quot;</span>, <span class="st">&quot;2013-01-04&quot;</span>, <span class="st">&quot;2013-01-05&quot;</span>, 
+                                 <span class="st">&quot;2013-01-06&quot;</span>, <span class="st">&quot;2013-01-07&quot;</span>, <span class="st">&quot;2013-01-08&quot;</span>, <span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-10&quot;</span>, 
+                                 <span class="st">&quot;2013-01-11&quot;</span>, <span class="st">&quot;2013-01-12&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-14&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>), 
+                       <span class="dt">cidade =</span> <span class="kw">rep</span>(<span class="st">&quot;Santa Maria&quot;</span>, <span class="dv">15</span>),    
+                       <span class="dt">tar =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">33</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">34</span>, <span class="dv">27</span>, <span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">32</span>),
+                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)  
+<span class="kw">str</span>(dados.df)</code></pre></div>
+<pre><code>'data.frame':   15 obs. of  3 variables:
+ $ dates : chr  &quot;2013-01-01&quot; &quot;2013-01-02&quot; &quot;2013-01-03&quot; &quot;2013-01-04&quot; ...
+ $ cidade: chr  &quot;Santa Maria&quot; &quot;Santa Maria&quot; &quot;Santa Maria&quot; &quot;Santa Maria&quot; ...
+ $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...</code></pre>
+<p>A função <code>summary()</code> fornece um resumo estatísticos dos valores das variáveis de um <em>data frame</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## resumo estatístico dos dados
+<span class="kw">summary</span>(dados.df)</code></pre></div>
+<pre><code>    dates              cidade               tar      
+ Length:15          Length:15          Min.   :15.0  
+ Class :character   Class :character   1st Qu.:19.5  
+ Mode  :character   Mode  :character   Median :27.0  
+                                       Mean   :25.4  
+                                       3rd Qu.:31.5  
+                                       Max.   :35.0  </code></pre>
+</div>
+<div id="atributos-de-um-data-frame" class="section level2">
+<h2><span class="header-section-number">7.2</span> Atributos de um <code>data frame</code></h2>
+<p><em>Data frame</em> é uma estrutura de dados avançada e possui diversos atributos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## atributos
+<span class="kw">length</span>(dados.df)</code></pre></div>
+<pre><code>[1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## número de colunas
+<span class="kw">ncol</span>(dados.df)</code></pre></div>
+<pre><code>[1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## número de linhas
+<span class="kw">nrow</span>(dados.df)</code></pre></div>
+<pre><code>[1] 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## dimensões
+<span class="kw">dim</span>(dados.df)</code></pre></div>
+<pre><code>[1] 15  3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## nomes podem ser atribuídos as linhas e as colunas
+<span class="kw">rownames</span>(dados.df)</code></pre></div>
+<pre><code> [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+[15] &quot;15&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## novos nomes para as linhas de dados.df
+<span class="kw">rownames</span>(dados.df) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;linha&quot;</span>, <span class="kw">rownames</span>(dados.df))
+dados.df</code></pre></div>
+<pre><code>             dates      cidade tar
+linha1  2013-01-01 Santa Maria  31
+linha2  2013-01-02 Santa Maria  35
+linha3  2013-01-03 Santa Maria  21
+linha4  2013-01-04 Santa Maria  23
+linha5  2013-01-05 Santa Maria  33
+linha6  2013-01-06 Santa Maria  17
+linha7  2013-01-07 Santa Maria  18
+linha8  2013-01-08 Santa Maria  16
+linha9  2013-01-09 Santa Maria  34
+linha10 2013-01-10 Santa Maria  27
+linha11 2013-01-11 Santa Maria  15
+linha12 2013-01-12 Santa Maria  28
+linha13 2013-01-13 Santa Maria  22
+linha14 2013-01-14 Santa Maria  29
+linha15 2013-01-15 Santa Maria  32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## removendo nomes das linhas
+<span class="kw">rownames</span>(dados.df) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+dados.df</code></pre></div>
+<pre><code>        dates      cidade tar
+1  2013-01-01 Santa Maria  31
+2  2013-01-02 Santa Maria  35
+3  2013-01-03 Santa Maria  21
+4  2013-01-04 Santa Maria  23
+5  2013-01-05 Santa Maria  33
+6  2013-01-06 Santa Maria  17
+7  2013-01-07 Santa Maria  18
+8  2013-01-08 Santa Maria  16
+9  2013-01-09 Santa Maria  34
+10 2013-01-10 Santa Maria  27
+11 2013-01-11 Santa Maria  15
+12 2013-01-12 Santa Maria  28
+13 2013-01-13 Santa Maria  22
+14 2013-01-14 Santa Maria  29
+15 2013-01-15 Santa Maria  32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## mesmo que names(dados.df)
+<span class="kw">colnames</span>(dados.df)</code></pre></div>
+<pre><code>[1] &quot;dates&quot;  &quot;cidade&quot; &quot;tar&quot;   </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dimnames</span>(dados.df)</code></pre></div>
+<pre><code>[[1]]
+ [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
+[15] &quot;15&quot;
+
+[[2]]
+[1] &quot;dates&quot;  &quot;cidade&quot; &quot;tar&quot;   </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(dados.df)</code></pre></div>
+<pre><code>$names
+[1] &quot;dates&quot;  &quot;cidade&quot; &quot;tar&quot;   
+
+$row.names
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+
+$class
+[1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">attributes</span>(dados.df))</code></pre></div>
+<pre><code>[1] &quot;list&quot;</code></pre>
+</div>
+<div id="acesso-as-variaveis-de-um-dataframe" class="section level2">
+<h2><span class="header-section-number">7.3</span> Acesso as variáveis de um <code>dataframe</code></h2>
+<p>Existem várias formas de acessar as variáveis de um <code>dataframe</code>. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: <code>[</code>, <code>[[</code> e <code>$</code>. Mas observe a diferença nos resultados extraídos com cada operador.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## variáveis do dataframe
+<span class="kw">names</span>(dados.df)</code></pre></div>
+<pre><code>[1] &quot;dates&quot;  &quot;cidade&quot; &quot;tar&quot;   </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## acessando os dados de temperatura
+dados.df[, <span class="dv">3</span>]</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ou
+dados.df[, <span class="st">&quot;tar&quot;</span>]</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ou
+dados.df$tar</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.vector</span>(dados.df$tar)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## note a diferença no resultado da extração
+dados.df[<span class="st">&quot;tar&quot;</span>]</code></pre></div>
+<pre><code>   tar
+1   31
+2   35
+3   21
+4   23
+5   33
+6   17
+7   18
+8   16
+9   34
+10  27
+11  15
+12  28
+13  22
+14  29
+15  32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dados.df[<span class="st">&quot;tar&quot;</span>])</code></pre></div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados.df[[<span class="st">&quot;tar&quot;</span>]]</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dados.df[[<span class="st">&quot;tar&quot;</span>]])</code></pre></div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados.df[, <span class="st">&quot;tar&quot;</span>]</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dados.df[, <span class="st">&quot;tar&quot;</span>])</code></pre></div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<p>Portanto <em>data frames</em> tem as mesmas propriedades que matrizes (são retangulares)e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).</p>
+<div id="funcao-with" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Função <code>with()</code></h3>
+<p>O acesso as variáveis de um data frame também é possível com a função <code>with(data, expr)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## acesso a variáveis de um data frame
+<span class="kw">with</span>(<span class="dt">data =</span> dados.df, <span class="dt">expr =</span> tar)</code></pre></div>
+<pre><code> [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tar_k &lt;-<span class="st"> </span><span class="kw">with</span>(<span class="dt">data =</span> dados.df, <span class="dt">expr =</span> tar +<span class="st"> </span><span class="fl">273.15</span>)
+tar_k</code></pre></div>
+<pre><code> [1] 304.15 308.15 294.15 296.15 306.15 290.15 291.15 289.15 307.15 300.15
+[11] 288.15 301.15 295.15 302.15 305.15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(<span class="dt">data =</span> dados.df, <span class="dt">expr =</span> <span class="kw">plot</span>(tar +<span class="st"> </span><span class="fl">273.15</span>))</code></pre></div>
+<p><img src="data:image/png;base64,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" alt /><!-- --></p>
+<p>O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do <em>data frame</em> de entrada.</p>
+</div>
+<div id="editando-um-data-frame-manualmente" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Editando um <code>data frame</code> manualmente</h3>
+<p>É possível também editar os dados manualmente.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## editar dados
+<span class="kw">fix</span>(dados.df)
+## inicializando um dataframe
+x &lt;-<span class="st"> </span><span class="kw">data.frame</span>()
+## digitando so dados
+<span class="kw">fix</span>(x)</code></pre></div>
+</div>
+</div>
+<div id="indexacao-selecao-e-alteracao" class="section level2">
+<h2><span class="header-section-number">7.4</span> Indexação, seleção e alteração</h2>
+<p>Todos esquemas de indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - <em>ver Aula9</em>) podem ser usados com <em>data frames</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## todos dados exceto o primeiro e último registro
+dados.df[-<span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(dados.df)), ]</code></pre></div>
+<pre><code>        dates      cidade tar
+2  2013-01-02 Santa Maria  35
+3  2013-01-03 Santa Maria  21
+4  2013-01-04 Santa Maria  23
+5  2013-01-05 Santa Maria  33
+6  2013-01-06 Santa Maria  17
+7  2013-01-07 Santa Maria  18
+8  2013-01-08 Santa Maria  16
+9  2013-01-09 Santa Maria  34
+10 2013-01-10 Santa Maria  27
+11 2013-01-11 Santa Maria  15
+12 2013-01-12 Santa Maria  28
+13 2013-01-13 Santa Maria  22
+14 2013-01-14 Santa Maria  29</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## temperatura dos primeiros 5 dias
+dados.df[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">3</span>]</code></pre></div>
+<pre><code>[1] 31 35 21 23 33</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## temperatura no dia 2013-01-09
+dados.df[dados.df$dates ==<span class="st"> &quot;2013-01-09&quot;</span>, <span class="st">&quot;tar&quot;</span>]</code></pre></div>
+<pre><code>[1] 34</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## acrescentar uma nova variavel
+dados.df$prec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>)
+dados.df</code></pre></div>
+<pre><code>        dates      cidade tar prec
+1  2013-01-01 Santa Maria  31    0
+2  2013-01-02 Santa Maria  35    0
+3  2013-01-03 Santa Maria  21    0
+4  2013-01-04 Santa Maria  23    0
+5  2013-01-05 Santa Maria  33    0
+6  2013-01-06 Santa Maria  17   10
+7  2013-01-07 Santa Maria  18   18
+8  2013-01-08 Santa Maria  16    4
+9  2013-01-09 Santa Maria  34    0
+10 2013-01-10 Santa Maria  27    0
+11 2013-01-11 Santa Maria  15    5
+12 2013-01-12 Santa Maria  28    0
+13 2013-01-13 Santa Maria  22    0
+14 2013-01-14 Santa Maria  29    2
+15 2013-01-15 Santa Maria  32    0</code></pre>
+<p>Uma função específica para gerar subconjunto de dados em <code>data frames</code> é a <code>subset()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subconjunto baseado em condição lógica
+ss1 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados.df, dates ==<span class="st"> &quot;2013-01-09&quot;</span>, <span class="dt">select =</span> <span class="st">&quot;tar&quot;</span>)
+ss1</code></pre></div>
+<pre><code>  tar
+9  34</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subconjunto baseado em condição lógica
+ss2 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados.df, tar &gt;<span class="st"> </span><span class="dv">26</span> &amp;<span class="st"> </span>prec &gt;<span class="st"> </span><span class="dv">0</span>)
+ss2</code></pre></div>
+<pre><code>        dates      cidade tar prec
+14 2013-01-14 Santa Maria  29    2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subconjunto baseado em condição lógica
+ss3 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados.df, tar &gt;<span class="st"> </span><span class="dv">26</span> |<span class="st"> </span>prec &gt;<span class="st"> </span><span class="dv">0</span>)
+ss3</code></pre></div>
+<pre><code>        dates      cidade tar prec
+1  2013-01-01 Santa Maria  31    0
+2  2013-01-02 Santa Maria  35    0
+5  2013-01-05 Santa Maria  33    0
+6  2013-01-06 Santa Maria  17   10
+7  2013-01-07 Santa Maria  18   18
+8  2013-01-08 Santa Maria  16    4
+9  2013-01-09 Santa Maria  34    0
+10 2013-01-10 Santa Maria  27    0
+11 2013-01-11 Santa Maria  15    5
+12 2013-01-12 Santa Maria  28    0
+14 2013-01-14 Santa Maria  29    2
+15 2013-01-15 Santa Maria  32    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subconjunto baseado em condição lógica
+ss4 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados.df, 
+              dates %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>), 
+              <span class="dt">select =</span> -cidade)
+ss4</code></pre></div>
+<pre><code>        dates tar prec
+9  2013-01-09  34    0
+13 2013-01-13  22    0
+15 2013-01-15  32    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## subconjunto baseado em condição lógica
+ss4 &lt;-<span class="st"> </span><span class="kw">subset</span>(dados.df, 
+              !<span class="st"> </span>dates %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2013-01-09&quot;</span>, <span class="st">&quot;2013-01-13&quot;</span>, <span class="st">&quot;2013-01-15&quot;</span>),
+              <span class="dt">select =</span> -cidade)
+ss4</code></pre></div>
+<pre><code>        dates tar prec
+1  2013-01-01  31    0
+2  2013-01-02  35    0
+3  2013-01-03  21    0
+4  2013-01-04  23    0
+5  2013-01-05  33    0
+6  2013-01-06  17   10
+7  2013-01-07  18   18
+8  2013-01-08  16    4
+10 2013-01-10  27    0
+11 2013-01-11  15    5
+12 2013-01-12  28    0
+14 2013-01-14  29    2</code></pre>
+<p>Uma função específica para alteração, remoção e inclusão de variáveis em um data frame é a <code>transform()</code>. Essa função é mais indicada para alteração de mais de uma variável de um <em>data frame</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## mudança do dataframe, alteração de várias variáveis
+dados.df &lt;-<span class="st"> </span><span class="kw">transform</span>(dados.df,
+                      <span class="dt">cidade =</span> <span class="kw">ifelse</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(dados.df) &gt;<span class="st"> </span><span class="dv">8</span>, <span class="st">&quot;Sao Sepe&quot;</span>, cidade),
+                      <span class="dt">dates =</span> <span class="kw">c</span>(dates[<span class="dv">1</span>:<span class="dv">8</span>], dates[<span class="dv">1</span>:<span class="dv">7</span>]),
+                      <span class="dt">anomalias =</span> <span class="kw">ifelse</span>(cidade ==<span class="st"> &quot;Santa Maria&quot;</span>, 
+                                         tar-<span class="kw">mean</span>(tar[cidade ==<span class="st"> &quot;Santa Maria&quot;</span>]), 
+                                         tar-<span class="kw">mean</span>(tar[cidade ==<span class="st"> &quot;Sao Sepe&quot;</span>]))
+            )
+## alterar so uma variavel
+dados.df$anomalias.norm =<span class="st"> </span><span class="kw">ifelse</span>(dados.df$cidade ==<span class="st"> &quot;Santa Maria&quot;</span>, 
+                                dados.df$anomalias/<span class="kw">sd</span>(dados.df$anomalias[dados.df$cidade ==<span class="st"> &quot;Santa Maria&quot;</span>]), 
+                                dados.df$anomalias/<span class="kw">sd</span>(dados.df$anomalias[dados.df$cidade ==<span class="st"> &quot;Sao Sepe&quot;</span>]) )
+dados.df</code></pre></div>
+<pre><code>        dates      cidade tar prec anomalias anomalias.norm
+1  2013-01-01 Santa Maria  31    0       5.6       0.732167
+2  2013-01-02 Santa Maria  35    0       9.6       1.255143
+3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274
+4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786
+5  2013-01-05 Santa Maria  33    0       7.6       0.993655
+6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250
+7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506
+8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994
+9  2013-01-01    Sao Sepe  34    0       8.6       1.339211
+10 2013-01-02    Sao Sepe  27    0       1.6       0.249156
+11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512
+12 2013-01-04    Sao Sepe  28    0       2.6       0.404878
+13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456
+14 2013-01-06    Sao Sepe  29    2       3.6       0.560600
+15 2013-01-07    Sao Sepe  32    0       6.6       1.027767</code></pre>
+</div>
+<div id="combinando-dataframes" class="section level2">
+<h2><span class="header-section-number">7.5</span> Combinando <code>dataframes</code></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coords.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">lon =</span> <span class="kw">c</span>(<span class="kw">rep</span>(-<span class="dv">45</span>, <span class="dv">8</span>), <span class="kw">rep</span>(-<span class="fl">45.1</span>, <span class="dv">7</span>)),  <span class="co"># longitudes</span>
+                        <span class="dt">lat =</span> <span class="kw">c</span>(<span class="kw">rep</span>(-<span class="dv">23</span>, <span class="dv">8</span>), <span class="kw">rep</span>(-<span class="fl">23.1</span>, <span class="dv">7</span>)))  <span class="co"># latitudes</span>
+d &lt;-<span class="st"> </span><span class="kw">cbind</span>(dados.df, coords.df)
+d</code></pre></div>
+<pre><code>        dates      cidade tar prec anomalias anomalias.norm   lon   lat
+1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
+2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
+3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
+4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
+5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
+6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
+7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
+8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
+9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
+10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
+11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
+12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
+13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
+14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
+15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## usando a própria função data.frame()
+d2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dados.df, coords.df, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+d2</code></pre></div>
+<pre><code>        dates      cidade tar prec anomalias anomalias.norm   lon   lat
+1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
+2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
+3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
+4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
+5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
+6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
+7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
+8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
+9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
+10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
+11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
+12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
+13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
+14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
+15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## verificando se os dois data frames são idênticos
+<span class="kw">identical</span>(d, d2)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## dados de Caçapava
+cacapava &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dates =</span> <span class="st">&quot;2013-01-01&quot;</span>, 
+                       <span class="dt">cidade =</span> <span class="st">&quot;Cacapava&quot;</span>, 
+                       <span class="dt">tar =</span> <span class="dv">19</span>,
+                       <span class="dt">prec=</span> <span class="dv">0</span>,
+                       <span class="dt">anomalias =</span> <span class="ot">NA</span>, 
+                       <span class="dt">anomalias.norm =</span> <span class="ot">NA</span>,
+                       <span class="dt">lon =</span> -<span class="fl">45.1</span>,
+                       <span class="dt">lat =</span> -<span class="fl">23.2</span>)
+d &lt;-<span class="st"> </span><span class="kw">rbind</span>(d, cacapava)
+d</code></pre></div>
+<pre><code>        dates      cidade tar prec anomalias anomalias.norm   lon   lat
+1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
+2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
+3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
+4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
+5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
+6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
+7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
+8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
+9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
+10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
+11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
+12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
+13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
+14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
+15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
+16 2013-01-01    Cacapava  19    0        NA             NA -45.1 -23.2</code></pre>
+</div>
+<div id="teste-e-coercao" class="section level2">
+<h2><span class="header-section-number">7.6</span> Teste e Coerção</h2>
+<p>Podemos converter um objeto para <em>data frame</em> com <code>as.data.frame()</code>:</p>
+<ul>
+<li><p>Um vetor é transformado em um <em>data frame</em> de uma coluna;</p></li>
+<li>Uma lista terá uma coluna para elemento, se os elementos não forem de mesmo tamanho haverá um erro;</li>
+<li><p>Uma matriz cria um <em>data frame</em> com mesma estrutura de uma matriz;</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## convertendo lista para data frame
+sm_l</code></pre></div>
+<pre><code>$alt
+[1] 113
+
+$cidade
+[1] &quot;Santa Maria&quot;
+
+$dados
+      tar prec
+ [1,]  31  300
+ [2,]  35  200
+ [3,]  21  150
+ [4,]  23  120
+ [5,]  33  210
+ [6,]  17  110
+ [7,]  18  180
+ [8,]  16  140
+ [9,]  20   80
+[10,]  25  160
+[11,]  27  150
+[12,]  30  100
+
+$lon
+[1] -45
+
+$lat
+[1] -23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sm_l_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sm_l)
+## convertendo array para data frame
+v</code></pre></div>
+<pre><code>, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8
+
+, , 3
+
+     [,1] [,2]
+[1,]    9   11
+[2,]   10   12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(v)
+## convertendo vetor para data frame
+temp90_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(temp90)
+## convertendo matrix para data frame
+mat_ex</code></pre></div>
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    5    6
+[2,]   -7   -9    6
+[3,]    3    2    1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat_ex_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(mat_ex)
+<span class="kw">names</span>(mat_ex_df)</code></pre></div>
+<pre><code>[1] &quot;V1&quot; &quot;V2&quot; &quot;V3&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## testes
+<span class="kw">is.data.frame</span>(mat_ex_df)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(v_df)</code></pre></div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(v_df)</code></pre></div>
+<pre><code>[1] &quot;list&quot;</code></pre>
 <hr />
 </div>
 </div>
 <div id="funcoes-utilizadas" class="section level1">
-<h1><span class="header-section-number">5</span> Funções utilizadas</h1>
+<h1><span class="header-section-number">8</span> Funções utilizadas</h1>
 <p>TO DO</p>
 <ul>
 <li><code>c()</code></li>
