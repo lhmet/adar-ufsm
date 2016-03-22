@@ -42,7 +42,7 @@ Os vetores podem ser de dois tipos: **vetores atômicos** e **listas**.
 
 ## Vetores atômicos 
 
-Os **vetores atômicos** são constituem a estrutura de dadosmais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos `double`, ou `integer`, ou `logical`, etc). 
+Os **vetores atômicos** são constituem a estrutura de dados mais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos `double`, ou `integer`, ou `logical`, etc). 
 
 Como linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou *loopings*) ao longo do vetor. Esse conceito pode ser estranho para quem vem de outras linguagens, mas é uma das grandes vantagens do R.
 
@@ -54,7 +54,7 @@ Vetores não tem dimensões, ou seja não existem é um vetor linha ou vetor col
 
 + `length()` (tamanho?) e 
 
-+ `attributes` (informações adionais específicas do dado), entre eles o atributo mais comum está o `names()`.
++ `attributes` (informações acionais específicas do dado), entre eles o atributo mais comum está o `names()`.
 
 ### Criação
 
@@ -521,7 +521,7 @@ object length
 [1]  5  6 91 92
 ```
 
-A reciclagem é intrinsicamente usada em operações envolvendo vetores.
+A reciclagem é intrinsecamente usada em operações envolvendo vetores.
 
 
 ```r
@@ -1635,17 +1635,25 @@ which(c("JAN", "Feb", "Mar") %in% meses)
 ```
 
 ```r
-cond <- !meses %in% c("JAN", "Feb", "Mar")
+cond <- names(temp) %in% c("Jun", "Jul", "Ago")
 quais <- which(cond)
 quais
 ```
 
 ```
- [1]  1  2  4  5  6  7  8  9 10 11 12
+[1] 6 7 8
 ```
 
 ```r
-prec[names(temp) %in% c("Jun", "Jul", "Ago")]
+prec[cond]
+```
+
+```
+[1]  0 12 22
+```
+
+```r
+prec[quais]
 ```
 
 ```
@@ -1971,7 +1979,7 @@ v1 == NA
 
 ```r
 # não funcionou, porque há funções específicas para vetores com NA
-eh.na <- is.na(v1)
+onde_falta <- is.na(v1)
 # função apropriada p/ checar se tem NAs
 faltante <- which(is.na(v1));
 v1[-faltante]
@@ -1983,7 +1991,7 @@ v1[-faltante]
 
 ```r
 # ou 
-v1[!eh.na]
+v1[!onde_falta]
 ```
 
 ```
@@ -2009,7 +2017,7 @@ sum(v1[-faltante])/length(v1[-faltante])
 ```
 
 ```r
-sum(v1[!eh.na])/length(v1[!eh.na])
+sum(v1[!onde_falta])/length(v1[!onde_falta])
 ```
 
 ```
@@ -2086,7 +2094,7 @@ sum(!is.na(x))
 
 ## Diferença entre `NA` e `NULL`
 
-O `NULL` é um tipo de dado especial do R sem `mode` (modo).
+O `NULL` é um tipo de dado especial do R.
 
 
 ```r
@@ -2099,9 +2107,9 @@ ls()
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cond"          "cte"          
 [13] "day_below20"   "dda"           "decd"          "desc"         
-[17] "eh.na"         "faltante"      "frac_d30mn"    "horas"        
-[21] "k"             "meses"         "months"        "new_temp"     
-[25] "night_below20" "old_temp"      "oper"          "pcks"         
+[17] "faltante"      "frac_d30mn"    "horas"         "k"            
+[21] "meses"         "months"        "new_temp"      "night_below20"
+[25] "old_temp"      "onde_falta"    "oper"          "pcks"         
 [29] "pent"          "pos"           "prec"          "prec_cond1"   
 [33] "prec_dez"      "prec_jan"      "prec_jja"      "prec_med"     
 [37] "prect_jja_tot" "quais"         "rep_e31"       "rep_t13"      
@@ -2135,9 +2143,9 @@ ls()
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cond"          "cte"          
 [13] "day_below20"   "dda"           "decd"          "desc"         
-[17] "eh.na"         "faltante"      "frac_d30mn"    "horas"        
-[21] "k"             "meses"         "months"        "new_temp"     
-[25] "night_below20" "old_temp"      "oper"          "pcks"         
+[17] "faltante"      "frac_d30mn"    "horas"         "k"            
+[21] "meses"         "months"        "new_temp"      "night_below20"
+[25] "old_temp"      "onde_falta"    "oper"          "pcks"         
 [29] "pent"          "pos"           "prec"          "prec_cond1"   
 [33] "prec_dez"      "prec_jan"      "prec_jja"      "prec_med"     
 [37] "prect_jja_tot" "quais"         "rep_e31"       "rep_t13"      
@@ -2191,11 +2199,11 @@ a
 ```
 
 ```r
-mode(a)
+typeof(a)
 ```
 
 ```
-[1] "numeric"
+[1] "double"
 ```
 
 ```r
@@ -2209,16 +2217,44 @@ a
 ```
 
 ```r
-a <- NULL
+# é possível remover um elemento com o NULL?
+a[length(a)] <- NULL
+```
+
+```
+Error in a[length(a)] <- NULL: replacement has length zero
+```
+
+```r
 a
 ```
 
 ```
-NULL
+[1] 10  2 20
 ```
 
 ```r
-mode(a)
+a <- a[-length(a)]
+a
+```
+
+```
+[1] 10  2
+```
+
+```r
+typeof(a)
+```
+
+```
+[1] "double"
+```
+
+```r
+# anulando a
+a <- NULL
+# qual modo de um objeto nulo?
+typeof(a)
 ```
 
 ```
@@ -2226,6 +2262,7 @@ mode(a)
 ```
 
 ```r
+# qual modo de NA?
 b <- NA
 b
 ```
@@ -2235,7 +2272,7 @@ b
 ```
 
 ```r
-mode(b)
+typeof(b)
 ```
 
 ```
@@ -2298,7 +2335,7 @@ class(v)
 ```
 
 ```r
-## cópia de v0
+## cópia de v
 vetor <- v
 ## conversão de vetor para matriz
 dim(v) <- c(3, 4)  # 1a dimensão: linhas , 2a dimensão: colunas 
@@ -2371,22 +2408,22 @@ class(v)
 ```
 
 ```r
-mode(v)
+typeof(v)
 ```
 
 ```
-[1] "numeric"
+[1] "integer"
 ```
 
 O R usa o primeiro valor de `dim()` para o número de linhas e o segundo para o número de colunas. De forma geral em operações que usam linhas e colunas, as linhas vem sempre em primeiro.
 É importante notar que o R sempre preenche cada matriz ao longo das colunas ao invés das linhas.
 Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função `matrix()` ou `array()`. Elas fazem a mesma coisa que a `dim()` porém com argumentos mais versáteis para este processo.
 
-### Função `matrix` 
+### Função `matrix()` 
 
-Note como os números foram distribuídos na matriz com 3 linhas e 4 colunas. Outra forma simples de se criar uma matriz é usando a função `matrix`.
+Note como os números foram distribuídos na matriz com 3 linhas e 4 colunas. Outra forma simples de se criar uma matriz é usando a função `matrix()`.
 
-Ao aplicarmos a função `matrix` a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.
+Ao aplicarmos a função `matrix()` a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.
 
 
 ```r
@@ -2544,7 +2581,7 @@ temp_mat
 temp_matO <- temp_mat
 ```
 
-Atribuindo nomes às linhas (`rownames`) e colunas (`colnames`) da matriz criada dos vetores de temperatura mensal (`temp_mat`).
+Atribuindo nomes às linhas (`rownames()`) e colunas (`colnames()`) da matriz criada dos vetores de temperatura mensal (`temp_mat`).
 
 
 ```r

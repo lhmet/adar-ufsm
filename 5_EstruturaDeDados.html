@@ -174,7 +174,7 @@ $(document).ready(function () {
 <li><a href="#matrix"><span class="toc-section-number">4</span> Matrix</a><ul>
 <li><a href="#criacao-de-matrizes"><span class="toc-section-number">4.1</span> Criação de matrizes</a><ul>
 <li><a href="#funcao-dim"><span class="toc-section-number">4.1.1</span> Função <code>dim()</code></a></li>
-<li><a href="#funcao-matrix"><span class="toc-section-number">4.1.2</span> Função <code>matrix</code></a></li>
+<li><a href="#funcao-matrix"><span class="toc-section-number">4.1.2</span> Função <code>matrix()</code></a></li>
 </ul></li>
 <li><a href="#nomes-das-linhas-e-colunas-de-uma-matriz"><span class="toc-section-number">4.2</span> Nomes das linhas e colunas de uma matriz</a></li>
 <li><a href="#indexacao-de-matrizes"><span class="toc-section-number">4.3</span> Indexação de matrizes</a></li>
@@ -229,7 +229,7 @@ $(document).ready(function () {
 <p>Os vetores podem ser de dois tipos: <strong>vetores atômicos</strong> e <strong>listas</strong>.</p>
 <div id="vetores-atomicos" class="section level2">
 <h2><span class="header-section-number">3.1</span> Vetores atômicos</h2>
-<p>Os <strong>vetores atômicos</strong> são constituem a estrutura de dadosmais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos <code>double</code>, ou <code>integer</code>, ou <code>logical</code>, etc).</p>
+<p>Os <strong>vetores atômicos</strong> são constituem a estrutura de dados mais simples do R (como se fossem os átomos do R). Um vetor atômico é uma coleção de elementos, em que todos são do mesmo tipo de dado (todos <code>double</code>, ou <code>integer</code>, ou <code>logical</code>, etc).</p>
 <p>Como linguagem vetorizada, as operações são aplicadas a cada elemento do vetor automaticamente, sem a necessidade de laços (ou <em>loopings</em>) ao longo do vetor. Esse conceito pode ser estranho para quem vem de outras linguagens, mas é uma das grandes vantagens do R.</p>
 <p>Vetores não tem dimensões, ou seja não existem é um vetor linha ou vetor coluna.</p>
 <div id="propriedades" class="section level3">
@@ -237,7 +237,7 @@ $(document).ready(function () {
 <ul>
 <li><p><code>typeof()</code> (tipo de dado?)</p></li>
 <li><p><code>length()</code> (tamanho?) e</p></li>
-<li><p><code>attributes</code> (informações adionais específicas do dado), entre eles o atributo mais comum está o <code>names()</code>.</p></li>
+<li><p><code>attributes</code> (informações acionais específicas do dado), entre eles o atributo mais comum está o <code>names()</code>.</p></li>
 </ul>
 </div>
 <div id="criacao" class="section level3">
@@ -419,7 +419,7 @@ v1 +<span class="st"> </span>v2</code></pre></div>
 <pre><code>Warning in v1 + v2: longer object length is not a multiple of shorter
 object length</code></pre>
 <pre><code>[1]  5  6 91 92</code></pre>
-<p>A reciclagem é intrinsicamente usada em operações envolvendo vetores.</p>
+<p>A reciclagem é intrinsecamente usada em operações envolvendo vetores.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1</code></pre></div>
 <pre><code>[1]  3  5 88 90</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cte &lt;-<span class="st"> </span><span class="dv">4</span>
@@ -976,11 +976,13 @@ sel</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note a diferença</span>
 <span class="kw">which</span>(<span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>) %in%<span class="st"> </span>meses)</code></pre></div>
 <pre><code>[1] 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cond &lt;-<span class="st"> </span>!meses %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cond &lt;-<span class="st"> </span><span class="kw">names</span>(temp) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)
 quais &lt;-<span class="st"> </span><span class="kw">which</span>(cond)
 quais</code></pre></div>
-<pre><code> [1]  1  2  4  5  6  7  8  9 10 11 12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">names</span>(temp) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)]</code></pre></div>
+<pre><code>[1] 6 7 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[cond]</code></pre></div>
+<pre><code>[1]  0 12 22</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[quais]</code></pre></div>
 <pre><code>[1]  0 12 22</code></pre>
 </div>
 </div>
@@ -1128,13 +1130,13 @@ v1 &gt;<span class="st"> </span><span class="dv">5</span>    <span class="co"># 
 v1 ==<span class="st"> </span><span class="ot">NA</span>  </code></pre></div>
 <pre><code>[1] NA NA NA NA NA NA NA NA NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># não funcionou, porque há funções específicas para vetores com NA</span>
-eh.na &lt;-<span class="st"> </span><span class="kw">is.na</span>(v1)
+onde_falta &lt;-<span class="st"> </span><span class="kw">is.na</span>(v1)
 <span class="co"># função apropriada p/ checar se tem NAs</span>
 faltante &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(v1));
 v1[-faltante]</code></pre></div>
 <pre><code>[1] 1 2 3 4 5 6 7 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ou </span>
-v1[!eh.na]</code></pre></div>
+v1[!onde_falta]</code></pre></div>
 <pre><code>[1] 1 2 3 4 5 6 7 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vamos calcular a média de v1</span>
 <span class="kw">sum</span>(v1)/<span class="kw">length</span>(v1)</code></pre></div>
@@ -1142,7 +1144,7 @@ v1[!eh.na]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vamos remover valores NA</span>
 <span class="kw">sum</span>(v1[-faltante])/<span class="kw">length</span>(v1[-faltante])</code></pre></div>
 <pre><code>[1] 4.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(v1[!eh.na])/<span class="kw">length</span>(v1[!eh.na])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(v1[!onde_falta])/<span class="kw">length</span>(v1[!onde_falta])</code></pre></div>
 <pre><code>[1] 4.5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mas o R possui a função mean </span>
 <span class="kw">mean</span>(v1) </code></pre></div>
@@ -1172,16 +1174,16 @@ x ==<span class="st"> </span>-<span class="dv">999</span></code></pre></div>
 </div>
 <div id="diferenca-entre-na-e-null" class="section level2">
 <h2><span class="header-section-number">3.8</span> Diferença entre <code>NA</code> e <code>NULL</code></h2>
-<p>O <code>NULL</code> é um tipo de dado especial do R sem <code>mode</code> (modo).</p>
+<p>O <code>NULL</code> é um tipo de dado especial do R.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># v1 existe ?</span>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;a&quot;             &quot;above80&quot;       &quot;an&quot;            &quot;anos&quot;         
  [5] &quot;anos_dec&quot;      &quot;a_sn&quot;          &quot;b&quot;             &quot;below100&quot;     
  [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cond&quot;          &quot;cte&quot;          
 [13] &quot;day_below20&quot;   &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;         
-[17] &quot;eh.na&quot;         &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;        
-[21] &quot;k&quot;             &quot;meses&quot;         &quot;months&quot;        &quot;new_temp&quot;     
-[25] &quot;night_below20&quot; &quot;old_temp&quot;      &quot;oper&quot;          &quot;pcks&quot;         
+[17] &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;         &quot;k&quot;            
+[21] &quot;meses&quot;         &quot;months&quot;        &quot;new_temp&quot;      &quot;night_below20&quot;
+[25] &quot;old_temp&quot;      &quot;onde_falta&quot;    &quot;oper&quot;          &quot;pcks&quot;         
 [29] &quot;pent&quot;          &quot;pos&quot;           &quot;prec&quot;          &quot;prec_cond1&quot;   
 [33] &quot;prec_dez&quot;      &quot;prec_jan&quot;      &quot;prec_jja&quot;      &quot;prec_med&quot;     
 [37] &quot;prect_jja_tot&quot; &quot;quais&quot;         &quot;rep_e31&quot;       &quot;rep_t13&quot;      
@@ -1203,9 +1205,9 @@ v1 &lt;-<span class="st"> </span><span class="ot">NULL</span>
  [5] &quot;anos_dec&quot;      &quot;a_sn&quot;          &quot;b&quot;             &quot;below100&quot;     
  [9] &quot;below_avg&quot;     &quot;chuva&quot;         &quot;cond&quot;          &quot;cte&quot;          
 [13] &quot;day_below20&quot;   &quot;dda&quot;           &quot;decd&quot;          &quot;desc&quot;         
-[17] &quot;eh.na&quot;         &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;        
-[21] &quot;k&quot;             &quot;meses&quot;         &quot;months&quot;        &quot;new_temp&quot;     
-[25] &quot;night_below20&quot; &quot;old_temp&quot;      &quot;oper&quot;          &quot;pcks&quot;         
+[17] &quot;faltante&quot;      &quot;frac_d30mn&quot;    &quot;horas&quot;         &quot;k&quot;            
+[21] &quot;meses&quot;         &quot;months&quot;        &quot;new_temp&quot;      &quot;night_below20&quot;
+[25] &quot;old_temp&quot;      &quot;onde_falta&quot;    &quot;oper&quot;          &quot;pcks&quot;         
 [29] &quot;pent&quot;          &quot;pos&quot;           &quot;prec&quot;          &quot;prec_cond1&quot;   
 [33] &quot;prec_dez&quot;      &quot;prec_jan&quot;      &quot;prec_jja&quot;      &quot;prec_med&quot;     
 [37] &quot;prect_jja_tot&quot; &quot;quais&quot;         &quot;rep_e31&quot;       &quot;rep_t13&quot;      
@@ -1232,21 +1234,32 @@ vetor2 &lt;-<span class="st"> </span><span class="ot">NULL</span>
 a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="ot">NA</span>, <span class="dv">20</span>)
 a</code></pre></div>
 <pre><code>[1] 10  2 NA 20</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(a)</code></pre></div>
-<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(a)</code></pre></div>
+<pre><code>[1] &quot;double&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remover de a o dado faltante</span>
 a &lt;-<span class="st"> </span>a[!<span class="kw">is.na</span>(a)]
 a</code></pre></div>
 <pre><code>[1] 10  2 20</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># é possível remover um elemento com o NULL?</span>
+a[<span class="kw">length</span>(a)] &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<pre><code>Error in a[length(a)] &lt;- NULL: replacement has length zero</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a</code></pre></div>
+<pre><code>[1] 10  2 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span>a[-<span class="kw">length</span>(a)]
 a</code></pre></div>
-<pre><code>NULL</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(a)</code></pre></div>
+<pre><code>[1] 10  2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(a)</code></pre></div>
+<pre><code>[1] &quot;double&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># anulando a</span>
+a &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<span class="co"># qual modo de um objeto nulo?</span>
+<span class="kw">typeof</span>(a)</code></pre></div>
 <pre><code>[1] &quot;NULL&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="ot">NA</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># qual modo de NA?</span>
+b &lt;-<span class="st"> </span><span class="ot">NA</span>
 b</code></pre></div>
 <pre><code>[1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(b)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(b)</code></pre></div>
 <pre><code>[1] &quot;logical&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(a)</code></pre></div>
 <pre><code>[1] 0</code></pre>
@@ -1270,7 +1283,7 @@ b</code></pre></div>
 <pre><code>NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(v)</code></pre></div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## cópia de v0
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## cópia de v
 vetor &lt;-<span class="st"> </span>v
 ## conversão de vetor para matriz
 <span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)  <span class="co"># 1a dimensão: linhas , 2a dimensão: colunas </span>
@@ -1301,14 +1314,14 @@ v</code></pre></div>
 [4,]    4    8   12</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(v)</code></pre></div>
 <pre><code>[1] &quot;matrix&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(v)</code></pre></div>
-<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(v)</code></pre></div>
+<pre><code>[1] &quot;integer&quot;</code></pre>
 <p>O R usa o primeiro valor de <code>dim()</code> para o número de linhas e o segundo para o número de colunas. De forma geral em operações que usam linhas e colunas, as linhas vem sempre em primeiro. É importante notar que o R sempre preenche cada matriz ao longo das colunas ao invés das linhas. Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função <code>matrix()</code> ou <code>array()</code>. Elas fazem a mesma coisa que a <code>dim()</code> porém com argumentos mais versáteis para este processo.</p>
 </div>
 <div id="funcao-matrix" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Função <code>matrix</code></h3>
-<p>Note como os números foram distribuídos na matriz com 3 linhas e 4 colunas. Outra forma simples de se criar uma matriz é usando a função <code>matrix</code>.</p>
-<p>Ao aplicarmos a função <code>matrix</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
+<h3><span class="header-section-number">4.1.2</span> Função <code>matrix()</code></h3>
+<p>Note como os números foram distribuídos na matriz com 3 linhas e 4 colunas. Outra forma simples de se criar uma matriz é usando a função <code>matrix()</code>.</p>
+<p>Ao aplicarmos a função <code>matrix()</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## atribuindo novas dimensões ao vetor
 m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor)  <span class="co"># matriz de uma coluna</span>
 m</code></pre></div>
@@ -1406,7 +1419,7 @@ temp_mat</code></pre></div>
 [3,] 20.08</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## cópia da matriz temp_mat (sem nomes)
 temp_matO &lt;-<span class="st"> </span>temp_mat</code></pre></div>
-<p>Atribuindo nomes às linhas (<code>rownames</code>) e colunas (<code>colnames</code>) da matriz criada dos vetores de temperatura mensal (<code>temp_mat</code>).</p>
+<p>Atribuindo nomes às linhas (<code>rownames()</code>) e colunas (<code>colnames()</code>) da matriz criada dos vetores de temperatura mensal (<code>temp_mat</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## atribuindo nomes as colunas e linhas da temp_mat
 <span class="kw">rownames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ano1990&quot;</span>, <span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;ano1992&quot;</span>)
 <span class="kw">colnames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, 
