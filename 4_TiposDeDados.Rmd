@@ -184,6 +184,7 @@ teste2d2
 nchar("abc") < nchar("defg")
 ```
 
+<a name="tab_oper_log"></a>
 
 ```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE}
 oper <- c("<", "<=", ">", ">=", "==","!=","!x","x | y","x & y","isTRUE(x)", "%in%") 
