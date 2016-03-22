@@ -192,7 +192,7 @@ names(a_sn)
 
 - - -
 
-## Operações com vetores
+## Operações com vetores {.tabset}
 
 Para multiplicar cada elemento de um vetor por um valor é usar o operador de multiplicação  (*). O mesmo procedimento se aplica as demais operações de soma, subtração, divisão, exponenciação e etc.
 ```{r chunk77, message=FALSE, comment="",prompt=FALSE }
@@ -1436,7 +1436,7 @@ dados_l2
 str(dados_l2)
 ```
 
-## Indexação
+## Indexação {.tabset}
 
 ### Operador `[`
 
@@ -1624,7 +1624,7 @@ attributes(dados.df)
 class(attributes(dados.df))
 ```
 
-## Acesso as variáveis de um `dataframe`
+## Acesso as variáveis de um `dataframe` {.tabset}
 
 Existem várias formas de acessar as variáveis de um `dataframe`. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
 
