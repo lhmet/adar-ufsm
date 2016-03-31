@@ -137,7 +137,7 @@ $(document).ready(function () {
 
 <h1 class="title">Estruturas de dados</h1>
 <h4 class="author"><em>Jônatan Tatsch</em></h4>
-<h4 class="date"><em>22-03-2016</em></h4>
+<h4 class="date"><em>31-03-2016</em></h4>
 
 </div>
 
@@ -276,7 +276,7 @@ vetor_num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="d
 <span class="co"># Note o sufixo L que distingue variaveis &quot;double&quot; de &quot;integers&quot;</span>
 vetor_int &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 6L, 10L)
 <span class="co"># Vetor logico</span>
-vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(T, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+vetor_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
 <span class="co"># Vetor de caracteres</span>
 vetor_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Analise de dados&quot;</span>, <span class="st">&quot;ambientais com o R&quot;</span>)</code></pre></div>
 <p>Vetores atômicos podem ser criados a partir de outros vetores aninhados entre si pela função <code>c()</code>.</p>
@@ -298,7 +298,7 @@ v</code></pre></div>
 <h3><span class="header-section-number">3.1.3</span> Coerção de vetores</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">1</span>)</code></pre></div>
 <pre><code>[1] &quot;a&quot; &quot;1&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(<span class="kw">c</span>(F, F, T))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>[1] 0 0 1</code></pre>
 <p>Você pode manualmente forçar um tipo de vetor para outro usando funções de coerção: <code>as.character()</code>, <code>as.double()</code>,<code>as.integer()</code>, <code>as.logical()</code>. Coerção frequentemente acontece automaticamente, mas geralmente será mostrada uma mensagem quando ocorrer.</p>
 <p>Vamos usar a coerção no seguinte caso. Imagine um vetor com valores de chuva mensal de um ano e outro vetor com os meses do ano. Note a diferença da forma como criamos o vetor <code>meses</code> e o vetor <code>months</code>. Como descobrir o número de meses sem chuva nesse ano?</p>
@@ -308,7 +308,7 @@ meses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">j
 meses</code></pre></div>
 <pre><code>jan fev mar abr mai jun jul ago set out nov dez 
   1   2   3   4   5   6   7   8   9  10  11  12 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## vetor definido e depois adiciona-se o nome das variáveis
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor definido e depois adiciona-se o nome das variáveis</span>
 months &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>)
 <span class="kw">names</span>(months) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>, <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>)
 months</code></pre></div>
@@ -787,16 +787,16 @@ meses[vetor_l]</code></pre></div>
 <pre><code>[1] 6</code></pre>
 <p>Vamos considerar agora a seguinte forma do vetor lógico (<code>vetor_l</code>) e relembrar da <strong>coerção</strong> de vetores.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vetor lógico</span>
-vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(T, F)
+vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
 meses[vetor_l]</code></pre></div>
 <pre><code>[1] &quot;Jan&quot; &quot;Mar&quot; &quot;Mai&quot; &quot;Jul&quot; &quot;Set&quot; &quot;Nov&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, F)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vetor_l &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)
 meses[vetor_l]</code></pre></div>
 <pre><code>[1] &quot;Jan&quot; &quot;Abr&quot; &quot;Jul&quot; &quot;Out&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">c</span>(T,F)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prec[<span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)]</code></pre></div>
 <pre><code>Jan Mar Mai Jul Set Nov 
 300 210   0  12  80   0 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp[<span class="kw">c</span>(<span class="kw">rep</span>(F,<span class="dv">3</span>),T)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp[<span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">FALSE</span>,<span class="dv">3</span>),<span class="ot">TRUE</span>)]</code></pre></div>
 <pre><code> Abr  Ago  Dez 
 21.0 19.7 26.8 </code></pre>
 <p>A indexação pode ser feita também por comparações:</p>
@@ -1298,30 +1298,28 @@ b</code></pre></div>
 </div>
 <div id="matrix" class="section level1">
 <h1><span class="header-section-number">4</span> Matrix</h1>
-<p>Vetores são objetos unidimensionais. Vetores multidimensionais são denominados <em>arrays</em>. As matrizes são um caso especial de <em>array</em> em que o número de dimensões é igual a 2, uma dimensão são as linhas e a outra as colunas. Os dados armazenados em uma matriz são de uma única classe (ou <code>numeric</code>, ou <code>character</code>, por exemplo).</p>
+<p>Vetores são dados unidimensionais. Vetores multidimensionais são denominados <em>arrays</em>. As matrizes são um caso especial de <em>array</em> em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extesão de um <em>vector</em> para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou <code>numeric</code>, ou <code>character</code>, por exemplo).</p>
 <div id="criacao-de-matrizes" class="section level2 tabset">
 <h2><span class="header-section-number">4.1</span> Criação de matrizes</h2>
 <div id="funcao-dim" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Função <code>dim()</code></h3>
-<p>Podemos converter um vetor atômico em uma array de n dimensões através do atributo dimensão: <code>dim()</code>. Para fazer isso, definimos o atributo <code>dim</code>(dimensão) a um vetor numérico de tamanho <code>n</code>. O R reorganizará os elementos do vetor de acordo com as dimensões.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">12</span>
+<p>Podemos converter um vetor atômico em uma <em>array</em> de <code>n</code> dimensões através do atributo dimensão: <code>dim()</code>. Para fazer isso, definimos o atributo <code>dim</code>( de dimensão) com um vetor numérico de tamanho <code>n</code>. O R reorganizará os elementos do vetor de acordo com as dimensões.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span>vetor &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">12</span>
 <span class="kw">length</span>(v)</code></pre></div>
 <pre><code>[1] 12</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(v)</code></pre></div>
 <pre><code>NULL</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(v)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(v)</code></pre></div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## cópia de v
-vetor &lt;-<span class="st"> </span>v
-## conversão de vetor para matriz
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># conversão de vetor para matriz</span>
 <span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)  <span class="co"># 1a dimensão: linhas , 2a dimensão: colunas </span>
-## vetor é vector?
+<span class="co"># v é vector?</span>
 <span class="kw">is.vector</span>(v)</code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## vetor é matrix?
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># v é matrix?</span>
 <span class="kw">is.matrix</span>(v)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## classe de vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># classe de vetor</span>
 <span class="kw">class</span>(v)</code></pre></div>
 <pre><code>[1] &quot;matrix&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(v)</code></pre></div>
@@ -1332,7 +1330,7 @@ vetor &lt;-<span class="st"> </span>v
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## invertendo as dimensões
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># invertendo as dimensões</span>
 <span class="kw">dim</span>(v) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>)
 v</code></pre></div>
 <pre><code>     [,1] [,2] [,3]
@@ -1340,17 +1338,15 @@ v</code></pre></div>
 [2,]    2    6   10
 [3,]    3    7   11
 [4,]    4    8   12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(v)</code></pre></div>
-<pre><code>[1] &quot;matrix&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(v)</code></pre></div>
-<pre><code>[1] &quot;integer&quot;</code></pre>
-<p>O R usa o primeiro valor de <code>dim()</code> para o número de linhas e o segundo para o número de colunas. De forma geral em operações que usam linhas e colunas, as linhas vem sempre em primeiro. É importante notar que o R sempre preenche cada matriz ao longo das colunas ao invés das linhas. Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função <code>matrix()</code> ou <code>array()</code>. Elas fazem a mesma coisa que a <code>dim()</code> porém com argumentos mais versáteis para este processo.</p>
+<p>O R usa o primeiro elemento de <code>dim()</code> para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.</p>
+<p>Note como os valores de <code>v</code> foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.</p>
+<p>Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função <code>matrix()</code> ou <code>array()</code>. Elas fazem a mesma coisa que a <code>dim()</code> porém com argumentos mais versáteis para estruturar uma <code>matrix</code>.</p>
 </div>
 <div id="funcao-matrix" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Função <code>matrix()</code></h3>
-<p>Note como os números foram distribuídos na matriz com 3 linhas e 4 colunas. Outra forma simples de se criar uma matriz é usando a função <code>matrix()</code>.</p>
+<p>Uma forma mais clara de se criar uma matriz é usando a função <code>matrix()</code>.</p>
 <p>Ao aplicarmos a função <code>matrix()</code> a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## atribuindo novas dimensões ao vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># atribuindo novas dimensões ao vetor</span>
 m &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor)  <span class="co"># matriz de uma coluna</span>
 m</code></pre></div>
 <pre><code>      [,1]
@@ -1366,23 +1362,23 @@ m</code></pre></div>
 [10,]   10
 [11,]   11
 [12,]   12</code></pre>
-<p>Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor <code>vetor</code> podemos usar as seguintes expressões equivalentes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## criando a matriz gerada com dim
+<p>Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor <code>vetor</code> podemos fazer da seguinte forma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando a matriz gerada com dim</span>
 mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 mat</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## não há necessidade de especificar ambos ncol e nrow
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># não há necessidade de especificar ambos ncol e nrow</span>
 mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">nrow =</span> <span class="dv">3</span>)
 mat</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12</code></pre>
-<p>Poderíamos criar a matriz <code>mat</code> especificando os elementos individualmente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## criando a matriz gerada com dim
+<p>A matriz <code>mat</code> poderia ser criada especificando os valores de cada elemento :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criando a matriz gerada com dim</span>
 mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 mat</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
@@ -1406,9 +1402,8 @@ mat</code></pre></div>
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12</code></pre>
-<p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## byrow = T
-mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> T)
+<p>No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento <strong><code>byrow = TRUE</code></strong> da função <code>matrix()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vetor, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 mat</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
@@ -1419,23 +1414,23 @@ mat</code></pre></div>
 <div id="nomes-das-linhas-e-colunas-de-uma-matriz" class="section level2">
 <h2><span class="header-section-number">4.2</span> Nomes das linhas e colunas de uma matriz</h2>
 <p>Nas matrizes, assim como nos vetores, também é possível dar nomes aos elementos para tornar a leitura da informação mais clara. Vamos usar os vetores de temperatura mensal dos anos de <code>1990:1992</code>para construir uma matriz com os meses ao longo das colunas e os anos ao longo das linhas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## temperatura do ar média mensal do ano de 1990
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperatura do ar média mensal do ano de 1990</span>
 temp90 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="fl">23.2</span>, <span class="fl">22.5</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="fl">17.6</span>, <span class="dv">18</span>, <span class="fl">19.7</span>, <span class="fl">21.3</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="fl">26.8</span>)
-## temperatura do ar média mensal do ano de 1991
+<span class="co"># temperatura do ar média mensal do ano de 1991</span>
 temp91 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">24.89</span>, <span class="fl">24.07</span>, <span class="fl">23.56</span>, <span class="fl">23.11</span>, <span class="fl">18.29</span>, <span class="fl">18.22</span>, <span class="fl">16.72</span>, <span class="fl">19.37</span>, <span class="fl">20.08</span>, <span class="fl">21.45</span>, 
     <span class="fl">26.61</span>, <span class="fl">25.99</span>)
-## temperatura do ar média mensal do ano de 1992
+<span class="co"># temperatura do ar média mensal do ano de 1992</span>
 temp92 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">23.2</span>, <span class="fl">26.61</span>, <span class="dv">18</span>, <span class="fl">23.11</span>, <span class="fl">26.8</span>, <span class="fl">21.3</span>, <span class="fl">18.22</span>, <span class="fl">21.45</span>, <span class="fl">19.7</span>, <span class="fl">22.5</span>, <span class="fl">24.07</span>, 
     <span class="fl">20.08</span>)
-## vetor com as temperaturas dos 3 anos
+<span class="co"># vetor com as temperaturas dos 3 anos</span>
 vtemp &lt;-<span class="st"> </span><span class="kw">c</span>(temp90, temp91, temp92)
 vtemp</code></pre></div>
 <pre><code> [1] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 [12] 26.80 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45
 [23] 26.61 25.99 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70
 [34] 22.50 24.07 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## arranjar matrix com meses ao longo das colunas e anos ao longo das linhas
-temp_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vtemp, <span class="dt">ncol =</span> <span class="dv">12</span>, <span class="dt">byrow =</span> T)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arranjar matrix com meses ao longo das colunas e anos ao longo das linhas</span>
+temp_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(vtemp, <span class="dt">ncol =</span> <span class="dv">12</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 temp_mat</code></pre></div>
 <pre><code>      [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
@@ -1445,10 +1440,10 @@ temp_mat</code></pre></div>
 [1,] 26.80
 [2,] 25.99
 [3,] 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## cópia da matriz temp_mat (sem nomes)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cópia da matriz temp_mat (sem nomes)</span>
 temp_matO &lt;-<span class="st"> </span>temp_mat</code></pre></div>
 <p>Atribuindo nomes às linhas (<code>rownames()</code>) e colunas (<code>colnames()</code>) da matriz criada dos vetores de temperatura mensal (<code>temp_mat</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## atribuindo nomes as colunas e linhas da temp_mat
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># atribuindo nomes as colunas e linhas da temp_mat</span>
 <span class="kw">rownames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ano1990&quot;</span>, <span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;ano1992&quot;</span>)
 <span class="kw">colnames</span>(temp_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Fev&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Abr&quot;</span>, <span class="st">&quot;Mai&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>, 
     <span class="st">&quot;Set&quot;</span>, <span class="st">&quot;Out&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dez&quot;</span>)
@@ -1483,36 +1478,36 @@ ano1992 20.08</code></pre>
 [1,] 26.80
 [2,] 25.99
 [3,] 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## qual a linha do ano de 1991
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># qual a linha do ano de 1991</span>
 linha &lt;-<span class="st"> </span><span class="dv">2</span>
-## qual a coluna do mês de maio
+<span class="co"># qual a coluna do mês de maio</span>
 coluna &lt;-<span class="st"> </span><span class="dv">5</span>
-## extraindo
+<span class="co"># extraindo</span>
 temp_mat[linha, coluna]</code></pre></div>
 <pre><code>[1] 18.29</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ou usando os nomes
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ou usando os nomes</span>
 temp_mat[<span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;Mai&quot;</span>]</code></pre></div>
 <pre><code>[1] 18.29</code></pre>
 <p>Com o operador <code>[</code> podemos usar todos os esquemas de indexação vistos na Unidade de <strong>Seleção e filtragem de dados</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## temperaturas de todos janeiros
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperaturas de todos janeiros</span>
 temp_mat[, <span class="dv">1</span>]</code></pre></div>
 <pre><code>ano1990 ano1991 ano1992 
   25.00   24.89   23.20 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat[, <span class="st">&quot;Jan&quot;</span>]</code></pre></div>
 <pre><code>ano1990 ano1991 ano1992 
   25.00   24.89   23.20 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## só as temperaturas de 1990 e 1993
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># só as temperaturas de 1990 e 1993</span>
 temp_mat[-<span class="dv">2</span>, ]</code></pre></div>
 <pre><code>         Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez
 ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80
 ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## só as temperaturas dos verões
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># só as temperaturas dos verões</span>
 temp_mat[, <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">2</span>)]</code></pre></div>
 <pre><code>          Dez   Jan   Fev
 ano1990 26.80 25.00 23.20
 ano1991 25.99 24.89 24.07
 ano1992 20.08 23.20 26.61</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## invertendo ordem das colunas
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># invertendo ordem das colunas</span>
 temp_mat[, <span class="kw">ncol</span>(temp_mat):<span class="dv">1</span>]</code></pre></div>
 <pre><code>          Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev
 ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20
@@ -1522,7 +1517,7 @@ ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61
 ano1990 25.00
 ano1991 24.89
 ano1992 23.20</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## invertendo ordem das colunas e das linhas
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># invertendo ordem das colunas e das linhas</span>
 temp_mat[<span class="dv">3</span>:<span class="dv">1</span>, <span class="dv">12</span>:<span class="dv">1</span>]</code></pre></div>
 <pre><code>          Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev
 ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61
@@ -1532,32 +1527,32 @@ ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20
 ano1992 23.20
 ano1991 24.89
 ano1990 25.00</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## invertendo ordem das colunas e das linhas
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># invertendo ordem das colunas e das linhas</span>
 temp_mat[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">6</span>:<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">10</span>:<span class="dv">8</span>)]</code></pre></div>
 <pre><code>          Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago
 ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37
 ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70
 ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## só as temperaturas dos invernos
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># só as temperaturas dos invernos</span>
 temp_mat[, <span class="kw">colnames</span>(temp_mat) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>)]</code></pre></div>
 <pre><code>          Jun   Jul   Ago
 ano1990 17.60 18.00 19.70
 ano1991 18.22 16.72 19.37
 ano1992 21.30 18.22 21.45</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## exceto as temperaturas dos invernos
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exceto as temperaturas dos invernos</span>
 temp_mat[, -<span class="kw">which</span>(<span class="kw">colnames</span>(temp_mat) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Ago&quot;</span>))]</code></pre></div>
 <pre><code>          Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez
 ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80
 ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99
 ano1992 23.20 26.61 18.00 23.11 26.80 19.70 22.50 24.07 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleção de colunas intercaladas da matriz: mês sim, mês nao
-temp_mat[, <span class="kw">c</span>(T, F)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção de colunas intercaladas da matriz: mês sim, mês nao</span>
+temp_mat[, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</code></pre></div>
 <pre><code>          Jan   Mar   Mai   Jul   Set   Nov
 ano1990 25.00 22.50 19.00 18.00 21.30 24.00
 ano1991 24.89 23.56 18.29 16.72 20.08 26.61
 ano1992 23.20 18.00 26.80 18.22 19.70 24.07</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 2 meses sim, 1 mes não
-temp_mat[, <span class="kw">c</span>(T, T, F)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2 meses sim, 1 mes não</span>
+temp_mat[, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</code></pre></div>
 <pre><code>          Jan   Fev   Abr   Mai   Jul   Ago   Out   Nov
 ano1990 25.00 23.20 21.00 19.00 18.00 19.70 22.00 24.00
 ano1991 24.89 24.07 23.11 18.29 16.72 19.37 21.45 26.61
@@ -1585,17 +1580,17 @@ ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 26.80
 ano1991 25.99
 ano1992 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 1990 e 1992 os meses de jan e dez
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1990 e 1992 os meses de jan e dez</span>
 M[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)]</code></pre></div>
 <pre><code>         Jan   Dez
 ano1990 25.0 26.80
 ano1992 23.2 20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## matriz com novos valores
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># matriz com novos valores</span>
 <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>     [,1] [,2]
 [1,]   21   23
 [2,]   22   24</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## substituindo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># substituindo</span>
 M[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)] &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
 M</code></pre></div>
 <pre><code>          Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
@@ -1638,27 +1633,27 @@ ano1992 24.00</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(temp_mat)</code></pre></div>
 <pre><code>[1]  3 12</code></pre>
 <p>Existem funções específicas para saber a coluna e a linha cada elemento de uma matriz.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## colunas de cada elemento da matriz
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># colunas de cada elemento da matriz</span>
 <span class="kw">col</span>(temp_mat)</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]
 [1,]    1    2    3    4    5    6    7    8    9    10    11    12
 [2,]    1    2    3    4    5    6    7    8    9    10    11    12
 [3,]    1    2    3    4    5    6    7    8    9    10    11    12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## linhas de cada elemento da matriz
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># linhas de cada elemento da matriz</span>
 <span class="kw">row</span>(temp_mat)</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]
 [1,]    1    1    1    1    1    1    1    1    1     1     1     1
 [2,]    2    2    2    2    2    2    2    2    2     2     2     2
 [3,]    3    3    3    3    3    3    3    3    3     3     3     3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## elementos de matriz
-m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> T)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># elementos de matriz</span>
+m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 m</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
 [2,]    5    6    7    8
 [3,]    9   10   11   12
 [4,]   13   14   15   16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## nós veremos mais sobre a função paste futuramente
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nós veremos mais sobre a função paste futuramente</span>
 elementos &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;m&quot;</span>, <span class="kw">row</span>(m), <span class="kw">col</span>(m), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
 mel &lt;-<span class="st"> </span><span class="kw">matrix</span>(elementos, <span class="dt">ncol =</span> <span class="dv">4</span>)
 mel</code></pre></div>
@@ -1667,24 +1662,24 @@ mel</code></pre></div>
 [2,] &quot;m21&quot; &quot;m22&quot; &quot;m23&quot; &quot;m24&quot;
 [3,] &quot;m31&quot; &quot;m32&quot; &quot;m33&quot; &quot;m34&quot;
 [4,] &quot;m41&quot; &quot;m42&quot; &quot;m43&quot; &quot;m44&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## qual colunas de M são idênticas a 1
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># qual colunas de M são idênticas a 1</span>
 <span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">1</span></code></pre></div>
 <pre><code>     [,1]  [,2]  [,3]  [,4]
 [1,] TRUE FALSE FALSE FALSE
 [2,] TRUE FALSE FALSE FALSE
 [3,] TRUE FALSE FALSE FALSE
 [4,] TRUE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleciona na M colunas idênticas a 1
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleciona na M colunas idênticas a 1</span>
 mel[<span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">1</span>]</code></pre></div>
 <pre><code>[1] &quot;m11&quot; &quot;m21&quot; &quot;m31&quot; &quot;m41&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## qual colunas de M são idênticas a 1 ou 3?
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># qual colunas de M são idênticas a 1 ou 3?</span>
 <span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">1</span> |<span class="st"> </span><span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">3</span></code></pre></div>
 <pre><code>     [,1]  [,2] [,3]  [,4]
 [1,] TRUE FALSE TRUE FALSE
 [2,] TRUE FALSE TRUE FALSE
 [3,] TRUE FALSE TRUE FALSE
 [4,] TRUE FALSE TRUE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Usando operadores relacionais
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Usando operadores relacionais</span>
 <span class="kw">row</span>(m) ==<span class="st"> </span><span class="dv">1</span></code></pre></div>
 <pre><code>      [,1]  [,2]  [,3]  [,4]
 [1,]  TRUE  TRUE  TRUE  TRUE
@@ -1703,12 +1698,12 @@ mel[<span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">1
 [2,] FALSE FALSE TRUE FALSE
 [3,] FALSE FALSE TRUE FALSE
 [4,] FALSE FALSE TRUE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleciona valores de M posicionados na linha 1 OU na coluna 6
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleciona valores de M posicionados na linha 1 OU na coluna 6</span>
 mel[<span class="kw">row</span>(m) ==<span class="st"> </span><span class="dv">1</span> |<span class="st"> </span><span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">4</span>]</code></pre></div>
 <pre><code>[1] &quot;m11&quot; &quot;m12&quot; &quot;m13&quot; &quot;m14&quot; &quot;m24&quot; &quot;m34&quot; &quot;m44&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="kw">row</span>(m) ==<span class="st"> </span><span class="dv">1</span> |<span class="st"> </span><span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">4</span>]</code></pre></div>
 <pre><code>[1]  1  2  3  4  8 12 16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleciona valores de M posicionados na linha 1 E na coluna 6
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleciona valores de M posicionados na linha 1 E na coluna 6</span>
 mel[<span class="kw">row</span>(m) ==<span class="st"> </span><span class="dv">4</span> &amp;<span class="st"> </span><span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">4</span>]</code></pre></div>
 <pre><code>[1] &quot;m44&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m[<span class="kw">row</span>(m) ==<span class="st"> </span><span class="dv">4</span> &amp;<span class="st"> </span><span class="kw">col</span>(m) ==<span class="st"> </span><span class="dv">4</span>]</code></pre></div>
@@ -1739,7 +1734,7 @@ temp92 20.08</code></pre>
 [10,]   22.0  21.45  22.50
 [11,]   24.0  26.61  24.07
 [12,]   26.8  25.99  20.08</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## recursão
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># recursão</span>
 <span class="kw">rbind</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">21</span>:<span class="dv">25</span>)</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 [1,]    1    2    3    4    5    6    7    8    9    10
@@ -1793,7 +1788,7 @@ Dez    26.8   25.99   20.08</code></pre>
 [2,] &quot;m12&quot; &quot;m22&quot; &quot;m32&quot; &quot;m42&quot;
 [3,] &quot;m13&quot; &quot;m23&quot; &quot;m33&quot; &quot;m43&quot;
 [4,] &quot;m14&quot; &quot;m24&quot; &quot;m34&quot; &quot;m44&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## diagonal de mel
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># diagonal de mel</span>
 <span class="kw">diag</span>(mel)</code></pre></div>
 <pre><code>[1] &quot;m11&quot; &quot;m22&quot; &quot;m33&quot; &quot;m44&quot;</code></pre>
 <div id="multiplicacao-matricial" class="section level3">
@@ -1803,7 +1798,7 @@ Dez    26.8   25.99   20.08</code></pre>
 <img src="data:image/png;base64,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Jj799NMsg97/WpVUwngux9rtdlbWxe1XZrPZYrEAgFKplCZtQmARDZ7HGI1GQog0m1QkQkh9fT37VsxPaPIsLEXWTyEPu90uphMFcv2e8U7ihlarVavVLD0dfIROORyO61Al9S8hK0RgsI+XL19+//33V65cycLp3DLrO3ToYDKZOI6bNGlShw4d5s2bp9PpsKuImK937BboxvbbbLbi4uJvv/125cqVUkiwbysrKz/77LPZs2fPnj37888/r66u9mroM4bW6XSuCufux4inq66u/uijj1555ZW8vDy3cwmCsH///ueff/6pp55avnw5qzzp34ug0+lOnjz5/vvvX7x40VOltFqtpaWl8+fPX7JkCfheTKSUWiwWvV7vWXjBbfV67969zz333Lx584xGo68wkJMnT7733nvig5JV3KtHhfQ1AIDJZPrqq6/atGnTqlUrtwwYth0REdG7d+/x48ePHj16+PDhZ86cYdGmniXA2E6NRuOJQHbw5cuX33rrrc8+++zChQtul0Qp3bRpU3Jy8vPPP//SSy/FxcV9+eWXTGHzfNl6vf7jjz8+d+6cn3usqKhYsGBBenr6uHHjVq5cefbsWendnTt3bv78+ZMnT3722WdLS0vXrl1rsVj8c9XGjRtfe+21FStW1NfXe0KorKzsnXfe+fTTT/Py8vyMgxA6fPjwZ599JuIQPGKcBEE4cODAli1bHnnkkaCgoGXLlul0Ok8JXFBQ8MUXX2RlZbE4fJAdg79Tg5I+wby8PEJI7969Kysrpa9TPGDVqlWUUpYvf/LkyfT0dJaZQCk9fvx4cXExK7HMZmiO42pra1nKtZTj2WitW7d+/fXXv//+e8+MSoTQ6NGjQ0NDWWLNkSNHNBqNL81BEISCggKz2ewn+HTp0qUYY1Yv0GazffPNNx9++KFYbwYhlJKSMnToUKVS2aZNm7feeishIWHQoEF+NKg777yzffv2H330kRg0Lr28Vq1avfbaa4sXL2Yh7n6evE6nKywsZDHtXhtQ1dTU/PjjjzNmzOjfv3+/fv3eeuutrKysBx98EBqHBs6dO7d9+/Zms1kGwzVAhdtDXLJkydixY1u1apWZmelV2TWZTPv27VuyZInRaNTr9U8++SSrskopPXjw4L59+9wSIQwGQ3V1tdcipyqVqk2bNgkJCeJ0Kz1jdHQ008tXr15tt9v/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" title="Figura 1" alt />
 
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## multiplicação de duas matrizes
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multiplicação de duas matrizes</span>
 A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
 A</code></pre></div>
 <pre><code>     [,1] [,2]
@@ -1823,7 +1818,7 @@ prodMat</code></pre></div>
 [1,]   12   14
 [2,]    3    1
 [3,]   22   24</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## multiplicação de uma matriz por um escalar
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># multiplicação de uma matriz por um escalar</span>
 m</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
@@ -1858,7 +1853,7 @@ m</code></pre></div>
 v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>)
 u *<span class="st"> </span>v</code></pre></div>
 <pre><code>[1]  5 24 39</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## produto escalar = u.v = 1*5 + 2*12 + 3*13
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># produto escalar = u.v = 1*5 + 2*12 + 3*13</span>
 <span class="kw">crossprod</span>(u, v)</code></pre></div>
 <pre><code>     [,1]
 [1,]   68</code></pre>
@@ -3610,7 +3605,7 @@ z</code></pre></div>
 $b
 [1] &quot;teste&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## usando '$' para criar o elemento chamado c
-z$c &lt;-<span class="st"> </span><span class="kw">c</span>(F, T)</code></pre></div>
+z$c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="conversao-de-lista-para-vetor-e-vice-versa." class="section level2">
 <h2><span class="header-section-number">6.4</span> Conversão de lista para vetor e vice-versa.</h2>

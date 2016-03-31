@@ -67,7 +67,7 @@ vetor_num <- c(5, 2.5, 4.5)
 # Note o sufixo L que distingue variaveis "double" de "integers"
 vetor_int <- c(1L, 6L, 10L)
 # Vetor logico
-vetor_log <- c(T, FALSE, TRUE, FALSE)
+vetor_log <- c(TRUE, FALSE, TRUE, FALSE)
 # Vetor de caracteres
 vetor_char <- c("Analise de dados", "ambientais com o R")
 ```
@@ -129,7 +129,7 @@ c("a", 1)
 ```
 
 ```r
-as.numeric(c(F, F, T))
+as.numeric(c(FALSE, FALSE, TRUE))
 ```
 
 ```
@@ -153,7 +153,7 @@ jan fev mar abr mai jun jul ago set out nov dez
 ```
 
 ```r
-## vetor definido e depois adiciona-se o nome das variáveis
+# vetor definido e depois adiciona-se o nome das variáveis
 months <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 names(months) <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 months
@@ -1246,7 +1246,7 @@ Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`) e relembrar
 
 ```r
 # vetor lógico
-vetor_l <- c(T, F)
+vetor_l <- c(TRUE, FALSE)
 meses[vetor_l]
 ```
 
@@ -1255,7 +1255,7 @@ meses[vetor_l]
 ```
 
 ```r
-vetor_l <- c(T, F, F)
+vetor_l <- c(TRUE, FALSE, FALSE)
 meses[vetor_l]
 ```
 
@@ -1264,7 +1264,7 @@ meses[vetor_l]
 ```
 
 ```r
-prec[c(T,F)]
+prec[c(TRUE,FALSE)]
 ```
 
 ```
@@ -1273,7 +1273,7 @@ Jan Mar Mai Jul Set Nov
 ```
 
 ```r
-temp[c(rep(F,3),T)]
+temp[c(rep(FALSE,3),TRUE)]
 ```
 
 ```
@@ -2299,18 +2299,18 @@ length(b)
 
 # Matrix
 
-Vetores são objetos unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão são as linhas e a outra as colunas. Os dados armazenados em uma matriz são de uma única classe (ou `numeric`, ou `character`, por exemplo).
+Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extesão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
 
 ## Criação de matrizes {.tabset}
 
-### Função `dim()` 
+### Função `dim()`
 
-Podemos converter um vetor atômico em uma array de n dimensões através do atributo dimensão: `dim()`. Para fazer isso, definimos o atributo `dim`(dimensão) a um vetor numérico de tamanho `n`. 
+Podemos converter um vetor atômico em uma *array* de `n` dimensões através do atributo dimensão: `dim()`. Para fazer isso, definimos o atributo `dim`( de dimensão) com um vetor numérico de tamanho `n`. 
 O R reorganizará os elementos do vetor de acordo com as dimensões.
 
 
 ```r
-v <- 1:12
+v <- vetor <- 1:12
 length(v)
 ```
 
@@ -2327,7 +2327,7 @@ NULL
 ```
 
 ```r
-class(v)
+typeof(v)
 ```
 
 ```
@@ -2335,11 +2335,9 @@ class(v)
 ```
 
 ```r
-## cópia de v
-vetor <- v
-## conversão de vetor para matriz
+# conversão de vetor para matriz
 dim(v) <- c(3, 4)  # 1a dimensão: linhas , 2a dimensão: colunas 
-## vetor é vector?
+# v é vector?
 is.vector(v)
 ```
 
@@ -2348,7 +2346,7 @@ is.vector(v)
 ```
 
 ```r
-## vetor é matrix?
+# v é matrix?
 is.matrix(v)
 ```
 
@@ -2357,7 +2355,7 @@ is.matrix(v)
 ```
 
 ```r
-## classe de vetor
+# classe de vetor
 class(v)
 ```
 
@@ -2386,7 +2384,7 @@ v
 ```
 
 ```r
-## invertendo as dimensões
+# invertendo as dimensões
 dim(v) <- c(4, 3)
 v
 ```
@@ -2399,35 +2397,21 @@ v
 [4,]    4    8   12
 ```
 
-```r
-class(v)
-```
+O R usa o primeiro elemento de `dim()` para o número de linhas e o segundo para o número de colunas. De forma geral, em operações que usam linhas e colunas, as linhas vem sempre em primeiro lugar.
 
-```
-[1] "matrix"
-```
+Note como os valores de `v` foram distribuídos na matriz com 3 linhas e 4 colunas. O R sempre preenche a matriz ao longo das colunas.
 
-```r
-typeof(v)
-```
-
-```
-[1] "integer"
-```
-
-O R usa o primeiro valor de `dim()` para o número de linhas e o segundo para o número de colunas. De forma geral em operações que usam linhas e colunas, as linhas vem sempre em primeiro.
-É importante notar que o R sempre preenche cada matriz ao longo das colunas ao invés das linhas.
-Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função `matrix()` ou `array()`. Elas fazem a mesma coisa que a `dim()` porém com argumentos mais versáteis para este processo.
+Para mais controle na forma como R reorganiza os dados em linhas e colunas, podemos utilizar a função `matrix()` ou `array()`. Elas fazem a mesma coisa que a `dim()` porém com argumentos mais versáteis para estruturar uma `matrix`.
 
 ### Função `matrix()` 
 
-Note como os números foram distribuídos na matriz com 3 linhas e 4 colunas. Outra forma simples de se criar uma matriz é usando a função `matrix()`.
+Uma forma mais clara de se criar uma matriz é usando a função `matrix()`.
 
 Ao aplicarmos a função `matrix()` a um vetor sem especificar nenhum argumento ela produz uma matriz de uma coluna.
 
 
 ```r
-## atribuindo novas dimensões ao vetor
+# atribuindo novas dimensões ao vetor
 m <- matrix(vetor)  # matriz de uma coluna
 m
 ```
@@ -2448,11 +2432,11 @@ m
 [12,]   12
 ```
 
-Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `vetor` podemos usar as seguintes expressões equivalentes:
+Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `vetor` podemos fazer da seguinte forma:
 
 
 ```r
-## criando a matriz gerada com dim
+# criando a matriz gerada com dim
 mat <- matrix(vetor, nrow = 3, ncol = 4)
 mat
 ```
@@ -2465,7 +2449,7 @@ mat
 ```
 
 ```r
-## não há necessidade de especificar ambos ncol e nrow
+# não há necessidade de especificar ambos ncol e nrow
 mat <- matrix(vetor, nrow = 3)
 mat
 ```
@@ -2477,11 +2461,11 @@ mat
 [3,]    3    6    9   12
 ```
 
-Poderíamos criar a matriz `mat` especificando os elementos individualmente:
+A matriz `mat` poderia ser criada especificando os valores de cada elemento :
 
 
 ```r
-## criando a matriz gerada com dim
+# criando a matriz gerada com dim
 mat <- matrix(nrow = 3, ncol = 4)
 mat
 ```
@@ -2516,12 +2500,11 @@ mat
 [3,]    3    6    9   12
 ```
 
-No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento **`byrow = TRUE`** da função `matrix`:
+No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas e não das colunas como no caso acima. Nós definimos isso com o argumento **`byrow = TRUE`** da função `matrix()`:
 
 
 ```r
-## byrow = T
-mat <- matrix(vetor, ncol = 4, byrow = T)
+mat <- matrix(vetor, ncol = 4, byrow = TRUE)
 mat
 ```
 
@@ -2539,15 +2522,15 @@ Vamos usar os vetores de temperatura mensal dos anos de `1990:1992`para construi
 
 
 ```r
-## temperatura do ar média mensal do ano de 1990
+# temperatura do ar média mensal do ano de 1990
 temp90 <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
-## temperatura do ar média mensal do ano de 1991
+# temperatura do ar média mensal do ano de 1991
 temp91 <- c(24.89, 24.07, 23.56, 23.11, 18.29, 18.22, 16.72, 19.37, 20.08, 21.45, 
     26.61, 25.99)
-## temperatura do ar média mensal do ano de 1992
+# temperatura do ar média mensal do ano de 1992
 temp92 <- c(23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22, 21.45, 19.7, 22.5, 24.07, 
     20.08)
-## vetor com as temperaturas dos 3 anos
+# vetor com as temperaturas dos 3 anos
 vtemp <- c(temp90, temp91, temp92)
 vtemp
 ```
@@ -2560,8 +2543,8 @@ vtemp
 ```
 
 ```r
-## arranjar matrix com meses ao longo das colunas e anos ao longo das linhas
-temp_mat <- matrix(vtemp, ncol = 12, byrow = T)
+# arranjar matrix com meses ao longo das colunas e anos ao longo das linhas
+temp_mat <- matrix(vtemp, ncol = 12, byrow = TRUE)
 temp_mat
 ```
 
@@ -2577,7 +2560,7 @@ temp_mat
 ```
 
 ```r
-## cópia da matriz temp_mat (sem nomes)
+# cópia da matriz temp_mat (sem nomes)
 temp_matO <- temp_mat
 ```
 
@@ -2585,7 +2568,7 @@ Atribuindo nomes às linhas (`rownames()`) e colunas (`colnames()`) da matriz cr
 
 
 ```r
-## atribuindo nomes as colunas e linhas da temp_mat
+# atribuindo nomes as colunas e linhas da temp_mat
 rownames(temp_mat) <- c("ano1990", "ano1991", "ano1992")
 colnames(temp_mat) <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", 
     "Set", "Out", "Nov", "Dez")
@@ -2639,11 +2622,11 @@ temp_matO  # matriz de temperaturas sem nomes
 ```
 
 ```r
-## qual a linha do ano de 1991
+# qual a linha do ano de 1991
 linha <- 2
-## qual a coluna do mês de maio
+# qual a coluna do mês de maio
 coluna <- 5
-## extraindo
+# extraindo
 temp_mat[linha, coluna]
 ```
 
@@ -2652,7 +2635,7 @@ temp_mat[linha, coluna]
 ```
 
 ```r
-## ou usando os nomes
+# ou usando os nomes
 temp_mat["ano1991", "Mai"]
 ```
 
@@ -2664,7 +2647,7 @@ Com o operador `[` podemos usar todos os esquemas de indexação vistos na Unida
 
 
 ```r
-## temperaturas de todos janeiros
+# temperaturas de todos janeiros
 temp_mat[, 1]
 ```
 
@@ -2683,7 +2666,7 @@ ano1990 ano1991 ano1992
 ```
 
 ```r
-## só as temperaturas de 1990 e 1993
+# só as temperaturas de 1990 e 1993
 temp_mat[-2, ]
 ```
 
@@ -2694,7 +2677,7 @@ ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08
 ```
 
 ```r
-## só as temperaturas dos verões
+# só as temperaturas dos verões
 temp_mat[, c(12, 1, 2)]
 ```
 
@@ -2706,7 +2689,7 @@ ano1992 20.08 23.20 26.61
 ```
 
 ```r
-## invertendo ordem das colunas
+# invertendo ordem das colunas
 temp_mat[, ncol(temp_mat):1]
 ```
 
@@ -2722,7 +2705,7 @@ ano1992 23.20
 ```
 
 ```r
-## invertendo ordem das colunas e das linhas
+# invertendo ordem das colunas e das linhas
 temp_mat[3:1, 12:1]
 ```
 
@@ -2738,7 +2721,7 @@ ano1990 25.00
 ```
 
 ```r
-## invertendo ordem das colunas e das linhas
+# invertendo ordem das colunas e das linhas
 temp_mat[c(2, 1, 3), c(6:1, 12, 10:8)]
 ```
 
@@ -2750,7 +2733,7 @@ ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45
 ```
 
 ```r
-## só as temperaturas dos invernos
+# só as temperaturas dos invernos
 temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago")]
 ```
 
@@ -2762,7 +2745,7 @@ ano1992 21.30 18.22 21.45
 ```
 
 ```r
-## exceto as temperaturas dos invernos
+# exceto as temperaturas dos invernos
 temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago"))]
 ```
 
@@ -2774,8 +2757,8 @@ ano1992 23.20 26.61 18.00 23.11 26.80 19.70 22.50 24.07 20.08
 ```
 
 ```r
-## seleção de colunas intercaladas da matriz: mês sim, mês nao
-temp_mat[, c(T, F)]
+# seleção de colunas intercaladas da matriz: mês sim, mês nao
+temp_mat[, c(TRUE, FALSE)]
 ```
 
 ```
@@ -2786,8 +2769,8 @@ ano1992 23.20 18.00 26.80 18.22 19.70 24.07
 ```
 
 ```r
-## 2 meses sim, 1 mes não
-temp_mat[, c(T, T, F)]
+# 2 meses sim, 1 mes não
+temp_mat[, c(TRUE, TRUE, FALSE)]
 ```
 
 ```
@@ -2849,7 +2832,7 @@ ano1992 20.08
 ```
 
 ```r
-## 1990 e 1992 os meses de jan e dez
+# 1990 e 1992 os meses de jan e dez
 M[c(1, 3), c(1, 12)]
 ```
 
@@ -2860,7 +2843,7 @@ ano1992 23.2 20.08
 ```
 
 ```r
-## matriz com novos valores
+# matriz com novos valores
 matrix(c(21, 22, 23, 24), ncol = 2)
 ```
 
@@ -2871,7 +2854,7 @@ matrix(c(21, 22, 23, 24), ncol = 2)
 ```
 
 ```r
-## substituindo
+# substituindo
 M[c(1, 3), c(1, 12)] <- matrix(c(21, 22, 23, 24), ncol = 2)
 M
 ```
@@ -2960,7 +2943,7 @@ Existem funções específicas para saber a coluna e a linha cada elemento de um
 
 
 ```r
-## colunas de cada elemento da matriz
+# colunas de cada elemento da matriz
 col(temp_mat)
 ```
 
@@ -2972,7 +2955,7 @@ col(temp_mat)
 ```
 
 ```r
-## linhas de cada elemento da matriz
+# linhas de cada elemento da matriz
 row(temp_mat)
 ```
 
@@ -2984,8 +2967,8 @@ row(temp_mat)
 ```
 
 ```r
-## elementos de matriz
-m <- matrix(1:16, nrow = 4, byrow = T)
+# elementos de matriz
+m <- matrix(1:16, nrow = 4, byrow = TRUE)
 m
 ```
 
@@ -2998,7 +2981,7 @@ m
 ```
 
 ```r
-## nós veremos mais sobre a função paste futuramente
+# nós veremos mais sobre a função paste futuramente
 elementos <- paste("m", row(m), col(m), sep = "")
 mel <- matrix(elementos, ncol = 4)
 mel
@@ -3013,7 +2996,7 @@ mel
 ```
 
 ```r
-## qual colunas de M são idênticas a 1
+# qual colunas de M são idênticas a 1
 col(m) == 1
 ```
 
@@ -3026,7 +3009,7 @@ col(m) == 1
 ```
 
 ```r
-## seleciona na M colunas idênticas a 1
+# seleciona na M colunas idênticas a 1
 mel[col(m) == 1]
 ```
 
@@ -3035,7 +3018,7 @@ mel[col(m) == 1]
 ```
 
 ```r
-## qual colunas de M são idênticas a 1 ou 3?
+# qual colunas de M são idênticas a 1 ou 3?
 col(m) == 1 | col(m) == 3
 ```
 
@@ -3048,7 +3031,7 @@ col(m) == 1 | col(m) == 3
 ```
 
 ```r
-## Usando operadores relacionais
+# Usando operadores relacionais
 row(m) == 1
 ```
 
@@ -3085,7 +3068,7 @@ row(m) == 1 | col(m) == 3
 ```
 
 ```r
-## seleciona valores de M posicionados na linha 1 OU na coluna 6
+# seleciona valores de M posicionados na linha 1 OU na coluna 6
 mel[row(m) == 1 | col(m) == 4]
 ```
 
@@ -3102,7 +3085,7 @@ m[row(m) == 1 | col(m) == 4]
 ```
 
 ```r
-## seleciona valores de M posicionados na linha 1 E na coluna 6
+# seleciona valores de M posicionados na linha 1 E na coluna 6
 mel[row(m) == 4 & col(m) == 4]
 ```
 
@@ -3157,7 +3140,7 @@ temp92 20.08
 ```
 
 ```r
-## recursão
+# recursão
 rbind(1:10, 11, 21:25)
 ```
 
@@ -3250,7 +3233,7 @@ t(mel)
 ```
 
 ```r
-## diagonal de mel
+# diagonal de mel
 diag(mel)
 ```
 
@@ -3266,7 +3249,7 @@ Operações algébricas, incluindo a multiplicação `*`, atuam elemento a eleme
 
 
 ```r
-## multiplicação de duas matrizes
+# multiplicação de duas matrizes
 A <- matrix(c(2, 1, 4, 3, 0, 5), ncol = 2)
 A
 ```
@@ -3310,7 +3293,7 @@ prodMat
 ```
 
 ```r
-## multiplicação de uma matriz por um escalar
+# multiplicação de uma matriz por um escalar
 m
 ```
 
@@ -3375,7 +3358,7 @@ u * v
 ```
 
 ```r
-## produto escalar = u.v = 1*5 + 2*12 + 3*13
+# produto escalar = u.v = 1*5 + 2*12 + 3*13
 crossprod(u, v)
 ```
 
@@ -5666,7 +5649,7 @@ $b
 
 ```r
 ## usando '$' para criar o elemento chamado c
-z$c <- c(F, T)
+z$c <- c(FALSE, TRUE)
 ```
 
 
