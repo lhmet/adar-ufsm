@@ -160,7 +160,7 @@ $(document).ready(function () {
 <li><a href="#sequencias-de-numeros-nao-inteiros"><span class="toc-section-number">3.3.2</span> Sequências de números não inteiros</a></li>
 <li><a href="#sequencias-de-numeros-repetidos"><span class="toc-section-number">3.3.3</span> Sequências de números repetidos</a></li>
 </ul></li>
-<li><a href="#indexacao-de-vetores"><span class="toc-section-number">3.4</span> Indexação de vetores</a><ul>
+<li><a href="#indexacao-de-vetores"><span class="toc-section-number">3.4</span> <a href="#indexvetores">Indexação de vetores</a></a><ul>
 <li><a href="#indexacao-por-vetores-inteiros"><span class="toc-section-number">3.4.1</span> Indexação por vetores inteiros</a></li>
 <li><a href="#indexacao-por-nomes"><span class="toc-section-number">3.4.2</span> Indexação por nomes</a></li>
 <li><a href="#indexacao-por-vetores-logicos"><span class="toc-section-number">3.4.3</span> Indexação por vetores lógicos</a></li>
@@ -676,7 +676,7 @@ rep_t13_t4</code></pre></div>
 </div>
 </div>
 <div id="indexacao-de-vetores" class="section level2 tabset">
-<h2><span class="header-section-number">3.4</span> Indexação de vetores</h2>
+<h2><span class="header-section-number">3.4</span> <a href="#indexvetores">Indexação de vetores</a></h2>
 <p>Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R.</p>
 <p>Podemos selecionar partes de um vetor por números (posição do elemento), caracteres (nome) e vetores lógicos.</p>
 <p>Através do operador <code>[</code> podemos acessar ou filtrar elementos de um vetor. O operador colchete <code>[</code> aplicado a um vetor retornará um vetor.</p>
@@ -1488,7 +1488,7 @@ temp_mat[linha, coluna]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ou usando os nomes</span>
 temp_mat[<span class="st">&quot;ano1991&quot;</span>, <span class="st">&quot;Mai&quot;</span>]</code></pre></div>
 <pre><code>[1] 18.29</code></pre>
-<p>Com o operador <code>[</code> podemos usar todos os esquemas de indexação vistos na Unidade de <strong>Seleção e filtragem de dados</strong>.</p>
+<p>Com o operador <code>[</code> podemos usar todos os esquemas de indexação vistos em vetores.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># temperaturas de todos janeiros</span>
 temp_mat[, <span class="dv">1</span>]</code></pre></div>
 <pre><code>ano1990 ano1991 ano1992 
@@ -1558,6 +1558,15 @@ ano1990 25.00 23.20 21.00 19.00 18.00 19.70 22.00 24.00
 ano1991 24.89 24.07 23.11 18.29 16.72 19.37 21.45 26.61
 ano1992 23.20 26.61 23.11 26.80 18.22 21.45 22.50 24.07</code></pre>
 <p>Podemos fazer uso do operador <code>[</code> de forma aninhada:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat</code></pre></div>
+<pre><code>          Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
+ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
+ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
+ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
+          Dez
+ano1990 26.80
+ano1991 25.99
+ano1992 20.08</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_mat[, <span class="dv">1</span>:<span class="dv">6</span>]</code></pre></div>
 <pre><code>          Jan   Fev   Mar   Abr   Mai   Jun
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60
@@ -1601,7 +1610,7 @@ ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 23.00
 ano1991 25.99
 ano1992 24.00</code></pre>
-<p>Outro exemplo:</p>
+<p>Partes de uma matriz podem ser substituídas ou alteradas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mx &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)
 my &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
 my</code></pre></div>
@@ -1632,7 +1641,7 @@ ano1992 24.00</code></pre>
 <pre><code>[1] 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(temp_mat)</code></pre></div>
 <pre><code>[1]  3 12</code></pre>
-<p>Existem funções específicas para saber a coluna e a linha cada elemento de uma matriz.</p>
+<p>Existem funções específicas para saber a coluna e a linha de cada elemento de uma matriz.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># colunas de cada elemento da matriz</span>
 <span class="kw">col</span>(temp_mat)</code></pre></div>
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]

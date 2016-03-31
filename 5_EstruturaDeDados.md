@@ -1003,7 +1003,8 @@ rep_t13_t4
 - - -
 
 
-## Indexação de vetores {.tabset}
+
+## [Indexação de vetores](#indexvetores) {.tabset} 
 
 Os elementos de um vetor são indexados e para acessá-los usamos a notação de índices do R. 
 
@@ -1215,7 +1216,7 @@ Dez Fev Jun
 280 150   0 
 ```
 
-###  Indexação por vetores lógicos
+### Indexação por vetores lógicos
 
 Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de elementos de um vetor. 
 
@@ -2643,7 +2644,9 @@ temp_mat["ano1991", "Mai"]
 [1] 18.29
 ```
 
-Com o operador `[` podemos usar todos os esquemas de indexação vistos na Unidade de **Seleção e filtragem de dados**.
+
+
+Com o operador `[` podemos usar todos os esquemas de indexação vistos em vetores.
 
 
 ```r
@@ -2784,6 +2787,21 @@ Podemos fazer uso do operador `[` de forma aninhada:
 
 
 ```r
+temp_mat
+```
+
+```
+          Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
+ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
+ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
+ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
+          Dez
+ano1990 26.80
+ano1991 25.99
+ano1992 20.08
+```
+
+```r
 temp_mat[, 1:6]
 ```
 
@@ -2870,7 +2888,7 @@ ano1991 25.99
 ano1992 24.00
 ```
 
-Outro exemplo:
+Partes de uma matriz podem ser substituídas ou alteradas.
 
 
 ```r
@@ -2939,7 +2957,7 @@ dim(temp_mat)
 [1]  3 12
 ```
 
-Existem funções específicas para saber a coluna e a linha cada elemento de uma matriz.
+Existem funções específicas para saber a coluna e a linha de cada elemento de uma matriz.
 
 
 ```r
