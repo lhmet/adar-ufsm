@@ -169,14 +169,14 @@ Os resultados dos *chuncks* podem ser mostrados na forma de figuras, tabelas e t
     qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
 ```
 
-![](figs/chunck4-1.png) 
+![](figs/chunck4-1.png)
 
 ```r
     ## Usando apenas a função plot()
     plot(x = climate$Year, y = climate$Anomaly1y) 
 ```
 
-![](figs/chunck4-2.png) 
+![](figs/chunck4-2.png)
 
 ```r
     ## regressão linear
