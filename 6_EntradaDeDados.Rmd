@@ -1139,7 +1139,7 @@ file.remove(arq_temp)
 
 Nesse exemplo vamos mostrar como baixar artigos no formato `pdf` disponíveis em um site da web.
 
-```{r Chunk855, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk855, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=FALSE}
  require(XML) 
  ## arquivo para salvar artigos baixados
  dir.create("output/sib2_papers", recursive = TRUE)
