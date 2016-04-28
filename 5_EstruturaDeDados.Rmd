@@ -663,7 +663,7 @@ which.min(prec)
 prec
 ``` 
 
-Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como \"está contido em\". O **resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste**. 
+Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como \"está contido em\". O **resultado é um vetor de mesmo tamanho que o vetor à esquerda do teste**. 
 
 ```{r chunk731, message=FALSE, comment="",prompt=FALSE, tidy=TRUE}
 # compare o tamanho dos vetores resultantes
@@ -854,7 +854,7 @@ length(b)
 
 # Matrix
 
-Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extesão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
+Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extensão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
 
 ## Criação de matrizes {.tabset}
 
@@ -1157,7 +1157,7 @@ crossprod(u, v)
 ### Determinante
 
 ```{r Chunk1641, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## matriz exemplo
+# matriz exemplo
 mat_ex <- matrix(c(1, -7, 3, 5, -9, 2, 6, 6, 1), ncol = 3)
 det(mat_ex)
 ```
@@ -1169,7 +1169,7 @@ x1 + x2 = 2
 
  Qual os  valores de x1 e x2?
 ```{r Chunk1651, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## matrizes do sistema linear
+# matrizes do sistema linear
 coefs <- matrix(c(1, -1, 1, 1), ncol = 2)
 y <- c(2, 4)
 x <- solve(coefs, y)
@@ -1182,85 +1182,92 @@ x
 Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz, por isso precisamos saber como fazer o caminho inverso. Quando criamos uma matriz (p. ex.: `temp_mat`) no início da seção ela foi baseada em um vetor (`vtemp`). Como fazemos para voltar aquele vetor original a partir da matriz?
 
 ```{r Chunk171, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-## desmanchando matrizes
+# desmanchando matrizes
 mel
-## note as diferenças
+# note as diferenças
 mel[1,1]
 mel[1]
-## resulta em uma submatriz
+# resulta em uma submatriz
 mel[1:4, 1:4]
-## resulta em um vetor
+# resulta em um vetor
 mel[1:4]
-## submatriz da temp_mat
+# submatriz da temp_mat
 temp_mat[1:3,1:3]
-## vetor gerado de 3 elementos de mat
+# vetor gerado de 3 elementos de mat
 temp_mat[1:3]
-## numero de elementos na matriz
+# número de elementos na matriz
 nel <- nrow(temp_mat)*ncol(temp_mat)
 nel
 temp_mat[1: nrow(temp_mat)*ncol(temp_mat) ]
-## vetor de temperaturas
+# vetor de temperaturas
 vtemp <- temp_mat[1:(ncol(temp_mat)*nrow(temp_mat))]
 vtemp
-## outra forma de converte temp_mat para vetor
+# outra forma de converte temp_mat para vetor
 c(temp_mat)
-## função formal para converter 
+# função formal para converter 
 as.vector(temp_mat)
-## mais uma forma de converte temp_mat para vetor
+# mais uma forma de converte temp_mat para vetor
 array(temp_mat)
-## para desmanchar a matriz com os elementos seguindo a ordem das linhas 
+# para desmanchar a matriz com os elementos seguindo a ordem das linhas 
 c(t(temp_mat))
 as.vector(t(temp_mat))
-## serie temporal de temp_mat
+# serie temporal de temp_mat
 stemp <- c(t(temp_mat))
 plot(stemp, type = "o")
-## criar matriz com colunas temp e meses 1:12
+# criar matriz com colunas temp e meses 1:12
 cbind(rep(1:12, nrow(temp_mat)),stemp)
-## dados de temp e meses
+# dados de temp e meses
 tempdat <- cbind(1:12, stemp)
-## plot da temperatura pelos meses (os meses repetem)
+# plot da temperatura pelos meses (os meses repetem)
 plot(tempdat, 
-     type = "p", ## tipo de grafico: pontos
-     pch = 20,   ## codigo numérico do simbolo do ponto
-     col = rep(1:3, each = ncol(temp_mat)),  ## cores dos pontos
-     cex = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat)), ## aumenta tamanho dos pontos
-     las = 1,   ## orientação dos labels dos eixos perpendiculares ao eixo
-     ylab = expression(Tar~(degree~C)), ## label da variável y
-     xlab = "meses", ## label da variavel x
-     main = "Temperatura mensal (1990-1992)" ## título
+     type = "p", # tipo de grafico: pontos
+     pch = 20,   # codigo numérico do simbolo do ponto
+     col = rep(1:3, each = ncol(temp_mat)),  # cores dos pontos
+     cex = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat)), # aumenta tamanho dos pontos
+     las = 1,   # orientação dos labels dos eixos perpendiculares ao eixo
+     ylab = expression(Tar~(degree~C)), # label da variável y
+     xlab = "meses", # label da variavel x
+     main = "Temperatura mensal (1990-1992)" # título
     )# end plot 
-## para entender a variação nas cores e símbolos usadas no gráfico
+# para entender a variação nas cores e símbolos usadas no gráfico
 cbind(meses = 1:12, temp = stemp, 
-      cores = rep(1:3, each = ncol(temp_mat)), ## cores
+      cores = rep(1:3, each = ncol(temp_mat)), # cores
       simb_tam = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat))
-      ) ## tamanho dos símbolos 
+      ) # tamanho dos símbolos 
 ```
 
 
 # Array
 
-*Arrays* são multidimensionais e matrizes são casos particulares de *arrays* com 2 dimensões: linhas e colunas. Mas podemos ter dados com n dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa *array* possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).
+*Arrays* são multidimensionais. As matrizes são um caso particular de *arrays* com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa *array* possui 3 dimensões: 
+
+- latitude (linha)
+
+- longitude (coluna) 
+
+- tempo (camadas)
 
 ## Criação 
 
 ```{r Chunk211, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
 v <- 1:12
-## atribuindo novas dimensões ao vetor
-dim(v) <- c(2, 2, 3)  # 1a dim: 3 linhas , 2a dim: 2 colunas, 3a dim: 2
+# atribuindo novas dimensões a v
+# 1a dim: 3 linhas, 2a dim: 2 colunas, 3a dim: 2
+dim(v) <- c(2, 2, 3)  
 v
-## ou
+# ou
 a <- array(data = v, dim = c(3, 2, 2))
 dim(a)
 length(a)
 class(a)
 mode(a)
-## exemplo de inicialização de uma array
-array(data = 0, dim = c(3,4,2))
+# exemplo de inicialização de uma array
+array(data = 0, dim = c(3, 4, 2))
 ```
 
 ## Indexação
 
-Suponha os campos espaciais médios mensais de temperatura. Podemos usar as mesmos procedimentos de seleção de matrizes para *arrays*.
+Suponha os campos espaciais médios mensais de temperatura dados pelo vetor `tempVals`. 
 
 ```{r Chun221, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
 tempVals <- c(22.34, 19.8, 22.22, 19.27, 19.53, 19.81, 21.18, 24.44, 23.91, 
@@ -1290,61 +1297,72 @@ tempVals <- c(22.34, 19.8, 22.22, 19.27, 19.53, 19.81, 21.18, 24.44, 23.91,
 17.89, 17.18, 22.05, 19.62, 22.73, 20.12, 23.35, 19.07, 20.34, 
 17.1, 15.33, 16.97, 22.93, 19.59, 17.13, 25.41, 18.74, 20.56, 
 14.46, 19.47, 23.96, 17.15)
-## array de temperaturas
-atemp <- array(tempVals, dim=c(4,5,12))
+# array de temperaturas
+atemp <- array(tempVals, dim = c(4,5,12))
 atemp
 colnames(atemp) <- -45:-41
 rownames(atemp) <- -19:-22
 atemp
-## serie temporal do 1o ponto
-atemp[1,1,]
+```
+
+
+Podemos usar as mesmos procedimentos de indexação de uma `matrix` para seleção de partes de uma `array`.
+
+```{r Chun221a, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+# serie temporal do 1º ponto
+atemp[1, 1, ]
 atemp["-19","-45", ]
-## para 1a faixa de latitude (-19), selecionamos
-## os valores de temp de todas longitudes e todos tempos 
-## longitudes ao longo das linhas e tempo ao longo das colunas
-atemp[1,,]
-## plot de cada ponto
+# para 1a faixa de latitude (-19), 
+# os valores de temp das longitudes em todos tempos 
+atemp[1, , ]
+# plot de cada ponto
 matplot(t(atemp[1, , ]), type = "l")
-## media zonal 
+# media zonal 
 boxplot(atemp[1, , ])
+
 # para 2a faixa de longitude (-44), todas longitudes e tempos 
 atemp[ , 2, ]
-## média meridional
+# média meridional
 colMeans(atemp[ , 2, ])
-## subdominio
+# subdominio
 atemp[3:4, 2:3, ]
-## sem a primeira linha
-## sem a última coluna
-## sem o primeiro e ultimo mes
-atemp[ -1, -5, -c(1,12)]
-## compare
+# sem a primeira linha
+# sem a última coluna
+# sem o primeiro e ultimo mes
+atemp[ -1, -5, -c( 1, 12)]
+# compare
 mean(atemp[ , , 1])
 mean(atemp[, , 2])
-## demanchando uma array (conversão para vetor)
+# demanchando uma array (conversão para vetor)
 c(atemp)
 c(atemp[ , , 1])
-## para entender a forma como a matriz é convertida para vetor
+# para entender a forma como a matriz é convertida para vetor
 matref <- cbind(mes = rep(1:12, each = 20), 
                 elemat = rep(1:20, times = 12),  
                 valores = c(atemp), 
                 elearr = 1:(cumprod(dim(atemp))[3]))
 matref
-## seleção lógica e substituição
+# seleção lógica e substituição
 atemp > 18
 which(atemp > 18)
 atemp[atemp > 18]
-## verificando na matref
+# verificando na matref
 matref[which(atemp > 18), "valores"]
-## substituindo temperaturas acima de 18 por 18
+# substituindo temperaturas acima de 18 por 18
 atemp[atemp > 18] <- 18
 atemp
 ```
 
 
 
+```{r Chun222, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+library(abind)
+abind(atemp, atemp[, , 1])
+```
+
+
+
 # List
-
-
 
 Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os **vetores atômicos**, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:
 
@@ -1363,14 +1381,14 @@ As vezes precisamos de um *container* para armazenar diferentes tipos de dados d
 Listas podem ser criadas com a função `list()`. A especificação do conteúdo de uma lista é muito similar a da função `c()` vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função `list()`.
 
 ```{r Chunk410, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## lista de dados heterogêneos
+# lista de dados heterogêneos
 lst <- list(1:4, c(1.1, 2.3, 5.9), c(TRUE, FALSE), "R", list(0,1))
 lst
-## estrutura da lista
+# estrutura da lista
 str(lst)
-## tamanho da lista (num. de componentes ou elementos)
+# tamanho da lista (num. de componentes ou elementos)
 length(lst)
-## atribuindo nomes a lista
+# atribuindo nomes a lista
 names(lst) 
 names(lst) <- c("vetor_int", "vetor_num", "logico", "char", "lista")
 ```
@@ -1380,31 +1398,31 @@ Veremos que no R, listas são frequentemente usadas para armazenar a saída de f
 
 
 ```{r Chunk411, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## lista é recursiva?
+# lista é recursiva?
 is.recursive(lst)
 ```
 
 Vamos ver um exemplo onde criamos uma lista com informações de duas estações meteorológicas.
 
 ```{r Chunk412, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## matriz de dados meteorológicos da estação de Santa Maria
+# matriz de dados meteorológicos da estação de Santa Maria
 dados_sm <- cbind(tar = c(31, 35, 21, 23, 33, 17, 18, 16, 20, 25, 27, 30), 
                   prec = c(300, 200, 150, 120, 210, 110, 180, 140, 80, 160, 150, 100))
 dados_sm
-## lista com informações da estação de santa maria
+# lista com informações da estação de santa maria
 sm_l <- list(c(-45, -23), 113, "Santa Maria", dados_sm)
 sm_l
-## adicionar nomes aos elementos
+# adicionar nomes aos elementos
 names(sm_l) <- c("coords", "alt", "cidade", "dados")
 sm_l
-## matriz de dados meteorológicos da estação de Júlio de Castilhos
+# matriz de dados meteorológicos da estação de Júlio de Castilhos
 dados_jc <- cbind(tar  = c(22.5, 20, 18.75, 18, 20.25, 17.75, 19.5, 18.5, 17, 19, 18.75, 17.5),
                   prec = c(360, 310, 285, 270, 315, 265, 300, 280, 250, 290, 285, 260))
 jc_l <- list(coords = c(-45.1, -23.2),
              alt = 900,
              cidade = "Júlio de Castilhos",
              dados = dados_jc)
-## adicionar nomes aos elementos
+# adicionar nomes aos elementos
 names(jc_l) <- names(sm_l)
 jc_l
 ```
@@ -1412,14 +1430,14 @@ jc_l
 As informações de cada estação estão armazenadas em 2 listas. Mas é mais prático termos todas estações em um única lista:
 
 ```{r Chunk413, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## combinando listas mantendo os elementos separadamente
+# combinando listas mantendo os elementos separadamente
 dados_l <- list(sm_l, jc_l)
 dados_l
 names(dados_l)
 names(dados_l) <- c("sm", "jc")
 dados_l
-## como a lista é um tipo vetor, a função length() 
-## fornece o número de elementos da lista
+# como a lista é um tipo vetor, a função length() 
+# fornece o número de elementos da lista
 length(dados_l)
 ```
 
@@ -1435,6 +1453,20 @@ As listas também poderiam ser combinadas com função concatena ou combina `c()
 dados_l2 <- c(sm_l, jc_l)
 dados_l2
 str(dados_l2)
+```
+
+### `vector()`
+
+Outra forma de criar uma lista é usando a função `vector`. Para acessar os elementos da lista usamos o operador "[[" ou o operador "$".
+
+```{r Chunk44, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
+z <- vector(mode = "list")
+# usando "[[" para criar os elementos que serão chamados a e b
+z[[1]] <- 1:10
+z[["b"]] <- "teste"
+z
+# usando "$" para criar o elemento chamado c
+z$c <- c(FALSE,TRUE)
 ```
 
 ## Indexação {.tabset}
@@ -1453,13 +1485,13 @@ sm_l[c("coords", "alt", "cidade")]
 O resultado da seleção do 1º e 2º elemento é uma lista menor que a original. Isso não é muito útil, uma vez que muitas funções do R não lidam com listas.  Por exemplo, se quiséssemos calcular a soma do vetor contido do primeiro elemento da lista `lst` obtém-se um erro.
 
 ```{r chunck 421, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}  
-## seleção do 1º elemento da lst
+# seleção do 1º elemento da lst
 lst[1]
-## o resultado da seleção é uma lista
+# o resultado da seleção é uma lista
 mode(lst[1])
-## a função sum() espera como entrada um vetor
+# a função sum() espera como entrada um vetor
 sum(lst[1])
-## acessando elemento inexistente
+# acessando elemento inexistente
 lst[6]
 ```
 
@@ -1471,22 +1503,22 @@ Então ao selecionar elementos de uma lista com o operador `[` o resultado prese
 Entretanto na maioria das vezes estamos interessados no conteúdo dos elementos de uma lista. Para fazer isso há dois operadores: o duplo colchetes `[[` e o `$`. Para acessar elementos individuais de uma lista usamos o duplo colchetes `[[` especificando o número do elemento ou o nome. Essa forma de seleção de dados permite o acesso a um elemento por vez. 
 
 ```{r Chunk4220, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## 1º elemento de sm_l
+# 1º elemento de sm_l
 sm_l[[1]]
 sm_l[["coords"]]
-## modo de sm_l
+# modo de sm_l
 mode(sm_l)
-## ultimo elemento de sm_l
+# ultimo elemento de sm_l
 sm_l[[length(sm_l)]]
 sm_l[["dados"]]
-## subelementos
+# subelementos
 dados_l[["sm"]][["cidade"]]
 ```
 
 Para acessar o conteúdo de elementos de uma lista que possui nomes podemos também usar o  operador `$`. Ele funciona de forma similar ao duplo colchetes usado com o nome do elemento da lista. Mas esse operador tem duas vantagens: a IDE RStudio autocompleta o nome do elemento (usando a tecla `<tab>`) e o R aceita o nome parcial dos nomes dos elementos.
 
 ```{r Chunk4221, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## seleção de dados por nomes usando o símbolo $
+# seleção de dados por nomes usando o símbolo $
 dados_l$s
 dados_l$j
 dados_l$sm$dados
@@ -1495,22 +1527,37 @@ dados_l$sm$dados[, "tar"]
 dados_l$sm$dados[, "tar", drop = FALSE]
 ```
 
-### ver função purrr::map()
+### Lista de condimentos 
 
-## `vector()`
+É fácil de confundir quando usar `]` e `]]`. O exemplo abaixo ajuda lembrar da diferença entre eles.
 
-Outra forma de criar uma lista é usando a função `vector`. Para acessar os elementos da lista usamos o operador "[[" ou o operador "$".
+`x` é um frasco de pimenta
 
-```{r Chunk44, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-z <- vector(mode = "list")
-## usando "[[" para criar os elementos que serão chamados a e b
-z[[1]] <- 1:10
-z[["b"]] <- "teste"
-z
-## usando "$" para criar o elemento chamado c
-z$c <- c(FALSE,TRUE)
+```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("figs/pepper.jpg")
 ```
 
+`x[1]` é o frasco de pimenta com apenas 1 pacote de pimenta:
+
+```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("figs/pepper-1.jpg")
+```
+
+`x[2]` seria a mesma coisa, mas com o segundo pacote. 
+`x[1:2]` seria o frasco de pimenta com 2 pacotes de pimenta.
+
+
+`x[[1]]` é ...
+
+```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("figs/pepper-2.jpg")
+```
+
+Se quiséssemos o conteúdo do pacote seria `x[[1]][[1]]`
+
+```{r, out.width = 200, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("figs/pepper-3.jpg")
+```
 
 
 ## Conversão de lista para vetor e vice-versa.
@@ -1520,9 +1567,9 @@ vet <- 1:10
 vet
 vet.list <- as.list(vet)
 vet.list
-## desmanchando a lista
+# desmanchando a lista
 unlist(vet.list)
-## deletando um elemento de uma lista
+# deletando um elemento de uma lista
 length(vet.list)
 vet.list[8] <- NULL
 vet.list
@@ -1533,12 +1580,12 @@ length(vet.list)
 
 ```{r Chunk46, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
 sm_l
-## ao inves da componente coords, criamos uma lon e lat
+# ao invés da componente coords, criamos uma lon e lat
 sm_l$lon <- sm_l$coords[1]
 sm_l$lat <- sm_l$coords[2]
 sm_l$coords <- NULL
 sm_l
-## convertendo para data.frame
+# convertendo para data.frame
 sm_df <- data.frame(sm_l)
 sm_df
 ```
@@ -1557,7 +1604,7 @@ Cada linha do `data frame` corresponde a um registro da tabela. Cada coluna corr
 Uma das formas mais simples de se criar um data frame é através da função `data.frame()`.
 
 ```{r Chunk510, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## criando um dataframe
+# criando um dataframe
 dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
                                  "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
                                  "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
@@ -1571,7 +1618,7 @@ is.data.frame(dados.df)
 Para um diagnóstico rápido das variáveis de um `data frame` usamos a função `str()`: 
 
 ```{r Chunk511, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## Obtendo informações sobre o conjunto de dados
+# descrição geral do conjunto de dados
 str(dados.df)
 ```
 
@@ -1580,7 +1627,7 @@ Em um *data frame* vetores do tipo `character` são automaticamente convertidos 
 
 
 ```{r Chunk512, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## criando um dataframe
+# criando um dataframe
 dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
                                  "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
                                  "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
@@ -1593,7 +1640,7 @@ str(dados.df)
 A função `summary()` fornece um resumo estatísticos dos valores das variáveis de um *data frame*.
 
 ```{r Chunk513, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## resumo estatístico dos dados
+# resumo estatístico dos dados
 summary(dados.df)
 ```
 
@@ -1602,23 +1649,23 @@ summary(dados.df)
 *Data frame* é uma estrutura de dados avançada e possui diversos atributos. 
 
 ```{r Chunk520, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## atributos
+# atributos
 length(dados.df)
-## número de colunas
+# número de colunas
 ncol(dados.df)
-## número de linhas
+# número de linhas
 nrow(dados.df)
-## dimensões
+# dimensões
 dim(dados.df)
-## nomes podem ser atribuídos as linhas e as colunas
+# nomes podem ser atribuídos as linhas e as colunas
 rownames(dados.df)
-## novos nomes para as linhas de dados.df
+# novos nomes para as linhas de dados.df
 rownames(dados.df) <- paste0("linha", rownames(dados.df))
 dados.df
-## removendo nomes das linhas
+# removendo nomes das linhas
 rownames(dados.df) <- NULL
 dados.df
-## mesmo que names(dados.df)
+# mesmo que names(dados.df)
 colnames(dados.df)
 dimnames(dados.df)
 attributes(dados.df)
@@ -1630,16 +1677,16 @@ class(attributes(dados.df))
 Existem várias formas de acessar as variáveis de um `dataframe`. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
 
 ```{r Chunk530, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE, error =TRUE}
-## variáveis do dataframe
+# variáveis do dataframe
 names(dados.df)
-## acessando os dados de temperatura
+# acessando os dados de temperatura
 dados.df[, 3]
-## ou
+# ou
 dados.df[, "tar"]
-## ou
+# ou
 dados.df$tar
 is.vector(dados.df$tar)
-## note a diferença no resultado da extração
+# note a diferença no resultado da extração
 dados.df["tar"]
 class(dados.df["tar"])
 dados.df[["tar"]]
@@ -1655,7 +1702,7 @@ Portanto *data frames* tem as mesmas propriedades que matrizes (são retangulare
 O acesso as variáveis de um data frame também é possível com a função `with(data, expr)`.
 
 ```{r Chunk5310, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-## acesso a variáveis de um data frame
+# acesso a variáveis de um data frame
 with(data = dados.df, expr = tar)
 tar_k <- with(data = dados.df, expr = tar + 273.15)
 tar_k
@@ -1669,11 +1716,11 @@ O argumento pode ser substituído por qualquer expressão ou conjunto de express
 É possível também editar os dados manualmente.
 
 ```{r Chunk5320, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=FALSE}
-## editar dados
+# editar dados
 fix(dados.df)
-## inicializando um dataframe
+# inicializando um dataframe
 x <- data.frame()
-## digitando so dados
+# digitando so dados
 fix(x)
 ```
 
@@ -1682,13 +1729,13 @@ fix(x)
 Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *data frames*.
 
 ```{r Chunk540, message=FALSE, comment="",prompt=FALSE, tidy=TRUE, echo=TRUE, eval=TRUE}
-## todos dados exceto o primeiro e último registro
+# todos dados exceto o primeiro e último registro
 dados.df[-c(1, nrow(dados.df)), ]
-## temperatura dos primeiros 5 dias
+# temperatura dos primeiros 5 dias
 dados.df[1:5, 3]
-## temperatura no dia 2013-01-09
+# temperatura no dia 2013-01-09
 dados.df[dados.df$dates == "2013-01-09", "tar"]
-## acrescentar uma nova variavel
+# acrescentar uma nova variavel
 dados.df$prec <- c(rep(0,5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
 dados.df
 ```
@@ -1696,21 +1743,21 @@ dados.df
 Uma função específica para gerar subconjunto de dados em `data frames` é a `subset()`. 
 
 ```{r Chunk541, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss1 <- subset(dados.df, dates == "2013-01-09", select = "tar")
 ss1
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss2 <- subset(dados.df, tar > 26 & prec > 0)
 ss2
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss3 <- subset(dados.df, tar > 26 | prec > 0)
 ss3
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss4 <- subset(dados.df, 
               dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"), 
               select = -cidade)
 ss4
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss4 <- subset(dados.df, 
               ! dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
               select = -cidade)
@@ -1720,7 +1767,7 @@ ss4
 Uma função específica para alteração, remoção e inclusão de variáveis em um data frame é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável de um *data frame*.
 
 ```{r Chunk542, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-## mudança do dataframe, alteração de várias variáveis
+# mudança do dataframe, alteração de várias variáveis
 dados.df <- transform(dados.df,
                       cidade = ifelse(1:nrow(dados.df) > 8, "Sao Sepe", cidade),
                       dates = c(dates[1:8], dates[1:7]),
@@ -1728,7 +1775,7 @@ dados.df <- transform(dados.df,
                                          tar-mean(tar[cidade == "Santa Maria"]), 
                                          tar-mean(tar[cidade == "Sao Sepe"]))
             )
-## alterar so uma variavel
+# alterar so uma variavel
 dados.df$anomalias.norm = ifelse(dados.df$cidade == "Santa Maria", 
                                 dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Santa Maria"]), 
                                 dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Sao Sepe"]) )
@@ -1742,12 +1789,12 @@ coords.df <- data.frame(lon = c(rep(-45, 8), rep(-45.1, 7)),  # longitudes
                         lat = c(rep(-23, 8), rep(-23.1, 7)))  # latitudes
 d <- cbind(dados.df, coords.df)
 d
-## usando a própria função data.frame()
+# usando a própria função data.frame()
 d2 <- data.frame(dados.df, coords.df, stringsAsFactors = FALSE)
 d2
-## verificando se os dois data frames são idênticos
+# verificando se os dois data frames são idênticos
 identical(d, d2)
-## dados de Caçapava
+# dados de Caçapava
 cacapava <- data.frame(dates = "2013-01-01", 
                        cidade = "Cacapava", 
                        tar = 19,
@@ -1770,19 +1817,19 @@ Podemos converter um objeto para *data frame* com `as.data.frame()`:
 + Uma matriz cria um *data frame* com mesma estrutura de uma matriz;
 
 ```{r Chunk551, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-## convertendo lista para data frame
+# convertendo lista para data frame
 sm_l
 sm_l_df <- as.data.frame(sm_l)
-## convertendo array para data frame
+# convertendo array para data frame
 v
 v_df <- as.data.frame(v)
-## convertendo vetor para data frame
+# convertendo vetor para data frame
 temp90_df <- as.data.frame(temp90)
-## convertendo matrix para data frame
+# convertendo matrix para data frame
 mat_ex
 mat_ex_df <- as.data.frame(mat_ex)
 names(mat_ex_df)
-## testes
+# testes
 is.data.frame(mat_ex_df)
 class(v_df)
 mode(v_df)
@@ -1790,22 +1837,64 @@ mode(v_df)
 
 - - - 
 
-# Funções utilizadas
+# Funções novas uilizadas nessa seção 
 
-TO DO
+Vetor
 
 - `c()`
+- `length()`
+- `%in%`; `is.element()`
+- `nchar()`
+- `as.numeric()`; `as.character()`; `as.integer()`
+- `names()`; `setNames()`; `unname()`
+- `all()`; `any()`
+- `seq()`; `head()`;`tail()`; `options()`;
+- `seq_len()`
+- `rep()`
+- `[()`
+- `plot()`
+- `&`, `&&`; `|`, `||`; 
+- `points()`; `abline()`
+- `which()`; `which.max()`; `which.min()`
+- `vector()`; `class()`
+- `ls()`; `is.null()`
+- `is.na()`
+- `ls()`; `is.null()`; `exists()`
+- `identical()`; `()`
+
+Matrix
+
+- `dim()`; `is.vector()`; `is.matrix()`
+- `matrix()`; `attributes()`; `length()`
+- `rownames()`; `colnames()`
+- `nrow()`; `ncol()`;
+- `row()`; `col()`;
+- `paste()`
+- `rbind()`; `cbind()`;
+- `t()`; `diag()`; `%*%`; `crossprod()`; `det()`; `solve()`
+- `as.vector()`; 
+
+Array
+
+- `array()`;
+- `mode()`; 
+- `matplot()`; `boxplot()`
+- `cumprod()`
+
+List 
+
+- `list()`; `str()`; `is.recursive()`
+- `[[`; `$`
 
 
-```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE, eval=FALSE}
-# Exercícios
-Descubra outras duas formas para criação de vetores.
-```
+
+
+
 
 
 <br/>
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Manipulacao de Dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_ManipulacaoDeDados.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Relatórios dinâmicos](https://rawgit.com/jdtatsch/adar-ufsm/master/Rmarkdown.html)</p> 
 
 
 

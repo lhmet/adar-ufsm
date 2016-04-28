@@ -1614,7 +1614,7 @@ prec
  [1] 300 150 210  12   0   0  12  22  80 100   0 280
 ```
 
-Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como \"está contido em\". O **resultado é um vetor de mesmo tamanho que o vetor a esquerda do teste**. 
+Um outro operador útil para comparação entre vetores é o operador `%in%`, que pode ser interpretado como \"está contido em\". O **resultado é um vetor de mesmo tamanho que o vetor à esquerda do teste**. 
 
 
 ```r
@@ -2300,7 +2300,7 @@ length(b)
 
 # Matrix
 
-Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extesão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
+Vetores são dados unidimensionais. Vetores multidimensionais são denominados *arrays*. As matrizes são um caso especial de *array* em que o número de dimensões é igual a 2, uma dimensão corresponde as linhas e a outra as colunas. Dessa a forma é uma extensão de um *vector* para duas dimensões. Os dados armazenados em uma matriz só podem ser de um tipo de dado (ou `numeric`, ou `character`, por exemplo).
 
 ## Criação de matrizes {.tabset}
 
@@ -3389,7 +3389,7 @@ crossprod(u, v)
 
 
 ```r
-## matriz exemplo
+# matriz exemplo
 mat_ex <- matrix(c(1, -7, 3, 5, -9, 2, 6, 6, 1), ncol = 3)
 det(mat_ex)
 ```
@@ -3406,7 +3406,7 @@ x1 + x2 = 2
  Qual os  valores de x1 e x2?
 
 ```r
-## matrizes do sistema linear
+# matrizes do sistema linear
 coefs <- matrix(c(1, -1, 1, 1), ncol = 2)
 y <- c(2, 4)
 x <- solve(coefs, y)
@@ -3424,7 +3424,7 @@ Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz,
 
 
 ```r
-## desmanchando matrizes
+# desmanchando matrizes
 mel
 ```
 
@@ -3437,7 +3437,7 @@ mel
 ```
 
 ```r
-## note as diferenças
+# note as diferenças
 mel[1,1]
 ```
 
@@ -3454,7 +3454,7 @@ mel[1]
 ```
 
 ```r
-## resulta em uma submatriz
+# resulta em uma submatriz
 mel[1:4, 1:4]
 ```
 
@@ -3467,7 +3467,7 @@ mel[1:4, 1:4]
 ```
 
 ```r
-## resulta em um vetor
+# resulta em um vetor
 mel[1:4]
 ```
 
@@ -3476,7 +3476,7 @@ mel[1:4]
 ```
 
 ```r
-## submatriz da temp_mat
+# submatriz da temp_mat
 temp_mat[1:3,1:3]
 ```
 
@@ -3488,7 +3488,7 @@ ano1992 23.20 26.61 18.00
 ```
 
 ```r
-## vetor gerado de 3 elementos de mat
+# vetor gerado de 3 elementos de mat
 temp_mat[1:3]
 ```
 
@@ -3497,7 +3497,7 @@ temp_mat[1:3]
 ```
 
 ```r
-## numero de elementos na matriz
+# número de elementos na matriz
 nel <- nrow(temp_mat)*ncol(temp_mat)
 nel
 ```
@@ -3515,7 +3515,7 @@ temp_mat[1: nrow(temp_mat)*ncol(temp_mat) ]
 ```
 
 ```r
-## vetor de temperaturas
+# vetor de temperaturas
 vtemp <- temp_mat[1:(ncol(temp_mat)*nrow(temp_mat))]
 vtemp
 ```
@@ -3528,7 +3528,7 @@ vtemp
 ```
 
 ```r
-## outra forma de converte temp_mat para vetor
+# outra forma de converte temp_mat para vetor
 c(temp_mat)
 ```
 
@@ -3540,7 +3540,7 @@ c(temp_mat)
 ```
 
 ```r
-## função formal para converter 
+# função formal para converter 
 as.vector(temp_mat)
 ```
 
@@ -3552,7 +3552,7 @@ as.vector(temp_mat)
 ```
 
 ```r
-## mais uma forma de converte temp_mat para vetor
+# mais uma forma de converte temp_mat para vetor
 array(temp_mat)
 ```
 
@@ -3564,7 +3564,7 @@ array(temp_mat)
 ```
 
 ```r
-## para desmanchar a matriz com os elementos seguindo a ordem das linhas 
+# para desmanchar a matriz com os elementos seguindo a ordem das linhas 
 c(t(temp_mat))
 ```
 
@@ -3587,7 +3587,7 @@ as.vector(t(temp_mat))
 ```
 
 ```r
-## serie temporal de temp_mat
+# serie temporal de temp_mat
 stemp <- c(t(temp_mat))
 plot(stemp, type = "o")
 ```
@@ -3595,7 +3595,7 @@ plot(stemp, type = "o")
 ![](figs/Chunk171-1.png)<!-- -->
 
 ```r
-## criar matriz com colunas temp e meses 1:12
+# criar matriz com colunas temp e meses 1:12
 cbind(rep(1:12, nrow(temp_mat)),stemp)
 ```
 
@@ -3640,29 +3640,29 @@ cbind(rep(1:12, nrow(temp_mat)),stemp)
 ```
 
 ```r
-## dados de temp e meses
+# dados de temp e meses
 tempdat <- cbind(1:12, stemp)
-## plot da temperatura pelos meses (os meses repetem)
+# plot da temperatura pelos meses (os meses repetem)
 plot(tempdat, 
-     type = "p", ## tipo de grafico: pontos
-     pch = 20,   ## codigo numérico do simbolo do ponto
-     col = rep(1:3, each = ncol(temp_mat)),  ## cores dos pontos
-     cex = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat)), ## aumenta tamanho dos pontos
-     las = 1,   ## orientação dos labels dos eixos perpendiculares ao eixo
-     ylab = expression(Tar~(degree~C)), ## label da variável y
-     xlab = "meses", ## label da variavel x
-     main = "Temperatura mensal (1990-1992)" ## título
+     type = "p", # tipo de grafico: pontos
+     pch = 20,   # codigo numérico do simbolo do ponto
+     col = rep(1:3, each = ncol(temp_mat)),  # cores dos pontos
+     cex = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat)), # aumenta tamanho dos pontos
+     las = 1,   # orientação dos labels dos eixos perpendiculares ao eixo
+     ylab = expression(Tar~(degree~C)), # label da variável y
+     xlab = "meses", # label da variavel x
+     main = "Temperatura mensal (1990-1992)" # título
     )# end plot 
 ```
 
 ![](figs/Chunk171-2.png)<!-- -->
 
 ```r
-## para entender a variação nas cores e símbolos usadas no gráfico
+# para entender a variação nas cores e símbolos usadas no gráfico
 cbind(meses = 1:12, temp = stemp, 
-      cores = rep(1:3, each = ncol(temp_mat)), ## cores
+      cores = rep(1:3, each = ncol(temp_mat)), # cores
       simb_tam = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat))
-      ) ## tamanho dos símbolos 
+      ) # tamanho dos símbolos 
 ```
 
 ```
@@ -3708,15 +3708,22 @@ cbind(meses = 1:12, temp = stemp,
 
 # Array
 
-*Arrays* são multidimensionais e matrizes são casos particulares de *arrays* com 2 dimensões: linhas e colunas. Mas podemos ter dados com n dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa *array* possui 3 dimensões: latitude (linha), longitude (coluna) e tempo (camadas).
+*Arrays* são multidimensionais. As matrizes são um caso particular de *arrays* com 2 dimensões: linhas e colunas. Mas podemos ter dados com *n* dimensões. Por exemplo, imagine o campo espacial de uma variável meteorológica. Uma matriz com valores de temperatura onde as colunas representam as longitudes e as linhas as latitudes. A esse campo pode ser associado um tempo em que a matriz de temperatura representa o estado térmico espacial daquele momento. Então podemos dizer que essa *array* possui 3 dimensões: 
+
+- latitude (linha)
+
+- longitude (coluna) 
+
+- tempo (camadas)
 
 ## Criação 
 
 
 ```r
 v <- 1:12
-## atribuindo novas dimensões ao vetor
-dim(v) <- c(2, 2, 3)  # 1a dim: 3 linhas , 2a dim: 2 colunas, 3a dim: 2
+# atribuindo novas dimensões a v 1a dim: 3 linhas, 2a dim: 2 colunas, 3a
+# dim: 2
+dim(v) <- c(2, 2, 3)
 v
 ```
 
@@ -3741,7 +3748,7 @@ v
 ```
 
 ```r
-## ou
+# ou
 a <- array(data = v, dim = c(3, 2, 2))
 dim(a)
 ```
@@ -3775,7 +3782,7 @@ mode(a)
 ```
 
 ```r
-## exemplo de inicialização de uma array
+# exemplo de inicialização de uma array
 array(data = 0, dim = c(3, 4, 2))
 ```
 
@@ -3797,7 +3804,7 @@ array(data = 0, dim = c(3, 4, 2))
 
 ## Indexação
 
-Suponha os campos espaciais médios mensais de temperatura. Podemos usar as mesmos procedimentos de seleção de matrizes para *arrays*.
+Suponha os campos espaciais médios mensais de temperatura dados pelo vetor `tempVals`. 
 
 
 ```r
@@ -3828,8 +3835,8 @@ tempVals <- c(22.34, 19.8, 22.22, 19.27, 19.53, 19.81, 21.18, 24.44, 23.91,
 17.89, 17.18, 22.05, 19.62, 22.73, 20.12, 23.35, 19.07, 20.34, 
 17.1, 15.33, 16.97, 22.93, 19.59, 17.13, 25.41, 18.74, 20.56, 
 14.46, 19.47, 23.96, 17.15)
-## array de temperaturas
-atemp <- array(tempVals, dim=c(4,5,12))
+# array de temperaturas
+atemp <- array(tempVals, dim = c(4,5,12))
 atemp
 ```
 
@@ -4035,9 +4042,13 @@ atemp
 -22 20.12 17.10 19.59 20.56 17.15
 ```
 
+
+Podemos usar as mesmos procedimentos de indexação de uma `matrix` para seleção de partes de uma `array`.
+
+
 ```r
-## serie temporal do 1o ponto
-atemp[1,1,]
+# serie temporal do 1º ponto
+atemp[1, 1, ]
 ```
 
 ```
@@ -4055,10 +4066,9 @@ atemp["-19","-45", ]
 ```
 
 ```r
-## para 1a faixa de latitude (-19), selecionamos
-## os valores de temp de todas longitudes e todos tempos 
-## longitudes ao longo das linhas e tempo ao longo das colunas
-atemp[1,,]
+# para 1a faixa de latitude (-19), 
+# os valores de temp das longitudes em todos tempos 
+atemp[1, , ]
 ```
 
 ```
@@ -4077,18 +4087,18 @@ atemp[1,,]
 ```
 
 ```r
-## plot de cada ponto
+# plot de cada ponto
 matplot(t(atemp[1, , ]), type = "l")
 ```
 
-![](figs/Chun221-1.png)<!-- -->
+![](figs/Chun221a-1.png)<!-- -->
 
 ```r
-## media zonal 
+# media zonal 
 boxplot(atemp[1, , ])
 ```
 
-![](figs/Chun221-2.png)<!-- -->
+![](figs/Chun221a-2.png)<!-- -->
 
 ```r
 # para 2a faixa de longitude (-44), todas longitudes e tempos 
@@ -4109,7 +4119,7 @@ atemp[ , 2, ]
 ```
 
 ```r
-## média meridional
+# média meridional
 colMeans(atemp[ , 2, ])
 ```
 
@@ -4119,7 +4129,7 @@ colMeans(atemp[ , 2, ])
 ```
 
 ```r
-## subdominio
+# subdominio
 atemp[3:4, 2:3, ]
 ```
 
@@ -4198,10 +4208,10 @@ atemp[3:4, 2:3, ]
 ```
 
 ```r
-## sem a primeira linha
-## sem a última coluna
-## sem o primeiro e ultimo mes
-atemp[ -1, -5, -c(1,12)]
+# sem a primeira linha
+# sem a última coluna
+# sem o primeiro e ultimo mes
+atemp[ -1, -5, -c( 1, 12)]
 ```
 
 ```
@@ -4277,7 +4287,7 @@ atemp[ -1, -5, -c(1,12)]
 ```
 
 ```r
-## compare
+# compare
 mean(atemp[ , , 1])
 ```
 
@@ -4294,7 +4304,7 @@ mean(atemp[, , 2])
 ```
 
 ```r
-## demanchando uma array (conversão para vetor)
+# demanchando uma array (conversão para vetor)
 c(atemp)
 ```
 
@@ -4333,7 +4343,7 @@ c(atemp[ , , 1])
 ```
 
 ```r
-## para entender a forma como a matriz é convertida para vetor
+# para entender a forma como a matriz é convertida para vetor
 matref <- cbind(mes = rep(1:12, each = 20), 
                 elemat = rep(1:20, times = 12),  
                 valores = c(atemp), 
@@ -4586,7 +4596,7 @@ matref
 ```
 
 ```r
-## seleção lógica e substituição
+# seleção lógica e substituição
 atemp > 18
 ```
 
@@ -4731,7 +4741,7 @@ atemp[atemp > 18]
 ```
 
 ```r
-## verificando na matref
+# verificando na matref
 matref[which(atemp > 18), "valores"]
 ```
 
@@ -4756,7 +4766,7 @@ matref[which(atemp > 18), "valores"]
 ```
 
 ```r
-## substituindo temperaturas acima de 18 por 18
+# substituindo temperaturas acima de 18 por 18
 atemp[atemp > 18] <- 18
 atemp
 ```
@@ -4861,9 +4871,121 @@ atemp
 
 
 
+
+```r
+library(abind)
+abind(atemp, atemp[, , 1])
+```
+
+```
+, , 1
+
+    -45 -44 -43  -42 -41
+-19  18  18  18 18.0  18
+-20  18  18  18 16.2  18
+-21  18  18  18 18.0  18
+-22  18  18  18 18.0  18
+
+, , 2
+
+      -45 -44  -43   -42   -41
+-19 18.00  18 18.0 18.00 18.00
+-20 18.00  18 18.0 18.00 17.67
+-21 18.00  18 18.0 14.95 18.00
+-22 15.88  18 16.7 18.00 18.00
+
+, , 3
+
+    -45 -44 -43 -42   -41
+-19  18  18  18  18 18.00
+-20  18  18  18  18 18.00
+-21  18  18  18  18 17.82
+-22  18  18  18  18 16.17
+
+, , 4
+
+      -45   -44   -43   -42 -41
+-19 18.00 18.00 17.01 18.00  18
+-20 18.00 14.89 18.00 18.00  18
+-21 16.78 18.00 18.00 18.00  18
+-22 16.02 18.00 18.00 17.86  18
+
+, , 5
+
+    -45   -44   -43 -42   -41
+-19  18 18.00 18.00  18 17.12
+-20  18 18.00 18.00  18 18.00
+-21  18 16.01 18.00  18 18.00
+-22  18 18.00 17.95  18 18.00
+
+, , 6
+
+    -45 -44   -43   -42   -41
+-19  18  18 14.76 16.94 18.00
+-20  18  18 18.00 18.00 18.00
+-21  18  18 16.71 12.42 14.89
+-22  18  18 18.00 17.01 18.00
+
+, , 7
+
+    -45 -44   -43   -42 -41
+-19  18  18 15.56 18.00  18
+-20  18  18 18.00 17.52  18
+-21  18  18 18.00 18.00  18
+-22  18  18 18.00 18.00  18
+
+, , 8
+
+     -45   -44  -43   -42   -41
+-19 18.0 18.00 17.1 18.00 17.11
+-20 17.2 18.00 18.0 18.00 17.47
+-21 18.0 18.00 18.0 18.00 18.00
+-22 18.0 15.85 15.2 17.98 18.00
+
+, , 9
+
+    -45   -44   -43   -42   -41
+-19  18 18.00 18.00 15.15 18.00
+-20  18 17.53 15.18 18.00 18.00
+-21  18 15.99 18.00 18.00 18.00
+-22  18 18.00 18.00 18.00 14.28
+
+, , 10
+
+    -45   -44 -43   -42   -41
+-19  18 18.00  18 17.27 15.87
+-20  18 15.97  18 18.00 16.40
+-21  18 16.88  18 18.00 18.00
+-22  18 18.00  18 18.00 18.00
+
+, , 11
+
+      -45  -44   -43   -42   -41
+-19 17.79 18.0 17.28 18.00 18.00
+-20 18.00 17.8 18.00 18.00 16.67
+-21 18.00 18.0 16.48 18.00 17.89
+-22 18.00 18.0 18.00 17.89 17.18
+
+, , 12
+
+    -45  -44   -43   -42   -41
+-19  18 18.0 15.33 17.13 14.46
+-20  18 18.0 16.97 18.00 18.00
+-21  18 18.0 18.00 18.00 18.00
+-22  18 17.1 18.00 18.00 17.15
+
+, , 13
+
+    -45 -44 -43  -42 -41
+-19  18  18  18 18.0  18
+-20  18  18  18 16.2  18
+-21  18  18  18 18.0  18
+-22  18  18  18 18.0  18
+```
+
+
+
 # List
-
-
 
 Listas são o segundo tipo de vetor. O primeiro tipo nós já vimos, são os **vetores atômicos**, nos quais todos os elementos devem ser de uma mesma classe de objeto. Listas são uma estrutura de dados muito versátil por pelo menos 3 razões:
 
@@ -4883,7 +5005,7 @@ Listas podem ser criadas com a função `list()`. A especificação do conteúdo
 
 
 ```r
-## lista de dados heterogêneos
+# lista de dados heterogêneos
 lst <- list(1:4, c(1.1, 2.3, 5.9), c(TRUE, FALSE), "R", list(0, 1))
 lst
 ```
@@ -4910,7 +5032,7 @@ lst
 ```
 
 ```r
-## estrutura da lista
+# estrutura da lista
 str(lst)
 ```
 
@@ -4926,7 +5048,7 @@ List of 5
 ```
 
 ```r
-## tamanho da lista (num. de componentes ou elementos)
+# tamanho da lista (num. de componentes ou elementos)
 length(lst)
 ```
 
@@ -4935,7 +5057,7 @@ length(lst)
 ```
 
 ```r
-## atribuindo nomes a lista
+# atribuindo nomes a lista
 names(lst)
 ```
 
@@ -4953,7 +5075,7 @@ Veremos que no R, listas são frequentemente usadas para armazenar a saída de f
 
 
 ```r
-## lista é recursiva?
+# lista é recursiva?
 is.recursive(lst)
 ```
 
@@ -4965,7 +5087,7 @@ Vamos ver um exemplo onde criamos uma lista com informações de duas estações
 
 
 ```r
-## matriz de dados meteorológicos da estação de Santa Maria
+# matriz de dados meteorológicos da estação de Santa Maria
 dados_sm <- cbind(tar = c(31, 35, 21, 23, 33, 17, 18, 16, 20, 25, 27, 30), 
                   prec = c(300, 200, 150, 120, 210, 110, 180, 140, 80, 160, 150, 100))
 dados_sm
@@ -4988,7 +5110,7 @@ dados_sm
 ```
 
 ```r
-## lista com informações da estação de santa maria
+# lista com informações da estação de santa maria
 sm_l <- list(c(-45, -23), 113, "Santa Maria", dados_sm)
 sm_l
 ```
@@ -5020,7 +5142,7 @@ sm_l
 ```
 
 ```r
-## adicionar nomes aos elementos
+# adicionar nomes aos elementos
 names(sm_l) <- c("coords", "alt", "cidade", "dados")
 sm_l
 ```
@@ -5052,14 +5174,14 @@ $dados
 ```
 
 ```r
-## matriz de dados meteorológicos da estação de Júlio de Castilhos
+# matriz de dados meteorológicos da estação de Júlio de Castilhos
 dados_jc <- cbind(tar  = c(22.5, 20, 18.75, 18, 20.25, 17.75, 19.5, 18.5, 17, 19, 18.75, 17.5),
                   prec = c(360, 310, 285, 270, 315, 265, 300, 280, 250, 290, 285, 260))
 jc_l <- list(coords = c(-45.1, -23.2),
              alt = 900,
              cidade = "Júlio de Castilhos",
              dados = dados_jc)
-## adicionar nomes aos elementos
+# adicionar nomes aos elementos
 names(jc_l) <- names(sm_l)
 jc_l
 ```
@@ -5094,7 +5216,7 @@ As informações de cada estação estão armazenadas em 2 listas. Mas é mais p
 
 
 ```r
-## combinando listas mantendo os elementos separadamente
+# combinando listas mantendo os elementos separadamente
 dados_l <- list(sm_l, jc_l)
 dados_l
 ```
@@ -5219,8 +5341,8 @@ $jc$dados
 ```
 
 ```r
-## como a lista é um tipo vetor, a função length() 
-## fornece o número de elementos da lista
+# como a lista é um tipo vetor, a função length() 
+# fornece o número de elementos da lista
 length(dados_l)
 ```
 
@@ -5335,6 +5457,32 @@ List of 8
   .. ..$ : chr [1:2] "tar" "prec"
 ```
 
+### `vector()`
+
+Outra forma de criar uma lista é usando a função `vector`. Para acessar os elementos da lista usamos o operador "[[" ou o operador "$".
+
+
+```r
+z <- vector(mode = "list")
+# usando '[[' para criar os elementos que serão chamados a e b
+z[[1]] <- 1:10
+z[["b"]] <- "teste"
+z
+```
+
+```
+[[1]]
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$b
+[1] "teste"
+```
+
+```r
+# usando '$' para criar o elemento chamado c
+z$c <- c(FALSE, TRUE)
+```
+
 ## Indexação {.tabset}
 
 ### Operador `[`
@@ -5397,7 +5545,7 @@ O resultado da seleção do 1º e 2º elemento é uma lista menor que a original
 
 
 ```r
-## seleção do 1º elemento da lst
+# seleção do 1º elemento da lst
 lst[1]
 ```
 
@@ -5407,7 +5555,7 @@ $vetor_int
 ```
 
 ```r
-## o resultado da seleção é uma lista
+# o resultado da seleção é uma lista
 mode(lst[1])
 ```
 
@@ -5416,7 +5564,7 @@ mode(lst[1])
 ```
 
 ```r
-## a função sum() espera como entrada um vetor
+# a função sum() espera como entrada um vetor
 sum(lst[1])
 ```
 
@@ -5425,7 +5573,7 @@ Error in sum(lst[1]): invalid 'type' (list) of argument
 ```
 
 ```r
-## acessando elemento inexistente
+# acessando elemento inexistente
 lst[6]
 ```
 
@@ -5443,7 +5591,7 @@ Entretanto na maioria das vezes estamos interessados no conteúdo dos elementos 
 
 
 ```r
-## 1º elemento de sm_l
+# 1º elemento de sm_l
 sm_l[[1]]
 ```
 
@@ -5460,7 +5608,7 @@ sm_l[["coords"]]
 ```
 
 ```r
-## modo de sm_l
+# modo de sm_l
 mode(sm_l)
 ```
 
@@ -5469,7 +5617,7 @@ mode(sm_l)
 ```
 
 ```r
-## ultimo elemento de sm_l
+# ultimo elemento de sm_l
 sm_l[[length(sm_l)]]
 ```
 
@@ -5510,7 +5658,7 @@ sm_l[["dados"]]
 ```
 
 ```r
-## subelementos
+# subelementos
 dados_l[["sm"]][["cidade"]]
 ```
 
@@ -5522,7 +5670,7 @@ Para acessar o conteúdo de elementos de uma lista que possui nomes podemos tamb
 
 
 ```r
-## seleção de dados por nomes usando o símbolo $
+# seleção de dados por nomes usando o símbolo $
 dados_l$s
 ```
 
@@ -5642,34 +5790,29 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 [12,]  30
 ```
 
-### ver função purrr::map()
+### Lista de condimentos 
 
-## `vector()`
+É fácil de confundir quando usar `]` e `]]`. O exemplo abaixo ajuda lembrar da diferença entre eles.
 
-Outra forma de criar uma lista é usando a função `vector`. Para acessar os elementos da lista usamos o operador "[[" ou o operador "$".
+`x` é um frasco de pimenta
+
+<img src="figs/pepper.jpg" title="" alt="" width="200" />
+
+`x[1]` é o frasco de pimenta com apenas 1 pacote de pimenta:
+
+<img src="figs/pepper-1.jpg" title="" alt="" width="200" />
+
+`x[2]` seria a mesma coisa, mas com o segundo pacote. 
+`x[1:2]` seria o frasco de pimenta com 2 pacotes de pimenta.
 
 
-```r
-z <- vector(mode = "list")
-## usando '[[' para criar os elementos que serão chamados a e b
-z[[1]] <- 1:10
-z[["b"]] <- "teste"
-z
-```
+`x[[1]]` é ...
 
-```
-[[1]]
- [1]  1  2  3  4  5  6  7  8  9 10
+<img src="figs/pepper-2.jpg" title="" alt="" width="200" />
 
-$b
-[1] "teste"
-```
+Se quiséssemos o conteúdo do pacote seria `x[[1]][[1]]`
 
-```r
-## usando '$' para criar o elemento chamado c
-z$c <- c(FALSE, TRUE)
-```
-
+<img src="figs/pepper-3.jpg" title="" alt="" width="200" />
 
 
 ## Conversão de lista para vetor e vice-versa.
@@ -5722,7 +5865,7 @@ vet.list
 ```
 
 ```r
-## desmanchando a lista
+# desmanchando a lista
 unlist(vet.list)
 ```
 
@@ -5731,7 +5874,7 @@ unlist(vet.list)
 ```
 
 ```r
-## deletando um elemento de uma lista
+# deletando um elemento de uma lista
 length(vet.list)
 ```
 
@@ -5815,7 +5958,7 @@ $dados
 ```
 
 ```r
-## ao inves da componente coords, criamos uma lon e lat
+# ao invés da componente coords, criamos uma lon e lat
 sm_l$lon <- sm_l$coords[1]
 sm_l$lat <- sm_l$coords[2]
 sm_l$coords <- NULL
@@ -5852,7 +5995,7 @@ $lat
 ```
 
 ```r
-## convertendo para data.frame
+# convertendo para data.frame
 sm_df <- data.frame(sm_l)
 sm_df
 ```
@@ -5888,7 +6031,7 @@ Uma das formas mais simples de se criar um data frame é através da função `d
 
 
 ```r
-## criando um dataframe
+# criando um dataframe
 dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
                                  "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
                                  "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
@@ -5936,7 +6079,7 @@ Para um diagnóstico rápido das variáveis de um `data frame` usamos a função
 
 
 ```r
-## Obtendo informações sobre o conjunto de dados
+# descrição geral do conjunto de dados
 str(dados.df)
 ```
 
@@ -5953,7 +6096,7 @@ Em um *data frame* vetores do tipo `character` são automaticamente convertidos 
 
 
 ```r
-## criando um dataframe
+# criando um dataframe
 dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
                                  "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
                                  "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
@@ -5974,7 +6117,7 @@ A função `summary()` fornece um resumo estatísticos dos valores das variávei
 
 
 ```r
-## resumo estatístico dos dados
+# resumo estatístico dos dados
 summary(dados.df)
 ```
 
@@ -5994,7 +6137,7 @@ summary(dados.df)
 
 
 ```r
-## atributos
+# atributos
 length(dados.df)
 ```
 
@@ -6003,7 +6146,7 @@ length(dados.df)
 ```
 
 ```r
-## número de colunas
+# número de colunas
 ncol(dados.df)
 ```
 
@@ -6012,7 +6155,7 @@ ncol(dados.df)
 ```
 
 ```r
-## número de linhas
+# número de linhas
 nrow(dados.df)
 ```
 
@@ -6021,7 +6164,7 @@ nrow(dados.df)
 ```
 
 ```r
-## dimensões
+# dimensões
 dim(dados.df)
 ```
 
@@ -6030,7 +6173,7 @@ dim(dados.df)
 ```
 
 ```r
-## nomes podem ser atribuídos as linhas e as colunas
+# nomes podem ser atribuídos as linhas e as colunas
 rownames(dados.df)
 ```
 
@@ -6040,7 +6183,7 @@ rownames(dados.df)
 ```
 
 ```r
-## novos nomes para as linhas de dados.df
+# novos nomes para as linhas de dados.df
 rownames(dados.df) <- paste0("linha", rownames(dados.df))
 dados.df
 ```
@@ -6065,7 +6208,7 @@ linha15 2013-01-15 Santa Maria  32
 ```
 
 ```r
-## removendo nomes das linhas
+# removendo nomes das linhas
 rownames(dados.df) <- NULL
 dados.df
 ```
@@ -6090,7 +6233,7 @@ dados.df
 ```
 
 ```r
-## mesmo que names(dados.df)
+# mesmo que names(dados.df)
 colnames(dados.df)
 ```
 
@@ -6140,7 +6283,7 @@ Existem várias formas de acessar as variáveis de um `dataframe`. Os operadores
 
 
 ```r
-## variáveis do dataframe
+# variáveis do dataframe
 names(dados.df)
 ```
 
@@ -6149,7 +6292,7 @@ names(dados.df)
 ```
 
 ```r
-## acessando os dados de temperatura
+# acessando os dados de temperatura
 dados.df[, 3]
 ```
 
@@ -6158,7 +6301,7 @@ dados.df[, 3]
 ```
 
 ```r
-## ou
+# ou
 dados.df[, "tar"]
 ```
 
@@ -6167,7 +6310,7 @@ dados.df[, "tar"]
 ```
 
 ```r
-## ou
+# ou
 dados.df$tar
 ```
 
@@ -6184,7 +6327,7 @@ is.vector(dados.df$tar)
 ```
 
 ```r
-## note a diferença no resultado da extração
+# note a diferença no resultado da extração
 dados.df["tar"]
 ```
 
@@ -6255,7 +6398,7 @@ O acesso as variáveis de um data frame também é possível com a função `wit
 
 
 ```r
-## acesso a variáveis de um data frame
+# acesso a variáveis de um data frame
 with(data = dados.df, expr = tar)
 ```
 
@@ -6287,11 +6430,11 @@ O argumento pode ser substituído por qualquer expressão ou conjunto de express
 
 
 ```r
-## editar dados
+# editar dados
 fix(dados.df)
-## inicializando um dataframe
+# inicializando um dataframe
 x <- data.frame()
-## digitando so dados
+# digitando so dados
 fix(x)
 ```
 
@@ -6301,7 +6444,7 @@ Todos esquemas de  indexação usados para matrizes (seleção por índices, nom
 
 
 ```r
-## todos dados exceto o primeiro e último registro
+# todos dados exceto o primeiro e último registro
 dados.df[-c(1, nrow(dados.df)), ]
 ```
 
@@ -6323,7 +6466,7 @@ dados.df[-c(1, nrow(dados.df)), ]
 ```
 
 ```r
-## temperatura dos primeiros 5 dias
+# temperatura dos primeiros 5 dias
 dados.df[1:5, 3]
 ```
 
@@ -6332,7 +6475,7 @@ dados.df[1:5, 3]
 ```
 
 ```r
-## temperatura no dia 2013-01-09
+# temperatura no dia 2013-01-09
 dados.df[dados.df$dates == "2013-01-09", "tar"]
 ```
 
@@ -6341,7 +6484,7 @@ dados.df[dados.df$dates == "2013-01-09", "tar"]
 ```
 
 ```r
-## acrescentar uma nova variavel
+# acrescentar uma nova variavel
 dados.df$prec <- c(rep(0, 5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
 dados.df
 ```
@@ -6369,7 +6512,7 @@ Uma função específica para gerar subconjunto de dados em `data frames` é a `
 
 
 ```r
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss1 <- subset(dados.df, dates == "2013-01-09", select = "tar")
 ss1
 ```
@@ -6380,7 +6523,7 @@ ss1
 ```
 
 ```r
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss2 <- subset(dados.df, tar > 26 & prec > 0)
 ss2
 ```
@@ -6391,7 +6534,7 @@ ss2
 ```
 
 ```r
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss3 <- subset(dados.df, tar > 26 | prec > 0)
 ss3
 ```
@@ -6413,7 +6556,7 @@ ss3
 ```
 
 ```r
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss4 <- subset(dados.df, 
               dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"), 
               select = -cidade)
@@ -6428,7 +6571,7 @@ ss4
 ```
 
 ```r
-## subconjunto baseado em condição lógica
+# subconjunto baseado em condição lógica
 ss4 <- subset(dados.df, 
               ! dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
               select = -cidade)
@@ -6455,7 +6598,7 @@ Uma função específica para alteração, remoção e inclusão de variáveis e
 
 
 ```r
-## mudança do dataframe, alteração de várias variáveis
+# mudança do dataframe, alteração de várias variáveis
 dados.df <- transform(dados.df,
                       cidade = ifelse(1:nrow(dados.df) > 8, "Sao Sepe", cidade),
                       dates = c(dates[1:8], dates[1:7]),
@@ -6463,7 +6606,7 @@ dados.df <- transform(dados.df,
                                          tar-mean(tar[cidade == "Santa Maria"]), 
                                          tar-mean(tar[cidade == "Sao Sepe"]))
             )
-## alterar so uma variavel
+# alterar so uma variavel
 dados.df$anomalias.norm = ifelse(dados.df$cidade == "Santa Maria", 
                                 dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Santa Maria"]), 
                                 dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Sao Sepe"]) )
@@ -6519,7 +6662,7 @@ d
 ```
 
 ```r
-## usando a própria função data.frame()
+# usando a própria função data.frame()
 d2 <- data.frame(dados.df, coords.df, stringsAsFactors = FALSE)
 d2
 ```
@@ -6544,7 +6687,7 @@ d2
 ```
 
 ```r
-## verificando se os dois data frames são idênticos
+# verificando se os dois data frames são idênticos
 identical(d, d2)
 ```
 
@@ -6553,7 +6696,7 @@ identical(d, d2)
 ```
 
 ```r
-## dados de Caçapava
+# dados de Caçapava
 cacapava <- data.frame(dates = "2013-01-01", 
                        cidade = "Cacapava", 
                        tar = 19,
@@ -6597,7 +6740,7 @@ Podemos converter um objeto para *data frame* com `as.data.frame()`:
 
 
 ```r
-## convertendo lista para data frame
+# convertendo lista para data frame
 sm_l
 ```
 
@@ -6632,7 +6775,7 @@ $lat
 
 ```r
 sm_l_df <- as.data.frame(sm_l)
-## convertendo array para data frame
+# convertendo array para data frame
 v
 ```
 
@@ -6658,9 +6801,9 @@ v
 
 ```r
 v_df <- as.data.frame(v)
-## convertendo vetor para data frame
+# convertendo vetor para data frame
 temp90_df <- as.data.frame(temp90)
-## convertendo matrix para data frame
+# convertendo matrix para data frame
 mat_ex
 ```
 
@@ -6681,7 +6824,7 @@ names(mat_ex_df)
 ```
 
 ```r
-## testes
+# testes
 is.data.frame(mat_ex_df)
 ```
 
@@ -6707,11 +6850,56 @@ mode(v_df)
 
 - - - 
 
-# Funções utilizadas
+# Funções novas uilizadas nessa seção 
 
-TO DO
+Vetor
 
 - `c()`
+- `length()`
+- `%in%`; `is.element()`
+- `nchar()`
+- `as.numeric()`; `as.character()`; `as.integer()`
+- `names()`; `setNames()`; `unname()`
+- `all()`; `any()`
+- `seq()`; `head()`;`tail()`; `options()`;
+- `seq_len()`
+- `rep()`
+- `[()`
+- `plot()`
+- `&`, `&&`; `|`, `||`; 
+- `points()`; `abline()`
+- `which()`; `which.max()`; `which.min()`
+- `vector()`; `class()`
+- `ls()`; `is.null()`
+- `is.na()`
+- `ls()`; `is.null()`; `exists()`
+- `identical()`; `()`
+
+Matrix
+
+- `dim()`; `is.vector()`; `is.matrix()`
+- `matrix()`; `attributes()`; `length()`
+- `rownames()`; `colnames()`
+- `nrow()`; `ncol()`;
+- `row()`; `col()`;
+- `paste()`
+- `rbind()`; `cbind()`;
+- `t()`; `diag()`; `%*%`; `crossprod()`; `det()`; `solve()`
+- `as.vector()`; 
+
+Array
+
+- `array()`;
+- `mode()`; 
+- `matplot()`; `boxplot()`
+- `cumprod()`
+
+List 
+
+- `list()`; `str()`; `is.recursive()`
+- `[[`; `$`
+
+
 
 
 
@@ -6719,7 +6907,7 @@ TO DO
 
 <br/>
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Manipulacao de Dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_ManipulacaoDeDados.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Relatórios dinâmicos](https://rawgit.com/jdtatsch/adar-ufsm/master/Rmarkdown.html)</p> 
 
 
 
