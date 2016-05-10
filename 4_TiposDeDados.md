@@ -826,6 +826,7 @@ Tipos de dados
 - `factor()`; `levels()`; `ordered()`
 - `nchar()`
 - `==`; `!=`; `<`; `>`; `>=`; `<=`; `|`;`&`
+- `!`
 
 Datas e horas
 
@@ -843,10 +844,6 @@ Conversão de dados
 
 - `as()`; `as.numeric()`; `as.character()`; `as.integer()`; `as.factor()`
 - `as.Date()`; `as.POSIXct()`
-
-
-
-
 
 
 <br/>

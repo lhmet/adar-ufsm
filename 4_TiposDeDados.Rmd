@@ -294,6 +294,7 @@ Tipos de dados
 - `factor()`; `levels()`; `ordered()`
 - `nchar()`
 - `==`; `!=`; `<`; `>`; `>=`; `<=`; `|`;`&`
+- `!`
 
 Datas e horas
 
@@ -311,15 +312,6 @@ Conversão de dados
 
 - `as()`; `as.numeric()`; `as.character()`; `as.integer()`; `as.factor()`
 - `as.Date()`; `as.POSIXct()`
-
-
-
-```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE, eval=FALSE}
-# Exercícios
-u,v para usar `atan2()`.
-sin(x) para representar ciclo diurno da temperatura.
-funções clássicas de termodinâmica e radiação.
-```
 
 
 <br/>
