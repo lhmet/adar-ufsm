@@ -6873,7 +6873,7 @@ Vetor
 - `ls()`; `is.null()`
 - `is.na()`
 - `ls()`; `is.null()`; `exists()`
-- `identical()`; `()`
+- `identical()`
 
 Matrix
 
