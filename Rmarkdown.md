@@ -1,4 +1,4 @@
-# Elaboração de relatórios de R com _R Markdown_
+# Relatórios dinâmicos com R Markdown
 Roilan Hernández Valdés e Jônatan Tatsch  
 `r format(Sys.time(), '%d %B %Y')`  
 
@@ -6,9 +6,13 @@ Roilan Hernández Valdés e Jônatan Tatsch
 
 # Introdução {#introdução}
 
-Este documento foi escrito em R Markdown. [R Markdown](http://rmarkdown.rstudio.com/) combina sintaxe do [Markdown](http://daringfireball.net/projects/markdown), um formato de texto de escrita fácil para produção de textos em `html`, com trechos de códigos [R](http://www.r-project.org) que são executados e o resultado é impresso no documento final. O R Markdown está disponível no RStudio e sua implementação é baseada no [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). Os arquivos gerados com R Markdown recebem a extensão `.Rmd`. Um texto elaborado em R Markdown é produzido clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio.
+Este documento foi escrito em [R Markdown](http://rmarkdown.rstudio.com/), um sistema que combina um formato de texto de escrita simples com trechos de códigos [R](http://www.r-project.org) que são avaliados e o resultado é incorporado no documento final. 
 
-# A essência do _R Markdown_
+O R Markdown está disponível no RStudio e sua implementação é baseada no [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). Os arquivos gerados com R Markdown terminam com a extensão `.Rmd`. 
+
+Um texto elaborado em R Markdown é produzido clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio.
+
+# A essência do *R Markdown*
     
   * documentos dinâmicos  = código + texto, ou
   * relatório = linguagem computacional + descrição/discussão dos resultados
@@ -25,12 +29,9 @@ install.packages('gcookbook', dependencies = TRUE)
 ```                                              
                                                  
 ````
-  
-  
+
 Que aparecerá da seguinte forma no documento `html`:
-  
-  
-  
+
 
 ```r
 install.packages('rmarkdown', dependencies = TRUE)
@@ -39,10 +40,10 @@ install.packages('gcookbook', dependencies = TRUE)
 
 Um documento dinâmico tem duas partes fundamentais:
   
-  * a **primeira** contém a **descrição** do trabalho, discussões que sejam necessárias, teoria, etc.
-  * a **segunda** parte é composta pelos **blocos de código R** (ou ***Chunks*** em inglês), geralmente intercalados ao texto. 
+  * a **primeira** contém o texto descritivo do trabalho, as discussões necessárias, a base teórica e etc.
+  * a **segunda** parte é composta por **trechos de código R** (ou ***chunks*** em inglês), geralmente intercalados com o texto. 
   
-  Nesse documento mostramos os principais elementos de _**Markdown**_ e como construir os _**Chunks**_.
+  Nesse documento mostramos os principais elementos de ***Markdown*** e como construir os ***chunks***.
  
  
 
