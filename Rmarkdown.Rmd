@@ -25,21 +25,33 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/")
 
 # Introdução {#introdução}
 
-Este documento foi escrito em [R Markdown](http://rmarkdown.rstudio.com/), um sistema que combina um formato de texto de escrita simples com trechos de códigos [R](http://www.r-project.org) que são avaliados e o resultado é incorporado no documento final. 
+Este documento foi escrito em [R Markdown](http://rmarkdown.rstudio.com/), um sistema que combina uma sintaxe de formatação de texto simples (o [Markdown](http://daringfireball.net/projects/markdown/)) com trechos de códigos [R](http://www.r-project.org) que são avaliados e o resultado é incorporado no documento final. O documento pode ser criado nos formatos HTML, pdf ou Word.
 
-O R Markdown está disponível no RStudio e sua implementação é baseada no [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). Os arquivos gerados com R Markdown terminam com a extensão `.Rmd`. 
+O R Markdown está disponível no RStudio e sua implementação é baseada nos pacotes [knitr](http://yihui.name/knitr/) e [pandoc](http://pandoc.org/). As dos arquivos R Markdown é `.Rmd`. Um texto elaborado em R Markdown pode ser é produzido clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio.
 
-Um texto elaborado em R Markdown é produzido clicando-se no ícone `Knit HTML` ou pelo atalho `Ctr+Shift+K` no RStudio.
+Os documentos R markdown podem ser disponibilizados na internet por meio do
+
+- [Rpubs](https://rpubs.com/)
+
+- [Github](https://github.com)
+
+- [Dropbox][https://www.dropbox.com/] e etc.
+
 
 # A essência do *R Markdown*
-    
-O R Markdown é uma das formas mais simples de se escrever textos para divulgação na internet que incorporam trechos de código R. Essa combinação possibilita reproduzir na íntegra o que foi feito.
-  
-  * documentos dinâmicos  = código + texto
-  * relatório = linguagem computacional + descrição dos resultados
-  * **documentos reproduzíveis**
 
-Por exemplo, para mostrar a expressão usada no R para instalar o pacote `rmarkdown` digitamos o seguinte trecho  no corpo do texto do arquivo `.Rmd` criado no RStudio. 
+Pesquisa reproduzível é o conceito de divulgar documentos científicos incluindo os dados e os códigos utilizados (além do texto e dos gráficos) para que qualquer pessoa possa reproduzir os resultados e assim aperfeiçoar ou construir novos resultados a partir deles.
+
+O R Markdown é um meio de fazer pesquisa reproduzível pela facilidade de se escrever textos que incorporam trechos de código R e de divulgar na internet . 
+
+  - documento dinâmico reprodutível  = texto (descrição e interpretação dos resultados) + código (linguagem computacional) 
+
+
+# Como usar o *R Markdown*
+
+A idéia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular.
+
+Por exemplo, para mostrar a expressão usada no R para instalar os pacotes `rmarkdown` e `gcookbook`, digitamos o seguinte trecho no corpo do texto do arquivo `.Rmd` criado no RStudio. 
 
 
 ```{r, echo=FALSE,comment="",eval = TRUE, results='hold'}
@@ -51,42 +63,36 @@ writeLines(
     , "                                                 "))
 ```
 
-Que aparecerá da seguinte forma no documento `html`:
+O texto acima aparecerá da seguinte forma no documento `html`:
 
 ```{r, eval = FALSE}
 install.packages('rmarkdown', dependencies = TRUE)
 install.packages('gcookbook', dependencies = TRUE)
 ```
 
-Um documento dinâmico tem duas partes fundamentais:
-  
-  * a **primeira** contém o texto descritivo do trabalho, as discussões necessárias, a base teórica e etc.
-  * a **segunda** parte é composta por **trechos de código R** (ou ***chunks*** em inglês), geralmente intercalados com o texto. 
-  
-  Nesse documento mostramos os principais elementos de ***Markdown*** e como construir os ***chunks***.
- 
+Os trechos de código (*chuncks*) são avaliados pelo R na ordem em que eles aparecem. Os objetos criados criados em um *chunck* permanecem disponíveis no ambiente para uso em chuncks posteriores. O código no *chunck* é destacado de forma diferente do texto. Os resultados (tabelas, gráficos e outros objetos) gerados pelo código de um *chunck* também são incorporados no documento.
+
+Nesse documento mostramos os principais elementos do ***Markdown*** e como construir os ***chunks***.
  
 
 # Inserir código R no documento.
 
-O código R é inserido através dos *chunks*. Um *chunk* tem a seguinte estrutura: 
+Um *chunk* tem a seguinte estrutura: 
 
 ```{r chunck1, echo=FALSE,comment=""}
 writeLines(
-  c("```{r}"
+  c("```{r chunck1}"
     ,"Aqui vai o código em R"
     ,"```"
   ))
 ```
 
- 
-
 ## Opções do **Chunk**
 
  Cada *chunk* possui parâmetros que permitem definir opções de execução para aquele *chunck*, as principais são as seguintes:
  
-  *  `chunk2` identificador (ID) do *chunk* que permite encontrar ele mais fácil se ocorrer algum erro (opcional) durante a geração do documento.    
-  *  `eval = TRUE` opção para executar o *chunk* quando compilar o documento (default TRUE).     
+  *  `chunk1` identificador (ID) do *chunk* que permite encontrar ele mais fácil se ocorrer algum erro (opcional) durante a geração do documento.    
+  *  `eval = TRUE` opção para executar o *chunk* quando compilar o documento (*default* TRUE).     
   *  `cache=TRUE`  opção que permite ao *chunk* guardar os dados uma vez calculados (*default* FALSE).    
   *  `message = TRUE`  mostra as mensagens de erro (*default* TRUE).   
   *  `echo = TRUE`  se FALSE permite eliminar as saídas do chunk (*default* FALSE).   
@@ -125,20 +131,20 @@ Os resultados dos *chuncks* podem ser mostrados na forma de figuras, tabelas e t
 ```{r chunk3, eval=TRUE, echo=FALSE,comment=""}
 writeLines(c(
 "```{r, warning=FALSE, message=FALSE,comment=''}"
-,"    ## carregando a pacote 'ggplot2' para gráficos elegante"
+,"    # carregando a pacote 'ggplot2' para gráficos elegante"
 ,"    library(ggplot2)"
-,"    ## pacote que contém conjunto de dados de temperatura"
+,"    # pacote que contém conjunto de dados de temperatura"
 ,"    library(gcookbook)"
-,"    ## Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote"
+,"    # Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote"
 ,"    head(climate)"
-,"    ## Usando a função qplot() para plotar a série de temperatura global"
+,"    # Usando a função qplot() para plotar a série de temperatura global"
 ,"    qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()"
-,"    ## Usando apenas a função plot()"
+,"    # Usando apenas a função plot()"
 ,"    plot(x = climate$Year, y = climate$Anomaly1)"
-,"    ## regressão linear"
+,"    # regressão linear"
 ,"    reg <- lm(Anomaly1y ~ Year, data = climate)"
-,"    ## extraindo o coeficiente angular (°C/ano) da reta"
-,"    ## convertendo para °C/100 anos"
+,"    # extraindo o coeficiente angular (°C/ano) da reta"
+,"    # convertendo para °C/100 anos"
 ,"    tendencia <- coef(reg)[2] * 100"
 ,"```"))
 ```
@@ -147,35 +153,35 @@ writeLines(c(
 
 
 ```{r chunck4, warning=FALSE, message=FALSE,comment=""}
-    ## Carregando a pacote 'ggplot2' para gráficos elegante
+    # Carregando a pacote 'ggplot2' para gráficos elegante
     library(ggplot2)
-    ## pacote que contém conjunto de dados de temperatura
+    # pacote que contém conjunto de dados de temperatura
     library(gcookbook)
-    ## Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote
+    # Mostrando as primeiras linhas da tabela 'climate' que pertenece ao pacote
     head(climate)
-    ## Usando a função qplot() para plotar a série de temperatura global
+    # Usando a função qplot() para plotar a série de temperatura global
     qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
-    ## Usando apenas a função plot()
+    # Usando apenas a função plot()
     plot(x = climate$Year, y = climate$Anomaly1y) 
-    ## regressão linear
+    # regressão linear
     reg <- lm(Anomaly1y ~ Year, data = climate)
-    ## extraindo o coeficiente angular (°C/ano) da reta
-    ## convertendo para °C/100 anos
+    # extraindo o coeficiente angular (°C/ano) da reta
+    # convertendo para °C/100 anos
     tendencia <- coef(reg)[2] * 100
     tendencia
 ```
 
-Podemos fazer outro **chunk** para mostrar as tabelas.
+Podemos fazer outro *chunk* para mostrar as tabelas.
 
 ```{r chunck5, echo=FALSE, message=FALSE,comment=""}
 writeLines(
 c(
 "```{r}"
-,"    ## pacote com a função kable para saída de tabelas"
+,"    # pacote com a função kable para saída de tabelas"
 ,"    library(knitr)"
-,"    ## Aplicando a função 'summary()' ao dataframe airquality."
+,"    # Aplicando a função 'summary()' ao dataframe airquality."
 ,"    s <- summary(airquality)"
-,"    ## Convertendo o formato da saída das tabelas"
+,"    # Convertendo o formato da saída das tabelas"
 ,"    kable(s, caption = 'Tabela 1: Resumo estatístico dos de qualidade do ar')"
 ,"```"
 ))
@@ -183,13 +189,13 @@ c(
 
 
 ```{r chunck6}
-## pacote com a função kable para saída de tabelas
+# pacote com a função kable para saída de tabelas
 library(knitr)
-## pacote com dados de temperatura global
+# pacote com dados de temperatura global
 library(gcookbook)
-## Aplicando a função 'summary()' ao dataframe airquality.
+# Aplicando a função 'summary()' ao dataframe airquality.
 s <- summary(airquality)
-## Convertendo o formato da saída das tabelas
+# Convertendo o formato da saída das tabelas
 kable(s, caption = "Tabela 1: Resumo estatístico dos dados de 'qualidade do ar' de NY")
 ```
  
@@ -344,20 +350,7 @@ ou
 
 ## Citações diretas
 
-Citação direta curta:
-
 > É eRRando que se aprende R. (Jônatan Tatsch)
-
-Citação direta longa em blocos:
-
-> Esta é uma citação com dois parágrafos. Lorem ipsum dolor sit amet,
-> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-> 
-> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-> id sem consectetuer libero luctus adipiscing.
-
- 
 
 ## Tabelas
 
@@ -414,7 +407,7 @@ c(
 |               |               | - tasty            |
 +---------------+---------------+--------------------+
 
-Uma facilidade para construir tabelas em Markdown é o <http://www.tablesgenerator.com/markdown_tables> que permite montar a tabela e criar o código para você colá-lo no seu documento `.Rmd`.
+Um recurso para construir tabelas em Markdown é o [gerador de tabelas](http://www.tablesgenerator.com/markdown_tables) que permite montar a tabela e criar o código para você colá-lo no seu documento `.Rmd`.
 
  
 
@@ -422,7 +415,7 @@ Uma facilidade para construir tabelas em Markdown é o <http://www.tablesgenerat
 
 Para destacar texto usa-se geralmente as palavras em _itálico_ (`_itálico_` ou `*itálico*`) ou em **negrito** (`__negrito__` ou `**negrito**`). 
  
-Um texto sobrescrito 2^10^ é definido `2^10^` e o subscrito (H~2~O) da forma `H~2~O`.
+Um texto sobrescrito 2^10^ é escrito `2^10^` e o subscrito (H~2~O) da forma `H~2~O`.
 
  
  
@@ -439,22 +432,24 @@ Para incluir link de um site és só fechar o endereço da web entre `< >`:
 
 <sam@green.eggs.ham>
 
- As vezes queremos dar a determinada frase um link que vincula uma explicação melhor do que foi abordado. 
+ As vezes queremos associar um link a uma sentença: 
  
- "O _R Markdown_  tem ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/)) que podem ser consultados a qualquer momento tendo-se uma conexão à internet." 
+ "O _R Markdown_  possui ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/))". 
  
- Aqui tem um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) dentro da linha de texto que podemos expressar também com um título [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas").
+ 
+```
+Aqui temos um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) que  podemos expressar também incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
+```
 
-```
- Aqui tem um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) dentro da linha de texto que podemos expressar também com um título [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas").
- 
-```
+Aqui temos um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) que  podemos expressar também incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
+
+
 
  
 
 ## Figuras
 
-Para a inserir figuras o procedimento é exatamente como o de um link, só que precedido por um símbolo `!`.
+Para a inserir figuras o procedimento é quase igual ao de um link, só que precedido por um símbolo `!`.
 
 Vamos criar um link para o endereço da imagem:
 
@@ -473,21 +468,15 @@ Ao acrescentarmos o símbolo `!` no início, obtemos a imagem no documento.
 
 ![Figura 1. Cachoeira do Abade](http://upload.wikimedia.org/wikipedia/commons/c/c5/Cachoeira_do_Abade_AGO_2008.jpg)
 
-O procedimento para inserir figuras do seu computador é o mesmo, só o endereço é substituído pelo caminho até o nome do arquivo.
+O procedimento para inserir figuras do seu computador é o mesmo, só altera-se o endereço pelo caminho até o arquivo.
 
  
 
 ## Expressões matemáticas
 
- Nossa área de estudo geralmente requer análises baseadas em equações. Para inserir expressões matemáticas no _R Markdown_ é da mesma forma usada em [Latex](http://pt.wikipedia.org/wiki/LaTeX). Existem diversos tutoriais sobre equações em Latex:
+ Nossa área de estudo geralmente requer análises baseadas em equações. Para inserir expressões matemáticas no _R Markdown_ é da mesma forma usada em [Latex](http://pt.wikipedia.org/wiki/LaTeX). 
  
- * <http://web.eecs.utk.edu/~mgates3/docs/latex.pdf>(pag 16-25)
- * <http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference> 
- * <ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf>
- * <http://elevatorlady.ca/doc/refcard/expressions.html>
- * [Editor online de equações](http://www.codecogs.com/latex/eqneditor.php?lang=pt-br)
- 
-Para expressões dentro de uma linha as equações são escritas entre os símbolos `$ $`, por exemplo, $y=f(x)$ foi gerada com `$y=f(x)$`. 
+ Para expressões dentro de uma linha as equações são escritas entre os símbolos `$ $`, por exemplo, $y=f(x)$ foi gerada com `$y=f(x)$`. 
 Mas se a equação for muito complexa é melhor colocá-la sozinha entre parágrafos de texto, duplicando o mesmo símbolo `$$ $$`, exemplo:
 
 ```tex
@@ -501,33 +490,34 @@ produz:
 
 - - -
 
+Há também um [Editor online de equações](http://www.codecogs.com/latex/eqneditor.php?lang=pt-br) que fornece uma interface para escrever a equação e o código gerado pode ser colado no seu documento.
+ 
+
 
 # Simulação da resolução de uma Lista de exercícios.
 
-A resolução das listas do curso deverão ser entregues no formato R Markdown. O arquivo `.Rmd` deverá ser enviado via [Moodle](http://nte.ufsm.br/moodle2_UAB/). O arquivo deve ser nomeado seguindo o padrão `nomedoaluno_lista1.Rmd`. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido de sua resolução que deve incluir a descrição, comentários e a interpretação dos resultados quando for o caso.
+A resolução das listas do curso deverão ser entregues no formato R Markdown. O arquivo `.Rmd` deverá ser publicado no [Rpubs](https://rpubs.com/) e o link enviado por e-mail. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido da resolução que deve incluir o código utilizado, comentários, a descrição  e interpretação dos resultados quando for o caso.
 
 Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios abaixo.
 
-## Lista 1. Exercícios da Unidade 1 do Curso de ADAR-UFSM.
+## Exemplo de lista de exercícios do Curso de ADAR-UFSM.
 
-  1. Gere uma sequência numérica 1 a 365 com 2 repetições de cada dia.
-
-  2. Gere uma sequência `x` de -100 até 100, com intervalo de 0,5. 
+  1. Gere um vetor `x` que varia de -100 até 100, com intervalo de 0,5. 
 
   3. Gere uma variável `A` que resulta do seno de uma sequência numérica de -1 até 1 com mesmo tamanho do vetor `x` da questão anterior. 
 
-  4. Calcule o vetor resultante $y = exp(-0.07Ax)cos(x+\frac{\pi }{2}))$. 
+  4. Calcule o vetor $y = exp(-0.07Ax)cos(x+\frac{\pi }{2}))$. 
 
   5. Faça um gráfico do tipo linha relacionando as duas variáveis.
 
-# Referências importantes
+# Referências 
  
  * [documentação básica](http://rmarkdown.rstudio.com/)
  * [knitr manual](bit.ly/114GNdP)
  * [knitr graphics manual](http://yihui.name/knitr/)
  * [exemplos](https://github.com/yihui/knitr-examples)
  * [latex-mathjax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
- * [latex-guia curta de escritura de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf),  
+ * [latex-guia curto para escrita de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf),  
  * [latex-expressões](http://elevatorlady.ca/doc/refcard/expressions.html).
   
  
