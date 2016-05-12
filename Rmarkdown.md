@@ -16,7 +16,7 @@ Os documentos R markdown podem ser disponibilizados na internet por meio do
 
 - [Github](https://github.com)
 
-- [Dropbox][https://www.dropbox.com/] e etc.
+- [Dropbox](https://www.dropbox.com/) e etc.
 
 
 # A essência do *R Markdown*
