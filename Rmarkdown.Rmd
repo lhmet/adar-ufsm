@@ -500,15 +500,15 @@ A resolução das listas do curso deverão ser entregues no formato R Markdown. 
 
 Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios abaixo.
 
-## Exemplo de lista de exercícios do Curso de ADAR-UFSM.
+## Exemplo de solução de lista de exercícios.
 
   1. Gere um vetor `x` que varia de -100 até 100, com intervalo de 0,5. 
 
-  3. Gere uma variável `A` que resulta do seno de uma sequência numérica de -1 até 1 com mesmo tamanho do vetor `x` da questão anterior. 
+  2. Gere uma variável `A` que resulta do seno de uma sequência numérica de -1 até 1 com mesmo tamanho do vetor `x` da questão anterior. 
 
-  4. Calcule o vetor $y = exp(-0.07Ax)cos(x+\frac{\pi }{2}))$. 
+  3. Calcule o vetor $y = exp(-0.07Ax)cos(x+\frac{\pi }{2}))$. 
 
-  5. Faça um gráfico do tipo linha relacionando as duas variáveis.
+  4. Faça um gráfico do tipo linha relacionando as duas variáveis.
 
 # Referências 
  
@@ -516,8 +516,22 @@ Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios 
  * [knitr manual](bit.ly/114GNdP)
  * [knitr graphics manual](http://yihui.name/knitr/)
  * [exemplos](https://github.com/yihui/knitr-examples)
- * [latex-mathjax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
+ * [exemplo](http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
+ 
+**Markdown**
+ 
+ * [Markdown](http://daringfireball.net/projects/markdown/)
+ * [tutorial mínimo sobre R Markdown](http://kbroman.org/knitr_knutshell/) 
+ 
+**Equações**
+ 
  * [latex-guia curto para escrita de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf),  
  * [latex-expressões](http://elevatorlady.ca/doc/refcard/expressions.html).
-  
+ * [latex-mathjax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 
+ * [latex em Rmarkdown](http://www.calvin.edu/~rpruim/courses/m343/F12/RStudio/LatexExamples.html)
+ * [notação matemática em R Markdown](http://rstudio-pubs-static.s3.amazonaws.com/18858_0c289c260a574ea08c0f10b944abc883.html)
+ 
+**Citações e referências**
+ 
+ * [knitcitations](https://cran.r-project.org/web/packages/knitcitations/index.html)
  
