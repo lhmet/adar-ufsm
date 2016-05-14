@@ -6864,7 +6864,7 @@ Vetor
 - `seq()`; `head()`;`tail()`; `options()`;
 - `seq_len()`
 - `rep()`
-- `[()`
+- `[`
 - `plot()`
 - `&`, `&&`; `|`, `||`; 
 - `points()`; `abline()`
