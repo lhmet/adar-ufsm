@@ -23,6 +23,12 @@ invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 opts_chunk$set(cache = FALSE, fig.path = "figs/")
 ```
 
+- - -
+
+![](figs/adar.png)
+
+- - -
+
 # Introdução {#introdução}
 
 Este documento foi escrito em [R Markdown](http://rmarkdown.rstudio.com/), um sistema que combina uma sintaxe de formatação de texto simples (o [Markdown](http://daringfireball.net/projects/markdown/)) com trechos de códigos [R](http://www.r-project.org) que são avaliados e o resultado é incorporado no documento final. O documento pode ser criado nos formatos HTML, pdf ou Word.
@@ -307,19 +313,19 @@ Para produzir uma lista são usados os símbolos: `+` , `*` , `-`.
 Uma lista suporta vários níveis de subitens. Os subitens devem separados por quatro espaços ou um *tab*.
 
 ```
- * one
+ * um
      - subitem
- * two
+ * dois
      - subitem
          - subsubitem
- * three
+ * três
 ```
- * one
+ * um
      - subitem
- * two
+ * dois
      - subitem
          - subsubitem
- * three
+ * três
 
 ## Linhas horizontais
  
@@ -421,7 +427,7 @@ Um texto sobrescrito 2^10^ é escrito `2^10^` e o subscrito (H~2~O) da forma `H~
  
 ## Links
 
-Para incluir link de um site és só fechar o endereço da web entre `< >`:
+Para incluir link de um site é só colocar o endereço web entre `< >`:
 
 ```
 <http://google.com>
@@ -432,7 +438,7 @@ Para incluir link de um site és só fechar o endereço da web entre `< >`:
 
 <sam@green.eggs.ham>
 
- As vezes queremos associar um link a uma sentença: 
+ Podemos associar um link a uma sentença, da seguinte forma:
  
  "O _R Markdown_  possui ampla documentação, veja o [cartão de referência](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) e o [site oficial](http://rmarkdown.rstudio.com/))". 
  
@@ -441,15 +447,12 @@ Para incluir link de um site és só fechar o endereço da web entre `< >`:
 Aqui temos um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) que  podemos expressar também incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
 ```
 
-Aqui temos um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) que  podemos expressar também incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
+Podemos criar um link incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
 
-
-
- 
 
 ## Figuras
 
-Para a inserir figuras o procedimento é quase igual ao de um link, só que precedido por um símbolo `!`.
+Para a inserir figuras o procedimento é quase o mesmo de um link, só que precedido pelo  símbolo `!`.
 
 Vamos criar um link para o endereço da imagem:
 
@@ -510,28 +513,16 @@ Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios 
 
   4. Faça um gráfico do tipo linha relacionando as duas variáveis.
 
-# Referências 
+# Referências para aprender mais sobre o R Markdown
  
- * [documentação básica](http://rmarkdown.rstudio.com/)
- * [knitr manual](bit.ly/114GNdP)
- * [knitr graphics manual](http://yihui.name/knitr/)
- * [exemplos](https://github.com/yihui/knitr-examples)
- * [exemplo](http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
- 
-**Markdown**
- 
+ * [Documentos dinâmicos no R](http://rmarkdown.rstudio.com/)
+ * [Tutorial mínimo sobre R Markdown](http://kbroman.org/knitr_knutshell/) 
+ * [knitr manual](https://github.com/yihui/knitr/releases/download/doc/knitr-manual.pdf)
  * [Markdown](http://daringfireball.net/projects/markdown/)
- * [tutorial mínimo sobre R Markdown](http://kbroman.org/knitr_knutshell/) 
- 
-**Equações**
- 
- * [latex-guia curto para escrita de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf),  
- * [latex-expressões](http://elevatorlady.ca/doc/refcard/expressions.html).
+ * [Guia rápido para escrita de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf)
+ * [Notação matemática](http://rstudio-pubs-static.s3.amazonaws.com/18858_0c289c260a574ea08c0f10b944abc883.html)
+ * [Cartão de referência para expressões matemáticas-latex](http://elevatorlady.ca/doc/refcard/expressions.html).
  * [latex-mathjax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 
- * [latex em Rmarkdown](http://www.calvin.edu/~rpruim/courses/m343/F12/RStudio/LatexExamples.html)
- * [notação matemática em R Markdown](http://rstudio-pubs-static.s3.amazonaws.com/18858_0c289c260a574ea08c0f10b944abc883.html)
- 
-**Citações e referências**
- 
- * [knitcitations](https://cran.r-project.org/web/packages/knitcitations/index.html)
+ * [latex em R Markdown](http://www.calvin.edu/~rpruim/courses/m343/F12/RStudio/LatexExamples.html)
+ * [Citações e referências](https://cran.r-project.org/web/packages/knitcitations/index.html)
  
