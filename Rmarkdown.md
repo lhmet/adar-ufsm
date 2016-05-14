@@ -555,12 +555,12 @@ Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios 
  
  * [Documentos dinâmicos no R](http://rmarkdown.rstudio.com/)
  * [Tutorial mínimo sobre R Markdown](http://kbroman.org/knitr_knutshell/) 
- * [knitr manual](https://github.com/yihui/knitr/releases/download/doc/knitr-manual.pdf)
- * [Markdown](http://daringfireball.net/projects/markdown/)
+ * [Manual do knitr](https://github.com/yihui/knitr/releases/download/doc/knitr-manual.pdf)
+ * [Principal referência para Markdown](http://daringfireball.net/projects/markdown/)
  * [Guia rápido para escrita de expressões matemáticas](ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf)
  * [Notação matemática](http://rstudio-pubs-static.s3.amazonaws.com/18858_0c289c260a574ea08c0f10b944abc883.html)
  * [Cartão de referência para expressões matemáticas-latex](http://elevatorlady.ca/doc/refcard/expressions.html).
  * [latex-mathjax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 
  * [latex em R Markdown](http://www.calvin.edu/~rpruim/courses/m343/F12/RStudio/LatexExamples.html)
- * [Citações e referências](https://cran.r-project.org/web/packages/knitcitations/index.html)
+ * [Citações e referências bibliográficas](https://cran.r-project.org/web/packages/knitcitations/index.html)
  
