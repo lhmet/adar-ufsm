@@ -6850,7 +6850,7 @@ mode(v_df)
 
 - - - 
 
-# Funções novas uilizadas nessa seção 
+# Funções novas utilizadas nessa seção 
 
 Vetor
 
