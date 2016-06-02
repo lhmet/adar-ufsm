@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <meta name="author" content="Jônatan Tatsch" />
 
@@ -66,25 +66,7 @@ code > span.in { color: #808080; font-weight: bold; font-style: italic; } /* Inf
 </style>
 
 
-
-</head>
-
-<body>
-
 <style type="text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
 h1 {
   font-size: 34px;
 }
@@ -105,6 +87,30 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type="text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -135,9 +141,10 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Entrada e saida de dados</h1>
+
+<h1 class="title toc-ignore">Entrada e saida de dados</h1>
 <h4 class="author"><em>Jônatan Tatsch</em></h4>
-<h4 class="date"><em>28-04-2016</em></h4>
+<h4 class="date"><em>02-06-2016</em></h4>
 
 </div>
 
@@ -1107,7 +1114,7 @@ vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span clas
 aq0 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/airquality.txt&quot;</span>, 
                   <span class="dt">na.strings =</span> <span class="st">&quot;-99.9&quot;</span>, 
                   <span class="dt">head =</span> F)</code></pre></div>
-<pre><code>Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings, : line 123 did not have 6 elements</code></pre>
+<pre><code>Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line 123 did not have 6 elements</code></pre>
 <p>A função <code>count.fields()</code> permite contar o número de registros em cada linha. Assim encontramos as linhas com número de registros fora do padrão.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## conta o num. de registros por linha
 cf &lt;-<span class="st"> </span><span class="kw">count.fields</span>(<span class="dt">file =</span> <span class="st">&quot;data/airquality.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
@@ -2887,9 +2894,9 @@ arq_name</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## tamanho, data de criação, permissões, etc 
 <span class="kw">file.info</span>(<span class="st">&quot;data/chuva_df.RData&quot;</span>)</code></pre></div>
 <pre><code>                     size isdir mode               mtime
-data/chuva_df.RData 23031 FALSE  664 2016-04-28 18:50:21
+data/chuva_df.RData 23030 FALSE  664 2016-06-02 15:06:39
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-04-28 18:50:21 2016-04-28 18:50:21 1000 1000
+data/chuva_df.RData 2016-06-02 15:06:39 2016-06-02 15:06:39 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 </div>
@@ -2909,33 +2916,31 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 [17] &quot;6_EntradaDeDados.md&quot;     &quot;6_EntradaDeDados.Rmd&quot;   
 [19] &quot;adar-ufsm.Rproj&quot;         &quot;apres_course.html&quot;      
 [21] &quot;apres_course.md&quot;         &quot;apres_course.Rpres&quot;     
-[23] &quot;DADOS&quot;                   &quot;data&quot;                   
-[25] &quot;figs&quot;                    &quot;hw&quot;                     
-[27] &quot;lista_pcks4mets.md&quot;      &quot;lista_pcks4mets.Rmd&quot;    
-[29] &quot;output&quot;                  &quot;R&quot;                      
-[31] &quot;README.html&quot;             &quot;README.md&quot;              
-[33] &quot;Rmarkdown.html&quot;          &quot;Rmarkdown.md&quot;           
-[35] &quot;Rmarkdown.Rmd&quot;          </code></pre>
+[23] &quot;data&quot;                    &quot;figs&quot;                   
+[25] &quot;lista_pcks4mets.md&quot;      &quot;lista_pcks4mets.Rmd&quot;    
+[27] &quot;R&quot;                       &quot;README.html&quot;            
+[29] &quot;README.md&quot;               &quot;Rmarkdown.html&quot;         
+[31] &quot;Rmarkdown.md&quot;            &quot;Rmarkdown.Rmd&quot;          </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista diretórios  e sub-dirs
 <span class="kw">list.dirs</span>()</code></pre></div>
 <pre><code>  [1] &quot;.&quot;                                    
-  [2] &quot;./DADOS&quot;                              
-  [3] &quot;./data&quot;                               
-  [4] &quot;./figs&quot;                               
-  [5] &quot;./.git&quot;                               
-  [6] &quot;./.git/branches&quot;                      
-  [7] &quot;./.git/hooks&quot;                         
-  [8] &quot;./.git/info&quot;                          
-  [9] &quot;./.git/logs&quot;                          
- [10] &quot;./.git/logs/refs&quot;                     
- [11] &quot;./.git/logs/refs/heads&quot;               
- [12] &quot;./.git/logs/refs/remotes&quot;             
- [13] &quot;./.git/logs/refs/remotes/origin&quot;      
- [14] &quot;./.git/objects&quot;                       
- [15] &quot;./.git/objects/00&quot;                    
- [16] &quot;./.git/objects/01&quot;                    
- [17] &quot;./.git/objects/03&quot;                    
- [18] &quot;./.git/objects/04&quot;                    
+  [2] &quot;./data&quot;                               
+  [3] &quot;./figs&quot;                               
+  [4] &quot;./.git&quot;                               
+  [5] &quot;./.git/branches&quot;                      
+  [6] &quot;./.git/hooks&quot;                         
+  [7] &quot;./.git/info&quot;                          
+  [8] &quot;./.git/logs&quot;                          
+  [9] &quot;./.git/logs/refs&quot;                     
+ [10] &quot;./.git/logs/refs/heads&quot;               
+ [11] &quot;./.git/logs/refs/remotes&quot;             
+ [12] &quot;./.git/logs/refs/remotes/origin&quot;      
+ [13] &quot;./.git/objects&quot;                       
+ [14] &quot;./.git/objects/00&quot;                    
+ [15] &quot;./.git/objects/01&quot;                    
+ [16] &quot;./.git/objects/03&quot;                    
+ [17] &quot;./.git/objects/04&quot;                    
+ [18] &quot;./.git/objects/05&quot;                    
  [19] &quot;./.git/objects/06&quot;                    
  [20] &quot;./.git/objects/07&quot;                    
  [21] &quot;./.git/objects/09&quot;                    
@@ -2948,221 +2953,236 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
  [28] &quot;./.git/objects/11&quot;                    
  [29] &quot;./.git/objects/12&quot;                    
  [30] &quot;./.git/objects/13&quot;                    
- [31] &quot;./.git/objects/16&quot;                    
- [32] &quot;./.git/objects/17&quot;                    
- [33] &quot;./.git/objects/18&quot;                    
- [34] &quot;./.git/objects/19&quot;                    
- [35] &quot;./.git/objects/1e&quot;                    
- [36] &quot;./.git/objects/21&quot;                    
- [37] &quot;./.git/objects/22&quot;                    
- [38] &quot;./.git/objects/23&quot;                    
- [39] &quot;./.git/objects/26&quot;                    
- [40] &quot;./.git/objects/28&quot;                    
- [41] &quot;./.git/objects/29&quot;                    
- [42] &quot;./.git/objects/2a&quot;                    
- [43] &quot;./.git/objects/2b&quot;                    
- [44] &quot;./.git/objects/2c&quot;                    
- [45] &quot;./.git/objects/2d&quot;                    
- [46] &quot;./.git/objects/2f&quot;                    
- [47] &quot;./.git/objects/30&quot;                    
- [48] &quot;./.git/objects/31&quot;                    
- [49] &quot;./.git/objects/32&quot;                    
- [50] &quot;./.git/objects/33&quot;                    
- [51] &quot;./.git/objects/34&quot;                    
- [52] &quot;./.git/objects/35&quot;                    
- [53] &quot;./.git/objects/36&quot;                    
- [54] &quot;./.git/objects/37&quot;                    
- [55] &quot;./.git/objects/39&quot;                    
- [56] &quot;./.git/objects/3a&quot;                    
- [57] &quot;./.git/objects/3b&quot;                    
- [58] &quot;./.git/objects/3c&quot;                    
- [59] &quot;./.git/objects/3f&quot;                    
- [60] &quot;./.git/objects/42&quot;                    
- [61] &quot;./.git/objects/44&quot;                    
- [62] &quot;./.git/objects/45&quot;                    
- [63] &quot;./.git/objects/46&quot;                    
- [64] &quot;./.git/objects/47&quot;                    
- [65] &quot;./.git/objects/49&quot;                    
- [66] &quot;./.git/objects/4a&quot;                    
- [67] &quot;./.git/objects/4b&quot;                    
- [68] &quot;./.git/objects/4c&quot;                    
- [69] &quot;./.git/objects/50&quot;                    
- [70] &quot;./.git/objects/51&quot;                    
- [71] &quot;./.git/objects/52&quot;                    
- [72] &quot;./.git/objects/53&quot;                    
- [73] &quot;./.git/objects/54&quot;                    
- [74] &quot;./.git/objects/55&quot;                    
- [75] &quot;./.git/objects/56&quot;                    
- [76] &quot;./.git/objects/57&quot;                    
- [77] &quot;./.git/objects/58&quot;                    
- [78] &quot;./.git/objects/5a&quot;                    
- [79] &quot;./.git/objects/5b&quot;                    
- [80] &quot;./.git/objects/5d&quot;                    
- [81] &quot;./.git/objects/5e&quot;                    
- [82] &quot;./.git/objects/63&quot;                    
- [83] &quot;./.git/objects/64&quot;                    
- [84] &quot;./.git/objects/67&quot;                    
- [85] &quot;./.git/objects/69&quot;                    
- [86] &quot;./.git/objects/6a&quot;                    
- [87] &quot;./.git/objects/6b&quot;                    
- [88] &quot;./.git/objects/6c&quot;                    
- [89] &quot;./.git/objects/6e&quot;                    
- [90] &quot;./.git/objects/70&quot;                    
- [91] &quot;./.git/objects/71&quot;                    
- [92] &quot;./.git/objects/73&quot;                    
- [93] &quot;./.git/objects/74&quot;                    
- [94] &quot;./.git/objects/75&quot;                    
- [95] &quot;./.git/objects/76&quot;                    
- [96] &quot;./.git/objects/77&quot;                    
- [97] &quot;./.git/objects/78&quot;                    
- [98] &quot;./.git/objects/7a&quot;                    
- [99] &quot;./.git/objects/7c&quot;                    
-[100] &quot;./.git/objects/7d&quot;                    
-[101] &quot;./.git/objects/7f&quot;                    
-[102] &quot;./.git/objects/80&quot;                    
-[103] &quot;./.git/objects/82&quot;                    
-[104] &quot;./.git/objects/83&quot;                    
-[105] &quot;./.git/objects/84&quot;                    
-[106] &quot;./.git/objects/85&quot;                    
-[107] &quot;./.git/objects/86&quot;                    
-[108] &quot;./.git/objects/88&quot;                    
-[109] &quot;./.git/objects/89&quot;                    
-[110] &quot;./.git/objects/8b&quot;                    
-[111] &quot;./.git/objects/8c&quot;                    
-[112] &quot;./.git/objects/8d&quot;                    
-[113] &quot;./.git/objects/8e&quot;                    
-[114] &quot;./.git/objects/90&quot;                    
-[115] &quot;./.git/objects/91&quot;                    
-[116] &quot;./.git/objects/92&quot;                    
-[117] &quot;./.git/objects/93&quot;                    
-[118] &quot;./.git/objects/96&quot;                    
-[119] &quot;./.git/objects/97&quot;                    
-[120] &quot;./.git/objects/98&quot;                    
-[121] &quot;./.git/objects/99&quot;                    
-[122] &quot;./.git/objects/9a&quot;                    
-[123] &quot;./.git/objects/9b&quot;                    
-[124] &quot;./.git/objects/9d&quot;                    
-[125] &quot;./.git/objects/9e&quot;                    
-[126] &quot;./.git/objects/9f&quot;                    
-[127] &quot;./.git/objects/a0&quot;                    
-[128] &quot;./.git/objects/a1&quot;                    
-[129] &quot;./.git/objects/a2&quot;                    
-[130] &quot;./.git/objects/a3&quot;                    
-[131] &quot;./.git/objects/a4&quot;                    
-[132] &quot;./.git/objects/a6&quot;                    
-[133] &quot;./.git/objects/a7&quot;                    
-[134] &quot;./.git/objects/a8&quot;                    
-[135] &quot;./.git/objects/a9&quot;                    
-[136] &quot;./.git/objects/ac&quot;                    
-[137] &quot;./.git/objects/ad&quot;                    
-[138] &quot;./.git/objects/ae&quot;                    
-[139] &quot;./.git/objects/af&quot;                    
-[140] &quot;./.git/objects/b1&quot;                    
-[141] &quot;./.git/objects/b2&quot;                    
-[142] &quot;./.git/objects/b3&quot;                    
-[143] &quot;./.git/objects/b7&quot;                    
-[144] &quot;./.git/objects/ba&quot;                    
-[145] &quot;./.git/objects/bc&quot;                    
-[146] &quot;./.git/objects/bd&quot;                    
-[147] &quot;./.git/objects/be&quot;                    
-[148] &quot;./.git/objects/bf&quot;                    
-[149] &quot;./.git/objects/c0&quot;                    
-[150] &quot;./.git/objects/c1&quot;                    
-[151] &quot;./.git/objects/c2&quot;                    
-[152] &quot;./.git/objects/c4&quot;                    
-[153] &quot;./.git/objects/c6&quot;                    
-[154] &quot;./.git/objects/c8&quot;                    
-[155] &quot;./.git/objects/c9&quot;                    
-[156] &quot;./.git/objects/ca&quot;                    
-[157] &quot;./.git/objects/cb&quot;                    
-[158] &quot;./.git/objects/cc&quot;                    
-[159] &quot;./.git/objects/cd&quot;                    
-[160] &quot;./.git/objects/ce&quot;                    
-[161] &quot;./.git/objects/cf&quot;                    
-[162] &quot;./.git/objects/d0&quot;                    
-[163] &quot;./.git/objects/d1&quot;                    
-[164] &quot;./.git/objects/d2&quot;                    
-[165] &quot;./.git/objects/d3&quot;                    
-[166] &quot;./.git/objects/d4&quot;                    
-[167] &quot;./.git/objects/d5&quot;                    
-[168] &quot;./.git/objects/d6&quot;                    
-[169] &quot;./.git/objects/d8&quot;                    
-[170] &quot;./.git/objects/d9&quot;                    
-[171] &quot;./.git/objects/da&quot;                    
-[172] &quot;./.git/objects/dc&quot;                    
-[173] &quot;./.git/objects/dd&quot;                    
-[174] &quot;./.git/objects/e0&quot;                    
-[175] &quot;./.git/objects/e2&quot;                    
-[176] &quot;./.git/objects/e3&quot;                    
-[177] &quot;./.git/objects/e4&quot;                    
-[178] &quot;./.git/objects/e6&quot;                    
-[179] &quot;./.git/objects/e7&quot;                    
-[180] &quot;./.git/objects/e8&quot;                    
-[181] &quot;./.git/objects/e9&quot;                    
-[182] &quot;./.git/objects/ea&quot;                    
-[183] &quot;./.git/objects/eb&quot;                    
-[184] &quot;./.git/objects/ee&quot;                    
-[185] &quot;./.git/objects/ef&quot;                    
-[186] &quot;./.git/objects/f0&quot;                    
-[187] &quot;./.git/objects/f1&quot;                    
-[188] &quot;./.git/objects/f3&quot;                    
-[189] &quot;./.git/objects/f4&quot;                    
-[190] &quot;./.git/objects/f6&quot;                    
-[191] &quot;./.git/objects/f7&quot;                    
-[192] &quot;./.git/objects/f9&quot;                    
-[193] &quot;./.git/objects/fa&quot;                    
-[194] &quot;./.git/objects/fb&quot;                    
-[195] &quot;./.git/objects/fc&quot;                    
-[196] &quot;./.git/objects/ff&quot;                    
-[197] &quot;./.git/objects/info&quot;                  
-[198] &quot;./.git/objects/pack&quot;                  
-[199] &quot;./.git/refs&quot;                          
-[200] &quot;./.git/refs/heads&quot;                    
-[201] &quot;./.git/refs/remotes&quot;                  
-[202] &quot;./.git/refs/remotes/origin&quot;           
-[203] &quot;./.git/refs/tags&quot;                     
-[204] &quot;./hw&quot;                                 
-[205] &quot;./output&quot;                             
-[206] &quot;./output/sib2_papers&quot;                 
-[207] &quot;./R&quot;                                  
-[208] &quot;./.Rproj.user&quot;                        
-[209] &quot;./.Rproj.user/8C11DEC8&quot;               
-[210] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
-[211] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
-[212] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
-[213] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
-[214] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
-[215] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
-[216] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
-[217] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
-[218] &quot;./.Rproj.user/8C11DEC8/sdb/s-559378C3&quot;
-[219] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
-[220] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
-[221] &quot;./.Rproj.user/shared&quot;                 </code></pre>
+ [31] &quot;./.git/objects/14&quot;                    
+ [32] &quot;./.git/objects/16&quot;                    
+ [33] &quot;./.git/objects/17&quot;                    
+ [34] &quot;./.git/objects/18&quot;                    
+ [35] &quot;./.git/objects/19&quot;                    
+ [36] &quot;./.git/objects/1e&quot;                    
+ [37] &quot;./.git/objects/21&quot;                    
+ [38] &quot;./.git/objects/22&quot;                    
+ [39] &quot;./.git/objects/23&quot;                    
+ [40] &quot;./.git/objects/26&quot;                    
+ [41] &quot;./.git/objects/27&quot;                    
+ [42] &quot;./.git/objects/28&quot;                    
+ [43] &quot;./.git/objects/29&quot;                    
+ [44] &quot;./.git/objects/2a&quot;                    
+ [45] &quot;./.git/objects/2b&quot;                    
+ [46] &quot;./.git/objects/2c&quot;                    
+ [47] &quot;./.git/objects/2d&quot;                    
+ [48] &quot;./.git/objects/2f&quot;                    
+ [49] &quot;./.git/objects/30&quot;                    
+ [50] &quot;./.git/objects/31&quot;                    
+ [51] &quot;./.git/objects/32&quot;                    
+ [52] &quot;./.git/objects/33&quot;                    
+ [53] &quot;./.git/objects/34&quot;                    
+ [54] &quot;./.git/objects/35&quot;                    
+ [55] &quot;./.git/objects/36&quot;                    
+ [56] &quot;./.git/objects/37&quot;                    
+ [57] &quot;./.git/objects/39&quot;                    
+ [58] &quot;./.git/objects/3a&quot;                    
+ [59] &quot;./.git/objects/3b&quot;                    
+ [60] &quot;./.git/objects/3c&quot;                    
+ [61] &quot;./.git/objects/3e&quot;                    
+ [62] &quot;./.git/objects/3f&quot;                    
+ [63] &quot;./.git/objects/42&quot;                    
+ [64] &quot;./.git/objects/43&quot;                    
+ [65] &quot;./.git/objects/44&quot;                    
+ [66] &quot;./.git/objects/45&quot;                    
+ [67] &quot;./.git/objects/46&quot;                    
+ [68] &quot;./.git/objects/47&quot;                    
+ [69] &quot;./.git/objects/49&quot;                    
+ [70] &quot;./.git/objects/4a&quot;                    
+ [71] &quot;./.git/objects/4b&quot;                    
+ [72] &quot;./.git/objects/4c&quot;                    
+ [73] &quot;./.git/objects/50&quot;                    
+ [74] &quot;./.git/objects/51&quot;                    
+ [75] &quot;./.git/objects/52&quot;                    
+ [76] &quot;./.git/objects/53&quot;                    
+ [77] &quot;./.git/objects/54&quot;                    
+ [78] &quot;./.git/objects/55&quot;                    
+ [79] &quot;./.git/objects/56&quot;                    
+ [80] &quot;./.git/objects/57&quot;                    
+ [81] &quot;./.git/objects/58&quot;                    
+ [82] &quot;./.git/objects/5a&quot;                    
+ [83] &quot;./.git/objects/5b&quot;                    
+ [84] &quot;./.git/objects/5c&quot;                    
+ [85] &quot;./.git/objects/5d&quot;                    
+ [86] &quot;./.git/objects/5e&quot;                    
+ [87] &quot;./.git/objects/63&quot;                    
+ [88] &quot;./.git/objects/64&quot;                    
+ [89] &quot;./.git/objects/67&quot;                    
+ [90] &quot;./.git/objects/69&quot;                    
+ [91] &quot;./.git/objects/6a&quot;                    
+ [92] &quot;./.git/objects/6b&quot;                    
+ [93] &quot;./.git/objects/6c&quot;                    
+ [94] &quot;./.git/objects/6e&quot;                    
+ [95] &quot;./.git/objects/70&quot;                    
+ [96] &quot;./.git/objects/71&quot;                    
+ [97] &quot;./.git/objects/73&quot;                    
+ [98] &quot;./.git/objects/74&quot;                    
+ [99] &quot;./.git/objects/75&quot;                    
+[100] &quot;./.git/objects/76&quot;                    
+[101] &quot;./.git/objects/77&quot;                    
+[102] &quot;./.git/objects/78&quot;                    
+[103] &quot;./.git/objects/7a&quot;                    
+[104] &quot;./.git/objects/7b&quot;                    
+[105] &quot;./.git/objects/7c&quot;                    
+[106] &quot;./.git/objects/7d&quot;                    
+[107] &quot;./.git/objects/7e&quot;                    
+[108] &quot;./.git/objects/7f&quot;                    
+[109] &quot;./.git/objects/80&quot;                    
+[110] &quot;./.git/objects/82&quot;                    
+[111] &quot;./.git/objects/83&quot;                    
+[112] &quot;./.git/objects/84&quot;                    
+[113] &quot;./.git/objects/85&quot;                    
+[114] &quot;./.git/objects/86&quot;                    
+[115] &quot;./.git/objects/88&quot;                    
+[116] &quot;./.git/objects/89&quot;                    
+[117] &quot;./.git/objects/8b&quot;                    
+[118] &quot;./.git/objects/8c&quot;                    
+[119] &quot;./.git/objects/8d&quot;                    
+[120] &quot;./.git/objects/8e&quot;                    
+[121] &quot;./.git/objects/90&quot;                    
+[122] &quot;./.git/objects/91&quot;                    
+[123] &quot;./.git/objects/92&quot;                    
+[124] &quot;./.git/objects/93&quot;                    
+[125] &quot;./.git/objects/95&quot;                    
+[126] &quot;./.git/objects/96&quot;                    
+[127] &quot;./.git/objects/97&quot;                    
+[128] &quot;./.git/objects/98&quot;                    
+[129] &quot;./.git/objects/99&quot;                    
+[130] &quot;./.git/objects/9a&quot;                    
+[131] &quot;./.git/objects/9b&quot;                    
+[132] &quot;./.git/objects/9c&quot;                    
+[133] &quot;./.git/objects/9d&quot;                    
+[134] &quot;./.git/objects/9e&quot;                    
+[135] &quot;./.git/objects/9f&quot;                    
+[136] &quot;./.git/objects/a0&quot;                    
+[137] &quot;./.git/objects/a1&quot;                    
+[138] &quot;./.git/objects/a2&quot;                    
+[139] &quot;./.git/objects/a3&quot;                    
+[140] &quot;./.git/objects/a4&quot;                    
+[141] &quot;./.git/objects/a6&quot;                    
+[142] &quot;./.git/objects/a7&quot;                    
+[143] &quot;./.git/objects/a8&quot;                    
+[144] &quot;./.git/objects/a9&quot;                    
+[145] &quot;./.git/objects/ac&quot;                    
+[146] &quot;./.git/objects/ad&quot;                    
+[147] &quot;./.git/objects/ae&quot;                    
+[148] &quot;./.git/objects/af&quot;                    
+[149] &quot;./.git/objects/b0&quot;                    
+[150] &quot;./.git/objects/b1&quot;                    
+[151] &quot;./.git/objects/b2&quot;                    
+[152] &quot;./.git/objects/b3&quot;                    
+[153] &quot;./.git/objects/b4&quot;                    
+[154] &quot;./.git/objects/b5&quot;                    
+[155] &quot;./.git/objects/b7&quot;                    
+[156] &quot;./.git/objects/ba&quot;                    
+[157] &quot;./.git/objects/bb&quot;                    
+[158] &quot;./.git/objects/bc&quot;                    
+[159] &quot;./.git/objects/bd&quot;                    
+[160] &quot;./.git/objects/be&quot;                    
+[161] &quot;./.git/objects/bf&quot;                    
+[162] &quot;./.git/objects/c0&quot;                    
+[163] &quot;./.git/objects/c1&quot;                    
+[164] &quot;./.git/objects/c2&quot;                    
+[165] &quot;./.git/objects/c4&quot;                    
+[166] &quot;./.git/objects/c6&quot;                    
+[167] &quot;./.git/objects/c8&quot;                    
+[168] &quot;./.git/objects/c9&quot;                    
+[169] &quot;./.git/objects/ca&quot;                    
+[170] &quot;./.git/objects/cb&quot;                    
+[171] &quot;./.git/objects/cc&quot;                    
+[172] &quot;./.git/objects/cd&quot;                    
+[173] &quot;./.git/objects/ce&quot;                    
+[174] &quot;./.git/objects/cf&quot;                    
+[175] &quot;./.git/objects/d0&quot;                    
+[176] &quot;./.git/objects/d1&quot;                    
+[177] &quot;./.git/objects/d2&quot;                    
+[178] &quot;./.git/objects/d3&quot;                    
+[179] &quot;./.git/objects/d4&quot;                    
+[180] &quot;./.git/objects/d5&quot;                    
+[181] &quot;./.git/objects/d6&quot;                    
+[182] &quot;./.git/objects/d8&quot;                    
+[183] &quot;./.git/objects/d9&quot;                    
+[184] &quot;./.git/objects/da&quot;                    
+[185] &quot;./.git/objects/db&quot;                    
+[186] &quot;./.git/objects/dc&quot;                    
+[187] &quot;./.git/objects/dd&quot;                    
+[188] &quot;./.git/objects/de&quot;                    
+[189] &quot;./.git/objects/df&quot;                    
+[190] &quot;./.git/objects/e0&quot;                    
+[191] &quot;./.git/objects/e2&quot;                    
+[192] &quot;./.git/objects/e3&quot;                    
+[193] &quot;./.git/objects/e4&quot;                    
+[194] &quot;./.git/objects/e6&quot;                    
+[195] &quot;./.git/objects/e7&quot;                    
+[196] &quot;./.git/objects/e8&quot;                    
+[197] &quot;./.git/objects/e9&quot;                    
+[198] &quot;./.git/objects/ea&quot;                    
+[199] &quot;./.git/objects/eb&quot;                    
+[200] &quot;./.git/objects/ed&quot;                    
+[201] &quot;./.git/objects/ee&quot;                    
+[202] &quot;./.git/objects/ef&quot;                    
+[203] &quot;./.git/objects/f0&quot;                    
+[204] &quot;./.git/objects/f1&quot;                    
+[205] &quot;./.git/objects/f3&quot;                    
+[206] &quot;./.git/objects/f4&quot;                    
+[207] &quot;./.git/objects/f6&quot;                    
+[208] &quot;./.git/objects/f7&quot;                    
+[209] &quot;./.git/objects/f9&quot;                    
+[210] &quot;./.git/objects/fa&quot;                    
+[211] &quot;./.git/objects/fb&quot;                    
+[212] &quot;./.git/objects/fc&quot;                    
+[213] &quot;./.git/objects/fd&quot;                    
+[214] &quot;./.git/objects/ff&quot;                    
+[215] &quot;./.git/objects/info&quot;                  
+[216] &quot;./.git/objects/pack&quot;                  
+[217] &quot;./.git/refs&quot;                          
+[218] &quot;./.git/refs/heads&quot;                    
+[219] &quot;./.git/refs/remotes&quot;                  
+[220] &quot;./.git/refs/remotes/origin&quot;           
+[221] &quot;./.git/refs/tags&quot;                     
+[222] &quot;./R&quot;                                  
+[223] &quot;./.Rproj.user&quot;                        
+[224] &quot;./.Rproj.user/8C11DEC8&quot;               
+[225] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
+[226] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
+[227] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
+[228] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
+[229] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
+[230] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
+[231] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
+[232] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
+[233] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
+[234] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
+[235] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
+[236] &quot;./.Rproj.user/shared&quot;                 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista diretórios, sem sub-dirs
 <span class="kw">list.dirs</span>(<span class="dt">recursive =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>[1] &quot;./DADOS&quot;       &quot;./data&quot;        &quot;./figs&quot;        &quot;./.git&quot;       
-[5] &quot;./hw&quot;          &quot;./output&quot;      &quot;./R&quot;           &quot;./.Rproj.user&quot;</code></pre>
+<pre><code>[1] &quot;./data&quot;        &quot;./figs&quot;        &quot;./.git&quot;        &quot;./R&quot;          
+[5] &quot;./.Rproj.user&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista diretórios incluindo caminho relativo
 <span class="kw">list.dirs</span>(<span class="dt">full.names =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>  [1] &quot;.&quot;                                    
-  [2] &quot;./DADOS&quot;                              
-  [3] &quot;./data&quot;                               
-  [4] &quot;./figs&quot;                               
-  [5] &quot;./.git&quot;                               
-  [6] &quot;./.git/branches&quot;                      
-  [7] &quot;./.git/hooks&quot;                         
-  [8] &quot;./.git/info&quot;                          
-  [9] &quot;./.git/logs&quot;                          
- [10] &quot;./.git/logs/refs&quot;                     
- [11] &quot;./.git/logs/refs/heads&quot;               
- [12] &quot;./.git/logs/refs/remotes&quot;             
- [13] &quot;./.git/logs/refs/remotes/origin&quot;      
- [14] &quot;./.git/objects&quot;                       
- [15] &quot;./.git/objects/00&quot;                    
- [16] &quot;./.git/objects/01&quot;                    
- [17] &quot;./.git/objects/03&quot;                    
- [18] &quot;./.git/objects/04&quot;                    
+  [2] &quot;./data&quot;                               
+  [3] &quot;./figs&quot;                               
+  [4] &quot;./.git&quot;                               
+  [5] &quot;./.git/branches&quot;                      
+  [6] &quot;./.git/hooks&quot;                         
+  [7] &quot;./.git/info&quot;                          
+  [8] &quot;./.git/logs&quot;                          
+  [9] &quot;./.git/logs/refs&quot;                     
+ [10] &quot;./.git/logs/refs/heads&quot;               
+ [11] &quot;./.git/logs/refs/remotes&quot;             
+ [12] &quot;./.git/logs/refs/remotes/origin&quot;      
+ [13] &quot;./.git/objects&quot;                       
+ [14] &quot;./.git/objects/00&quot;                    
+ [15] &quot;./.git/objects/01&quot;                    
+ [16] &quot;./.git/objects/03&quot;                    
+ [17] &quot;./.git/objects/04&quot;                    
+ [18] &quot;./.git/objects/05&quot;                    
  [19] &quot;./.git/objects/06&quot;                    
  [20] &quot;./.git/objects/07&quot;                    
  [21] &quot;./.git/objects/09&quot;                    
@@ -3175,197 +3195,212 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
  [28] &quot;./.git/objects/11&quot;                    
  [29] &quot;./.git/objects/12&quot;                    
  [30] &quot;./.git/objects/13&quot;                    
- [31] &quot;./.git/objects/16&quot;                    
- [32] &quot;./.git/objects/17&quot;                    
- [33] &quot;./.git/objects/18&quot;                    
- [34] &quot;./.git/objects/19&quot;                    
- [35] &quot;./.git/objects/1e&quot;                    
- [36] &quot;./.git/objects/21&quot;                    
- [37] &quot;./.git/objects/22&quot;                    
- [38] &quot;./.git/objects/23&quot;                    
- [39] &quot;./.git/objects/26&quot;                    
- [40] &quot;./.git/objects/28&quot;                    
- [41] &quot;./.git/objects/29&quot;                    
- [42] &quot;./.git/objects/2a&quot;                    
- [43] &quot;./.git/objects/2b&quot;                    
- [44] &quot;./.git/objects/2c&quot;                    
- [45] &quot;./.git/objects/2d&quot;                    
- [46] &quot;./.git/objects/2f&quot;                    
- [47] &quot;./.git/objects/30&quot;                    
- [48] &quot;./.git/objects/31&quot;                    
- [49] &quot;./.git/objects/32&quot;                    
- [50] &quot;./.git/objects/33&quot;                    
- [51] &quot;./.git/objects/34&quot;                    
- [52] &quot;./.git/objects/35&quot;                    
- [53] &quot;./.git/objects/36&quot;                    
- [54] &quot;./.git/objects/37&quot;                    
- [55] &quot;./.git/objects/39&quot;                    
- [56] &quot;./.git/objects/3a&quot;                    
- [57] &quot;./.git/objects/3b&quot;                    
- [58] &quot;./.git/objects/3c&quot;                    
- [59] &quot;./.git/objects/3f&quot;                    
- [60] &quot;./.git/objects/42&quot;                    
- [61] &quot;./.git/objects/44&quot;                    
- [62] &quot;./.git/objects/45&quot;                    
- [63] &quot;./.git/objects/46&quot;                    
- [64] &quot;./.git/objects/47&quot;                    
- [65] &quot;./.git/objects/49&quot;                    
- [66] &quot;./.git/objects/4a&quot;                    
- [67] &quot;./.git/objects/4b&quot;                    
- [68] &quot;./.git/objects/4c&quot;                    
- [69] &quot;./.git/objects/50&quot;                    
- [70] &quot;./.git/objects/51&quot;                    
- [71] &quot;./.git/objects/52&quot;                    
- [72] &quot;./.git/objects/53&quot;                    
- [73] &quot;./.git/objects/54&quot;                    
- [74] &quot;./.git/objects/55&quot;                    
- [75] &quot;./.git/objects/56&quot;                    
- [76] &quot;./.git/objects/57&quot;                    
- [77] &quot;./.git/objects/58&quot;                    
- [78] &quot;./.git/objects/5a&quot;                    
- [79] &quot;./.git/objects/5b&quot;                    
- [80] &quot;./.git/objects/5d&quot;                    
- [81] &quot;./.git/objects/5e&quot;                    
- [82] &quot;./.git/objects/63&quot;                    
- [83] &quot;./.git/objects/64&quot;                    
- [84] &quot;./.git/objects/67&quot;                    
- [85] &quot;./.git/objects/69&quot;                    
- [86] &quot;./.git/objects/6a&quot;                    
- [87] &quot;./.git/objects/6b&quot;                    
- [88] &quot;./.git/objects/6c&quot;                    
- [89] &quot;./.git/objects/6e&quot;                    
- [90] &quot;./.git/objects/70&quot;                    
- [91] &quot;./.git/objects/71&quot;                    
- [92] &quot;./.git/objects/73&quot;                    
- [93] &quot;./.git/objects/74&quot;                    
- [94] &quot;./.git/objects/75&quot;                    
- [95] &quot;./.git/objects/76&quot;                    
- [96] &quot;./.git/objects/77&quot;                    
- [97] &quot;./.git/objects/78&quot;                    
- [98] &quot;./.git/objects/7a&quot;                    
- [99] &quot;./.git/objects/7c&quot;                    
-[100] &quot;./.git/objects/7d&quot;                    
-[101] &quot;./.git/objects/7f&quot;                    
-[102] &quot;./.git/objects/80&quot;                    
-[103] &quot;./.git/objects/82&quot;                    
-[104] &quot;./.git/objects/83&quot;                    
-[105] &quot;./.git/objects/84&quot;                    
-[106] &quot;./.git/objects/85&quot;                    
-[107] &quot;./.git/objects/86&quot;                    
-[108] &quot;./.git/objects/88&quot;                    
-[109] &quot;./.git/objects/89&quot;                    
-[110] &quot;./.git/objects/8b&quot;                    
-[111] &quot;./.git/objects/8c&quot;                    
-[112] &quot;./.git/objects/8d&quot;                    
-[113] &quot;./.git/objects/8e&quot;                    
-[114] &quot;./.git/objects/90&quot;                    
-[115] &quot;./.git/objects/91&quot;                    
-[116] &quot;./.git/objects/92&quot;                    
-[117] &quot;./.git/objects/93&quot;                    
-[118] &quot;./.git/objects/96&quot;                    
-[119] &quot;./.git/objects/97&quot;                    
-[120] &quot;./.git/objects/98&quot;                    
-[121] &quot;./.git/objects/99&quot;                    
-[122] &quot;./.git/objects/9a&quot;                    
-[123] &quot;./.git/objects/9b&quot;                    
-[124] &quot;./.git/objects/9d&quot;                    
-[125] &quot;./.git/objects/9e&quot;                    
-[126] &quot;./.git/objects/9f&quot;                    
-[127] &quot;./.git/objects/a0&quot;                    
-[128] &quot;./.git/objects/a1&quot;                    
-[129] &quot;./.git/objects/a2&quot;                    
-[130] &quot;./.git/objects/a3&quot;                    
-[131] &quot;./.git/objects/a4&quot;                    
-[132] &quot;./.git/objects/a6&quot;                    
-[133] &quot;./.git/objects/a7&quot;                    
-[134] &quot;./.git/objects/a8&quot;                    
-[135] &quot;./.git/objects/a9&quot;                    
-[136] &quot;./.git/objects/ac&quot;                    
-[137] &quot;./.git/objects/ad&quot;                    
-[138] &quot;./.git/objects/ae&quot;                    
-[139] &quot;./.git/objects/af&quot;                    
-[140] &quot;./.git/objects/b1&quot;                    
-[141] &quot;./.git/objects/b2&quot;                    
-[142] &quot;./.git/objects/b3&quot;                    
-[143] &quot;./.git/objects/b7&quot;                    
-[144] &quot;./.git/objects/ba&quot;                    
-[145] &quot;./.git/objects/bc&quot;                    
-[146] &quot;./.git/objects/bd&quot;                    
-[147] &quot;./.git/objects/be&quot;                    
-[148] &quot;./.git/objects/bf&quot;                    
-[149] &quot;./.git/objects/c0&quot;                    
-[150] &quot;./.git/objects/c1&quot;                    
-[151] &quot;./.git/objects/c2&quot;                    
-[152] &quot;./.git/objects/c4&quot;                    
-[153] &quot;./.git/objects/c6&quot;                    
-[154] &quot;./.git/objects/c8&quot;                    
-[155] &quot;./.git/objects/c9&quot;                    
-[156] &quot;./.git/objects/ca&quot;                    
-[157] &quot;./.git/objects/cb&quot;                    
-[158] &quot;./.git/objects/cc&quot;                    
-[159] &quot;./.git/objects/cd&quot;                    
-[160] &quot;./.git/objects/ce&quot;                    
-[161] &quot;./.git/objects/cf&quot;                    
-[162] &quot;./.git/objects/d0&quot;                    
-[163] &quot;./.git/objects/d1&quot;                    
-[164] &quot;./.git/objects/d2&quot;                    
-[165] &quot;./.git/objects/d3&quot;                    
-[166] &quot;./.git/objects/d4&quot;                    
-[167] &quot;./.git/objects/d5&quot;                    
-[168] &quot;./.git/objects/d6&quot;                    
-[169] &quot;./.git/objects/d8&quot;                    
-[170] &quot;./.git/objects/d9&quot;                    
-[171] &quot;./.git/objects/da&quot;                    
-[172] &quot;./.git/objects/dc&quot;                    
-[173] &quot;./.git/objects/dd&quot;                    
-[174] &quot;./.git/objects/e0&quot;                    
-[175] &quot;./.git/objects/e2&quot;                    
-[176] &quot;./.git/objects/e3&quot;                    
-[177] &quot;./.git/objects/e4&quot;                    
-[178] &quot;./.git/objects/e6&quot;                    
-[179] &quot;./.git/objects/e7&quot;                    
-[180] &quot;./.git/objects/e8&quot;                    
-[181] &quot;./.git/objects/e9&quot;                    
-[182] &quot;./.git/objects/ea&quot;                    
-[183] &quot;./.git/objects/eb&quot;                    
-[184] &quot;./.git/objects/ee&quot;                    
-[185] &quot;./.git/objects/ef&quot;                    
-[186] &quot;./.git/objects/f0&quot;                    
-[187] &quot;./.git/objects/f1&quot;                    
-[188] &quot;./.git/objects/f3&quot;                    
-[189] &quot;./.git/objects/f4&quot;                    
-[190] &quot;./.git/objects/f6&quot;                    
-[191] &quot;./.git/objects/f7&quot;                    
-[192] &quot;./.git/objects/f9&quot;                    
-[193] &quot;./.git/objects/fa&quot;                    
-[194] &quot;./.git/objects/fb&quot;                    
-[195] &quot;./.git/objects/fc&quot;                    
-[196] &quot;./.git/objects/ff&quot;                    
-[197] &quot;./.git/objects/info&quot;                  
-[198] &quot;./.git/objects/pack&quot;                  
-[199] &quot;./.git/refs&quot;                          
-[200] &quot;./.git/refs/heads&quot;                    
-[201] &quot;./.git/refs/remotes&quot;                  
-[202] &quot;./.git/refs/remotes/origin&quot;           
-[203] &quot;./.git/refs/tags&quot;                     
-[204] &quot;./hw&quot;                                 
-[205] &quot;./output&quot;                             
-[206] &quot;./output/sib2_papers&quot;                 
-[207] &quot;./R&quot;                                  
-[208] &quot;./.Rproj.user&quot;                        
-[209] &quot;./.Rproj.user/8C11DEC8&quot;               
-[210] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
-[211] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
-[212] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
-[213] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
-[214] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
-[215] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
-[216] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
-[217] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
-[218] &quot;./.Rproj.user/8C11DEC8/sdb/s-559378C3&quot;
-[219] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
-[220] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
-[221] &quot;./.Rproj.user/shared&quot;                 </code></pre>
+ [31] &quot;./.git/objects/14&quot;                    
+ [32] &quot;./.git/objects/16&quot;                    
+ [33] &quot;./.git/objects/17&quot;                    
+ [34] &quot;./.git/objects/18&quot;                    
+ [35] &quot;./.git/objects/19&quot;                    
+ [36] &quot;./.git/objects/1e&quot;                    
+ [37] &quot;./.git/objects/21&quot;                    
+ [38] &quot;./.git/objects/22&quot;                    
+ [39] &quot;./.git/objects/23&quot;                    
+ [40] &quot;./.git/objects/26&quot;                    
+ [41] &quot;./.git/objects/27&quot;                    
+ [42] &quot;./.git/objects/28&quot;                    
+ [43] &quot;./.git/objects/29&quot;                    
+ [44] &quot;./.git/objects/2a&quot;                    
+ [45] &quot;./.git/objects/2b&quot;                    
+ [46] &quot;./.git/objects/2c&quot;                    
+ [47] &quot;./.git/objects/2d&quot;                    
+ [48] &quot;./.git/objects/2f&quot;                    
+ [49] &quot;./.git/objects/30&quot;                    
+ [50] &quot;./.git/objects/31&quot;                    
+ [51] &quot;./.git/objects/32&quot;                    
+ [52] &quot;./.git/objects/33&quot;                    
+ [53] &quot;./.git/objects/34&quot;                    
+ [54] &quot;./.git/objects/35&quot;                    
+ [55] &quot;./.git/objects/36&quot;                    
+ [56] &quot;./.git/objects/37&quot;                    
+ [57] &quot;./.git/objects/39&quot;                    
+ [58] &quot;./.git/objects/3a&quot;                    
+ [59] &quot;./.git/objects/3b&quot;                    
+ [60] &quot;./.git/objects/3c&quot;                    
+ [61] &quot;./.git/objects/3e&quot;                    
+ [62] &quot;./.git/objects/3f&quot;                    
+ [63] &quot;./.git/objects/42&quot;                    
+ [64] &quot;./.git/objects/43&quot;                    
+ [65] &quot;./.git/objects/44&quot;                    
+ [66] &quot;./.git/objects/45&quot;                    
+ [67] &quot;./.git/objects/46&quot;                    
+ [68] &quot;./.git/objects/47&quot;                    
+ [69] &quot;./.git/objects/49&quot;                    
+ [70] &quot;./.git/objects/4a&quot;                    
+ [71] &quot;./.git/objects/4b&quot;                    
+ [72] &quot;./.git/objects/4c&quot;                    
+ [73] &quot;./.git/objects/50&quot;                    
+ [74] &quot;./.git/objects/51&quot;                    
+ [75] &quot;./.git/objects/52&quot;                    
+ [76] &quot;./.git/objects/53&quot;                    
+ [77] &quot;./.git/objects/54&quot;                    
+ [78] &quot;./.git/objects/55&quot;                    
+ [79] &quot;./.git/objects/56&quot;                    
+ [80] &quot;./.git/objects/57&quot;                    
+ [81] &quot;./.git/objects/58&quot;                    
+ [82] &quot;./.git/objects/5a&quot;                    
+ [83] &quot;./.git/objects/5b&quot;                    
+ [84] &quot;./.git/objects/5c&quot;                    
+ [85] &quot;./.git/objects/5d&quot;                    
+ [86] &quot;./.git/objects/5e&quot;                    
+ [87] &quot;./.git/objects/63&quot;                    
+ [88] &quot;./.git/objects/64&quot;                    
+ [89] &quot;./.git/objects/67&quot;                    
+ [90] &quot;./.git/objects/69&quot;                    
+ [91] &quot;./.git/objects/6a&quot;                    
+ [92] &quot;./.git/objects/6b&quot;                    
+ [93] &quot;./.git/objects/6c&quot;                    
+ [94] &quot;./.git/objects/6e&quot;                    
+ [95] &quot;./.git/objects/70&quot;                    
+ [96] &quot;./.git/objects/71&quot;                    
+ [97] &quot;./.git/objects/73&quot;                    
+ [98] &quot;./.git/objects/74&quot;                    
+ [99] &quot;./.git/objects/75&quot;                    
+[100] &quot;./.git/objects/76&quot;                    
+[101] &quot;./.git/objects/77&quot;                    
+[102] &quot;./.git/objects/78&quot;                    
+[103] &quot;./.git/objects/7a&quot;                    
+[104] &quot;./.git/objects/7b&quot;                    
+[105] &quot;./.git/objects/7c&quot;                    
+[106] &quot;./.git/objects/7d&quot;                    
+[107] &quot;./.git/objects/7e&quot;                    
+[108] &quot;./.git/objects/7f&quot;                    
+[109] &quot;./.git/objects/80&quot;                    
+[110] &quot;./.git/objects/82&quot;                    
+[111] &quot;./.git/objects/83&quot;                    
+[112] &quot;./.git/objects/84&quot;                    
+[113] &quot;./.git/objects/85&quot;                    
+[114] &quot;./.git/objects/86&quot;                    
+[115] &quot;./.git/objects/88&quot;                    
+[116] &quot;./.git/objects/89&quot;                    
+[117] &quot;./.git/objects/8b&quot;                    
+[118] &quot;./.git/objects/8c&quot;                    
+[119] &quot;./.git/objects/8d&quot;                    
+[120] &quot;./.git/objects/8e&quot;                    
+[121] &quot;./.git/objects/90&quot;                    
+[122] &quot;./.git/objects/91&quot;                    
+[123] &quot;./.git/objects/92&quot;                    
+[124] &quot;./.git/objects/93&quot;                    
+[125] &quot;./.git/objects/95&quot;                    
+[126] &quot;./.git/objects/96&quot;                    
+[127] &quot;./.git/objects/97&quot;                    
+[128] &quot;./.git/objects/98&quot;                    
+[129] &quot;./.git/objects/99&quot;                    
+[130] &quot;./.git/objects/9a&quot;                    
+[131] &quot;./.git/objects/9b&quot;                    
+[132] &quot;./.git/objects/9c&quot;                    
+[133] &quot;./.git/objects/9d&quot;                    
+[134] &quot;./.git/objects/9e&quot;                    
+[135] &quot;./.git/objects/9f&quot;                    
+[136] &quot;./.git/objects/a0&quot;                    
+[137] &quot;./.git/objects/a1&quot;                    
+[138] &quot;./.git/objects/a2&quot;                    
+[139] &quot;./.git/objects/a3&quot;                    
+[140] &quot;./.git/objects/a4&quot;                    
+[141] &quot;./.git/objects/a6&quot;                    
+[142] &quot;./.git/objects/a7&quot;                    
+[143] &quot;./.git/objects/a8&quot;                    
+[144] &quot;./.git/objects/a9&quot;                    
+[145] &quot;./.git/objects/ac&quot;                    
+[146] &quot;./.git/objects/ad&quot;                    
+[147] &quot;./.git/objects/ae&quot;                    
+[148] &quot;./.git/objects/af&quot;                    
+[149] &quot;./.git/objects/b0&quot;                    
+[150] &quot;./.git/objects/b1&quot;                    
+[151] &quot;./.git/objects/b2&quot;                    
+[152] &quot;./.git/objects/b3&quot;                    
+[153] &quot;./.git/objects/b4&quot;                    
+[154] &quot;./.git/objects/b5&quot;                    
+[155] &quot;./.git/objects/b7&quot;                    
+[156] &quot;./.git/objects/ba&quot;                    
+[157] &quot;./.git/objects/bb&quot;                    
+[158] &quot;./.git/objects/bc&quot;                    
+[159] &quot;./.git/objects/bd&quot;                    
+[160] &quot;./.git/objects/be&quot;                    
+[161] &quot;./.git/objects/bf&quot;                    
+[162] &quot;./.git/objects/c0&quot;                    
+[163] &quot;./.git/objects/c1&quot;                    
+[164] &quot;./.git/objects/c2&quot;                    
+[165] &quot;./.git/objects/c4&quot;                    
+[166] &quot;./.git/objects/c6&quot;                    
+[167] &quot;./.git/objects/c8&quot;                    
+[168] &quot;./.git/objects/c9&quot;                    
+[169] &quot;./.git/objects/ca&quot;                    
+[170] &quot;./.git/objects/cb&quot;                    
+[171] &quot;./.git/objects/cc&quot;                    
+[172] &quot;./.git/objects/cd&quot;                    
+[173] &quot;./.git/objects/ce&quot;                    
+[174] &quot;./.git/objects/cf&quot;                    
+[175] &quot;./.git/objects/d0&quot;                    
+[176] &quot;./.git/objects/d1&quot;                    
+[177] &quot;./.git/objects/d2&quot;                    
+[178] &quot;./.git/objects/d3&quot;                    
+[179] &quot;./.git/objects/d4&quot;                    
+[180] &quot;./.git/objects/d5&quot;                    
+[181] &quot;./.git/objects/d6&quot;                    
+[182] &quot;./.git/objects/d8&quot;                    
+[183] &quot;./.git/objects/d9&quot;                    
+[184] &quot;./.git/objects/da&quot;                    
+[185] &quot;./.git/objects/db&quot;                    
+[186] &quot;./.git/objects/dc&quot;                    
+[187] &quot;./.git/objects/dd&quot;                    
+[188] &quot;./.git/objects/de&quot;                    
+[189] &quot;./.git/objects/df&quot;                    
+[190] &quot;./.git/objects/e0&quot;                    
+[191] &quot;./.git/objects/e2&quot;                    
+[192] &quot;./.git/objects/e3&quot;                    
+[193] &quot;./.git/objects/e4&quot;                    
+[194] &quot;./.git/objects/e6&quot;                    
+[195] &quot;./.git/objects/e7&quot;                    
+[196] &quot;./.git/objects/e8&quot;                    
+[197] &quot;./.git/objects/e9&quot;                    
+[198] &quot;./.git/objects/ea&quot;                    
+[199] &quot;./.git/objects/eb&quot;                    
+[200] &quot;./.git/objects/ed&quot;                    
+[201] &quot;./.git/objects/ee&quot;                    
+[202] &quot;./.git/objects/ef&quot;                    
+[203] &quot;./.git/objects/f0&quot;                    
+[204] &quot;./.git/objects/f1&quot;                    
+[205] &quot;./.git/objects/f3&quot;                    
+[206] &quot;./.git/objects/f4&quot;                    
+[207] &quot;./.git/objects/f6&quot;                    
+[208] &quot;./.git/objects/f7&quot;                    
+[209] &quot;./.git/objects/f9&quot;                    
+[210] &quot;./.git/objects/fa&quot;                    
+[211] &quot;./.git/objects/fb&quot;                    
+[212] &quot;./.git/objects/fc&quot;                    
+[213] &quot;./.git/objects/fd&quot;                    
+[214] &quot;./.git/objects/ff&quot;                    
+[215] &quot;./.git/objects/info&quot;                  
+[216] &quot;./.git/objects/pack&quot;                  
+[217] &quot;./.git/refs&quot;                          
+[218] &quot;./.git/refs/heads&quot;                    
+[219] &quot;./.git/refs/remotes&quot;                  
+[220] &quot;./.git/refs/remotes/origin&quot;           
+[221] &quot;./.git/refs/tags&quot;                     
+[222] &quot;./R&quot;                                  
+[223] &quot;./.Rproj.user&quot;                        
+[224] &quot;./.Rproj.user/8C11DEC8&quot;               
+[225] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
+[226] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
+[227] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
+[228] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
+[229] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
+[230] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
+[231] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
+[232] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
+[233] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
+[234] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
+[235] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
+[236] &quot;./.Rproj.user/shared&quot;                 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista todos arquivo que terminam com txt
 ## &quot;txt$&quot; é uma expressão regular (regex)
 <span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;txt$&quot;</span>)</code></pre></div>
@@ -3382,9 +3417,8 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 <ul>
 <li>Criar um diretório para armazenar dados utilizados no curso até agora;</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;DADOS&quot;</span>)</code></pre></div>
-<pre><code>Warning in dir.create(&quot;DADOS&quot;): 'DADOS' already exists</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.exists</span>(<span class="st">&quot;DADOS&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;DADOS&quot;</span>)
+<span class="kw">dir.exists</span>(<span class="st">&quot;DADOS&quot;</span>)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <ul>
 <li>selecionar os arquivos de dados do curso no diretório de trabalho</li>
@@ -3419,9 +3453,9 @@ files2remove</code></pre></div>
 </ul>
 <p>Para criar arquivos e diretórios temporários podemos usar as funções <code>tempfile()</code> e <code>tempdir()</code>, respectivamente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempdir</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/RtmpH6VkRK&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/Rtmp8PKkDz&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempfile</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/RtmpH6VkRK/file5af13ccf916f&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/Rtmp8PKkDz/file6056763ed893&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## baixando dados da web
 arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span>,
@@ -3444,27 +3478,27 @@ arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <h2><span class="header-section-number">8.5</span> Exemplo de donwload de arquivos de uma página da internet</h2>
 <p>Nesse exemplo vamos mostrar como baixar artigos no formato <code>pdf</code> disponíveis em um site da web.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">require</span>(XML) 
- ## arquivo para salvar artigos baixados
+ <span class="co"># arquivo para salvar artigos baixados</span>
  <span class="kw">dir.create</span>(<span class="st">&quot;output/sib2_papers&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
- ## link do local com os arquivos 
+ <span class="co"># link do local com os arquivos </span>
  a_url &lt;-<span class="st"> &quot;http://biocycle.atmos.colostate.edu/Documents/SiB/&quot;</span>
- ## lendo página web
+ <span class="co"># lendo página web</span>
  url_data &lt;-<span class="st"> </span><span class="kw">readHTMLTable</span>(a_url, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)
  <span class="kw">str</span>(url_data)
- ## extraindo nome dos arquivos pdf
+ <span class="co"># extraindo nome dos arquivos pdf</span>
  pdf_files &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(url_data[[<span class="dv">1</span>]][<span class="dv">2</span>]))
- ## selecionando só os pdfs
+ <span class="co"># selecionando só os pdfs</span>
  pdf_files &lt;-<span class="st"> </span>pdf_files[<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;pdf$&quot;</span>, <span class="dt">x=</span> pdf_files)]
  pdf_files
- ## colando a_url com pdf_files
+ <span class="co"># colando a_url com pdf_files</span>
  pdf_files_link &lt;-<span class="st"> </span><span class="kw">paste0</span>(a_url, pdf_files)
  pdf_files_link
- ## colando sib2_papers dir com pdf_files
+ <span class="co"># colando sib2_papers dir com pdf_files</span>
  pdf_files_dest &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&quot;output/sib2_papers&quot;</span>, pdf_files)
  pdf_files_dest
- ## looping para baixar arquivos
+ <span class="co"># looping para baixar arquivos</span>
  n_files &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">along =</span> pdf_files_link)
- ## selecionando só 2 artigos
+ <span class="co"># selecionando só 2 artigos</span>
  n_files &lt;-<span class="st"> </span>n_files[<span class="dv">1</span>:<span class="dv">2</span>]
  for(i in n_files) {
    <span class="co"># ipdf &lt;- 1</span>

@@ -1135,37 +1135,3 @@ download.file(url = "http://www.cpc.ncep.noaa.gov/data/indices/soi",
 file.remove(arq_temp)
 ```
 
-## Exemplo de donwload de arquivos de uma página da internet
-
-Nesse exemplo vamos mostrar como baixar artigos no formato `pdf` disponíveis em um site da web.
-
-```{r Chunk855, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=FALSE}
- require(XML) 
- ## arquivo para salvar artigos baixados
- dir.create("output/sib2_papers", recursive = TRUE)
- ## link do local com os arquivos 
- a_url <- "http://biocycle.atmos.colostate.edu/Documents/SiB/"
- ## lendo página web
- url_data <- readHTMLTable(a_url, stringsAsFactors = FALSE, encoding = "UTF-8")
- str(url_data)
- ## extraindo nome dos arquivos pdf
- pdf_files <- c(t(url_data[[1]][2]))
- ## selecionando só os pdfs
- pdf_files <- pdf_files[grep(pattern = "pdf$", x= pdf_files)]
- pdf_files
- ## colando a_url com pdf_files
- pdf_files_link <- paste0(a_url, pdf_files)
- pdf_files_link
- ## colando sib2_papers dir com pdf_files
- pdf_files_dest <- file.path("output/sib2_papers", pdf_files)
- pdf_files_dest
- ## looping para baixar arquivos
- n_files <- seq(along = pdf_files_link)
- ## selecionando só 2 artigos
- n_files <- n_files[1:2]
- for(i in n_files) {
-   # ipdf <- 1
-   download.file(pdf_files_link[i], pdf_files_dest[i])
- }
-```
-
