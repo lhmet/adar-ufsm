@@ -22,7 +22,7 @@ Até agora nós trabalhamos com dados que criados a partir de comandos diretamen
 
 
 ```r
-## Exemplo: vetor
+# Exemplo: vetor
 v1 <- c(1,3,4:8,10)
 v1
 ```
@@ -37,7 +37,7 @@ Nós podemos informar os números de um vetor a partir do teclado, um de cada ve
 
 
 ```r
-## Exemplo: vetor
+# Exemplo: vetor
 v2 <- scan()
 # digite os números do v1, ao terminar, tecle enter
 ```
@@ -46,9 +46,9 @@ A função `scan()` também pode ler dados de arquivos, mas a sua saída é um v
 
 
 ```r
-## Exemplo: vetor
+# Exemplo: vetor
 vetor_aq <- scan("data/airquality.txt")
-## parte inicial dos dados
+# parte inicial dos dados
 head(vetor_aq, 100)
 ```
 
@@ -66,7 +66,7 @@ head(vetor_aq, 100)
 ```
 
 ```r
-## parte final
+# parte final
 tail(vetor_aq, 100)
 ```
 
@@ -84,7 +84,7 @@ tail(vetor_aq, 100)
 ```
 
 ```r
-## dados são importados como vetor
+# dados são importados como vetor
 is.vector(vetor_aq)
 ```
 
@@ -104,7 +104,7 @@ Vimos que `Data-frames` são geralmente criados pela função `data.frame`, conf
 
 
 ```r
-## Exemplo: data-frame 
+# Exemplo: data-frame 
 dados <- data.frame(dates = c("2013-01-01", "2013-01-01", "2013-01-01"),
                     cidade = c("Santa Maria", "Sao Sepe", "Caçapava"), 
                     temperatura = c(31, 35, 21),
@@ -144,18 +144,18 @@ Essa função pode ser utilizado como uma forma de controlar um *looping*. Esse 
 
 
 ```r
-## para reprodutibilidade
+# para reprodutibilidade
 set.seed(123)
-## looping ao longo da sequência de 1 a 5
+# looping ao longo da sequência de 1 a 5
 l <- sapply(1:5, 
          function(i){
-           ## cria vetor com números aleatórios com distribuição uniforme
+           # cria vetor com números aleatórios com distribuição uniforme
            x <- runif(n = 100, min = 1,max = 50)
-             ## anomalia acumulada
+             # anomalia acumulada
              y <- cumsum(x - mean(x))
               plot(y, type = "o")
               abline(h = 0, lty = 2)
-               ## leitura de linha, só após teclar enter vai gerar próximo gráfico
+               # leitura de linha, só após teclar enter vai gerar próximo gráfico
                readline(prompt = "tecle <enter> para continuar: ")
          }
        )
@@ -190,11 +190,11 @@ Entretanto isso não é possível quando precisamos mostrar o valor de uma vari�
 
 
 ```r
-## dentro de uma função 
-## digitando o nome do objeto não imprimi na tela
+# dentro de uma função 
+# digitando o nome do objeto não imprimi na tela
 fcubo <- function(x) {
          classe <- class(x)
-         ## intenção de mostrar objeto de entrada
+         # intenção de mostrar objeto de entrada
          classe
          x^3
         }
@@ -206,9 +206,9 @@ fcubo(2)
 ```
 
 ```r
-## adicionando print 
+# adicionando print 
 cubo <- function(x) {
-         ## mostra objeto de entrada
+         # mostra objeto de entrada
          classe <- class(x)
          print(classe)
          x^3
@@ -315,7 +315,7 @@ texto <- "       dates      cidade temperatura chuva
     2013-01-01 SM          31     3
     2013-01-01 SS          35    10
     2013-01-01 CV          21    14"
-## conexão de texto
+# conexão de texto
 tc <- textConnection(object = texto)
 tc
 ```
@@ -358,7 +358,7 @@ x
 ```
 
 ```r
-## representação textual do objeto x
+# representação textual do objeto x
 dput(x)
 ```
 
@@ -371,11 +371,11 @@ structure(list(dates = structure(c(1L, 1L, 1L), .Label = "2013-01-01", class = "
 ```
 
 ```r
-## salva representação textual de x em um arquivo
+# salva representação textual de x em um arquivo
 dput(x, file = "data/x.txt")
-## recuperando x a partir do arquivo
+# recuperando x a partir do arquivo
 y <- dget("data/x.txt")
-## alterar valores de y
+# alterar valores de y
 y <- y[, 3:4] - sqrt(2)
 y
 ```
@@ -388,7 +388,7 @@ y
 ```
 
 ```r
-## verificar existência de x e y 
+# verificar existência de x e y 
 ls()
 ```
 
@@ -398,7 +398,7 @@ ls()
 ```
 
 ```r
-## listando variáveis que começam com x ou y
+# listando variáveis que começam com x ou y
 ls(pattern = "^[xy]")
 ```
 
@@ -407,11 +407,11 @@ ls(pattern = "^[xy]")
 ```
 
 ```r
-## salvando mais de um objeto em um arquivo
+# salvando mais de um objeto em um arquivo
 dump(ls(pattern = "^[xy]"), file = "R/xy.R")
-## vamos apagar x e y do espaco de trabalho
+# vamos apagar x e y do espaco de trabalho
 rm(x, y)
-## x e y não existem mais
+# x e y não existem mais
 ls()
 ```
 
@@ -421,7 +421,7 @@ ls()
 ```
 
 ```r
-## recuperando os objetos x e y salvos em xy.R
+# recuperando os objetos x e y salvos em xy.R
 source("R/xy.R")
 ls()
 ```
@@ -457,7 +457,7 @@ Portanto diferente da escrita dos dados em si para um arquivo texto as funções
 
 
 ```r
-## representação textual de um data.frame
+# representação textual de um data.frame
 x2 <- structure(list(dates = c("2013-01-01", "2013-01-01", "2013-01-01"), 
                      cidade = c("SM", "SS", "CV"), 
                      temperatura = c(31L, 35L, 21L), 
@@ -495,9 +495,9 @@ O `R` possui diversos conjuntos de dados internos que são automaticamente carre
 
 ```r
 data()
-## Annual Precipitation in US Cities, p/ mais informações "?precip"
+# Annual Precipitation in US Cities, p/ mais informações "?precip"
 data(precip)
-## primeiros 30 elementos dos dados precip
+# primeiros 30 elementos dos dados precip
 head(precip, n = 30)
 ```
 
@@ -525,9 +525,9 @@ head(precip, n = 30)
 ```
 
 ```r
-## New York Air Quality Measurements, , p/ mais informações "?airquality"
+# New York Air Quality Measurements, , p/ mais informações "?airquality"
 data(airquality)
-## primeiras linhas dos dados
+# primeiras linhas dos dados
 head(airquality, n = 10)
 ```
 
@@ -580,14 +580,14 @@ Para arquivos de tamanho moderado a pequeno essa forma de especificar os argumen
 
 
 ```r
-## definindo interpretação de caracteres: caracteres não devem ser tratados como fatores
+# definindo interpretação de caracteres: caracteres não devem ser tratados como fatores
 options(stringsAsFactors = F)
-## leitura de dados pluviométricos diários da ANA
+# leitura de dados pluviométricos diários da ANA
 dprec <- read.csv2(file = "data/CHUVAS.TXT", 
                    skip = 15, 
                    head = T, 
                    fill = T)
-## primeiras linhas
+# primeiras linhas
 head(dprec)
 ```
 
@@ -686,7 +686,7 @@ head(dprec)
 ```
 
 ```r
-## últimas linhas
+# últimas linhas
 tail(dprec)
 ```
 
@@ -785,11 +785,11 @@ tail(dprec)
 ```
 
 ```r
- ## corrigindo nome da primeira coluna
+ # corrigindo nome da primeira coluna
  names(dprec)[1] <- "EstacaoCodigo"
- ## removendo última coluna que só tem NAs
+ # removendo última coluna que só tem NAs
  dprec <- dprec[ , -ncol(dprec)]
-  ## estrutura dos dados
+  # estrutura dos dados
   str(dprec)
 ```
 
@@ -873,7 +873,7 @@ tail(dprec)
 ```
 
 ```r
-## Fazendo a mesma leitura com read.table
+# Fazendo a mesma leitura com read.table
 dprec2 <- read.table(file = "data/CHUVAS.TXT", 
                    skip = 15, 
                    head = T, 
@@ -1107,8 +1107,8 @@ Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 
 
 
 ```r
-## corrigindo classe dos dados
-## convertendo de character para numeric
+# corrigindo classe dos dados
+# convertendo de character para numeric
 x[, -c(1:3)] <- apply(x[,-c(1:3)], 2, as.numeric)
 str(x)
 ```
@@ -1138,7 +1138,7 @@ str(x)
 ```
 
 ```r
-## razão dos avisos
+# razão dos avisos
 as.numeric("NA")
 ```
 
@@ -1156,7 +1156,7 @@ Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma vari�
 
 
 ```r
-## lendo somente o nome das variaveis
+# lendo somente o nome das variaveis
 vnames <- read.csv2(file="data/83004.txt", 
                     header = F, 
                     skip = 15,
@@ -1179,9 +1179,9 @@ vnames
 ```
 
 ```r
-## convertendo de data frame para vetor
+# convertendo de data frame para vetor
 vnames <- c(t(vnames))
-## número de variáveis é diferente do número de colunas do arquivo
+# número de variáveis é diferente do número de colunas do arquivo
 length(vnames) == ncol(x)
 ```
 
@@ -1190,11 +1190,11 @@ length(vnames) == ncol(x)
 ```
 
 ```r
-## corrigindo nomes das variaveis
-##   substitui "VelocidadeVentoInsolacao" por "VelocidadeVento"
+# corrigindo nomes das variaveis
+#   substitui "VelocidadeVentoInsolacao" por "VelocidadeVento"
 vnames[13] <- "VelocidadeVento"
-## acresenta na 14a posição dos nomes a variável "insolacao" e
-## desloca os elementos orginais do vetor 
+# acresenta na 14a posição dos nomes a variável "insolacao" e
+# desloca os elementos orginais do vetor 
 vnames <- c(vnames[1:13], "insolacao", vnames[14:length(vnames)])
 length(vnames)
 ```
@@ -1265,7 +1265,7 @@ Vamos importar o arquivo texto `airquality.txt` que possui algumas linhas e colu
 
 
 ```r
-## leitura do arquivo airquality.txt
+# leitura do arquivo airquality.txt
 aq0 <- read.table(file = "data/airquality.txt", 
                   na.strings = "-99.9", 
                   head = F)
@@ -1279,7 +1279,7 @@ A função `count.fields()` permite contar o número de registros em cada linha.
 
 
 ```r
-## conta o num. de registros por linha
+# conta o num. de registros por linha
 cf <- count.fields(file = "data/airquality.txt", sep = " ")
 cf
 ```
@@ -1293,7 +1293,7 @@ cf
 ```
 
 ```r
-## contando ocorrências de registros
+# contando ocorrências de registros
 table(cf)
 ```
 
@@ -1304,7 +1304,7 @@ cf
 ```
 
 ```r
-## linhas com 5 registros
+# linhas com 5 registros
 qlinha <- which(cf == 5)
 qlinha
 ```
@@ -1314,14 +1314,14 @@ qlinha
 ```
 
 ```r
-## Contornando a falta de registros com o argumento fill = T
-## que preenche colunas faltantes com NA
+# Contornando a falta de registros com o argumento fill = T
+# que preenche colunas faltantes com NA
 aq <- read.table(file = "data/airquality.txt", 
                  na.strings = "-99.9", 
                  head = F, 
                  fill = T)
 names(aq) <-  c("Ozone",  "Solar.R", "Wind", "Temp", "Month", "Day")
-## primeiras linhas do dados
+# primeiras linhas do dados
 head(aq)
 ```
 
@@ -1336,7 +1336,7 @@ head(aq)
 ```
 
 ```r
-## resumo da estrutura dos dados
+# resumo da estrutura dos dados
 str(aq)
 ```
 
@@ -1351,7 +1351,7 @@ str(aq)
 ```
 
 ```r
-## resumo estatístico dos dados
+# resumo estatístico dos dados
 summary(aq)
 ```
 
@@ -1375,9 +1375,9 @@ summary(aq)
 ```
 
 ```r
-## Solar.R == -999 ?
-## Radiação solar negativa é fisicamente impossível
-## provável erro de digitação para  o label de dado faltante
+# Solar.R == -999 ?
+# Radiação solar negativa é fisicamente impossível
+# provável erro de digitação para  o label de dado faltante
 aq <- read.table(file = "data/airquality.txt", 
                  na.strings =c("-99.9","-999"), 
                  head = F, 
@@ -1406,14 +1406,14 @@ summary(aq)
 ```
 
 ```r
-## salvando arquivo com correções em arquivo separado por tab
+# salvando arquivo com correções em arquivo separado por tab
 write.table(x = aq, 
             file = "data/aq.txt", 
             sep = "\t", 
             na = "-999", 
             dec = ".", 
             row.names = F)
-## mostra arquivo
+# mostra arquivo
 file.show("data/aq.txt")
 ```
 
@@ -1421,7 +1421,7 @@ Fazendo alterações manuais nos dados `aq` via R:
 
 
 ```r
-## editar dados
+# editar dados
 aq_new <- fix(aq)
 ```
 
@@ -1431,7 +1431,7 @@ Alguns arquivos texto com dados tabulares podem não conter separadores (para p.
 
 
 ```r
-## link para os dados do SOI
+# link para os dados do SOI
 link <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
 ```
 
@@ -1465,13 +1465,13 @@ Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao 
 
 
 ```r
-## converte a matriz de dados para um vetor (em sequencia cronológica)
+# converte a matriz de dados para um vetor (em sequencia cronológica)
 soi_v <- c(t(soi[, -1]))
-## criando um data frame com valores de SOI, mes e ano
+# criando um data frame com valores de SOI, mes e ano
 soi_df <- data.frame(ano = rep(soi$YEAR, each = 12),
                      mes = rep(1:12, length(soi[,1])),
                      soi = soi_v)
-## escrevendo dados SOI em um arquivo CSV
+# escrevendo dados SOI em um arquivo CSV
 write.csv(x = soi_df, 
           file = "data/SOI.csv", 
           na = "-999.9", 
@@ -1482,10 +1482,10 @@ Vamos ler os dados reestruturados que foram salvos no formato [csv](http://en.wi
 
 
 ```r
-## leitura de dados com escolha interativa do arquivo
+# leitura de dados com escolha interativa do arquivo
 soi.df <- read.csv(file = file.choose(),
-                   ## file.choose só é válido em sistema *unix
-                   ## no windows é choose.file()
+                   # file.choose só é válido em sistema *unix
+                   # no windows é choose.file()
                    header = T,
                    na.strings = "-999.9")
 ```
@@ -1531,7 +1531,7 @@ Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde 
 
 
 ```r
-## leitura do cabecalho do arquivo de dados de uma estação do inmet
+# leitura do cabecalho do arquivo de dados de uma estação do inmet
 cab <- readLines("data/83004.txt")
 head(cab)
 ```
@@ -1546,7 +1546,7 @@ head(cab)
 ```
 
 ```r
-## somente linhas com coordenadas da estação
+# somente linhas com coordenadas da estação
 cab[5:7]
 ```
 
@@ -1564,7 +1564,7 @@ is.vector(cab[5:7])
 ```
 
 ```r
-## arranjando em coluna
+# arranjando em coluna
 cbind(cab[5:7])
 ```
 
@@ -1576,7 +1576,7 @@ cbind(cab[5:7])
 ```
 
 ```r
-## selecionando somente os dados e o nome das variáveis
+# selecionando somente os dados e o nome das variáveis
 cab[-c(1:15)][1:10]
 ```
 
@@ -1594,10 +1594,10 @@ cab[-c(1:15)][1:10]
 ```
 
 ```r
-## escrevendo dados com writeLines
+# escrevendo dados com writeLines
 writeLines(text = cab[-c(1:15)] , con = "data/83004_limpo.txt")
-## visualizando dados gerados sem cabeçalho usando função system
-## (específico para sistema *unix)
+# visualizando dados gerados sem cabeçalho usando função system
+# (específico para sistema *unix)
 system("head -11 data/83004_limpo.txt", intern = TRUE)
 ```
 
@@ -1669,7 +1669,7 @@ data.frame(Sys.info())
 
 
 ```r
-## cálculo de memória
+# cálculo de memória
 bytes_per_reg <- 8
 nlins <- 1500000
 ncols <- 120
@@ -1709,7 +1709,7 @@ Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados 
 
 
 ```r
-## primeiras linhas
+# primeiras linhas
 head(dprec[, 1:10])
 ```
 
@@ -1731,11 +1731,11 @@ head(dprec[, 1:10])
 ```
 
 ```r
-## selecionando somente dados diarios do dia 1 a 31 de cada ano
+# selecionando somente dados diarios do dia 1 a 31 de cada ano
 chuva_df <- dprec[, c(3, 14:44)]
-## arquivo binario do R
+# arquivo binario do R
 save(chuva_df, file = "data/chuva_df.RData")
-## verificando se arquivo foi salvo no diretório
+# verificando se arquivo foi salvo no diretório
 file.exists("data/chuva_df.RData")
 ```
 
@@ -1747,9 +1747,9 @@ Como o objeto `chuva_df` foi salvo em um arquivo, vamos removê-lo e então recu
 
 
 ```r
-## apagando chuva_df do ambiente de trabalho
+# apagando chuva_df do ambiente de trabalho
 rm(chuva_df)
-## verifica existência de objeto
+# verifica existência de objeto
 exists(chuva_df)
 ```
 
@@ -1758,7 +1758,7 @@ Error in exists(chuva_df): object 'chuva_df' not found
 ```
 
 ```r
-## carregando chuva_df
+# carregando chuva_df
 load(file = "data/chuva_df.RData")
 ls()
 ```
@@ -1776,7 +1776,7 @@ ls()
 ```
 
 ```r
-## para carregar os dados e saber o nome com que foram salvos
+# para carregar os dados e saber o nome com que foram salvos
 print(load(file = "data/chuva_df.RData"))
 ```
 
@@ -1846,7 +1846,7 @@ ls()
 ```
 
 ```r
-## carrega e imprime na tela nome dos dados carregados
+# carrega e imprime na tela nome dos dados carregados
 print(load("data/dados_prec.RData"))
 ```
 
@@ -1861,7 +1861,7 @@ Vamos alterar o formato da data do *data frame* `chuva_df` e salvá-lo no arquiv
 
 
 ```r
-## salvar dados em um arquivo rds
+# salvar dados em um arquivo rds
 head(chuva_df[, 1:10])
 ```
 
@@ -1883,7 +1883,7 @@ head(chuva_df[, 1:10])
 ```
 
 ```r
-## alterando formato de datas da coluna Data
+# alterando formato de datas da coluna Data
 chuva_df$Data <- as.Date(x = chuva_df$Data, format = "%d/%m/%Y")
 saveRDS(object = chuva_df, file = "data/chuva_df.rds")
 file.exists("data/chuva_df.rds")
@@ -1897,9 +1897,9 @@ Após salvar o *data frame* `chuva_df` vamos removê-lo do ambiente da sessão e
 
 
 ```r
-## removendo chuva_df do ambiente
+# removendo chuva_df do ambiente
 rm(chuva_df)
-## recuperando dados do arquivo em uma variável com nome diferente do original
+# recuperando dados do arquivo em uma variável com nome diferente do original
 prec_ana <- readRDS("data/chuva_df.rds")
 head(prec_ana[, 1:10])
 ```
@@ -1930,15 +1930,15 @@ head(prec_ana[, 1:10])
 
 
 ```r
-## ftp com aruivos binários de estimativa de precipitação a cada 3 h do TRMM 3B42
+# ftp com aruivos binários de estimativa de precipitação a cada 3 h do TRMM 3B42
 ftp_trmm_file <- "ftp://disc2.nascom.nasa.gov/data/TRMM/Gridded/3B42_V7/201407/3B42.140701.09z.7.precipitation.bin"
-## download do arquivo
+# download do arquivo
 download.file(ftp_trmm_file, destfile = file.path("data",basename(ftp_trmm_file)))
-## leitura do link para o arquivo readme 
+# leitura do link para o arquivo readme 
 readme <- readLines("ftp://disc2.nascom.nasa.gov/data/TRMM/Gridded/3B42_V7/readme")
-## escrevendo readme em arquivo texto 
+# escrevendo readme em arquivo texto 
 writeLines(text = readme, con = "data/readme_TRMM.txt")
-## abrindo arquivo para visualização
+# abrindo arquivo para visualização
 file.show("readme_TRMM.txt")
 ```
 
@@ -1946,7 +1946,7 @@ Leitura do arquivo binário.
 
 
 ```r
-## importando arquivo binário  
+# importando arquivo binário  
 bin_data <- readBin(con = file.path("data",basename(ftp_trmm_file)),
                     what = "numeric", 
                     endian = "big",
@@ -1968,10 +1968,10 @@ Para visualizarmos os dados lidos, vamos usar a função `levelplot()` do pacote
 
 
 ```r
-## Visualização dos dados
+# Visualização dos dados
 # install.packages(lattice, dep = TRUE)
 require(lattice)
-## definindo paleta de cores para o gráfico
+# definindo paleta de cores para o gráfico
 paleta <- rev(topo.colors(32)) # rev() inverte a ordem do vetor
 levelplot(t(m),
           col.regions = rev(terrain.colors(32)), 
@@ -1982,9 +1982,9 @@ levelplot(t(m),
 ![](figs/Chunk6214-1.png)<!-- -->
 
 ```r
-## para melhor visualização vamos substituir valores abaixo de 0.1 mm/dia por NA
+# para melhor visualização vamos substituir valores abaixo de 0.1 mm/dia por NA
 m[m < 0.5] <- NA
-## gráfico com valores apenas onde choveu
+# gráfico com valores apenas onde choveu
 levelplot(t(m), 
           col.regions = paleta,  
           xlab = "x", 
@@ -2014,9 +2014,9 @@ Carregando pacotes necessários:
 
 
 ```r
-## Se não tiver o pacote instale-o, p.ex.: 
+# Se não tiver o pacote instale-o, p.ex.: 
 # install.packages("ncdf4", dep = TRUE)
-## depois carregamos os pacotes
+# depois carregamos os pacotes
 library(chron)
 library(RColorBrewer)
 library(lattice)
@@ -2028,12 +2028,12 @@ Abrindo arquivo NetCDF e obtendo informações básicas.
 
 
 ```r
-## nome do arquivo netcdf
+# nome do arquivo netcdf
 ncname <- "data/cru10min30_tmp"
 ncfname <- paste(ncname, ".nc", sep = "")
-## variável de interesse, tmp: temperatura do ar
+# variável de interesse, tmp: temperatura do ar
 dname <- "tmp"  
-## abre o arquivo NetCDF
+# abre o arquivo NetCDF
 ncin <- nc_open(ncfname)
 print(ncin)
 ```
@@ -2080,7 +2080,7 @@ File data/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
 ```
 
 ```r
-## estrutura dos dados
+# estrutura dos dados
 str(ncin)
 ```
 
@@ -2339,7 +2339,7 @@ List of 14
 ```
 
 ```r
-## classe
+# classe
 class(ncin)
 ```
 
@@ -2348,7 +2348,7 @@ class(ncin)
 ```
 
 ```r
-## modo
+# modo
 mode(ncin)
 ```
 
@@ -2413,7 +2413,7 @@ $value
 
 ```r
 tmp.array <- ncvar_get(ncin, dname)
-## resumo da estrutura dos dados
+# resumo da estrutura dos dados
 str(tmp.array)
 ```
 
@@ -2422,7 +2422,7 @@ str(tmp.array)
 ```
 
 ```r
-## nome longo da variável
+# nome longo da variável
 (dlname <- ncatt_get(ncin, dname, "long_name"))
 ```
 
@@ -2435,7 +2435,7 @@ $value
 ```
 
 ```r
-## unidades da variável
+# unidades da variável
 (dunits <- ncatt_get(ncin, dname, "units"))
 ```
 
@@ -2448,7 +2448,7 @@ $value
 ```
 
 ```r
-## valor definido para valores faltantes
+# valor definido para valores faltantes
 (fillvalue <- ncatt_get(ncin, dname, "_FillValue"))
 ```
 
@@ -2461,7 +2461,7 @@ $value
 ```
 
 ```r
-## fechando arquivo
+# fechando arquivo
 nc_close(ncin)
 ```
 
@@ -2472,7 +2472,7 @@ Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um data frame
 
 ```r
 m <- 1
-## campo espacial do primeiro dia de dados
+# campo espacial do primeiro dia de dados
 tmp.slice <- tmp.array[, , m]
 str(tmp.slice)
 ```
@@ -2482,7 +2482,7 @@ str(tmp.slice)
 ```
 
 ```r
-## outra função para visualizar dados com 3D
+# outra função para visualizar dados com 3D
 image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
 ```
 
@@ -2528,11 +2528,11 @@ Aqui vamos mostrar como usar o pacote [XLConnect](https://cran.r-project.org/web
 ```r
 # sessionInfo()
 library(XLConnect)
-## nome do arquivo excel
+# nome do arquivo excel
 xls_file <- "data/06_Junho-00.xls"
-## carregando planilhas do arquivo
+# carregando planilhas do arquivo
 wb <- loadWorkbook(xls_file)
-## obtendo nome das planilhas do arquivo
+# obtendo nome das planilhas do arquivo
 nomes_planilhas <- getSheets(wb)
 nomes_planilhas
 ```
@@ -2552,7 +2552,7 @@ nomes_planilhas
 ```
 
 ```r
-## lendo dados da planilha 1
+# lendo dados da planilha 1
 dados_planilha1 <- readWorksheet(wb, sheet = nomes_planilhas[1])
 str(dados_planilha1)
 ```
@@ -2567,7 +2567,7 @@ str(dados_planilha1)
 ```
 
 ```r
-## lista com dados de todas planilhas do arquivo excel
+# lista com dados de todas planilhas do arquivo excel
 lst <- readWorksheet(wb, sheet = nomes_planilhas)
 ```
 
@@ -2890,7 +2890,7 @@ List of 32
 ```
 
 ```r
-## dados da planilha 1
+# dados da planilha 1
 lst[[1]]
 ```
 
@@ -2962,11 +2962,11 @@ A seguir, definimos o *driver* do banco de dados como SQLite e configuramos a co
 
 
 ```r
-## nome do SGBDR
+# nome do SGBDR
 driver <- dbDriver("SQLite")
-## nome do arquivo com banco de dados
+# nome do arquivo com banco de dados
 db_file <- "data/rastreador1.db3"
-## conectando com o BDR
+# conectando com o BDR
 conn <- dbConnect(driver, db_file)
 conn
 ```
@@ -2992,7 +2992,7 @@ Com a função `dbReadTable()` podemos ler uma tabela do banco de dados.
 
 
 ```r
-## lendo tabela imagem_nuvem
+# lendo tabela imagem_nuvem
 imagem_nuvem <- dbReadTable(conn, "imagem_nuvem")
 head(imagem_nuvem)
 ```
@@ -3039,10 +3039,10 @@ Para ler cada uma das tabela do banco e salvá-la com o mesmo nome usado no banc
 
 
 ```r
-## lendo cada tabela do banco e criando um data frame 
-## com mesmo nome da tabela dentro do banco de dados
+# lendo cada tabela do banco e criando um data frame 
+# com mesmo nome da tabela dentro do banco de dados
 for(i in tab_list) assign(i, dbReadTable(conn, i))
-## verificando se as tabelas foram criadas
+# verificando se as tabelas foram criadas
 all(tab_list %in% ls())
 ```
 
@@ -3054,7 +3054,7 @@ Após a leitura das tabelas de interesse podemos desconectar o banco de dados e 
 
 
 ```r
-## desconectando do banco
+# desconectando do banco
 dbDisconnect(conn)
 ```
 
@@ -3593,7 +3593,7 @@ Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*
 
 
 ```r
-## variável do tipo character com nome do diretório
+# variável do tipo character com nome do diretório
 (wd <- getwd())
 ```
 
@@ -3610,7 +3610,7 @@ class(wd)
 ```
 
 ```r
-## altere o caminho para "/home/lci"
+# altere o caminho para "/home/lci"
 setwd("/home/hidrometeorologista/")
 getwd()
 ```
@@ -3620,7 +3620,7 @@ getwd()
 ```
 
 ```r
-## volta para o wd
+# volta para o wd
 setwd(wd)
 getwd()
 ```
@@ -3637,7 +3637,7 @@ Podemos construir o caminho até um arquivo usando o nome do diretório e do arq
 
 
 ```r
-## carregando pacote tools para usar função file_ext()
+# carregando pacote tools para usar função file_ext()
 require(tools)
 ```
 
@@ -3646,7 +3646,7 @@ Loading required package: tools
 ```
 
 ```r
-## emenda diretorio ao nome do aruivo com "/"
+# emenda diretorio ao nome do aruivo com "/"
 file_name <- file.path(wd, "CHUVAS.TXT")
 file.path("/home", "lci", "nome_aluno", "R")
 ```
@@ -3656,7 +3656,7 @@ file.path("/home", "lci", "nome_aluno", "R")
 ```
 
 ```r
-## equivalente a
+# equivalente a
 paste(file.path(wd, "CHUVAS.TXT"), sep = "/")
 ```
 
@@ -3665,7 +3665,7 @@ paste(file.path(wd, "CHUVAS.TXT"), sep = "/")
 ```
 
 ```r
-## diretório de um arquivo
+# diretório de um arquivo
 dirname(file_name)
 ```
 
@@ -3674,7 +3674,7 @@ dirname(file_name)
 ```
 
 ```r
-## nome do arquivo
+# nome do arquivo
 basename(file_name)
 ```
 
@@ -3683,7 +3683,7 @@ basename(file_name)
 ```
 
 ```r
-## extensão do arquivo
+# extensão do arquivo
 file_ext(file_name)
 ```
 
@@ -3695,14 +3695,14 @@ A função `file.exists()` permite verificar se um arquivo já existe, o que pod
 
 
 ```r
-## seleção iterativa de um arquivo
+# seleção iterativa de um arquivo
 arq_name <- file.choose()
 arq_name
 ```
 
 
 ```r
-## verifica existência do arquivo
+# verifica existência do arquivo
 file.exists(file_name)
 ```
 
@@ -3711,15 +3711,15 @@ file.exists(file_name)
 ```
 
 ```r
-## tamanho, data de criação, permissões, etc 
+# tamanho, data de criação, permissões, etc 
 file.info("data/chuva_df.RData")
 ```
 
 ```
                      size isdir mode               mtime
-data/chuva_df.RData 23030 FALSE  664 2016-06-02 16:51:07
+data/chuva_df.RData 23030 FALSE  664 2016-06-02 17:09:01
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-06-02 16:51:07 2016-06-02 16:51:07 1000 1000
+data/chuva_df.RData 2016-06-02 17:09:01 2016-06-02 17:09:01 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista
 ```
@@ -3731,7 +3731,7 @@ A função `list.files()` permite listar arquivos usando [regex](http://pt.wikip
 
 
 ```r
-## lista conteúdo do diretórios
+# lista conteúdo do diretórios
 dir()
 ```
 
@@ -3747,93 +3747,92 @@ dir()
 [17] "6_EntradaDeDados.md"     "6_EntradaDeDados.Rmd"   
 [19] "adar-ufsm.Rproj"         "apres_course.html"      
 [21] "apres_course.md"         "apres_course.Rpres"     
-[23] "DADOS"                   "data"                   
-[25] "figs"                    "lista_pcks4mets.md"     
-[27] "lista_pcks4mets.Rmd"     "R"                      
-[29] "README.html"             "README.md"              
-[31] "Rmarkdown.html"          "Rmarkdown.md"           
-[33] "Rmarkdown.Rmd"          
+[23] "data"                    "figs"                   
+[25] "lista_pcks4mets.md"      "lista_pcks4mets.Rmd"    
+[27] "R"                       "README.html"            
+[29] "README.md"               "Rmarkdown.html"         
+[31] "Rmarkdown.md"            "Rmarkdown.Rmd"          
 ```
 
 ```r
-## lista diretórios  e sub-dirs
+# lista diretórios  e sub-dirs
 list.dirs()
 ```
 
 ```
   [1] "."                                    
-  [2] "./DADOS"                              
-  [3] "./data"                               
-  [4] "./figs"                               
-  [5] "./.git"                               
-  [6] "./.git/branches"                      
-  [7] "./.git/hooks"                         
-  [8] "./.git/info"                          
-  [9] "./.git/logs"                          
- [10] "./.git/logs/refs"                     
- [11] "./.git/logs/refs/heads"               
- [12] "./.git/logs/refs/remotes"             
- [13] "./.git/logs/refs/remotes/origin"      
- [14] "./.git/objects"                       
- [15] "./.git/objects/00"                    
- [16] "./.git/objects/01"                    
- [17] "./.git/objects/03"                    
- [18] "./.git/objects/04"                    
- [19] "./.git/objects/05"                    
- [20] "./.git/objects/06"                    
- [21] "./.git/objects/07"                    
- [22] "./.git/objects/09"                    
- [23] "./.git/objects/0a"                    
- [24] "./.git/objects/0b"                    
- [25] "./.git/objects/0c"                    
- [26] "./.git/objects/0d"                    
- [27] "./.git/objects/0e"                    
- [28] "./.git/objects/0f"                    
- [29] "./.git/objects/11"                    
- [30] "./.git/objects/12"                    
- [31] "./.git/objects/13"                    
- [32] "./.git/objects/14"                    
- [33] "./.git/objects/16"                    
- [34] "./.git/objects/17"                    
- [35] "./.git/objects/18"                    
- [36] "./.git/objects/19"                    
- [37] "./.git/objects/1e"                    
- [38] "./.git/objects/21"                    
- [39] "./.git/objects/22"                    
- [40] "./.git/objects/23"                    
- [41] "./.git/objects/26"                    
- [42] "./.git/objects/27"                    
- [43] "./.git/objects/28"                    
- [44] "./.git/objects/29"                    
- [45] "./.git/objects/2a"                    
- [46] "./.git/objects/2b"                    
- [47] "./.git/objects/2c"                    
- [48] "./.git/objects/2d"                    
- [49] "./.git/objects/2f"                    
- [50] "./.git/objects/30"                    
- [51] "./.git/objects/31"                    
- [52] "./.git/objects/32"                    
- [53] "./.git/objects/33"                    
- [54] "./.git/objects/34"                    
- [55] "./.git/objects/35"                    
- [56] "./.git/objects/36"                    
- [57] "./.git/objects/37"                    
- [58] "./.git/objects/39"                    
- [59] "./.git/objects/3a"                    
- [60] "./.git/objects/3b"                    
- [61] "./.git/objects/3c"                    
- [62] "./.git/objects/3e"                    
- [63] "./.git/objects/3f"                    
- [64] "./.git/objects/42"                    
- [65] "./.git/objects/43"                    
- [66] "./.git/objects/44"                    
- [67] "./.git/objects/45"                    
- [68] "./.git/objects/46"                    
- [69] "./.git/objects/47"                    
- [70] "./.git/objects/49"                    
- [71] "./.git/objects/4a"                    
- [72] "./.git/objects/4b"                    
- [73] "./.git/objects/4c"                    
+  [2] "./data"                               
+  [3] "./figs"                               
+  [4] "./.git"                               
+  [5] "./.git/branches"                      
+  [6] "./.git/hooks"                         
+  [7] "./.git/info"                          
+  [8] "./.git/logs"                          
+  [9] "./.git/logs/refs"                     
+ [10] "./.git/logs/refs/heads"               
+ [11] "./.git/logs/refs/remotes"             
+ [12] "./.git/logs/refs/remotes/origin"      
+ [13] "./.git/objects"                       
+ [14] "./.git/objects/00"                    
+ [15] "./.git/objects/01"                    
+ [16] "./.git/objects/03"                    
+ [17] "./.git/objects/04"                    
+ [18] "./.git/objects/05"                    
+ [19] "./.git/objects/06"                    
+ [20] "./.git/objects/07"                    
+ [21] "./.git/objects/09"                    
+ [22] "./.git/objects/0a"                    
+ [23] "./.git/objects/0b"                    
+ [24] "./.git/objects/0c"                    
+ [25] "./.git/objects/0d"                    
+ [26] "./.git/objects/0e"                    
+ [27] "./.git/objects/0f"                    
+ [28] "./.git/objects/11"                    
+ [29] "./.git/objects/12"                    
+ [30] "./.git/objects/13"                    
+ [31] "./.git/objects/14"                    
+ [32] "./.git/objects/16"                    
+ [33] "./.git/objects/17"                    
+ [34] "./.git/objects/18"                    
+ [35] "./.git/objects/19"                    
+ [36] "./.git/objects/1e"                    
+ [37] "./.git/objects/21"                    
+ [38] "./.git/objects/22"                    
+ [39] "./.git/objects/23"                    
+ [40] "./.git/objects/26"                    
+ [41] "./.git/objects/27"                    
+ [42] "./.git/objects/28"                    
+ [43] "./.git/objects/29"                    
+ [44] "./.git/objects/2a"                    
+ [45] "./.git/objects/2b"                    
+ [46] "./.git/objects/2c"                    
+ [47] "./.git/objects/2d"                    
+ [48] "./.git/objects/2f"                    
+ [49] "./.git/objects/30"                    
+ [50] "./.git/objects/31"                    
+ [51] "./.git/objects/32"                    
+ [52] "./.git/objects/33"                    
+ [53] "./.git/objects/34"                    
+ [54] "./.git/objects/35"                    
+ [55] "./.git/objects/36"                    
+ [56] "./.git/objects/37"                    
+ [57] "./.git/objects/39"                    
+ [58] "./.git/objects/3a"                    
+ [59] "./.git/objects/3b"                    
+ [60] "./.git/objects/3c"                    
+ [61] "./.git/objects/3e"                    
+ [62] "./.git/objects/3f"                    
+ [63] "./.git/objects/42"                    
+ [64] "./.git/objects/43"                    
+ [65] "./.git/objects/44"                    
+ [66] "./.git/objects/45"                    
+ [67] "./.git/objects/46"                    
+ [68] "./.git/objects/47"                    
+ [69] "./.git/objects/49"                    
+ [70] "./.git/objects/4a"                    
+ [71] "./.git/objects/4b"                    
+ [72] "./.git/objects/4c"                    
+ [73] "./.git/objects/4d"                    
  [74] "./.git/objects/50"                    
  [75] "./.git/objects/51"                    
  [76] "./.git/objects/52"                    
@@ -3843,254 +3842,255 @@ list.dirs()
  [80] "./.git/objects/56"                    
  [81] "./.git/objects/57"                    
  [82] "./.git/objects/58"                    
- [83] "./.git/objects/5a"                    
- [84] "./.git/objects/5b"                    
- [85] "./.git/objects/5c"                    
- [86] "./.git/objects/5d"                    
- [87] "./.git/objects/5e"                    
- [88] "./.git/objects/63"                    
- [89] "./.git/objects/64"                    
- [90] "./.git/objects/66"                    
- [91] "./.git/objects/67"                    
- [92] "./.git/objects/69"                    
- [93] "./.git/objects/6a"                    
- [94] "./.git/objects/6b"                    
- [95] "./.git/objects/6c"                    
- [96] "./.git/objects/6e"                    
- [97] "./.git/objects/70"                    
- [98] "./.git/objects/71"                    
- [99] "./.git/objects/73"                    
-[100] "./.git/objects/74"                    
-[101] "./.git/objects/75"                    
-[102] "./.git/objects/76"                    
-[103] "./.git/objects/77"                    
-[104] "./.git/objects/78"                    
-[105] "./.git/objects/7a"                    
-[106] "./.git/objects/7b"                    
-[107] "./.git/objects/7c"                    
-[108] "./.git/objects/7d"                    
-[109] "./.git/objects/7e"                    
-[110] "./.git/objects/7f"                    
-[111] "./.git/objects/80"                    
-[112] "./.git/objects/81"                    
-[113] "./.git/objects/82"                    
-[114] "./.git/objects/83"                    
-[115] "./.git/objects/84"                    
-[116] "./.git/objects/85"                    
-[117] "./.git/objects/86"                    
-[118] "./.git/objects/88"                    
-[119] "./.git/objects/89"                    
-[120] "./.git/objects/8b"                    
-[121] "./.git/objects/8c"                    
-[122] "./.git/objects/8d"                    
-[123] "./.git/objects/8e"                    
-[124] "./.git/objects/90"                    
-[125] "./.git/objects/91"                    
-[126] "./.git/objects/92"                    
-[127] "./.git/objects/93"                    
-[128] "./.git/objects/95"                    
-[129] "./.git/objects/96"                    
-[130] "./.git/objects/97"                    
-[131] "./.git/objects/98"                    
-[132] "./.git/objects/99"                    
-[133] "./.git/objects/9a"                    
-[134] "./.git/objects/9b"                    
-[135] "./.git/objects/9c"                    
-[136] "./.git/objects/9d"                    
-[137] "./.git/objects/9e"                    
-[138] "./.git/objects/9f"                    
-[139] "./.git/objects/a0"                    
-[140] "./.git/objects/a1"                    
-[141] "./.git/objects/a2"                    
-[142] "./.git/objects/a3"                    
-[143] "./.git/objects/a4"                    
-[144] "./.git/objects/a6"                    
-[145] "./.git/objects/a7"                    
-[146] "./.git/objects/a8"                    
-[147] "./.git/objects/a9"                    
-[148] "./.git/objects/ac"                    
-[149] "./.git/objects/ad"                    
-[150] "./.git/objects/ae"                    
-[151] "./.git/objects/af"                    
-[152] "./.git/objects/b0"                    
-[153] "./.git/objects/b1"                    
-[154] "./.git/objects/b2"                    
-[155] "./.git/objects/b3"                    
-[156] "./.git/objects/b4"                    
-[157] "./.git/objects/b5"                    
-[158] "./.git/objects/b7"                    
-[159] "./.git/objects/ba"                    
-[160] "./.git/objects/bb"                    
-[161] "./.git/objects/bc"                    
-[162] "./.git/objects/bd"                    
-[163] "./.git/objects/be"                    
-[164] "./.git/objects/bf"                    
-[165] "./.git/objects/c0"                    
-[166] "./.git/objects/c1"                    
-[167] "./.git/objects/c2"                    
-[168] "./.git/objects/c4"                    
-[169] "./.git/objects/c6"                    
-[170] "./.git/objects/c8"                    
-[171] "./.git/objects/c9"                    
-[172] "./.git/objects/ca"                    
-[173] "./.git/objects/cb"                    
-[174] "./.git/objects/cc"                    
-[175] "./.git/objects/cd"                    
-[176] "./.git/objects/ce"                    
-[177] "./.git/objects/cf"                    
-[178] "./.git/objects/d0"                    
-[179] "./.git/objects/d1"                    
-[180] "./.git/objects/d2"                    
-[181] "./.git/objects/d3"                    
-[182] "./.git/objects/d4"                    
-[183] "./.git/objects/d5"                    
-[184] "./.git/objects/d6"                    
-[185] "./.git/objects/d8"                    
-[186] "./.git/objects/d9"                    
-[187] "./.git/objects/da"                    
-[188] "./.git/objects/db"                    
-[189] "./.git/objects/dc"                    
-[190] "./.git/objects/dd"                    
-[191] "./.git/objects/de"                    
-[192] "./.git/objects/df"                    
-[193] "./.git/objects/e0"                    
-[194] "./.git/objects/e2"                    
-[195] "./.git/objects/e3"                    
-[196] "./.git/objects/e4"                    
-[197] "./.git/objects/e6"                    
-[198] "./.git/objects/e7"                    
-[199] "./.git/objects/e8"                    
-[200] "./.git/objects/e9"                    
-[201] "./.git/objects/ea"                    
-[202] "./.git/objects/eb"                    
-[203] "./.git/objects/ed"                    
-[204] "./.git/objects/ee"                    
-[205] "./.git/objects/ef"                    
-[206] "./.git/objects/f0"                    
-[207] "./.git/objects/f1"                    
-[208] "./.git/objects/f3"                    
-[209] "./.git/objects/f4"                    
-[210] "./.git/objects/f6"                    
-[211] "./.git/objects/f7"                    
-[212] "./.git/objects/f9"                    
-[213] "./.git/objects/fa"                    
-[214] "./.git/objects/fb"                    
-[215] "./.git/objects/fc"                    
-[216] "./.git/objects/fd"                    
-[217] "./.git/objects/ff"                    
-[218] "./.git/objects/info"                  
-[219] "./.git/objects/pack"                  
-[220] "./.git/refs"                          
-[221] "./.git/refs/heads"                    
-[222] "./.git/refs/remotes"                  
-[223] "./.git/refs/remotes/origin"           
-[224] "./.git/refs/tags"                     
-[225] "./R"                                  
-[226] "./.Rproj.user"                        
-[227] "./.Rproj.user/8C11DEC8"               
-[228] "./.Rproj.user/8C11DEC8/ctx"           
-[229] "./.Rproj.user/8C11DEC8/pcs"           
-[230] "./.Rproj.user/8C11DEC8/presentation"  
-[231] "./.Rproj.user/8C11DEC8/sdb"           
-[232] "./.Rproj.user/8C11DEC8/sdb/per"       
-[233] "./.Rproj.user/8C11DEC8/sdb/per/t"     
-[234] "./.Rproj.user/8C11DEC8/sdb/per/u"     
-[235] "./.Rproj.user/8C11DEC8/sdb/prop"      
-[236] "./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6"
-[237] "./.Rproj.user/8C11DEC8/viewer-cache"  
-[238] "./.Rproj.user/8C11DEC8/viewer_history"
-[239] "./.Rproj.user/shared"                 
+ [83] "./.git/objects/59"                    
+ [84] "./.git/objects/5a"                    
+ [85] "./.git/objects/5b"                    
+ [86] "./.git/objects/5c"                    
+ [87] "./.git/objects/5d"                    
+ [88] "./.git/objects/5e"                    
+ [89] "./.git/objects/63"                    
+ [90] "./.git/objects/64"                    
+ [91] "./.git/objects/66"                    
+ [92] "./.git/objects/67"                    
+ [93] "./.git/objects/69"                    
+ [94] "./.git/objects/6a"                    
+ [95] "./.git/objects/6b"                    
+ [96] "./.git/objects/6c"                    
+ [97] "./.git/objects/6e"                    
+ [98] "./.git/objects/70"                    
+ [99] "./.git/objects/71"                    
+[100] "./.git/objects/73"                    
+[101] "./.git/objects/74"                    
+[102] "./.git/objects/75"                    
+[103] "./.git/objects/76"                    
+[104] "./.git/objects/77"                    
+[105] "./.git/objects/78"                    
+[106] "./.git/objects/7a"                    
+[107] "./.git/objects/7b"                    
+[108] "./.git/objects/7c"                    
+[109] "./.git/objects/7d"                    
+[110] "./.git/objects/7e"                    
+[111] "./.git/objects/7f"                    
+[112] "./.git/objects/80"                    
+[113] "./.git/objects/81"                    
+[114] "./.git/objects/82"                    
+[115] "./.git/objects/83"                    
+[116] "./.git/objects/84"                    
+[117] "./.git/objects/85"                    
+[118] "./.git/objects/86"                    
+[119] "./.git/objects/88"                    
+[120] "./.git/objects/89"                    
+[121] "./.git/objects/8b"                    
+[122] "./.git/objects/8c"                    
+[123] "./.git/objects/8d"                    
+[124] "./.git/objects/8e"                    
+[125] "./.git/objects/90"                    
+[126] "./.git/objects/91"                    
+[127] "./.git/objects/92"                    
+[128] "./.git/objects/93"                    
+[129] "./.git/objects/95"                    
+[130] "./.git/objects/96"                    
+[131] "./.git/objects/97"                    
+[132] "./.git/objects/98"                    
+[133] "./.git/objects/99"                    
+[134] "./.git/objects/9a"                    
+[135] "./.git/objects/9b"                    
+[136] "./.git/objects/9c"                    
+[137] "./.git/objects/9d"                    
+[138] "./.git/objects/9e"                    
+[139] "./.git/objects/9f"                    
+[140] "./.git/objects/a0"                    
+[141] "./.git/objects/a1"                    
+[142] "./.git/objects/a2"                    
+[143] "./.git/objects/a3"                    
+[144] "./.git/objects/a4"                    
+[145] "./.git/objects/a6"                    
+[146] "./.git/objects/a7"                    
+[147] "./.git/objects/a8"                    
+[148] "./.git/objects/a9"                    
+[149] "./.git/objects/ac"                    
+[150] "./.git/objects/ad"                    
+[151] "./.git/objects/ae"                    
+[152] "./.git/objects/af"                    
+[153] "./.git/objects/b0"                    
+[154] "./.git/objects/b1"                    
+[155] "./.git/objects/b2"                    
+[156] "./.git/objects/b3"                    
+[157] "./.git/objects/b4"                    
+[158] "./.git/objects/b5"                    
+[159] "./.git/objects/b7"                    
+[160] "./.git/objects/ba"                    
+[161] "./.git/objects/bb"                    
+[162] "./.git/objects/bc"                    
+[163] "./.git/objects/bd"                    
+[164] "./.git/objects/be"                    
+[165] "./.git/objects/bf"                    
+[166] "./.git/objects/c0"                    
+[167] "./.git/objects/c1"                    
+[168] "./.git/objects/c2"                    
+[169] "./.git/objects/c4"                    
+[170] "./.git/objects/c6"                    
+[171] "./.git/objects/c8"                    
+[172] "./.git/objects/c9"                    
+[173] "./.git/objects/ca"                    
+[174] "./.git/objects/cb"                    
+[175] "./.git/objects/cc"                    
+[176] "./.git/objects/cd"                    
+[177] "./.git/objects/ce"                    
+[178] "./.git/objects/cf"                    
+[179] "./.git/objects/d0"                    
+[180] "./.git/objects/d1"                    
+[181] "./.git/objects/d2"                    
+[182] "./.git/objects/d3"                    
+[183] "./.git/objects/d4"                    
+[184] "./.git/objects/d5"                    
+[185] "./.git/objects/d6"                    
+[186] "./.git/objects/d8"                    
+[187] "./.git/objects/d9"                    
+[188] "./.git/objects/da"                    
+[189] "./.git/objects/db"                    
+[190] "./.git/objects/dc"                    
+[191] "./.git/objects/dd"                    
+[192] "./.git/objects/de"                    
+[193] "./.git/objects/df"                    
+[194] "./.git/objects/e0"                    
+[195] "./.git/objects/e2"                    
+[196] "./.git/objects/e3"                    
+[197] "./.git/objects/e4"                    
+[198] "./.git/objects/e6"                    
+[199] "./.git/objects/e7"                    
+[200] "./.git/objects/e8"                    
+[201] "./.git/objects/e9"                    
+[202] "./.git/objects/ea"                    
+[203] "./.git/objects/eb"                    
+[204] "./.git/objects/ed"                    
+[205] "./.git/objects/ee"                    
+[206] "./.git/objects/ef"                    
+[207] "./.git/objects/f0"                    
+[208] "./.git/objects/f1"                    
+[209] "./.git/objects/f3"                    
+[210] "./.git/objects/f4"                    
+[211] "./.git/objects/f6"                    
+[212] "./.git/objects/f7"                    
+[213] "./.git/objects/f9"                    
+[214] "./.git/objects/fa"                    
+[215] "./.git/objects/fb"                    
+[216] "./.git/objects/fc"                    
+[217] "./.git/objects/fd"                    
+[218] "./.git/objects/ff"                    
+[219] "./.git/objects/info"                  
+[220] "./.git/objects/pack"                  
+[221] "./.git/refs"                          
+[222] "./.git/refs/heads"                    
+[223] "./.git/refs/remotes"                  
+[224] "./.git/refs/remotes/origin"           
+[225] "./.git/refs/tags"                     
+[226] "./R"                                  
+[227] "./.Rproj.user"                        
+[228] "./.Rproj.user/8C11DEC8"               
+[229] "./.Rproj.user/8C11DEC8/ctx"           
+[230] "./.Rproj.user/8C11DEC8/pcs"           
+[231] "./.Rproj.user/8C11DEC8/presentation"  
+[232] "./.Rproj.user/8C11DEC8/sdb"           
+[233] "./.Rproj.user/8C11DEC8/sdb/per"       
+[234] "./.Rproj.user/8C11DEC8/sdb/per/t"     
+[235] "./.Rproj.user/8C11DEC8/sdb/per/u"     
+[236] "./.Rproj.user/8C11DEC8/sdb/prop"      
+[237] "./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6"
+[238] "./.Rproj.user/8C11DEC8/viewer-cache"  
+[239] "./.Rproj.user/8C11DEC8/viewer_history"
+[240] "./.Rproj.user/shared"                 
 ```
 
 ```r
-## lista diretórios, sem sub-dirs
+# lista diretórios, sem sub-dirs
 list.dirs(recursive = FALSE)
 ```
 
 ```
-[1] "./DADOS"       "./data"        "./figs"        "./.git"       
-[5] "./R"           "./.Rproj.user"
+[1] "./data"        "./figs"        "./.git"        "./R"          
+[5] "./.Rproj.user"
 ```
 
 ```r
-## lista diretórios incluindo caminho relativo
+# lista diretórios incluindo caminho relativo
 list.dirs(full.names = TRUE)
 ```
 
 ```
   [1] "."                                    
-  [2] "./DADOS"                              
-  [3] "./data"                               
-  [4] "./figs"                               
-  [5] "./.git"                               
-  [6] "./.git/branches"                      
-  [7] "./.git/hooks"                         
-  [8] "./.git/info"                          
-  [9] "./.git/logs"                          
- [10] "./.git/logs/refs"                     
- [11] "./.git/logs/refs/heads"               
- [12] "./.git/logs/refs/remotes"             
- [13] "./.git/logs/refs/remotes/origin"      
- [14] "./.git/objects"                       
- [15] "./.git/objects/00"                    
- [16] "./.git/objects/01"                    
- [17] "./.git/objects/03"                    
- [18] "./.git/objects/04"                    
- [19] "./.git/objects/05"                    
- [20] "./.git/objects/06"                    
- [21] "./.git/objects/07"                    
- [22] "./.git/objects/09"                    
- [23] "./.git/objects/0a"                    
- [24] "./.git/objects/0b"                    
- [25] "./.git/objects/0c"                    
- [26] "./.git/objects/0d"                    
- [27] "./.git/objects/0e"                    
- [28] "./.git/objects/0f"                    
- [29] "./.git/objects/11"                    
- [30] "./.git/objects/12"                    
- [31] "./.git/objects/13"                    
- [32] "./.git/objects/14"                    
- [33] "./.git/objects/16"                    
- [34] "./.git/objects/17"                    
- [35] "./.git/objects/18"                    
- [36] "./.git/objects/19"                    
- [37] "./.git/objects/1e"                    
- [38] "./.git/objects/21"                    
- [39] "./.git/objects/22"                    
- [40] "./.git/objects/23"                    
- [41] "./.git/objects/26"                    
- [42] "./.git/objects/27"                    
- [43] "./.git/objects/28"                    
- [44] "./.git/objects/29"                    
- [45] "./.git/objects/2a"                    
- [46] "./.git/objects/2b"                    
- [47] "./.git/objects/2c"                    
- [48] "./.git/objects/2d"                    
- [49] "./.git/objects/2f"                    
- [50] "./.git/objects/30"                    
- [51] "./.git/objects/31"                    
- [52] "./.git/objects/32"                    
- [53] "./.git/objects/33"                    
- [54] "./.git/objects/34"                    
- [55] "./.git/objects/35"                    
- [56] "./.git/objects/36"                    
- [57] "./.git/objects/37"                    
- [58] "./.git/objects/39"                    
- [59] "./.git/objects/3a"                    
- [60] "./.git/objects/3b"                    
- [61] "./.git/objects/3c"                    
- [62] "./.git/objects/3e"                    
- [63] "./.git/objects/3f"                    
- [64] "./.git/objects/42"                    
- [65] "./.git/objects/43"                    
- [66] "./.git/objects/44"                    
- [67] "./.git/objects/45"                    
- [68] "./.git/objects/46"                    
- [69] "./.git/objects/47"                    
- [70] "./.git/objects/49"                    
- [71] "./.git/objects/4a"                    
- [72] "./.git/objects/4b"                    
- [73] "./.git/objects/4c"                    
+  [2] "./data"                               
+  [3] "./figs"                               
+  [4] "./.git"                               
+  [5] "./.git/branches"                      
+  [6] "./.git/hooks"                         
+  [7] "./.git/info"                          
+  [8] "./.git/logs"                          
+  [9] "./.git/logs/refs"                     
+ [10] "./.git/logs/refs/heads"               
+ [11] "./.git/logs/refs/remotes"             
+ [12] "./.git/logs/refs/remotes/origin"      
+ [13] "./.git/objects"                       
+ [14] "./.git/objects/00"                    
+ [15] "./.git/objects/01"                    
+ [16] "./.git/objects/03"                    
+ [17] "./.git/objects/04"                    
+ [18] "./.git/objects/05"                    
+ [19] "./.git/objects/06"                    
+ [20] "./.git/objects/07"                    
+ [21] "./.git/objects/09"                    
+ [22] "./.git/objects/0a"                    
+ [23] "./.git/objects/0b"                    
+ [24] "./.git/objects/0c"                    
+ [25] "./.git/objects/0d"                    
+ [26] "./.git/objects/0e"                    
+ [27] "./.git/objects/0f"                    
+ [28] "./.git/objects/11"                    
+ [29] "./.git/objects/12"                    
+ [30] "./.git/objects/13"                    
+ [31] "./.git/objects/14"                    
+ [32] "./.git/objects/16"                    
+ [33] "./.git/objects/17"                    
+ [34] "./.git/objects/18"                    
+ [35] "./.git/objects/19"                    
+ [36] "./.git/objects/1e"                    
+ [37] "./.git/objects/21"                    
+ [38] "./.git/objects/22"                    
+ [39] "./.git/objects/23"                    
+ [40] "./.git/objects/26"                    
+ [41] "./.git/objects/27"                    
+ [42] "./.git/objects/28"                    
+ [43] "./.git/objects/29"                    
+ [44] "./.git/objects/2a"                    
+ [45] "./.git/objects/2b"                    
+ [46] "./.git/objects/2c"                    
+ [47] "./.git/objects/2d"                    
+ [48] "./.git/objects/2f"                    
+ [49] "./.git/objects/30"                    
+ [50] "./.git/objects/31"                    
+ [51] "./.git/objects/32"                    
+ [52] "./.git/objects/33"                    
+ [53] "./.git/objects/34"                    
+ [54] "./.git/objects/35"                    
+ [55] "./.git/objects/36"                    
+ [56] "./.git/objects/37"                    
+ [57] "./.git/objects/39"                    
+ [58] "./.git/objects/3a"                    
+ [59] "./.git/objects/3b"                    
+ [60] "./.git/objects/3c"                    
+ [61] "./.git/objects/3e"                    
+ [62] "./.git/objects/3f"                    
+ [63] "./.git/objects/42"                    
+ [64] "./.git/objects/43"                    
+ [65] "./.git/objects/44"                    
+ [66] "./.git/objects/45"                    
+ [67] "./.git/objects/46"                    
+ [68] "./.git/objects/47"                    
+ [69] "./.git/objects/49"                    
+ [70] "./.git/objects/4a"                    
+ [71] "./.git/objects/4b"                    
+ [72] "./.git/objects/4c"                    
+ [73] "./.git/objects/4d"                    
  [74] "./.git/objects/50"                    
  [75] "./.git/objects/51"                    
  [76] "./.git/objects/52"                    
@@ -4100,168 +4100,169 @@ list.dirs(full.names = TRUE)
  [80] "./.git/objects/56"                    
  [81] "./.git/objects/57"                    
  [82] "./.git/objects/58"                    
- [83] "./.git/objects/5a"                    
- [84] "./.git/objects/5b"                    
- [85] "./.git/objects/5c"                    
- [86] "./.git/objects/5d"                    
- [87] "./.git/objects/5e"                    
- [88] "./.git/objects/63"                    
- [89] "./.git/objects/64"                    
- [90] "./.git/objects/66"                    
- [91] "./.git/objects/67"                    
- [92] "./.git/objects/69"                    
- [93] "./.git/objects/6a"                    
- [94] "./.git/objects/6b"                    
- [95] "./.git/objects/6c"                    
- [96] "./.git/objects/6e"                    
- [97] "./.git/objects/70"                    
- [98] "./.git/objects/71"                    
- [99] "./.git/objects/73"                    
-[100] "./.git/objects/74"                    
-[101] "./.git/objects/75"                    
-[102] "./.git/objects/76"                    
-[103] "./.git/objects/77"                    
-[104] "./.git/objects/78"                    
-[105] "./.git/objects/7a"                    
-[106] "./.git/objects/7b"                    
-[107] "./.git/objects/7c"                    
-[108] "./.git/objects/7d"                    
-[109] "./.git/objects/7e"                    
-[110] "./.git/objects/7f"                    
-[111] "./.git/objects/80"                    
-[112] "./.git/objects/81"                    
-[113] "./.git/objects/82"                    
-[114] "./.git/objects/83"                    
-[115] "./.git/objects/84"                    
-[116] "./.git/objects/85"                    
-[117] "./.git/objects/86"                    
-[118] "./.git/objects/88"                    
-[119] "./.git/objects/89"                    
-[120] "./.git/objects/8b"                    
-[121] "./.git/objects/8c"                    
-[122] "./.git/objects/8d"                    
-[123] "./.git/objects/8e"                    
-[124] "./.git/objects/90"                    
-[125] "./.git/objects/91"                    
-[126] "./.git/objects/92"                    
-[127] "./.git/objects/93"                    
-[128] "./.git/objects/95"                    
-[129] "./.git/objects/96"                    
-[130] "./.git/objects/97"                    
-[131] "./.git/objects/98"                    
-[132] "./.git/objects/99"                    
-[133] "./.git/objects/9a"                    
-[134] "./.git/objects/9b"                    
-[135] "./.git/objects/9c"                    
-[136] "./.git/objects/9d"                    
-[137] "./.git/objects/9e"                    
-[138] "./.git/objects/9f"                    
-[139] "./.git/objects/a0"                    
-[140] "./.git/objects/a1"                    
-[141] "./.git/objects/a2"                    
-[142] "./.git/objects/a3"                    
-[143] "./.git/objects/a4"                    
-[144] "./.git/objects/a6"                    
-[145] "./.git/objects/a7"                    
-[146] "./.git/objects/a8"                    
-[147] "./.git/objects/a9"                    
-[148] "./.git/objects/ac"                    
-[149] "./.git/objects/ad"                    
-[150] "./.git/objects/ae"                    
-[151] "./.git/objects/af"                    
-[152] "./.git/objects/b0"                    
-[153] "./.git/objects/b1"                    
-[154] "./.git/objects/b2"                    
-[155] "./.git/objects/b3"                    
-[156] "./.git/objects/b4"                    
-[157] "./.git/objects/b5"                    
-[158] "./.git/objects/b7"                    
-[159] "./.git/objects/ba"                    
-[160] "./.git/objects/bb"                    
-[161] "./.git/objects/bc"                    
-[162] "./.git/objects/bd"                    
-[163] "./.git/objects/be"                    
-[164] "./.git/objects/bf"                    
-[165] "./.git/objects/c0"                    
-[166] "./.git/objects/c1"                    
-[167] "./.git/objects/c2"                    
-[168] "./.git/objects/c4"                    
-[169] "./.git/objects/c6"                    
-[170] "./.git/objects/c8"                    
-[171] "./.git/objects/c9"                    
-[172] "./.git/objects/ca"                    
-[173] "./.git/objects/cb"                    
-[174] "./.git/objects/cc"                    
-[175] "./.git/objects/cd"                    
-[176] "./.git/objects/ce"                    
-[177] "./.git/objects/cf"                    
-[178] "./.git/objects/d0"                    
-[179] "./.git/objects/d1"                    
-[180] "./.git/objects/d2"                    
-[181] "./.git/objects/d3"                    
-[182] "./.git/objects/d4"                    
-[183] "./.git/objects/d5"                    
-[184] "./.git/objects/d6"                    
-[185] "./.git/objects/d8"                    
-[186] "./.git/objects/d9"                    
-[187] "./.git/objects/da"                    
-[188] "./.git/objects/db"                    
-[189] "./.git/objects/dc"                    
-[190] "./.git/objects/dd"                    
-[191] "./.git/objects/de"                    
-[192] "./.git/objects/df"                    
-[193] "./.git/objects/e0"                    
-[194] "./.git/objects/e2"                    
-[195] "./.git/objects/e3"                    
-[196] "./.git/objects/e4"                    
-[197] "./.git/objects/e6"                    
-[198] "./.git/objects/e7"                    
-[199] "./.git/objects/e8"                    
-[200] "./.git/objects/e9"                    
-[201] "./.git/objects/ea"                    
-[202] "./.git/objects/eb"                    
-[203] "./.git/objects/ed"                    
-[204] "./.git/objects/ee"                    
-[205] "./.git/objects/ef"                    
-[206] "./.git/objects/f0"                    
-[207] "./.git/objects/f1"                    
-[208] "./.git/objects/f3"                    
-[209] "./.git/objects/f4"                    
-[210] "./.git/objects/f6"                    
-[211] "./.git/objects/f7"                    
-[212] "./.git/objects/f9"                    
-[213] "./.git/objects/fa"                    
-[214] "./.git/objects/fb"                    
-[215] "./.git/objects/fc"                    
-[216] "./.git/objects/fd"                    
-[217] "./.git/objects/ff"                    
-[218] "./.git/objects/info"                  
-[219] "./.git/objects/pack"                  
-[220] "./.git/refs"                          
-[221] "./.git/refs/heads"                    
-[222] "./.git/refs/remotes"                  
-[223] "./.git/refs/remotes/origin"           
-[224] "./.git/refs/tags"                     
-[225] "./R"                                  
-[226] "./.Rproj.user"                        
-[227] "./.Rproj.user/8C11DEC8"               
-[228] "./.Rproj.user/8C11DEC8/ctx"           
-[229] "./.Rproj.user/8C11DEC8/pcs"           
-[230] "./.Rproj.user/8C11DEC8/presentation"  
-[231] "./.Rproj.user/8C11DEC8/sdb"           
-[232] "./.Rproj.user/8C11DEC8/sdb/per"       
-[233] "./.Rproj.user/8C11DEC8/sdb/per/t"     
-[234] "./.Rproj.user/8C11DEC8/sdb/per/u"     
-[235] "./.Rproj.user/8C11DEC8/sdb/prop"      
-[236] "./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6"
-[237] "./.Rproj.user/8C11DEC8/viewer-cache"  
-[238] "./.Rproj.user/8C11DEC8/viewer_history"
-[239] "./.Rproj.user/shared"                 
+ [83] "./.git/objects/59"                    
+ [84] "./.git/objects/5a"                    
+ [85] "./.git/objects/5b"                    
+ [86] "./.git/objects/5c"                    
+ [87] "./.git/objects/5d"                    
+ [88] "./.git/objects/5e"                    
+ [89] "./.git/objects/63"                    
+ [90] "./.git/objects/64"                    
+ [91] "./.git/objects/66"                    
+ [92] "./.git/objects/67"                    
+ [93] "./.git/objects/69"                    
+ [94] "./.git/objects/6a"                    
+ [95] "./.git/objects/6b"                    
+ [96] "./.git/objects/6c"                    
+ [97] "./.git/objects/6e"                    
+ [98] "./.git/objects/70"                    
+ [99] "./.git/objects/71"                    
+[100] "./.git/objects/73"                    
+[101] "./.git/objects/74"                    
+[102] "./.git/objects/75"                    
+[103] "./.git/objects/76"                    
+[104] "./.git/objects/77"                    
+[105] "./.git/objects/78"                    
+[106] "./.git/objects/7a"                    
+[107] "./.git/objects/7b"                    
+[108] "./.git/objects/7c"                    
+[109] "./.git/objects/7d"                    
+[110] "./.git/objects/7e"                    
+[111] "./.git/objects/7f"                    
+[112] "./.git/objects/80"                    
+[113] "./.git/objects/81"                    
+[114] "./.git/objects/82"                    
+[115] "./.git/objects/83"                    
+[116] "./.git/objects/84"                    
+[117] "./.git/objects/85"                    
+[118] "./.git/objects/86"                    
+[119] "./.git/objects/88"                    
+[120] "./.git/objects/89"                    
+[121] "./.git/objects/8b"                    
+[122] "./.git/objects/8c"                    
+[123] "./.git/objects/8d"                    
+[124] "./.git/objects/8e"                    
+[125] "./.git/objects/90"                    
+[126] "./.git/objects/91"                    
+[127] "./.git/objects/92"                    
+[128] "./.git/objects/93"                    
+[129] "./.git/objects/95"                    
+[130] "./.git/objects/96"                    
+[131] "./.git/objects/97"                    
+[132] "./.git/objects/98"                    
+[133] "./.git/objects/99"                    
+[134] "./.git/objects/9a"                    
+[135] "./.git/objects/9b"                    
+[136] "./.git/objects/9c"                    
+[137] "./.git/objects/9d"                    
+[138] "./.git/objects/9e"                    
+[139] "./.git/objects/9f"                    
+[140] "./.git/objects/a0"                    
+[141] "./.git/objects/a1"                    
+[142] "./.git/objects/a2"                    
+[143] "./.git/objects/a3"                    
+[144] "./.git/objects/a4"                    
+[145] "./.git/objects/a6"                    
+[146] "./.git/objects/a7"                    
+[147] "./.git/objects/a8"                    
+[148] "./.git/objects/a9"                    
+[149] "./.git/objects/ac"                    
+[150] "./.git/objects/ad"                    
+[151] "./.git/objects/ae"                    
+[152] "./.git/objects/af"                    
+[153] "./.git/objects/b0"                    
+[154] "./.git/objects/b1"                    
+[155] "./.git/objects/b2"                    
+[156] "./.git/objects/b3"                    
+[157] "./.git/objects/b4"                    
+[158] "./.git/objects/b5"                    
+[159] "./.git/objects/b7"                    
+[160] "./.git/objects/ba"                    
+[161] "./.git/objects/bb"                    
+[162] "./.git/objects/bc"                    
+[163] "./.git/objects/bd"                    
+[164] "./.git/objects/be"                    
+[165] "./.git/objects/bf"                    
+[166] "./.git/objects/c0"                    
+[167] "./.git/objects/c1"                    
+[168] "./.git/objects/c2"                    
+[169] "./.git/objects/c4"                    
+[170] "./.git/objects/c6"                    
+[171] "./.git/objects/c8"                    
+[172] "./.git/objects/c9"                    
+[173] "./.git/objects/ca"                    
+[174] "./.git/objects/cb"                    
+[175] "./.git/objects/cc"                    
+[176] "./.git/objects/cd"                    
+[177] "./.git/objects/ce"                    
+[178] "./.git/objects/cf"                    
+[179] "./.git/objects/d0"                    
+[180] "./.git/objects/d1"                    
+[181] "./.git/objects/d2"                    
+[182] "./.git/objects/d3"                    
+[183] "./.git/objects/d4"                    
+[184] "./.git/objects/d5"                    
+[185] "./.git/objects/d6"                    
+[186] "./.git/objects/d8"                    
+[187] "./.git/objects/d9"                    
+[188] "./.git/objects/da"                    
+[189] "./.git/objects/db"                    
+[190] "./.git/objects/dc"                    
+[191] "./.git/objects/dd"                    
+[192] "./.git/objects/de"                    
+[193] "./.git/objects/df"                    
+[194] "./.git/objects/e0"                    
+[195] "./.git/objects/e2"                    
+[196] "./.git/objects/e3"                    
+[197] "./.git/objects/e4"                    
+[198] "./.git/objects/e6"                    
+[199] "./.git/objects/e7"                    
+[200] "./.git/objects/e8"                    
+[201] "./.git/objects/e9"                    
+[202] "./.git/objects/ea"                    
+[203] "./.git/objects/eb"                    
+[204] "./.git/objects/ed"                    
+[205] "./.git/objects/ee"                    
+[206] "./.git/objects/ef"                    
+[207] "./.git/objects/f0"                    
+[208] "./.git/objects/f1"                    
+[209] "./.git/objects/f3"                    
+[210] "./.git/objects/f4"                    
+[211] "./.git/objects/f6"                    
+[212] "./.git/objects/f7"                    
+[213] "./.git/objects/f9"                    
+[214] "./.git/objects/fa"                    
+[215] "./.git/objects/fb"                    
+[216] "./.git/objects/fc"                    
+[217] "./.git/objects/fd"                    
+[218] "./.git/objects/ff"                    
+[219] "./.git/objects/info"                  
+[220] "./.git/objects/pack"                  
+[221] "./.git/refs"                          
+[222] "./.git/refs/heads"                    
+[223] "./.git/refs/remotes"                  
+[224] "./.git/refs/remotes/origin"           
+[225] "./.git/refs/tags"                     
+[226] "./R"                                  
+[227] "./.Rproj.user"                        
+[228] "./.Rproj.user/8C11DEC8"               
+[229] "./.Rproj.user/8C11DEC8/ctx"           
+[230] "./.Rproj.user/8C11DEC8/pcs"           
+[231] "./.Rproj.user/8C11DEC8/presentation"  
+[232] "./.Rproj.user/8C11DEC8/sdb"           
+[233] "./.Rproj.user/8C11DEC8/sdb/per"       
+[234] "./.Rproj.user/8C11DEC8/sdb/per/t"     
+[235] "./.Rproj.user/8C11DEC8/sdb/per/u"     
+[236] "./.Rproj.user/8C11DEC8/sdb/prop"      
+[237] "./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6"
+[238] "./.Rproj.user/8C11DEC8/viewer-cache"  
+[239] "./.Rproj.user/8C11DEC8/viewer_history"
+[240] "./.Rproj.user/shared"                 
 ```
 
 ```r
-## lista todos arquivo que terminam com txt
-## "txt$" é uma expressão regular (regex)
+# lista todos arquivo que terminam com txt
+# "txt$" é uma expressão regular (regex)
 list.files(pattern = "txt$")
 ```
 
@@ -4278,7 +4279,7 @@ character(0)
 ```
 
 ```r
-## arquivos que iniciam com m ou S
+# arquivos que iniciam com m ou S
 list.files(path = ".",pattern = "^[m, S]")
 ```
 
@@ -4296,13 +4297,6 @@ Para ilustrar as funções de manipulação de arquivos e diretórios vamos real
 
 ```r
 dir.create("DADOS")
-```
-
-```
-Warning in dir.create("DADOS"): 'DADOS' already exists
-```
-
-```r
 dir.exists("DADOS")
 ```
 
@@ -4314,11 +4308,11 @@ dir.exists("DADOS")
 
 
 ```r
-## lista de arquivos no wd
+# lista de arquivos no wd
 all_files <- list.files()
-## extensões dos arquivos de dados usados no curso
+# extensões dos arquivos de dados usados no curso
 extensoes <- c("txt", "TXT", "nc","xls", "bin", "csv", "RData", "rds", "zip", "asc", "dbf", "prj", "sbn", "sbx", "shp", "shx", "db3")
-## arquivos de dados do curso
+# arquivos de dados do curso
 data_files <- all_files[file_ext(all_files) %in% extensoes]
 ```
 
@@ -4379,7 +4373,7 @@ tempdir()
 ```
 
 ```
-[1] "/tmp/RtmpV6CeO2"
+[1] "/tmp/RtmpBaRtWN"
 ```
 
 ```r
@@ -4387,11 +4381,11 @@ tempfile()
 ```
 
 ```
-[1] "/tmp/RtmpV6CeO2/file6bdd6ad256c2"
+[1] "/tmp/RtmpBaRtWN/file6e511896abfe"
 ```
 
 ```r
-## baixando dados da web
+# baixando dados da web
 arq_temp <- tempfile()
 download.file(url = "http://www.cpc.ncep.noaa.gov/data/indices/soi",
               destfile = arq_temp)

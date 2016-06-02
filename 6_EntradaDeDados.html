@@ -213,20 +213,20 @@ $(document).ready(function () {
 <div id="entrada-dados-pela-linha-de-comando" class="section level2">
 <h2><span class="header-section-number">2.1</span> Entrada dados pela linha de comando</h2>
 <p>Até agora nós trabalhamos com dados que criados a partir de comandos diretamente digitados no console do R. Para criação de vetores usamos a função <code>c</code> que combina valores em um vetor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Exemplo: vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
 v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>:<span class="dv">8</span>,<span class="dv">10</span>)
 v1</code></pre></div>
 <pre><code>[1]  1  3  4  5  6  7  8 10</code></pre>
 <div id="scan" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> scan()</h3>
 <p>Nós podemos informar os números de um vetor a partir do teclado, um de cada vez usando e quando terminar teclar enter:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Exemplo: vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
 v2 &lt;-<span class="st"> </span><span class="kw">scan</span>()
 <span class="co"># digite os números do v1, ao terminar, tecle enter</span></code></pre></div>
 <p>A função <code>scan()</code> também pode ler dados de arquivos, mas a sua saída é um vetor, ou seja ela não mantém a estrutura dos dados contidos no arquivo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Exemplo: vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: vetor</span>
 vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;data/airquality.txt&quot;</span>)
-## parte inicial dos dados
+<span class="co"># parte inicial dos dados</span>
 <span class="kw">head</span>(vetor_aq, <span class="dv">100</span>)</code></pre></div>
 <pre><code>  [1]   41.0  190.0    7.4   67.0    5.0    1.0   36.0  118.0    8.0   72.0
  [11]    5.0    2.0   12.0  149.0   12.6   74.0    5.0    3.0   18.0  313.0
@@ -238,7 +238,7 @@ vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class=
  [71]    5.0   12.0   11.0  290.0    9.2   66.0    5.0   13.0   14.0  274.0
  [81]   10.9   68.0    5.0   14.0   18.0   65.0   13.2   58.0    5.0   15.0
  [91]   14.0  334.0   11.5   64.0    5.0   16.0   34.0  307.0   12.0   66.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## parte final
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parte final</span>
 <span class="kw">tail</span>(vetor_aq, <span class="dv">100</span>)</code></pre></div>
 <pre><code>  [1]  24.0  10.9  71.0   9.0  14.0  13.0 112.0  11.5  71.0   9.0  15.0
  [12]  46.0 237.0   6.9  78.0   9.0  16.0  18.0 224.0  13.8  67.0   9.0
@@ -250,13 +250,13 @@ vetor_aq &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class=
  [78] 145.0  13.2  77.0   9.0  27.0  14.0 191.0  14.3  75.0   9.0  28.0
  [89]  18.0 131.0   8.0  76.0   9.0  29.0  20.0 223.0  11.5  68.0   9.0
 [100]  30.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## dados são importados como vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dados são importados como vetor</span>
 <span class="kw">is.vector</span>(vetor_aq)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(vetor_aq)</code></pre></div>
 <pre><code>[1] &quot;numeric&quot;</code></pre>
 <p>Vimos que <code>Data-frames</code> são geralmente criados pela função <code>data.frame</code>, conforme o exemplo abaixo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Exemplo: data-frame 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exemplo: data-frame </span>
 dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>),
                     <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;Santa Maria&quot;</span>, <span class="st">&quot;Sao Sepe&quot;</span>, <span class="st">&quot;Caçapava&quot;</span>), 
                     <span class="dt">temperatura =</span> <span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">21</span>),
@@ -275,18 +275,18 @@ dados                    </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sentenca</code></pre></div>
 <pre><code>[1] &quot;&quot;</code></pre>
 <p>Essa função pode ser utilizado como uma forma de controlar um <em>looping</em>. Esse exemplo ilustra o uso da função <code>lapply()</code> para execução de laços ou <em>loopings</em> ao longo de um vetor de índices. Essa função será vista futuramente no curso.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## para reprodutibilidade
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para reprodutibilidade</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)
-## looping ao longo da sequência de 1 a 5
+<span class="co"># looping ao longo da sequência de 1 a 5</span>
 l &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span>:<span class="dv">5</span>, 
          function(i){
-           ## cria vetor com números aleatórios com distribuição uniforme
+           <span class="co"># cria vetor com números aleatórios com distribuição uniforme</span>
            x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">1</span>,<span class="dt">max =</span> <span class="dv">50</span>)
-             ## anomalia acumulada
+             <span class="co"># anomalia acumulada</span>
              y &lt;-<span class="st"> </span><span class="kw">cumsum</span>(x -<span class="st"> </span><span class="kw">mean</span>(x))
               <span class="kw">plot</span>(y, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)
               <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)
-               ## leitura de linha, só após teclar enter vai gerar próximo gráfico
+               <span class="co"># leitura de linha, só após teclar enter vai gerar próximo gráfico</span>
                <span class="kw">readline</span>(<span class="dt">prompt =</span> <span class="st">&quot;tecle &lt;enter&gt; para continuar: &quot;</span>)
          }
        )
@@ -303,19 +303,19 @@ y</code></pre></div>
 <span class="kw">print</span>(x^<span class="dv">2</span>)</code></pre></div>
 <pre><code>[1] 1 4 9</code></pre>
 <p>Entretanto isso não é possível quando precisamos mostrar o valor de uma variável dentro do corpo de uma função ou dentro de um laço (<em>looping</em>). Nesse caso podemos usar a função <code>print()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## dentro de uma função 
-## digitando o nome do objeto não imprimi na tela
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dentro de uma função </span>
+<span class="co"># digitando o nome do objeto não imprimi na tela</span>
 fcubo &lt;-<span class="st"> </span>function(x) {
          classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)
-         ## intenção de mostrar objeto de entrada
+         <span class="co"># intenção de mostrar objeto de entrada</span>
          classe
          x^<span class="dv">3</span>
         }
 <span class="kw">fcubo</span>(<span class="dv">2</span>)</code></pre></div>
 <pre><code>[1] 8</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## adicionando print 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># adicionando print </span>
 cubo &lt;-<span class="st"> </span>function(x) {
-         ## mostra objeto de entrada
+         <span class="co"># mostra objeto de entrada</span>
          classe &lt;-<span class="st"> </span><span class="kw">class</span>(x)
          <span class="kw">print</span>(classe)
          x^<span class="dv">3</span>
@@ -362,7 +362,7 @@ cubo &lt;-<span class="st"> </span>function(x) {
 <span class="st">    2013-01-01 SM          31     3</span>
 <span class="st">    2013-01-01 SS          35    10</span>
 <span class="st">    2013-01-01 CV          21    14&quot;</span>
-## conexão de texto
+<span class="co"># conexão de texto</span>
 tc &lt;-<span class="st"> </span><span class="kw">textConnection</span>(<span class="dt">object =</span> texto)
 tc</code></pre></div>
 <pre><code>     description            class             mode             text 
@@ -387,40 +387,40 @@ x</code></pre></div>
 1 2013-01-01     SM          31     3
 2 2013-01-01     SS          35    10
 3 2013-01-01     CV          21    14</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## representação textual do objeto x
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># representação textual do objeto x</span>
 <span class="kw">dput</span>(x)</code></pre></div>
 <pre><code>structure(list(dates = structure(c(1L, 1L, 1L), .Label = &quot;2013-01-01&quot;, class = &quot;factor&quot;), 
     cidade = structure(c(2L, 3L, 1L), .Label = c(&quot;CV&quot;, &quot;SM&quot;, 
     &quot;SS&quot;), class = &quot;factor&quot;), temperatura = c(31L, 35L, 21L), 
     chuva = c(3L, 10L, 14L)), .Names = c(&quot;dates&quot;, &quot;cidade&quot;, &quot;temperatura&quot;, 
 &quot;chuva&quot;), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## salva representação textual de x em um arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># salva representação textual de x em um arquivo</span>
 <span class="kw">dput</span>(x, <span class="dt">file =</span> <span class="st">&quot;data/x.txt&quot;</span>)
-## recuperando x a partir do arquivo
+<span class="co"># recuperando x a partir do arquivo</span>
 y &lt;-<span class="st"> </span><span class="kw">dget</span>(<span class="st">&quot;data/x.txt&quot;</span>)
-## alterar valores de y
+<span class="co"># alterar valores de y</span>
 y &lt;-<span class="st"> </span>y[, <span class="dv">3</span>:<span class="dv">4</span>] -<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)
 y</code></pre></div>
 <pre><code>  temperatura     chuva
 1    29.58579  1.585786
 2    33.58579  8.585786
 3    19.58579 12.585786</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## verificar existência de x e y 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># verificar existência de x e y </span>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;cubo&quot;     &quot;dados&quot;    &quot;fcubo&quot;    &quot;k&quot;        &quot;pcks&quot;     &quot;sentenca&quot;
  [7] &quot;tc&quot;       &quot;texto&quot;    &quot;v1&quot;       &quot;vetor_aq&quot; &quot;x&quot;        &quot;y&quot;       </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## listando variáveis que começam com x ou y
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># listando variáveis que começam com x ou y</span>
 <span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>)</code></pre></div>
 <pre><code>[1] &quot;x&quot; &quot;y&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## salvando mais de um objeto em um arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># salvando mais de um objeto em um arquivo</span>
 <span class="kw">dump</span>(<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[xy]&quot;</span>), <span class="dt">file =</span> <span class="st">&quot;R/xy.R&quot;</span>)
-## vamos apagar x e y do espaco de trabalho
+<span class="co"># vamos apagar x e y do espaco de trabalho</span>
 <span class="kw">rm</span>(x, y)
-## x e y não existem mais
+<span class="co"># x e y não existem mais</span>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;cubo&quot;     &quot;dados&quot;    &quot;fcubo&quot;    &quot;k&quot;        &quot;pcks&quot;     &quot;sentenca&quot;
  [7] &quot;tc&quot;       &quot;texto&quot;    &quot;v1&quot;       &quot;vetor_aq&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## recuperando os objetos x e y salvos em xy.R
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># recuperando os objetos x e y salvos em xy.R</span>
 <span class="kw">source</span>(<span class="st">&quot;R/xy.R&quot;</span>)
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;cubo&quot;     &quot;dados&quot;    &quot;fcubo&quot;    &quot;k&quot;        &quot;pcks&quot;     &quot;sentenca&quot;
@@ -436,7 +436,7 @@ y</code></pre></div>
 2    33.58579  8.585786
 3    19.58579 12.585786</code></pre>
 <p>Portanto diferente da escrita dos dados em si para um arquivo texto as funções <code>dump()</code> e <code>dput()</code> armazenam os <strong>dados</strong> e os <strong>metadados</strong>, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do <code>dput()</code> em um arquivo, pode recriar os dados pelo comando <code>dget(&quot;nomedoarquivo&quot;)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## representação textual de um data.frame
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># representação textual de um data.frame</span>
 x2 &lt;-<span class="st"> </span><span class="kw">structure</span>(<span class="kw">list</span>(<span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>, <span class="st">&quot;2013-01-01&quot;</span>), 
                      <span class="dt">cidade =</span> <span class="kw">c</span>(<span class="st">&quot;SM&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;CV&quot;</span>), 
                      <span class="dt">temperatura =</span> <span class="kw">c</span>(31L, 35L, 21L), 
@@ -467,9 +467,9 @@ x2</code></pre></div>
 <h1><span class="header-section-number">4</span> Dados de pacotes do R</h1>
 <p>O <code>R</code> possui diversos conjuntos de dados internos que são automaticamente carregados quando iniciado. Esses dados são usados nos exemplos do <code>help()</code> de diversas funções para ilustrar o uso e a aplicação delas. Esses dados podem ser carregados com a função <code>data</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>()
-## Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;
+<span class="co"># Annual Precipitation in US Cities, p/ mais informações &quot;?precip&quot;</span>
 <span class="kw">data</span>(precip)
-## primeiros 30 elementos dos dados precip
+<span class="co"># primeiros 30 elementos dos dados precip</span>
 <span class="kw">head</span>(precip, <span class="dt">n =</span> <span class="dv">30</span>)</code></pre></div>
 <pre><code>             Mobile              Juneau             Phoenix 
                67.0                54.7                 7.0 
@@ -491,9 +491,9 @@ x2</code></pre></div>
                41.8                42.5                31.0 
    Sault Ste. Marie              Duluth Minneapolis/St Paul 
                31.7                30.2                25.9 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># New York Air Quality Measurements, , p/ mais informações &quot;?airquality&quot;</span>
 <span class="kw">data</span>(airquality)
-## primeiras linhas dos dados
+<span class="co"># primeiras linhas dos dados</span>
 <span class="kw">head</span>(airquality, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
 <pre><code>   Ozone Solar.R Wind Temp Month Day
 1     41     190  7.4   67     5   1
@@ -535,14 +535,14 @@ x2</code></pre></div>
 <h2><span class="header-section-number">5.1</span> Arquivos textos de bases de dados hidrometeorológicos brasileiras</h2>
 <div id="hidroweb-ana" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> <a href="http://hidroweb.ana.gov.br/">hidroweb-ANA</a></h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## definindo interpretação de caracteres: caracteres não devem ser tratados como fatores
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># definindo interpretação de caracteres: caracteres não devem ser tratados como fatores</span>
 <span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> F)
-## leitura de dados pluviométricos diários da ANA
+<span class="co"># leitura de dados pluviométricos diários da ANA</span>
 dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file =</span> <span class="st">&quot;data/CHUVAS.TXT&quot;</span>, 
                    <span class="dt">skip =</span> <span class="dv">15</span>, 
                    <span class="dt">head =</span> T, 
                    <span class="dt">fill =</span> T)
-## primeiras linhas
+<span class="co"># primeiras linhas</span>
 <span class="kw">head</span>(dprec)</code></pre></div>
 <pre><code>  X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
 1          3054002                 1 01/01/1934                 1     NA
@@ -635,7 +635,7 @@ dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span clas
 4             1             0 NA
 5             1             1 NA
 6             1             0 NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## últimas linhas
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># últimas linhas</span>
 <span class="kw">tail</span>(dprec)</code></pre></div>
 <pre><code>     X..EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas
 1279          3054002                 2 01/07/2005                 1
@@ -728,11 +728,11 @@ dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span clas
 1282             1             1             1             1 NA
 1283             1             1             1             0 NA
 1284             1             1             1             1 NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> ## corrigindo nome da primeira coluna
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="co"># corrigindo nome da primeira coluna</span>
  <span class="kw">names</span>(dprec)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;EstacaoCodigo&quot;</span>
- ## removendo última coluna que só tem NAs
+ <span class="co"># removendo última coluna que só tem NAs</span>
  dprec &lt;-<span class="st"> </span>dprec[ , -<span class="kw">ncol</span>(dprec)]
-  ## estrutura dos dados
+  <span class="co"># estrutura dos dados</span>
   <span class="kw">str</span>(dprec)</code></pre></div>
 <pre><code>'data.frame':   1284 obs. of  75 variables:
  $ EstacaoCodigo       : int  3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 3054002 ...
@@ -810,7 +810,7 @@ dprec &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span clas
  $ Chuva29Status       : int  1 0 1 1 1 1 1 1 1 1 ...
  $ Chuva30Status       : int  1 0 1 1 1 1 1 1 1 1 ...
  $ Chuva31Status       : int  1 0 1 0 1 0 1 1 0 1 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Fazendo a mesma leitura com read.table
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fazendo a mesma leitura com read.table</span>
 dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/CHUVAS.TXT&quot;</span>, 
                    <span class="dt">skip =</span> <span class="dv">15</span>, 
                    <span class="dt">head =</span> T, 
@@ -1006,8 +1006,8 @@ dprec2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span cl
  $ V19: num  NA 2 NA NA 2.67 ...
  $ V20: logi  NA NA NA NA NA NA ...</code></pre>
 <p>Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para <code>numeric</code> através da função <code>as.numeric()</code> usando a função <code>apply</code> ao longo das colunas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## corrigindo classe dos dados
-## convertendo de character para numeric
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrigindo classe dos dados</span>
+<span class="co"># convertendo de character para numeric</span>
 x[, -<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">apply</span>(x[,-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>)], <span class="dv">2</span>, as.numeric)
 <span class="kw">str</span>(x)</code></pre></div>
 <pre><code>'data.frame':   5863 obs. of  20 variables:
@@ -1031,13 +1031,13 @@ x[, -<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</spa
  $ V18: num  NA 86.8 NA NA 83 ...
  $ V19: num  NA 2 NA NA 2.67 ...
  $ V20: num  NA NA NA NA NA NA NA NA NA NA ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## razão dos avisos
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># razão dos avisos</span>
 <span class="kw">as.numeric</span>(<span class="st">&quot;NA&quot;</span>)</code></pre></div>
 <pre><code>Warning: NAs introduced by coercion</code></pre>
 <pre><code>[1] NA</code></pre>
 <p>Mas e o nome das variáveis?</p>
 <p>Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada <code>VelocidadeVentoInsolacao</code>. Essa <em>string</em> deveria ser separada em duas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lendo somente o nome das variaveis
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo somente o nome das variaveis</span>
 vnames &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="dt">file=</span><span class="st">&quot;data/83004.txt&quot;</span>, 
                     <span class="dt">header =</span> F, 
                     <span class="dt">skip =</span> <span class="dv">15</span>,
@@ -1054,16 +1054,16 @@ vnames</code></pre></div>
 1 VelocidadeVentoInsolacao Nebulosidade Evaporacao Piche Temp Comp Media
                      V17                       V18 V19
 1 Umidade Relativa Media Velocidade do Vento Media  NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## convertendo de data frame para vetor
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convertendo de data frame para vetor</span>
 vnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(vnames))
-## número de variáveis é diferente do número de colunas do arquivo
+<span class="co"># número de variáveis é diferente do número de colunas do arquivo</span>
 <span class="kw">length</span>(vnames) ==<span class="st"> </span><span class="kw">ncol</span>(x)</code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## corrigindo nomes das variaveis
-##   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrigindo nomes das variaveis</span>
+<span class="co">#   substitui &quot;VelocidadeVentoInsolacao&quot; por &quot;VelocidadeVento&quot;</span>
 vnames[<span class="dv">13</span>] &lt;-<span class="st"> &quot;VelocidadeVento&quot;</span>
-## acresenta na 14a posição dos nomes a variável &quot;insolacao&quot; e
-## desloca os elementos orginais do vetor 
+<span class="co"># acresenta na 14a posição dos nomes a variável &quot;insolacao&quot; e</span>
+<span class="co"># desloca os elementos orginais do vetor </span>
 vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span class="dv">1</span>:<span class="dv">13</span>], <span class="st">&quot;insolacao&quot;</span>, vnames[<span class="dv">14</span>:<span class="kw">length</span>(vnames)])
 <span class="kw">length</span>(vnames)</code></pre></div>
 <pre><code>[1] 20</code></pre>
@@ -1109,13 +1109,13 @@ vnames &lt;-<span class="st"> </span><span class="kw">c</span>(vnames[<span clas
 <div id="arquivos-texto-com-linhas-e-colunas-em-branco" class="section level2">
 <h2><span class="header-section-number">5.2</span> Arquivos texto com linhas e colunas em branco</h2>
 <p>Vamos importar o arquivo texto <code>airquality.txt</code> que possui algumas linhas e colunas faltantes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## leitura do arquivo airquality.txt
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura do arquivo airquality.txt</span>
 aq0 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/airquality.txt&quot;</span>, 
                   <span class="dt">na.strings =</span> <span class="st">&quot;-99.9&quot;</span>, 
                   <span class="dt">head =</span> F)</code></pre></div>
 <pre><code>Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line 123 did not have 6 elements</code></pre>
 <p>A função <code>count.fields()</code> permite contar o número de registros em cada linha. Assim encontramos as linhas com número de registros fora do padrão.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## conta o num. de registros por linha
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># conta o num. de registros por linha</span>
 cf &lt;-<span class="st"> </span><span class="kw">count.fields</span>(<span class="dt">file =</span> <span class="st">&quot;data/airquality.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
 cf</code></pre></div>
 <pre><code>  [1] 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
@@ -1123,23 +1123,23 @@ cf</code></pre></div>
  [71] 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
 [106] 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 5
 [141] 6 6 6 6 6 6 6 6 6 6 6 6 6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## contando ocorrências de registros
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># contando ocorrências de registros</span>
 <span class="kw">table</span>(cf)</code></pre></div>
 <pre><code>cf
   5   6 
   2 151 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## linhas com 5 registros
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># linhas com 5 registros</span>
 qlinha &lt;-<span class="st"> </span><span class="kw">which</span>(cf ==<span class="st"> </span><span class="dv">5</span>)
 qlinha</code></pre></div>
 <pre><code>[1] 123 140</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Contornando a falta de registros com o argumento fill = T
-## que preenche colunas faltantes com NA
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contornando a falta de registros com o argumento fill = T</span>
+<span class="co"># que preenche colunas faltantes com NA</span>
 aq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/airquality.txt&quot;</span>, 
                  <span class="dt">na.strings =</span> <span class="st">&quot;-99.9&quot;</span>, 
                  <span class="dt">head =</span> F, 
                  <span class="dt">fill =</span> T)
 <span class="kw">names</span>(aq) &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;Ozone&quot;</span>,  <span class="st">&quot;Solar.R&quot;</span>, <span class="st">&quot;Wind&quot;</span>, <span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;Day&quot;</span>)
-## primeiras linhas do dados
+<span class="co"># primeiras linhas do dados</span>
 <span class="kw">head</span>(aq)</code></pre></div>
 <pre><code>  Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
@@ -1148,7 +1148,7 @@ aq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
 4    18     313 11.5   62     5   4
 5    NA      NA 14.3   56     5   5
 6    28      NA 14.9   66     5   6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## resumo da estrutura dos dados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># resumo da estrutura dos dados</span>
 <span class="kw">str</span>(aq)</code></pre></div>
 <pre><code>'data.frame':   153 obs. of  6 variables:
  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
@@ -1157,7 +1157,7 @@ aq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
  $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
  $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## resumo estatístico dos dados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># resumo estatístico dos dados</span>
 <span class="kw">summary</span>(aq)</code></pre></div>
 <pre><code>     Ozone           Solar.R            Wind             Temp      
  Min.   :  1.00   Min.   :-999.0   Min.   : 1.700   Min.   :56.00  
@@ -1175,9 +1175,9 @@ aq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
  3rd Qu.:8.000   3rd Qu.:23.0  
  Max.   :9.000   Max.   :31.0  
                  NA's   :2     </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Solar.R == -999 ?
-## Radiação solar negativa é fisicamente impossível
-## provável erro de digitação para  o label de dado faltante
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solar.R == -999 ?</span>
+<span class="co"># Radiação solar negativa é fisicamente impossível</span>
+<span class="co"># provável erro de digitação para  o label de dado faltante</span>
 aq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/airquality.txt&quot;</span>, 
                  <span class="dt">na.strings =</span><span class="kw">c</span>(<span class="st">&quot;-99.9&quot;</span>,<span class="st">&quot;-999&quot;</span>), 
                  <span class="dt">head =</span> F, 
@@ -1200,23 +1200,23 @@ aq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
  3rd Qu.:8.000   3rd Qu.:23.0  
  Max.   :9.000   Max.   :31.0  
                  NA's   :2     </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## salvando arquivo com correções em arquivo separado por tab
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># salvando arquivo com correções em arquivo separado por tab</span>
 <span class="kw">write.table</span>(<span class="dt">x =</span> aq, 
             <span class="dt">file =</span> <span class="st">&quot;data/aq.txt&quot;</span>, 
             <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, 
             <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>, 
             <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>, 
             <span class="dt">row.names =</span> F)
-## mostra arquivo
+<span class="co"># mostra arquivo</span>
 <span class="kw">file.show</span>(<span class="st">&quot;data/aq.txt&quot;</span>)</code></pre></div>
 <p>Fazendo alterações manuais nos dados <code>aq</code> via R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## editar dados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># editar dados</span>
 aq_new &lt;-<span class="st"> </span><span class="kw">fix</span>(aq)</code></pre></div>
 </div>
 <div id="arquivos-formatados-com-largura-fixa" class="section level2">
 <h2><span class="header-section-number">5.3</span> Arquivos formatados com largura fixa</h2>
 <p>Alguns arquivos texto com dados tabulares podem não conter separadores (para p.ex. economizar espaço de disco). Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que facilita a legibilidade dos dados. Nesses casos usamos a função <code>read.fwf()</code>. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do <a href="http://www.cpc.ncep.noaa.gov">National Weather Service - Climate Prediction Center (NWS-CPC)</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## link para os dados do SOI
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># link para os dados do SOI</span>
 link &lt;-<span class="st"> &quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span></code></pre></div>
 <p>Abrindo o link dos dados no navegador para visualização do formato.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseURL</span>(<span class="dt">url =</span> link)</code></pre></div>
@@ -1235,22 +1235,22 @@ soi &lt;-<span class="st"> </span><span class="kw">read.fwf</span>(<span class="
                                  <span class="dt">nmax =</span> <span class="dv">13</span>)             <span class="co"># num. max de registros a serem lidos</span>
                 )</code></pre></div>
 <p>Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## converte a matriz de dados para um vetor (em sequencia cronológica)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># converte a matriz de dados para um vetor (em sequencia cronológica)</span>
 soi_v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">t</span>(soi[, -<span class="dv">1</span>]))
-## criando um data frame com valores de SOI, mes e ano
+<span class="co"># criando um data frame com valores de SOI, mes e ano</span>
 soi_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">rep</span>(soi$YEAR, <span class="dt">each =</span> <span class="dv">12</span>),
                      <span class="dt">mes =</span> <span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">12</span>, <span class="kw">length</span>(soi[,<span class="dv">1</span>])),
                      <span class="dt">soi =</span> soi_v)
-## escrevendo dados SOI em um arquivo CSV
+<span class="co"># escrevendo dados SOI em um arquivo CSV</span>
 <span class="kw">write.csv</span>(<span class="dt">x =</span> soi_df, 
           <span class="dt">file =</span> <span class="st">&quot;data/SOI.csv&quot;</span>, 
           <span class="dt">na =</span> <span class="st">&quot;-999.9&quot;</span>, 
           <span class="dt">row.names =</span> F)</code></pre></div>
 <p>Vamos ler os dados reestruturados que foram salvos no formato <a href="http://en.wikipedia.org/wiki/Comma-separated_values">csv</a> usando uma função que permite a escolha do arquivo de forma iterativa.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## leitura de dados com escolha interativa do arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura de dados com escolha interativa do arquivo</span>
 soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(),
-                   ## file.choose só é válido em sistema *unix
-                   ## no windows é choose.file()
+                   <span class="co"># file.choose só é válido em sistema *unix</span>
+                   <span class="co"># no windows é choose.file()</span>
                    <span class="dt">header =</span> T,
                    <span class="dt">na.strings =</span> <span class="st">&quot;-999.9&quot;</span>)</code></pre></div>
 <p>Clique duas vezes sobre o arquivo <code>SOI.csv</code>.</p>
@@ -1273,7 +1273,7 @@ soi.df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span clas
 <h2><span class="header-section-number">5.4</span> Arquivos texto não estruturados</h2>
 <p>Em alguns casos é necessário ler arquivos textos sem uma estrutura definida como no caso de arquivos delimitados. Se o arquivo não é bem estruturado é mais fácil ler cada linha de texto separadamente e depois decompor e manipular o conteúdo do texto. A função <code>readLines()</code> é adequada para isso. Cada linha é tratada como um elemento de um vetor do tipo <code>character</code>.</p>
 <p>Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde estão as informações da estação meteorológica.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## leitura do cabecalho do arquivo de dados de uma estação do inmet
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># leitura do cabecalho do arquivo de dados de uma estação do inmet</span>
 cab &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;data/83004.txt&quot;</span>)
 <span class="kw">head</span>(cab)</code></pre></div>
 <pre><code>[1] &quot;--------------------&quot;                                 
@@ -1282,19 +1282,19 @@ cab &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class=
 [4] &quot;Estação           : SAO PAULO  IAG  - SP (OMM: 83004)&quot;
 [5] &quot;Latitude  (graus) : -23.65&quot;                           
 [6] &quot;Longitude (graus) : -46.61&quot;                           </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## somente linhas com coordenadas da estação
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># somente linhas com coordenadas da estação</span>
 cab[<span class="dv">5</span>:<span class="dv">7</span>]</code></pre></div>
 <pre><code>[1] &quot;Latitude  (graus) : -23.65&quot; &quot;Longitude (graus) : -46.61&quot;
 [3] &quot;Altitude  (metros): 800.00&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.vector</span>(cab[<span class="dv">5</span>:<span class="dv">7</span>])</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## arranjando em coluna
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arranjando em coluna</span>
 <span class="kw">cbind</span>(cab[<span class="dv">5</span>:<span class="dv">7</span>])</code></pre></div>
 <pre><code>     [,1]                        
 [1,] &quot;Latitude  (graus) : -23.65&quot;
 [2,] &quot;Longitude (graus) : -46.61&quot;
 [3,] &quot;Altitude  (metros): 800.00&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## selecionando somente os dados e o nome das variáveis
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># selecionando somente os dados e o nome das variáveis</span>
 cab[-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">15</span>)][<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
 <pre><code> [1] &quot;Estacao;Data;Hora;Precipitacao;TempBulboSeco;TempBulboUmido;TempMaxima;TempMinima;UmidadeRelativa;PressaoAtmEstacao;PressaoAtmMar;DirecaoVento;VelocidadeVentoInsolacao;Nebulosidade;Evaporacao Piche;Temp Comp Media;Umidade Relativa Media;Velocidade do Vento Media;&quot;
  [2] &quot;83004;02/08/1993;0000;;;;;;;;;;;;;1.4;;;;&quot;                                                                                                                                                                                                                              
@@ -1306,10 +1306,10 @@ cab[-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">15</sp
  [8] &quot;83004;02/01/1995;1800;;26.4;21.6;;;66;921.5;;32;5;;10;;;;;&quot;                                                                                                                                                                                                             
  [9] &quot;83004;03/01/1995;0000;;22;21.4;25.4;;95;922.7;;0;0;0.2;10;1.3;22.54;93.5;1;&quot;                                                                                                                                                                                            
 [10] &quot;83004;03/01/1995;1200;4.4;23;21.3;;20.7;86;923.6;;0;0;;10;;;;;&quot;                                                                                                                                                                                                         </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## escrevendo dados com writeLines
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># escrevendo dados com writeLines</span>
 <span class="kw">writeLines</span>(<span class="dt">text =</span> cab[-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">15</span>)] , <span class="dt">con =</span> <span class="st">&quot;data/83004_limpo.txt&quot;</span>)
-## visualizando dados gerados sem cabeçalho usando função system
-## (específico para sistema *unix)
+<span class="co"># visualizando dados gerados sem cabeçalho usando função system</span>
+<span class="co"># (específico para sistema *unix)</span>
 <span class="kw">system</span>(<span class="st">&quot;head -11 data/83004_limpo.txt&quot;</span>, <span class="dt">intern =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code> [1] &quot;Estacao;Data;Hora;Precipitacao;TempBulboSeco;TempBulboUmido;TempMaxima;TempMinima;UmidadeRelativa;PressaoAtmEstacao;PressaoAtmMar;DirecaoVento;VelocidadeVentoInsolacao;Nebulosidade;Evaporacao Piche;Temp Comp Media;Umidade Relativa Media;Velocidade do Vento Media;&quot;
  [2] &quot;83004;02/08/1993;0000;;;;;;;;;;;;;1.4;;;;&quot;                                                                                                                                                                                                                              
@@ -1356,7 +1356,7 @@ cab[-<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">15</sp
 <ul>
 <li>1500000 x 120 x 8 bytes/registro = 1440000000 bytes = 1440000000/(2<sup>20</sup>) bytes/MB = 1373.29 MB = 1,34 GB</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## cálculo de memória
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cálculo de memória</span>
 bytes_per_reg &lt;-<span class="st"> </span><span class="dv">8</span>
 nlins &lt;-<span class="st"> </span><span class="dv">1500000</span>
 ncols &lt;-<span class="st"> </span><span class="dv">120</span>
@@ -1378,7 +1378,7 @@ res/(<span class="dv">2</span>^<span class="dv">20</span>) <span class="co"># by
 <div id="salvando-e-carregando-objetos-em-arquivos-.rdata" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Salvando e carregando objetos em arquivos <code>.RData</code></h3>
 <p>Para mostrar como usar as funções <code>save()</code> e <code>load()</code> vamos utilizar os dados pluviométricos lidos anteriormente e selecionar as colunas de interesse. Depois disso o objeto <code>chuva_df</code> será armazenado em arquivo binário do R com a extensão <code>.RData</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## primeiras linhas
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># primeiras linhas</span>
 <span class="kw">head</span>(dprec[, <span class="dv">1</span>:<span class="dv">10</span>])</code></pre></div>
 <pre><code>  EstacaoCodigo NivelConsistencia       Data TipoMedicaoChuvas Maxima
 1       3054002                 1 01/01/1934                 1     NA
@@ -1394,20 +1394,20 @@ res/(<span class="dv">2</span>^<span class="dv">20</span>) <span class="co"># by
 4  98.4         1              4            1           1
 5 119.4        29              8            1           1
 6 191.6        13             11            1           1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## selecionando somente dados diarios do dia 1 a 31 de cada ano
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># selecionando somente dados diarios do dia 1 a 31 de cada ano</span>
 chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">14</span>:<span class="dv">44</span>)]
-## arquivo binario do R
+<span class="co"># arquivo binario do R</span>
 <span class="kw">save</span>(chuva_df, <span class="dt">file =</span> <span class="st">&quot;data/chuva_df.RData&quot;</span>)
-## verificando se arquivo foi salvo no diretório
+<span class="co"># verificando se arquivo foi salvo no diretório</span>
 <span class="kw">file.exists</span>(<span class="st">&quot;data/chuva_df.RData&quot;</span>)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <p>Como o objeto <code>chuva_df</code> foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo <code>chuva_df.RData</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## apagando chuva_df do ambiente de trabalho
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando chuva_df do ambiente de trabalho</span>
 <span class="kw">rm</span>(chuva_df)
-## verifica existência de objeto
+<span class="co"># verifica existência de objeto</span>
 <span class="kw">exists</span>(chuva_df)</code></pre></div>
 <pre><code>Error in exists(chuva_df): object 'chuva_df' not found</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## carregando chuva_df
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># carregando chuva_df</span>
 <span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;data/chuva_df.RData&quot;</span>)
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code> [1] &quot;airquality&quot;    &quot;aq&quot;            &quot;bytes_per_reg&quot; &quot;cab&quot;          
@@ -1419,7 +1419,7 @@ chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span c
 [25] &quot;tc&quot;            &quot;texto&quot;         &quot;v1&quot;            &quot;vetor_aq&quot;     
 [29] &quot;vnames&quot;        &quot;x&quot;             &quot;x1&quot;            &quot;x2&quot;           
 [33] &quot;y&quot;            </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## para carregar os dados e saber o nome com que foram salvos
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para carregar os dados e saber o nome com que foram salvos</span>
 <span class="kw">print</span>(<span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;data/chuva_df.RData&quot;</span>))</code></pre></div>
 <pre><code>[1] &quot;chuva_df&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(chuva_df[, <span class="dv">1</span>:<span class="dv">10</span>])</code></pre></div>
@@ -1460,14 +1460,14 @@ chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span c
 [21] &quot;soi.df&quot;        &quot;soi_v&quot;         &quot;tc&quot;            &quot;texto&quot;        
 [25] &quot;v1&quot;            &quot;vetor_aq&quot;      &quot;vnames&quot;        &quot;x&quot;            
 [29] &quot;x1&quot;            &quot;x2&quot;            &quot;y&quot;            </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## carrega e imprime na tela nome dos dados carregados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># carrega e imprime na tela nome dos dados carregados</span>
 <span class="kw">print</span>(<span class="kw">load</span>(<span class="st">&quot;data/dados_prec.RData&quot;</span>))</code></pre></div>
 <pre><code>[1] &quot;cab&quot;      &quot;chuva_df&quot;</code></pre>
 </div>
 <div id="readrds-e-saverds" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> <code>readRDS()</code> e <code>saveRDS()</code></h3>
 <p>As funções <code>readRDS()</code> e <code>writeRDS()</code> são similares a <code>load()</code> e <code>save()</code>, respectivamente, exceto que elas lidam com <strong>um único objeto</strong>. Em contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome diferente do qual ele foi salvo. Vamos alterar o formato da data do <em>data frame</em> <code>chuva_df</code> e salvá-lo no arquivo <code>chuva_df.rds</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## salvar dados em um arquivo rds
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># salvar dados em um arquivo rds</span>
 <span class="kw">head</span>(chuva_df[, <span class="dv">1</span>:<span class="dv">10</span>])</code></pre></div>
 <pre><code>        Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
 1 01/01/1934      NA      NA      NA      NA    10.5     3.0    11.1
@@ -1483,15 +1483,15 @@ chuva_df &lt;-<span class="st"> </span>dprec[, <span class="kw">c</span>(<span c
 4    19.5       0
 5     0.0       0
 6     0.0       0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## alterando formato de datas da coluna Data
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># alterando formato de datas da coluna Data</span>
 chuva_df$Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="dt">x =</span> chuva_df$Data, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)
 <span class="kw">saveRDS</span>(<span class="dt">object =</span> chuva_df, <span class="dt">file =</span> <span class="st">&quot;data/chuva_df.rds&quot;</span>)
 <span class="kw">file.exists</span>(<span class="st">&quot;data/chuva_df.rds&quot;</span>)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <p>Após salvar o <em>data frame</em> <code>chuva_df</code> vamos removê-lo do ambiente da sessão e recuperá-lo com a função <code>readRDS()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## removendo chuva_df do ambiente
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># removendo chuva_df do ambiente</span>
 <span class="kw">rm</span>(chuva_df)
-## recuperando dados do arquivo em uma variável com nome diferente do original
+<span class="co"># recuperando dados do arquivo em uma variável com nome diferente do original</span>
 prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/chuva_df.rds&quot;</span>)
 <span class="kw">head</span>(prec_ana[, <span class="dv">1</span>:<span class="dv">10</span>])</code></pre></div>
 <pre><code>        Data Chuva01 Chuva02 Chuva03 Chuva04 Chuva05 Chuva06 Chuva07
@@ -1513,18 +1513,18 @@ prec_ana &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span cla
 <div id="arquivos-binarios-do-trmm" class="section level2">
 <h2><span class="header-section-number">6.2</span> Arquivos binários do <a href="http://pmm.nasa.gov/trmm">TRMM</a></h2>
 <p><em>Download</em> do arquivo binário com estimativa da precipitação pelo satélite TRMM. O produto 3B42 possui resolução espacial de 0.25º, cobertura espacial global e temporal de 3 horas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## ftp com aruivos binários de estimativa de precipitação a cada 3 h do TRMM 3B42
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ftp com aruivos binários de estimativa de precipitação a cada 3 h do TRMM 3B42</span>
 ftp_trmm_file &lt;-<span class="st"> &quot;ftp://disc2.nascom.nasa.gov/data/TRMM/Gridded/3B42_V7/201407/3B42.140701.09z.7.precipitation.bin&quot;</span>
-## download do arquivo
+<span class="co"># download do arquivo</span>
 <span class="kw">download.file</span>(ftp_trmm_file, <span class="dt">destfile =</span> <span class="kw">file.path</span>(<span class="st">&quot;data&quot;</span>,<span class="kw">basename</span>(ftp_trmm_file)))
-## leitura do link para o arquivo readme 
+<span class="co"># leitura do link para o arquivo readme </span>
 readme &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;ftp://disc2.nascom.nasa.gov/data/TRMM/Gridded/3B42_V7/readme&quot;</span>)
-## escrevendo readme em arquivo texto 
+<span class="co"># escrevendo readme em arquivo texto </span>
 <span class="kw">writeLines</span>(<span class="dt">text =</span> readme, <span class="dt">con =</span> <span class="st">&quot;data/readme_TRMM.txt&quot;</span>)
-## abrindo arquivo para visualização
+<span class="co"># abrindo arquivo para visualização</span>
 <span class="kw">file.show</span>(<span class="st">&quot;readme_TRMM.txt&quot;</span>)</code></pre></div>
 <p>Leitura do arquivo binário.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## importando arquivo binário  
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># importando arquivo binário  </span>
 bin_data &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="dt">con =</span> <span class="kw">file.path</span>(<span class="st">&quot;data&quot;</span>,<span class="kw">basename</span>(ftp_trmm_file)),
                     <span class="dt">what =</span> <span class="st">&quot;numeric&quot;</span>, 
                     <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>,
@@ -1533,19 +1533,19 @@ bin_data &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span cla
 <pre><code>[1] TRUE</code></pre>
 <pre><code> num [1:400, 1:1440] 0 0 0 0 0 0 0 0 0 0 ...</code></pre>
 <p>Para visualizarmos os dados lidos, vamos usar a função <code>levelplot()</code> do pacote <a href="http://cran.r-project.org/web/packages/lattice/index.html">lattice</a>. Essa função permite rapidamente visualizar o campo espacial da precipitação. As cores que devem ser usados para colorir os níveis de variação da precipitação. Vamos remover os dados abaixo de 0.5 mm/h para destacar os sistemas precipitantes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Visualização dos dados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualização dos dados</span>
 <span class="co"># install.packages(lattice, dep = TRUE)</span>
 <span class="kw">require</span>(lattice)
-## definindo paleta de cores para o gráfico
+<span class="co"># definindo paleta de cores para o gráfico</span>
 paleta &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">topo.colors</span>(<span class="dv">32</span>)) <span class="co"># rev() inverte a ordem do vetor</span>
 <span class="kw">levelplot</span>(<span class="kw">t</span>(m),
           <span class="dt">col.regions =</span> <span class="kw">rev</span>(<span class="kw">terrain.colors</span>(<span class="dv">32</span>)), 
           <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>, 
           <span class="dt">ylab =</span> <span class="st">&quot;y&quot;</span>)</code></pre></div>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAHgCAMAAAB6sCJ3AAADAFBMVEUAAAAACQAACgAAmAAAmwAAowAApgABAQEBCgACAgIDAwMDCwAEBAQECwAFBQUGBgYGDAAHBwcICAgIDAAJCQkKCgoKDQALCwsMDAwMDQANDQ0OCgcOCwMOCwUOCwkOCwsODAIODQwODg4PDw8QEBARERESEhITExMUFBQVFRUXFxcXqwAXrgAYGBgZGRkaGhocHBwdHR0eHh4fHx8gICAhISEiIiIkJCQlJSUmJiYnJycoKCgpKSkqKiosLCwtLS0vLy8wMDAwswAxMTExtwAyMjIzMzM0NDQ3Nzc5OTk6Ojo7Ozs8PDw9PT0+Pj4/My8/ODc/Pz9AQEBCQkJDQ0NERERFRUVGRkZKSkpLuwBMvwBNTU1OTk5PT09SUlJTU1NUVFRVVVVYWFhaWlpbW1tdXV1gYGBhYWFkZGRlZWVmZmZnZ2dpxABryABsbGxtbW1vb292dnZ3d3d5eXl6enp8fHx9fX1+fn5/f3+AgICBgYGCgoKDg4OEhISGhoaHh4eIiIiIzACJiYmKioqL0ACMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OVlZWWlpaZmZmbm5ucnJydnZ2enp6fn5+hoaGioqKjo6OkpKSlpaWpqamqqqqq1QCrq6usrKytra2t2QCvr6+wsLCysrK0tLS1tbW3t7e4uLi5pKK5ubm7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFoJPFxcXGsK7Hx8fIyMjJycnKysrLy8vMzMzNmWbNnoDNzc3Ozs7O3QDPqJvQ0NDRubfR0dHS0tLS4QDU1NTV1dXX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7ftaff39/g4ODhyMXh4eHiyhzi4uLj4+PkuTnlr1bl5eXm5ubnrnTnzh3n5+fospHo6OjpvTrp6enqs1jqvq/q6urr6+vssXbs0s/s7OzttpTt7e3u7u7vwrPw8PDx1tPx8fHy8vL09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7////LdbsbAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAcEklEQVR4nO2dC/wtRUHH/z0JukmXMInePESskChvCNfMCCl7GWqaJWRZ2FN7h2WRadGLoCIqEgPMglCLEioNC25QpEASJRVRXf/liQPLuMSNx73b2d3Z3Znd2ZnZ/e3s7jn8vvdz///z37OPObPfM++Z3UoIAdiaOgBkvaFABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQARiUwXad9nUIahxzzVThyAMmyrQ+06eOgQ1Ljt76hCEgQKNBAVaLyjQSFCgkaBA6wUFGgkKNBIUaL2gQCOBCvTO5+Ucc8yxs+LoQ6YOQY0jDp32+oc/O79R32u8jftONB91SnCB9r0751m/f1fJB7x5f7bzXQ/4H1FwV/6/w7Xyw8owWoLpOuldnS9bHfr+rhdMg2rb4QFlRxtfeUF+o+4x3sYHP+KjTXzUk4ILVPCc62OJWBH7ku+aeO8/BELS8m7jRcsZel078jhMxNXJ01eRWIj2gxN1Vwtn/oHt9j34kR9r4mOmEKhD9Ap5m8YVKLuyJYjuwNsE7HRZoXoqsj+bp02Pab+YGne2IK2RQLGIvAUaOAUqLuu6vvV9j8D3S36U8BnfjGpXF+Uvdf9a8JS4s4bqBWskUJdcLNvR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QYEIBAUiEBSIQFAgArFpAsm1jC2PxhsVw3P6Jg/TsGyaQPlaxrZH442I6Tl9U4dpaDZMILmWse3ReCNiek7f1GEamg0TSK5lbHs03qg0n9M3fZiGZcMEkmsZmx6NNwnN5/RNH6Zh2TCBMl76OtOj8Sah+Zy+6cM0LBsmkFzL2PZovFFpPqdv+jANy4YJJNcytj0ab1Saz+mbPkzDsmECFWsZWx6NNyqG5/RNHqZh2TSByMhQIAJBgQgEBSIQFIhAUCACQYEIBAUiEBSIQFAgAkGBCAQFIhAUiEBQIAJBgQgEBSIQFIhAUCACQYEMvG3r6iR5046bpg7HOkCBTJxz8r4PP+OHpg7FWkCBTNx3/LmvOXXf1KFYCyiQkd88dMc7pw7DekCBjDz6tFM3Z+pWUCiQkfOevvPCqcOwHlAgE+/d+Vs/cuwHpw7FWkCBDOz/6pccePiZ3zZ1MNYCCmTggp23Jclbtt42dTjWAQpEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQgKBCBoEAEggIRCApEICgQgaBABIICEQgKRCAoEIGgQASCAhEICkQg/h+GnHR4w+W/HQAAAABJRU5ErkJggg==" alt /><!-- --></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## para melhor visualização vamos substituir valores abaixo de 0.1 mm/dia por NA
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># para melhor visualização vamos substituir valores abaixo de 0.1 mm/dia por NA</span>
 m[m &lt;<span class="st"> </span><span class="fl">0.5</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
-## gráfico com valores apenas onde choveu
+<span class="co"># gráfico com valores apenas onde choveu</span>
 <span class="kw">levelplot</span>(<span class="kw">t</span>(m), 
           <span class="dt">col.regions =</span> paleta,  
           <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>, 
@@ -1565,21 +1565,21 @@ m[m &lt;<span class="st"> </span><span class="fl">0.5</span>] &lt;-<span class="
 <h3><span class="header-section-number">6.3.2</span> Exemplo</h3>
 <p>Os exemplos a seguir usam o pacote <a href="https://cran.r-project.org/web/packages/ncdf4/index.html">ncdf4</a> para ler arquivo NetCDF com dados climáticos do <em>Climate Research Unit <a href="http://www.cru.uea.ac.uk/data">CRU</a></em>, consistindo de valores médios de longo prazo (1961-1990) da temperatura do ar próximo à superfície com resolução espacial de 0,5 º na área continental. As dimensões da <em>array</em> são: 720 (longitudes) x 360 (latitudes) x 12 (meses).</p>
 <p>Carregando pacotes necessários:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Se não tiver o pacote instale-o, p.ex.: 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Se não tiver o pacote instale-o, p.ex.: </span>
 <span class="co"># install.packages(&quot;ncdf4&quot;, dep = TRUE)</span>
-## depois carregamos os pacotes
+<span class="co"># depois carregamos os pacotes</span>
 <span class="kw">library</span>(chron)
 <span class="kw">library</span>(RColorBrewer)
 <span class="kw">library</span>(lattice)
 <span class="kw">library</span>(ncdf4)
 <span class="kw">library</span>(fields)</code></pre></div>
 <p>Abrindo arquivo NetCDF e obtendo informações básicas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## nome do arquivo netcdf
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome do arquivo netcdf</span>
 ncname &lt;-<span class="st"> &quot;data/cru10min30_tmp&quot;</span>
 ncfname &lt;-<span class="st"> </span><span class="kw">paste</span>(ncname, <span class="st">&quot;.nc&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-## variável de interesse, tmp: temperatura do ar
+<span class="co"># variável de interesse, tmp: temperatura do ar</span>
 dname &lt;-<span class="st"> &quot;tmp&quot;</span>  
-## abre o arquivo NetCDF
+<span class="co"># abre o arquivo NetCDF</span>
 ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(ncfname)
 <span class="kw">print</span>(ncin)</code></pre></div>
 <pre><code>File data/cru10min30_tmp.nc (NC_FORMAT_CLASSIC):
@@ -1620,7 +1620,7 @@ ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(ncfname)
         references: New et al. (2002) Climate Res 21:1-25
         history: P.J. Bartlein, 19 Jun 2005
         Conventions: CF-1.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## estrutura dos dados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># estrutura dos dados</span>
 <span class="kw">str</span>(ncin)</code></pre></div>
 <pre><code>List of 14
  $ filename   : chr &quot;data/cru10min30_tmp.nc&quot;
@@ -1873,10 +1873,10 @@ ncin &lt;-<span class="st"> </span><span class="kw">nc_open</span>(ncfname)
   .. ..$ hasScaleFact      : logi FALSE
   .. ..- attr(*, &quot;class&quot;)= chr &quot;ncvar4&quot;
  - attr(*, &quot;class&quot;)= chr &quot;ncdf4&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## classe
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># classe</span>
 <span class="kw">class</span>(ncin)</code></pre></div>
 <pre><code>[1] &quot;ncdf4&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## modo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># modo</span>
 <span class="kw">mode</span>(ncin)</code></pre></div>
 <pre><code>[1] &quot;list&quot;</code></pre>
 <p>Agora, vamos ler as coordenadas de longitude e latitude.</p>
@@ -1901,40 +1901,40 @@ $value
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(nt &lt;-<span class="st"> </span><span class="kw">dim</span>(t))</code></pre></div>
 <pre><code>[1] 12</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp.array &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(ncin, dname)
-## resumo da estrutura dos dados
+<span class="co"># resumo da estrutura dos dados</span>
 <span class="kw">str</span>(tmp.array)</code></pre></div>
 <pre><code> num [1:720, 1:360, 1:12] NA NA NA NA NA NA NA NA NA NA ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## nome longo da variável
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome longo da variável</span>
 (dlname &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(ncin, dname, <span class="st">&quot;long_name&quot;</span>))</code></pre></div>
 <pre><code>$hasatt
 [1] TRUE
 
 $value
 [1] &quot;air_temperature&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## unidades da variável
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unidades da variável</span>
 (dunits &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(ncin, dname, <span class="st">&quot;units&quot;</span>))</code></pre></div>
 <pre><code>$hasatt
 [1] TRUE
 
 $value
 [1] &quot;degC&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## valor definido para valores faltantes
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># valor definido para valores faltantes</span>
 (fillvalue &lt;-<span class="st"> </span><span class="kw">ncatt_get</span>(ncin, dname, <span class="st">&quot;_FillValue&quot;</span>))</code></pre></div>
 <pre><code>$hasatt
 [1] TRUE
 
 $value
 [1] -99</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## fechando arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fechando arquivo</span>
 <span class="kw">nc_close</span>(ncin)</code></pre></div>
 <p>As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longitudes), <em>arrays</em> bidimensionais (matrizes, campo espacial de um momento), ou <em>arrays</em> multidimensionais (campos espaciais de uma variável em diversos tempos).</p>
 <p>Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um data frame onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. Finalmente vamos exportar o data frame para um arquivo <code>csv</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">1</span>
-## campo espacial do primeiro dia de dados
+<span class="co"># campo espacial do primeiro dia de dados</span>
 tmp.slice &lt;-<span class="st"> </span>tmp.array[, , m]
 <span class="kw">str</span>(tmp.slice)</code></pre></div>
 <pre><code> num [1:720, 1:360] NA NA NA NA NA NA NA NA NA NA ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## outra função para visualizar dados com 3D
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># outra função para visualizar dados com 3D</span>
 <span class="kw">image.plot</span>(lon, lat, tmp.slice, <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">10</span>, <span class="st">&quot;RdBu&quot;</span>)))</code></pre></div>
 <p><img src="data:image/png;base64,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" alt /><!-- --></p>
 </div>
@@ -1961,11 +1961,11 @@ tmp.slice &lt;-<span class="st"> </span>tmp.array[, , m]
 <p>Aqui vamos mostrar como usar o pacote <a href="https://cran.r-project.org/web/packages/XLConnect/index.html">XLConnect</a> para leitura de arquivos Excel, em ambos formatos <code>xls</code> e <code>xlsx</code>; com uma ou mais planilhas. A leitura pode ser feita em dois passos: 1) carregar o arquivo Excel, com a função <code>loadworkbook()</code>; 2) ler a(s) planilha(s) do arquivo carregado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sessionInfo()</span>
 <span class="kw">library</span>(XLConnect)
-## nome do arquivo excel
+<span class="co"># nome do arquivo excel</span>
 xls_file &lt;-<span class="st"> &quot;data/06_Junho-00.xls&quot;</span>
-## carregando planilhas do arquivo
+<span class="co"># carregando planilhas do arquivo</span>
 wb &lt;-<span class="st"> </span><span class="kw">loadWorkbook</span>(xls_file)
-## obtendo nome das planilhas do arquivo
+<span class="co"># obtendo nome das planilhas do arquivo</span>
 nomes_planilhas &lt;-<span class="st"> </span><span class="kw">getSheets</span>(wb)
 nomes_planilhas</code></pre></div>
 <pre><code> [1] &quot;ALEGRETE&quot;          &quot;BAGÉ&quot;              &quot;LIVRAMENTO&quot;       
@@ -1979,7 +1979,7 @@ nomes_planilhas</code></pre></div>
 [25] &quot;SÃO BORJA&quot;         &quot;ITAQUI&quot;            &quot;IRAI&quot;             
 [28] &quot;FARROUPILHA&quot;       &quot;TAQUARI&quot;           &quot;VERANÓPOLIS&quot;      
 [31] &quot;BOLETIM&quot;           &quot;DIARIO&quot;           </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lendo dados da planilha 1
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo dados da planilha 1</span>
 dados_planilha1 &lt;-<span class="st"> </span><span class="kw">readWorksheet</span>(wb, <span class="dt">sheet =</span> nomes_planilhas[<span class="dv">1</span>])
 <span class="kw">str</span>(dados_planilha1)</code></pre></div>
 <pre><code>'data.frame':   38 obs. of  5 variables:
@@ -1988,7 +1988,7 @@ dados_planilha1 &lt;-<span class="st"> </span><span class="kw">readWorksheet</sp
  $ Col3: chr  &quot;ANO:&quot; NA &quot;Temp. mini.&quot; &quot;2.4&quot; ...
  $ Col4: chr  &quot;2000&quot; NA &quot;Temp. maxi.&quot; &quot;14.6&quot; ...
  $ Col5: chr  NA NA &quot;Geada&quot; NA ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista com dados de todas planilhas do arquivo excel
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista com dados de todas planilhas do arquivo excel</span>
 lst &lt;-<span class="st"> </span><span class="kw">readWorksheet</span>(wb, <span class="dt">sheet =</span> nomes_planilhas)</code></pre></div>
 <pre><code>Warning: Error detected in cell D39 - Division by 0</code></pre>
 <pre><code>Warning: Error detected in cell E39 - Division by 0</code></pre>
@@ -2239,7 +2239,7 @@ lst &lt;-<span class="st"> </span><span class="kw">readWorksheet</span>(wb, <spa
   ..$ Col31: num [1:31] NA 30 0 0 0 0 0 29.8 NA 0 ...
   ..$ Col32: num [1:31] NA 31 0 0 0 0 0 0 NA 0 ...
   ..$ Col33: chr [1:31] NA &quot;Soma&quot; &quot;200.0&quot; &quot;149.4&quot; ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## dados da planilha 1
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dados da planilha 1</span>
 lst[[<span class="dv">1</span>]]</code></pre></div>
 <pre><code>     Col1       Col2        Col3        Col4  Col5
 1    MES:      JUNHO        ANO:        2000  &lt;NA&gt;
@@ -2294,11 +2294,11 @@ lst[[<span class="dv">1</span>]]</code></pre></div>
 <span class="co">#install.packages(&quot;RSQLite&quot;, dep = TRUE)</span>
 <span class="kw">library</span>(RSQLite)</code></pre></div>
 <p>A seguir, definimos o <em>driver</em> do banco de dados como SQLite e configuramos a conexão ao banco de dados, nesse caso definindo uma variável com o nome do arquivo (<code>db_file</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## nome do SGBDR
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome do SGBDR</span>
 driver &lt;-<span class="st"> </span><span class="kw">dbDriver</span>(<span class="st">&quot;SQLite&quot;</span>)
-## nome do arquivo com banco de dados
+<span class="co"># nome do arquivo com banco de dados</span>
 db_file &lt;-<span class="st"> &quot;data/rastreador1.db3&quot;</span>
-## conectando com o BDR
+<span class="co"># conectando com o BDR</span>
 conn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(driver, db_file)
 conn</code></pre></div>
 <pre><code>&lt;SQLiteConnection&gt;</code></pre>
@@ -2308,7 +2308,7 @@ tab_list</code></pre></div>
 <pre><code>[1] &quot;Nuvem&quot;           &quot;imagem_nuvem&quot;    &quot;imagens&quot;         &quot;nuvem_formacao&quot; 
 [5] &quot;sqlite_sequence&quot;</code></pre>
 <p>Com a função <code>dbReadTable()</code> podemos ler uma tabela do banco de dados.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lendo tabela imagem_nuvem
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo tabela imagem_nuvem</span>
 imagem_nuvem &lt;-<span class="st"> </span><span class="kw">dbReadTable</span>(conn, <span class="st">&quot;imagem_nuvem&quot;</span>)
 <span class="kw">head</span>(imagem_nuvem)</code></pre></div>
 <pre><code>  id_imagem_nuvem id_imagem id_nuvem centroidX centroidY centroElipseX
@@ -2341,14 +2341,14 @@ imagem_nuvem &lt;-<span class="st"> </span><span class="kw">dbReadTable</span>(c
 6853      237.4593     297.5074    2.457791    12.35366  280
 6854            NA           NA          NA          NA   16</code></pre>
 <p>Para ler cada uma das tabela do banco e salvá-la com o mesmo nome usado no banco de dados podemos fazer um <em>looping</em> com a função <code>for()</code> e usar a função <code>assign()</code> para atribuir nomes as tabelas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lendo cada tabela do banco e criando um data frame 
-## com mesmo nome da tabela dentro do banco de dados
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lendo cada tabela do banco e criando um data frame </span>
+<span class="co"># com mesmo nome da tabela dentro do banco de dados</span>
 for(i in tab_list) <span class="kw">assign</span>(i, <span class="kw">dbReadTable</span>(conn, i))
-## verificando se as tabelas foram criadas
+<span class="co"># verificando se as tabelas foram criadas</span>
 <span class="kw">all</span>(tab_list %in%<span class="st"> </span><span class="kw">ls</span>())</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <p>Após a leitura das tabelas de interesse podemos desconectar o banco de dados e o <em>driver</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## desconectando do banco
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># desconectando do banco</span>
 <span class="kw">dbDisconnect</span>(conn)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbUnloadDriver</span>(driver)</code></pre></div>
@@ -2855,16 +2855,16 @@ attr(,&quot;package&quot;)
 <h2><span class="header-section-number">8.1</span> Diretório de trabalho</h2>
 <p>O R possui uma variedade de funções para se obter informações sobre arquivos, diretórios, permissões de acesso e etc.</p>
 <p>Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (<em>working directory</em>, <code>wd</code>). Esse local é a primeiro diretório onde o R irá salvar ou ler um arquivo de dados, se o caminho completo até o arquivo não for especificado. Para saber qual é o diretório de trabalho usamos a função <code>getwd()</code>. Para alterar o <code>wd</code> usamos <code>setwd()</code>. Para listar o conteúdo de um diretório usamos a função <code>dir()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## variável do tipo character com nome do diretório
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variável do tipo character com nome do diretório</span>
 (wd &lt;-<span class="st"> </span><span class="kw">getwd</span>())</code></pre></div>
 <pre><code>[1] &quot;/home/hidrometeorologista/UFSM/ensino/_1Semestre2016/AnaliseDadosAmbR/adar-ufsm&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(wd)</code></pre></div>
 <pre><code>[1] &quot;character&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## altere o caminho para &quot;/home/lci&quot;
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># altere o caminho para &quot;/home/lci&quot;</span>
 <span class="kw">setwd</span>(<span class="st">&quot;/home/hidrometeorologista/&quot;</span>)
 <span class="kw">getwd</span>()</code></pre></div>
 <pre><code>[1] &quot;/home/hidrometeorologista&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## volta para o wd
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># volta para o wd</span>
 <span class="kw">setwd</span>(wd)
 <span class="kw">getwd</span>()</code></pre></div>
 <pre><code>[1] &quot;/home/hidrometeorologista/UFSM/ensino/_1Semestre2016/AnaliseDadosAmbR/adar-ufsm&quot;</code></pre>
@@ -2873,45 +2873,45 @@ attr(,&quot;package&quot;)
 <div id="caminhos-de-arquivos-e-informacoes-basicas" class="section level2">
 <h2><span class="header-section-number">8.2</span> Caminhos de arquivos e informações básicas</h2>
 <p>Podemos construir o caminho até um arquivo usando o nome do diretório e do arquivo com a função <code>file.path()</code>. O que é equivalente a função <code>paste(a, b, sep = &quot;/&quot;)</code>. A partir da <code>string</code> com o caminho completo para o arquivo, podemos extrair o diretório (<code>dirname()</code>), o nome do arquivo () e a extensão do arquivo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## carregando pacote tools para usar função file_ext()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># carregando pacote tools para usar função file_ext()</span>
 <span class="kw">require</span>(tools)</code></pre></div>
 <pre><code>Loading required package: tools</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## emenda diretorio ao nome do aruivo com &quot;/&quot;
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># emenda diretorio ao nome do aruivo com &quot;/&quot;</span>
 file_name &lt;-<span class="st"> </span><span class="kw">file.path</span>(wd, <span class="st">&quot;CHUVAS.TXT&quot;</span>)
 <span class="kw">file.path</span>(<span class="st">&quot;/home&quot;</span>, <span class="st">&quot;lci&quot;</span>, <span class="st">&quot;nome_aluno&quot;</span>, <span class="st">&quot;R&quot;</span>)</code></pre></div>
 <pre><code>[1] &quot;/home/lci/nome_aluno/R&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## equivalente a
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># equivalente a</span>
 <span class="kw">paste</span>(<span class="kw">file.path</span>(wd, <span class="st">&quot;CHUVAS.TXT&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
 <pre><code>[1] &quot;/home/hidrometeorologista/UFSM/ensino/_1Semestre2016/AnaliseDadosAmbR/adar-ufsm/CHUVAS.TXT&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## diretório de um arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># diretório de um arquivo</span>
 <span class="kw">dirname</span>(file_name)</code></pre></div>
 <pre><code>[1] &quot;/home/hidrometeorologista/UFSM/ensino/_1Semestre2016/AnaliseDadosAmbR/adar-ufsm&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## nome do arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nome do arquivo</span>
 <span class="kw">basename</span>(file_name)</code></pre></div>
 <pre><code>[1] &quot;CHUVAS.TXT&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## extensão do arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extensão do arquivo</span>
 <span class="kw">file_ext</span>(file_name)</code></pre></div>
 <pre><code>[1] &quot;TXT&quot;</code></pre>
 <p>A função <code>file.exists()</code> permite verificar se um arquivo já existe, o que pode ser usado para evitar de sobrescrever um arquivo com mesmo nome. Metadados do arquivo podem ser obtidos via <code>file.info()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## seleção iterativa de um arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># seleção iterativa de um arquivo</span>
 arq_name &lt;-<span class="st"> </span><span class="kw">file.choose</span>()
 arq_name</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## verifica existência do arquivo
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># verifica existência do arquivo</span>
 <span class="kw">file.exists</span>(file_name)</code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## tamanho, data de criação, permissões, etc 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tamanho, data de criação, permissões, etc </span>
 <span class="kw">file.info</span>(<span class="st">&quot;data/chuva_df.RData&quot;</span>)</code></pre></div>
 <pre><code>                     size isdir mode               mtime
-data/chuva_df.RData 23030 FALSE  664 2016-06-02 16:51:07
+data/chuva_df.RData 23030 FALSE  664 2016-06-02 17:09:01
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-06-02 16:51:07 2016-06-02 16:51:07 1000 1000
+data/chuva_df.RData 2016-06-02 17:09:01 2016-06-02 17:09:01 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 </div>
 <div id="conteudo-de-diretorios" class="section level2">
 <h2><span class="header-section-number">8.3</span> Conteúdo de diretórios</h2>
 <p>Para listar o conteúdo de um diretório usamos as funções <code>dir()</code> e <code>list.dirs()</code>. A função <code>list.files()</code> permite listar arquivos usando <a href="http://pt.wikipedia.org/wiki/Express%C3%A3o_regular">regex</a>. Uma boa referência para aprender <a href="http://pt.wikipedia.org/wiki/Express%C3%A3o_regular">regex</a> é o site do <a href="http://aurelio.net/regex/guia/">Aurélio</a>. Nós vamos ver aqui apenas algumas regex básicas para ilustrar o uso da <code>list.files()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista conteúdo do diretórios
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista conteúdo do diretórios</span>
 <span class="kw">dir</span>()</code></pre></div>
 <pre><code> [1] &quot;1_Rinstall.html&quot;         &quot;1_Rinstall.md&quot;          
  [3] &quot;1_Rinstall.Rmd&quot;          &quot;2_InterfaceUsuario.html&quot;
@@ -2924,87 +2924,86 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 [17] &quot;6_EntradaDeDados.md&quot;     &quot;6_EntradaDeDados.Rmd&quot;   
 [19] &quot;adar-ufsm.Rproj&quot;         &quot;apres_course.html&quot;      
 [21] &quot;apres_course.md&quot;         &quot;apres_course.Rpres&quot;     
-[23] &quot;DADOS&quot;                   &quot;data&quot;                   
-[25] &quot;figs&quot;                    &quot;lista_pcks4mets.md&quot;     
-[27] &quot;lista_pcks4mets.Rmd&quot;     &quot;R&quot;                      
-[29] &quot;README.html&quot;             &quot;README.md&quot;              
-[31] &quot;Rmarkdown.html&quot;          &quot;Rmarkdown.md&quot;           
-[33] &quot;Rmarkdown.Rmd&quot;          </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista diretórios  e sub-dirs
+[23] &quot;data&quot;                    &quot;figs&quot;                   
+[25] &quot;lista_pcks4mets.md&quot;      &quot;lista_pcks4mets.Rmd&quot;    
+[27] &quot;R&quot;                       &quot;README.html&quot;            
+[29] &quot;README.md&quot;               &quot;Rmarkdown.html&quot;         
+[31] &quot;Rmarkdown.md&quot;            &quot;Rmarkdown.Rmd&quot;          </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista diretórios  e sub-dirs</span>
 <span class="kw">list.dirs</span>()</code></pre></div>
 <pre><code>  [1] &quot;.&quot;                                    
-  [2] &quot;./DADOS&quot;                              
-  [3] &quot;./data&quot;                               
-  [4] &quot;./figs&quot;                               
-  [5] &quot;./.git&quot;                               
-  [6] &quot;./.git/branches&quot;                      
-  [7] &quot;./.git/hooks&quot;                         
-  [8] &quot;./.git/info&quot;                          
-  [9] &quot;./.git/logs&quot;                          
- [10] &quot;./.git/logs/refs&quot;                     
- [11] &quot;./.git/logs/refs/heads&quot;               
- [12] &quot;./.git/logs/refs/remotes&quot;             
- [13] &quot;./.git/logs/refs/remotes/origin&quot;      
- [14] &quot;./.git/objects&quot;                       
- [15] &quot;./.git/objects/00&quot;                    
- [16] &quot;./.git/objects/01&quot;                    
- [17] &quot;./.git/objects/03&quot;                    
- [18] &quot;./.git/objects/04&quot;                    
- [19] &quot;./.git/objects/05&quot;                    
- [20] &quot;./.git/objects/06&quot;                    
- [21] &quot;./.git/objects/07&quot;                    
- [22] &quot;./.git/objects/09&quot;                    
- [23] &quot;./.git/objects/0a&quot;                    
- [24] &quot;./.git/objects/0b&quot;                    
- [25] &quot;./.git/objects/0c&quot;                    
- [26] &quot;./.git/objects/0d&quot;                    
- [27] &quot;./.git/objects/0e&quot;                    
- [28] &quot;./.git/objects/0f&quot;                    
- [29] &quot;./.git/objects/11&quot;                    
- [30] &quot;./.git/objects/12&quot;                    
- [31] &quot;./.git/objects/13&quot;                    
- [32] &quot;./.git/objects/14&quot;                    
- [33] &quot;./.git/objects/16&quot;                    
- [34] &quot;./.git/objects/17&quot;                    
- [35] &quot;./.git/objects/18&quot;                    
- [36] &quot;./.git/objects/19&quot;                    
- [37] &quot;./.git/objects/1e&quot;                    
- [38] &quot;./.git/objects/21&quot;                    
- [39] &quot;./.git/objects/22&quot;                    
- [40] &quot;./.git/objects/23&quot;                    
- [41] &quot;./.git/objects/26&quot;                    
- [42] &quot;./.git/objects/27&quot;                    
- [43] &quot;./.git/objects/28&quot;                    
- [44] &quot;./.git/objects/29&quot;                    
- [45] &quot;./.git/objects/2a&quot;                    
- [46] &quot;./.git/objects/2b&quot;                    
- [47] &quot;./.git/objects/2c&quot;                    
- [48] &quot;./.git/objects/2d&quot;                    
- [49] &quot;./.git/objects/2f&quot;                    
- [50] &quot;./.git/objects/30&quot;                    
- [51] &quot;./.git/objects/31&quot;                    
- [52] &quot;./.git/objects/32&quot;                    
- [53] &quot;./.git/objects/33&quot;                    
- [54] &quot;./.git/objects/34&quot;                    
- [55] &quot;./.git/objects/35&quot;                    
- [56] &quot;./.git/objects/36&quot;                    
- [57] &quot;./.git/objects/37&quot;                    
- [58] &quot;./.git/objects/39&quot;                    
- [59] &quot;./.git/objects/3a&quot;                    
- [60] &quot;./.git/objects/3b&quot;                    
- [61] &quot;./.git/objects/3c&quot;                    
- [62] &quot;./.git/objects/3e&quot;                    
- [63] &quot;./.git/objects/3f&quot;                    
- [64] &quot;./.git/objects/42&quot;                    
- [65] &quot;./.git/objects/43&quot;                    
- [66] &quot;./.git/objects/44&quot;                    
- [67] &quot;./.git/objects/45&quot;                    
- [68] &quot;./.git/objects/46&quot;                    
- [69] &quot;./.git/objects/47&quot;                    
- [70] &quot;./.git/objects/49&quot;                    
- [71] &quot;./.git/objects/4a&quot;                    
- [72] &quot;./.git/objects/4b&quot;                    
- [73] &quot;./.git/objects/4c&quot;                    
+  [2] &quot;./data&quot;                               
+  [3] &quot;./figs&quot;                               
+  [4] &quot;./.git&quot;                               
+  [5] &quot;./.git/branches&quot;                      
+  [6] &quot;./.git/hooks&quot;                         
+  [7] &quot;./.git/info&quot;                          
+  [8] &quot;./.git/logs&quot;                          
+  [9] &quot;./.git/logs/refs&quot;                     
+ [10] &quot;./.git/logs/refs/heads&quot;               
+ [11] &quot;./.git/logs/refs/remotes&quot;             
+ [12] &quot;./.git/logs/refs/remotes/origin&quot;      
+ [13] &quot;./.git/objects&quot;                       
+ [14] &quot;./.git/objects/00&quot;                    
+ [15] &quot;./.git/objects/01&quot;                    
+ [16] &quot;./.git/objects/03&quot;                    
+ [17] &quot;./.git/objects/04&quot;                    
+ [18] &quot;./.git/objects/05&quot;                    
+ [19] &quot;./.git/objects/06&quot;                    
+ [20] &quot;./.git/objects/07&quot;                    
+ [21] &quot;./.git/objects/09&quot;                    
+ [22] &quot;./.git/objects/0a&quot;                    
+ [23] &quot;./.git/objects/0b&quot;                    
+ [24] &quot;./.git/objects/0c&quot;                    
+ [25] &quot;./.git/objects/0d&quot;                    
+ [26] &quot;./.git/objects/0e&quot;                    
+ [27] &quot;./.git/objects/0f&quot;                    
+ [28] &quot;./.git/objects/11&quot;                    
+ [29] &quot;./.git/objects/12&quot;                    
+ [30] &quot;./.git/objects/13&quot;                    
+ [31] &quot;./.git/objects/14&quot;                    
+ [32] &quot;./.git/objects/16&quot;                    
+ [33] &quot;./.git/objects/17&quot;                    
+ [34] &quot;./.git/objects/18&quot;                    
+ [35] &quot;./.git/objects/19&quot;                    
+ [36] &quot;./.git/objects/1e&quot;                    
+ [37] &quot;./.git/objects/21&quot;                    
+ [38] &quot;./.git/objects/22&quot;                    
+ [39] &quot;./.git/objects/23&quot;                    
+ [40] &quot;./.git/objects/26&quot;                    
+ [41] &quot;./.git/objects/27&quot;                    
+ [42] &quot;./.git/objects/28&quot;                    
+ [43] &quot;./.git/objects/29&quot;                    
+ [44] &quot;./.git/objects/2a&quot;                    
+ [45] &quot;./.git/objects/2b&quot;                    
+ [46] &quot;./.git/objects/2c&quot;                    
+ [47] &quot;./.git/objects/2d&quot;                    
+ [48] &quot;./.git/objects/2f&quot;                    
+ [49] &quot;./.git/objects/30&quot;                    
+ [50] &quot;./.git/objects/31&quot;                    
+ [51] &quot;./.git/objects/32&quot;                    
+ [52] &quot;./.git/objects/33&quot;                    
+ [53] &quot;./.git/objects/34&quot;                    
+ [54] &quot;./.git/objects/35&quot;                    
+ [55] &quot;./.git/objects/36&quot;                    
+ [56] &quot;./.git/objects/37&quot;                    
+ [57] &quot;./.git/objects/39&quot;                    
+ [58] &quot;./.git/objects/3a&quot;                    
+ [59] &quot;./.git/objects/3b&quot;                    
+ [60] &quot;./.git/objects/3c&quot;                    
+ [61] &quot;./.git/objects/3e&quot;                    
+ [62] &quot;./.git/objects/3f&quot;                    
+ [63] &quot;./.git/objects/42&quot;                    
+ [64] &quot;./.git/objects/43&quot;                    
+ [65] &quot;./.git/objects/44&quot;                    
+ [66] &quot;./.git/objects/45&quot;                    
+ [67] &quot;./.git/objects/46&quot;                    
+ [68] &quot;./.git/objects/47&quot;                    
+ [69] &quot;./.git/objects/49&quot;                    
+ [70] &quot;./.git/objects/4a&quot;                    
+ [71] &quot;./.git/objects/4b&quot;                    
+ [72] &quot;./.git/objects/4c&quot;                    
+ [73] &quot;./.git/objects/4d&quot;                    
  [74] &quot;./.git/objects/50&quot;                    
  [75] &quot;./.git/objects/51&quot;                    
  [76] &quot;./.git/objects/52&quot;                    
@@ -3014,242 +3013,243 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
  [80] &quot;./.git/objects/56&quot;                    
  [81] &quot;./.git/objects/57&quot;                    
  [82] &quot;./.git/objects/58&quot;                    
- [83] &quot;./.git/objects/5a&quot;                    
- [84] &quot;./.git/objects/5b&quot;                    
- [85] &quot;./.git/objects/5c&quot;                    
- [86] &quot;./.git/objects/5d&quot;                    
- [87] &quot;./.git/objects/5e&quot;                    
- [88] &quot;./.git/objects/63&quot;                    
- [89] &quot;./.git/objects/64&quot;                    
- [90] &quot;./.git/objects/66&quot;                    
- [91] &quot;./.git/objects/67&quot;                    
- [92] &quot;./.git/objects/69&quot;                    
- [93] &quot;./.git/objects/6a&quot;                    
- [94] &quot;./.git/objects/6b&quot;                    
- [95] &quot;./.git/objects/6c&quot;                    
- [96] &quot;./.git/objects/6e&quot;                    
- [97] &quot;./.git/objects/70&quot;                    
- [98] &quot;./.git/objects/71&quot;                    
- [99] &quot;./.git/objects/73&quot;                    
-[100] &quot;./.git/objects/74&quot;                    
-[101] &quot;./.git/objects/75&quot;                    
-[102] &quot;./.git/objects/76&quot;                    
-[103] &quot;./.git/objects/77&quot;                    
-[104] &quot;./.git/objects/78&quot;                    
-[105] &quot;./.git/objects/7a&quot;                    
-[106] &quot;./.git/objects/7b&quot;                    
-[107] &quot;./.git/objects/7c&quot;                    
-[108] &quot;./.git/objects/7d&quot;                    
-[109] &quot;./.git/objects/7e&quot;                    
-[110] &quot;./.git/objects/7f&quot;                    
-[111] &quot;./.git/objects/80&quot;                    
-[112] &quot;./.git/objects/81&quot;                    
-[113] &quot;./.git/objects/82&quot;                    
-[114] &quot;./.git/objects/83&quot;                    
-[115] &quot;./.git/objects/84&quot;                    
-[116] &quot;./.git/objects/85&quot;                    
-[117] &quot;./.git/objects/86&quot;                    
-[118] &quot;./.git/objects/88&quot;                    
-[119] &quot;./.git/objects/89&quot;                    
-[120] &quot;./.git/objects/8b&quot;                    
-[121] &quot;./.git/objects/8c&quot;                    
-[122] &quot;./.git/objects/8d&quot;                    
-[123] &quot;./.git/objects/8e&quot;                    
-[124] &quot;./.git/objects/90&quot;                    
-[125] &quot;./.git/objects/91&quot;                    
-[126] &quot;./.git/objects/92&quot;                    
-[127] &quot;./.git/objects/93&quot;                    
-[128] &quot;./.git/objects/95&quot;                    
-[129] &quot;./.git/objects/96&quot;                    
-[130] &quot;./.git/objects/97&quot;                    
-[131] &quot;./.git/objects/98&quot;                    
-[132] &quot;./.git/objects/99&quot;                    
-[133] &quot;./.git/objects/9a&quot;                    
-[134] &quot;./.git/objects/9b&quot;                    
-[135] &quot;./.git/objects/9c&quot;                    
-[136] &quot;./.git/objects/9d&quot;                    
-[137] &quot;./.git/objects/9e&quot;                    
-[138] &quot;./.git/objects/9f&quot;                    
-[139] &quot;./.git/objects/a0&quot;                    
-[140] &quot;./.git/objects/a1&quot;                    
-[141] &quot;./.git/objects/a2&quot;                    
-[142] &quot;./.git/objects/a3&quot;                    
-[143] &quot;./.git/objects/a4&quot;                    
-[144] &quot;./.git/objects/a6&quot;                    
-[145] &quot;./.git/objects/a7&quot;                    
-[146] &quot;./.git/objects/a8&quot;                    
-[147] &quot;./.git/objects/a9&quot;                    
-[148] &quot;./.git/objects/ac&quot;                    
-[149] &quot;./.git/objects/ad&quot;                    
-[150] &quot;./.git/objects/ae&quot;                    
-[151] &quot;./.git/objects/af&quot;                    
-[152] &quot;./.git/objects/b0&quot;                    
-[153] &quot;./.git/objects/b1&quot;                    
-[154] &quot;./.git/objects/b2&quot;                    
-[155] &quot;./.git/objects/b3&quot;                    
-[156] &quot;./.git/objects/b4&quot;                    
-[157] &quot;./.git/objects/b5&quot;                    
-[158] &quot;./.git/objects/b7&quot;                    
-[159] &quot;./.git/objects/ba&quot;                    
-[160] &quot;./.git/objects/bb&quot;                    
-[161] &quot;./.git/objects/bc&quot;                    
-[162] &quot;./.git/objects/bd&quot;                    
-[163] &quot;./.git/objects/be&quot;                    
-[164] &quot;./.git/objects/bf&quot;                    
-[165] &quot;./.git/objects/c0&quot;                    
-[166] &quot;./.git/objects/c1&quot;                    
-[167] &quot;./.git/objects/c2&quot;                    
-[168] &quot;./.git/objects/c4&quot;                    
-[169] &quot;./.git/objects/c6&quot;                    
-[170] &quot;./.git/objects/c8&quot;                    
-[171] &quot;./.git/objects/c9&quot;                    
-[172] &quot;./.git/objects/ca&quot;                    
-[173] &quot;./.git/objects/cb&quot;                    
-[174] &quot;./.git/objects/cc&quot;                    
-[175] &quot;./.git/objects/cd&quot;                    
-[176] &quot;./.git/objects/ce&quot;                    
-[177] &quot;./.git/objects/cf&quot;                    
-[178] &quot;./.git/objects/d0&quot;                    
-[179] &quot;./.git/objects/d1&quot;                    
-[180] &quot;./.git/objects/d2&quot;                    
-[181] &quot;./.git/objects/d3&quot;                    
-[182] &quot;./.git/objects/d4&quot;                    
-[183] &quot;./.git/objects/d5&quot;                    
-[184] &quot;./.git/objects/d6&quot;                    
-[185] &quot;./.git/objects/d8&quot;                    
-[186] &quot;./.git/objects/d9&quot;                    
-[187] &quot;./.git/objects/da&quot;                    
-[188] &quot;./.git/objects/db&quot;                    
-[189] &quot;./.git/objects/dc&quot;                    
-[190] &quot;./.git/objects/dd&quot;                    
-[191] &quot;./.git/objects/de&quot;                    
-[192] &quot;./.git/objects/df&quot;                    
-[193] &quot;./.git/objects/e0&quot;                    
-[194] &quot;./.git/objects/e2&quot;                    
-[195] &quot;./.git/objects/e3&quot;                    
-[196] &quot;./.git/objects/e4&quot;                    
-[197] &quot;./.git/objects/e6&quot;                    
-[198] &quot;./.git/objects/e7&quot;                    
-[199] &quot;./.git/objects/e8&quot;                    
-[200] &quot;./.git/objects/e9&quot;                    
-[201] &quot;./.git/objects/ea&quot;                    
-[202] &quot;./.git/objects/eb&quot;                    
-[203] &quot;./.git/objects/ed&quot;                    
-[204] &quot;./.git/objects/ee&quot;                    
-[205] &quot;./.git/objects/ef&quot;                    
-[206] &quot;./.git/objects/f0&quot;                    
-[207] &quot;./.git/objects/f1&quot;                    
-[208] &quot;./.git/objects/f3&quot;                    
-[209] &quot;./.git/objects/f4&quot;                    
-[210] &quot;./.git/objects/f6&quot;                    
-[211] &quot;./.git/objects/f7&quot;                    
-[212] &quot;./.git/objects/f9&quot;                    
-[213] &quot;./.git/objects/fa&quot;                    
-[214] &quot;./.git/objects/fb&quot;                    
-[215] &quot;./.git/objects/fc&quot;                    
-[216] &quot;./.git/objects/fd&quot;                    
-[217] &quot;./.git/objects/ff&quot;                    
-[218] &quot;./.git/objects/info&quot;                  
-[219] &quot;./.git/objects/pack&quot;                  
-[220] &quot;./.git/refs&quot;                          
-[221] &quot;./.git/refs/heads&quot;                    
-[222] &quot;./.git/refs/remotes&quot;                  
-[223] &quot;./.git/refs/remotes/origin&quot;           
-[224] &quot;./.git/refs/tags&quot;                     
-[225] &quot;./R&quot;                                  
-[226] &quot;./.Rproj.user&quot;                        
-[227] &quot;./.Rproj.user/8C11DEC8&quot;               
-[228] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
-[229] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
-[230] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
-[231] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
-[232] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
-[233] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
-[234] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
-[235] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
-[236] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
-[237] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
-[238] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
-[239] &quot;./.Rproj.user/shared&quot;                 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista diretórios, sem sub-dirs
+ [83] &quot;./.git/objects/59&quot;                    
+ [84] &quot;./.git/objects/5a&quot;                    
+ [85] &quot;./.git/objects/5b&quot;                    
+ [86] &quot;./.git/objects/5c&quot;                    
+ [87] &quot;./.git/objects/5d&quot;                    
+ [88] &quot;./.git/objects/5e&quot;                    
+ [89] &quot;./.git/objects/63&quot;                    
+ [90] &quot;./.git/objects/64&quot;                    
+ [91] &quot;./.git/objects/66&quot;                    
+ [92] &quot;./.git/objects/67&quot;                    
+ [93] &quot;./.git/objects/69&quot;                    
+ [94] &quot;./.git/objects/6a&quot;                    
+ [95] &quot;./.git/objects/6b&quot;                    
+ [96] &quot;./.git/objects/6c&quot;                    
+ [97] &quot;./.git/objects/6e&quot;                    
+ [98] &quot;./.git/objects/70&quot;                    
+ [99] &quot;./.git/objects/71&quot;                    
+[100] &quot;./.git/objects/73&quot;                    
+[101] &quot;./.git/objects/74&quot;                    
+[102] &quot;./.git/objects/75&quot;                    
+[103] &quot;./.git/objects/76&quot;                    
+[104] &quot;./.git/objects/77&quot;                    
+[105] &quot;./.git/objects/78&quot;                    
+[106] &quot;./.git/objects/7a&quot;                    
+[107] &quot;./.git/objects/7b&quot;                    
+[108] &quot;./.git/objects/7c&quot;                    
+[109] &quot;./.git/objects/7d&quot;                    
+[110] &quot;./.git/objects/7e&quot;                    
+[111] &quot;./.git/objects/7f&quot;                    
+[112] &quot;./.git/objects/80&quot;                    
+[113] &quot;./.git/objects/81&quot;                    
+[114] &quot;./.git/objects/82&quot;                    
+[115] &quot;./.git/objects/83&quot;                    
+[116] &quot;./.git/objects/84&quot;                    
+[117] &quot;./.git/objects/85&quot;                    
+[118] &quot;./.git/objects/86&quot;                    
+[119] &quot;./.git/objects/88&quot;                    
+[120] &quot;./.git/objects/89&quot;                    
+[121] &quot;./.git/objects/8b&quot;                    
+[122] &quot;./.git/objects/8c&quot;                    
+[123] &quot;./.git/objects/8d&quot;                    
+[124] &quot;./.git/objects/8e&quot;                    
+[125] &quot;./.git/objects/90&quot;                    
+[126] &quot;./.git/objects/91&quot;                    
+[127] &quot;./.git/objects/92&quot;                    
+[128] &quot;./.git/objects/93&quot;                    
+[129] &quot;./.git/objects/95&quot;                    
+[130] &quot;./.git/objects/96&quot;                    
+[131] &quot;./.git/objects/97&quot;                    
+[132] &quot;./.git/objects/98&quot;                    
+[133] &quot;./.git/objects/99&quot;                    
+[134] &quot;./.git/objects/9a&quot;                    
+[135] &quot;./.git/objects/9b&quot;                    
+[136] &quot;./.git/objects/9c&quot;                    
+[137] &quot;./.git/objects/9d&quot;                    
+[138] &quot;./.git/objects/9e&quot;                    
+[139] &quot;./.git/objects/9f&quot;                    
+[140] &quot;./.git/objects/a0&quot;                    
+[141] &quot;./.git/objects/a1&quot;                    
+[142] &quot;./.git/objects/a2&quot;                    
+[143] &quot;./.git/objects/a3&quot;                    
+[144] &quot;./.git/objects/a4&quot;                    
+[145] &quot;./.git/objects/a6&quot;                    
+[146] &quot;./.git/objects/a7&quot;                    
+[147] &quot;./.git/objects/a8&quot;                    
+[148] &quot;./.git/objects/a9&quot;                    
+[149] &quot;./.git/objects/ac&quot;                    
+[150] &quot;./.git/objects/ad&quot;                    
+[151] &quot;./.git/objects/ae&quot;                    
+[152] &quot;./.git/objects/af&quot;                    
+[153] &quot;./.git/objects/b0&quot;                    
+[154] &quot;./.git/objects/b1&quot;                    
+[155] &quot;./.git/objects/b2&quot;                    
+[156] &quot;./.git/objects/b3&quot;                    
+[157] &quot;./.git/objects/b4&quot;                    
+[158] &quot;./.git/objects/b5&quot;                    
+[159] &quot;./.git/objects/b7&quot;                    
+[160] &quot;./.git/objects/ba&quot;                    
+[161] &quot;./.git/objects/bb&quot;                    
+[162] &quot;./.git/objects/bc&quot;                    
+[163] &quot;./.git/objects/bd&quot;                    
+[164] &quot;./.git/objects/be&quot;                    
+[165] &quot;./.git/objects/bf&quot;                    
+[166] &quot;./.git/objects/c0&quot;                    
+[167] &quot;./.git/objects/c1&quot;                    
+[168] &quot;./.git/objects/c2&quot;                    
+[169] &quot;./.git/objects/c4&quot;                    
+[170] &quot;./.git/objects/c6&quot;                    
+[171] &quot;./.git/objects/c8&quot;                    
+[172] &quot;./.git/objects/c9&quot;                    
+[173] &quot;./.git/objects/ca&quot;                    
+[174] &quot;./.git/objects/cb&quot;                    
+[175] &quot;./.git/objects/cc&quot;                    
+[176] &quot;./.git/objects/cd&quot;                    
+[177] &quot;./.git/objects/ce&quot;                    
+[178] &quot;./.git/objects/cf&quot;                    
+[179] &quot;./.git/objects/d0&quot;                    
+[180] &quot;./.git/objects/d1&quot;                    
+[181] &quot;./.git/objects/d2&quot;                    
+[182] &quot;./.git/objects/d3&quot;                    
+[183] &quot;./.git/objects/d4&quot;                    
+[184] &quot;./.git/objects/d5&quot;                    
+[185] &quot;./.git/objects/d6&quot;                    
+[186] &quot;./.git/objects/d8&quot;                    
+[187] &quot;./.git/objects/d9&quot;                    
+[188] &quot;./.git/objects/da&quot;                    
+[189] &quot;./.git/objects/db&quot;                    
+[190] &quot;./.git/objects/dc&quot;                    
+[191] &quot;./.git/objects/dd&quot;                    
+[192] &quot;./.git/objects/de&quot;                    
+[193] &quot;./.git/objects/df&quot;                    
+[194] &quot;./.git/objects/e0&quot;                    
+[195] &quot;./.git/objects/e2&quot;                    
+[196] &quot;./.git/objects/e3&quot;                    
+[197] &quot;./.git/objects/e4&quot;                    
+[198] &quot;./.git/objects/e6&quot;                    
+[199] &quot;./.git/objects/e7&quot;                    
+[200] &quot;./.git/objects/e8&quot;                    
+[201] &quot;./.git/objects/e9&quot;                    
+[202] &quot;./.git/objects/ea&quot;                    
+[203] &quot;./.git/objects/eb&quot;                    
+[204] &quot;./.git/objects/ed&quot;                    
+[205] &quot;./.git/objects/ee&quot;                    
+[206] &quot;./.git/objects/ef&quot;                    
+[207] &quot;./.git/objects/f0&quot;                    
+[208] &quot;./.git/objects/f1&quot;                    
+[209] &quot;./.git/objects/f3&quot;                    
+[210] &quot;./.git/objects/f4&quot;                    
+[211] &quot;./.git/objects/f6&quot;                    
+[212] &quot;./.git/objects/f7&quot;                    
+[213] &quot;./.git/objects/f9&quot;                    
+[214] &quot;./.git/objects/fa&quot;                    
+[215] &quot;./.git/objects/fb&quot;                    
+[216] &quot;./.git/objects/fc&quot;                    
+[217] &quot;./.git/objects/fd&quot;                    
+[218] &quot;./.git/objects/ff&quot;                    
+[219] &quot;./.git/objects/info&quot;                  
+[220] &quot;./.git/objects/pack&quot;                  
+[221] &quot;./.git/refs&quot;                          
+[222] &quot;./.git/refs/heads&quot;                    
+[223] &quot;./.git/refs/remotes&quot;                  
+[224] &quot;./.git/refs/remotes/origin&quot;           
+[225] &quot;./.git/refs/tags&quot;                     
+[226] &quot;./R&quot;                                  
+[227] &quot;./.Rproj.user&quot;                        
+[228] &quot;./.Rproj.user/8C11DEC8&quot;               
+[229] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
+[230] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
+[231] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
+[232] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
+[233] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
+[234] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
+[235] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
+[236] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
+[237] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
+[238] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
+[239] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
+[240] &quot;./.Rproj.user/shared&quot;                 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista diretórios, sem sub-dirs</span>
 <span class="kw">list.dirs</span>(<span class="dt">recursive =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>[1] &quot;./DADOS&quot;       &quot;./data&quot;        &quot;./figs&quot;        &quot;./.git&quot;       
-[5] &quot;./R&quot;           &quot;./.Rproj.user&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista diretórios incluindo caminho relativo
+<pre><code>[1] &quot;./data&quot;        &quot;./figs&quot;        &quot;./.git&quot;        &quot;./R&quot;          
+[5] &quot;./.Rproj.user&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista diretórios incluindo caminho relativo</span>
 <span class="kw">list.dirs</span>(<span class="dt">full.names =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>  [1] &quot;.&quot;                                    
-  [2] &quot;./DADOS&quot;                              
-  [3] &quot;./data&quot;                               
-  [4] &quot;./figs&quot;                               
-  [5] &quot;./.git&quot;                               
-  [6] &quot;./.git/branches&quot;                      
-  [7] &quot;./.git/hooks&quot;                         
-  [8] &quot;./.git/info&quot;                          
-  [9] &quot;./.git/logs&quot;                          
- [10] &quot;./.git/logs/refs&quot;                     
- [11] &quot;./.git/logs/refs/heads&quot;               
- [12] &quot;./.git/logs/refs/remotes&quot;             
- [13] &quot;./.git/logs/refs/remotes/origin&quot;      
- [14] &quot;./.git/objects&quot;                       
- [15] &quot;./.git/objects/00&quot;                    
- [16] &quot;./.git/objects/01&quot;                    
- [17] &quot;./.git/objects/03&quot;                    
- [18] &quot;./.git/objects/04&quot;                    
- [19] &quot;./.git/objects/05&quot;                    
- [20] &quot;./.git/objects/06&quot;                    
- [21] &quot;./.git/objects/07&quot;                    
- [22] &quot;./.git/objects/09&quot;                    
- [23] &quot;./.git/objects/0a&quot;                    
- [24] &quot;./.git/objects/0b&quot;                    
- [25] &quot;./.git/objects/0c&quot;                    
- [26] &quot;./.git/objects/0d&quot;                    
- [27] &quot;./.git/objects/0e&quot;                    
- [28] &quot;./.git/objects/0f&quot;                    
- [29] &quot;./.git/objects/11&quot;                    
- [30] &quot;./.git/objects/12&quot;                    
- [31] &quot;./.git/objects/13&quot;                    
- [32] &quot;./.git/objects/14&quot;                    
- [33] &quot;./.git/objects/16&quot;                    
- [34] &quot;./.git/objects/17&quot;                    
- [35] &quot;./.git/objects/18&quot;                    
- [36] &quot;./.git/objects/19&quot;                    
- [37] &quot;./.git/objects/1e&quot;                    
- [38] &quot;./.git/objects/21&quot;                    
- [39] &quot;./.git/objects/22&quot;                    
- [40] &quot;./.git/objects/23&quot;                    
- [41] &quot;./.git/objects/26&quot;                    
- [42] &quot;./.git/objects/27&quot;                    
- [43] &quot;./.git/objects/28&quot;                    
- [44] &quot;./.git/objects/29&quot;                    
- [45] &quot;./.git/objects/2a&quot;                    
- [46] &quot;./.git/objects/2b&quot;                    
- [47] &quot;./.git/objects/2c&quot;                    
- [48] &quot;./.git/objects/2d&quot;                    
- [49] &quot;./.git/objects/2f&quot;                    
- [50] &quot;./.git/objects/30&quot;                    
- [51] &quot;./.git/objects/31&quot;                    
- [52] &quot;./.git/objects/32&quot;                    
- [53] &quot;./.git/objects/33&quot;                    
- [54] &quot;./.git/objects/34&quot;                    
- [55] &quot;./.git/objects/35&quot;                    
- [56] &quot;./.git/objects/36&quot;                    
- [57] &quot;./.git/objects/37&quot;                    
- [58] &quot;./.git/objects/39&quot;                    
- [59] &quot;./.git/objects/3a&quot;                    
- [60] &quot;./.git/objects/3b&quot;                    
- [61] &quot;./.git/objects/3c&quot;                    
- [62] &quot;./.git/objects/3e&quot;                    
- [63] &quot;./.git/objects/3f&quot;                    
- [64] &quot;./.git/objects/42&quot;                    
- [65] &quot;./.git/objects/43&quot;                    
- [66] &quot;./.git/objects/44&quot;                    
- [67] &quot;./.git/objects/45&quot;                    
- [68] &quot;./.git/objects/46&quot;                    
- [69] &quot;./.git/objects/47&quot;                    
- [70] &quot;./.git/objects/49&quot;                    
- [71] &quot;./.git/objects/4a&quot;                    
- [72] &quot;./.git/objects/4b&quot;                    
- [73] &quot;./.git/objects/4c&quot;                    
+  [2] &quot;./data&quot;                               
+  [3] &quot;./figs&quot;                               
+  [4] &quot;./.git&quot;                               
+  [5] &quot;./.git/branches&quot;                      
+  [6] &quot;./.git/hooks&quot;                         
+  [7] &quot;./.git/info&quot;                          
+  [8] &quot;./.git/logs&quot;                          
+  [9] &quot;./.git/logs/refs&quot;                     
+ [10] &quot;./.git/logs/refs/heads&quot;               
+ [11] &quot;./.git/logs/refs/remotes&quot;             
+ [12] &quot;./.git/logs/refs/remotes/origin&quot;      
+ [13] &quot;./.git/objects&quot;                       
+ [14] &quot;./.git/objects/00&quot;                    
+ [15] &quot;./.git/objects/01&quot;                    
+ [16] &quot;./.git/objects/03&quot;                    
+ [17] &quot;./.git/objects/04&quot;                    
+ [18] &quot;./.git/objects/05&quot;                    
+ [19] &quot;./.git/objects/06&quot;                    
+ [20] &quot;./.git/objects/07&quot;                    
+ [21] &quot;./.git/objects/09&quot;                    
+ [22] &quot;./.git/objects/0a&quot;                    
+ [23] &quot;./.git/objects/0b&quot;                    
+ [24] &quot;./.git/objects/0c&quot;                    
+ [25] &quot;./.git/objects/0d&quot;                    
+ [26] &quot;./.git/objects/0e&quot;                    
+ [27] &quot;./.git/objects/0f&quot;                    
+ [28] &quot;./.git/objects/11&quot;                    
+ [29] &quot;./.git/objects/12&quot;                    
+ [30] &quot;./.git/objects/13&quot;                    
+ [31] &quot;./.git/objects/14&quot;                    
+ [32] &quot;./.git/objects/16&quot;                    
+ [33] &quot;./.git/objects/17&quot;                    
+ [34] &quot;./.git/objects/18&quot;                    
+ [35] &quot;./.git/objects/19&quot;                    
+ [36] &quot;./.git/objects/1e&quot;                    
+ [37] &quot;./.git/objects/21&quot;                    
+ [38] &quot;./.git/objects/22&quot;                    
+ [39] &quot;./.git/objects/23&quot;                    
+ [40] &quot;./.git/objects/26&quot;                    
+ [41] &quot;./.git/objects/27&quot;                    
+ [42] &quot;./.git/objects/28&quot;                    
+ [43] &quot;./.git/objects/29&quot;                    
+ [44] &quot;./.git/objects/2a&quot;                    
+ [45] &quot;./.git/objects/2b&quot;                    
+ [46] &quot;./.git/objects/2c&quot;                    
+ [47] &quot;./.git/objects/2d&quot;                    
+ [48] &quot;./.git/objects/2f&quot;                    
+ [49] &quot;./.git/objects/30&quot;                    
+ [50] &quot;./.git/objects/31&quot;                    
+ [51] &quot;./.git/objects/32&quot;                    
+ [52] &quot;./.git/objects/33&quot;                    
+ [53] &quot;./.git/objects/34&quot;                    
+ [54] &quot;./.git/objects/35&quot;                    
+ [55] &quot;./.git/objects/36&quot;                    
+ [56] &quot;./.git/objects/37&quot;                    
+ [57] &quot;./.git/objects/39&quot;                    
+ [58] &quot;./.git/objects/3a&quot;                    
+ [59] &quot;./.git/objects/3b&quot;                    
+ [60] &quot;./.git/objects/3c&quot;                    
+ [61] &quot;./.git/objects/3e&quot;                    
+ [62] &quot;./.git/objects/3f&quot;                    
+ [63] &quot;./.git/objects/42&quot;                    
+ [64] &quot;./.git/objects/43&quot;                    
+ [65] &quot;./.git/objects/44&quot;                    
+ [66] &quot;./.git/objects/45&quot;                    
+ [67] &quot;./.git/objects/46&quot;                    
+ [68] &quot;./.git/objects/47&quot;                    
+ [69] &quot;./.git/objects/49&quot;                    
+ [70] &quot;./.git/objects/4a&quot;                    
+ [71] &quot;./.git/objects/4b&quot;                    
+ [72] &quot;./.git/objects/4c&quot;                    
+ [73] &quot;./.git/objects/4d&quot;                    
  [74] &quot;./.git/objects/50&quot;                    
  [75] &quot;./.git/objects/51&quot;                    
  [76] &quot;./.git/objects/52&quot;                    
@@ -3259,170 +3259,171 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
  [80] &quot;./.git/objects/56&quot;                    
  [81] &quot;./.git/objects/57&quot;                    
  [82] &quot;./.git/objects/58&quot;                    
- [83] &quot;./.git/objects/5a&quot;                    
- [84] &quot;./.git/objects/5b&quot;                    
- [85] &quot;./.git/objects/5c&quot;                    
- [86] &quot;./.git/objects/5d&quot;                    
- [87] &quot;./.git/objects/5e&quot;                    
- [88] &quot;./.git/objects/63&quot;                    
- [89] &quot;./.git/objects/64&quot;                    
- [90] &quot;./.git/objects/66&quot;                    
- [91] &quot;./.git/objects/67&quot;                    
- [92] &quot;./.git/objects/69&quot;                    
- [93] &quot;./.git/objects/6a&quot;                    
- [94] &quot;./.git/objects/6b&quot;                    
- [95] &quot;./.git/objects/6c&quot;                    
- [96] &quot;./.git/objects/6e&quot;                    
- [97] &quot;./.git/objects/70&quot;                    
- [98] &quot;./.git/objects/71&quot;                    
- [99] &quot;./.git/objects/73&quot;                    
-[100] &quot;./.git/objects/74&quot;                    
-[101] &quot;./.git/objects/75&quot;                    
-[102] &quot;./.git/objects/76&quot;                    
-[103] &quot;./.git/objects/77&quot;                    
-[104] &quot;./.git/objects/78&quot;                    
-[105] &quot;./.git/objects/7a&quot;                    
-[106] &quot;./.git/objects/7b&quot;                    
-[107] &quot;./.git/objects/7c&quot;                    
-[108] &quot;./.git/objects/7d&quot;                    
-[109] &quot;./.git/objects/7e&quot;                    
-[110] &quot;./.git/objects/7f&quot;                    
-[111] &quot;./.git/objects/80&quot;                    
-[112] &quot;./.git/objects/81&quot;                    
-[113] &quot;./.git/objects/82&quot;                    
-[114] &quot;./.git/objects/83&quot;                    
-[115] &quot;./.git/objects/84&quot;                    
-[116] &quot;./.git/objects/85&quot;                    
-[117] &quot;./.git/objects/86&quot;                    
-[118] &quot;./.git/objects/88&quot;                    
-[119] &quot;./.git/objects/89&quot;                    
-[120] &quot;./.git/objects/8b&quot;                    
-[121] &quot;./.git/objects/8c&quot;                    
-[122] &quot;./.git/objects/8d&quot;                    
-[123] &quot;./.git/objects/8e&quot;                    
-[124] &quot;./.git/objects/90&quot;                    
-[125] &quot;./.git/objects/91&quot;                    
-[126] &quot;./.git/objects/92&quot;                    
-[127] &quot;./.git/objects/93&quot;                    
-[128] &quot;./.git/objects/95&quot;                    
-[129] &quot;./.git/objects/96&quot;                    
-[130] &quot;./.git/objects/97&quot;                    
-[131] &quot;./.git/objects/98&quot;                    
-[132] &quot;./.git/objects/99&quot;                    
-[133] &quot;./.git/objects/9a&quot;                    
-[134] &quot;./.git/objects/9b&quot;                    
-[135] &quot;./.git/objects/9c&quot;                    
-[136] &quot;./.git/objects/9d&quot;                    
-[137] &quot;./.git/objects/9e&quot;                    
-[138] &quot;./.git/objects/9f&quot;                    
-[139] &quot;./.git/objects/a0&quot;                    
-[140] &quot;./.git/objects/a1&quot;                    
-[141] &quot;./.git/objects/a2&quot;                    
-[142] &quot;./.git/objects/a3&quot;                    
-[143] &quot;./.git/objects/a4&quot;                    
-[144] &quot;./.git/objects/a6&quot;                    
-[145] &quot;./.git/objects/a7&quot;                    
-[146] &quot;./.git/objects/a8&quot;                    
-[147] &quot;./.git/objects/a9&quot;                    
-[148] &quot;./.git/objects/ac&quot;                    
-[149] &quot;./.git/objects/ad&quot;                    
-[150] &quot;./.git/objects/ae&quot;                    
-[151] &quot;./.git/objects/af&quot;                    
-[152] &quot;./.git/objects/b0&quot;                    
-[153] &quot;./.git/objects/b1&quot;                    
-[154] &quot;./.git/objects/b2&quot;                    
-[155] &quot;./.git/objects/b3&quot;                    
-[156] &quot;./.git/objects/b4&quot;                    
-[157] &quot;./.git/objects/b5&quot;                    
-[158] &quot;./.git/objects/b7&quot;                    
-[159] &quot;./.git/objects/ba&quot;                    
-[160] &quot;./.git/objects/bb&quot;                    
-[161] &quot;./.git/objects/bc&quot;                    
-[162] &quot;./.git/objects/bd&quot;                    
-[163] &quot;./.git/objects/be&quot;                    
-[164] &quot;./.git/objects/bf&quot;                    
-[165] &quot;./.git/objects/c0&quot;                    
-[166] &quot;./.git/objects/c1&quot;                    
-[167] &quot;./.git/objects/c2&quot;                    
-[168] &quot;./.git/objects/c4&quot;                    
-[169] &quot;./.git/objects/c6&quot;                    
-[170] &quot;./.git/objects/c8&quot;                    
-[171] &quot;./.git/objects/c9&quot;                    
-[172] &quot;./.git/objects/ca&quot;                    
-[173] &quot;./.git/objects/cb&quot;                    
-[174] &quot;./.git/objects/cc&quot;                    
-[175] &quot;./.git/objects/cd&quot;                    
-[176] &quot;./.git/objects/ce&quot;                    
-[177] &quot;./.git/objects/cf&quot;                    
-[178] &quot;./.git/objects/d0&quot;                    
-[179] &quot;./.git/objects/d1&quot;                    
-[180] &quot;./.git/objects/d2&quot;                    
-[181] &quot;./.git/objects/d3&quot;                    
-[182] &quot;./.git/objects/d4&quot;                    
-[183] &quot;./.git/objects/d5&quot;                    
-[184] &quot;./.git/objects/d6&quot;                    
-[185] &quot;./.git/objects/d8&quot;                    
-[186] &quot;./.git/objects/d9&quot;                    
-[187] &quot;./.git/objects/da&quot;                    
-[188] &quot;./.git/objects/db&quot;                    
-[189] &quot;./.git/objects/dc&quot;                    
-[190] &quot;./.git/objects/dd&quot;                    
-[191] &quot;./.git/objects/de&quot;                    
-[192] &quot;./.git/objects/df&quot;                    
-[193] &quot;./.git/objects/e0&quot;                    
-[194] &quot;./.git/objects/e2&quot;                    
-[195] &quot;./.git/objects/e3&quot;                    
-[196] &quot;./.git/objects/e4&quot;                    
-[197] &quot;./.git/objects/e6&quot;                    
-[198] &quot;./.git/objects/e7&quot;                    
-[199] &quot;./.git/objects/e8&quot;                    
-[200] &quot;./.git/objects/e9&quot;                    
-[201] &quot;./.git/objects/ea&quot;                    
-[202] &quot;./.git/objects/eb&quot;                    
-[203] &quot;./.git/objects/ed&quot;                    
-[204] &quot;./.git/objects/ee&quot;                    
-[205] &quot;./.git/objects/ef&quot;                    
-[206] &quot;./.git/objects/f0&quot;                    
-[207] &quot;./.git/objects/f1&quot;                    
-[208] &quot;./.git/objects/f3&quot;                    
-[209] &quot;./.git/objects/f4&quot;                    
-[210] &quot;./.git/objects/f6&quot;                    
-[211] &quot;./.git/objects/f7&quot;                    
-[212] &quot;./.git/objects/f9&quot;                    
-[213] &quot;./.git/objects/fa&quot;                    
-[214] &quot;./.git/objects/fb&quot;                    
-[215] &quot;./.git/objects/fc&quot;                    
-[216] &quot;./.git/objects/fd&quot;                    
-[217] &quot;./.git/objects/ff&quot;                    
-[218] &quot;./.git/objects/info&quot;                  
-[219] &quot;./.git/objects/pack&quot;                  
-[220] &quot;./.git/refs&quot;                          
-[221] &quot;./.git/refs/heads&quot;                    
-[222] &quot;./.git/refs/remotes&quot;                  
-[223] &quot;./.git/refs/remotes/origin&quot;           
-[224] &quot;./.git/refs/tags&quot;                     
-[225] &quot;./R&quot;                                  
-[226] &quot;./.Rproj.user&quot;                        
-[227] &quot;./.Rproj.user/8C11DEC8&quot;               
-[228] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
-[229] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
-[230] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
-[231] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
-[232] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
-[233] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
-[234] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
-[235] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
-[236] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
-[237] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
-[238] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
-[239] &quot;./.Rproj.user/shared&quot;                 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista todos arquivo que terminam com txt
-## &quot;txt$&quot; é uma expressão regular (regex)
+ [83] &quot;./.git/objects/59&quot;                    
+ [84] &quot;./.git/objects/5a&quot;                    
+ [85] &quot;./.git/objects/5b&quot;                    
+ [86] &quot;./.git/objects/5c&quot;                    
+ [87] &quot;./.git/objects/5d&quot;                    
+ [88] &quot;./.git/objects/5e&quot;                    
+ [89] &quot;./.git/objects/63&quot;                    
+ [90] &quot;./.git/objects/64&quot;                    
+ [91] &quot;./.git/objects/66&quot;                    
+ [92] &quot;./.git/objects/67&quot;                    
+ [93] &quot;./.git/objects/69&quot;                    
+ [94] &quot;./.git/objects/6a&quot;                    
+ [95] &quot;./.git/objects/6b&quot;                    
+ [96] &quot;./.git/objects/6c&quot;                    
+ [97] &quot;./.git/objects/6e&quot;                    
+ [98] &quot;./.git/objects/70&quot;                    
+ [99] &quot;./.git/objects/71&quot;                    
+[100] &quot;./.git/objects/73&quot;                    
+[101] &quot;./.git/objects/74&quot;                    
+[102] &quot;./.git/objects/75&quot;                    
+[103] &quot;./.git/objects/76&quot;                    
+[104] &quot;./.git/objects/77&quot;                    
+[105] &quot;./.git/objects/78&quot;                    
+[106] &quot;./.git/objects/7a&quot;                    
+[107] &quot;./.git/objects/7b&quot;                    
+[108] &quot;./.git/objects/7c&quot;                    
+[109] &quot;./.git/objects/7d&quot;                    
+[110] &quot;./.git/objects/7e&quot;                    
+[111] &quot;./.git/objects/7f&quot;                    
+[112] &quot;./.git/objects/80&quot;                    
+[113] &quot;./.git/objects/81&quot;                    
+[114] &quot;./.git/objects/82&quot;                    
+[115] &quot;./.git/objects/83&quot;                    
+[116] &quot;./.git/objects/84&quot;                    
+[117] &quot;./.git/objects/85&quot;                    
+[118] &quot;./.git/objects/86&quot;                    
+[119] &quot;./.git/objects/88&quot;                    
+[120] &quot;./.git/objects/89&quot;                    
+[121] &quot;./.git/objects/8b&quot;                    
+[122] &quot;./.git/objects/8c&quot;                    
+[123] &quot;./.git/objects/8d&quot;                    
+[124] &quot;./.git/objects/8e&quot;                    
+[125] &quot;./.git/objects/90&quot;                    
+[126] &quot;./.git/objects/91&quot;                    
+[127] &quot;./.git/objects/92&quot;                    
+[128] &quot;./.git/objects/93&quot;                    
+[129] &quot;./.git/objects/95&quot;                    
+[130] &quot;./.git/objects/96&quot;                    
+[131] &quot;./.git/objects/97&quot;                    
+[132] &quot;./.git/objects/98&quot;                    
+[133] &quot;./.git/objects/99&quot;                    
+[134] &quot;./.git/objects/9a&quot;                    
+[135] &quot;./.git/objects/9b&quot;                    
+[136] &quot;./.git/objects/9c&quot;                    
+[137] &quot;./.git/objects/9d&quot;                    
+[138] &quot;./.git/objects/9e&quot;                    
+[139] &quot;./.git/objects/9f&quot;                    
+[140] &quot;./.git/objects/a0&quot;                    
+[141] &quot;./.git/objects/a1&quot;                    
+[142] &quot;./.git/objects/a2&quot;                    
+[143] &quot;./.git/objects/a3&quot;                    
+[144] &quot;./.git/objects/a4&quot;                    
+[145] &quot;./.git/objects/a6&quot;                    
+[146] &quot;./.git/objects/a7&quot;                    
+[147] &quot;./.git/objects/a8&quot;                    
+[148] &quot;./.git/objects/a9&quot;                    
+[149] &quot;./.git/objects/ac&quot;                    
+[150] &quot;./.git/objects/ad&quot;                    
+[151] &quot;./.git/objects/ae&quot;                    
+[152] &quot;./.git/objects/af&quot;                    
+[153] &quot;./.git/objects/b0&quot;                    
+[154] &quot;./.git/objects/b1&quot;                    
+[155] &quot;./.git/objects/b2&quot;                    
+[156] &quot;./.git/objects/b3&quot;                    
+[157] &quot;./.git/objects/b4&quot;                    
+[158] &quot;./.git/objects/b5&quot;                    
+[159] &quot;./.git/objects/b7&quot;                    
+[160] &quot;./.git/objects/ba&quot;                    
+[161] &quot;./.git/objects/bb&quot;                    
+[162] &quot;./.git/objects/bc&quot;                    
+[163] &quot;./.git/objects/bd&quot;                    
+[164] &quot;./.git/objects/be&quot;                    
+[165] &quot;./.git/objects/bf&quot;                    
+[166] &quot;./.git/objects/c0&quot;                    
+[167] &quot;./.git/objects/c1&quot;                    
+[168] &quot;./.git/objects/c2&quot;                    
+[169] &quot;./.git/objects/c4&quot;                    
+[170] &quot;./.git/objects/c6&quot;                    
+[171] &quot;./.git/objects/c8&quot;                    
+[172] &quot;./.git/objects/c9&quot;                    
+[173] &quot;./.git/objects/ca&quot;                    
+[174] &quot;./.git/objects/cb&quot;                    
+[175] &quot;./.git/objects/cc&quot;                    
+[176] &quot;./.git/objects/cd&quot;                    
+[177] &quot;./.git/objects/ce&quot;                    
+[178] &quot;./.git/objects/cf&quot;                    
+[179] &quot;./.git/objects/d0&quot;                    
+[180] &quot;./.git/objects/d1&quot;                    
+[181] &quot;./.git/objects/d2&quot;                    
+[182] &quot;./.git/objects/d3&quot;                    
+[183] &quot;./.git/objects/d4&quot;                    
+[184] &quot;./.git/objects/d5&quot;                    
+[185] &quot;./.git/objects/d6&quot;                    
+[186] &quot;./.git/objects/d8&quot;                    
+[187] &quot;./.git/objects/d9&quot;                    
+[188] &quot;./.git/objects/da&quot;                    
+[189] &quot;./.git/objects/db&quot;                    
+[190] &quot;./.git/objects/dc&quot;                    
+[191] &quot;./.git/objects/dd&quot;                    
+[192] &quot;./.git/objects/de&quot;                    
+[193] &quot;./.git/objects/df&quot;                    
+[194] &quot;./.git/objects/e0&quot;                    
+[195] &quot;./.git/objects/e2&quot;                    
+[196] &quot;./.git/objects/e3&quot;                    
+[197] &quot;./.git/objects/e4&quot;                    
+[198] &quot;./.git/objects/e6&quot;                    
+[199] &quot;./.git/objects/e7&quot;                    
+[200] &quot;./.git/objects/e8&quot;                    
+[201] &quot;./.git/objects/e9&quot;                    
+[202] &quot;./.git/objects/ea&quot;                    
+[203] &quot;./.git/objects/eb&quot;                    
+[204] &quot;./.git/objects/ed&quot;                    
+[205] &quot;./.git/objects/ee&quot;                    
+[206] &quot;./.git/objects/ef&quot;                    
+[207] &quot;./.git/objects/f0&quot;                    
+[208] &quot;./.git/objects/f1&quot;                    
+[209] &quot;./.git/objects/f3&quot;                    
+[210] &quot;./.git/objects/f4&quot;                    
+[211] &quot;./.git/objects/f6&quot;                    
+[212] &quot;./.git/objects/f7&quot;                    
+[213] &quot;./.git/objects/f9&quot;                    
+[214] &quot;./.git/objects/fa&quot;                    
+[215] &quot;./.git/objects/fb&quot;                    
+[216] &quot;./.git/objects/fc&quot;                    
+[217] &quot;./.git/objects/fd&quot;                    
+[218] &quot;./.git/objects/ff&quot;                    
+[219] &quot;./.git/objects/info&quot;                  
+[220] &quot;./.git/objects/pack&quot;                  
+[221] &quot;./.git/refs&quot;                          
+[222] &quot;./.git/refs/heads&quot;                    
+[223] &quot;./.git/refs/remotes&quot;                  
+[224] &quot;./.git/refs/remotes/origin&quot;           
+[225] &quot;./.git/refs/tags&quot;                     
+[226] &quot;./R&quot;                                  
+[227] &quot;./.Rproj.user&quot;                        
+[228] &quot;./.Rproj.user/8C11DEC8&quot;               
+[229] &quot;./.Rproj.user/8C11DEC8/ctx&quot;           
+[230] &quot;./.Rproj.user/8C11DEC8/pcs&quot;           
+[231] &quot;./.Rproj.user/8C11DEC8/presentation&quot;  
+[232] &quot;./.Rproj.user/8C11DEC8/sdb&quot;           
+[233] &quot;./.Rproj.user/8C11DEC8/sdb/per&quot;       
+[234] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
+[235] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
+[236] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
+[237] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
+[238] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
+[239] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
+[240] &quot;./.Rproj.user/shared&quot;                 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista todos arquivo que terminam com txt</span>
+<span class="co"># &quot;txt$&quot; é uma expressão regular (regex)</span>
 <span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;txt$&quot;</span>)</code></pre></div>
 <pre><code>character(0)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;txt$|TXT$&quot;</span>)</code></pre></div>
 <pre><code>character(0)</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## arquivos que iniciam com m ou S
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># arquivos que iniciam com m ou S</span>
 <span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;.&quot;</span>,<span class="dt">pattern =</span> <span class="st">&quot;^[m, S]&quot;</span>)</code></pre></div>
 <pre><code>character(0)</code></pre>
 </div>
@@ -3432,18 +3433,17 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 <ul>
 <li>Criar um diretório para armazenar dados utilizados no curso até agora;</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;DADOS&quot;</span>)</code></pre></div>
-<pre><code>Warning in dir.create(&quot;DADOS&quot;): 'DADOS' already exists</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.exists</span>(<span class="st">&quot;DADOS&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;DADOS&quot;</span>)
+<span class="kw">dir.exists</span>(<span class="st">&quot;DADOS&quot;</span>)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <ul>
 <li>selecionar os arquivos de dados do curso no diretório de trabalho</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## lista de arquivos no wd
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lista de arquivos no wd</span>
 all_files &lt;-<span class="st"> </span><span class="kw">list.files</span>()
-## extensões dos arquivos de dados usados no curso
+<span class="co"># extensões dos arquivos de dados usados no curso</span>
 extensoes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;txt&quot;</span>, <span class="st">&quot;TXT&quot;</span>, <span class="st">&quot;nc&quot;</span>,<span class="st">&quot;xls&quot;</span>, <span class="st">&quot;bin&quot;</span>, <span class="st">&quot;csv&quot;</span>, <span class="st">&quot;RData&quot;</span>, <span class="st">&quot;rds&quot;</span>, <span class="st">&quot;zip&quot;</span>, <span class="st">&quot;asc&quot;</span>, <span class="st">&quot;dbf&quot;</span>, <span class="st">&quot;prj&quot;</span>, <span class="st">&quot;sbn&quot;</span>, <span class="st">&quot;sbx&quot;</span>, <span class="st">&quot;shp&quot;</span>, <span class="st">&quot;shx&quot;</span>, <span class="st">&quot;db3&quot;</span>)
-## arquivos de dados do curso
+<span class="co"># arquivos de dados do curso</span>
 data_files &lt;-<span class="st"> </span>all_files[<span class="kw">file_ext</span>(all_files) %in%<span class="st"> </span>extensoes]</code></pre></div>
 <ul>
 <li>copiar esses arquivos para o novo diretório;</li>
@@ -3469,10 +3469,10 @@ files2remove</code></pre></div>
 </ul>
 <p>Para criar arquivos e diretórios temporários podemos usar as funções <code>tempfile()</code> e <code>tempdir()</code>, respectivamente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempdir</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/RtmpV6CeO2&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/RtmpBaRtWN&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempfile</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/RtmpV6CeO2/file6bdd6ad256c2&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## baixando dados da web
+<pre><code>[1] &quot;/tmp/RtmpBaRtWN/file6e511896abfe&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># baixando dados da web</span>
 arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span>,
               <span class="dt">destfile =</span> arq_temp)
