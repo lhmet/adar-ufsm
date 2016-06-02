@@ -594,15 +594,15 @@ Quando se trabalha com dados enormes as informações sobre seu sistema operacio
 
 + quantidade de memória disponível e aplicações em uso
 
-    $ htop
+         $ htop
 
 + usuários logados no mesmo sistema
 
-    $ last
+         $ last
 
 + sistema operacional (SO), 32 ou 64 bit?
 
-```{r }
+```{r , comment=""}
 data.frame(Sys.info())
 ```
 
@@ -896,7 +896,7 @@ A solução mais simples é converter as planilhas Excel para `csv` usando algum
 Aqui vamos mostrar como usar o pacote [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html) para leitura de arquivos Excel, em ambos formatos `xls` e `xlsx`; com uma ou mais planilhas. A leitura pode ser feita em dois passos: 1) carregar o arquivo Excel, com a função `loadworkbook()`; 2) ler a(s) planilha(s) do arquivo carregado.
 
 
-```{r Chunk710, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk710, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE, warning=FALSE}
 # sessionInfo()
 library(XLConnect)
 # nome do arquivo excel
@@ -1026,7 +1026,7 @@ Podemos construir o caminho até um arquivo usando o nome do diretório e do arq
 
 ```{r Chunk820, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
 # carregando pacote tools para usar função file_ext()
-require(tools)
+library(tools)
 # emenda diretorio ao nome do aruivo com "/"
 file_name <- file.path(wd, "CHUVAS.TXT")
 file.path("/home", "lci", "nome_aluno", "R")
@@ -1085,47 +1085,47 @@ Para ilustrar as funções de manipulação de arquivos e diretórios vamos real
 + Criar um diretório para armazenar dados utilizados no curso até agora;
 
 ```{r Chunk850, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-dir.create("DADOS")
-dir.exists("DADOS")
+(new_dir <- file.path("/home", Sys.getenv()[["LOGNAME"]], "dados_adar"))
+if(!dir.exists(new_dir)) dir.create(new_dir)
+dir.exists(new_dir)
 ```
 
 + selecionar os arquivos de dados do curso no diretório de trabalho
 
 ```{r Chunk851, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-# lista de arquivos no wd
-all_files <- list.files()
+# lista dos 30 primeiros arquivos no wd
+head(all_files <- list.files(recursive = TRUE), 30)
 # extensões dos arquivos de dados usados no curso
 extensoes <- c("txt", "TXT", "nc","xls", "bin", "csv", "RData", "rds", "zip", "asc", "dbf", "prj", "sbn", "sbx", "shp", "shx", "db3")
-# arquivos de dados do curso
-data_files <- all_files[file_ext(all_files) %in% extensoes]
+# arquivos de dados do curso selecionados
+(sel_files <- all_files[file_ext(all_files) %in% extensoes])
 ```
 
 + copiar esses arquivos para o novo diretório;
 
 ```{r Chunk852, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-file.copy(from = data_files, to = file.path("DADOS", data_files))
+file.copy(from = sel_files, 
+          to = new_dir,
+          overwrite = TRUE)
 ```
 
 + remover alguns arquivos do novo diretório;
 
 ```{r Chunk853, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
-files2remove <- list.files(path = "DADOS", pattern = "^[m, S]", full.names = TRUE)
+# arquivos que começam como "O" ou "S"
+files2remove <- list.files(path = new_dir, 
+                           pattern = "^[O, S]",
+                           full.names = TRUE)
 files2remove
 file.remove(files2remove)
-list.files(path = "DADOS", pattern = "^[m, S]", full.names = TRUE)
+list.files(path = new_dir, 
+           pattern = "^[O, S]", 
+           full.names = TRUE)
 ```
 
-Outras funções para manipulação de arquivos são:
+Veja mais funções para manipulação de arquivos em `?connections`.
 
-+ `file`
-
-+ `file.create()`
-
-+ `file.rename(from, to)`
-
-+ `file.append(file1, file2)`
-
-Para criar arquivos e diretórios temporários podemos usar as funções `tempfile()` e `tempdir()`, respectivamente.
+Para criar arquivos e diretórios temporários podemos usar as funções `tempfile()` e `tempdir()`, respectivamente. O exemplo abaixo mostra como baixar o arquivo da internet em um arquivo temporário.
 
 ```{r Chunk854, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
 tempdir()
@@ -1134,7 +1134,9 @@ tempfile()
 arq_temp <- tempfile()
 download.file(url = "http://www.cpc.ncep.noaa.gov/data/indices/soi",
               destfile = arq_temp)
+# lendo arquivo baixado
 (soi <- readLines(arq_temp, n = 10))
+# apagando o arquivo tmp
 file.remove(arq_temp)
 ```
 
