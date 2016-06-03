@@ -482,10 +482,10 @@ Para incluir link de um site é só colocar o endereço web entre `< >`:
  
  
 ```
-Aqui temos um [link](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) que  podemos expressar também incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
+Podemos criar um link com rótulo, p.ex.: [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
 ```
 
-Podemos criar um link incluindo um rótulo [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
+Podemos criar um link com rótulo, p.ex.: [cartão de referência](http://cran.r-project.org/doc/contrib/Short-refcard.pdf "Manter esse Cartão de referência para consultas") que aparecerá ao passarmos o *mouse* sobre o link.
 
 
 ## Figuras
