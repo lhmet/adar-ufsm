@@ -2880,9 +2880,9 @@ arq_name</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tamanho, data de criação, permissões, etc </span>
 <span class="kw">file.info</span>(<span class="st">&quot;data/chuva_df.RData&quot;</span>)</code></pre></div>
 <pre><code>                     size isdir mode               mtime
-data/chuva_df.RData 23030 FALSE  664 2016-06-02 18:05:25
+data/chuva_df.RData 23030 FALSE  664 2016-06-02 21:07:32
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-06-02 18:05:25 2016-06-02 18:05:25 1000 1000
+data/chuva_df.RData 2016-06-02 21:07:32 2016-06-02 21:07:32 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 </div>
@@ -3147,7 +3147,7 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 [236] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
 [237] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
 [238] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
-[239] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
+[239] &quot;./.Rproj.user/8C11DEC8/sdb/s-E56F3F82&quot;
 [240] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
 [241] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
 [242] &quot;./.Rproj.user/shared&quot;                 </code></pre>
@@ -3395,7 +3395,7 @@ data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 [236] &quot;./.Rproj.user/8C11DEC8/sdb/per/t&quot;     
 [237] &quot;./.Rproj.user/8C11DEC8/sdb/per/u&quot;     
 [238] &quot;./.Rproj.user/8C11DEC8/sdb/prop&quot;      
-[239] &quot;./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6&quot;
+[239] &quot;./.Rproj.user/8C11DEC8/sdb/s-E56F3F82&quot;
 [240] &quot;./.Rproj.user/8C11DEC8/viewer-cache&quot;  
 [241] &quot;./.Rproj.user/8C11DEC8/viewer_history&quot;
 [242] &quot;./.Rproj.user/shared&quot;                 </code></pre>
@@ -3515,9 +3515,9 @@ files2remove</code></pre></div>
 <p>Veja mais funções para manipulação de arquivos em <code>?connections</code>.</p>
 <p>Para criar arquivos e diretórios temporários podemos usar as funções <code>tempfile()</code> e <code>tempdir()</code>, respectivamente. O exemplo abaixo mostra como baixar o arquivo da internet em um arquivo temporário.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempdir</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/RtmpuzPDy1&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/RtmpyHZAiF&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempfile</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/RtmpuzPDy1/file73863590545f&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/RtmpyHZAiF/filefa569c930f&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># baixando dados da web</span>
 arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span>,

@@ -3623,9 +3623,9 @@ file.info("data/chuva_df.RData")
 
 ```
                      size isdir mode               mtime
-data/chuva_df.RData 23030 FALSE  664 2016-06-02 18:05:25
+data/chuva_df.RData 23030 FALSE  664 2016-06-02 21:07:32
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-06-02 18:05:25 2016-06-02 18:05:25 1000 1000
+data/chuva_df.RData 2016-06-02 21:07:32 2016-06-02 21:07:32 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista
 ```
@@ -3904,7 +3904,7 @@ list.dirs()
 [236] "./.Rproj.user/8C11DEC8/sdb/per/t"     
 [237] "./.Rproj.user/8C11DEC8/sdb/per/u"     
 [238] "./.Rproj.user/8C11DEC8/sdb/prop"      
-[239] "./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6"
+[239] "./.Rproj.user/8C11DEC8/sdb/s-E56F3F82"
 [240] "./.Rproj.user/8C11DEC8/viewer-cache"  
 [241] "./.Rproj.user/8C11DEC8/viewer_history"
 [242] "./.Rproj.user/shared"                 
@@ -4164,7 +4164,7 @@ list.dirs(full.names = TRUE)
 [236] "./.Rproj.user/8C11DEC8/sdb/per/t"     
 [237] "./.Rproj.user/8C11DEC8/sdb/per/u"     
 [238] "./.Rproj.user/8C11DEC8/sdb/prop"      
-[239] "./.Rproj.user/8C11DEC8/sdb/s-E08A6CC6"
+[239] "./.Rproj.user/8C11DEC8/sdb/s-E56F3F82"
 [240] "./.Rproj.user/8C11DEC8/viewer-cache"  
 [241] "./.Rproj.user/8C11DEC8/viewer_history"
 [242] "./.Rproj.user/shared"                 
@@ -4360,7 +4360,7 @@ tempdir()
 ```
 
 ```
-[1] "/tmp/RtmpuzPDy1"
+[1] "/tmp/RtmpyHZAiF"
 ```
 
 ```r
@@ -4368,7 +4368,7 @@ tempfile()
 ```
 
 ```
-[1] "/tmp/RtmpuzPDy1/file73863590545f"
+[1] "/tmp/RtmpyHZAiF/filefa569c930f"
 ```
 
 ```r
