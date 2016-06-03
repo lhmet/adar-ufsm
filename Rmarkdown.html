@@ -160,7 +160,7 @@ $(document).ready(function () {
 <hr />
 <div id="introdução" class="section level1">
 <h1><span class="header-section-number">1</span> Introdução</h1>
-<p>Este documento foi escrito em <a href="http://rmarkdown.rstudio.com/">R Markdown</a>, um sistema que combina uma sintaxe de formatação de texto simples (o <a href="http://daringfireball.net/projects/markdown/">Markdown</a>) com trechos de códigos <a href="http://www.r-project.org">R</a> que são avaliados e o resultado é incorporado no documento final. O documento pode ser criado nos formatos HTML, pdf ou Word.</p>
+<p>Este documento foi escrito em <a href="http://rmarkdown.rstudio.com/">R Markdown</a>, um sistema que combina uma sintaxe de formatação de texto simples (o <a href="http://daringfireball.net/projects/markdown/">Markdown</a>) com trechos de códigos <a href="http://www.r-project.org">R</a> que são avaliados e o resultado é incorporado no documento final. O documento pode ser criado nos formatos HTML, PDF ou Word.</p>
 <p>O R Markdown está disponível no RStudio e sua implementação é baseada nos pacotes <a href="http://yihui.name/knitr/">knitr</a> e <a href="http://pandoc.org/">pandoc</a>. As dos arquivos R Markdown é <code>.Rmd</code>. Um texto elaborado em R Markdown pode ser é produzido clicando-se no ícone <code>Knit HTML</code> ou pelo atalho <code>Ctr+Shift+K</code> no RStudio.</p>
 <p>Os documentos R markdown podem ser disponibilizados na internet por meio do</p>
 <ul>
@@ -179,7 +179,7 @@ $(document).ready(function () {
 </div>
 <div id="como-usar-o-r-markdown" class="section level1">
 <h1><span class="header-section-number">3</span> Como usar o <em>R Markdown</em></h1>
-<p>A idéia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular.</p>
+<p>A ideia básica é que o texto seja intercalado com blocos ou trechos de código que são identificados de uma forma particular.</p>
 <p>Por exemplo, para mostrar a expressão usada no R para instalar os pacotes <code>rmarkdown</code> e <code>gcookbook</code>, digitamos o seguinte trecho no corpo do texto do arquivo <code>.Rmd</code> criado no RStudio.</p>
 <pre><code>```{r}
 install.packages('rmarkdown', dependencies = TRUE)
@@ -189,7 +189,7 @@ install.packages('gcookbook', dependencies = TRUE)
 <p>O texto acima aparecerá da seguinte forma no documento <code>html</code>:</p>
 <pre class="r"><code>install.packages('rmarkdown', dependencies = TRUE)
 install.packages('gcookbook', dependencies = TRUE)</code></pre>
-<p>Os trechos de código (<em>chuncks</em>) são avaliados pelo R na ordem em que eles aparecem. Os objetos criados criados em um <em>chunck</em> permanecem disponíveis no ambiente para uso em chuncks posteriores. O código no <em>chunck</em> é destacado de forma diferente do texto. Os resultados (tabelas, gráficos e outros objetos) gerados pelo código de um <em>chunck</em> também são incorporados no documento.</p>
+<p>Os trechos de código (<em>chuncks</em>) são avaliados pelo R na ordem em que eles aparecem. Os objetos criados criados em um <em>chunck</em> permanecem disponíveis no ambiente para uso em <em>chuncks</em> posteriores. O código no <em>chunck</em> é destacado de forma diferente do texto. Os resultados (tabelas, gráficos e outros objetos) gerados pelo código de um <em>chunck</em> também são incorporados no documento.</p>
 <p>Nesse documento mostramos os principais elementos do <strong><em>Markdown</em></strong> e como construir os <strong><em>chunks</em></strong>.</p>
 </div>
 <div id="inserir-codigo-r-no-documento." class="section level1">
@@ -536,13 +536,13 @@ kable(s, caption = &quot;Tabela 1: Resumo estatístico dos dados de 'qualidade d
 <pre><code>  : Amostra de tabela com grades.
                                  
   +---------------+---------------+--------------------+
-  | Fruit         | Price         | Advantages         |
+  | Variável1     | Variável2     | descrição          |
   +===============+===============+====================+
-  | Bananas       | $1.34         | - built-in wrapper |
-  |               |               | - bright color     |
+  | 1             |  1.34         | - Observação 1     |
+  |               |               | - Observação 2     |
   +---------------+---------------+--------------------+
-  | Oranges       | $2.10         | - cures scurvy     |
-  |               |               | - tasty            |
+  | 2             |  2.10         | - Observação 2     |
+  |               |               | - Linha 2          |
   +---------------+---------------+--------------------+</code></pre>
 <table style="width:74%;">
 <caption>Amostra de tabela com grades.</caption>
@@ -553,26 +553,26 @@ kable(s, caption = &quot;Tabela 1: Resumo estatístico dos dados de 'qualidade d
 </colgroup>
 <thead>
 <tr class="header">
-<th>Fruit</th>
-<th>Price</th>
-<th>Advantages</th>
+<th>Variável1</th>
+<th>Variável2</th>
+<th>descrição</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Bananas</p></td>
-<td><p>$1.34</p></td>
+<td><p>1</p></td>
+<td><p>1.34</p></td>
 <td><ul>
-<li>built-in wrapper</li>
-<li>bright color</li>
+<li>Observação 1</li>
+<li>Linha 1</li>
 </ul></td>
 </tr>
 <tr class="even">
-<td><p>Oranges</p></td>
-<td><p>$2.10</p></td>
+<td><p>2</p></td>
+<td><p>2.10</p></td>
 <td><ul>
-<li>cures scurvy</li>
-<li>tasty</li>
+<li>Observação 2</li>
+<li>Linha 2</li>
 </ul></td>
 </tr>
 </tbody>
