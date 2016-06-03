@@ -1,6 +1,9 @@
 # Instalando *R* e RStudio
-Jônatan Tatsch, Roilan Valdés  
-10-03-2016  
+| Jônatan Tatsch, Roilan Valdés
+|
+| UFSM
+  
+`r format(Sys.Date(), format = '%d-%m-%Y')`  
 
 
 - - -
@@ -30,7 +33,13 @@ O *R* pode ser instalado a partir dos binários pré-compilados ou do código fo
 O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não a tenha, consulte o administrador do sistema.
 Alguns comandos linux intuitivos serão utilizados, por isso, mesmo quem não é usuário linux será capaz de entendê-los. 
 
-Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são as 12.04 (abril de 2012, *codename* `precise`), 14.04 (abril de 2014, *codename* `trusty`) e a 15.04 (abril de 2015, *codename* `vivid`). Para saber mais sobre as versões de Ubuntu [clique aqui](http://releases.ubuntu.com/).
+Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são:
+
+- 12.04 (abril de 2012, *codename* `precise`)
+- 14.04 (abril de 2014, *codename* `trusty`) 
+- 16.04 (abril de 2016, *codename* `xenial`)
+
+Clique [aqui](http://releases.ubuntu.com/) para saber mais sobre as versões do Ubuntu.
 
 # *R* sempre atualizado
 
@@ -52,17 +61,17 @@ Também é possível fazer isso a partir do *R*, conforme o comando abaixo que m
  [2]                                                                                                    
  [3] # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to                          
  [4] # newer versions of the distribution.                                                              
- [5] deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                                    
- [6] deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                                
- [7]                                                                                                    
- [8] ## Major bug fix updates produced after the final release of the                                   
- [9] ## distribution.                                                                                   
-[10] deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted                            
-[11] deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted                        
-[12]                                                                                                    
-[13] ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu                        
-[14] ## team. Also, please note that software in universe WILL NOT receive any                          
-[15] ## review or updates from the Ubuntu security team.                                                
+ [5] deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted                                      
+ [6] deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted                                  
+ [7] #deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                                   
+ [8] #deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                               
+ [9]                                                                                                    
+[10] ## Major bug fix updates produced after the final release of the                                   
+[11] ## distribution.                                                                                   
+[12] deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted                            
+[13] deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted                        
+[14]                                                                                                    
+[15] ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu                        
 ```
 
 Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando [^1]:
@@ -169,7 +178,7 @@ A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequênc
 plot(1:10)
 ```
 
-<img src="figs/Chunck4-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figs/Chunck4-1.png" style="display: block; margin: auto;" />
 
 Vamos sair do *R* sem salvar os dados da seção.
 
@@ -201,7 +210,7 @@ Abra o RStudio digitando no terminal:
 
     $ rstudio &
     
-Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece.
+Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista a séries de vídeos *[RStudio Essencials](https://www.rstudio.com/resources/webinars/#13f83906a8793e214)*.
 
 
 

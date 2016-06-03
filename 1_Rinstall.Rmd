@@ -1,7 +1,10 @@
 ---
 title: "Instalando *R* e RStudio"
-author: "Jônatan Tatsch, Roilan Valdés"
-date: "10-03-2016"
+author: | 
+  | Jônatan Tatsch, Roilan Valdés
+  |
+  | UFSM
+date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
 output:
   html_document:
     fig_caption: yes
@@ -50,7 +53,13 @@ O *R* pode ser instalado a partir dos binários pré-compilados ou do código fo
 O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não a tenha, consulte o administrador do sistema.
 Alguns comandos linux intuitivos serão utilizados, por isso, mesmo quem não é usuário linux será capaz de entendê-los. 
 
-Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são as 12.04 (abril de 2012, *codename* `precise`), 14.04 (abril de 2014, *codename* `trusty`) e a 15.04 (abril de 2015, *codename* `vivid`). Para saber mais sobre as versões de Ubuntu [clique aqui](http://releases.ubuntu.com/).
+Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são:
+
+- 12.04 (abril de 2012, *codename* `precise`)
+- 14.04 (abril de 2014, *codename* `trusty`) 
+- 16.04 (abril de 2016, *codename* `xenial`)
+
+Clique [aqui](http://releases.ubuntu.com/) para saber mais sobre as versões do Ubuntu.
 
 # *R* sempre atualizado
 
@@ -197,7 +206,7 @@ Abra o RStudio digitando no terminal:
 
     $ rstudio &
     
-Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece.
+Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista a séries de vídeos *[RStudio Essencials](https://www.rstudio.com/resources/webinars/#13f83906a8793e214)*.
 
 
 
