@@ -1,5 +1,5 @@
 # Relatórios dinâmicos com R Markdown
-Roilan Hernández Valdés e Jônatan Tatsch  
+Roilan Valdés e Jônatan Tatsch  
 `r format(Sys.time(), '%d %B %Y')`  
 
 
@@ -184,14 +184,14 @@ Os resultados dos *chuncks* podem ser mostrados na forma de figuras, tabelas e t
     qplot(x = Year, y = Anomaly1y, data = climate) + geom_smooth()
 ```
 
-![](figs/chunck4-1.png)
+![](figs/chunck4-1.png)<!-- -->
 
 ```r
     # Usando apenas a função plot()
     plot(x = climate$Year, y = climate$Anomaly1y) 
 ```
 
-![](figs/chunck4-2.png)
+![](figs/chunck4-2.png)<!-- -->
 
 ```r
     # regressão linear
@@ -537,9 +537,9 @@ Há também um [Editor online de equações](http://www.codecogs.com/latex/eqned
 
 # Simulação da resolução de uma Lista de exercícios.
 
-A resolução das listas do curso deverão ser entregues no formato R Markdown. O arquivo `.Rmd` deverá ser publicado no [Rpubs](https://rpubs.com/) e o link enviado por e-mail. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido da resolução que deve incluir o código utilizado, comentários, a descrição  e interpretação dos resultados quando for o caso.
+As listas do curso deverão ser elaboradas com R Markdown. O arquivo `.html` deverá ser publicado no [Rpubs](https://rpubs.com/) e o link enviado por e-mail. O documento deve conter a identificação do aluno, o enunciado de cada questão seguido da resolução que deve incluir o código utilizado, comentários, a descrição  e interpretação dos resultados quando for o caso.
 
-Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios abaixo.
+Vamos simular um documento `.Rmd` com a resolução da lista de exercícios abaixo.
 
 ## Exemplo de solução de lista de exercícios.
 
@@ -564,3 +564,7 @@ Vamos fazer um documento `.Rmd` simulando a resolução da lista de exercícios 
  * [latex em R Markdown](http://www.calvin.edu/~rpruim/courses/m343/F12/RStudio/LatexExamples.html)
  * [Citações e referências bibliográficas](https://cran.r-project.org/web/packages/knitcitations/index.html)
  
+ 
+<br/>
+
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Entrada e saída de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_EntradaDeDados.html)</p> 
