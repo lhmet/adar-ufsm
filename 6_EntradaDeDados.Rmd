@@ -1154,7 +1154,68 @@ file.remove(arq_temp)
 Pequenas amostras de dados
 
 - `scan()`
+- `readline()`; `print()`; `cat()`
+- `textConnection()`
 
-Matrix
+Formato textual
 
-- `dim()`; `is.vector()`; `is.matrix()`
+- `dput()`; `dget()`; `dump()`; `source()`; `structure()`
+
+Dados de pacotes do R
+
+- `data()`
+
+Arquivos texto
+
+- `read.table()`; `read.csv()`;  `read.csv2()`; `read.fwf()`
+- `apply()`
+- `write.csv2()`; `write.table()`
+- `count.fields()`
+- `readLines()`; `writeLines()`
+- `Sys.info()`
+
+Dados binários
+
+- `save()`; `load()`
+- `readRDS()`; `saveRDS()`
+- `download.file()`; `file.show()`
+- `readBin()`
+
+Netcdf
+
+- Funções do pacote `ncdf4`: 
+    - `nc_open()` ; `ncvar_get()`; `ncatt_get()`; `nc_close()`
+
+Dados de outros softwares
+
+- `read.dbf()`; `read.matlab()` do pacote `R.matlab`
+
+Excel
+
+- `loadWorkbook()`; `getSheets()`; `readWorksheet()`; `writeWorksheet()` do pacote `XLConnect`
+
+Bancos de dados
+
+- `dbDriver()`; `dbConnect()`; `dbListTables()`; `dbReadTable()`; `dbDisconnect()`; `dbUnloadDriver()` do pacote `DBI`
+
+Shapefiles
+
+- `shapefile()` do pacote `raster`
+
+Manipulação de diretórios e arquivos
+
+- `getwd()`; `setwd()`
+- `R.home()`; `.libPaths()`
+- `file.path()`
+- `dirname()`; `basename()`; `tools::file_ext()`
+- `file.choose()`; `file.info()`
+- `file.exists()`; `exists()`
+- `dir()`; `list.dirs()`; `list.files()`
+- `dir.create()`; `file.copy()`; `file.remove()`
+- `tempdir()`; `tempfile()`
+
+Funções gráficas
+
+- `image.plot()` do pacote fields
+- `rev()`; `topo.colors()`; `levelplot()`;
+- `brewer.pal()` do pacote `RColorBrewer`

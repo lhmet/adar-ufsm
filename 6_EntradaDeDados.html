@@ -195,6 +195,7 @@ $(document).ready(function () {
 <li><a href="#conteudo-de-diretorios"><span class="toc-section-number">8.3</span> Conteúdo de diretórios</a></li>
 <li><a href="#manipulacao-de-arquivos-e-diretorios"><span class="toc-section-number">8.4</span> Manipulação de arquivos e diretórios</a></li>
 </ul></li>
+<li><a href="#funcoes-novas-utilizadas-nessa-secao"><span class="toc-section-number">9</span> Funções novas utilizadas nessa seção</a></li>
 </ul>
 </div>
 
@@ -2885,9 +2886,9 @@ arq_name</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tamanho, data de criação, permissões, etc </span>
 <span class="kw">file.info</span>(<span class="st">&quot;data/chuva_df.RData&quot;</span>)</code></pre></div>
 <pre><code>                     size isdir mode               mtime
-data/chuva_df.RData 23030 FALSE  664 2016-06-09 09:36:58
+data/chuva_df.RData 23030 FALSE  664 2016-06-09 10:29:49
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-06-09 09:36:58 2016-06-09 09:36:58 1000 1000
+data/chuva_df.RData 2016-06-09 10:29:49 2016-06-09 10:29:49 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista</code></pre>
 </div>
@@ -3534,9 +3535,9 @@ files2remove</code></pre></div>
 <p>Veja mais funções para manipulação de arquivos em <code>?connections</code>.</p>
 <p>Para criar arquivos e diretórios temporários podemos usar as funções <code>tempfile()</code> e <code>tempdir()</code>, respectivamente. O exemplo abaixo mostra como baixar o arquivo da internet em um arquivo temporário.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempdir</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/Rtmp2fcwiN&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/Rtmp0JyA2m&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempfile</span>()</code></pre></div>
-<pre><code>[1] &quot;/tmp/Rtmp2fcwiN/file71db2c339e2a&quot;</code></pre>
+<pre><code>[1] &quot;/tmp/Rtmp0JyA2m/file76f132cbbfc2&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># baixando dados da web</span>
 arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span>,
@@ -3556,7 +3557,82 @@ arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apagando o arquivo tmp</span>
 <span class="kw">file.remove</span>(arq_temp)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
+<hr />
 </div>
+</div>
+<div id="funcoes-novas-utilizadas-nessa-secao" class="section level1">
+<h1><span class="header-section-number">9</span> Funções novas utilizadas nessa seção</h1>
+<p>Pequenas amostras de dados</p>
+<ul>
+<li><code>scan()</code></li>
+<li><code>readline()</code>; <code>print()</code>; <code>cat()</code></li>
+<li><code>textConnection()</code></li>
+</ul>
+<p>Formato textual</p>
+<ul>
+<li><code>dput()</code>; <code>dget()</code>; <code>dump()</code>; <code>source()</code>; <code>structure()</code></li>
+</ul>
+<p>Dados de pacotes do R</p>
+<ul>
+<li><code>data()</code></li>
+</ul>
+<p>Arquivos texto</p>
+<ul>
+<li><code>read.table()</code>; <code>read.csv()</code>; <code>read.csv2()</code>; <code>read.fwf()</code></li>
+<li><code>apply()</code></li>
+<li><code>write.csv2()</code>; <code>write.table()</code></li>
+<li><code>count.fields()</code></li>
+<li><code>readLines()</code>; <code>writeLines()</code></li>
+<li><code>Sys.info()</code></li>
+</ul>
+<p>Dados binários</p>
+<ul>
+<li><code>save()</code>; <code>load()</code></li>
+<li><code>readRDS()</code>; <code>saveRDS()</code></li>
+<li><code>download.file()</code>; <code>file.show()</code></li>
+<li><code>readBin()</code></li>
+</ul>
+<p>Netcdf</p>
+<ul>
+<li>Funções do pacote <code>ncdf4</code>:
+<ul>
+<li><code>nc_open()</code> ; <code>ncvar_get()</code>; <code>ncatt_get()</code>; <code>nc_close()</code></li>
+</ul></li>
+</ul>
+<p>Dados de outros softwares</p>
+<ul>
+<li><code>read.dbf()</code>; <code>read.matlab()</code> do pacote <code>R.matlab</code></li>
+</ul>
+<p>Excel</p>
+<ul>
+<li><code>loadWorkbook()</code>; <code>getSheets()</code>; <code>readWorksheet()</code>; <code>writeWorksheet()</code> do pacote <code>XLConnect</code></li>
+</ul>
+<p>Bancos de dados</p>
+<ul>
+<li><code>dbDriver()</code>; <code>dbConnect()</code>; <code>dbListTables()</code>; <code>dbReadTable()</code>; <code>dbDisconnect()</code>; <code>dbUnloadDriver()</code> do pacote <code>DBI</code></li>
+</ul>
+<p>Shapefiles</p>
+<ul>
+<li><code>shapefile()</code> do pacote <code>raster</code></li>
+</ul>
+<p>Manipulação de diretórios e arquivos</p>
+<ul>
+<li><code>getwd()</code>; <code>setwd()</code></li>
+<li><code>R.home()</code>; <code>.libPaths()</code></li>
+<li><code>file.path()</code></li>
+<li><code>dirname()</code>; <code>basename()</code>; <code>tools::file_ext()</code></li>
+<li><code>file.choose()</code>; <code>file.info()</code></li>
+<li><code>file.exists()</code>; <code>exists()</code></li>
+<li><code>dir()</code>; <code>list.dirs()</code>; <code>list.files()</code></li>
+<li><code>dir.create()</code>; <code>file.copy()</code>; <code>file.remove()</code></li>
+<li><code>tempdir()</code>; <code>tempfile()</code></li>
+</ul>
+<p>Funções gráficas</p>
+<ul>
+<li><code>image.plot()</code> do pacote fields</li>
+<li><code>rev()</code>; <code>topo.colors()</code>; <code>levelplot()</code>;</li>
+<li><code>brewer.pal()</code> do pacote <code>RColorBrewer</code></li>
+</ul>
 </div>
 <div class="footnotes">
 <hr />

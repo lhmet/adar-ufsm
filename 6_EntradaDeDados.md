@@ -3630,9 +3630,9 @@ file.info("data/chuva_df.RData")
 
 ```
                      size isdir mode               mtime
-data/chuva_df.RData 23030 FALSE  664 2016-06-09 09:36:58
+data/chuva_df.RData 23030 FALSE  664 2016-06-09 10:29:49
                                   ctime               atime  uid  gid
-data/chuva_df.RData 2016-06-09 09:36:58 2016-06-09 09:36:58 1000 1000
+data/chuva_df.RData 2016-06-09 10:29:49 2016-06-09 10:29:49 1000 1000
                                   uname              grname
 data/chuva_df.RData hidrometeorologista hidrometeorologista
 ```
@@ -4381,7 +4381,7 @@ tempdir()
 ```
 
 ```
-[1] "/tmp/Rtmp2fcwiN"
+[1] "/tmp/Rtmp0JyA2m"
 ```
 
 ```r
@@ -4389,7 +4389,7 @@ tempfile()
 ```
 
 ```
-[1] "/tmp/Rtmp2fcwiN/file71db2c339e2a"
+[1] "/tmp/Rtmp0JyA2m/file76f132cbbfc2"
 ```
 
 ```r
@@ -4423,3 +4423,75 @@ file.remove(arq_temp)
 [1] TRUE
 ```
 
+- - - 
+
+# Funções novas utilizadas nessa seção 
+
+Pequenas amostras de dados
+
+- `scan()`
+- `readline()`; `print()`; `cat()`
+- `textConnection()`
+
+Formato textual
+
+- `dput()`; `dget()`; `dump()`; `source()`; `structure()`
+
+Dados de pacotes do R
+
+- `data()`
+
+Arquivos texto
+
+- `read.table()`; `read.csv()`;  `read.csv2()`; `read.fwf()`
+- `apply()`
+- `write.csv2()`; `write.table()`
+- `count.fields()`
+- `readLines()`; `writeLines()`
+- `Sys.info()`
+
+Dados binários
+
+- `save()`; `load()`
+- `readRDS()`; `saveRDS()`
+- `download.file()`; `file.show()`
+- `readBin()`
+
+Netcdf
+
+- Funções do pacote `ncdf4`: 
+    - `nc_open()` ; `ncvar_get()`; `ncatt_get()`; `nc_close()`
+
+Dados de outros softwares
+
+- `read.dbf()`; `read.matlab()` do pacote `R.matlab`
+
+Excel
+
+- `loadWorkbook()`; `getSheets()`; `readWorksheet()`; `writeWorksheet()` do pacote `XLConnect`
+
+Bancos de dados
+
+- `dbDriver()`; `dbConnect()`; `dbListTables()`; `dbReadTable()`; `dbDisconnect()`; `dbUnloadDriver()` do pacote `DBI`
+
+Shapefiles
+
+- `shapefile()` do pacote `raster`
+
+Manipulação de diretórios e arquivos
+
+- `getwd()`; `setwd()`
+- `R.home()`; `.libPaths()`
+- `file.path()`
+- `dirname()`; `basename()`; `tools::file_ext()`
+- `file.choose()`; `file.info()`
+- `file.exists()`; `exists()`
+- `dir()`; `list.dirs()`; `list.files()`
+- `dir.create()`; `file.copy()`; `file.remove()`
+- `tempdir()`; `tempfile()`
+
+Funções gráficas
+
+- `image.plot()` do pacote fields
+- `rev()`; `topo.colors()`; `levelplot()`;
+- `brewer.pal()` do pacote `RColorBrewer`
