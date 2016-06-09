@@ -31,9 +31,16 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/")
 
 - - -
 
-# Introdução 
+# Objetivos 
 
-O R permite ler dados de uma variedade de fontes e formatos. Nesta unidade veremos como importar dados de arquivos texto, binários e de outros softwares para o R. Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
+O R permite ler dados de uma variedade de fontes e formatos. Nesta unidade veremos como importar dados de arquivos texto, binários e de outros softwares para o R. Nesta seção vamos:
+
+- ver como **importar dados no R**[^1] 
+- conhecer os formatos mais comuns de dados reconhecidos pelo R
+- ler arquivos de dados meteorológicos de fontes brasileiras
+
+[^1]: Para uma descrição mais abrangente sobre importação e exportação de dados no R consulte a documentação de cada função e o manual [R Data Import/Export](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
+
 
 # Amostras pequenas de dados
 
@@ -91,7 +98,7 @@ sentenca <- readline(prompt = "digite alguma coisa e tecle enter para continuar:
 sentenca
 ```
 
-Essa função pode ser utilizado como uma forma de controlar um *looping*. Esse exemplo ilustra o uso da função `lapply()` para execução de laços ou *loopings* ao longo de um vetor de índices. Essa função será vista futuramente no curso.
+Esta função pode ser utilizada como uma forma de controlar um *looping*. Esse exemplo ilustra o uso da função `lapply()` para execução de laços ou *loopings* ao longo de um vetor de índices. Essa função será vista futuramente no curso.
 
 ```{r Chunk1121, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
 # para reprodutibilidade
@@ -1011,7 +1018,7 @@ Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*
 (wd <- getwd())
 class(wd)
 # altere o caminho para "/home/lci"
-setwd("/home/hidrometeorologista/")
+setwd(file.path("/home", Sys.getenv()[["LOGNAME"]]))
 getwd()
 # volta para o wd
 setwd(wd)
