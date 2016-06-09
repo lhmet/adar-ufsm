@@ -4999,7 +4999,7 @@ Dentro da lista o conjunto de objetos são ordenados e cada elemento pode conter
 
 ### `list()`
 
-As vezes precisamos de um *container* para armazenar diferentes tipos de dados do R e com diferente tamanhos. As *listas* servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de data frames, sub-listas, matrizes e vetores.
+As vezes precisamos de um *container* para armazenar diferentes tipos de dados do R e com diferente tamanhos. As *listas* servem para isso e permitem armazenar qualquer número de itens de qualquer tipo. Uma lista pode conter números, caracteres ou uma mistura de *data frames*, sub-listas, matrizes e vetores.
 
 Listas podem ser criadas com a função `list()`. A especificação do conteúdo de uma lista é muito similar a da função `c()` vista anteriormente. Nós simplesmente listamos os elementos da lista separados por uma vírgula dentro da função `list()`.
 
@@ -5796,11 +5796,11 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 
 `x` é um frasco de pimenta
 
-<img src="figs/pepper.jpg" title="" alt="" width="200" />
+<img src="figs/pepper.jpg" width="200" />
 
 `x[1]` é o frasco de pimenta com apenas 1 pacote de pimenta:
 
-<img src="figs/pepper-1.jpg" title="" alt="" width="200" />
+<img src="figs/pepper-1.jpg" width="200" />
 
 `x[2]` seria a mesma coisa, mas com o segundo pacote. 
 `x[1:2]` seria o frasco de pimenta com 2 pacotes de pimenta.
@@ -5808,11 +5808,11 @@ dados_l$sm$dados[, "tar", drop = FALSE]
 
 `x[[1]]` é ...
 
-<img src="figs/pepper-2.jpg" title="" alt="" width="200" />
+<img src="figs/pepper-2.jpg" width="200" />
 
 Se quiséssemos o conteúdo do pacote seria `x[[1]][[1]]`
 
-<img src="figs/pepper-3.jpg" title="" alt="" width="200" />
+<img src="figs/pepper-3.jpg" width="200" />
 
 
 ## Conversão de lista para vetor e vice-versa.
@@ -6017,17 +6017,17 @@ sm_df
 ```
 
 
-# Data-frame (*tabela de dados*)
+# *Data frame*
 
-Um `data frame` é um objeto do R que é normalmente usado para guardar conjunto de dados na forma de tabela. 
+Um `data frame` é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
 
-A estrutura de um `data frame`, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do `data frame` é possibilidade de armazenar dados de diferentes modos (`character`, `numeric`, `logical` e etc) nas suas colunas, o que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêneos. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
+A estrutura de um *data frame*, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do *data frame* é possibilidade de armazenar dados de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêna. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
 
-Cada linha do `data frame` corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
+Cada linha do *data frame* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
 
 ## Criação
 
-Uma das formas mais simples de se criar um data frame é através da função `data.frame()`.
+Uma das formas mais simples de se criar um `data frame` é através da função `data.frame()`.
 
 
 ```r
@@ -6131,9 +6131,9 @@ summary(dados.df)
                                        Max.   :35.0  
 ```
 
-## Atributos de um `data frame`
+## Atributos de um *data frame*
 
-*Data frame* é uma estrutura de dados avançada e possui diversos atributos. 
+*data frame* é uma estrutura de dados avançada e possui diversos atributos. 
 
 
 ```r
@@ -6277,9 +6277,9 @@ class(attributes(dados.df))
 [1] "list"
 ```
 
-## Acesso as variáveis de um `dataframe` {.tabset}
+## Acesso as variáveis de um *data frame* {.tabset}
 
-Existem várias formas de acessar as variáveis de um `dataframe`. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
+Existem várias formas de acessar as variáveis de um *data frame*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
 
 
 ```r
@@ -6394,7 +6394,7 @@ Portanto *data frames* tem as mesmas propriedades que matrizes (são retangulare
 
 ### Função `with()`
 
-O acesso as variáveis de um data frame também é possível com a função `with(data, expr)`.
+O acesso as variáveis de um *data frame* também é possível com a função `with(data, expr)`.
 
 
 ```r
@@ -6424,7 +6424,7 @@ with(data = dados.df, expr = plot(tar + 273.15))
 
 O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *data frame* de entrada.
 
-### Editando um `data frame` manualmente
+### Edição manual de um *data frame*
 
 É possível também editar os dados manualmente.
 
@@ -6508,7 +6508,7 @@ dados.df
 15 2013-01-15 Santa Maria  32    0
 ```
 
-Uma função específica para gerar subconjunto de dados em `data frames` é a `subset()`. 
+Uma função específica para gerar subconjunto de dados em *data frames* é a `subset()`. 
 
 
 ```r
@@ -6594,7 +6594,7 @@ ss4
 14 2013-01-14  29    2
 ```
 
-Uma função específica para alteração, remoção e inclusão de variáveis em um data frame é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável de um *data frame*.
+Uma função específica para alteração, remoção e inclusão de variáveis em um *data frame* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável de um *data frame*.
 
 
 ```r
@@ -6632,7 +6632,7 @@ dados.df
 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767
 ```
 
-## Combinando `dataframes`
+## Combinando *data frames*
 
 
 ```r
@@ -6852,7 +6852,7 @@ mode(v_df)
 
 # Funções novas utilizadas nessa seção 
 
-Vetor
+vector
 
 - `c()`
 - `length()`
@@ -6875,7 +6875,7 @@ Vetor
 - `ls()`; `is.null()`; `exists()`
 - `identical()`
 
-Matrix
+matrix
 
 - `dim()`; `is.vector()`; `is.matrix()`
 - `matrix()`; `attributes()`; `length()`
@@ -6887,20 +6887,26 @@ Matrix
 - `t()`; `diag()`; `%*%`; `crossprod()`; `det()`; `solve()`
 - `as.vector()`; 
 
-Array
+array
 
 - `array()`;
 - `mode()`; 
 - `matplot()`; `boxplot()`
 - `cumprod()`
 
-List 
+list 
 
 - `list()`; `str()`; `is.recursive()`
 - `[[`; `$`
 
+data frame
 
-
+- `data.frame()`; `is.data.frame()`; `str()`; `summary()`
+- `names()`; `rownames()`; `dimnames()`; `attributes()`
+- `$`; `with()`; `fix()`
+- `transform()`; `subset()`
+- `cbind()`; `rbind()`; `identical()`
+- `as.data.frame()`
 
 
 
