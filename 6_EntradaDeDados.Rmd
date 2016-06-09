@@ -1147,3 +1147,14 @@ download.file(url = "http://www.cpc.ncep.noaa.gov/data/indices/soi",
 file.remove(arq_temp)
 ```
 
+- - - 
+
+# Funções novas utilizadas nessa seção 
+
+Pequenas amostras de dados
+
+- `scan()`
+
+Matrix
+
+- `dim()`; `is.vector()`; `is.matrix()`
