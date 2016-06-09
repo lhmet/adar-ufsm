@@ -1,0 +1,684 @@
+---
+title: "Funções()"
+author: "Jônatan Tatsch"
+date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
+output:
+  html_document:
+    #code_folding: show
+    fig_caption: yes
+    fig_width: 6
+    highlight: kate
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+    #toc_float: yes
+---
+
+
+```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
+rm(list=ls())
+# definindo globalmente tz = "GMT"
+#Sys.setenv(TZ = 'GMT')
+# data manipulation packages
+pcks <- c("knitr", "knitcitations", "pander", "htmlTable")
+invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+# configuraçoes knitr
+opts_chunk$set(cache = FALSE, fig.path = "figs/")
+```
+
+- - -
+
+![](figs/adar.png)
+
+- - -
+
+# Introdução 
+
+Quando repetimos um mesmo código várias vezes e alteramos os valores de algumas variáveis para obter um resultado diferente a partir de novos valores das variáveis, provavelmente é hora de convertermos esse código para uma função.
+
+Em programação é sempre uma boa prática evitar a repetição onde possível. Há pelo menos 2 razões para isso: 
+- legibilidade do código e
+- facilidade de uso
+
+Funções são o alicerce do R. Um conhecimento básico sobre funções os ajudará a evoluir na programação em R. Função é uma classe de objeto do R denominada `function`, assim como `data frame`, `matrizes` e `vetores` são objetos. 
+
+```{r Chunk1, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+x <- 1:10
+sum(x)
+class(sum)
+is.function(sum)
+```
+
+Os tipos objetos que vimos até agora serviam geralmente para armazenar dados. Uma `function`, entretanto, permite fazermos coisas com os dados. Mais do que nomes, **funções são "verbos" ou seja ações**. 
+
+Para criarmos funções usamos a função `function()` que pode ser seguida de um par de colchetes `{}`, assumindo a seguinte sintaxe de criação:
+
+       nome_funcao <- function(argumento) { 
+                        expressões 
+       }
+
+# Elementos de uma funçao
+
+Uma função tem 3 partes básicas:
+
+ + **nome**
+ 
+ + **corpo da função**
+ 
+ + **argumentos**
+
+Um exemplo simplório de uma função que adiciona 1 a um dado valor é 
+
+```{r Chunk2, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## criando uma função 
+soma1 <- function(x) {
+  return(x + 1)
+}
+## para ver o código da função, digite o nome dela
+soma1
+## avaliando a função f para o argumento x = 2
+soma1(x = 2)
+soma1(1:5)
+```
+
+Vamos acessar os elementos da função `soma1()`:
+
+```{r Chunk4, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+formals(soma1)
+args(soma1)
+names(formals(soma1))
+body(soma1)
+```
+
+No exemplo acima criamos a função `soma1()` que adiciona 1 a qualquer valor que seja atribuído ao argumento x. No lado direito, há dois argumentos: o primeiro é o `x` e o segundo é o corpo da função `return(x+1)` que deve ser uma expressão. Quando a função tem apenas uma expressão do direito os colchetes podem ser omitidos. Mas para adquirirmos bons hábitos de programação eles são recomendados. A função `return()` também poderia ser omitida pois dentro da função a última expressão no corpo da função seria retornada. Entretanto dentro do corpo da função a função `return()` tem prioridade.
+
+```{r Chunk5, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## criando uma função 
+mais_1 <- function(x) x + 1
+## para ver o código da função, digite o nome dela
+mais_1
+## avaliando a função f para o argumento x = 2
+mais_1(x = 2)
+mais_1(1:5)
+## Ultima função será retornada
+plus_one <- function(x){
+            x - 1
+            x + 1
+}
+plus_one(x = 3)
+## return()
+plus_1 <- function(x){
+            return((x+1)^2)
+            x - 1
+            x + 1
+}
+plus_1(x = 3)
+```
+
+Note que os resultados da função `mais_1` são idênticos aos da `soma1()`.
+
+# Argumentos de funções
+
+## Argumentos pré-definidos 
+
+Uma função pode ter valores pré-definidos para seus argumentos.
+
+```{r Chunk6, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+mais_cte <- function(x = 3, k = 1){
+  return(x + k)
+}
+mais_cte()
+mais_cte(x = 3)
+mais_cte(x = 4)
+mais_cte(x = 5, k = 2)
+mais_cte(x = 1:5, k = 5:1)
+```
+
+## Múltiplos argumentos
+
+Uma função pode ter múltiplos argumentos.
+
+```{r Chunk7, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+pitagoras <- function(x, y){
+  return(sqrt(x^2 + y^2))
+}
+pitagoras(x = 3, y = 4)
+pitagoras(x = 24, y = 7)
+## argumentos explícitos, ordem pode ser trocada 
+pitagoras(y = 24, x = 7)
+## sem nome dps argumentos, os valores devem seguir a ordem dos argumentos na função
+pitagoras(24, 7)
+```
+
+## Argumentos faltantes
+
+Uma função pode ser usada por outras funções e pode não ter argumentos.
+
+```{r Chunk8, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
+## para reproduztiblidade
+set.seed(123)
+joga_moeda <- function() {
+    sorteio <- sample(1:2, size = 1)
+    result <- ifelse(sorteio == 1, "cara", "coroa")
+     return(result)
+}
+## note que as variáveis sorteio e result não foram criadas
+sorteio
+result
+ls()
+```
+
+Note que apesar de criarmos dentro da função as variáveis `sorteio` e `result` elas não foram criadas em nosso ambiente de trabalho. As atribuições feitas dentro da função são locais e temporárias, sendo perdidas após sair da função.
+
+Vamos avaliar a função `joga_moeda()` várias vezes e depois usar a função replicate para repetir a aplicação da função quantas vezes forem necessárias, sem termos que digitarmos a função `joga_moeda()`. 
+
+```{r Chunk81, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
+## avaliando a função joga_moeda
+joga_moeda()
+joga_moeda()
+joga_moeda()
+joga_moeda()
+## função para jogar n vezes
+lancamentos <- function(k = 100){
+  replicate(n = k, joga_moeda())
+}
+lancamentos()
+```
+
+## Argumentos Extras
+
+O R oferece um operador especial que permite funções assumirem um número arbitrário de argumentos que não precisam ser especificados na definição da função. Este argumento é os 3 pontos `(...)`. Esse argumento deve ser usado com muito cuidado, embora forneça grande flexibilidade. 
+Vamos ver como absorver argumentos extras; depois vamos encontrar um uso para isso quando passarmos argumentos entre funções.
+
+```{r Chunk9, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
+my_plot <- function(..., pch = 20, col = 2) plot(..., pch = pch, col = col)
+my_plot(1:10, lwd = 3, type = "o")
+```
+
+Vamos ver outro exemplo de uso do `...`, em que criamos uma função para montar a frase: 
+
+**Olá nome_1 nome_2 nome_n**
+
+onde `nome_1` é o primeiro argumento da função, `nome_2` é o segundo e `nome_n` é o e-nésimo argumento. Portanto a função que construirá a frase terá vários argumentos. Podemos usar os `...` para representar esses `n` argumentos.
+
+```{r Chunk10, message=TRUE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
+ola_pessoal <- function(nome_1, nome_2 = "Beltrano", ...) {    
+     ## número de argumentos extras
+     extra_args <- list(...)
+     ## tamanho da lista extra_args
+     len_extra_args <- length(extra_args)
+     ## mensagem de aviso
+      message(len_extra_args, " argumento(s) extra(s)")
+      ## juntando argumentos extras em uma única string
+      nomes_extras <- paste(unlist(extra_args), collapse = " ")
+      ## resultado: cola "Olá" com todos nomes
+      res <- paste("Olá", nome_1, nome_2, nomes_extras)
+      return(res)
+} # end fun ola_pessoal
+## chamando função com um argumento extra não definido explicitamente
+ola_pessoal("Fulano", arg_extra = "Ciclano")
+## chamando função com vários argumentos
+ola_pessoal(nome1 = "Fulano", nome2 = "Beltrano", "Ciclano", "Zulano")
+```
+
+# Passando Funções para (e de) outras funções
+
+Suponha que tenhamos uma lista de argumentos de uma função:
+
+```{r Chunk11, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+args_l <- list(1:10, na.rm = TRUE)
+args_l
+```
+
+Como aplicar a função `mean()` a essa lista? Usando a função `do.call()`:
+
+```{r Chunk12, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+mean(args_l)
+do.call(what = mean, args = args_l)
+```
+
+Um outro exemplo:
+
+```{r Chunk13, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+do.call(pitagoras, list(x = 3,y = 4))
+## mesmo que
+pitagoras(3, 4)
+```
+
+Suponha que tenhamos lidos dados de diferentes arquivos e os aramazenado em uma lista.
+
+```{r Chunk14, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+(dfr1 <-data.frame(x = 1:5,y = rnorm(5)))
+(dfr2 <-data.frame(x = 6:10,y = rnorm(5)))
+(dfr3 <-data.frame(x = 11:15,y = rnorm(5)))
+## lista com dados
+data_l <- list(dfr1, dfr2, dfr3)
+do.call(rbind, data_l) 
+## mesmo que
+rbind(dfr1, dfr2, dfr3)
+```
+
+## Funções anônimas
+
+Nós podemos também usar funções anônimas:
+
+```{r Chunk15, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+x_mais_y <- function(x, y) x + y
+do.call(x_mais_y, list(1:5, 5:1))
+# mesmo que
+do.call(function(x,y) x + y, list(1:5, 5:1))
+```
+
+No exemplo acima a função `function(x,y) x + y` não tem nome e foi criada dinâmicamente na hora de execução da expressão na linha de comando.
+
+## Funções que geram funções
+
+Funções que retornam funções são raras, mas não menos válidas por isso. A função `ecdf()` retorna a função de distribuição empírica acumulada de um vetor, conforme a Figura abaixo:
+
+
+```{r Chunk16, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+set.seed(123)
+(emp_cum_dist_fn <-ecdf(rnorm(50)))
+##  CDF Empírica
+## Call: ecdf(rnorm(50))
+## x[1:50] = -2.2, -2.1, -2, ..., 1.9, 2.6
+is.function(emp_cum_dist_fn)
+## [1] TRUEwith(a, plot(mfX, mfVals, type = "l"))
+
+plot(emp_cum_dist_fn)
+emp_cum_dist_fn(v = 1)
+## 86% dos dados estão abaixo de 1
+emp_cum_dist_fn(v = 0)
+```
+
+# Chamada de funções
+
+Na linha de comando do R geralmente digitamos `dois_num <- c(3, 4)` e pressionamos <enter> para o interpretador do R traduzir a expressão na seguinte chamada:
+
+```{r Chunk17, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## atribuição usual
+dois_num <- c(3, 4)
+dois_num
+# atribuição de forma funcional 
+`<-`(dois_num, c(5, 6))
+dois_num
+4 + 5
+## + é uma função
+`+`(4, 5)
+is.function(`+`)
+## avaliar uma expressão a partir de uma string
+cmd <- "1 + 2 + 3 + 4 + 5"
+eval(parse(text = cmd))
+a <- eval(parse(text = cmd))
+get("a")
+eval(parse(text = "args_l[[1]]"))
+```
+
+# Estruturas de controle
+
+O código R em um script é executado sequencialmente de cima para baixo. Mas as vezes queremos executar **instruções** repetidamente ou somente quando algumas condições são atendidas. É para isso que servem as estruturas de controle. O R possui as estruturas de controle padrões das linguagens de programação modernas. 
+
+## Instruções condicionais
+
+### if-else
+
+Instruções condicionais tem a seguinte forma:
+
+      if (condição) expressão
+      
+ou, alternativamente:
+  
+      if (condição) {
+           expressões_condição_verdadeira
+      } else {
+           expressões_condição_falsa
+      }
+      
+Como exemplo vamos supor que nós queremos garantir que um número seja negativo:
+
+```{r Chunk18, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+# se num < 0 é verdadeiro, multiplicamos num por -1 para num virar positivo
+num <- -2
+if (num < 0) {
+  num <-num * -1
+}
+num
+## se num < 0 é false num permanecerá com seu valor original
+num <- 4
+if (num < 0) {
+  num <- num * -1
+}
+num
+typeof(`if`)
+```
+
+A condição de um `if` deve avaliar um único TRUE ou FALSE. Se a condição cria um vetor de TRUEs e FALSE,  será impresso uma mensagem de aviso e somente o primeiro elemento do vetor será usado.
+Expressões lógicas podem consensadas em um único TRUE ou FALSE através, por exemplo das funções, `any()` e `all()`.
+
+```{r Chunk19, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+x <- c(1, NA, 4)
+if (is.na(x)) cat("há dado faltante \n")
+if (any(is.na(x))) cat("Há pelo menos um dado faltante. \n")
+```
+
+O próximo passo é incluir a instrução `else`. O Código que segue o `else` é executado se a condição do `if` for FALSE.
+
+Vamos fazer um exemplo de arredondamento com `if-else`.
+
+```{r Chunk20, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+a <- 3.14
+if (a - trunc(a) >= 0.5) {
+   ## arredonda para cima
+   a <-trunc(a) + 1
+} else {
+   ## arredonda para o interiro mais próximo
+   a <- trunc(a)
+}
+a
+```
+
+Se a situação tem mais de dois casos, podemos usar mais `if-else` juntos adicionando outros `if-else`.
+Por exemplo:
+
+```{r Chunk21, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+a <- 1
+b <- 1
+if (a > b) {
+    print("A ganha")
+} else {
+    if (a < b) {
+        print("B ganha")
+    } else {
+        print("Empate")
+    }
+}
+
+```
+
+Lembre-se que avaliar condições para um vetor usamos a função `ifelse()`.
+
+```{r Chunk22, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+prec <- c(0, 0, 10, 5.5, 1, 0, 0, 0.4)
+ifelse(prec > 0, "úmido", "seco")
+```
+
+### switch
+
+Códigos com muitos `if-else` tornam-se difíceis de entender e lentos.
+Em tais casos uma opção mais versátil é usar a função `switch()`.
+
+O uso mais comum pega o primeiro argumento uma expressão que retorna uma string, seguida por diversos argumentos com nome definido que fornecem resultados quando o nome está de acordo com o primeiro argumento da função. Os nomes devem concordar exatamente com o primeiro argumento e podemos executar múltiplas expressões usando as chaves:
+
+```{r Chunk221, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+mostra_data <- function(data, tipo = c("curto","longo")){
+  switch(tipo,
+         longo = format(data, "%A %d %B %Y"),
+         medio = format(data, "%d %m %Y"),
+         curto = format(data, "%b %m"),
+         cat(tipo, "não é um tipo reconhecido \n")
+         )
+}
+hoje <- Sys.time()
+hoje
+mostra_data(data = hoje, tipo = "curto")
+mostra_data(data = hoje, tipo = "medio")
+mostra_data(data = hoje, tipo = "longo")
+mostra_data(data = hoje, tipo = "qualquer")
+```
+
+
+## Laços ou *loopings*
+
+Há três formas de fazer laços no R. 
+
+### `repeat()`
+
+A mais simples é com a função `repeat()`, a qual simplesmente repete uma dada expressão.
+
+      repeat instrução
+      
+Para parar a repetição da instrução usamos a função `break`. Para pular para próxima iteração em um laço usamos a função `next`.
+
+Por exemplo, o código abaixo imprime na tela valores múltiplos de 5 até 25:
+
+```{r Chunk23, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+ i <- 0
+repeat { 
+         if (i > 25) {
+            break 
+         } else {
+           print(i)
+           i <- i + 5
+         } # end if 
+       }# end repeat
+
+```
+
+### `while()`
+
+Se não incluíssemos a função break, o código seria um lopping infinito. Isto pode ser útil para criar uma aplicação interativa. 
+Outra função útil é a `while()`, que repete uma instrução enquanto a condição é verdadeira:
+
+      while (condição) expressão
+      
+Como exemplo vamos reescrever o exemplo anterior usando o laço `while`:
+
+```{r Chunk24, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+i <- 5
+while (i <= 25) { print(i); i <- i + 5 }
+```
+
+
+### `for()`
+
+Finalmente, o R fornece a função `for` para laços, que itera através de cada item em um vetor (ou lista):
+
+      for (índice in vetor) expressão
+
+```{r Chunk25, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+for (i in seq(from = 5, to = 25, by = 5)) print(i)
+```
+
+Podemos usar as funções `break` e `next` também dentro de laços. Existem duas propriedades importantes sobre laços que devem ser lembradas:
+
+1. os resultados não são impressos dentro do laço execeto se chamamos a função print explicitamente:
+
+```{r Chunk26, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+ for (i in seq(from = 5,to = 25,by = 5)) i
+
+```
+
+2. A variável `índice` que é definida no laço `for` é modificada no ambiente da função chamada:
+
+```{r Chunk27, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+i <- 1
+for (i in seq(from = 5, to = 25, by = 5)) i
+i
+typeof(`for`)
+```
+
+Como instruções condicionais as funções de laço `repeat`, `while()`, e `for` são um tipo especial, porque as expressões não são necessariamente avaliadas.
+
+```{r Chunk28, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+ini <- 0
+fim <- 25
+x <- rep(NA, 25)
+for (i in seq(from = ini, to = fim, by = 5)) x[i] <- i
+x
+## gerando vetor binário de chuva com for
+estado <- vector(mode = "numeric", length = length(prec))
+estado
+for (i in seq(along = prec)) if(prec[i] > 0) estado[i] <- "úmido" else estado[i] <- "seco"
+estado
+ifelse(prec > 0, "úmido", "seco")
+```
+
+### Importância da inicialização em laços
+
+Cada linha de código dentro do laço será rodada em cada iteração do laço. Portanto a velocidade do laço aumenta quando tiramos partes do código que podem ficar fora do laço. 
+Segundo, certifique-se de que o objeto usado no laço é grande o suficiente para conter os resultados do laço. Por exemplo, ambos laços abaxo precisarão armazenar 10^4^ linhas. O primeiro armazena seus valores em um objeto chamado `saida` que começa com tamanho de 10^4^ elementos. 
+
+```{r Chunk29, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## Laço 1
+nmax <- 10000
+system.time(
+  {
+    saida1 <- NULL
+    for (i in 1:nmax) {
+           ii <- i + 1
+           saida1 <- c(saida1, ii)
+           rm(ii, i)
+    }# end for
+  } 
+)
+## Laço 2
+system.time(
+  {
+    saida2 <- NA
+    for (i in 1:nmax) {
+           saida2[i] <- i + 1
+    }# end for
+  } 
+)
+## Laço 3
+system.time(
+  {
+    saida3 <- rep(NA, nmax)
+    for (i in 1:nmax) {
+           saida3[i] <- i + 1
+    }# end for
+  } 
+)
+```
+ 
+Os três laços fazem a  mesma coisa, mas no segundo e terceiro laço o R tem que aumentar o tamanho do vetor de saída por um elemento em cada iteração. Para fazer isso o R tem que encontrar um novo local na memória do computador que possa conter um objeto maior. O R então tem que copiar esse vetor de saída e apagar a versão antiga do vetor de saída antes de ir para próxima iteração do laço. No fim do laço o R reescreveu o vetor saída na memória do computador `r sprintf("%10.1f", nmax)` vezes.
+ 
+# Aplicando funções a cada elemento de um objeto
+
+Quando manipulamos dados uma operação comum é aplicar uma função a um conjunto de objetos ou partes de um objeto e retornar um novo conjunto de objetos de saída. 
+O [pacote base do R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html) possui um conjunto de funções diferentes para fazer isso, conhecidas como família `*apply`. Onde o asterisco representa as letras `a, l, s, m e v`.
+
+## Aplicando funções a uma `array` ou `matriz`
+
+Para aplicar uma função a partes de uma matriz usamos a função `apply`:
+
+      apply(X, MARGIN, FUN, ...)
+
+que aceita pelo menos três argumentos, `X`: a matriz ou *array* , `FUN`: que é a função a ser aplicada e `MARGIN` especifica  as dimensões sobre as quais gostaríamos de aplicar a função.
+Vamos ver alguns exemplos aplicados a matriz de temperatuas mensais gerada na Unidade sobre **Estrutura de dados do R**.
+
+
+```{r Chunk30, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+temp_mat <- matrix(c(25, 24.89, 23.2, 23.2, 24.07, 26.61, 22.5, 23.56, 
+18, 21, 23.11, 23.11, 19, 18.29, 26.8, 17.6, 18.22, 21.3, 18, 
+16.72, 18.22, 19.7, 19.37, 21.45, 21.3, 20.08, 19.7, 22, 21.45, 
+22.5, 24, 26.61, 24.07, 26.8, 25.99, 20.08), nrow = 3)
+rownames(temp_mat) <- c("ano1990", "ano1991", "ano1992")
+colnames(temp_mat) <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago", "Set", "Out", "Nov", "Dez")
+temp_mat
+```
+
+Suponha que houvesse interesse em determinar os entremos de temperatura de cada ano e a média mensal dos três anos.
+
+```{r Chunk31, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+(temp_range <- apply(temp_mat, MARGIN = 1, range))
+(temp_med <- apply(temp_mat, MARGIN = 2, mean))
+```
+
+Para determinar o número de meses com temperatura do ar acima de 20°C e o número de graus dia acumulados em um ano (considerando essa temperatura como basal) podemos usar as seguintes expressões:
+
+```{r Chunk32, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## função anônima
+(temp_20_ano <- apply(temp_mat, MARGIN = 1, FUN = function(x) sum(x > 20)))
+## graus dia acumulado acima de uma temp. basal
+gda <- function(x, tbase = 20) sum(x[x >= tbase])
+(gd_acc <- apply(temp_mat, 1, gda))
+## exemplo usando as duas margens
+apply(temp_mat, 
+      MARGIN = 2, 
+      FUN = paste, collapse = ",")
+## apply inteligente: se tamanho dos resultados diferem, retorna uma lista
+## função anônima para retornar casos de tar > 23
+(tar_23 <- apply(temp_mat, MARGIN = 1, FUN = function(x) x[x > 23]))
+str(tar_23)
+```
+
+## Aplicando funções a uma `list` ou `vector`
+
+Vamos repetir alguns dos laços feitos anteriormente com as funções `repeat()`, `while()` e `for()` usando a função `sapply()`. `sapply`: do termo *simplified apply*. Estrutura de dados simplificadas incluem vetores, matrizes e *arrays* por isso o resultado esperado da aplicação da função `apply()` sobre um objeto é um vetor, matriz ou *array*.
+
+
+```{r Chunk33, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## indice sobre o qual o laço será feito
+indice <- seq(from = 5, to = 25, by = 5)
+## aplica
+x <- sapply(X = indice, FUN = function(i) i)
+x
+```
+
+Vamos ilustrar o uso do sapply sobre um vetor que queremos calcular uma média móvel usando o valor anterior e posterior ao ponto.
+
+
+```{r Chunk34, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## indice sobre o qual o laço será feito
+(temp <- c(t(temp_mat)))
+s <- seq(along.with = temp)
+#mm <- sapply(s[-c(1, length(s))], 
+mm <- sapply(s,              
+             function(i) {
+               if(i == 1 | i == length(s)) {
+                 res <- NA
+               } else {
+                  res <- mean(c(temp[(i-1):(i+1)]))    
+               }
+               return(res)
+             })
+mm
+temp_mm <- cbind(temp, mm)
+matplot(temp_mm, type = "l", lwd = 2)
+```
+
+
+Para aplicar uma função a cada elemento em um vetor ou uma lista e retornar uma lista podemos usar a função `lapply()`. Uma situação prática de uso do `lapply()` é quando o resultado esperado da aplicação da função a uma parte do objeto pode ter uma saída de tamanhos diferentes em cada iteração do `lapply()`.
+Vamos ilustrar essa situação buscando encontrar os meses em cada ano da temp_mat cuja a tar foi acima da média.
+
+```{r Chunk35, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+ta1sd_l <- lapply(1:nrow(temp_mat), 
+       function(irow) {
+         tmes_ano <- temp_mat[irow, ]
+          return(tmes_ano[tmes_ano > mean(temp_mat) + sd(temp_mat)])
+       })
+ta1sd_l
+```
+
+Também podemos aplicar uma função sobre um *data frame*, e a função será aplicada cada coluna do data frame.
+
+```{r Chunk36, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+d <- data.frame(x = 1:5,y = 6:10)
+d
+lapply(d, FUN = function(x) 2^x)
+lapply(d, FUN = max)
+```
+
+Algumas vezes podemos preferir obter como saída um vetor ou uma matriz ao invés de uma lista. Nesse caso usamos a função `sapply()` que retorna um veto ou matriz quando apropriado.
+```{r Chunk37, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+sapply(d, FUN = function(x) 2^x)
+```
+
+Outra função da família apply é a `mapply()`, a versão “multivariada” da `sapply()`. Por exemplo suponha que você queira criar uma sequência cujo início é fornecido por um vetor e o fim por outro vetor.
+
+```{r Chunk38, message=FALSE, comment="", prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## mapply seq
+ini <- 1:10
+fim <- 10:1
+mapply(seq, from = ini, to = fim)
+## mapply paste
+mapply(paste, 
+       c(1,2,3,4,5), 
+       c("a","b","c","d","e"), 
+       MoreArgs = list(sep="-")
+       )
+## mapply com pitágoras
+mapply(pitagoras, x = 1:10, y = 10:1)
+```
+
