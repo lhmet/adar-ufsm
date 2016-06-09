@@ -52,7 +52,7 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 # Local
 
-O curso é ministrado no Labaratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) na biblioteca setorial. 
+O curso é ministrado no Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) na biblioteca setorial. 
 
 <br/> 
 
