@@ -1216,6 +1216,6 @@ Manipulação de diretórios e arquivos
 
 Funções gráficas
 
-- `image.plot()` do pacote fields
+- `image.plot()` do pacote `fields`
 - `rev()`; `topo.colors()`; `levelplot()`;
 - `brewer.pal()` do pacote `RColorBrewer`
