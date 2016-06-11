@@ -46,6 +46,8 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Entrada/saída de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_EntradaDeDados.html)
 
+- [Programaçao](https://rawgit.com/jdtatsch/adar-ufsm/master/7_Programacao.html)
+
 # Horários
 
 - 17:30-20:50 (5ª-feira)
