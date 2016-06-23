@@ -865,7 +865,7 @@ dt
 ```
 
 ```
-[1] "2016-06-23 20:35:54 GMT"
+[1] "2016-06-23 20:38:43 GMT"
 ```
 
 ```r
@@ -874,7 +874,7 @@ unclass(dt)
 ```
 
 ```
-[1] 1466714155
+[1] 1466714323
 ```
 
 ```r
@@ -883,7 +883,7 @@ print(unclass(dt), digits = 10)
 ```
 
 ```
-[1] 1466714155
+[1] 1466714323
 ```
 
 A função `as.POSIXlt()` pode ser usada para converter diferentes
@@ -899,7 +899,7 @@ dt_lt
 ```
 
 ```
-[1] "2016-06-23 20:35:54 GMT"
+[1] "2016-06-23 20:38:43 GMT"
 ```
 
 ```r
@@ -907,7 +907,7 @@ as.POSIXlt(Sys.time(), tz = "UTC")
 ```
 
 ```
-[1] "2016-06-23 20:35:54 UTC"
+[1] "2016-06-23 20:38:43 UTC"
 ```
 
 ```r
@@ -937,7 +937,7 @@ as.POSIXlt(Sys.time(), tz = "Europe/London")
 ```
 
 ```
-[1] "2016-06-23 21:35:54 BST"
+[1] "2016-06-23 21:38:43 BST"
 ```
 
 ```r
@@ -945,7 +945,7 @@ as.POSIXlt(Sys.time(), tz = "America/Los_Angeles")
 ```
 
 ```
-[1] "2016-06-23 13:35:54 PDT"
+[1] "2016-06-23 13:38:43 PDT"
 ```
 
 Uma lista com nomes dos fusos horários por continente/cidade ? fornecido pela função `OlsonNames()`.
@@ -1057,7 +1057,7 @@ format(Sys.time(), "%a %b %d %X %Y %Z")
 ```
 
 ```
-[1] "Qui Jun 23 20:35:55 2016 GMT"
+[1] "Qui Jun 23 20:38:43 2016 GMT"
 ```
 
 Ao importar dados que envolvem datas geralmente recebemos essas datas como strings ou `character`, e portanto temos que extrair dessas strings as nossas datas/horas. Entretanto não existe uma padrão seguido por todos para representar datas. 
@@ -1649,6 +1649,26 @@ year(hora_sp)
 
 ```
 [1] 2011
+```
+
+```r
+leap_year(2011)
+```
+
+```
+[1] FALSE
+```
+
+```r
+# último dia do mês
+last_day <- function(date) {
+  ceiling_date(date, "month") - days(1)
+}
+last_day(hora_sp)
+```
+
+```
+[1] "2011-06-30 America"
 ```
 
 > Selecione dados dos de sábados no conjunto de dados `mydata`.

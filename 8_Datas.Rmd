@@ -426,6 +426,12 @@ wday(hora_sp, label = TRUE)
 yday(hora_sp)
 month(hora_sp)
 year(hora_sp)
+leap_year(2011)
+# último dia do mês
+last_day <- function(date) {
+  ceiling_date(date, "month") - days(1)
+}
+last_day(hora_sp)
 ```
 
 > Selecione dados dos de sábados no conjunto de dados `mydata`.
