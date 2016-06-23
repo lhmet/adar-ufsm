@@ -1,0 +1,431 @@
+---
+title: "Programação"
+author: "Jônatan Tatsch"
+date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
+output:
+  html_document:
+    #code_folding: show
+    fig_caption: yes
+    fig_width: 6
+    highlight: kate
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+    #toc_float: yes
+---
+
+
+```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
+rm(list=ls())
+# definindo globalmente tz = "GMT"
+#Sys.setenv(TZ = 'GMT')
+# data manipulation packages
+pcks <- c("knitr", "knitcitations", "pander", "htmlTable")
+invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+# configuraçoes knitr
+opts_chunk$set(cache = FALSE, fig.path = "figs/")
+```
+
+- - -
+
+![](figs/adar.png)
+
+- - -
+
+```{r Chunk01, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
+# definindo globalmente tz = "GMT"
+Sys.setenv(TZ = 'GMT')
+# data manipulation packages
+pcks <- c("knitr", "knitcitations"
+          #"printr",
+          #"R.utils", "magrittr", "lubridate","stringr", 
+          #"plyr", "dplyr", "raster", "lattice",
+          #"rasterVis"
+          )
+invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+# configuraçoes knitcitations
+cleanbib()
+cite_options(citation_format = "text",
+            cite.style = "authoryear", 
+            style = "html", 
+            hyperlink = "to.bib")
+# configuraçoes knitr
+opts_chunk$set(cache = FALSE, fig.path = "figs/")
+```
+
+
+# Introdução 
+
+Datas e horas são referências temporais e indicam a ordem cronológica dos dados. Em climatologia dados passados na escala diária são suficientes para maioria das pesquisas. Em micrometeorologia é comum o uso de dados na escala sub-horária (até frações de segundo). 
+
+Datas e horas podem ser expressas em diferentes formatos o que  pode dificultar o reconhecimento e a sua manipulação. Quanto a manipulação frequentemente precisamos extrair componentes das datas  e horas.
+
+O R possui várias opções de classes de objetos e pacotes para o tratamento de datas e horas. As três classes principais são:
+
++ `Date` (p.ex. 31/12/2000), para lidar somente com datas, p.ex.: `31/12/2000`.
+
++ `POSIXct` e `POSIXt` (Date-Time), p.ex.: `31/12/2000 14:10:00`, para lidar com datas e horas
+
+# Datas
+
+Objeto da class `Date` são representados internamente no **R** como o número (inteiro) de dias desde 1 de janeiro de 1970. Essa classe é usada quando não temos interesse no horário do dia. Frações de dias podem ser geradas, mas nesse caso a classe POSIX é melhor nessa situação.
+
+A função `Sys.Date()` permite-nos obter a data de hoje em um objeto da classe `Date`.
+
+```{r Chunk200, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## data atual no computador
+(hoje <- Sys.Date())
+## classe 
+class(hoje)
+typeof(hoje)
+```
+
+A data parece como um caractere quando mostrada no cursor do R o seu tipo de dado é `double` e a classe `Date`.
+
+A função `unclass()` remove o atributo classe do objeto usado como argumento. No caso de um objeto da classe `Date` ele retorna o número usado pelo sistema para representar a data.
+
+```{r Chunk201, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## remove o atributo classe do onjeto
+ndias <- unclass(hoje)
+ndias
+```
+
+Para recriarmos a data de hoje:
+
+```{r Chunk202, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## vamos recriar a data desse dia
+(as.Date(x = ndias, origin = "1970-01-01"))
+```
+
+Para reconstruirmos a data que se refere aquele número foi usada a função `as.Date()`, que converte para a classe `Date` o argumento de entrada (n° de dias decorridos) a partir da data de origem.
+
+## Formatando datas
+
+Podemos extrair partes ou informações de objetos na classe `Date`. Nesse caso a informação será convertida para `character`. Essas informações podem ser o ano, dia, mês, por exemplo.
+
+```{r Chunk210, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## qual o ano da data de hoje
+format(hoje, "%Y")
+## qual o mes da data de hoje
+format(hoje, "%m");format(hoje, "%b")
+## qual o dia da data de hoje
+format(hoje, "%d")
+## qual o dia do ano da data de hoje
+format(hoje, "%j")
+```
+
+Podemos manipular o formato de saída da data.
+
+```{r Chunk211, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+format(hoje, "%d%b%Y")
+format(hoje, "%d/%m/%Y")
+format(hoje, "%d_%m_%Y.txt")
+format(hoje, "Hoje é %d de %B de %Y.")
+```
+
+Existem algumas funções prontas para extrair informações padrões, como:
+
+```{r Chunk212, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+months(hoje)
+weekdays(hoje)
+```
+
+O dia correspondente no calendário juliano. Para saber mais sobre dia juliano veja [aqui](http://en.wikipedia.org/wiki/Julian_day). 
+
+```{r Chunk213, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+julian(hoje)
+```
+
+A função `format()` permite representar um objeto da classe `Date` de muitas formas. Através do seu segundo argumento é possível formatar uma data em inúmeros formatos. 
+Consulte o `help` da função `strptime` para saber mais sobre estas variantes. 
+
+- - - 
+
+```{r Chunk214, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE,eval=TRUE, render.args=list(help=list(sections=c('details')))}
+help(strptime)
+```
+
+- - - 
+
+
+## Conversão de caracteres para `Date`
+
+Um procedimento mais frequente é a conversão de uma string ou caractere de um arquivo texto para um objeto da classe `Date`.
+
+```{r Chunk220, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+# vetor de caracteres com datas
+dts <-  c("2/2/2001", "04/4/2003", "03/03/2002", "5/05/2004", "1/1/2000")
+datas <- as.Date(dts, format = "%d/%m/%Y")
+class(datas)
+```
+
+Suponha que tivesse arquivos nomeados da seguinte forma:
+
+```{r Chunk221, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+arqs <- format(datas, "%d%b%y.txt")
+arqs
+# obter datas a partir do nome dos arquivos
+as.Date(arqs, "%d%b%y.txt")
+## ordenar os arquivos pela data
+arqs_dates <- as.Date(arqs, "%d%b%y.txt")
+arqs[order(arqs_dates)]
+```
+
+Vamos criar um data frame com informações de ano, mês e dia e então convertê-las em um objeto da classe `Date`.
+
+```{r Chunk223, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+eg <- expand.grid(dias = 1:31, mes = 1:12 ,anos = 2000:2001)
+head(eg)
+tail(eg)
+char_dates <- paste(eg$anos,  eg$mes, eg$dias, sep = "-")
+head(char_dates)
+datas_eg <- as.Date(char_dates)
+class(datas_eg)
+# foram criados NAs, pq?
+datas_eg[55:70]
+head(datas_eg)
+tail(datas_eg)
+## removendo datas inexistentes
+datas_eg_ok <- datas_eg[!is.na(datas_eg)]
+head(datas_eg_ok, 10)
+```
+
+## Sequência de datas
+
+```{r Chunk40, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+# sequencia de datas diarias
+datas_1d <- seq(from = as.Date("2000-01-01"), as.Date("2001-12-31"), by = "days")
+head(datas_1d, 32)
+tail(datas_1d, 32)
+# quantos dias por mês em cada ano
+table(format(datas_1d, "%m"), format(datas_1d, "%Y"))
+# quantos dias por ano
+table(format(datas_1d, "%Y"))
+## sequencia de pentadas
+pentadas <- seq(from = as.Date("2000-01-01"), as.Date("2001-12-31"), by = "5 days")
+pentadas
+length(pentadas)
+## quantas pentadas por ano
+table(format(pentadas, "%Y"))
+# quantas pentadas por mês e ano
+table(format(pentadas, "%Y"), format(pentadas, "%m"))
+## sequencia de meses
+datas_15s <- seq(from = as.Date("2000-01-15"), as.Date("2001-12-15"), by = "months")
+datas_15s
+```
+
+## Operações aritméticas
+
+```{r Chunk50, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## diferença enre datas
+as.Date("2006-9-23") - as.Date("2003-04-30")
+## diferença entre cada dia de um vetor de datas
+diff(pentadas)
+## útil para verificação de continuidade temporal
+datas_irreg <- datas_1d[-c(10, 100, 201, 303, 405, 506)]
+difs <- diff(datas_irreg)
+difs
+## encontrado datas descontínuas
+datas_irreg[c(1, difs) == 2]
+## só os primeiros 203 elementos
+df <- data.frame(d = datas_irreg[1:203], i = (c(1, difs) == 2)[1:203])
+df
+## quantos dias por semana há na série de datas
+table(cut(datas_irreg, "weeks"))
+## dias por mes
+table(cut(pentadas, "month"))
+```
+
+# Datas e horas
+
+Este tipo de objeto permite guardar registros temporais com informação sobre a data, como os anteriores, mas também sobre as horas, minutos e segundos. Existem duas sub-classes de `POSIXt`:
+
++ `POSIXct` que representam as datas como o número de segundos que passaram
+desde 1970.
+
++ `POSIXlt` que representam as datas como uma lista com várias componentes,
+como: `sec`, `min`, `hour`, `mday`, `mon`, `year` e etc.
+
+A função `Sys.time()` obtém a data/hora atual no computador num objeto do
+tipo `POSIXt`.
+
+```{r Chunk300, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## data e hora atual informada pelo sistema
+dt <- Sys.time()
+dt
+## numero de segundos desde 1970
+unclass(dt)
+## mostrando número preservando o formato inteiro 
+print(unclass(dt), digits = 10)
+```
+
+A função `as.POSIXlt()` pode ser usada para converter diferentes
+objetos para a classe `POSIXlt`. Vamos também converter a data e hora para outro fuso horário.
+
+```{r Chunk301, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+# definindo globalmente tz = "GMT" 
+# evita de ter que estar especificando tz = "GMT"
+# Sys.setenv(TZ = 'GMT')
+dt_lt <- as.POSIXlt(Sys.time(), tz = "GMT")
+dt_lt
+as.POSIXlt(Sys.time(), tz = "UTC")
+class(dt_lt)
+## qual fuso horário indicado pelo sistema operacional
+Sys.timezone()
+```
+
+Que horas corresponde esse horário em Londres?
+Para detalhes sobre as  strings usadas para  os fusos horários veja [aqui](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+
+
+```{r Chunk302, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+as.POSIXlt(Sys.time(), tz = "Europe/London")
+as.POSIXlt(Sys.time(), tz = "America/Los_Angeles")
+```
+
+Uma lista com nomes dos fusos horários por continente/cidade ? fornecido pela função `OlsonNames()`.
+
+
+```{r Chunk303, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+OlsonNames()[56:190]
+```
+
+Convertendo para POSIXct para determinar intervalos de tempo.
+
+```{r Chunk304, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+as.POSIXct("2006-12-23 12:45") - as.POSIXct("2006-12-21 21:54")
+```
+
+Qual a hora à 3 horas atrás?
+
+```{r Chunk305, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+as.POSIXct("2006-12-23 12:45") - 3600*3 
+```
+
+A função `format()` que já vimos anteriormente, funciona também para objetos `POSIXt`.
+
+```{r Chunk306, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+format(Sys.time(), "%a %b %d %X %Y %Z")
+```
+
+Ao importar dados que envolvem datas geralmente recebemos essas datas como strings ou `character`, e portanto temos que extrair dessas strings as nossas datas/horas. Entretanto não existe uma padrão seguido por todos para representar datas. 
+Por isso usamos a função `strptime()` que pode ser usada para extrair datas/horas de strings indicando o formato em que essas datas/horas estão representadas nas *strings*. Isso é feito através do segundo argumento da função que usa um conjunto de códigos com vários significados, análogo ao que vimos na função `format()`. Para mais detalhes sobre estes códigos veja o help da função.
+
+**Note que a função `format()` é usado para conversão de `POSIXt` ou `Date` para caractere. A `strptime()` converte vetores caracteres para classe `POSIXlt`.**
+
+```{r Chunk61, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## vetor de caracteres com informação de data
+x <- c("1jan1960", "2jan1960", "31mar1960", "30jul1960")
+strptime(x, format = "%d%b%Y")
+## vetores caracteres com informações de data e hora 
+datas <- c("02/27/92", "02/27/92", "01/14/92", "02/28/92", "02/01/92")
+horas <- c("23:03:20", "22:29:56", "01:03:30", "18:21:03", "16:56:26")
+## convertendo para formato padrão de data e hora do POSIXt
+x <- paste(datas, horas, sep = " ")
+x_pxlt <- strptime(x, "%m/%d/%y %H:%M:%S", tz = "GMT")
+x_pxlt
+str(x_pxlt)
+## mesma operação usando as.POSIXct
+x_pxct <- as.POSIXct(x, format = "%m/%d/%y %H:%M:%S", tz = "GMT")
+x_pxct
+str(x_pxct)
+## extrair horas minutos e segundos
+require(chron) # se não tiver instalado: install.packages("chron")
+minutes(x_pxct)
+hours(x_pxct)
+seconds(x_pxct)
+months(x_pxct)
+days(x_pxct)
+years(x_pxct)
+## convertendo datas e horas de caracteres para POSIXct
+eg <- expand.grid(minutos = c(0,30),
+                  horas = 0:23, 
+                  dias = 1:10, 
+                  mes = 7 ,
+                  anos = 2000)
+head(eg, 20)
+dth <- do.call("paste", c(eg, sep = " ")) 
+head(dth, 20)
+dth_psxct <- as.POSIXct(dth, format = "%M %H %d %m %Y", tz = "GMT")
+head(dth_psxct, 20)
+## intervalo de variação
+range(dth_psxct)
+## convertendo de POSIXct para Date
+dth_psxct_date <- as.Date(dth_psxct)
+head(dth_psxct_date, 20)
+```
+
+## Sequência de datas e horas
+
+```{r Chunk62, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+## sequencia de datas de meia-hora
+dhh <- seq(from = as.POSIXct("2000-01-01 01:30:00", tz = "GMT"),
+             to = as.POSIXct("2001-12-31 02:30:00", tz = "GMT"), 
+             by = "30 min")
+head(dhh, 100)
+## diferen?a entre cada hor?rio da sequ?ncia
+head(diff(dhh))
+## sequ?ncia de 6 horas
+d6h <- seq(from = as.POSIXct("2000-01-01 01:30:00", tz = "GMT"),
+             to = as.POSIXct("2001-12-31 02:30:00", tz = "GMT"), 
+             by = "6 hours")
+head(d6h, 20)
+## quantas pentadas por ano
+table(format(d6h, "%H"))
+```
+
+## Seleção de intervalos por datas
+
+Uma função muito útil na preparação de dados meteorológicos é a seleção partes do período de dados a partir de datas, anos, meses, dias ou horas. Vamos então explorar a função `selectByDate` do pacote [openair](http://www.openair-project.org/).
+
+```{r Chunk63, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, fig.align='center', fig.height=9, fig.width=7}
+library(openair)
+?selectByDate
+# dados disponíveis com o openair
+str(mydata)
+# período de dados
+range(mydata$date)
+# visualização dos dados
+timePlot(mydata, names(mydata)[-1])
+# selecionando dados para um interval de datas
+mydata_00 <- selectByDate(mydata, start = "2000-01-01", end = "2001-01-01")
+head(mydata_00)
+tail(mydata_00)
+str(mydata_00)
+# selecionando todos janeiros
+mydata_jan <- selectByDate(mydata, month = 1)
+str(mydata_jan)
+range(mydata_jan$date)
+# selecionando de julho a agosto de 2000
+mydata_jja <- selectByDate(mydata, month = 6:8, year = 2000)
+head(mydata_jja)
+tail(mydata_jja)
+str(mydata_jja)
+timePlot(mydata_jja, names(mydata_jja)[-1])
+```
+
+> Selecione dados dos meses maio e setembro somente às 0 6, 12, 18 horas.
+
+
+# lubridate
+
+```{r Chunk64, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, fig.align='center', fig.height=9, fig.width=7}
+library(lubridate)
+ymd("20110604")
+mdy("06-04-2011")
+dmy("04/06/2011")
+# Fuso horário
+(hora_belem <- ymd_hms("2011-06-04 00:00:00", tz = "America/Belem"))
+(hora_sp <- with_tz(hora_belem, "America/SaoPaulo"))
+# extraindo informações
+second(hora_sp)
+hour(hora_sp)
+day(hora_sp)
+wday(hora_sp)
+wday(hora_sp, label = TRUE)
+yday(hora_sp)
+month(hora_sp)
+year(hora_sp)
+```
+
+> Selecione dados dos de sábados no conjunto de dados `mydata`.
