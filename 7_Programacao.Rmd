@@ -734,7 +734,6 @@ temp_mm <- cbind(temp, mm)
 matplot(temp_mm, type = "l", lwd = 2)
 ```
 
-
 Para aplicar uma função a cada elemento em um vetor ou uma lista e retornar uma lista podemos usar a função `lapply()`. Uma situação prática de uso do `lapply()` é quando o resultado esperado da aplicação da função a uma parte do objeto pode ter uma saída de tamanhos diferentes em cada iteração do `lapply()`.
 Vamos ilustrar essa situação buscando encontrar os meses em cada ano da temp_mat cuja a tar foi acima da média.
 

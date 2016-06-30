@@ -987,7 +987,7 @@ hoje
 ```
 
 ```
-[1] "2016-06-30 11:08:39 BRT"
+[1] "2016-06-30 11:12:28 BRT"
 ```
 
 ```r
@@ -1217,7 +1217,7 @@ system.time(
 
 ```
    user  system elapsed 
-   0.31    0.00    0.31 
+  0.325   0.004   0.329 
 ```
 
 ```r
@@ -1234,7 +1234,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.129   0.004   0.134 
+  0.113   0.008   0.121 
 ```
 
 ```r
@@ -1251,7 +1251,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.008   0.000   0.009 
+  0.008   0.000   0.008 
 ```
 
 ```r
@@ -1466,7 +1466,6 @@ matplot(temp_mm, type = "l", lwd = 2)
 ```
 
 ![](figs/Chunk34-1.png)<!-- -->
-
 
 Para aplicar uma função a cada elemento em um vetor ou uma lista e retornar uma lista podemos usar a função `lapply()`. Uma situação prática de uso do `lapply()` é quando o resultado esperado da aplicação da função a uma parte do objeto pode ter uma saída de tamanhos diferentes em cada iteração do `lapply()`.
 Vamos ilustrar essa situação buscando encontrar os meses em cada ano da temp_mat cuja a tar foi acima da média.
