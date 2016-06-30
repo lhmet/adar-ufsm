@@ -987,7 +987,7 @@ hoje
 ```
 
 ```
-[1] "2016-06-10 21:19:29 BRT"
+[1] "2016-06-30 11:07:33 BRT"
 ```
 
 ```r
@@ -1003,7 +1003,7 @@ mostra_data(data = hoje, tipo = "medio")
 ```
 
 ```
-[1] "10 06 2016"
+[1] "30 06 2016"
 ```
 
 ```r
@@ -1011,7 +1011,7 @@ mostra_data(data = hoje, tipo = "longo")
 ```
 
 ```
-[1] "sexta 10 junho 2016"
+[1] "quinta 30 junho 2016"
 ```
 
 ```r
@@ -1217,7 +1217,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.342   0.000   0.341 
+  0.324   0.004   0.328 
 ```
 
 ```r
@@ -1234,7 +1234,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.116   0.002   0.119 
+  0.123   0.004   0.128 
 ```
 
 ```r
@@ -1251,7 +1251,7 @@ system.time(
 
 ```
    user  system elapsed 
-  0.009   0.000   0.008 
+  0.008   0.000   0.009 
 ```
 
 ```r
@@ -1615,4 +1615,8 @@ mapply(pitagoras, x = 1:10, y = 10:1)
  [1] 10.049876  9.219544  8.544004  8.062258  7.810250  7.810250  8.062258
  [8]  8.544004  9.219544 10.049876
 ```
+
+<br/>
+
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Datas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)</p> 
 

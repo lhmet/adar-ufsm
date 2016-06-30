@@ -778,3 +778,7 @@ mapply(paste,
 mapply(pitagoras, x = 1:10, y = 10:1)
 ```
 
+<br/>
+
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Datas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)</p> 
+
