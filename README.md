@@ -30,9 +30,8 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 # Conteúdo (em construção)
 
-[Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
+- [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
 
-### R básico
 
 - [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
@@ -47,6 +46,8 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 - [Entrada/saída de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_EntradaDeDados.html)
 
 - [Programaçao](https://rawgit.com/jdtatsch/adar-ufsm/master/7_Programacao.html)
+
+- [Datas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)
 
 # Horários
 
