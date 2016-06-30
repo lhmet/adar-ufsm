@@ -73,20 +73,23 @@ library(repmis)
 
 Dados meteorológicos horários de estações meteorológicas do INMET localizas no RS.
 
-```{r , message=FALSE, comment="",eval = TRUE, prompt=FALSE}
+```{r , message=FALSE, comment="",eval = FALSE, prompt=FALSE}
 #"https://www.dropbox.com/s/o7xxw6elspyyu2f/data_inmet_sul_RS.rds?dl=0"
 dl_from_dropbox <- function(x, key, dest.dir = "data") {
-                        require(RCurl)
+ require(RCurl)
+  stop
   bin <- getBinaryURL(paste0("https://dl.dropboxusercontent.com/s/", key, "/", x),
                       ssl.verifypeer = FALSE)
-  con <- file(x, open = "wb")
+  file_con <- file.path(dest.dir, x)
+  con <- file(file_con, open = "wb")
    writeBin(bin, con)
     close(con)
-      message(noquote(paste(x, "read into", getwd())))
+    if(!file.exists(file_con)) return("não foi possível baixar o arquivo")
+      return(file_con)
 }
 # Example:
-dl_from_dropbox("data_inmet_sul_RS", "o7xxw6elspyyu2f")
-data_rs <- readRDS("data_inmet_sul_RS")
+data_rs <- dl_from_dropbox(x = "data_inmet_sul_RS.rds", key = "o7xxw6elspyyu2f", dest.dir = "data")
+data_rs <- readRDS(data_rs)
 ```
 
 # Funcionalidade do `dplyr`
