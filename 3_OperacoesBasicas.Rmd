@@ -213,6 +213,13 @@ getOption("digits")
 options(digits = 7)
 ```
 
+
+```{r chunk191a,comment="",prompt=FALSE}
+formatC(pi, digits = 3, width = 8, flag = '0', format = 'f')
+```
+
+
+
 # Variáveis
 
 ## Formas de atribuição 
