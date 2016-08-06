@@ -144,7 +144,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Processamento de dados</h1>
 <h4 class="author"><em>Jônatan Tatsch</em></h4>
-<h4 class="date"><em>30-06-2016</em></h4>
+<h4 class="date"><em>18-07-2016</em></h4>
 
 </div>
 
@@ -174,24 +174,45 @@ $(document).ready(function () {
 <span class="kw">library</span>(openair)
 <span class="kw">library</span>(devtools)
 <span class="kw">library</span>(EDAWR) <span class="co"># install_github(&quot;rstudio/EDAWR&quot;)</span>
-<span class="kw">library</span>(tibble)</code></pre></div>
-<p>Dados</p>
+<span class="kw">library</span>(tibble)
+<span class="kw">library</span>(repmis)</code></pre></div>
+<p>Os dados meteorológicos horários de estações meteorológicas do INMET localizas no RS estão disponível <a href="%22https://www.dropbox.com/s/o7xxw6elspyyu2f/data_inmet_sul_RS.rds?dl=0%22">aqui</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Função para baixar dados do dropbox</span>
+<span class="co"># fonte: </span>
+dl_from_dropbox &lt;-<span class="st"> </span>function(x, key, <span class="dt">dest.dir =</span> <span class="st">&quot;data&quot;</span>) {
+ <span class="kw">require</span>(RCurl)
+  stop
+  bin &lt;-<span class="st"> </span><span class="kw">getBinaryURL</span>(<span class="kw">paste0</span>(<span class="st">&quot;https://dl.dropboxusercontent.com/s/&quot;</span>, key, <span class="st">&quot;/&quot;</span>, x),
+                      <span class="dt">ssl.verifypeer =</span> <span class="ot">FALSE</span>)
+  file_con &lt;-<span class="st"> </span><span class="kw">file.path</span>(dest.dir, x)
+  con &lt;-<span class="st"> </span><span class="kw">file</span>(file_con, <span class="dt">open =</span> <span class="st">&quot;wb&quot;</span>)
+   <span class="kw">writeBin</span>(bin, con)
+    <span class="kw">close</span>(con)
+    if(!<span class="kw">file.exists</span>(file_con)) <span class="kw">return</span>(<span class="st">&quot;não foi possível baixar o arquivo&quot;</span>)
+    data_rs &lt;-<span class="st"> </span><span class="kw">readRDS</span>(file_con)
+    <span class="kw">return</span>(data_rs)
+}
+<span class="co"># download de arquivo dropbox</span>
+data_rs &lt;-<span class="st"> </span><span class="kw">dl_from_dropbox</span>(<span class="dt">x =</span> <span class="st">&quot;data_inmet_sul_RS.rds&quot;</span>, 
+                           <span class="dt">key =</span> <span class="st">&quot;o7xxw6elspyyu2f&quot;</span>, 
+                           <span class="dt">dest.dir =</span> <span class="st">&quot;data&quot;</span>)</code></pre></div>
 </div>
 <div id="funcionalidade-do-dplyr" class="section level1">
 <h1><span class="header-section-number">3</span> Funcionalidade do <code>dplyr</code></h1>
 <ul>
-<li>5 verbos básicos:</li>
-<li><code>filter</code></li>
-<li><code>select</code></li>
-<li><code>arrange</code></li>
-<li><code>mutate</code></li>
-<li><p><code>group_by</code> e <code>summarise</code></p></li>
+<li><p>5 verbos básicos:</p></li>
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>arrange()</code></li>
+<li><code>mutate()</code></li>
+<li><p><code>group_by()</code> e <code>summarise()</code></p></li>
 <li>Can work with data stored in databases and <a href="http://datatable.r-forge.r-project.org/">data tables</a></li>
 <li>Joins: inner join, left join, semi-join, anti-join (not covered below)</li>
 <li>Window functions for calculating ranking, offsets, and more</li>
 <li><a href="http://blog.rstudio.org/2014/01/17/introducing-dplyr/">Better than plyr</a> if you’re only working with data frames (though it doesn’t yet duplicate all of the plyr functionality)</li>
 <li><p>Examples below are based upon the <a href="https://github.com/hadley/dplyr/releases">latest release</a>, version 0.2 (released May 2014)</p></li>
 </ul>
+<p>sssssyfdd</p>
 </div>
 
 

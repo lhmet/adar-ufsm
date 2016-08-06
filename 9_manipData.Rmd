@@ -71,10 +71,11 @@ library(tibble)
 library(repmis)
 ```
 
-Dados meteorológicos horários de estações meteorológicas do INMET localizas no RS.
+Os dados meteorológicos horários de estações meteorológicas do INMET localizas no RS estão disponível [aqui]("https://www.dropbox.com/s/o7xxw6elspyyu2f/data_inmet_sul_RS.rds?dl=0").
 
 ```{r , message=FALSE, comment="",eval = FALSE, prompt=FALSE}
-#"https://www.dropbox.com/s/o7xxw6elspyyu2f/data_inmet_sul_RS.rds?dl=0"
+# Função para baixar dados do dropbox
+# fonte: 
 dl_from_dropbox <- function(x, key, dest.dir = "data") {
  require(RCurl)
   stop
@@ -85,11 +86,13 @@ dl_from_dropbox <- function(x, key, dest.dir = "data") {
    writeBin(bin, con)
     close(con)
     if(!file.exists(file_con)) return("não foi possível baixar o arquivo")
-      return(file_con)
+    data_rs <- readRDS(file_con)
+    return(data_rs)
 }
-# Example:
-data_rs <- dl_from_dropbox(x = "data_inmet_sul_RS.rds", key = "o7xxw6elspyyu2f", dest.dir = "data")
-data_rs <- readRDS(data_rs)
+# download de arquivo dropbox
+data_rs <- dl_from_dropbox(x = "data_inmet_sul_RS.rds", 
+                           key = "o7xxw6elspyyu2f", 
+                           dest.dir = "data")
 ```
 
 # Funcionalidade do `dplyr`
@@ -110,5 +113,5 @@ data_rs <- readRDS(data_rs)
 * [Better than plyr](http://blog.rstudio.org/2014/01/17/introducing-dplyr/) if you're only working with data frames (though it doesn't yet duplicate all of the plyr functionality)
 * Examples below are based upon the [latest release](https://github.com/hadley/dplyr/releases), version 0.2 (released May 2014)
 
-
+sssssyfdd
 
