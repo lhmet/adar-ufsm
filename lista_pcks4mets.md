@@ -78,6 +78,8 @@ Jônatan Tatsch
 
 * [xts](https://cran.r-project.org/web/packages/xts/index.html) eXtensible Time Series
 
+* [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html) Make Dealing with Dates a Little Easier
+
 # Climate tools
 
 * [ClimClass](https://cran.r-project.org/web/packages/ClimClass/index.html)	Climate Classification According to Several Indices

@@ -15,8 +15,7 @@ output:
 
 ```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
 rm(list=ls())
-# definindo globalmente tz = "GMT"
-Sys.setenv(TZ = 'GMT')
+Sys.setenv(TZ = 'UTC')
 # data manipulation packages
 pcks <- c("knitr"#, "knitcitations",
           #"printr"#,
@@ -109,6 +108,8 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/")
 * [hms](https://github.com/rstats-db/hms) A simple class for storing time-of-day values
 
 * [xts](https://cran.r-project.org/web/packages/xts/index.html) eXtensible Time Series
+
+* [lubridate](https://cran.r-project.org/web/packages/lubridate/index.html) Make Dealing with Dates a Little Easier
 
 # Climate tools
 
