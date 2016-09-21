@@ -715,22 +715,22 @@ df</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## data e hora atual informada pelo sistema
 dt &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 dt</code></pre></div>
-<pre><code>[1] &quot;2016-09-21 13:25:28 UTC&quot;</code></pre>
+<pre><code>[1] &quot;2016-09-21 13:28:15 UTC&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## numero de segundos desde 1970
 <span class="kw">unclass</span>(dt)</code></pre></div>
-<pre><code>[1] 1474464329</code></pre>
+<pre><code>[1] 1474464495</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## mostrando número preservando o formato inteiro 
 <span class="kw">print</span>(<span class="kw">unclass</span>(dt), <span class="dt">digits =</span> <span class="dv">10</span>)</code></pre></div>
-<pre><code>[1] 1474464329</code></pre>
+<pre><code>[1] 1474464495</code></pre>
 <p>A função <code>as.POSIXlt()</code> pode ser usada para converter diferentes objetos para a classe <code>POSIXlt</code>. Vamos também converter a data e hora para outro fuso horário.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># definindo globalmente tz = &quot;GMT&quot; </span>
 <span class="co"># evita de ter que estar especificando tz = &quot;GMT&quot;</span>
 <span class="co"># Sys.setenv(TZ = 'GMT')</span>
 dt_lt &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>(), <span class="dt">tz =</span> <span class="st">&quot;GMT&quot;</span>)
 dt_lt</code></pre></div>
-<pre><code>[1] &quot;2016-09-21 13:25:28 GMT&quot;</code></pre>
+<pre><code>[1] &quot;2016-09-21 13:28:15 GMT&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>(), <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>)</code></pre></div>
-<pre><code>[1] &quot;2016-09-21 13:25:28 UTC&quot;</code></pre>
+<pre><code>[1] &quot;2016-09-21 13:28:15 UTC&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dt_lt)</code></pre></div>
 <pre><code>[1] &quot;POSIXlt&quot; &quot;POSIXt&quot; </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## qual fuso horário indicado pelo sistema operacional
@@ -738,9 +738,9 @@ dt_lt</code></pre></div>
 <pre><code>[1] &quot;UTC&quot;</code></pre>
 <p>Que horas corresponde esse horário em Londres? Para detalhes sobre as strings usadas para os fusos horários veja <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">aqui</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>(), <span class="dt">tz =</span> <span class="st">&quot;Europe/London&quot;</span>)</code></pre></div>
-<pre><code>[1] &quot;2016-09-21 14:25:28 BST&quot;</code></pre>
+<pre><code>[1] &quot;2016-09-21 14:28:15 BST&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.POSIXlt</span>(<span class="kw">Sys.time</span>(), <span class="dt">tz =</span> <span class="st">&quot;America/Los_Angeles&quot;</span>)</code></pre></div>
-<pre><code>[1] &quot;2016-09-21 06:25:28 PDT&quot;</code></pre>
+<pre><code>[1] &quot;2016-09-21 06:28:15 PDT&quot;</code></pre>
 <p>Uma lista com nomes dos fusos horários por continente/cidade ? fornecido pela função <code>OlsonNames()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">OlsonNames</span>()[<span class="dv">56</span>:<span class="dv">190</span>]</code></pre></div>
 <pre><code>  [1] &quot;America/Anchorage&quot;                &quot;America/Anguilla&quot;                
@@ -819,7 +819,7 @@ dt_lt</code></pre></div>
 <pre><code>[1] &quot;2006-12-23 09:45:00 UTC&quot;</code></pre>
 <p>A função <code>format()</code> que já vimos anteriormente, funciona também para objetos <code>POSIXt</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.time</span>(), <span class="st">&quot;%a %b %d %X %Y %Z&quot;</span>)</code></pre></div>
-<pre><code>[1] &quot;Qua Set 21 13:25:28 2016 UTC&quot;</code></pre>
+<pre><code>[1] &quot;Qua Set 21 13:28:15 2016 UTC&quot;</code></pre>
 <p>Ao importar dados que envolvem datas geralmente recebemos essas datas como strings ou <code>character</code>, e portanto temos que extrair dessas strings as nossas datas/horas. Entretanto não existe uma padrão seguido por todos para representar datas. Por isso usamos a função <code>strptime()</code> que pode ser usada para extrair datas/horas de strings indicando o formato em que essas datas/horas estão representadas nas <em>strings</em>. Isso é feito através do segundo argumento da função que usa um conjunto de códigos com vários significados, análogo ao que vimos na função <code>format()</code>. Para mais detalhes sobre estes códigos veja o help da função.</p>
 <p><strong>Note que a função <code>format()</code> é usado para conversão de <code>POSIXt</code> ou <code>Date</code> para caractere. A <code>strptime()</code> converte vetores caracteres para classe <code>POSIXlt</code>.</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## vetor de caracteres com informação de data

@@ -865,7 +865,7 @@ dt
 ```
 
 ```
-[1] "2016-09-21 13:25:28 UTC"
+[1] "2016-09-21 13:28:15 UTC"
 ```
 
 ```r
@@ -874,7 +874,7 @@ unclass(dt)
 ```
 
 ```
-[1] 1474464329
+[1] 1474464495
 ```
 
 ```r
@@ -883,7 +883,7 @@ print(unclass(dt), digits = 10)
 ```
 
 ```
-[1] 1474464329
+[1] 1474464495
 ```
 
 A função `as.POSIXlt()` pode ser usada para converter diferentes
@@ -899,7 +899,7 @@ dt_lt
 ```
 
 ```
-[1] "2016-09-21 13:25:28 GMT"
+[1] "2016-09-21 13:28:15 GMT"
 ```
 
 ```r
@@ -907,7 +907,7 @@ as.POSIXlt(Sys.time(), tz = "UTC")
 ```
 
 ```
-[1] "2016-09-21 13:25:28 UTC"
+[1] "2016-09-21 13:28:15 UTC"
 ```
 
 ```r
@@ -937,7 +937,7 @@ as.POSIXlt(Sys.time(), tz = "Europe/London")
 ```
 
 ```
-[1] "2016-09-21 14:25:28 BST"
+[1] "2016-09-21 14:28:15 BST"
 ```
 
 ```r
@@ -945,7 +945,7 @@ as.POSIXlt(Sys.time(), tz = "America/Los_Angeles")
 ```
 
 ```
-[1] "2016-09-21 06:25:28 PDT"
+[1] "2016-09-21 06:28:15 PDT"
 ```
 
 Uma lista com nomes dos fusos horários por continente/cidade ? fornecido pela função `OlsonNames()`.
@@ -1057,7 +1057,7 @@ format(Sys.time(), "%a %b %d %X %Y %Z")
 ```
 
 ```
-[1] "Qua Set 21 13:25:28 2016 UTC"
+[1] "Qua Set 21 13:28:15 2016 UTC"
 ```
 
 Ao importar dados que envolvem datas geralmente recebemos essas datas como strings ou `character`, e portanto temos que extrair dessas strings as nossas datas/horas. Entretanto não existe uma padrão seguido por todos para representar datas. 
