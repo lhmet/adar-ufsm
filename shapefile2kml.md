@@ -1,7 +1,5 @@
 # Geração de KML a partir de *shapefile* da [ANA](http://www.ana.gov.br/)
-| Jônatan Tatsch - UFSM
-  
-`r format(Sys.Date(), format = '%d-%m-%Y')`  
+Jônatan Tatsch - UFSM  
 
 
 
@@ -30,7 +28,7 @@ Nesse tutorial veremos como converter o conjunto de arquivos associados ao *shap
 
 
 </style>
-<div class="midcenter" style="margin-left:150px; margin-top:50px;">
+<div class="midcenter" style="margin-left:200px; margin-top:50px;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Brasil_Bacias_hidrograficas.svg/300px-Brasil_Bacias_hidrograficas.svg.png" height="300px" width="300px" />
 </div>
 
@@ -38,14 +36,13 @@ Nesse tutorial veremos como converter o conjunto de arquivos associados ao *shap
 
 Este tutorial foi produzido com o software [R](http://www.r-project.org/) através do [RStudio](http://www.rstudio.com/) em um desktop com linux ubuntu.
 
-Para manipulação de dados espaciais existem bibliotecas (externas ao R) específicas que precisam ser instaladas. Essas bibliotecas são acessadas através do R por meio de pacotes. Um exemplo desse tipo de interface entre o R e uma biblioteca externa é o pacote [RGDAL](https://cran.r-project.org/web/packages/rgdal/index.html) que faz a interface com a biblioteca *Geospatial Data Abstraction Library* [GDAL](http://www.gdal.org/) que possibilita realizar operações de transformação/projeção com a biblioteca [PROJ.4](https://en.wikipedia.org/wiki/PROJ.4). Então para usarmos o pacote [RGDAL](https://cran.r-project.org/web/packages/rgdal/index.html) é necessário a instalação das bibliotecas: `proj-bin`, `libproj-dev`, `gdal-bin`, `libgdal1-dev`. Elas podem ser instaladas digitando em um terminal linux o comando abaixo.
+Para manipulação de dados espaciais existem bibliotecas (externas ao R) específicas que precisam ser instaladas. Essas bibliotecas são acessadas através do R por meio de pacotes. Um exemplo desse tipo de interface entre o R e uma biblioteca externa é o pacote [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html) que faz a interface com a biblioteca *Geospatial Data Abstraction Library* ([GDAL](http://www.gdal.org/)) que possibilita realizar operações de transformação/projeção com a biblioteca [PROJ.4](https://en.wikipedia.org/wiki/PROJ.4). Então para usarmos o pacote [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html) é necessário a instalação das bibliotecas: `proj-bin`, `libproj-dev`, `gdal-bin`, `libgdal1-dev`. Elas podem ser instaladas digitando em um terminal linux ubuntu o comando abaixo.
 
 
 ```bash
-# instala bibliotecas linux, adicione sudo antes do comando abaixo para ter acesso como super usuário
+# instala bibliotecas linux, adicione 'sudo' antes do comando abaixo para ter acesso como super usuário
 apt-get install proj-bin libproj-dev gdal-bin libgdal1-dev
 ```
-
 
 Para converter os arquivos associados ao *shapefile* utilizaremos a função `KML()` disponibilizada com o pacote [raster](https://cran.r-project.org/web/packages/raster/index.html). Para instalar um pacote no R, digite `install.packages("nomeDoPacote")`.
 
@@ -53,12 +50,31 @@ Para converter os arquivos associados ao *shapefile* utilizaremos a função `KM
 ```r
 # carregando pacotes 
 library(raster)
+```
+
+```
+Loading required package: sp
+```
+
+```r
 library(sp)
 library(rgdal)
+```
+
+```
+rgdal: version: 1.1-10, (SVN revision 622)
+ Geospatial Data Abstraction Library extensions to R successfully loaded
+ Loaded GDAL runtime: GDAL 1.11.2, released 2015/02/10
+ Path to GDAL shared files: /usr/share/gdal/1.11
+ Loaded PROJ.4 runtime: Rel. 4.8.0, 6 March 2012, [PJ_VERSION: 480]
+ Path to PROJ.4 shared files: (autodetected)
+ Linking to sp version: 1.2-3 
+```
+
+```r
 # opção para não interpretar caracteres como factor (uma tipo de objeto do R especial para variáveis categóricas)
 options(stringsAsFactors = TRUE)
 ```
-
 
 # *Download* de arquivo *shapefile*
 
@@ -141,57 +157,27 @@ dren <- shapefile(dren_file)
 plot(dren, axes = TRUE, las = 1)
 ```
 
-![](figs/unnamed-chunk-9-1.png)<!-- -->
+![](figs/chunck7-1.png)<!-- -->
+
 
 ```r
 # primeiras linhas da tabela de dados do shapefile
 head(dren@data)
 ```
 
-```
-  COTRECHO COCURSODAG COBACIA     CORIO NUCOMPTREC NUDISTBACT NUDISTCDAG
-0   119193    7754994 7754994 7754994_0      26.74     249.20          0
-1   119205    7754992 7754992 7754992_0      22.23     236.06          0
-2   119232     775496  775496  775496_0      54.82     226.03          0
-3   119330    7754896 7754896 7754896_0      19.49     239.46          0
-4   119334    7754898 7754898 7754898_0      22.48     240.18          0
-5   119338    7756966 7756966 7756966_0       9.45     136.48          0
-  NUAREACONT NUAREAMONT NUNIVOTTO DEDIREC DECORPODAG DELIGACAO NORIO
-0     174.02     174.02         7       1       <NA>      <NA>  <NA>
-1     134.21     134.21         7      -1       <NA>      <NA>  <NA>
-2     472.32     472.32         6      -1        Rio      <NA>  Taió
-3      88.65      88.65         7      -1       <NA>      <NA>  <NA>
-4     117.04     117.04         7      -1       <NA>      <NA>  <NA>
-5      37.89      37.89         7       1       <NA>      <NA>  <NA>
-  NORIOCOMP NUCOMPRIO NUDISTBACR COCDADESAG NUCOMPCDA NUTRJUS NUTRMON
-0      <NA>     26.74     249.20       7754     26.74  119197  119183
-1      <NA>     22.23     236.06       7754     22.23  119200  119197
-2  Rio Taió     54.82     226.03       7754     54.82  119219  119208
-3      <NA>     19.49     239.46      77548     19.49  119312  119313
-4      <NA>     22.48     240.18      77548     22.48  119313  119320
-5      <NA>      9.45     136.48     775696      9.45  119346  119337
-  NUTRAFL NUDISTBACC NUAREABACC DEMARGCONF NUORDEMCDA NUNIVOTCDA
-0  119193     249.20     174.02    direita          2          7
-1  119205     236.06     134.21    direita          2          7
-2  119232     226.03     472.32    direita          2          6
-3  119330      71.79      88.65   esquerda          3          7
-4  119334      72.51     117.04   esquerda          3          7
-5  119338      16.74      37.89    direita          3          7
-  NULONGNOPA NULATNOPA NULONGNODE NULATNODE   DTVERSAO
-0   -50.1648  -27.0127   -50.2988  -27.0100 07/12/2006
-1   -50.0696  -27.0874   -50.2399  -27.0916 07/12/2006
-2   -50.0043  -27.1173   -50.3296  -27.1291 07/12/2006
-3   -49.3325  -27.6930   -49.3115  -27.8326 07/12/2006
-4   -49.3248  -27.6928   -49.2797  -27.8578 07/12/2006
-5   -49.2017  -27.8977   -49.2907  -27.8936 07/12/2006
-```
+<!--html_preserve--><div id="htmlwidget-ce79ee0ae70cac231644" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ce79ee0ae70cac231644">{"x":{"filter":"none","data":[["0","1","2","3","4","5"],[119193,119205,119232,119330,119334,119338],["7754994","7754992","775496","7754896","7754898","7756966"],["7754994","7754992","775496","7754896","7754898","7756966"],["7754994_0","7754992_0","775496_0","7754896_0","7754898_0","7756966_0"],[26.74,22.23,54.82,19.49,22.48,9.45],[249.2,236.06,226.03,239.46,240.18,136.48],[0,0,0,0,0,0],[174.02,134.21,472.32,88.65,117.04,37.89],[174.02,134.21,472.32,88.65,117.04,37.89],[7,7,6,7,7,7],[1,-1,-1,-1,-1,1],[null,null,"Rio",null,null,null],[null,null,null,null,null,null],[null,null,"Taió",null,null,null],[null,null,"Rio Taió",null,null,null],[26.74,22.23,54.82,19.49,22.48,9.45],[249.2,236.06,226.03,239.46,240.18,136.48],["7754","7754","7754","77548","77548","775696"],[26.74,22.23,54.82,19.49,22.48,9.45],[119197,119200,119219,119312,119313,119346],[119183,119197,119208,119313,119320,119337],[119193,119205,119232,119330,119334,119338],[249.2,236.06,226.03,71.79,72.51,16.74],[174.02,134.21,472.32,88.65,117.04,37.89],["direita","direita","direita","esquerda","esquerda","direita"],[2,2,2,3,3,3],[7,7,6,7,7,7],[-50.1648,-50.0696,-50.0043,-49.3325,-49.3248,-49.2017],[-27.0127,-27.0874,-27.1173,-27.693,-27.6928,-27.8977],[-50.2988,-50.2399,-50.3296,-49.3115,-49.2797,-49.2907],[-27.01,-27.0916,-27.1291,-27.8326,-27.8578,-27.8936],["07/12/2006","07/12/2006","07/12/2006","07/12/2006","07/12/2006","07/12/2006"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> \u003c/th>\n      <th>COTRECHO\u003c/th>\n      <th>COCURSODAG\u003c/th>\n      <th>COBACIA\u003c/th>\n      <th>CORIO\u003c/th>\n      <th>NUCOMPTREC\u003c/th>\n      <th>NUDISTBACT\u003c/th>\n      <th>NUDISTCDAG\u003c/th>\n      <th>NUAREACONT\u003c/th>\n      <th>NUAREAMONT\u003c/th>\n      <th>NUNIVOTTO\u003c/th>\n      <th>DEDIREC\u003c/th>\n      <th>DECORPODAG\u003c/th>\n      <th>DELIGACAO\u003c/th>\n      <th>NORIO\u003c/th>\n      <th>NORIOCOMP\u003c/th>\n      <th>NUCOMPRIO\u003c/th>\n      <th>NUDISTBACR\u003c/th>\n      <th>COCDADESAG\u003c/th>\n      <th>NUCOMPCDA\u003c/th>\n      <th>NUTRJUS\u003c/th>\n      <th>NUTRMON\u003c/th>\n      <th>NUTRAFL\u003c/th>\n      <th>NUDISTBACC\u003c/th>\n      <th>NUAREABACC\u003c/th>\n      <th>DEMARGCONF\u003c/th>\n      <th>NUORDEMCDA\u003c/th>\n      <th>NUNIVOTCDA\u003c/th>\n      <th>NULONGNOPA\u003c/th>\n      <th>NULATNOPA\u003c/th>\n      <th>NULONGNODE\u003c/th>\n      <th>NULATNODE\u003c/th>\n      <th>DTVERSAO\u003c/th>\n    \u003c/tr>\n  \u003c/thead>\n\u003c/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,5,6,7,8,9,10,11,16,17,19,20,21,22,23,24,26,27,28,29,30,31]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
-Nós não precisamos das 32 variáveis contidas na tabela de dados do *shapefile*. Quanto mais variáveis, maior será o tamanho do arquivo KMZ gerado. Então vamos selecionar somente algumas variáveis de interesse, como o nome do rio, o código da bacia hidrográfica e o do rio. Essas informações poderão ser visualizadas no *Google Earth* ao clicar sobre o rio de interesse. Entretanto, nem todos rios possuem nomes definidos como pode ser visto pelos valores `<NA>` na tabela de dados acima.
+
+
+
+
+Nós não precisamos das 32 variáveis contidas na tabela de dados do *shapefile*. Quanto mais variáveis, maior será o tamanho do arquivo KMZ gerado. Então vamos selecionar somente algumas variáveis de interesse, como o nome do rio, o código da bacia hidrográfica e o do rio. Essas informações poderão ser visualizadas no *Google Earth* ao clicar sobre o rio de interesse. Entretanto, nem todos rios possuem nomes definidos como pode ser visto pelos valores `<NA>` na coluna `NORIOCOMP` da tabela de dados acima.
 
 
 ```r
 #selecionando somente as variáveis de interesse no slot de dados do objeto dren (SpatialLinesDataFrame)  
-dren@data <- subset(dren@data, sel = c("NORIO", "NORIOCOMP", "COBACIA", "CORIO")) 
+dren@data <- subset(dren@data, sel = c("NORIO", "NORIOCOMP", "COBACIA", "CORIO"))
 # projeção do shapefile da ANA
 projection(dren)
 ```
@@ -211,19 +197,19 @@ attr(,"package")
 [1] "sp"
 ```
 
-Antes de exportar o objeto `dren` para KML (ou KMZ) devemos primeiro reprojetá-lo para Lat/Lon já que o *Google Earth* usa esta projeção. A função `spTransform()` permite reprojetar objetos da classe `SpatialLinesDataFrame` para qualquer outra projeção. Essa usa  a biblioteca `PROJ.4` (biblioteca de referência, externa ao R, para trabalhar com projeções cartográficas e realizar transformações entre projeções). O pacote `rgdal` é a interface entre a biblioteca `PROJ4` e o R que permite realizar essa operação. O argumento `CRSobj`deve receber uma expressão `proj4`. Expressões `proj4` são  *strings* que fornecem os parâmetros das projeções cartográficas. Um local para para procurar por projeções o [site de referência espacial](http://spatialreference.org/). Dessa base de dados podemos buscar qualquer referência e obtê-la em qualquer formato, incluindo o formato das expressões `proj4`.
+Antes de exportar o objeto `dren` para KML (ou KMZ) devemos primeiro reprojetá-lo para Lat/Lon já que o *Google Earth* usa esta projeção. A função `spTransform()` do pacote `rgdal` permite reprojetar objetos da classe `SpatialLinesDataFrame` para qualquer outra projeção. Essa usa  a biblioteca `PROJ.4` (biblioteca de referência, externa ao R, para trabalhar com projeções cartográficas e realizar transformações entre projeções). O pacote `rgdal` é a interface entre a biblioteca `PROJ.4` e o R que permite realizar essa operação. O argumento `CRSobj`deve receber uma expressão `proj4`. Expressões `proj4` são  *strings* que fornecem os parâmetros das projeções cartográficas[^2]. 
 
 
 ```r
 # definindo o a projeção de acordo com a do Google Earth
-dren_ll <- sp::spTransform(dren, CRSobj = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
+dren_ll <- spTransform(dren, CRSobj = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
 ```
 
 Finalmente, exportamos os dados reprojetados para KMZ.
 
 
 ```r
-## gerando arquivo KML para visualização no google-earth
+# gerando arquivo KML para visualização no google-earth
 (kml_file <- gsub("X", id_bh, "data/drenX.kmz"))
 ```
 
@@ -235,6 +221,7 @@ Finalmente, exportamos os dados reprojetados para KMZ.
 KML(x = dren_ll, 
     file = kml_file, 
     overwrite = TRUE)
+# verificando existência do arquivo
 file.exists(kml_file)
 ```
 
@@ -274,14 +261,15 @@ other attached packages:
 [1] rgdal_1.1-10 raster_2.5-8 sp_1.2-3    
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.7        lattice_0.20-33    digest_0.6.10     
- [4] assertthat_0.1     grid_3.3.1         formatR_1.4       
- [7] magrittr_1.5       evaluate_0.9       stringi_1.1.1     
-[10] rmarkdown_1.0.9013 tools_3.3.1        stringr_1.1.0     
-[13] yaml_2.1.13        htmltools_0.3.5    knitr_1.14.1      
-[16] tibble_1.2        
+ [1] Rcpp_0.12.7        lattice_0.20-34    digest_0.6.10     
+ [4] assertthat_0.1     grid_3.3.1         jsonlite_1.1      
+ [7] formatR_1.4        magrittr_1.5       evaluate_0.9      
+[10] stringi_1.1.1      DT_0.2.2           rmarkdown_1.0.9014
+[13] tools_3.3.1        stringr_1.1.0      htmlwidgets_0.7   
+[16] yaml_2.1.13        htmltools_0.3.5    knitr_1.14.4      
+[19] tibble_1.2        
 ```
 
 [^1]: Para saber mais o conjunto de informações hidrológicas disponibilizadas pela ANA clique [aqui](http://www2.ana.gov.br/Paginas/servicos/informacoeshidrologicas/redehidro.aspx)
 
-
+[^2]: Um local para para procurar por projeções é o [site de referência espacial](http://spatialreference.org/). Dessa base de dados podemos buscar qualquer referência espacial e obtê-la em praticamente qualquer formato, incluindo o formato das expressões `proj4`.
