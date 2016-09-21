@@ -1,4 +1,4 @@
-# Programação
+# Datas e horas
 Jônatan Tatsch  
 `r format(Sys.Date(), format = '%d-%m-%Y')`  
 
@@ -39,7 +39,7 @@ A função `Sys.Date()` permite-nos obter a data de hoje em um objeto da classe 
 ```
 
 ```
-[1] "2016-06-23"
+[1] "2016-09-21"
 ```
 
 ```r
@@ -71,7 +71,7 @@ ndias
 ```
 
 ```
-[1] 16975
+[1] 17065
 ```
 
 Para recriarmos a data de hoje:
@@ -83,7 +83,7 @@ Para recriarmos a data de hoje:
 ```
 
 ```
-[1] "2016-06-23"
+[1] "2016-09-21"
 ```
 
 Para reconstruirmos a data que se refere aquele número foi usada a função `as.Date()`, que converte para a classe `Date` o argumento de entrada (n° de dias decorridos) a partir da data de origem.
@@ -108,11 +108,11 @@ format(hoje, "%m");format(hoje, "%b")
 ```
 
 ```
-[1] "06"
+[1] "09"
 ```
 
 ```
-[1] "Jun"
+[1] "Set"
 ```
 
 ```r
@@ -121,7 +121,7 @@ format(hoje, "%d")
 ```
 
 ```
-[1] "23"
+[1] "21"
 ```
 
 ```r
@@ -130,7 +130,7 @@ format(hoje, "%j")
 ```
 
 ```
-[1] "175"
+[1] "265"
 ```
 
 Podemos manipular o formato de saída da data.
@@ -141,7 +141,7 @@ format(hoje, "%d%b%Y")
 ```
 
 ```
-[1] "23Jun2016"
+[1] "21Set2016"
 ```
 
 ```r
@@ -149,7 +149,7 @@ format(hoje, "%d/%m/%Y")
 ```
 
 ```
-[1] "23/06/2016"
+[1] "21/09/2016"
 ```
 
 ```r
@@ -157,7 +157,7 @@ format(hoje, "%d_%m_%Y.txt")
 ```
 
 ```
-[1] "23_06_2016.txt"
+[1] "21_09_2016.txt"
 ```
 
 ```r
@@ -165,7 +165,7 @@ format(hoje, "Hoje é %d de %B de %Y.")
 ```
 
 ```
-[1] "Hoje é 23 de junho de 2016."
+[1] "Hoje é 21 de setembro de 2016."
 ```
 
 Existem algumas funções prontas para extrair informações padrões, como:
@@ -176,7 +176,7 @@ months(hoje)
 ```
 
 ```
-[1] "junho"
+[1] "setembro"
 ```
 
 ```r
@@ -184,7 +184,7 @@ weekdays(hoje)
 ```
 
 ```
-[1] "quinta"
+[1] "quarta"
 ```
 
 O dia correspondente no calendário juliano. Para saber mais sobre dia juliano veja [aqui](http://en.wikipedia.org/wiki/Julian_day). 
@@ -195,7 +195,7 @@ julian(hoje)
 ```
 
 ```
-[1] 16975
+[1] 17065
 attr(,"origin")
 [1] "1970-01-01"
 ```
@@ -865,7 +865,7 @@ dt
 ```
 
 ```
-[1] "2016-06-23 20:38:43 GMT"
+[1] "2016-09-21 13:22:22 GMT"
 ```
 
 ```r
@@ -874,7 +874,7 @@ unclass(dt)
 ```
 
 ```
-[1] 1466714323
+[1] 1474464142
 ```
 
 ```r
@@ -883,7 +883,7 @@ print(unclass(dt), digits = 10)
 ```
 
 ```
-[1] 1466714323
+[1] 1474464142
 ```
 
 A função `as.POSIXlt()` pode ser usada para converter diferentes
@@ -899,7 +899,7 @@ dt_lt
 ```
 
 ```
-[1] "2016-06-23 20:38:43 GMT"
+[1] "2016-09-21 13:22:22 GMT"
 ```
 
 ```r
@@ -907,7 +907,7 @@ as.POSIXlt(Sys.time(), tz = "UTC")
 ```
 
 ```
-[1] "2016-06-23 20:38:43 UTC"
+[1] "2016-09-21 13:22:22 UTC"
 ```
 
 ```r
@@ -937,7 +937,7 @@ as.POSIXlt(Sys.time(), tz = "Europe/London")
 ```
 
 ```
-[1] "2016-06-23 21:38:43 BST"
+[1] "2016-09-21 14:22:22 BST"
 ```
 
 ```r
@@ -945,7 +945,7 @@ as.POSIXlt(Sys.time(), tz = "America/Los_Angeles")
 ```
 
 ```
-[1] "2016-06-23 13:38:43 PDT"
+[1] "2016-09-21 06:22:22 PDT"
 ```
 
 Uma lista com nomes dos fusos horários por continente/cidade ? fornecido pela função `OlsonNames()`.
@@ -1057,7 +1057,7 @@ format(Sys.time(), "%a %b %d %X %Y %Z")
 ```
 
 ```
-[1] "Qui Jun 23 20:38:43 2016 GMT"
+[1] "Qua Set 21 13:22:22 2016 GMT"
 ```
 
 Ao importar dados que envolvem datas geralmente recebemos essas datas como strings ou `character`, e portanto temos que extrair dessas strings as nossas datas/horas. Entretanto não existe uma padrão seguido por todos para representar datas. 
