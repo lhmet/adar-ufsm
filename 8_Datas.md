@@ -865,7 +865,7 @@ dt
 ```
 
 ```
-[1] "2016-09-21 13:22:22 GMT"
+[1] "2016-09-21 13:25:28 UTC"
 ```
 
 ```r
@@ -874,7 +874,7 @@ unclass(dt)
 ```
 
 ```
-[1] 1474464142
+[1] 1474464329
 ```
 
 ```r
@@ -883,7 +883,7 @@ print(unclass(dt), digits = 10)
 ```
 
 ```
-[1] 1474464142
+[1] 1474464329
 ```
 
 A função `as.POSIXlt()` pode ser usada para converter diferentes
@@ -899,7 +899,7 @@ dt_lt
 ```
 
 ```
-[1] "2016-09-21 13:22:22 GMT"
+[1] "2016-09-21 13:25:28 GMT"
 ```
 
 ```r
@@ -907,7 +907,7 @@ as.POSIXlt(Sys.time(), tz = "UTC")
 ```
 
 ```
-[1] "2016-09-21 13:22:22 UTC"
+[1] "2016-09-21 13:25:28 UTC"
 ```
 
 ```r
@@ -924,7 +924,7 @@ Sys.timezone()
 ```
 
 ```
-[1] "GMT"
+[1] "UTC"
 ```
 
 Que horas corresponde esse horário em Londres?
@@ -937,7 +937,7 @@ as.POSIXlt(Sys.time(), tz = "Europe/London")
 ```
 
 ```
-[1] "2016-09-21 14:22:22 BST"
+[1] "2016-09-21 14:25:28 BST"
 ```
 
 ```r
@@ -945,7 +945,7 @@ as.POSIXlt(Sys.time(), tz = "America/Los_Angeles")
 ```
 
 ```
-[1] "2016-09-21 06:22:22 PDT"
+[1] "2016-09-21 06:25:28 PDT"
 ```
 
 Uma lista com nomes dos fusos horários por continente/cidade ? fornecido pela função `OlsonNames()`.
@@ -1046,7 +1046,7 @@ as.POSIXct("2006-12-23 12:45") - 3600*3
 ```
 
 ```
-[1] "2006-12-23 09:45:00 GMT"
+[1] "2006-12-23 09:45:00 UTC"
 ```
 
 A função `format()` que já vimos anteriormente, funciona também para objetos `POSIXt`.
@@ -1057,7 +1057,7 @@ format(Sys.time(), "%a %b %d %X %Y %Z")
 ```
 
 ```
-[1] "Qua Set 21 13:22:22 2016 GMT"
+[1] "Qua Set 21 13:25:28 2016 UTC"
 ```
 
 Ao importar dados que envolvem datas geralmente recebemos essas datas como strings ou `character`, e portanto temos que extrair dessas strings as nossas datas/horas. Entretanto não existe uma padrão seguido por todos para representar datas. 
@@ -1073,7 +1073,7 @@ strptime(x, format = "%d%b%Y")
 ```
 
 ```
-[1] "1960-01-01 GMT" "1960-01-02 GMT" "1960-03-31 GMT" "1960-07-30 GMT"
+[1] "1960-01-01 UTC" "1960-01-02 UTC" "1960-03-31 UTC" "1960-07-30 UTC"
 ```
 
 ```r
