@@ -49,6 +49,10 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Datas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)
 
+# Material complementar
+
+- [Conversão de shapefile para KML](https://rawgit.com/jdtatsch/adar-ufsm/master/shapefile2kml.nb.html)
+
 # Horários
 
 - 17:30-20:50 (5ª-feira)
