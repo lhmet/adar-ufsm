@@ -123,11 +123,6 @@ plot(dren, axes = TRUE, las = 1)
 head(dren@data)
 ```
 
-
-
-
-
-
 Nós não precisamos das `r ncol(dren@data)` variáveis contidas na tabela de dados do *shapefile*. Quanto mais variáveis, maior será o tamanho do arquivo KMZ gerado. Então vamos selecionar somente algumas variáveis de interesse, como o nome do rio, o código da bacia hidrográfica e o do rio. Essas informações poderão ser visualizadas no *Google Earth* ao clicar sobre o rio de interesse. Entretanto, nem todos rios possuem nomes definidos como pode ser visto pelos valores `<NA>` na coluna `NORIOCOMP` da tabela de dados acima.
 
 ```{r chunck8}
@@ -139,7 +134,9 @@ projection(dren)
 class(dren)
 ```
 
-Antes de exportar o objeto `dren` para KML (ou KMZ) devemos primeiro reprojetá-lo para Lat/Lon já que o *Google Earth* usa esta projeção. A função `spTransform()` do pacote `rgdal` permite reprojetar objetos da classe `SpatialLinesDataFrame` para qualquer outra projeção. Essa usa  a biblioteca `PROJ.4` (biblioteca de referência, externa ao R, para trabalhar com projeções cartográficas e realizar transformações entre projeções). O pacote `rgdal` é a interface entre a biblioteca `PROJ.4` e o R que permite realizar essa operação. O argumento `CRSobj`deve receber uma expressão `proj4`. Expressões `proj4` são  *strings* que fornecem os parâmetros das projeções cartográficas[^2]. 
+The Keyhole Markup Language (kml) used by Google Earth uses latitude and longitude in a polar WGS84 coordinate system (i.e. geographic coordinates). 
+
+Antes de exportar o objeto `dren` para KML (ou KMZ) devemos primeiro reprojetá-lo para coordenadas geográficas Lat/Lon (sistema de coordenadas polares [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System)) usadas no *Google Earth*. A função `spTransform()` do pacote `rgdal` permite reprojetar objetos da classe `SpatialLinesDataFrame` para qualquer outra projeção. Essa usa  a biblioteca `PROJ.4` (biblioteca de referência, externa ao R, para trabalhar com projeções cartográficas e realizar transformações entre projeções). O pacote `rgdal` é a interface entre a biblioteca `PROJ.4` e o R que permite realizar essa operação. O argumento `CRSobj`deve receber uma expressão `proj4`. Expressões `proj4` são  *strings* que fornecem os parâmetros das projeções cartográficas[^2]. 
 
 ```{r chunck9}
 # definindo o a projeção de acordo com a do Google Earth
