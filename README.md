@@ -47,7 +47,7 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Programação](https://rawgit.com/jdtatsch/adar-ufsm/master/7_Programacao.html)
 
-- [Datas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)
+- [Datas e horas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)
 
 # Material complementar
 
