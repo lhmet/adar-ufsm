@@ -68,7 +68,7 @@ options(stringsAsFactors = TRUE)
 
 Para baixar o arquivo compactado com as informações hidrológicas de uma região hidrográfica precisamos do código identificador da região. No caso da região hidrográfica do Rio Uruguai o identificador é o número 7.
 
-```{r chunck2, echo=TRUE}
+```{r chunck2, echo=TRUE, eval = TRUE}
 # identificador da bacia hidrográfica (BH)
 id_bh <- 7
 # site do arquivo definido conforme nº identificador da BH
@@ -84,11 +84,13 @@ download.file(website, destfile = zip_file)
 ```
 
 ```{r chunck4}
-# descompactando arquivo
-(extract_dir <- gsub("\\.zip","",zip_file))
+# diretório para descompactar
+extract_dir <- gsub("\\.zip", "", zip_file)
+extract_dir
 ```
 
 ```{r chunck5, eval=FALSE}
+# descompactando arquivo
 unzip(zip_file, exdir = extract_dir)
 ```
 
@@ -98,8 +100,8 @@ Lista dos arquivos shapefile da ANA baixados.
 #lista dos shapefiles contidos no arquivo compactado
 shapefiles_list <- list.files(extract_dir,
                               pattern = "shp$", 
-                              recursive = T, 
-                              full.names = T)
+                              recursive = TRUE, 
+                              full.names = TRUE)
 shapefiles_list
 ```
 
@@ -111,7 +113,7 @@ Vamos importar o arquivo shapefile e ver as diversas informações contidas nele
 # nome do shapefile com a rede drenagem da bacia de interesse
 dren_file <- grep(x = shapefiles_list, 
                   pattern = "Hidrografia 1000000", 
-                  value = T)
+                  value = TRUE)
 dren_file
 # importando shapefile
 dren <- shapefile(dren_file)
@@ -121,22 +123,21 @@ plot(dren, axes = TRUE, las = 1)
 ```{r chunck71, eval=TRUE}
 # primeiras linhas da tabela de dados do shapefile
 head(dren@data)
+ncol(dren@data)
 ```
 
-Nós não precisamos das `r ncol(dren@data)` variáveis contidas na tabela de dados do *shapefile*. Quanto mais variáveis, maior será o tamanho do arquivo KMZ gerado. Então vamos selecionar somente algumas variáveis de interesse, como o nome do rio, o código da bacia hidrográfica e o do rio. Essas informações poderão ser visualizadas no *Google Earth* ao clicar sobre o rio de interesse. Entretanto, nem todos rios possuem nomes definidos como pode ser visto pelos valores `<NA>` na coluna `NORIOCOMP` da tabela de dados acima.
+Nós não precisamos das 32 variáveis contidas na tabela de dados do *shapefile*. Quanto mais variáveis, maior será o tamanho do arquivo KMZ gerado. Então vamos selecionar somente algumas variáveis de interesse, como o nome do rio (`NORIOCOMP`), o código da bacia hidrográfica (`COBACIA`) e o do rio (`CORIO`). Essas informações poderão ser visualizadas no *Google Earth* ao clicar sobre o rio de interesse. Entretanto, nem todos rios possuem nomes definidos como pode ser visto pelos valores `<NA>` na coluna `NORIOCOMP` da tabela de dados acima.
 
 ```{r chunck8}
 #selecionando somente as variáveis de interesse no slot de dados do objeto dren (SpatialLinesDataFrame)  
-dren@data <- subset(dren@data, sel = c("NORIO", "NORIOCOMP", "COBACIA", "CORIO"))
+dren@data <- subset(dren@data, sel = c("NORIOCOMP", "COBACIA", "CORIO"))
 # projeção do shapefile da ANA
 projection(dren)
 # classe de dados espaciais
 class(dren)
 ```
 
-The Keyhole Markup Language (kml) used by Google Earth uses latitude and longitude in a polar WGS84 coordinate system (i.e. geographic coordinates). 
-
-Antes de exportar o objeto `dren` para KML (ou KMZ) devemos primeiro reprojetá-lo para coordenadas geográficas Lat/Lon (sistema de coordenadas polares [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System)) usadas no *Google Earth*. A função `spTransform()` do pacote `rgdal` permite reprojetar objetos da classe `SpatialLinesDataFrame` para qualquer outra projeção. Essa usa  a biblioteca `PROJ.4` (biblioteca de referência, externa ao R, para trabalhar com projeções cartográficas e realizar transformações entre projeções). O pacote `rgdal` é a interface entre a biblioteca `PROJ.4` e o R que permite realizar essa operação. O argumento `CRSobj`deve receber uma expressão `proj4`. Expressões `proj4` são  *strings* que fornecem os parâmetros das projeções cartográficas[^2]. 
+Antes de exportar o objeto `dren` para KML (ou KMZ) devemos primeiro reprojetá-lo para coordenadas geográficas Lat/Lon (sistema de coordenadas polares [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System)) usadas no *Google Earth*. A função `spTransform()` do pacote `rgdal` permite reprojetar objetos da classe `SpatialLinesDataFrame` para qualquer outra projeção. Ela usa  a biblioteca `PROJ.4` mencionada anteriormente. O pacote `rgdal` é a interface entre a biblioteca `PROJ.4` e o R que permite realizar essa operação. O argumento `CRSobj`deve receber uma expressão `proj4`. Expressões `proj4` são  *strings* que fornecem os parâmetros das projeções cartográficas[^2]. 
 
 ```{r chunck9}
 # definindo o a projeção de acordo com a do Google Earth
@@ -168,4 +169,4 @@ sessionInfo()
 
 [^1]: Para saber mais o conjunto de informações hidrológicas disponibilizadas pela ANA clique [aqui](http://www2.ana.gov.br/Paginas/servicos/informacoeshidrologicas/redehidro.aspx)
 
-[^2]: Um local para para procurar por projeções é o [site de referência espacial](http://spatialreference.org/). Dessa base de dados podemos buscar qualquer referência espacial e obtê-la em praticamente qualquer formato, incluindo o formato das expressões `proj4`.
+[^2]: Um local para para procurar por projeções é o [site de referência espacial](http://spatialreference.org/ref/sr-org/?page=1). Dessa base de dados podemos buscar qualquer referência espacial e obtê-la em praticamente qualquer formato, incluindo o formato das expressões `proj4`.
