@@ -3,6 +3,7 @@ title: "Geração de KML a partir de *shapefile* da [ANA](http://www.ana.gov.br/
 author: "Jônatan Tatsch - UFSM"
 output:
   html_notebook:
+    fig_height: 6
     toc: yes
   html_document:
     toc: yes
@@ -109,7 +110,7 @@ shapefiles_list
 
 Vamos importar o arquivo shapefile e ver as diversas informações contidas nele:
 
-```{r chunck7}
+```{r chunck7, fig.align='center', fig.height=6, fig.width=6}
 # nome do shapefile com a rede drenagem da bacia de interesse
 dren_file <- grep(x = shapefiles_list, 
                   pattern = "Hidrografia 1000000", 
