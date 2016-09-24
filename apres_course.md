@@ -6,7 +6,7 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-#date: Santa Maria, 12, março de 2016
+#date: Santa Maria, 24, setembro de 2016
 date: Santa Maria, 7, de março de 2016
 
 </style>
