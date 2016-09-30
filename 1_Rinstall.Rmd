@@ -1,65 +1,70 @@
 ---
-title: "Instalando *R* e RStudio"
-author: | 
-  | Jônatan Tatsch, Roilan Valdés
-  |
-  | UFSM
-date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
+title: "Instalando R e RStudio"
+#subtitle: "Mantendo o R sempre atualizado no Linux Ubuntu"
+author: "Jônatan Tatsch e Roilan Valdés - UFSM"
+date: '`r Sys.Date()`'
 output:
-  html_document:
-    fig_caption: yes
-    fig_width: 6
-    highlight: kate
-    keep_md: yes
-    number_sections: yes
-    toc: yes
-  pdf_document:
-    toc: yes
+  tint::tint: 
+     default: TRUE
+     self_contained: TRUE
 ---
 
 
-- - -
-
-![](figs/adar.png)
-
-
-
-
-```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
-rm(list=ls())
-# definindo globalmente tz = "GMT"
-Sys.setenv(TZ = 'GMT')
-pcks <- c("knitr")
+```{r Chunk0, echo=FALSE, eval=TRUE, message=FALSE,warning=FALSE, results='hide'}
+rm(list = ls())
+pcks <- c("knitr", "tint")
 invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 # configuraçoes knitr
-opts_chunk$set(cache = FALSE, fig.path = "figs/")
+# original
+#opts_chunk$set(cache = FALSE, fig.path = "figs/")
+
+# com tint
+knitr::opts_chunk$set(tidy = FALSE, 
+                      cache = FALSE,
+                     fig.path = "figs/",
+                      cache.extra = packageVersion('tint'))
+# invalidate cache when the tufte version changes
+options(htmltools.dir.version = FALSE)
 ```
 
-- - -
+
+```{r, include = FALSE, fig.fullwidth = TRUE}
+knitr::include_graphics('figs/adar.png')
+```
 
 
-# Introdução
+</style>
+<div class="midcenter" style="margin-left:1px; margin-top:50px;">
+<img src="figs/adar.png" height="110px" width="1000px" />
+</div>
 
-Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
 
-\"[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa\". Além disso, o *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
-*R* é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em *R* não precisa ser compilado antes de ser rodado.
+[R](https://www.r-project.org/about.html) é uma linguagem[^1] e um ambiente de programação para computação estatística e análise de dados interativa.
+
+[^1]: *R* é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em *R* não precisa ser compilado antes de ser rodado.
+
+O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
+
+
 
 O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
-O *R* pode ser instalado a partir dos binários pré-compilados ou do código fonte. Aqui, descreve-se a instalação do *R* a partir dos binários e como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
+A seguir descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
 
-O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não a tenha, consulte o administrador do sistema.
-Alguns comandos linux intuitivos serão utilizados, por isso, mesmo quem não é usuário linux será capaz de entendê-los. 
+# Instalação
 
-Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são:
+O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários, como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
 
-- 12.04 (abril de 2012, *codename* `precise`)
+O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
+Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
+
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^2]. As versões de Suporte de longo prazo (LTS) mais recentes são:
+
 - 14.04 (abril de 2014, *codename* `trusty`) 
 - 16.04 (abril de 2016, *codename* `xenial`)
 
-Clique [aqui](http://releases.ubuntu.com/) para saber mais sobre as versões do Ubuntu.
+[^2]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
 # *R* sempre atualizado
 
@@ -67,38 +72,36 @@ O [R](http://www.r-project.org/) é distribuído  na **Rede Abrangente de Arquiv
 
 ## Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
-A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando no terminal linux:
+A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando:
    
-~~~~~~~
-$ cat /etc/apt/sources.list 
-~~~~~~~
-
-Também é possível fazer isso a partir do *R*, conforme o comando abaixo que mostra as primeiras 15 linhas desse arquivo:
-
-```{r Chunk1, message=FALSE, comment="",highlight=TRUE, prompt=FALSE,echo=FALSE,eval=TRUE}
-sl <- system("cat /etc/apt/sources.list", intern = T)
-print(sl[1:15], quote = F)
-##sl[(length(sl)-10) : length(sl)]
+    $ cat /etc/apt/sources.list | head -15
+    
+```{bash, eval = TRUE, echo = FALSE}
+cat /etc/apt/sources.list | head -15
 ```
 
-Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando [^1]:
+Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^3] :
 
-[^1]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
+    $ lsb_release --codename | cut -f2
+   
+```{bash, echo = FALSE, comment = ""}
+lsb_release --codename | cut -f2
+```
 
-~~~~~~~
-$ lsb_release --codename | cut -f2
-~~~~~~~
+[^3]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
 
 Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^2] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^4] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
 
-[^2]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+[^4]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
 O endereço do repositório da UFPR será inserido na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
+
     $ sudo su
 
-Vamos definir na terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
+
+Vamos definir no terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
 
     # repos="deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/"
  
@@ -116,9 +119,11 @@ Podemos retornar a sessão de usuário comum (*lsi*):
 
     # exit
 
-## [APT protegido](https://wiki.debian.org/SecureApt) (adaptado da [CRAN](http://cran.r-project.org) seção Secure Apt).  
+## [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^3]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^5]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+
+[^5]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
         
@@ -136,7 +141,6 @@ Se os comandos acima falharem você pode tentar:
     $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 
-[^3]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
  
 
@@ -170,7 +174,7 @@ Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
 A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
 
-```{r Chunck4, comment="",fig.align='center',highlight=TRUE}
+```{r Chunck4, comment="",highlight=TRUE, fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números."}
 # sequência de 10 números
 1:10
 # gráfico
@@ -185,9 +189,9 @@ q(save = "no")
 
 # Rstudio no Ubuntu
 
-O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.sciviews.org/_rgui/projects/Editors.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
+O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.kdnuggets.com/polls/2011/r-gui-used.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
 
-Para instalação você precisa saber seu sistema operacional e é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando linux:
+Para instalação você precisa saber seu sistema operacional é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando:
 
     $ arch
 
@@ -206,8 +210,7 @@ Abra o RStudio digitando no terminal:
 
     $ rstudio &
     
-Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista a séries de vídeos *[RStudio Essencials](https://www.rstudio.com/resources/webinars/#13f83906a8793e214)*.
-
+Agora você está pronto para começar a programar em *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
 
 
 <br/> 

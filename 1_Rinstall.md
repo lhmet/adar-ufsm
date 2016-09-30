@@ -13,27 +13,29 @@
 
 
 
-
-
 - - -
 
+# Sobre o R
 
-# Introdução
+> [R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa.
 
-Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
-
-\"[R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa\". Além disso, o *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
+O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
 *R* é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em *R* não precisa ser compilado antes de ser rodado.
 
 O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
-O *R* pode ser instalado a partir dos binários pré-compilados ou do código fonte. Aqui, descreve-se a instalação do *R* a partir dos binários e como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
 
-O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não a tenha, consulte o administrador do sistema.
-Alguns comandos linux intuitivos serão utilizados, por isso, mesmo quem não é usuário linux será capaz de entendê-los. 
+# Instalação
 
-Ao utilizar distribuições Linux é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são:
+Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
+
+O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários, como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
+
+O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
+Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
+
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são:
 
 - 12.04 (abril de 2012, *codename* `precise`)
 - 14.04 (abril de 2014, *codename* `trusty`) 
@@ -43,7 +45,7 @@ Clique [aqui](http://releases.ubuntu.com/) para saber mais sobre as versões do 
 
 # *R* sempre atualizado
 
-O [R](http://www.r-project.org/) é distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.3.0 (2016-05-03). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+O [R](http://www.r-project.org/) é distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.3.1 (2016-06-21). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
 ## Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
@@ -63,8 +65,8 @@ Também é possível fazer isso a partir do *R*, conforme o comando abaixo que m
  [4] # newer versions of the distribution.                                                              
  [5] deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted                                      
  [6] deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted                                  
- [7] #deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                                   
- [8] #deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                               
+ [7] # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                                  
+ [8] # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                              
  [9]                                                                                                    
 [10] ## Major bug fix updates produced after the final release of the                                   
 [11] ## distribution.                                                                                   
