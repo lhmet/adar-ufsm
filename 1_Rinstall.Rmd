@@ -174,7 +174,7 @@ Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
 A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
 
-```{r Chunck4, comment="",highlight=TRUE, fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números."}
+```{r Chunck4, comment="",highlight=TRUE, fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números.", cache = FALSE}
 # sequência de 10 números
 1:10
 # gráfico
