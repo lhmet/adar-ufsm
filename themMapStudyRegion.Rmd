@@ -1,0 +1,227 @@
+---
+title: "Mapa temático da região de estudo"
+subtitle: <p align="left"><sup><strong>Incluindo a localização das estações meteorológicas. </a></strong></sup></p>
+author: "Jonatan Tatsch - UFSM"
+date: '`r Sys.Date()`'
+output:
+  html_notebook:
+    toc: yes
+  html_document:
+    toc: yes
+---
+
+# Introdução
+
+A caracterização da região de estudo e das estações meteorológicas (EM) empregadas em pesquisas ou aplicações de meteorologia (ou áreas afins) é imprescindível para o melhor entendimento e interpretação dos resultados de uma análise observacional. Neste tutorial demonstra-se como produzir um mapa temático da região de estudo incluindo a localização das EM (que proveram os dados utilizados na pesquisa ou trabalho) e um atributo associado as EM (e.g. a temperatura média do ar climatológica da EM).
+
+O mapa temático permitirá a visualização de informações relativas a:
+
+- localização das EM
+- delimitação dos estados brasileiros
+- altitude do terreno
+- algum atributo associado as EM  
+
+# Pré-requisitos
+
+Pacotes e funções necessárias.
+
+```{r setup, warning=FALSE, message=FALSE}
+## para instalar um pacote use
+# install.packages("raster")
+## limpando espaço de trabalho
+rm(list = ls()) 
+library(devtools)
+## função load_pcks
+source("../R/load_pcks.R")
+## pacotes requeridos
+pcks <- c("dplyr", "ggplot2","viridis", "lubridate", "scales", "raster", 
+          "viridis", "ggrepel")
+load_pcks(pcks)
+source_url('https://gist.githubusercontent.com/jdtatsch/5ec17e6624c97a7bbb767b07b46174ab/raw/47b38e36cc582ecc426dbc395edeb540db53caba/gg_bubble.R')
+options(stringsAsFactors = TRUE)
+```
+
+
+
+# Dados
+
+## Delimitação dos estados brasileiros
+
+A delimitação[^1] dos estados brasileiros pode ser obtida a partir de um arquivo [shapefile]() fornecido pelo [IBGE](ftp://geoftp.ibge.gov.br/) com os limites dos estados na escala de 1:250000. Abaixo mostra-se o procedimento para baixar e importar esses dados no R.
+
+[^1]: A delimitação das regiões administrativas de qualquer país pode ser obtida através da função `getData()` do pacote raster que faz *download* da base de dados limites administrativos globais (GADM). Para obter os polígonos dos estados devemos definir o argumento `level = 1`. Esse argumento indica o nível de sub-divisão administrativa (level = 0 para o polígono do país, 1 para estados e 2 para municípios).
+
+```{r}
+limites2015 <- "ftp://geoftp.ibge.gov.br/cartas_e_mapas/bases_cartograficas_continuas/bc250/versao2015/Shapefile/Limites_v2015_20160809.zip"
+# nome e caminho para o arquivo que será baixado, altere se necessário
+(zip_file <- paste0("../data/", basename(limites2015)))
+```
+
+```{r, eval = FALSE}
+# baixando arquivo compactado
+download.file(limites2015, destfile = zip_file)
+```
+
+```{r}
+# diretório para descompactar
+extract_dir <- gsub("\\.zip", "", zip_file)
+extract_dir
+# descompactando arquivo
+unzip(zip_file, exdir = extract_dir)
+# lista dos shapefiles contidos no arquivo compactado
+shapefiles_list <- list.files(extract_dir,
+                              pattern = "shp$", 
+                              recursive = TRUE, 
+                              full.names = TRUE)
+shapefiles_list
+```
+
+Importando arquivo *shapefile* com delimitação dos estados.
+
+
+```{r, fig.width=8, fig.height=8, fig.align='center' }
+# nome do arquivo shapefile dos estados
+br_states_file <- grep(x = shapefiles_list, 
+                       pattern = "Unidade_Federacao", 
+                       value = TRUE)
+# importa shape
+br_states <- shapefile(br_states_file)
+# projeta para lonlat
+br_states <- spTransform(br_states, CRSobj = CRS("+proj=longlat +ellps=WGS84"))
+plot(br_states, axes = TRUE)
+```
+
+Para selecionar a delimitação de alguns estados podemos fazer o seguinte:
+
+```{r}
+sul <- br_states[br_states@data$NOME %in% c("Rio Grande do Sul", "Santa Catarina", "Paraná"), ]
+```
+
+Para uso dessa informação na função que gera o gráfico temático da região de estudo precisamos converter os dados armazenados na forma de um `SpatialGridDataFrame` para um  `dataframe`, o que pode ser feito com a função `fortify()` do pacote [ggplot2](http://docs.ggplot2.org/current/).
+
+```{r}
+# 'fortificando' os dados (conversão para dataframe)
+class(sul)
+sul_df <- fortify(sul)
+head(sul_df)
+class(sul_df)
+```
+
+
+## Altitude do terreno
+
+A altitude da região de interesse pode ser obtida através da função `getData()` do pacote `raster` que faz o *download* do modelo digital de elevação do terreno da base de dados do 
+
+
+```{r, eval = FALSE}
+dem <- getData(name = "alt", download=TRUE, path = "../data", country = "BRA")
+dem
+```
+
+```{r, eval = TRUE, echo = FALSE, fig.width=8, fig.height=8, fig.align='center' }
+# digital elevation model
+dem <- raster("../data/BRA_msk_alt.grd")
+dem
+res(dem) # ~900 m (1º ~100 km)
+# substituindo alt < 0 por 0
+dem[dem < 0] <- 0
+plot(dem)
+```
+
+O objeto `dem` precisa ser convertido de `raster` para um `data.frame`, análogo ao que foi feito com função `fortify()` no objeto `sul`, em que as colunas contém as coordenadas espaciais do `raster` `dem` (`lon` e `lat`) e os valores de altitude armazenados nas células do `dem`. Este `dataframe` é um dado de entrada da função criada para produção do mapa temático com a função `gg_bubble()`, mostrada a seguir.
+
+```{r}
+class(dem)
+# extent(dem)
+# minha_extent <- extent(-50, -40, -20, -10)
+# plot(dem); plot(minha_extent, add = TRUE)
+dem_sul <- crop(dem, sul)
+# mascará para os estados
+dem_sul <- mask(dem, sul)
+#plot(dem_sul); plot(sul, add = TRUE)
+dem_sul_df <- data.frame(lon = xFromCell(dem_sul, cell = 1:ncell(dem_sul)),
+                         lat = yFromCell(dem_sul, cell = 1:ncell(dem_sul)),
+                         alt = values(dem_sul))
+#summary(dem_sul_df)
+# removendo linhas de dados faltantes
+dem_sul_df <- dem_sul_df[complete.cases(dem_sul_df), ]
+head(dem_sul_df)
+class(dem_sul_df)
+```
+
+Eventualmente a região de estudo pode cobrir mais de um país. Nesse caso precisaremos baixar os dados de altitude do terreno para outros países[^2] e juntá-los em um único raster. Esse procedimento é facilmente realizado com a função `mosaic()` do pacote `raster`. Veja `?mosaic` para mais detalhes.
+
+[^2]: Repetimos a operação realizada com a função `getData()` alterando o argumento `country`  conforme os países de interesse. 
+
+## Informações das EM
+
+As informações das estações meteorológicas devem incluir as coordenadas `lon`, `lat` e algum atributo de interesse, como por exemplo, a disponibilidade de dados, a temperatura média do ar, etc.
+
+Nesse exemplo usaremos um `dataframe` preparado previamente e salvo em arquivo rds[^3]. 
+
+
+```{r, echo = TRUE}
+info <- readRDS(file = "../output/info_sumary_tair_sul.rds")
+info
+# estrutura dos dados
+str(info)
+# nome das variáveis do data.frame (tabela de dados)
+names(info)
+```
+
+
+Os dados armazenados no arquivo RDS poderiam ser obtidos a partir de um arquivo texto contendo as informações das EM. Os dados dessa tabela poderiam ser importados como mostrado abaixo.
+
+```{r, eval = FALSE}
+info <- read.table(file = "mydata.txt", 
+                   header = FALSE,  # dados tem cabeçalho TRUE/FALSE
+                   sep = " ",       # separador das colunas (",", "\t", " ")
+                   na.strings = "-999.9") # string repreentando dados faltantes
+# se os dados não tiverem cabeçalho (header = FALSE)
+names(info) <- c("site", "tmax_med", "tmin_med", ...)
+# salvando como RDS para importação mais rápida
+saveRDS(info, "info_sumary_tair_sul.rds")
+```
+
+
+[^3]: arquivo de armazenamento de dados em formato binário utilizado pelo R.
+
+
+# Mapa temático 
+
+Para demonstrar o uso a da função `gg_bubble()` faremos dois mapas temáticos. O primeiro representará a variação da média da temperatura mínima do ar para cada  EM. No plano de fundo será mostrado a altitude do terreno, sobreposto pelo contorno dos estados. 
+
+```{r graf1, fig.width=8, fig.height=8, fig.align='center' }
+# mapa da % de dados faltantes em cada EM
+tmin_plot <- gg_bubble(data = info      # tabela de info das EM
+                       ,z = "tmin_med"         # coluna da tabela data
+                       ,colors_z = viridis     # paleta para variação de z
+                       ,limites = sul_df       # dataframe com contorno da região (gerado de algum shapefile)
+                       ,raster_bg = dem_sul_df # raster de background (altitude, decividade, etc)
+                       ,colors_bg = gray.colors # paleta de cores do raster 
+                       
+                       ,z_legend = "Tmin (°C)" # texto para legenda
+                       ,text_color = "red")     # cor do texto para o identificador ("site") das estações 
+tmin_plot
+```
+
+No segundo mapa temático, alteramos o atributo das EM para o período de dados (em anos) de cada EM e não especificaremos os argumentos `raster_bg` e `colors_bg`. Pelo mapa resultante observa-se que os polígonos dos estados foram coloridos com uma mesma cor (definida pelo argumento `color_fill` com valor *default* `burlywood3`). O tamanho do *label* usado para indicar o código das EM foi aumentado para ilustrar o posicionamento otimizado dos *labels*.
+
+```{r, fig.width=8, fig.height=8, fig.align='center' }
+# para período de dados
+period_plot <-  gg_bubble(data = info
+                          ,z = "period"
+                          ,colors_z = viridis
+                          ,limites = sul_df 
+                          #,raster_bg = mdet_rs_df 
+                          #,colors_bg = gray.colors
+                          ,z_legend = "Período (anos)"
+                          ,text_color = "black"
+                          ,text_size = 4) 
+period_plot
+``` 
+
+Pronto! Agora você tem um mapa temático de alta qualidade para caracterização de sua região de estudo.
+
+
+
