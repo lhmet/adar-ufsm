@@ -36,26 +36,26 @@ Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorol
 
 # Conteúdo (em construção)
 
-- [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
+- [Apresentação do curso](https://rawgit.com/lhmet/adar-ufsm/master/apres_course.html)
 
-- [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
+- [Instalação do R e Rstudio](https://rawgit.com/lhmet/adar-ufsm/master/1_Rinstall.html)
 
-- [Interface do Usuário](https://rawgit.com/jdtatsch/adar-ufsm/master/2_InterfaceUsuario.html)
+- [Interface do Usuário](https://rawgit.com/lhmet/adar-ufsm/master/2_InterfaceUsuario.html)
 
-- [Operações Básicas](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)
+- [Operações Básicas](https://rawgit.com/lhmet/adar-ufsm/master/3_OperacoesBasicas.html)
 
-- [Tipos de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/4_TiposDeDados.html)
+- [Tipos de dados](https://rawgit.com/lhmet/adar-ufsm/master/4_TiposDeDados.html)
 
-- [Estrutura de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/5_EstruturaDeDados.html)
+- [Estrutura de dados](https://rawgit.com/lhmet/adar-ufsm/master/5_EstruturaDeDados.html)
 
-- [Entrada/saída de dados](https://rawgit.com/jdtatsch/adar-ufsm/master/6_EntradaDeDados.html)
+- [Entrada/saída de dados](https://rawgit.com/lhmet/adar-ufsm/master/6_EntradaDeDados.html)
 
-- [Programação](https://rawgit.com/jdtatsch/adar-ufsm/master/7_Programacao.html)
+- [Programação](https://rawgit.com/lhmet/adar-ufsm/master/7_Programacao.html)
 
 
 # Tutoriais
 
-- [Conversão de shapefile para KML](https://rawgit.com/jdtatsch/adar-ufsm/master/shapefile2kml.nb.html)
+- [Conversão de shapefile para KML](https://rawgit.com/lhmet/adar-ufsm/master/shapefile2kml.nb.html)
 
 
 # Local
@@ -69,7 +69,7 @@ Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Ex
 <br/> 
 
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Apresentação do curso](https://rawgit.com/lhmet/adar-ufsm/master/apres_course.html)</p> 
 
 
 
