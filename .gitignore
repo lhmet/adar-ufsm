@@ -10,3 +10,12 @@ data/Bacia7/
 rsconnect
 *.pdf
 5_EstruturaDeDados_prev.Rmd
+data/prec_monthly_UT_Brazil_v2_198001_201312.nc
+data/Limites_v2015_20160809.zip
+data/data_inmet_sul_RS.rds
+data/BRA_msk_alt.gri
+data/cru10min30_tmp.nc
+data/Bacia7.zip
+data/3B42.140701.09z.7.precipitation.bin
+data/Ottobacias_Nivel2.shp
+data/dren7.kmz
