@@ -32,12 +32,13 @@ Pacotes e funções necessárias.
 rm(list = ls()) 
 library(devtools)
 ## função load_pcks
-source("../R/load_pcks.R")
+source_url("https://gist.githubusercontent.com/lhmet/100f232d793933ba5a191e194a9ed9b2/raw/ecf23482b18609610738a07497922c4d3ceec28c/load_pcks.R")
 ## pacotes requeridos
 pcks <- c("dplyr", "ggplot2","viridis", "lubridate", "scales", "raster", 
           "viridis", "ggrepel")
 load_pcks(pcks)
-source_url('https://gist.githubusercontent.com/jdtatsch/5ec17e6624c97a7bbb767b07b46174ab/raw/47b38e36cc582ecc426dbc395edeb540db53caba/gg_bubble.R')
+#source_url('https://gist.githubusercontent.com/lhmet/9884cf0044806c6e3fccc7cc46d796d7/raw/ebd27dc73b47bea95fc65c6244e91658e38040ae/gg_bubble.R')
+source("~/UFSM/orientacoes/iniciacaoCientifica/carolina/desagragacaoTemperatura/R/gg_bubble_v2.R")
 options(stringsAsFactors = TRUE)
 ```
 
@@ -54,7 +55,7 @@ A delimitação[^1] dos estados brasileiros pode ser obtida a partir de um arqui
 ```{r}
 limites2015 <- "ftp://geoftp.ibge.gov.br/cartas_e_mapas/bases_cartograficas_continuas/bc250/versao2015/Shapefile/Limites_v2015_20160809.zip"
 # nome e caminho para o arquivo que será baixado, altere se necessário
-(zip_file <- paste0("../data/", basename(limites2015)))
+(zip_file <- paste0("data/", basename(limites2015)))
 ```
 
 ```{r, eval = FALSE}
@@ -114,13 +115,13 @@ A altitude da região de interesse pode ser obtida através da função `getData
 
 
 ```{r, eval = FALSE}
-dem <- getData(name = "alt", download=TRUE, path = "../data", country = "BRA")
+dem <- getData(name = "alt", download=TRUE, path = "data", country = "BRA")
 dem
 ```
 
 ```{r, eval = TRUE, echo = FALSE, fig.width=8, fig.height=8, fig.align='center' }
 # digital elevation model
-dem <- raster("../data/BRA_msk_alt.grd")
+dem <- raster("data/BRA_msk_alt.grd")
 dem
 res(dem) # ~900 m (1º ~100 km)
 # substituindo alt < 0 por 0
@@ -128,7 +129,7 @@ dem[dem < 0] <- 0
 plot(dem)
 ```
 
-O objeto `dem` precisa ser convertido de `raster` para um `data.frame`, análogo ao que foi feito com função `fortify()` no objeto `sul`, em que as colunas contém as coordenadas espaciais do `raster` `dem` (`lon` e `lat`) e os valores de altitude armazenados nas células do `dem`. Este `dataframe` é um dado de entrada da função criada para produção do mapa temático com a função `gg_bubble()`, mostrada a seguir.
+O objeto `dem` precisa ser convertido de `raster` para um `data.frame`, análogo ao que foi feito com a função `fortify()` no objeto `sul`, em que as colunas contém as coordenadas espaciais do `raster` `dem` (`lon` e `lat`) e os valores de altitude armazenados nas células do `dem`. Este `dataframe` é um dado de entrada da função criada para produção do mapa temático com a função `gg_bubble()`, mostrada a seguir.
 
 ```{r}
 class(dem)
@@ -161,7 +162,7 @@ Nesse exemplo usaremos um `dataframe` preparado previamente e salvo em arquivo r
 
 
 ```{r, echo = TRUE}
-info <- readRDS(file = "../output/info_sumary_tair_sul.rds")
+info <- readRDS(file = "data/info_sumary_tair_sul.rds")
 info
 # estrutura dos dados
 str(info)
@@ -193,15 +194,21 @@ Para demonstrar o uso a da função `gg_bubble()` faremos dois mapas temáticos.
 
 ```{r graf1, fig.width=8, fig.height=8, fig.align='center' }
 # mapa da % de dados faltantes em cada EM
-tmin_plot <- gg_bubble(data = info      # tabela de info das EM
-                       ,z = "tmin_med"         # coluna da tabela data
-                       ,colors_z = viridis     # paleta para variação de z
-                       ,limites = sul_df       # dataframe com contorno da região (gerado de algum shapefile)
-                       ,raster_bg = dem_sul_df # raster de background (altitude, decividade, etc)
-                       ,colors_bg = gray.colors # paleta de cores do raster 
-                       
-                       ,z_legend = "Tmin (°C)" # texto para legenda
-                       ,text_color = "red")     # cor do texto para o identificador ("site") das estações 
+tmin_plot <- gg_bubble(data = info
+                      #,type = c("gradient", "diverging")
+                      ,type = "gradient"
+                      #,midpoint = 0
+                      ,z = "tmin_med"
+                      #,breaks = pretty(c(info$BIAS, stat_site_mhdt$BIAS))
+                      ,raster_bg = dem_sul_df
+                      ,limites = sul_df
+                      ,colors_z = viridis::viridis
+                      ,colors_bg = gray.colors
+                      ,text_color = "gray30"
+                      ,text_size = 2
+                      ,z_legend = "Tmin"
+                      ,color_fill = "burlywood3"
+                      ,point_size = 3)     # cor do texto para o identificador ("site") das estações 
 tmin_plot
 ```
 

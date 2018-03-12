@@ -6,8 +6,8 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-#date: Santa Maria, 30, setembro de 2016
-date: Santa Maria, 7, de março de 2016
+date: Santa Maria, 06, março de 2018
+#date: Santa Maria, 7, de março de 2016
 
 </style>
 <div class="midcenter" style="margin-left:5px; margin-top:100px;">
@@ -17,16 +17,18 @@ date: Santa Maria, 7, de março de 2016
 
 Introdução
 =======================
-<br/>
+
 ## Análise de dados meteorológicos 
-<br/> 
-<br/>
-<br/>
+
 > <span style="color:black; font-size:1.25em;">Processo pelo qual adquire-se conhecimento, compreensão e percepção dos fenômenos meteorológicos a partir de observações (dados) qualitativas e quantitativas.</span>
 
+</style>
+<div class="midcenter" style="margin-left:250px; margin-top:50px;">
+<img src="figs/TB1.jpg" height="600px" width="800px" />
+</div>
+
 <br/>
-<br/>
-<br/>
+
 
 Ciência de dados
 ========================================================
@@ -81,7 +83,7 @@ R
 <br/>  
 * **Software Free**
 <br/>  
-* Código aberto
+* [Código aberto](https://github.com/wch/r-source)
 <br/>  
 * Linguagem de Programação (intuitiva)
 <br/>  
@@ -91,7 +93,7 @@ R
 Por que o R?
 =======================
 <br/> 
--  Acesso ao estado da arte em análise de dados
+- Acesso ao estado da arte em análise de dados
 <br/>  
 - Modelagem numérica, otimização
 <br/>  
@@ -116,7 +118,7 @@ Pacotes da comunidade do R
 Evolução do nº de pacotes disponíveis no [CRAN](http://cran.r-project.org/mirrors.html)
 </style>
 <div class="midcenter" style="margin-left:250px; margin-top:50px;">
-<img src="figs/Rpcks_growth.png" height="700px" width="800px" />
+<img src="figs/number-of-submitted-packages-to-CRAN.png" height="700px" width="800px" />
 </div>
 
 
@@ -178,7 +180,7 @@ R não é perfeito!
 <br/>  
 * R não é muito rápido e códigos mal escritos serão lentos
 <br/>  
-* São apenas 20 anos de evolução
+* São apenas ~20 anos de evolução
 <br/>  
 * Há muito o que melhorar
 
