@@ -52,7 +52,6 @@ Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorol
 
 - [Programação](https://rawgit.com/jdtatsch/adar-ufsm/master/7_Programacao.html)
 
-- [Datas e horas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)
 
 # Tutoriais
 
