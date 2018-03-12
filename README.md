@@ -22,16 +22,15 @@ A disciplina **FSC1104-Análise de dados ambientais com R** é oferecida pelo De
 
 # Objetivo
 
-Ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional R. 
-
 Este curso é uma introdução ao R designada para alunos sem experiência em programação. São ensinadas informações da sintaxe da linguagem R, a leitura e escrita de dados, a criação de gráficos, funções, a padronização e organização de um conjunto de dados e finalmente a elaboração de relatórios dinâmicos.
+
+Ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional R. 
 
 Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia) como exemplos e exercícios para prática da programação.
 
 # Conteúdo (em construção)
 
 - [Apresentação do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/apres_course.html)
-
 
 - [Instalação do R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
