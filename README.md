@@ -26,7 +26,13 @@ Este curso é uma introdução ao R designada para alunos sem experiência em pr
 
 O objetivo é ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional R. 
 
-Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia) como exemplos e exercícios para prática da programação.
+Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia, sensoriamento remoto) como exemplos e em exercícios para estimular a prática da programação.
+
+
+
+<p align="center">
+  <img src="https://media.giphy.com/media/vuWHlxaVPvyP6/giphy.gif" alt="Resbmet"/>
+</p>
 
 # Conteúdo (em construção)
 
