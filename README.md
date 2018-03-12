@@ -3,9 +3,6 @@ layout: page
 output: html_document
 ---
 
-<p style="font-family: verdana; font-size: 45px; font-weight: bold; font-style: italic; background: whitesmoke; color: black; line-height: 50px;width: 900px;padding-left: 320px;">ADAR</p> 
-
-
 
 <p align="center">
   <img src="figs/adar.png" alt="Resbmet"/>
@@ -13,7 +10,7 @@ output: html_document
 
 Professor Responsável: *Jônatan Tatsch*
 
-Período: *1º Semestre de 2016*
+Período: *1º Semestre de 2018*
 <br/> 
 <br/>
 
@@ -25,8 +22,11 @@ A disciplina **FSC1104-Análise de dados ambientais com R** é oferecida pelo De
 
 # Objetivo
 
-Ensinar o essencial de programação para manipulação e análise de dados ambientais com o sistema computacional R. O curso aborda aspectos básicos de programação em R, leitura e escrita de dados, criação de gráficos, funções, padronização e organização de conjunto de dados e elaboração de relatórios dinâmicos. 
-Durante o curso serão utilizados dados ambientais para aplicação das ferramentas de análise de dados de diferentes áreas (meteorologia, climatologia, hidrologia).
+Ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional R. 
+
+Este curso é uma introdução ao R designada para alunos sem experiência em programação. São ensinadas informações da sintaxe da linguagem R, a leitura e escrita de dados, a criação de gráficos, funções, a padronização e organização de um conjunto de dados e finalmente a elaboração de relatórios dinâmicos.
+
+Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia) como exemplos e exercícios para prática da programação.
 
 # Conteúdo (em construção)
 
@@ -49,19 +49,18 @@ Durante o curso serão utilizados dados ambientais para aplicação das ferramen
 
 - [Datas e horas](https://rawgit.com/jdtatsch/adar-ufsm/master/8_Datas.html)
 
-# Material complementar
+# Tutoriais
 
 - [Conversão de shapefile para KML](https://rawgit.com/jdtatsch/adar-ufsm/master/shapefile2kml.nb.html)
 
-- [Mapa temático da região de estudo com estações meteorológicas ](https://rawgit.com/jdtatsch/adar-ufsm/master/themMapStudyRegion.nb.html)
-
-# Horários
-
-- 17:30-20:50 (5ª-feira)
 
 # Local
 
-O curso é ministrado no Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) na biblioteca setorial. 
+Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Exatas ([CCNE](http://w3.ufsm.br/ccne/)) da [UFSM](http://site.ufsm.br/) na biblioteca setorial.
+
+# Horários
+
+- 13:30-17:30 (2ª-feira)
 
 <br/> 
 
