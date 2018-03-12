@@ -24,7 +24,7 @@ A disciplina **FSC1104-Análise de dados ambientais com R** é oferecida pelo De
 
 Este curso é uma introdução ao R designada para alunos sem experiência em programação. São ensinadas informações da sintaxe da linguagem R, a leitura e escrita de dados, a criação de gráficos, funções, a padronização e organização de um conjunto de dados e finalmente a elaboração de relatórios dinâmicos.
 
-Ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional R. 
+O objetivo é ensinar os conceitos básicos de programação necessários para o processamento, a visualização e a análise de dados ambientais com o sistema computacional R. 
 
 Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorologia, climatologia, hidrologia) como exemplos e exercícios para prática da programação.
 
