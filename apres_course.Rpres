@@ -41,23 +41,24 @@ Ciência de dados
 
 Etapas para abordagem de um problema 
 =======================
-<br/>
+
  1. **Questão científica/problema**
 <br/>
  2. **Obtenção de dados:** coleta/medida do(as) estado/condições da atmosfera
     - Instrumentos e sensores
 <br/>
- 3. **Tratamento de dados:**
+ 3. **Processamento de dados:**
     *download* ---> limpeza ---> formatação ---> <br/>
      transformação ---> controle de qualidade
        - ferramenta/software
          - <span style="color: red">conhecimento em programação</span>
-<br/>
  4. **Análise de dados**
     - ferramenta/software
       - <span style="color: red">conhecimento em programação</span>
-<br/>      
- 5. **Proposta de um modelo** (estatístico, empírico, físicamente baseado)
+ 5. **Solução para o problema** 
+    - Proposta de um modelo 
+      - estatístico, empírico, ou fisicamente baseado
+    - <span style="color: red">conhecimento em programação</span>
 <br/> 
  6. **Apresentação/divulgação/publicação**
 
@@ -76,41 +77,83 @@ Programação computacional
 <img src="figs/errando_aprende.png" height="100px" width="1100px" />
 </div>
 
-R
+   
 =======================
-<br/>  
+</style>
+<div class="midcenter" style="margin-left:30px; margin-top:10px;">
+<img src="figs/Rlogo.svg" height="200px" width="250px" />
+</div>
+
+
+* [R](https://www.r-project.org/) é o termo usado para se referir a linguagem de programação e ao software que interpreta os scripts escritos usando esta linguagem.
+
+ 
+
 * Comunidade fantástica
+
+  - [Contribuidores](https://www.r-project.org/contributors.html) (R-core Team)
+
+  - milhares de pessoas usam o R diariamente e ajudam outras pessoas
+
+
+* **Software Livre** (GPL), [Código aberto](https://github.com/wch/r-source) e multiplataforma
+<br/> 
+* Ambiente para Análise de dados interativa
+
+Por que o R?
+=======================
+<br/> 
+
+* [R](https://www.r-project.org/) não é uma GUI (Interface gráfica do usuário) e isso é bom
+<br/> 
+
+  - há uma natural resistência e dificuldade ao uso de códigos e scripts
+<br/> 
+
+  - scripts favorecem a **automatização** e **reprodutibilidade**
+<br/> 
+
+  - força você a ter um conhecimneto mais aprofundado do que está fazendo
+
+-----------------
+<br/> 
+* [Reprodutibilidade](https://pt.wikipedia.org/wiki/Reprodutibilidade)
+<br/> 
+  - qualquer pessoa (inclusive você mesmo no futuro) pode obter os mesmos resultados do mesmo conjunto de dados
 <br/>  
-* **Software Free**
-<br/>  
-* [Código aberto](https://github.com/wch/r-source)
-<br/>  
-* Linguagem de Programação (intuitiva)
-<br/>  
-* **Ambiente para Análise de dados interativa**
+  - R é integrado com [outras ferramentas](https://cran.r-project.org/web/views/ReproducibleResearch.html) de que permitem atualizar seus resultados, figuras e análises automaticamente
+<br/>   
+
+  - [Relatório dinâmicos](https://rmarkdown.rstudio.com/articles_intro.html) e [interativos](http://shiny.rstudio.com/)
 
 
 Por que o R?
 =======================
 <br/> 
-- Acesso ao estado da arte em análise de dados
+- Acesso ao estado da arte da ciência de dados (*Big Data*, *Data Mining*, *Machine Leraning*)
+
 <br/>  
-- Modelagem numérica, otimização
-<br/>  
+
 - Interface com Fortran, C, C++, Python
+
 <br/>  
-- Visualização de dados
-<br/>  
+
+- [Visualização de dados](https://cran.r-project.org/web/views/Graphics.html)
+
+  - R produz [gráficos de alta qualidade](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)
+
+<br/> 
 
 -----------------
 <br/> 
-- [Importação](https://cran.r-project.org/doc/manuals/R-data.html) e [Manipulação de dados](http://blog.rstudio.org/2014/07/22/introducing-tidyr/)
+- R trabalha com dados de todas formas e tamanhos 
+
+<br/> 
+
+- Extensões para [Manipulação de dados](http://blog.rstudio.org/2014/07/22/introducing-tidyr/)
 <br/>  
-- [Relatório dinâmicos](http://rmarkdown.rstudio.com/articles.html) e [interativos](http://shiny.rstudio.com/)
 
-- **Existe grande chance de alguém já ter feito o modelo ou gráfico que você está querendo fazer**
 
-- **Você poderá ir além, construir ou aperfeiçoar aquilo que já está livremente disponível**
 
 
 Pacotes da comunidade do R
@@ -121,18 +164,6 @@ Evolução do nº de pacotes disponíveis no [CRAN](http://cran.r-project.org/mi
 <img src="figs/number-of-submitted-packages-to-CRAN.png" height="700px" width="800px" />
 </div>
 
-
-Popularidade do R
-====================================
-
-
-</style>
-<div class="midcenter" style="margin-left:250px; margin-top:50px;">
-<img src="figs/fig_1a_listserv11.png" height="700px" width="1000px" />
-</div>
-
-
-Tráfego mensal de e-mails nas principais fóruns de discussão de softwares
 
 
 Por que um meteorologista usaria o R?
@@ -157,15 +188,6 @@ Logo, requer ferramentas específicas para:
 
 
 
-Por que o R?
-=======================
-<br/>  
-
-(para saber mais motivos ainda ... assista o vídeo abaixo)
-
-<center>
-[![Por que o R? MeetUp R IME-USP](https://img.youtube.com/vi/UgPX49gkby4/0.jpg)](https://www.youtube.com/watch?v=UgPX49gkby4 "Video Title")
-<center>
 
 R não é perfeito!
 ========================================================
@@ -183,32 +205,16 @@ R não é perfeito!
 <br/>  
 * Há muito o que melhorar
 
-Editores de texto
-========================================================
-
-[Vim-R](http://www.vim.org/scripts/script.php?script_id=2628) plug-in para o Vim
-
-[kate](http://kate-editor.org/about-kate/)
-
-[nedit](http://sourceforge.net/projects/nedit/)
-
-[NppToR](http://notepad-plus-plus.org/) *plugin* do R para o Notepad++ 
-
-[emacs](http://www.gnu.org/software/emacs/) + [ess](http://ess.r-project.org/)
-
-[eclipse](https://eclipse.org/)
-
-[Tinn-R](https://sourceforge.net/projects/tinn-r/) : para Windows.
 
 RStudio
 =======
 
-[RStudio](https://www.rstudio.com/) é um ambiente de desenvolvimento integrado livre e de código aberto. 
+[RStudio](https://www.rstudio.com/) é um **ambiente de desenvolvimento integrado** livre e de código aberto. 
 
 ![RStudio IDE](figs/screenshot_rstudio.png)
 
 -------------
-- Para Windos, Linux e Mac
+- Multiplataforma (Windos, Linux e Mac)
 <br/>  
 - ênfase da sintaxe do R, auto-preenchimento de código, identação inteligente
 <br/>  
@@ -258,5 +264,6 @@ Para saber mais sobre o R
 <br/>
 <br/>
 Próximo: [Instalando o R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
+
 
 
