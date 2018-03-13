@@ -10,16 +10,18 @@ Geralmente em estudos e aplicações de meteorologia precisamos apresentar nossa
 
 ### Pré-requisitos
 
-```{r setup}
+```{r clean_opt, echo = FALSE}
 rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE, comment = "")
+```
+
+```{r setup, warning=FALSE}
 # install.packages(c("easypackages", "tidyverse"))
 #devtools::install_github("dkahle/ggmap")
 #devtools::install_github("lhmet/inmetr", force = TRUE)
 pcks <- c("tidyverse", "ggmap", "inmetr")
 easypackages::libraries(pcks)
 ```
-
 
 ### Dados de exemplo
 
