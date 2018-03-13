@@ -10,7 +10,11 @@ Geralmente em estudos e aplicações de meteorologia precisamos apresentar nossa
 
 ### Pré-requisitos
 
+<<<<<<< HEAD
 ```{r clean_opt, echo = FALSE}
+=======
+```{r setup, warning=FALSE}
+>>>>>>> 8476359c472cf2bed540c55a1bbf88004ee92541
 rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE, comment = "")
 ```
