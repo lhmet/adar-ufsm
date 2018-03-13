@@ -10,7 +10,7 @@ Geralmente em estudos e aplicações de meteorologia precisamos apresentar nossa
 
 ### Pré-requisitos
 
-```{r setup}
+```{r setup, warning=FALSE}
 rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE, comment = "")
 # install.packages(c("easypackages", "tidyverse"))
