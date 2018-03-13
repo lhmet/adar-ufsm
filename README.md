@@ -55,9 +55,9 @@ Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorol
 
 # Tutoriais
 
-- [Conversão de shapefile para KML](https://rawgit.com/lhmet/adar-ufsm/master/shapefile2kml.nb.html)
-
 - [Mapa da região de estudo](https://rawgit.com/lhmet/adar-ufsm/master/mapa_loc.nb.html)
+
+- [Conversão de shapefile para KML](https://rawgit.com/lhmet/adar-ufsm/master/shapefile2kml.nb.html)
 
 
 # Local
