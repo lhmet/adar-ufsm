@@ -77,11 +77,3 @@ Feito! Agora você pode customizar o seu mapa.  Veja o help da função `?ggmap`
 ```{r}
 sessionInfo()
 ```
-
-
-
-
-
-
-
-
