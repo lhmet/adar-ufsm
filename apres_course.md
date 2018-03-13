@@ -6,7 +6,7 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-date: Santa Maria, 12, março de 2018
+date: Santa Maria, 13, março de 2018
 #date: Santa Maria, 7, de março de 2016
 
 </style>
@@ -266,5 +266,30 @@ Para saber mais sobre o R
 <br/>
 Próximo: [Instalando o R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
 
+Bibliografia 
+=======================
+
+**Básica**
+
+R FOR DATA SCIENCE. Garret Grolemund, Hadley Wickham. Chambers (O’Reilly). 2016.
+
+EFFICIENT R PROGRAMMING. Colin Gillespie and Robin Lovelace.  (O’Reilly). 2016.
 
 
+R IN A NUTSHELL, A Desktop Quick Reference. 2nd Edition. (O’Reilly). 2012.
+
+DISLAYING TIME SERIES, SPATIAL AND SPACE-TIME DATA WITH R. Oscar Lamigueiro. (CRS PRESS). 2014.
+
+-------------
+
+**Complementar**
+
+HANDS-ON PROGRAMMING WITH R. 1998.Garret Grolemund (O'Reilly).
+
+TIME SERIES ANALYSIS AN WITH APPLICATIONS IN R. 2008 Cryer J.D. & Chan K.S. (Springer)
+
+MODERN OPTIMIZATION WITH R. Paulo Cortez (Springer). 2014
+
+ADVANCED R. Hadley Wickham. (O’Reilly). 2015.
+
+SIMULATION OF ECOLOGICAL AND ENVIRONMENTAL MODELS. Miguel Acevedo. 2012. CRC Press.
