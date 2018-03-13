@@ -1,7 +1,7 @@
 ---
 title: "Instalando R e RStudio"
 #subtitle: "Mantendo o R sempre atualizado no Linux Ubuntu"
-author: "Jônatan Tatsch e Roilan Valdés - UFSM"
+author: "Jônatan Tatsch e Roilan Valdés"
 date: '`r Sys.Date()`'
 output:
   tint::tint: 
@@ -13,15 +13,14 @@ output:
 ```{r Chunk0, echo=FALSE, eval=TRUE, message=FALSE,warning=FALSE, results='hide'}
 rm(list = ls())
 pcks <- c("knitr", "tint")
-invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
+easypackages::libraries(pcks)
 # configuraçoes knitr
 # original
 #opts_chunk$set(cache = FALSE, fig.path = "figs/")
-
 # com tint
 knitr::opts_chunk$set(tidy = FALSE, 
                       cache = FALSE,
-                     fig.path = "figs/",
+                      fig.path = "figs/",
                       cache.extra = packageVersion('tint'))
 # invalidate cache when the tufte version changes
 options(htmltools.dir.version = FALSE)
@@ -39,38 +38,54 @@ knitr::include_graphics('figs/adar.png')
 </div>
 
 
+O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
-[R](https://www.r-project.org/about.html) é uma linguagem[^1] e um ambiente de programação para computação estatística e análise de dados interativa.
-
-[^1]: *R* é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em *R* não precisa ser compilado antes de ser rodado.
-
-O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
-
-
-
-O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
-
-A seguir descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
+A seguir descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu. A forma de instalação do R no Linux é mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
 # Instalação
 
-O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários, como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
+O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários
+
+## Windows 
+
+A forma de instalar o R no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do R** ([CRAN](https://cran.r-project.org/)).
+Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutotial foi escrito a última versão foi a [R 4.3.3](https://cran.r-project.org/bin/windows/base/R-3.4.3-win.exe).
+
+A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
+
+```{r , comment="",highlight=TRUE, fig.width=18, fig.height=18, fig.cap="Interface gráfica do usuário para o R para Windows.",fig.fullwidth = TRUE, echo = FALSE}
+knitr::include_graphics("figs/rgui-windows.png")
+```
+
+
+## Linux 
+
+### Ubuntu
+
+Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
+
+```{r, eval = FALSE}
+sudo apt-get install r-base
+```
+
+
+### R sempre atualizado
+
+Se você prefere trabalhar com a última versão estável do R, precisamos configurar o Linux Ubuntu para atualizar automaticamente o *R*. Também uma boa prática definir um diretório para armazenamento dos pacotes utilizados. 
 
 O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
-Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
-Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^2]. As versões de Suporte de longo prazo (LTS) mais recentes são:
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de longo prazo (LTS) mais recentes são:
 
 - 14.04 (abril de 2014, *codename* `trusty`) 
 - 16.04 (abril de 2016, *codename* `xenial`)
 
-[^2]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
+[^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
-# *R* sempre atualizado
+ 
+O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a `r R.version$version.string`. Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
-O [R](http://www.r-project.org/) é distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a `r R.version$version.string`. Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
-
-## Incluindo repositório do *R* na Lista de repositórios do Ubuntu
+### Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
 A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando:
    
@@ -80,7 +95,7 @@ A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.l
 cat /etc/apt/sources.list | head -15
 ```
 
-Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^3] :
+Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
 
     $ lsb_release --codename | cut -f2
    
@@ -88,12 +103,12 @@ Para descobrir o nome da versão do sistema operacional, digite na terminal linu
 lsb_release --codename | cut -f2
 ```
 
-[^3]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
+[^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
 
 Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^4] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^3] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
 
-[^4]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+[^3]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
 O endereço do repositório da UFPR será inserido na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
@@ -121,28 +136,21 @@ Podemos retornar a sessão de usuário comum (*lsi*):
 
 ## [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^5]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
-
-[^5]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
+Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^4] Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
+
+[^4]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
         
 e então use essa informação como entrada no `apt-key` com
 
     $ gpg -a --export E084DAB9 | sudo apt-key add -
-    
-Se aparecer a mensagem de que a chave pública foi importada, então não há necessidade de executar os comandos abaixo. Mas caso seja impresso alguma mensagem de erro, um método alternativo pode ser usado para obter a chave com os comandos:
+      
+Se aparecer a mensagem de que a chave pública foi importada, então não há necessidade de executar os comandos abaixo. Mas caso seja impresso alguma mensagem de erro, outra alternativa pode ser usada para obter a chave, via os comandos:
 
     $ gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
     $ gpg -a --export E084DAB9 | sudo apt-key add -
 
-Se os comandos acima falharem você pode tentar:
-
-    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-
-
-
- 
 
 ## Atualização da lista de repositórios do Ubuntu e instalação do *R*
 
@@ -162,9 +170,19 @@ Para termos melhor controle sobre os pacotes do *R* instalados no sistema é rec
     
 Para informar ao **R** onde procurar os pacotes que instalamos criamos um arquivo chamado `.Renviron` no diretório `$HOME` contendo a linha `R_LIBS=/home/usuario/.R/libs/`, o que pode ser feito com o  comando:
 
-    $ echo 'R_LIBS=`echo $HOME`/.R/libs/' >> `echo $HOME`/.Renviron
+    $ R_LIBS=`echo $HOME/.R/libs/`
+    $ echo $R_LIBS >> `echo $HOME/.Renviron`
+
+Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.
+
+    $ R
+
+No console do R:
+
+```{r}
+.libPaths()
+```
     
-Esse caminho fica então visível ao *R*, o que pode ser verificado executando a função `.libPaths()` no console do *R*.     
 
 ## Testando o *R*
 

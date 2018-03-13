@@ -1,99 +1,131 @@
-# Instalando *R* e RStudio
-| Jônatan Tatsch, Roilan Valdés
-|
-| UFSM
-  
-`r format(Sys.Date(), format = '%d-%m-%Y')`  
+---
+title: "Instalando R e RStudio"
+#subtitle: "Mantendo o R sempre atualizado no Linux Ubuntu"
+author: "Jônatan Tatsch e Roilan Valdés"
+date: '2018-03-12'
+output:
+  html_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 8
+    highlight: kate
+    keep_md: yes
+    number_sections: no
+    toc: yes
+    default: TRUE
+    self_contained: TRUE
+---
 
 
-- - -
-
-![](figs/adar.png)
 
 
 
 
-- - -
 
-# Sobre o R
 
-> [R](https://www.r-project.org/about.html) é uma linguagem e um ambiente de programação para computação estatística e análise de dados interativa.
+</style>
+<div class="midcenter" style="margin-left:1px; margin-top:50px;">
+<img src="figs/adar.png" height="110px" width="1000px" />
+</div>
 
-O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS).
 
-*R* é uma [linguagem interpretada](https://pt.wikipedia.org/wiki/Linguagem_interpretada) ou também chamada de alto nível. O código escrito em *R* não precisa ser compilado antes de ser rodado.
+O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
-O usuário interage com o *R* pela linha de comando. Mas podemos facilitar essa interação por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
-
+A seguir descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu. A forma de instalação do R no Linux é mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
 # Instalação
 
-Nessa seção descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu.
+O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários
 
-O *R* pode ser instalado a partir dos [binários pré-compilados](https://cran.r-project.org/bin/) ou do [código fonte](https://cran.r-project.org/sources.html). Aqui, descreve-se a instalação do *R* a partir dos binários, como configurar o Linux Ubuntu para atualizar automaticamente o *R* e definir um diretório para armazenamento dos pacotes utilizados. A forma de instalação apresentada é mais didática do que prática. 
+## Windows 
+
+A forma de instalar o R no Windows é baixar o binário executável da **Rede Abrangente de Arquivos do R** ([CRAN](https://cran.r-project.org/)).
+Depois clicar em *Download R for Windows* e  *install R for the first time*. Quando este tutotial foi escrito a última versão foi a [R 4.3.3](https://cran.r-project.org/bin/windows/base/R-3.4.3-win.exe).
+
+A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
+
+<div class="figure">
+<img src="figs/rgui-windows.png" alt="Interface gráfica do usuário para o R para Windows." width="1042" />
+<p class="caption">Interface gráfica do usuário para o R para Windows.</p>
+</div>
+
+
+## Linux 
+
+### Ubuntu
+
+Há várias formas de instar o R no Ubuntu, mas geralmente a versão compilada no repositório *default* do Ubuntu não é a última. Se isso for problema para você então basta executar:
+
+
+```r
+sudo apt-get install r-base
+```
+
+
+### R sempre atualizado
+
+Se você prefere trabalhar com a última versão estável do R, precisamos configurar o Linux Ubuntu para atualizar automaticamente o *R*. Também uma boa prática definir um diretório para armazenamento dos pacotes utilizados. 
 
 O procedimento de instalação requer senha de superusuário do sistema ou de privilégios [sudo](https://en.wikipedia.org/wiki/Sudo). Caso não tenha, consulte o administrador do sistema.
-Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
-Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis, nesse momento as versões de Suporte de longo prazo (LTS) são:
+Ao utilizar distribuições Linux Ubuntu é importante optar por versões estáveis[^1]. As versões de Suporte de longo prazo (LTS) mais recentes são:
 
-- 12.04 (abril de 2012, *codename* `precise`)
 - 14.04 (abril de 2014, *codename* `trusty`) 
 - 16.04 (abril de 2016, *codename* `xenial`)
 
-Clique [aqui](http://releases.ubuntu.com/) para saber mais sobre as versões do Ubuntu.
+[^1]: Clique [aqui](http://releases.ubuntu.com) para saber mais sobre as versões do Ubuntu.
 
-# *R* sempre atualizado
+ 
+O [R](http://www.r-project.org/) é distribuído  na CRAN. Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.4.3 (2017-11-30). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
 
-O [R](http://www.r-project.org/) é distribuído  na **Rede Abrangente de Arquivos do R** ([CRAN](http://cran.r-project.org/mirrors.html)). Geralmente há duas atualizações ao ano. A versão mais atual é a R version 3.3.1 (2016-06-21). Para que ele seja atualizado automaticamente no Ubuntu precisamos adicionar o [repósitório do R](http://cran.r-project.org/mirrors.html) mais próximo da nossa região à lista de repositórios do Linux. No nosso caso, o repositório mais próximo é o da UFPR (<http://cran-r.c3sl.ufpr.br/>).
+### Incluindo repositório do *R* na Lista de repositórios do Ubuntu
 
-## Incluindo repositório do *R* na Lista de repositórios do Ubuntu
-
-A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando no terminal linux:
+A lista de repositórios do sistema é armazenada no arquivo `/etc/apt/sources.list`. Vamos visualizar o conteúdo desse arquivo. Em um terminal linux (use o atalho `Ctr+Alt+t`), digite o seguinte comando:
    
-~~~~~~~
-$ cat /etc/apt/sources.list 
-~~~~~~~
-
-Também é possível fazer isso a partir do *R*, conforme o comando abaixo que mostra as primeiras 15 linhas desse arquivo:
-
+    $ cat /etc/apt/sources.list | head -15
+    
 
 ```
- [1] # deb cdrom:[Ubuntu 14.04.2 LTS _Trusty Tahr_ - Release amd64 (20150218.1)]/ trusty main restricted
- [2]                                                                                                    
- [3] # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to                          
- [4] # newer versions of the distribution.                                                              
- [5] deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted                                      
- [6] deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted                                  
- [7] # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                                  
- [8] # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted                              
- [9]                                                                                                    
-[10] ## Major bug fix updates produced after the final release of the                                   
-[11] ## distribution.                                                                                   
-[12] deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted                            
-[13] deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted                        
-[14]                                                                                                    
-[15] ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu                        
+## # deb cdrom:[Ubuntu 14.04.2 LTS _Trusty Tahr_ - Release amd64 (20150218.1)]/ trusty main restricted
+## 
+## # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+## # newer versions of the distribution.
+## # deb http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## # deb-src http://br.archive.ubuntu.com/ubuntu/ trusty main restricted
+## deb http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
+## deb-src http://ubuntu.c3sl.ufpr.br/ubuntu/ trusty main restricted
+## ## Major bug fix updates produced after the final release of the
+## ## distribution.
+## deb http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## deb-src http://br.archive.ubuntu.com/ubuntu/ trusty-updates main restricted
+## 
+## ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## ## team. Also, please note that software in universe WILL NOT receive any
 ```
 
-Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando [^1]:
+Para descobrir o nome da versão do sistema operacional, digite na terminal linux o seguinte comando[^2] :
 
-[^1]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
+    $ lsb_release --codename | cut -f2
+   
 
-~~~~~~~
-$ lsb_release --codename | cut -f2
-~~~~~~~
+```
+trusty
+```
+
+[^2]: Se o comando `lsb_release` não funcionar você precisa instalar o pacote `lsb-release` no sistema. Para isso digite no terminal Linux `$ sudo apt-get install lsb-release`.
 
 Precisamos incluir no arquivo `sources.list` o repositório da UFPR. Assim o gerenciador de pacotes 
-[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^2] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
+[apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) [^3] fará a atualização do *R* quando uma nova versão estiver disponível. Ou seja, você estará utilizando sempre versão mais atual do *R*.
 
-[^2]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
+[^3]: o gerenciador de pacotes [apt](http://pt.wikipedia.org/wiki/Advanced_Packaging_Tool) é usado para instalação, atualização e remoção de pacotes em distribuições Debian GNU/Linux.
 
 O endereço do repositório da UFPR será inserido na última linha do arquivo `sources.list` usando alguns comandos linux. Essa tarefa requer privilégios de [superusuário](https://pt.wikipedia.org/wiki/Superusu%C3%A1rio). Vamos trocar do seu usuário para o superusuário.
 
+
     $ sudo su
 
-Vamos definir na terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
+
+Vamos definir no terminal uma variável com o endereço do repositório e o nome de versão do Ubuntu.
 
     # repos="deb http://cran-r.c3sl.ufpr.br/bin/linux/ubuntu `lsb_release --codename | cut -f2`/"
  
@@ -111,11 +143,13 @@ Podemos retornar a sessão de usuário comum (*lsi*):
 
     # exit
 
-## [APT protegido](https://wiki.debian.org/SecureApt) (adaptado da [CRAN](http://cran.r-project.org) seção Secure Apt).  
+## [APT protegido](https://cran.r-project.org/bin/linux/ubuntu/README.html#secure-apt) 
 
-Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^3]. Para adicionar essa chave ao seu sistema digite os seguintes comandos:
+Os arquivos binários do *R* para Ubuntu na [CRAN](http://cran.r-project.org) são assinados com uma chave pública [^4] Para adicionar essa chave ao seu sistema digite os seguintes comandos:
 
     $ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
+
+[^4]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
         
 e então use essa informação como entrada no `apt-key` com
 
@@ -131,7 +165,6 @@ Se os comandos acima falharem você pode tentar:
     $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 
-[^3]: Chave pública de autenticação é um meio alternativo de se logar em um servidor ao invés de digitar uma senha. É uma forma mais segura e flexível, mas mais difícil de ser configurada. Esse meio alternativo de fazer login é importante se o computador está visível na internet. Para saber mais veja [aqui](http://the.earth.li/~sgtatham/putty/0.55/htmldoc/Chapter8.html).
 
  
 
@@ -180,7 +213,7 @@ A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequênc
 plot(1:10)
 ```
 
-<img src="figs/Chunck4-1.png" style="display: block; margin: auto;" />
+![Gráfico da sequência de 10 números.](figs/Chunck4-1.png)
 
 Vamos sair do *R* sem salvar os dados da seção.
 
@@ -191,9 +224,9 @@ q(save = "no")
 
 # Rstudio no Ubuntu
 
-O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.sciviews.org/_rgui/projects/Editors.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
+O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.kdnuggets.com/polls/2011/r-gui-used.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
 
-Para instalação você precisa saber seu sistema operacional e é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando linux:
+Para instalação você precisa saber seu sistema operacional é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando:
 
     $ arch
 
@@ -212,8 +245,7 @@ Abra o RStudio digitando no terminal:
 
     $ rstudio &
     
-Agora você está pronto para começar a programar com *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista a séries de vídeos *[RStudio Essencials](https://www.rstudio.com/resources/webinars/#13f83906a8793e214)*.
-
+Agora você está pronto para começar a programar em *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
 
 
 <br/> 
