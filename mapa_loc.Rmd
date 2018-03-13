@@ -3,6 +3,7 @@ title: "Mapa simples da região de estudo"
 author:
 - name: Jônatan Tatsch
   affiliation: LHMET/UFSM
+date: "`r format(Sys.Date())`"
 output: html_notebook
 ---
 
@@ -10,11 +11,8 @@ Geralmente em estudos e aplicações de meteorologia precisamos apresentar nossa
 
 ### Pré-requisitos
 
-<<<<<<< HEAD
+
 ```{r clean_opt, echo = FALSE}
-=======
-```{r setup, warning=FALSE}
->>>>>>> 8476359c472cf2bed540c55a1bbf88004ee92541
 rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE, comment = "")
 ```
