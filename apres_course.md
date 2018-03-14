@@ -6,7 +6,7 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-date: Santa Maria, 13, março de 2018
+date: Santa Maria, 14, março de 2018
 #date: Santa Maria, 7, de março de 2016
 
 </style>
@@ -234,27 +234,57 @@ RStudio
 
 
 
+
+
+
+Bibliografia 
 =======================
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<span style="color:black; font-size:1.7em;">Material do curso disponível no [GitHub](https://github.com/jdtatsch/adar-ufsm) </span>
+
+**Básica**
+
+[INTRODUÇÃO À PROGRAMAÇÃO EM R](https://cran.r-project.org/doc/contrib/Landeiro-Introducao.pdf) \*. Victor Landeiro. INPA. 2011.
+
+[INTRODUÇÃO AO AMBIENTE ESTATÍSTICO R](http://www.leg.ufpr.br/~paulojus/embrapa/Rembrapa/). Paulo Justiniano Ribeiro Junior. UFPR. 2011.
+
+[R FOR DATA SCIENCE](http://r4ds.had.co.nz/)\*. Garret Grolemund, Hadley Wickham. Chambers (O’Reilly). 2016.
+
+[EFFICIENT R PROGRAMMING](https://csgillespie.github.io/efficientR/)\*. Colin Gillespie and Robin Lovelace.  (O’Reilly). 2016.
+
+
+[R IN A NUTSHELL](http://shop.oreilly.com/product/0636920022008.do), A Desktop Quick Reference. 2nd Edition. (O’Reilly). 2012.
+
+
+
+\* eBook gratuito
+
+-------------
+
+**Complementar**
+
+[RECURSOS COMPUTACIONAIS UTILIZANDO R](http://www.dex.ufla.br/~danielff/meusarquivospdf/RRC0.pdf)\* . Daniel Ferreira Furtado. UFLA. 2013. 
+
+[HANDS-ON PROGRAMMING WITH R](http://shop.oreilly.com/product/0636920028574.do). Garret Grolemund (O'Reilly). 2014.
+
+
+[ADVANCED R](http://adv-r.had.co.nz/).\*  Hadley Wickham. (O’Reilly). 2015.
+
+[DISLAYING TIME SERIES, SPATIAL AND SPACE-TIME DATA WITH R](http://oscarperpinan.github.io/spacetime-vis/). Oscar Lamigueiro. (CRS PRESS). 2014.
+
 
 Para saber mais sobre o R
 =======================
 <br/>
 [**Documentação oficial**](http://cran.r-project.org/manuals.html)
+  - [Manuais do R traduzidos](https://cran.r-project.org/other-docs.html)
 <br/>
 <br/>
-[**Livros relacionados ao R**](http://www.r-project.org/doc/bib/R-books.html)
-- [Livros gratuitos](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r)
+
+[**Lista de Livros relacionados ao R**](http://www.r-project.org/doc/bib/R-books.html)
+- [Livros gratuitos](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r) (em inglês)
 <br/>
 <br/>
+
+
 
 **Fóruns:** 
 - lista Brasileira de discussão do programa R: [**R-br**](https://listas.inf.ufpr.br/cgi-bin/mailman/listinfo/r-br)
@@ -264,32 +294,26 @@ Para saber mais sobre o R
 <br/>
 <br/>
 <br/>
+
+Obrigado! 
+=============================
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<span style="color:black; font-size:1.5em;">Material do curso disponível no [GitHub](https://github.com/jdtatsch/adar-ufsm) </span>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 Próximo: [Instalando o R e Rstudio](https://rawgit.com/jdtatsch/adar-ufsm/master/1_Rinstall.html)
-
-Bibliografia 
-=======================
-
-**Básica**
-
-R FOR DATA SCIENCE. Garret Grolemund, Hadley Wickham. Chambers (O’Reilly). 2016.
-
-EFFICIENT R PROGRAMMING. Colin Gillespie and Robin Lovelace.  (O’Reilly). 2016.
-
-
-R IN A NUTSHELL, A Desktop Quick Reference. 2nd Edition. (O’Reilly). 2012.
-
-DISLAYING TIME SERIES, SPATIAL AND SPACE-TIME DATA WITH R. Oscar Lamigueiro. (CRS PRESS). 2014.
-
--------------
-
-**Complementar**
-
-HANDS-ON PROGRAMMING WITH R. 1998.Garret Grolemund (O'Reilly).
-
-TIME SERIES ANALYSIS AN WITH APPLICATIONS IN R. 2008 Cryer J.D. & Chan K.S. (Springer)
-
-MODERN OPTIMIZATION WITH R. Paulo Cortez (Springer). 2014
-
-ADVANCED R. Hadley Wickham. (O’Reilly). 2015.
-
-SIMULATION OF ECOLOGICAL AND ENVIRONMENTAL MODELS. Miguel Acevedo. 2012. CRC Press.
