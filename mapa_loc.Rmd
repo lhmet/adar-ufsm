@@ -18,9 +18,10 @@ knitr::opts_chunk$set(echo = TRUE, comment = "")
 ```
 
 ```{r setup, warning=FALSE}
-# install.packages(c("easypackages", "tidyverse"))
-#devtools::install_github("dkahle/ggmap")
-#devtools::install_github("lhmet/inmetr", force = TRUE)
+## descomente para instalar os pacotes se necessário
+# install.packages(c("easypackages", "tidyverse", "devtools"))
+# devtools::install_github("dkahle/ggmap")
+# devtools::install_github("lhmet/inmetr", force = TRUE)
 pcks <- c("tidyverse", "ggmap", "inmetr")
 easypackages::libraries(pcks)
 ```
@@ -31,7 +32,7 @@ Os dados usados no exemplo são de coordenadas de estações meteorológicas de 
 
 Começamos obtendo uma estimativa do ponto central da distribuição espacial das estações meteorológicas. Essa coordenada de referência para geração do mapa será determinada a partir do ponto médio do intervalo de variação da coordenada. Isso é o que faz a função `mid_range`() abaixo.
 
-```{r}
+```{r centroid}
 # tabela de coordanas
 bdmep_meta
 # função para calcular o ponto médio do intervalo de variação
@@ -47,7 +48,7 @@ ll0
 
 O mapa é gerado a partir de um ponto de referência. No exemplo, usamos `ll0` como ponto de referência. Teste valores do parâmetro `zoom` conforme sua preferência. Os limites de `zoom` variam de 3 (scala de continente) à 21 (escala de prédio).
 
-```{r}
+```{r basemap}
 # mapa com a imagem do Google Maps como plano de fundo
 mapa_base <- get_map(location = as.vector(ll0), 
               source = "google",
@@ -59,7 +60,7 @@ mapa_base <- get_map(location = as.vector(ll0),
 
 No mapa acima, faça testes variando o parâmetro `maptype` de acordo com sua preferência. Veja o resultado no mapa final (`mapa_loc`) usando as demais opções, como: "terrain-background", "satellite", "roadmap", "hybrid" (google maps), "terrain", "watercolor", e "toner".
 
-```{r}
+```{r map_loc}
 mapa_loc <- ggmap(mapa_base, dev = "extent") +
       geom_point(data = bdmep_meta,
                  aes(x = lon, y = lat),
@@ -74,6 +75,6 @@ Feito! Agora você pode customizar o seu mapa.  Veja o help da função `?ggmap`
 
 ### Informações da seção
 
-```{r}
+```{r, sessinfo}
 sessionInfo()
 ```
