@@ -38,7 +38,7 @@ pcks <- c("dplyr", "ggplot2","viridis", "lubridate", "scales", "raster",
           "viridis", "ggrepel")
 load_pcks(pcks)
 #source_url('https://gist.githubusercontent.com/lhmet/9884cf0044806c6e3fccc7cc46d796d7/raw/ebd27dc73b47bea95fc65c6244e91658e38040ae/gg_bubble.R')
-source("~/UFSM/orientacoes/iniciacaoCientifica/carolina/desagragacaoTemperatura/R/gg_bubble_v2.R")
+source("~/Dropbox/ufsm/orientacoes/iniciacaoCientifica/egressos/carolina/desagragacaoTemperatura/R/gg_bubble_v2.R")
 options(stringsAsFactors = TRUE)
 ```
 
