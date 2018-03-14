@@ -7,7 +7,7 @@ date: "`r format(Sys.Date())`"
 output: html_notebook
 ---
 
-Geralmente em estudos e aplicações de meteorologia precisamos apresentar nossa região de estudo. Se o estudo for observacional, provavelmente seu mapa da localização da região de estudo incluirá os pontos de medida. Neste tutorial eu mostro como você pode fazer um mapa simples da localização de estações meteorológicas da região de interesse.
+A caracterização da região de estudo e das estações meteorológicas (EM) empregadas em pesquisas ou aplicações de meteorologia é imprescindível para o melhor entendimento e interpretação dos resultados de uma análise observacional. Neste tutorial apresento como produzir no R, um mapa básico da região de estudo incluindo a localização dos pontos de observação (EM) utilizados na pesquisa ou trabalho.
 
 ### Pré-requisitos
 
@@ -17,7 +17,7 @@ rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE, comment = "")
 ```
 
-```{r setup, warning=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
 ## descomente para instalar os pacotes se necessário
 # install.packages(c("easypackages", "tidyverse", "devtools"))
 # devtools::install_github("dkahle/ggmap")
@@ -48,7 +48,7 @@ ll0
 
 O mapa é gerado a partir de um ponto de referência. No exemplo, usamos `ll0` como ponto de referência. Teste valores do parâmetro `zoom` conforme sua preferência. Os limites de `zoom` variam de 3 (scala de continente) à 21 (escala de prédio).
 
-```{r basemap}
+```{r basemap, warning=FALSE, message=FALSE}
 # mapa com a imagem do Google Maps como plano de fundo
 mapa_base <- get_map(location = as.vector(ll0), 
               source = "google",
@@ -65,8 +65,7 @@ mapa_loc <- ggmap(mapa_base, dev = "extent") +
       geom_point(data = bdmep_meta,
                  aes(x = lon, y = lat),
                  colour = "red",
-                 size = 1) #+
-      #geom_text(x = lon0, y = lat0, label="CAS")
+                 size = 1)
 mapa_loc
 ```
 
