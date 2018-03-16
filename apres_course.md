@@ -270,6 +270,16 @@ Bibliografia
 
 [DISLAYING TIME SERIES, SPATIAL AND SPACE-TIME DATA WITH R](http://oscarperpinan.github.io/spacetime-vis/). Oscar Lamigueiro. (CRS PRESS). 2014.
 
+Ementa do curso e sistema de avaliação
+========================
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+Disponível no moodle
+
+https://ead06.proj.ufsm.br/moodle/mod/resource/view.php?id=485275
 
 Para saber mais sobre o R
 =======================
