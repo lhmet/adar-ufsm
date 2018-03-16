@@ -71,7 +71,7 @@ Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Ex
 <br/> 
 
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Apresentação do curso](https://rawgit.com/lhmet/adar-ufsm/master/apres_course.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;"> Próximo: [Apresentação do curso](https://rawgit.com/lhmet/adar-ufsm/master/apres_course.html)</p> 
 
 
 
