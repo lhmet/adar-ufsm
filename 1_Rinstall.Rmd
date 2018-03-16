@@ -209,20 +209,40 @@ q(save = "no")
 
 O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.kdnuggets.com/polls/2011/r-gui-used.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
 
-Para instalação você precisa saber seu sistema operacional é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando:
+Para instalação da versão do RStudio para *[Desktop](https://pt.wikipedia.org/wiki/Ambiente_de_desktop)*, você precisa saber seu sistema operacional é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando:
 
     $ arch
 
 Se retornar **x86_64** sua máquina é 64-bit.
 
-Com essa informação, siga os seguintes passos:
+Com essa informação e versão do sistema operacional (obtida previamente), siga os seguintes passos:
 
   1. acesse [RStudio](http://www.rstudio.com/)
   2. clique em *Download RStudio*
-  3. clique *Desktop*
-  4. clique em *Download RStudio Desktop*
-  5. clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Debian 8+/Ubuntu 12.04+ (64-bit)*
-  6. clique sobre o arquivo baixado com o botão direito, abra com *Ubuntu Software Center* e clique em `instalar`.
+  3. Procure a opção *RStudio Desktop* (FREE) e clique download
+
+```{r rstudio-choose, echo = FALSE, fig.fullwidth = TRUE, fig.width=10}
+knitr::include_graphics('figs/rstudio-choose.png')
+```
+
+  5. Selecione sua plataforma
+  
+```{r, rstudio-plat, echo = FALSE, fig.fullwidth = TRUE, fig.width=10}
+knitr::include_graphics('figs/rstudio-plataform-options.png')
+```
+  
+clique sobre o link da sua plataforma, p.ex.: *RStudio x.xx.xxx - Ubuntu 12.04-15.10/Debian 8 (64-bit)*
+
+  6. Dependendo da sua versão Ubuntu, ao clicar sobre o sobre o arquivo baixado com o botão direito, há a opção de abrir com *Ubuntu Software Center* e então clicar em `instalar`. Se na versão de seu Desktop não há esta opção ao clicar com botão direito sobre o arquivo instale via **terminal**[^5] com os seguintes comandos:
+
+[^5]: digite 'Ctrl+Alt+t' para abrir um terminal no Linux Ubuntu
+
+```
+$ cd /local/do/arquivo/baixado
+$ sudo dpkg -i arquivoBaixado.deb
+$ sudo apt-get install -f
+```
+
 
 Abra o RStudio digitando no terminal:
 
