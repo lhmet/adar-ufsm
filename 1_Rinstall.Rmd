@@ -209,13 +209,23 @@ q(save = "no")
 
 O RStudio é um ambiente integrado de desenvolvimento ([IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)) construído especificamente para o *R*. Existem [diversas opções de IDEs](http://www.kdnuggets.com/polls/2011/r-gui-used.html) para o *R*. Nesse curso utilizaremos o RStudio. Assim como *R* pode ser baixado gratuitamente e é multiplataforma. O ambiente do RStudio disponibiliza o console do *R*, um editor com realce da sintaxe do *R*, ferramentas para gráficos, navegação de diretórios, manejo do espaço de trabalho, depuração de código e páginas de ajuda do *R*.
 
-Para instalação da versão do RStudio para *[Desktop](https://pt.wikipedia.org/wiki/Ambiente_de_desktop)*, você precisa saber seu sistema operacional é 64 ou 32-bit. No Linux Ubuntu essa informação é obtida pelo comando:
+Para instalação da versão do RStudio para *[Desktop](https://pt.wikipedia.org/wiki/Ambiente_de_desktop)*, você precisa saber se seu sistema operacional é 64 ou 32-bit e a versão do Linux Ubuntu. Essas informações podem ser obtidas, respectivamente, pelos comandos:
 
     $ arch
 
+```{bash, eval = TRUE, echo = FALSE, comment = ""}
+arch
+```
+
+    $ lsb_release --release | cut -f2
+
+```{bash, eval = TRUE, echo = FALSE, comment = ""}
+lsb_release --release | cut -f2
+```
+
 Se retornar **x86_64** sua máquina é 64-bit.
 
-Com essa informação e versão do sistema operacional (obtida previamente), siga os seguintes passos:
+Com essa informação e versão do sistema operacional, siga os seguintes passos:
 
   1. acesse [RStudio](http://www.rstudio.com/)
   2. clique em *Download RStudio*
