@@ -1,6 +1,19 @@
-# Interface do usuário
-Jônatan Tatsch  
-12-03-2015  
+---
+title: "Interface do usuário"
+author: "Jônatan Tatsch"
+date: "12-03-2015"
+output:
+  html_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 8
+    highlight: kate
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+  pdf_document:
+    toc: yes
+---
 
 
 
@@ -295,6 +308,6 @@ source("R/script1.R")
 
 <br/>
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Operações Básicas](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Operações Básicas](https://rawgit.com/lhmet/adar-ufsm/master/3_OperacoesBasicas.html)</p> 
 
                                                       
