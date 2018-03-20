@@ -1,5 +1,5 @@
 ---
-title: "Solução dos problemas nos Desktops do LSI"
+title: "Solução para os problemas comuns nos Desktops do LSI"
 author: "Jônatan Tatsch"
 date: '`r Sys.Date()`'
 output: 
