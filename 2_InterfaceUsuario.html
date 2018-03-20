@@ -240,11 +240,11 @@ $(document).ready(function () {
 </div>
 <div id="comentarios" class="section level2">
 <h2><span class="header-section-number">1.4</span> Comentários</h2>
-<p>No R, a cerquilha <code>#</code> (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorado pelo R. Somente as expressões antes da <code>#</code> são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># isso é um comentário</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="dv">17</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="co"># adicionando 17 e 3</span></code></pre></div>
+<p>No R, a cerquilha <code>#</code> (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo R. Somente as expressões antes da <code>#</code> são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st">  </span><span class="dv">17</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="co"># adicionando 17 e 3</span></code></pre></div>
 <pre><code>[1] 20</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># 10 + 4</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># A expressão abaixo será ignorada </span>
+<span class="er">&gt;</span><span class="st"> </span><span class="co"># 10 + 4</span></code></pre></div>
 </div>
 <div id="auto-preenchimento-de-funcoes" class="section level2">
 <h2><span class="header-section-number">1.5</span> Auto preenchimento de funções</h2>
@@ -262,21 +262,12 @@ $(document).ready(function () {
 <p>Podemos criar um arquivo texto chamado <code>script1.R</code> e digitar todos comandos dessa aula nele.</p>
 <pre><code>$ cd /home/lsi/nomealuno
 $ gedit script1.R &amp;</code></pre>
-<p>Copie os comandos abaixo no arquivo recém criado no gedit ou outro editor de texto do Linux.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">62</span> <span class="op">+</span><span class="st"> </span><span class="dv">38</span></code></pre></div>
-<pre><code>[1] 100</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></code></pre></div>
-<pre><code>  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
- [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
- [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
- [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
- [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
- [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">8</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span></code></pre></div>
-<pre><code>[1] 3628800</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span><span class="op">-</span><span class="dv">3</span></code></pre></div>
-<pre><code>[1] 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## salvando um gráfico da sequência de 1 a 100 em um arquivo pdf
+<p>Copie os comandos abaixo num arquivo novo criado no <a href="http://wiki.ubuntu-br.org/Gedit">gedit</a> ou outro editor de texto do Linux.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">62</span> <span class="op">+</span><span class="st"> </span><span class="dv">38</span>
+<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
+<span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">*</span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">8</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>
+<span class="dv">4</span><span class="op">-</span><span class="dv">3</span>
+## salvando um gráfico da sequência de 1 a 100 em um arquivo pdf
 <span class="kw">pdf</span>(<span class="st">&quot;plot_script1.pdf&quot;</span>) <span class="co"># cria e abre um arquivo pdf</span>
  <span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)            <span class="co"># faz o gráfico</span>
 <span class="kw">dev.off</span>()               <span class="co"># fecha o arquivo pdf</span></code></pre></div>
