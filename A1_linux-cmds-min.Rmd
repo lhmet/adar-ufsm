@@ -1,0 +1,123 @@
+---
+title: "O mínimo sobre a linha de comando linux"
+author: "Jônatan Tatsch"
+date: '`r Sys.Date()`'
+output:
+  html_notebook: 
+    toc: yes
+  html_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 8
+    highlight: kate
+    number_sections: yes
+    toc: yes
+---
+
+```{r, echo=FALSE, out.width = "200px", include = FALSE}
+htmltools::img(src = knitr::image_uri("figs/adar.png"), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px;width:500px; height=300px')
+```
+
+
+
+```{r setup, include = FALSE}
+rm(list = ls())
+pcks <- c("knitr", "tint")
+easypackages::libraries(pcks)
+# configuraçoes knitr
+# original
+#opts_chunk$set(cache = FALSE, fig.path = "figs/")
+# com tint
+knitr::opts_chunk$set(tidy = FALSE, 
+                      cache = FALSE,
+                      fig.path = "figs/",
+                      cache.extra = packageVersion('tint'))
+# invalidate cache when the tufte version changes
+options(htmltools.dir.version = FALSE)
+```
+<br>
+
+
+
+Durante o curso será usada a linha de comando Linux. A intenção desta seção é apresentar o mínimo que você deve saber sobre a linha de comando de Linux para o curso, ou seja conhecer os comandos linux que você precisará usar.
+
+Aqui considera-se apenas do [shell](linuxquestions.org/questions/linux-software-2/postscript-to-jpeg-606270/) do Bash (do termo em inglês *Bourne Again Shell*) que é o shell padrão para as distribuições GNU/Linux, como no caso da distribuição [Ubuntu](https://pt.wikipedia.org/wiki/Ubuntu) instalada nos *desktops* do LSI. 
+
+A linha de comando é acessível pelo atalho `<ctrl + Alt + t>` ou apertando a tecla Super [^1] e digitando "terminal" no [dash](https://www.lifewire.com/complete-guide-ubuntu-unity-dash-2202066) do Ubuntu. 
+
+
+[^1]: Tecla com desenho de uma janela, geralmente localizada entre as teclas *Ctrl* e *Alt*.
+
+PAREI AQUI
+
+
+
+
+pwd
+
+mkdir
+
+touch
+
+cd
+
+ls
+
+
+cp
+
+mv
+
+rm
+
+rmdir
+
+
+chmod
+
+ps
+
+
+cat
+
+head
+
+tail
+
+gedit
+
+
+
+tar
+
+
+apt-get update
+
+apt-get upgrade
+
+apt-get install
+
+apt-cache search 
+
+sudo
+
+grep
+
+find
+
+man ls
+
+wget
+
+https://pt.wikipedia.org/wiki/Shell_(computa%C3%A7%C3%A3o)
+
+
+http://wrolf.net/linux-tutorial.html
+
+http://xahlee.info/linux/linux_common_commands.html
+
+https://elinux.org/Linux_command_line_basics
+
+                                                      
