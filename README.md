@@ -3,7 +3,6 @@ layout: page
 output: html_document
 ---
 
-
 <p align="center">
   <img src="figs/adar.png" alt="Resbmet"/>
 </p>
@@ -34,7 +33,7 @@ Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorol
   <img src="https://media.giphy.com/media/vuWHlxaVPvyP6/giphy.gif" alt="Resbmet"/>
 </p>
 
-# Conteúdo (em construção)
+# Conteúdo ![](http://www.textfiles.com/underconstruction/HeHeartlandPark2601underconstructionbar9.gif)
 
 - [Apresentação do curso](https://rawgit.com/lhmet/adar-ufsm/master/apres_course.html)
 
