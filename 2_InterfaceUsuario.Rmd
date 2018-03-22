@@ -36,22 +36,6 @@ knitr::opts_chunk$set(tidy = FALSE,
 options(htmltools.dir.version = FALSE)
 ```
 
-
-
-
-
-# Mínimo de Linux
-
-Durante o curso será usada a linha de comando Linux. A linha de comando  é acessível pelo atalho `<ctrl + Alt + t>` ou apertando a tecla Super [^1] e digitando "terminal" no [dash](https://www.lifewire.com/complete-guide-ubuntu-unity-dash-2202066) do Ubuntu. 
-
-[^1]: Tecla com desenho de uma janela, geralmente localizada entre as teclas *Ctrl* e *Alt*.
-
-[Shell](linuxquestions.org/questions/linux-software-2/postscript-to-jpeg-606270/)
-
-https://pt.wikipedia.org/wiki/Shell_(computa%C3%A7%C3%A3o)
-
-
-
 # R no modo interativo
 
 ## Linha de comando do R
@@ -173,16 +157,16 @@ Esse modo facilita a automatização de tarefas. Nesse caso, alterando apenas a 
 
 Por exemplo, para rodar um suposto script `gera_graficos.R`, sem ter que abrir o R e digitar os comandos para fazer o gráfico, utilizaríamos o comando:
 
-~~~~~~~
+```
 $ R CMD BATCH gera_graficos.R
-~~~~~~~
+```
 
 Podemos criar um arquivo texto chamado `script1.R` e digitar todos comandos dessa aula nele. 
 
-~~~~~~~
+```
 $ cd /home/lsi/nomealuno
 $ gedit script1.R &
-~~~~~~~
+```
 
 Copie os comandos abaixo num arquivo novo criado no [gedit](http://wiki.ubuntu-br.org/Gedit) ou outro editor de texto do Linux.
 
@@ -201,15 +185,15 @@ dev.off()               # fecha o arquivo pdf
 
 Rode o R em modo **Batch** informando o nome do script.
 
-~~~~~~~
+```
 $ R CMD BATCH script1.R
-~~~~~~~
+```
 
 O R rodará os comandos dentro do arquivo especificado `script1.R` e criará um arquivo de saída chamado `script1.Rout` com os resultados. Você também pode especificar o nome daquele arquivo de saída. Por exemplo vamos salvar o arquivo de saída como `saida_script1_aDataDeHoje.log`
 
-~~~~~~~
+```
 $ R CMD BATCH script1.R saida_script1_`date "+%y%m%d"`.log
-~~~~~~~
+```
 
 Para mais informações sobre rodar o R na linha de comando do Linux digite no terminal `$ R --help`.
 
