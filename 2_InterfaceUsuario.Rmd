@@ -3,15 +3,13 @@ title: "Interface do usuário"
 author: "Jônatan Tatsch"
 date: '`r Sys.Date()`'
 output:
-  html_notebook: 
+    html_document:
     toc: yes
-  html_document:
     fig_caption: yes
     fig_height: 7
     fig_width: 8
     highlight: kate
     number_sections: yes
-    toc: yes
 ---
 
 ```{r, echo=FALSE, out.width = "200px", include = FALSE}
@@ -30,10 +28,11 @@ easypackages::libraries(pcks)
 # com tint
 knitr::opts_chunk$set(tidy = FALSE, 
                       cache = FALSE,
-                      fig.path = "figs/",
-                      cache.extra = packageVersion('tint'))
+                      fig.path = "figs/"
+                      #cache.extra = packageVersion('tint')
+                      )
 # invalidate cache when the tufte version changes
-options(htmltools.dir.version = FALSE)
+#options(htmltools.dir.version = FALSE)
 ```
 
 # R no modo interativo
@@ -76,11 +75,13 @@ A janela com a linha de comando do R apresenta o *prompt* do *R* (` > `). Após 
 
 A expressão é avaliada pelo R, o resultado é mostrado, mas o seu valor é perdido.
 
-O número entre colchetes que aparece como resultado da operação ("[1]" no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 1 até 100.
+O número entre colchetes que aparece como resultado da operação ("[1]" no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 100 até 1.
 
 ```{r Chunk11, message=FALSE, comment="",prompt=TRUE,tidy=FALSE}
-1:100
+100:1
 ```
+
+O elemento `[18]` da sequência de 100 até 1 é o número `83`.
 
 Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o R mostra um sinal de `+`.
 
@@ -102,14 +103,14 @@ Execute a expressão abaixo até o sinal de menos e tecle `<enter>`. Enquanto a 
 Podemos executar todas expressões anteriores em apenas uma linha, usando o ponto e vírgula  `;` para separar as expressões:
 
 ```{r Chunk14, message=FALSE, comment="",eval = TRUE, prompt=TRUE}
-62 + 38; 1:100; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
+62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
 ```
 
 As expressões também podem ser separadas por uma nova linha (`<enter>`) entre cada um delas.
 
 ```{r Chunk15, message=FALSE, comment="",eval = TRUE, prompt=TRUE}
 62 + 38
-1:100
+100:1
 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
 4-3
 ```
@@ -122,7 +123,7 @@ Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluíd
 
 ```{r Chunk16, message=FALSE, comment="",eval = FALSE, prompt=TRUE, error=FALSE}
 15 + 4
-1:100
+100:1
 #tecle <Ctr + l>
 ```
 
@@ -203,34 +204,6 @@ No modo iterativo, ou seja pela linha de comando, também é possível rodar com
 
 ```{r Chunk21, message=FALSE, comment="",eval = FALSE, prompt=FALSE}
 source("R/script1.R")
-```
-
-# RStudio
-
-
-* Editor de texto
-
-    * Abrindo/Criando um script
-    
-    * Rodando código por partes (Ctrl + `<enter>`)
-    
-        * Preenchimento do nome de funções `<tab>`
-        
-    * Rodando código inteiro
-* Histórico de comandos
-* Espaço de trabalho
-* Linha de comando do R
-
-* Menus
-    * Tools > global options
-        * mostrar linhas, alterar realce da sintaxe
-    * Session
-    * Plots
-
-
-
-```{r rstudio-fig, echo = FALSE, fig.fullwidth = TRUE, fig.cap="Rstudio"}
-knitr::include_graphics('figs/Rstudio_panels.png')
 ```
 
 <br/>
