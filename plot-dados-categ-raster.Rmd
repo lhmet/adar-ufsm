@@ -1,0 +1,122 @@
+---
+title: "Visualização de raster com dados categóricos"
+output: 
+  html_document: 
+    toc: yes
+---
+
+```{r setup, echo=FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(tidy = FALSE, 
+                      cache = FALSE,
+                      fig.path = "figs/")
+library(bookdown)
+```
+
+
+# Introdução 
+
+Neste tutorial mostra-se como plotar dados categóricos armazenados no formato raster.
+Este tipo de dados é comum para raster contendo classes de vegetação, uso da terra ou qualquer outro plano de informação representada por uma classe expressa por caracteres ou números inteiros. No exemplo abaixo, será usado o código de subbacias representado por dois números.
+
+
+# Pré-requisitos
+
+Para visualização de dados categóricos com várias categorias precisamos de paletas de cores aleatórias. O pacote [randomcoloR](https://cran.r-project.org/web/packages/randomcoloR/) fornece paletas de cores com essa proposta. Para utilizá-lo no R, precisamos instalar a biblioteca linux `libv8-3.14-dev`. 
+
+```{bash, eval = FALSE}
+#(Debian, Ubuntu)
+sudo apt-get install libv8-3.14-dev
+# rpm: v8-314-devel (formerly: v8-devel) (Fedora, EPEL)
+# brew: v8@3.15 (OSX) -- NOT regular v8! Tap from homebrew/versions
+# csw: libv8_dev (Solaris)
+```
+
+
+
+```{r}
+## descomente a linha abaixo para instalar o pacote randomcoloR
+# install.packages("randomcoloR")
+
+## carregar pacotes necessários
+library(easypackages)
+# devtools::install_github("ronammar/randomcoloR")
+# pacotes
+libraries(c("randomcoloR", # para paleta de cores distintas
+            "raster")      # para dados espaciais no formato raster
+          )
+```
+
+
+# Dados
+
+Os dados usados nesse tutorial referem-se a um raster contendo códigos de subbacias. O arquivo está no [formato ascii grid](https://en.wikipedia.org/wiki/Esri_grid).
+
+O arquivo está armazenado no Dropbox e será baixado na pasta `/home/lsi/Downloads`com os comandos abaixo.
+
+```{r}
+# nome do arquivo raster em formato ascii grid 
+FILENAME <- "basin2.asc"
+# caminho onde será salvo o arquivo
+dest_file <- file.path("~/Downloads", FILENAME)
+# link do dropbox onde o arquivo está armazenado
+data_url <- "https://www.dropbox.com/s/yz1o9q5a2i9e72f/FILENAME?dl=1"
+# download
+download.file(gsub("FILENAME", FILENAME, data_url),
+              destfile = dest_file)
+# verifica se o arquivo foi salvo
+file.exists(dest_file)
+```
+
+Agora vamos importar o arquivo `r dest_file` com a função `raster()` do pacote raster.
+
+```{r, }
+# importando raster ascii grid
+bacias <- raster(dest_file)
+bacias
+# plot do pacote raster para valores numéricas contínuas
+plot(bacias)
+```
+
+O gráfico
+
+# Opção 1: `plot()` do pacote raster
+
+```{r}
+bacias_id <- sort(unique(values(bacias)))
+n_bacias <- length(bacias_id)
+n_bacias
+plot(bacias, col = distinctColorPalette(n_bacias),
+         axis.args = list(at = bacias_id, 
+                          labels = bacias_id))
+```
+
+
+
+# Opção 2: `levelplot()` do pacote rasterVis
+
+```{r}
+# converte o raster para factor
+bacias_f <- as.factor(bacias)
+bacias_f
+# labels das sub-bacias hidrográficas
+bacias_id <- sort(unique(values(bacias_f)))
+# tabela de atributos raster com os níveis dos fatores
+rat <- levels(bacias_f)[[1]]
+rat$bacia <- as.character(bacias_id)
+levels(bacias_f) <- rat
+levels(bacias_f)
+# plot das subbacias
+rasterVis::levelplot(bacias_f, 
+                     att = "bacia",
+                     col.regions = distinctColorPalette(length(bacias_id)),
+                     # consulte ?levelplot 
+                     # para conhecer os parâmetros de colorkey
+                     colorkey = list(space = "bottom", labels = list(rot=90))
+                     )
+```
+
+# Opção 3 com ggplot() do pacote ggplot2
+
+https://github.com/ronammar/randomcoloR
+
