@@ -1,13 +1,27 @@
 ---
-title: "Instalando R e RStudio"
+title: "Instalando R"
 #subtitle: "Mantendo o R sempre atualizado no Linux Ubuntu"
 author: "Jônatan Tatsch e Roilan Valdés"
 date: '`r Sys.Date()`'
 output:
-  tint::tint: 
-     default: TRUE
-     self_contained: TRUE
+  html_notebook: 
+    toc: yes
+  html_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 8
+    highlight: kate
+    number_sections: yes
+    toc: yes
 ---
+
+```{r, echo=FALSE, out.width = "400px", include = TRUE}
+htmltools::img(src = knitr::image_uri("figs/adar.png"), 
+               alt = 'logo', 
+               #style = 'position:absolute; top:0; right:0;
+               style = 'position:absolute; top:0; right:0;
+               padding:10px;width:500px; height=300px')
+```
 
 
 ```{r Chunk0, echo=FALSE, eval=TRUE, message=FALSE,warning=FALSE, results='hide'}
@@ -40,7 +54,7 @@ knitr::include_graphics('figs/adar.png')
 
 O *R* é um software livre, de código fonte aberto e funciona em diversos sistemas operacionais (Linux, Windows e MacOS). O usuário interage com o *R* pela linha de comando. Essa interação pode ser facilitada por meio de uma interface gráfica. Nesse curso será utilizado o [RStudio](http://www.rstudio.com/) que também é multiplataforma.
 
-A seguir descreve-se como instalar o *R* e o [RStudio](http://www.rstudio.com/) no Linux Ubuntu. A forma de instalação do R no Linux é mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
+A seguir descreve-se como instalar o *R* no Linux Ubuntu. A forma de instalação do R no Linux tenta ser mais didática do que prática. Alguns comandos linux básicos serão utilizados, mas mesmo quem não é usuário linux será capaz de entendê-los.
 
 # Instalação
 
@@ -53,7 +67,7 @@ Depois clicar em *Download R for Windows* e  *install R for the first time*. Qua
 
 A instalação do R para Windows a partir do executável acima incluirá na instalação uma GUI chamada `RGui.exe`, mostrada abaixo.
 
-```{r , comment="",highlight=TRUE, fig.width=18, fig.height=18, fig.cap="Interface gráfica do usuário para o R para Windows.",fig.fullwidth = TRUE, echo = FALSE}
+```{r , comment="",highlight=TRUE, fig.width=18, fig.height=18, fig.cap="Interface gráfica do usuário no R para Windows.",fig.fullwidth = TRUE, echo = FALSE}
 knitr::include_graphics("figs/rgui-windows.png")
 ```
 
