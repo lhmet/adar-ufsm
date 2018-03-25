@@ -1,5 +1,5 @@
 ---
-title: "Interface do usuário"
+title: "RStudio: mais que uma GUI, uma IDE para o R"
 author: "Jônatan Tatsch"
 date: '`r Sys.Date()`'
 output:
@@ -7,8 +7,6 @@ output:
     toc: yes
   html_document:
     fig_caption: yes
-    fig_height: 7
-    fig_width: 8
     highlight: kate
     number_sections: yes
     toc: yes
@@ -38,7 +36,21 @@ options(htmltools.dir.version = FALSE)
 
 # RStudio
 
-[RStudio]()
+O [RStudio](http://www.rstudio.com/) é um ambiente integrado de desenvolvimento (IDE) para o R. Essa ferramenta potencializará:
+
+- o trabalho com o R e os gráficos do R interativamente
+
+- a organização de seu código na forma de projetos
+
+- a reprodutibilidade de sua pesquisa 
+
+- a manutenção e criação de seus próprios pacotes do R
+
+- a criação e compartilhamento de seus relatórios
+
+- o compartilhamento de seu código e a colaboração com outros
+
+PAREI AQUI
 
 - Os 4 painéis do RStudio
 
