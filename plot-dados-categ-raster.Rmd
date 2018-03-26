@@ -7,9 +7,11 @@ output:
 
 ```{r setup, echo=FALSE}
 rm(list = ls())
-knitr::opts_chunk$set(tidy = FALSE, 
-                      cache = FALSE,
-                      fig.path = "figs/")
+knitr::opts_chunk$set(
+  tidy = FALSE,
+  cache = FALSE,
+  fig.path = "figs/"
+)
 library(bookdown)
 ```
 
@@ -17,34 +19,42 @@ library(bookdown)
 # Introdução 
 
 Neste tutorial mostra-se como plotar dados categóricos armazenados no formato raster.
-Este tipo de dados é comum para raster contendo classes de vegetação, uso da terra ou qualquer outro plano de informação representada por uma classe expressa por caracteres ou números inteiros. No exemplo abaixo, será usado o código de subbacias representado por dois números.
+Este tipo de dados é comum para representação de classes de vegetação, bacias hidrográficas, tipo de solos, ou qualquer outro plano de informação dividida em classes, ou categorias, e expresso em caracteres ou números inteiros. No exemplo abaixo, será usado um raster de subbacias hidrográficas, cada subbacia hidrográfica é identificada por dois algarismos.
 
 
 # Pré-requisitos
 
-Para visualização de dados categóricos com várias categorias precisamos de paletas de cores aleatórias. O pacote [randomcoloR](https://cran.r-project.org/web/packages/randomcoloR/) fornece paletas de cores com essa proposta. Para utilizá-lo no R, precisamos instalar a biblioteca linux `libv8-3.14-dev`. 
+Para visualização de dados categóricos com várias categorias é conveniente usar paletas de cores aleatórias. O pacote [randomcoloR](https://cran.r-project.org/web/packages/randomcoloR/) fornece paletas de cores com essa proposta. Para utilizá-lo no R, precisamos instalar a biblioteca linux `libv8-3.14-dev`[^1].
 
-```{bash, eval = FALSE}
+
+[^1]: no Fedora Linux a biblioteca correspondente é a v8-314-devel.
+
+```
 #(Debian, Ubuntu)
 sudo apt-get install libv8-3.14-dev
-# rpm: v8-314-devel (formerly: v8-devel) (Fedora, EPEL)
-# brew: v8@3.15 (OSX) -- NOT regular v8! Tap from homebrew/versions
-# csw: libv8_dev (Solaris)
 ```
 
+Com a biblioteca V8 instalada, podemos instalar o pacote [randomcoloR](https://cran.r-project.org/web/packages/randomcoloR/).
+Se você não possui o pacote raster instalado aproveite para instalá-lo também.
+Para usar as outras opções de plots seraõ necessários os pacotes `rasterVis` e `ggplot2`.
 
 
-```{r}
-## descomente a linha abaixo para instalar o pacote randomcoloR
-# install.packages("randomcoloR")
+```{r, eval = FALSE}
+install.packages("randomcoloR")
+install.packages("raster")
+install.packages("rasterVis")
+install.packages("ggplot2")
+```
 
-## carregar pacotes necessários
-library(easypackages)
-# devtools::install_github("ronammar/randomcoloR")
-# pacotes
-libraries(c("randomcoloR", # para paleta de cores distintas
-            "raster")      # para dados espaciais no formato raster
-          )
+Agora é necessário carregar os pacotes.
+
+```{r, message=FALSE, warning=FALSE}
+library(randomcoloR)
+library(raster)
+# para reproduzir opção 2
+library(rasterVis)
+# para reproduzir opção 3
+library(ggplot2)
 ```
 
 
@@ -52,10 +62,10 @@ libraries(c("randomcoloR", # para paleta de cores distintas
 
 Os dados usados nesse tutorial referem-se a um raster contendo códigos de subbacias. O arquivo está no [formato ascii grid](https://en.wikipedia.org/wiki/Esri_grid).
 
-O arquivo está armazenado no Dropbox e será baixado na pasta `/home/lsi/Downloads`com os comandos abaixo.
+O arquivo está armazenado no link abaixo e será baixado na pasta `/home/lsi/Downloads`com os comandos abaixo.
 
 ```{r}
-# nome do arquivo raster em formato ascii grid 
+# nome do arquivo raster em formato ascii grid
 FILENAME <- "basin2.asc"
 # caminho onde será salvo o arquivo
 dest_file <- file.path("~/Downloads", FILENAME)
@@ -63,12 +73,13 @@ dest_file <- file.path("~/Downloads", FILENAME)
 data_url <- "https://www.dropbox.com/s/yz1o9q5a2i9e72f/FILENAME?dl=1"
 # download
 download.file(gsub("FILENAME", FILENAME, data_url),
-              destfile = dest_file)
+  destfile = dest_file
+)
 # verifica se o arquivo foi salvo
 file.exists(dest_file)
 ```
 
-Agora vamos importar o arquivo `r dest_file` com a função `raster()` do pacote raster.
+Importamos o arquivo `r dest_file` com a função `raster()` do pacote raster.
 
 ```{r, }
 # importando raster ascii grid
@@ -78,45 +89,118 @@ bacias
 plot(bacias)
 ```
 
-O gráfico
+O plot gerado não permite distinguir as subbacias hidrográficas. Quantas subacias são mostradas?
 
 # Opção 1: `plot()` do pacote raster
 
-```{r}
+Para melhor visualização das subbacias hidrográficas vamos utilizar a função `distinctColorPalette()`. Essa função tem como argumento o número de cores. Neste exemplo corresponde ao número de subbacias. Vamos determinar o total de subbacias.
+
+```{r nbacias}
+# códigos de cada subbacia
 bacias_id <- sort(unique(values(bacias)))
+bacias_id
+# num. de subbacias
 n_bacias <- length(bacias_id)
 n_bacias
-plot(bacias, col = distinctColorPalette(n_bacias),
-         axis.args = list(at = bacias_id, 
-                          labels = bacias_id))
 ```
 
+Com o número de cores podemos construir a paleta de cores e plotar o raster passando a paleta de cores através do argumento `col`.
 
+```{r}
+cores <- distinctColorPalette(n_bacias)
+bacias_id_brks <- bacias_id
+names(bacias_id_brks) <- as.character(bacias_id_brks)
+bacias_id_brks
+plot(bacias,
+  # paleta de cores
+  col = cores,
+  horizontal = TRUE,
+  breaks = bacias_id_brks, # lab.breaks = bacias_id,
+  # lab.breaks = ifelse((1:length(bacias_id)) %% 2 == 0, "", bacias_id),
+  axis.args = list( # at = bacias_id,
+    #                   labels = ifelse(1:length(bacias_id) %% 2 == 0, " ", bacias_id),
+    cex.axis = 0.5,
+    las = 2
+  ),
+  legend.width = 1,
+  legend.shrink = 1.1,
+  # legend.mar = 2,
+  legend.args = list(text = "Subbacia", side = 3)
+)
+```
+
+Note que a barra de cores repete as cores para valores não existentes de códigos de subbacias (p.ex.: 20, 30, 40, ...).
 
 # Opção 2: `levelplot()` do pacote rasterVis
+
+Como uma alternativa podemos usar o pacote `rasterVis`. Entretanto algumas no raster original são necessárias: a conversão do raster para `factor` e a construção da tabela de atributos do novo raster.
 
 ```{r}
 # converte o raster para factor
 bacias_f <- as.factor(bacias)
 bacias_f
-# labels das sub-bacias hidrográficas
-bacias_id <- sort(unique(values(bacias_f)))
 # tabela de atributos raster com os níveis dos fatores
 rat <- levels(bacias_f)[[1]]
 rat$bacia <- as.character(bacias_id)
 levels(bacias_f) <- rat
-levels(bacias_f)
+head(levels(bacias_f)[[1]])
 # plot das subbacias
-rasterVis::levelplot(bacias_f, 
-                     att = "bacia",
-                     col.regions = distinctColorPalette(length(bacias_id)),
-                     # consulte ?levelplot 
-                     # para conhecer os parâmetros de colorkey
-                     colorkey = list(space = "bottom", labels = list(rot=90))
-                     )
+rasterVis::levelplot(bacias_f,
+  att = "bacia",
+  col.regions = cores,
+  # ver ?levelplot
+  # para conhecer os parâmetros de colorkey
+  colorkey = list(
+    space = "bottom",
+    labels = list(rot = 90, cex = 0.5)
+  )
+)
 ```
 
-# Opção 3 com ggplot() do pacote ggplot2
+# Opção 3: com `ggplot()` do pacote `ggplot2`
 
-https://github.com/ronammar/randomcoloR
+As funções do pacote ggplot2 trabalham com dados em *dataframes*. Então precisamos converter o raster para *dataframe*.
+
+```{r}
+bacias_p <- as.data.frame(rasterToPoints(bacias))
+head(bacias_p)
+```
+
+Vamos adaptar nossa paleta de cores atribuindo os códigos das subbacias a cada cor.
+
+```{r pal_ggplot}
+pal_cores <- cores
+names(cores) <- as.character(bacias_id)
+head(cores)
+```
+
+Plot das subbacias com o `ggplot2`.
+
+```{r ggp1}
+ggp_subb <- ggplot(
+  data = bacias_p,
+  aes(x, y, fill = as.factor(basin2))
+) +
+  geom_raster() +
+  scale_fill_manual("Subbacias", values = pal_cores) + theme_bw()
+ggp_subb
+```
+
+Vamos adaptar a legenda, posicionando-a abaixo do gráfico, diminuindo o tamanho da quadrículas da legenda de cores.
+
+```{r ggpfinal}
+ggp_subb +
+  theme(legend.position = "bottom", legend.direction = "horizontal") +
+  guides(fill = guide_legend(
+    nrow = 4,
+    byrow = TRUE,
+    title.position = "top", title.hjust = 0.5,
+    keywidth = 0.5, keyheight = 0.5
+  ))
+```
+
+O resultado final do plot com o ggplot2 ficou visualmente melhor. As opções de customização do ggplot2 são amplas, o nome das funções e de seus argumentos são mais intuitivos, e a documentação é melhor para a visualização de dados espaciais categóricos.
+
+Em geral, a melhor opção é aquela que o usuário domina ou que já usou previamente. Mas se você estiver começando, eu sugeriro usar o ggplot2.
+
 
