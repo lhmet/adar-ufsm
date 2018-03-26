@@ -54,9 +54,14 @@ O [RStudio](http://www.rstudio.com/) é um ambiente integrado de desenvolvimento
 
 Os painéis do RStudio
 
+```{r rstudio-fig, echo = FALSE, fig.fullwidth = TRUE, fig.cap="Rstudio"}
+knitr::include_graphics('figs/Rstudio_panels.png')
+```
+
   1. Editor para scripts e visualização de dados
 
      - abrir e criar scripts
+     - rodar scripts
      - código com sintaxe realçada
      - rodar partes do código `<Ctrl+enter>`
      - rodar todo script `<Ctrl+Shift+S>`
@@ -74,16 +79,8 @@ Os painéis do RStudio
 
 4. Arquivos/Plots/Pacotes/Ajuda/Visualizador
 
-```{r}
-source("R/script1.R")
-```
 
-
-https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
-
-* Histórico de comandos
-* Espaço de trabalho
-* Linha de comando do R
+Configuração de texto e painés em:
 
 * Menus
     * Tools > global options
@@ -93,9 +90,6 @@ https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 
 
 
-```{r rstudio-fig, echo = FALSE, fig.fullwidth = TRUE, fig.cap="Rstudio"}
-knitr::include_graphics('figs/Rstudio_panels.png')
-```
 
 <br/>
 
