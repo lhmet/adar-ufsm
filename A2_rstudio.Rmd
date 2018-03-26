@@ -89,6 +89,9 @@ Configuração de texto e painés em:
     * Plots
 
 
+**Ficha resumo do RStudio**
+
+https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 
 
 <br/>
