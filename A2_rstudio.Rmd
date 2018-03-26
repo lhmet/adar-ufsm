@@ -50,9 +50,9 @@ O [RStudio](http://www.rstudio.com/) é um ambiente integrado de desenvolvimento
 
 - o compartilhamento de seu código e a colaboração com outros
 
-PAREI AQUI
 
-- Os 4 painéis do RStudio
+
+Os painéis do RStudio
 
   1. Editor para scripts e visualização de dados
 
