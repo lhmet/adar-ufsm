@@ -134,6 +134,20 @@ Para ver a lista completa de funções trigonométricas:
 
 <span style="color:red; font-size:1.7em;">Fim da aula 3 - notas de aula disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
 
+### Operadores
+
+"unários"
+"binários"
+
+```{r}
+# !
+# %%
+# == 
+# != 
+```
+
+PAREI AQUI
+
 ### Sorteando números aleatoriamente
 
 O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
