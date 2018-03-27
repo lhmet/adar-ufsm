@@ -53,6 +53,7 @@ Basta você configurar o caminho para Downloads no firefox.
 
 
 abrir firefox > 
+editar >
   preferencias > 
     Arquivos e Aplicativos (Downloads) > 
       Salvar arquivos em >
