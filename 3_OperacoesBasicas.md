@@ -1,6 +1,19 @@
-# Operações Básicas
-Jônatan Tatsch  
-`r format(Sys.Date(), format = '%d-%m-%Y')`  
+---
+title: "Operações Básicas"
+author: "Jônatan Tatsch"
+date: "26-03-2018"
+output:
+  html_document:
+    fig_caption: yes
+    fig_width: 6
+    highlight: kate
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
 
 
 
@@ -156,11 +169,11 @@ Note que caracteres estão sempre entre aspas: `""`.
 
 
 ```r
-vogais <- abcde
+vogais <- aeiou
 ```
 
 ```
-Error in eval(expr, envir, enclos): object 'abcde' not found
+Error in eval(expr, envir, enclos): object 'aeiou' not found
 ```
 
 
@@ -230,6 +243,8 @@ Para ver a lista completa de funções trigonométricas:
 ?"Trig"
 ```
 
+<span style="color:red; font-size:1.7em;">Fim da aula 3 - notas de aula disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
+
 ### Sorteando números aleatoriamente
 
 O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
@@ -288,7 +303,7 @@ NULL
 ```
 
 
-<span style="color:red; font-size:1.7em;">Fim da 2ª aula ([site do curso](https://rawgit.com/jdtatsch/adar-ufsm/master/3_OperacoesBasicas.html)) </span>
+
 
 ## Valores numéricos especiais
 
@@ -502,6 +517,18 @@ getOption("digits")
 # redefinindo para o valor padrão
 options(digits = 7)
 ```
+
+
+
+```r
+formatC(pi, digits = 3, width = 8, flag = '0', format = 'f')
+```
+
+```
+[1] "0003.142"
+```
+
+
 
 # Variáveis
 
