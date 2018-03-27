@@ -206,6 +206,13 @@ No modo iterativo, ou seja pela linha de comando, também é possível rodar com
 source("R/script1.R")
 ```
 
+
+<br/>
+
+
+<span style="color:red; font-size:1.7em;">Fim da aula 2 - notas de aula disponíveis [aqui](https://www.dropbox.com/sh/e29t7jkse4kpwdi/AABNUiR6-LaYlb8Ng7j-6L7wa?dl=0) </span>
+
+
 <br/>
 
 <p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Conhecendo o RStudio](https://rawgit.com/lhmet/adar-ufsm/master/A2_rstudio.nb.html)</p> 
