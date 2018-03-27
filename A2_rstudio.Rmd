@@ -69,7 +69,7 @@ knitr::include_graphics('figs/Rstudio_panels.png')
      - comentar linhas `<Ctrl+Shift+C>`
      - desfazer `<Ctrl+Z>`
      - refazer `<Ctrl+Shift+Z>`
-     - referência para teclas de atalho `<Ctrl+Shift+K>`
+     - referência para teclas de atalho `<Alt+Shift+K>`
      - abrir script com `<Ctrl+Click>`
      - econtrar e substituir `Ctrl+F`
      
