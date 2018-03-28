@@ -1,16 +1,16 @@
 ---
-title: "RStudio: mais que uma GUI, uma IDE para o R"
+title: "RStudio: mais que uma [GUI](https://pt.wikipedia.org/wiki/Interface_gr%C3%A1fica_do_utilizador), uma IDE para o R"
 author: "Jônatan Tatsch"
 date: '`r Sys.Date()`'
 output:
   html_notebook: 
-    toc: yes
-  html_document:
+    toc: no
     fig_caption: yes
     highlight: kate
-    number_sections: yes
-    toc: yes
+    number_sections: no
 ---
+
+<br/>
 
 ```{r, echo=FALSE, out.width = "200px", include = FALSE}
 htmltools::img(src = knitr::image_uri("figs/adar.png"), 
@@ -34,7 +34,7 @@ knitr::opts_chunk$set(tidy = FALSE,
 options(htmltools.dir.version = FALSE)
 ```
 
-# RStudio
+
 
 O [RStudio](http://www.rstudio.com/) é um ambiente integrado de desenvolvimento (IDE) para o R. Essa ferramenta potencializará:
 
@@ -51,12 +51,13 @@ O [RStudio](http://www.rstudio.com/) é um ambiente integrado de desenvolvimento
 - o compartilhamento de seu código e a colaboração com outros
 
 
-
+<br/>
 Os painéis do RStudio
 
 ```{r rstudio-fig, echo = FALSE, fig.fullwidth = TRUE, fig.cap="Rstudio"}
 knitr::include_graphics('figs/Rstudio_panels.png')
 ```
+<br/>
 
   1. Editor para scripts e visualização de dados
 
@@ -72,27 +73,37 @@ knitr::include_graphics('figs/Rstudio_panels.png')
      - referência para teclas de atalho `<Alt+Shift+K>`
      - abrir script com `<Ctrl+Click>`
      - econtrar e substituir `Ctrl+F`
-     
+<br/>
+
 2. Console do R
+<br/>
 
 3. Navegador do espaço de trabalho e histórico de comandos
+<br/>
 
 4. Arquivos/Plots/Pacotes/Ajuda/Visualizador
 
+<br/>
 
 Configuração de texto e painés em:
 
 * Menus
-    * Tools > global options
+    * Tools > global options > Appearance
         * mostrar linhas, alterar realce da sintaxe
     * Session
     * Plots
 
+<br/>
 
-**Ficha resumo do RStudio**
+**Folha de referência do RStudio**
 
-https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf
 
+https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portuguese.pdf
+
+</style>
+<div class="midcenter" style="margin-left:1px; margin-top:50px;">
+<img src="figs/print-screen-folha-ref-rstudio.png" height="110px" width="1000px" />
+</div>
 
 <br/>
 
