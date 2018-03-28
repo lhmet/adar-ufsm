@@ -1,0 +1,32 @@
+---
+title: "Sorteando números aleatoriamente"
+output: html_notebook
+---
+
+
+
+O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
+
+```{r chunk16, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
+set.seed(seed = 5)
+# sorteio de um número dentro da sequência de 1 a 6
+sample(x = 1:6, size = 1)
+# sorteio de 5 números dentro da sequência de 1 a 6
+sample(x = 1:6, size = 5)
+# sorteio de 5 números dentro da sequência de 1 a 6
+# resultado sem números repetidos
+sample(x = 1:6, size = 5, replace = TRUE)
+# sorteio de 20 números dentro da sequência de 1 a 6
+# nesse caso a reposição deve ser feita (size > 6) então podem 
+# ocorrer números repetidos
+sample(x = 1:6, size = 20, replace = TRUE)
+```
+
+Os argumentos de uma função são obtidos pela função `args()`. Por exemplo quais são os argumentos da função `sample()`?
+
+```{r chunk17, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
+args(sample)
+```
+
+
+
