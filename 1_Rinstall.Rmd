@@ -15,7 +15,7 @@ output:
     toc: yes
 ---
 
-```{r, echo=FALSE, out.width = "400px", include = TRUE}
+```{r, out.width = "400px", include = FALSE}
 htmltools::img(src = knitr::image_uri("figs/adar.png"), 
                alt = 'logo', 
                #style = 'position:absolute; top:0; right:0;
