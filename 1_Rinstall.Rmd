@@ -272,7 +272,7 @@ Abra o RStudio digitando no terminal:
 
     $ rstudio &
     
-Agora você está pronto para começar a programar em *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
+Agora você está pronto para começar a programar em *R* aproveitando as facilidades que o [RStudio](http://www.rstudio.com/) oferece. 
 
 
 <br/> 
