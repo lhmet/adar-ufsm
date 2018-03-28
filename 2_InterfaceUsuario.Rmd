@@ -210,7 +210,7 @@ source("R/script1.R")
 <br/>
 
 
-<span style="color:red; font-size:1.7em;">Fim da aula 2 - notas de aula disponíveis [aqui](https://www.dropbox.com/sh/e29t7jkse4kpwdi/AABNUiR6-LaYlb8Ng7j-6L7wa?dl=0) </span>
+<span style="color:red; font-size:1.1em;">notas de aula da aula2 estão disponíveis [aqui](https://www.dropbox.com/sh/e29t7jkse4kpwdi/AABNUiR6-LaYlb8Ng7j-6L7wa?dl=0) </span>
 
 
 <br/>
