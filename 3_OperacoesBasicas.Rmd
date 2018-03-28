@@ -112,7 +112,13 @@ vogais
 
 ## Funções matemáticas internas
 
-Existem diversas funções internas do R que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. Para usar uma função no R apenas digite o nome da função seguido de parênteses:
+Existem diversas funções internas do R que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no R é:
+
+<span style="color:black; font-size:1.3em; font-weight: bold"> funcão(argumento) </span>
+
+
+Por exemplo:
+
 ```{r chunk14, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
 # funções trigonométricas
 sin(pi/6)
@@ -125,14 +131,14 @@ exp(1)
 factorial(4)
 ```
 
-No R você verá que parênteses são frequentemente utilizados. Isso ocorre eles estão sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
+No R você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
 
 Para ver a lista completa de funções trigonométricas:
 ```{r chunk15, message=FALSE, comment="",prompt=FALSE, highlight=TRUE,render.args = list(help = list(sections = "usage")), eval = FALSE}
 ?"Trig"
 ```
 
-<span style="color:red; font-size:1.7em;">Fim da aula 3 - notas de aula disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
+<span style="color:red; font-size:1.1em;"> notas de aula da aula 3 disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
 
 ### Operadores
 
@@ -147,33 +153,6 @@ Para ver a lista completa de funções trigonométricas:
 ```
 
 PAREI AQUI
-
-### Sorteando números aleatoriamente
-
-O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
-
-```{r chunk16, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
-set.seed(seed = 5)
-# sorteio de um número dentro da sequência de 1 a 6
-sample(x = 1:6, size = 1)
-# sorteio de 5 números dentro da sequência de 1 a 6
-sample(x = 1:6, size = 5)
-# sorteio de 5 números dentro da sequência de 1 a 6
-# resultado sem números repetidos
-sample(x = 1:6, size = 5, replace = TRUE)
-# sorteio de 20 números dentro da sequência de 1 a 6
-# nesse caso a reposição deve ser feita (size > 6) então podem 
-# ocorrer números repetidos
-sample(x = 1:6, size = 20, replace = TRUE)
-```
-
-Os argumentos de uma função são obtidos pela função `args()`. Por exemplo quais são os argumentos da função `sample()`?
-
-```{r chunk17, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
-args(sample)
-```
-
-
 
 
 ## Valores numéricos especiais
@@ -460,7 +439,7 @@ verão <- "DJF"
 verão
 ```
    
-Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Style guide**](http://adv-r.had.co.nz/Style.html) do livro [**R Advanced**](http://adv-r.had.co.nz/).
+Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do livro [**R Advanced**](http://adv-r.had.co.nz/).
 
 # Funções e operadores utilizados
 
@@ -483,11 +462,6 @@ Matemática
 Sequência regular
 
 - `:`
-
-Geração de números aleatórios
-
-- `set.seed()`
-- `sample()`
 
 Argumentos de uma função
 - `args()`
