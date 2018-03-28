@@ -95,6 +95,9 @@ Configuração de texto e painés em:
 
 <br/>
 
+
+Para saber mais sobre os recursos fornecidos pelo RStudio assista ao vídeo *[RStudio Essencials](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/)*. Isso o ajudará a usar mais efetivamente o RStudio.
+
 **Folha de referência do RStudio**
 
 
