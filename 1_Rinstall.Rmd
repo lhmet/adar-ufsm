@@ -243,7 +243,7 @@ Com essa informação e versão do sistema operacional, siga os seguintes passos
 
   1. acesse [RStudio](http://www.rstudio.com/)
   2. clique em *Download RStudio*
-  3. Procure a opção *RStudio Desktop* (FREE) e clique download
+  3. Procure a opção *RStudio Desktop* (FREE) e clique *download*
 
 ```{r rstudio-choose, echo = FALSE, fig.fullwidth = TRUE, fig.width=10}
 knitr::include_graphics('figs/rstudio-choose.png')
