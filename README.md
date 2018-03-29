@@ -42,7 +42,7 @@ Durante o curso, são utilizados dados ambientais de diferentes áreas (meteorol
 - [Interface do Usuário](https://rawgit.com/lhmet/adar-ufsm/master/2_InterfaceUsuario.html)
     - [RStudio](https://rawgit.com/lhmet/adar-ufsm/master/A2_rstudio.nb.html)
 
-- [Operações Básicas](https://rawgit.com/lhmet/adar-ufsm/master/3_OperacoesBasicas.html)
+- [Operações Básicas](https://rawgit.com/lhmet/adar-ufsm/master/3_OperacoesBasicas.nb.html)
 
 - [Tipos de dados](https://rawgit.com/lhmet/adar-ufsm/master/4_TiposDeDados.html)
 
