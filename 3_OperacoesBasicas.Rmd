@@ -31,7 +31,7 @@ invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 #            style = "html", 
 #            hyperlink = "to.bib")
 # configuraçoes knitr
-opts_chunk$set(cache = FALSE, fig.path = "figs/")
+opts_chunk$set(cache = FALSE, fig.path = "figs/", comment = "#>")
 ```
 
 - - -
@@ -58,7 +58,7 @@ O R é uma calculadora turbinada com diversas funções matemáticas disponívei
 
 Todas operações feitas em uma  calculadora podem ser realizadas na linha de comandos do R.
 
-```{r chunk1, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
+```{r chunk1}
 10 + 2 + 4
 # Exemplo de divisao 
 (5 + 14)/2
@@ -74,7 +74,7 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 
 Conheça mais operadores aritméticos, digitando na linha de comando:
 
-```{r chunk12, message=FALSE, comment="",prompt=FALSE, highlight=TRUE, eval = FALSE}
+```{r chunk12, eval = FALSE}
 ?"Arithmetic"
 ```
 
@@ -84,13 +84,13 @@ A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O
 
 O R possui algumas constantes pré-definidas, como o a constante pi (π).
 
-```{r chunk13, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
+```{r chunk13}
 pi
 ```
 
 O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos são:
 
-```{r chunk131, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
+```{r chunk14}
 LETTERS
 letters
 month.abb
@@ -100,11 +100,11 @@ month.name
 Note que caracteres estão sempre entre aspas: `""`.
 
 
-```{r chunk132, message=FALSE, comment="",prompt=FALSE, highlight=TRUE, error=TRUE}
+```{r chunk15, error=TRUE}
 vogais <- aeiou
 ```
 
-```{r chunk133, message=FALSE, comment="",prompt=FALSE, highlight=TRUE, error=TRUE}
+```{r chunk15a}
 vogais <- "aeiou"
 vogais
 ```
@@ -119,7 +119,7 @@ Existem diversas funções internas do R que permitem, por exemplo, sortear núm
 
 Por exemplo:
 
-```{r chunk14, message=FALSE, comment="",prompt=FALSE, highlight=TRUE}
+```{r chunk16}
 # funções trigonométricas
 sin(pi/6)
 cos(pi)
@@ -134,7 +134,7 @@ factorial(4)
 No R você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
 
 Para ver a lista completa de funções trigonométricas:
-```{r chunk15, message=FALSE, comment="",prompt=FALSE, highlight=TRUE,render.args = list(help = list(sections = "usage")), eval = FALSE}
+```{r chunk17, render.args = list(help = list(sections = "usage")), eval = FALSE}
 ?"Trig"
 ```
 
@@ -179,7 +179,7 @@ A demonstração das diferentes formas de se obter essas constantes especiais é
 
 Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA`.
 
-```{r chunk181, message=FALSE, comment="",prompt=FALSE}
+```{r chunk19}
 NA + 5
 NA - Inf
 sqrt(NA)
@@ -192,14 +192,14 @@ NA/NaN
 
 Na maioria das vezes precisamos trabalhar com números grandes e consequentemente acabamos usando uma notação científica ou exponencial. No R há diferentes formas de representar números com expoentes:
 
-```{r chunk19, message=FALSE, comment="",prompt=FALSE}
+```{r chunk20}
 1.2e-6
 1.2E6
 ```
 
 R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
-```{r chunk191, message=FALSE, comment="",prompt=FALSE}
+```{r chunk21}
 # opção de dígitos padrão
 getOption("digits")
 exp(1)
@@ -212,7 +212,7 @@ options(digits = 7)
 ```
 
 
-```{r chunk191a,comment="",prompt=FALSE}
+```{r chunk22}
 formatC(pi, digits = 3, width = 8, flag = '0', format = 'f')
 ```
 
@@ -228,7 +228,7 @@ Até agora nós usamos expressões para fazer uma operação e obter um resultad
 
 O que é uma variável? É um nome usado para guardar os dados. Por exemplo para atribuir o valor 1013 a variável chamado `p` usamos a combinação dos símbolos menor (`<`) e menos (`-`) `<-` entre os dois números. Esse é o símbolo de atribuição a uma variável.
 
-```{r chunk20, message=FALSE, comment="",prompt=FALSE,eval=TRUE, echo=TRUE}
+```{r chunk23}
 p <- 1013
 # para mostrar a variável digite o nome da variável
 p
@@ -238,7 +238,7 @@ print(p)
 
 O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
 
-```{r chunk21, message=FALSE, comment="",prompt=FALSE, eval=TRUE, echo=TRUE, error=TRUE}
+```{r chunk24, error=TRUE}
 p
 P
 ```
@@ -247,7 +247,7 @@ Como criamos apenas a variável `p`, `P` não foi encontrada.
 
 A variável `p` pode ser utilizado para criar outras variáveis.
 
-```{r chunk22, message=FALSE, comment="",prompt=FALSE}
+```{r chunk25}
 p_pa <- p * 100
 # pressão em Pascal
 p_pa
@@ -255,7 +255,7 @@ p_pa
 
 A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
 
-```{r chunk23, message=FALSE, comment="",prompt=FALSE}
+```{r chunk26}
 7/3 + 0.6 -> y1
  y1
 7/(3 + 0.6) -> y2
@@ -264,7 +264,7 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de
 
 Os espaços em torno do símbolo de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código.
 
-```{r chunck240, message=FALSE, comment="",prompt=FALSE, eval = FALSE}
+```{r chunck27, eval = FALSE}
 x <- 1
 x < -1
 # atribuição ou menor que?
@@ -273,21 +273,21 @@ x<-1
 
 Vamos criar uma variável chamada `ndias3` que recebe o nº de dias no mês de Março e `ndias4` que recebe o nº de dias no mês de Abril.
 
-```{r chunck24, message=FALSE, comment="",prompt=FALSE}
+```{r chunck28}
 nd3 <- 31
 nd4 <- 30
 ```
 
 O total de dias nos meses de março e abril será armazenado na variável `totdias`:
 
-```{r chunck25, message=FALSE, comment="",prompt=FALSE}
+```{r chunck29}
 totd <- nd3 + nd4
 totd
 ```
 
 A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
 
-```{r chunck26, message=FALSE, comment="",prompt=FALSE}
+```{r chunck30}
 # número de dias em cada mês
 jan <- mar <- mai <- jul <- ago <- out <- dez <- 31
 abr <- jun <- set <- nov <- 30
@@ -300,49 +300,39 @@ fev
 
 Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
 
-```{r chunk27, message=FALSE, comment=""}
-(tar <- 20)
+```{r chunk31}
+# ao invés de 
+# tar <- 20
+# tar
+# é mais prático
+(tar <- 20) 
 ```
 
-Na expressão note como a variável `tk` definida e já utilizada.
+Se desejamos calcular e já visualizar o valor da pressão de vapor de saturação obtida com a [equação de Tetens](https://en.wikipedia.org/wiki/Tetens_equation), podemos fazer:
 
-```{r chunk271, message=FALSE, comment=""}
-(es <- 0.611 * exp(17.2694 * ((tk <- tar+273.16)-273.16) / ((tk)-35.86)))
-tk
+```{r chunk31a}
+(es <- 0.611 * exp((17.269 * tar)/(tar + 237.3)))
 ```
-
-Essa é mais uma utilidade dos `()` no R. Na expressão acima, conhecida como [fórmula de Teten](http://www.met.wau.nl/metlukweb/Reading/Clausius-Clapeyron.pdf) além de já mostrar o resultado da expressão, nós criamos as variáveis `tk` e `es` simultaneamente.
 
 Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função `ls()`[^1] para verificar as variáveis existentes:
 
-```{r chunck28, message=FALSE, comment="",prompt=FALSE}
+```{r chunck32}
 ls()
 ```
 
 [^1]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
 
 
-```{r chunck29, message=FALSE, comment="",prompt=FALSE}
+```{r chunck33}
 totd <- jan*7; totd <- totd + fev; totd <- totd + 4*abr
 totd
-```
-
-Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas com colchetes.
-
-```{r chunk210, message=FALSE, comment="",prompt=FALSE,eval=FALSE}
-{
-  tmax <- 32
-  tmin <- 23
-  amp <- tmax - tmin
-  tmed <- (tmax + tmin)/2
-}
 ```
 
 ### Atribuição com a função `assign()`
 
 Outra forma de atribuição é através da função `assign()`:
 
-```{r chunk211, message=FALSE, comment=""}
+```{r chunk34}
 es
 assign(x = "es_hpa", value = es/10)
 es_hpa
@@ -355,7 +345,7 @@ Para ilustrar um caso em que a função `assign` pode ser útil, vamos supor que
 
 Considere os nomes dos meses do ano (`r month.abb`) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto `nums`, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto `nums` são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição `jan <- 1; fev <- 2, mar <- 3, ...`, podemos fazer um laço (ou *looping*) de 1 até o tamanho do vetor `nums` (ou seja 1:12) e usar o vetor `month.abb` para nomear os objetos.
 
-```{r chunk212, message=FALSE, comment=""}
+```{r chunk35}
 # vetor de 1 a 12
 nums <- 1:12
 for (i in nums) assign(month.abb[i], i)
@@ -373,7 +363,7 @@ A função `for()` será explorada futuramente.
 
 Para remover variáveis usa-se a função `rm()`.
 
-```{r chunk2121, message=FALSE, comment=""}
+```{r chunk36}
 # lista de variáveis existentes
 ls()
 rm(u)
@@ -386,7 +376,7 @@ ls()
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):
 
-```{r chunk2122, message=FALSE, comment=""}
+```{r chunk37}
 # apagando tudo
 rm(list = ls())
 ls()
@@ -400,13 +390,13 @@ ls()
 
 * não iniciar com um número e não conter espaços
 
-```{r chunk213, message=FALSE, comment="", prompt=FALSE, eval=FALSE}
+```{r chunk38, eval=FALSE}
 1oAno <- 1990
 raizDe10 <- srt(2)
 variavel teste <- 67
 ```
 
-```{r chunk213a, message=FALSE, comment="", prompt=FALSE, eval=FALSE}
+```{r chunk39, eval=FALSE}
 # nomes alternativos para as variaveis
 ano1 <- 1990
 variavel_teste <- 67
@@ -417,7 +407,7 @@ variavel.teste <- 68
     
         ^, !, $, @, +, -, /, ou *
 
-```{r chunk214, message=FALSE, comment="", prompt=FALSE, eval=TRUE,error=TRUE}
+```{r chunk40, error=TRUE}
 dia-1 <- 2
 # alternativa
 dia_1 <- 2
@@ -434,12 +424,12 @@ dia_1 <- 2
 
 * variáveis com acento são permitidas mas não recomendadas.
 
-```{r chunk215, message=FALSE, comment="",prompt=FALSE}
+```{r chunk41}
 verão <- "DJF"
 verão
 ```
    
-Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do livro [**R Advanced**](http://adv-r.had.co.nz/).
+Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
 
 # Funções e operadores utilizados
 
@@ -462,9 +452,6 @@ Matemática
 Sequência regular
 
 - `:`
-
-Argumentos de uma função
-- `args()`
 
 Opções de configuração
 
