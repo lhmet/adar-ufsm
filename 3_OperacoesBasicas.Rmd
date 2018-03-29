@@ -44,10 +44,10 @@ opts_chunk$set(cache = FALSE, fig.path = "figs/", comment = "#>")
 
 Nesta seção veremos:
 
-- como realizar operações aritméticas básicas com R
-- atribuir valores a uma variável
-- utilizar funções matemáticas internas do R
-- alguns valores numéricos especiais do R
+- operações aritméticas básicas com R
+- a atribuição de valores a uma variável
+- o uso de funções matemáticas internas do R
+- valores numéricos especiais do R
 - os cuidados ao nomear variáveis
 
 # CalculadoRa
@@ -78,7 +78,7 @@ Conheça mais operadores aritméticos, digitando na linha de comando:
 ?"Arithmetic"
 ```
 
-A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R. Para sair dessa tela digite `q`
+A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R.
 
 ## Constantes
 
@@ -194,10 +194,11 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 
 ```{r chunk20}
 1.2e-6
-1.2E6
+# expressões equivalentes
+1.2E6; 1.2*10^6  
 ```
 
-R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
+Os resultados dos cálculos no R são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 ```{r chunk21}
 # opção de dígitos padrão
@@ -207,16 +208,10 @@ exp(1)
 options(digits = 14)
 exp(1)
 getOption("digits")
-# redefinindo para o valor padrão
+# redefinindo para o número de casas decimais padrão
 options(digits = 7)
+getOption("digits")
 ```
-
-
-```{r chunk22}
-formatC(pi, digits = 3, width = 8, flag = '0', format = 'f')
-```
-
-
 
 # Variáveis
 
