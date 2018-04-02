@@ -12,26 +12,24 @@ output:
 
 <br/>
 
-```{r, echo=FALSE, out.width = "200px", include = FALSE}
+```{r, out.width = "200px", include = FALSE}
 htmltools::img(src = knitr::image_uri("figs/adar.png"), 
                alt = 'logo', 
                style = 'position:absolute; top:0; right:0; padding:10px;width:500px; height=300px')
 ```
 
 ```{r setup, include = FALSE}
-rm(list = ls())
-pcks <- c("knitr", "tint")
-easypackages::libraries(pcks)
 # configuraçoes knitr
 # original
 #opts_chunk$set(cache = FALSE, fig.path = "figs/")
 # com tint
 knitr::opts_chunk$set(tidy = FALSE, 
                       cache = FALSE,
-                      fig.path = "figs/",
-                      cache.extra = packageVersion('tint'))
+                      fig.path = "figs/"
+                      #cache.extra = packageVersion('tint')
+                      )
 # invalidate cache when the tufte version changes
-options(htmltools.dir.version = FALSE)
+#options(htmltools.dir.version = FALSE)
 ```
 
 
@@ -110,6 +108,6 @@ https://www.rstudio.com/wp-content/uploads/2016/03/rstudio-IDE-cheatsheet-portug
 
 <br/>
 
-<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Operações Básicas](https://rawgit.com/lhmet/adar-ufsm/master/3_OperacoesBasicas.html)</p> 
+<p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;">Próximo: [Operações Básicas](https://rawgit.com/lhmet/adar-ufsm/master/3_OperacoesBasicas.nb.html)</p> 
 
                                                       
