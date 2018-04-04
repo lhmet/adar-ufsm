@@ -10,7 +10,9 @@ rm(list = ls())
 knitr::opts_chunk$set(
   tidy = FALSE,
   cache = FALSE,
-  fig.path = "figs/"
+  fig.path = "figs/",
+  comment = "#>",
+  collapse = TRUE
 )
 library(bookdown)
 ```
@@ -186,7 +188,7 @@ ggp_subb <- ggplot(
 ggp_subb
 ```
 
-Vamos adaptar a legenda, posicionando-a abaixo do gráfico, diminuindo o tamanho da quadrículas da legenda de cores.
+Vamos adaptar a legenda, posicionando-a abaixo do gráfico, diminuindo o tamanho das quadrículas da legenda de cores.
 
 ```{r ggpfinal}
 ggp_subb +
