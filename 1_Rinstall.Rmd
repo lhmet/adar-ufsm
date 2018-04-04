@@ -4,8 +4,6 @@ title: "Instalando R"
 author: "Jônatan Tatsch e Roilan Valdés"
 date: '`r Sys.Date()`'
 output:
-  html_notebook: 
-    toc: yes
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -193,7 +191,7 @@ Esse caminho fica então visível ao *R*, o que pode ser verificado executando a
 
 No console do R:
 
-```{r}
+```{r, prompt=TRUE, comment=""}
 .libPaths()
 ```
     
@@ -206,16 +204,14 @@ Para iniciar o *R* no Ubuntu, digite `R` no cursor do terminal:
 
 A partir desse momento já começamos uma sessão no R. Vamos gerar uma sequência numérica de 1 a 10 e plotá-la.
 
-```{r Chunck4, comment="",highlight=TRUE, fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números.", cache = FALSE}
-# sequência de 10 números
+```{r Chunck4, comment="", fig.margin = TRUE, fig.width=4, fig.height=4, fig.cap="Gráfico da sequência de 10 números.", prompt=TRUE, collapse=TRUE}
 1:10
-# gráfico
 plot(1:10)
 ```
 
 Vamos sair do *R* sem salvar os dados da seção.
 
-```{r Chunck5, comment="", eval = FALSE}
+```{r Chunck5, comment="", eval = FALSE, prompt=TRUE}
 q(save = "no")
 ```
 
