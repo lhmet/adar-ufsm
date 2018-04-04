@@ -7,7 +7,6 @@ output:
     fig_caption: yes
     fig_width: 6
     highlight: kate
-    keep_md: yes
     number_sections: yes
     toc: yes
 ---
