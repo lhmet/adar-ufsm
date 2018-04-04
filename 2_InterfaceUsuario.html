@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jônatan Tatsch" />
 
-<meta name="date" content="2018-03-28" />
+<meta name="date" content="2018-04-04" />
 
 <title>Interface do usuário</title>
 
@@ -121,13 +121,19 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Interface do usuário</h1>
 <h4 class="author"><em>Jônatan Tatsch</em></h4>
-<h4 class="date"><em>2018-03-28</em></h4>
+<h4 class="date"><em>2018-04-04</em></h4>
 
 </div>
 
 
 <div id="r-no-modo-interativo" class="section level1">
 <h1>R no modo interativo</h1>
+<div id="convencao" class="section level2">
+<h2>Convenção</h2>
+<p>No texto abaixo as expressões a serem avaliadas no R não serão mostradas com o prompt do R (<code>&gt;</code>) para tornar mais fácil de copiá-las e colá-las na linha de comando do R. O resultado da avaliação das expressões será mostrado precedido do símbolo (<code>#&gt;</code>). Esses valores são os resultados que esperam-se sejam reproduzidos também na sua sessão do R. Por exemplo:</p>
+<pre class="r"><code>1:5
+#&gt; [1] 1 2 3 4 5</code></pre>
+</div>
 <div id="linha-de-comando-do-r" class="section level2">
 <h2>Linha de comando do R</h2>
 <p>No Linux o R pode ser aberto simplesmente digitando em um terminal a letra <code>R</code>.</p>
@@ -152,77 +158,84 @@ Type 'q()' to quit R.
 
 &gt; </code></pre>
 <p>A janela com a linha de comando do R apresenta o <em>prompt</em> do <em>R</em> (<code>&gt;</code>). Após este símbolo digitamos os comandos, pressionamos a tecla <code>&lt;enter&gt;</code>, o R interpreta o comando e retorna o resultado. Os comandos digitados na linha de comando são chamados de expressões. Esse é o modo iterativo do R. Portanto a linha de comando é a mais importante ferramenta do R, pois todas expressões são avaliadas através dela.</p>
-<pre class="r"><code>&gt; 62 + 38</code></pre>
-<pre><code>[1] 100</code></pre>
+<pre class="r"><code>62 + 38
+#&gt; [1] 100</code></pre>
 <p>A expressão é avaliada pelo R, o resultado é mostrado, mas o seu valor é perdido.</p>
 <p>O número entre colchetes que aparece como resultado da operação (“[1]” no caso acima) indica o conteúdo resultante da operação iniciando na posição 1 desse objeto. O significado dessa informação torna-se mais óbvio quando trabalhamos com objetos maiores, como por exemplo com vetores. Observe os valores nos colchetes para uma sequência de 100 até 1.</p>
-<pre class="r"><code>&gt; 100:1</code></pre>
-<pre><code>  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1</code></pre>
+<pre class="r"><code>100:1
+#&gt;   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
+#&gt;  [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
+#&gt;  [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
+#&gt;  [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
+#&gt;  [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
+#&gt;  [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1</code></pre>
 <p>O elemento <code>[18]</code> da sequência de 100 até 1 é o número <code>83</code>.</p>
 <p>Pode ocorrer da expressão digitada na linha ser muito extensa e ir além de uma linha. Se a expressão estiver incompleta o R mostra um sinal de <code>+</code>.</p>
-<pre class="r"><code>&gt; 1 * 2 * 3 * 4 * 5 *
-+ 6 * 7 * 8 * 9 * 10</code></pre>
-<pre><code>[1] 3628800</code></pre>
+<pre class="r"><code>1 * 2 * 3 * 4 * 5 *
+6 * 7 * 8 * 9 * 10
+#&gt; [1] 3628800</code></pre>
 <p>Execute a expressão abaixo até o sinal de menos e tecle <code>&lt;enter&gt;</code>. Enquanto a expressão não estiver completa o sinal de + se repetirá. Até que você digite o número que deseja subtrair de 4.</p>
-<pre class="r"><code>&gt; 4 -
-+   
-+   3</code></pre>
-<pre><code>[1] 1</code></pre>
+<pre class="r"><code>4 -
+  
+  3
+#&gt; [1] 1</code></pre>
 </div>
 <div id="expressoes-em-sequencia" class="section level2">
 <h2>Expressões em sequência</h2>
 <p>Podemos executar todas expressões anteriores em apenas uma linha, usando o ponto e vírgula <code>;</code> para separar as expressões:</p>
-<pre class="r"><code>&gt; 62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3</code></pre>
-<pre><code>[1] 100</code></pre>
-<pre><code>  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1</code></pre>
-<pre><code>[1] 3628800</code></pre>
-<pre><code>[1] 1</code></pre>
+<pre class="r"><code>62 + 38; 100:1; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10; 4-3
+#&gt; [1] 100
+#&gt;   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
+#&gt;  [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
+#&gt;  [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
+#&gt;  [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
+#&gt;  [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
+#&gt;  [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
+#&gt; [1] 3628800
+#&gt; [1] 1</code></pre>
 <p>As expressões também podem ser separadas por uma nova linha (<code>&lt;enter&gt;</code>) entre cada um delas.</p>
-<pre class="r"><code>&gt; 62 + 38</code></pre>
-<pre><code>[1] 100</code></pre>
-<pre class="r"><code>&gt; 100:1</code></pre>
-<pre><code>  [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
- [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
- [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
- [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
- [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
- [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1</code></pre>
-<pre class="r"><code>&gt; 1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10</code></pre>
-<pre><code>[1] 3628800</code></pre>
-<pre class="r"><code>&gt; 4-3</code></pre>
-<pre><code>[1] 1</code></pre>
+<pre class="r"><code>62 + 38
+#&gt; [1] 100
+100:1
+#&gt;   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
+#&gt;  [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
+#&gt;  [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
+#&gt;  [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
+#&gt;  [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
+#&gt;  [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
+1 * 2 * 3 * 4 * 5 *6 * 7 * 8 * 9 * 10
+#&gt; [1] 3628800
+4-3
+#&gt; [1] 1</code></pre>
 </div>
 <div id="navegacao-entre-as-expressoes-ja-avaliadas" class="section level2">
 <h2>Navegação entre as expressões já avaliadas</h2>
 <p>Você pode usar as teclas ⬆️ e ⬇️ para navegar entre as expressões já avaliadas pelo R. O que é útil quando precisamos repetir um comando anterior com alguma mudança ou para corrigir um erro de digitação ou a omissão de um parentêses.</p>
 <p>Quando a linha de comando é usada por muito tempo a sua tela pode ficar poluída com a saída das expressões anteriores. Para limpar a tela, tecle <code>Ctrl+l</code>. Assim o console aparece na parte superior do terminal.</p>
-<pre class="r"><code>&gt; 15 + 4
-&gt; 100:1
-&gt; #tecle &lt;Ctr + l&gt;</code></pre>
+<pre class="r"><code>15 + 4
+#&gt; [1] 19
+100:1
+#&gt;   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84
+#&gt;  [18]  83  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67
+#&gt;  [35]  66  65  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50
+#&gt;  [52]  49  48  47  46  45  44  43  42  41  40  39  38  37  36  35  34  33
+#&gt;  [69]  32  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16
+#&gt;  [86]  15  14  13  12  11  10   9   8   7   6   5   4   3   2   1
+#tecle &lt;Ctr + l&gt;</code></pre>
 <p>Para parar ou cancelar a execução de uma expressão utilize as teclas <code>Ctrl + C</code>. As teclas <code>Ctrl + l</code> tem o efeito de limpar a tela.</p>
 </div>
 <div id="comentarios" class="section level2">
 <h2>Comentários</h2>
 <p>No R, a cerquilha <code>#</code> (hashtag) é um caracter especial. Qualquer coisa após esse caracter será ignorada pelo R. Somente as expressões antes da <code>#</code> são avaliadas. Por meio desse símbolo de comentário podemos fazer anotações e comentários no código sem atrapalhar a interpretação das expressões pelo R.</p>
-<pre class="r"><code>&gt;  17 + 3 # adicionando 17 e 3</code></pre>
-<pre><code>[1] 20</code></pre>
-<pre class="r"><code>&gt; # A expressão abaixo será ignorada 
-&gt; # 10 + 4</code></pre>
+<pre class="r"><code> 17 + 3 # adicionando 17 e 3
+#&gt; [1] 20
+# A expressão abaixo será ignorada 
+# 10 + 4</code></pre>
 </div>
 <div id="auto-preenchimento-de-funcoes" class="section level2">
 <h2>Auto preenchimento de funções</h2>
 <p>O R inclui o preenchimento automático de nomes de funções e arquivos por meio da tecla <code>&lt;tab&gt;</code>. Uma lista de possíveis funções que começam com as letras inicialmente digitadas aparecerão.</p>
-<pre class="r"><code>&gt; read#&lt;tab&gt; pressione &lt;tab&gt; para ver as opções de comandos que iniciam com o termo read</code></pre>
+<pre class="r"><code>read#&lt;tab&gt; pressione &lt;tab&gt; para ver as opções de comandos que iniciam com o termo read</code></pre>
 </div>
 </div>
 <div id="r-no-modo-nao-interativo-batch" class="section level1">
