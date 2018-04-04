@@ -32,8 +32,8 @@ Para visualização de dados categóricos com várias categorias é conveniente 
 [^1]: no Fedora Linux a biblioteca correspondente é a v8-314-devel.
 
 ```
-#(Debian, Ubuntu)
-sudo apt-get install libv8-3.14-dev
+$#(Debian, Ubuntu)
+$ sudo apt-get install libv8-3.14-dev
 ```
 
 Com a biblioteca V8 instalada, podemos instalar o pacote [randomcoloR](https://cran.r-project.org/web/packages/randomcoloR/).
