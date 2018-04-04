@@ -3,10 +3,6 @@ title: "Operações Básicas"
 author: "Jônatan Tatsch"
 date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
 output:
-  html_notebook: 
-    toc: yes
-  pdf_document:
-    toc: yes
   html_document:
     fig_caption: yes
     fig_width: 6
@@ -31,7 +27,10 @@ invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 #            style = "html", 
 #            hyperlink = "to.bib")
 # configuraçoes knitr
-opts_chunk$set(cache = FALSE, fig.path = "figs/", comment = "#>")
+opts_chunk$set(cache = FALSE, 
+               fig.path = "figs/", 
+               comment = "#>",
+               collapse = TRUE)
 ```
 
 - - -
@@ -140,26 +139,12 @@ Para ver a lista completa de funções trigonométricas:
 
 <span style="color:red; font-size:1.1em;"> notas de aula da aula 3 disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
 
-### Operadores
-
-"unários"
-"binários"
-
-```{r}
-# !
-# %%
-# == 
-# != 
-```
-
-PAREI AQUI
-
 
 ## Valores numéricos especiais
 
 Um caso particular sobre operação aritméticas no R, são os valores numéricos `Inf`e `NaN` que resultam de operações como:
 
-```{r chunk18, message=FALSE, comment="",prompt=FALSE}
+```{r chunk18, message=FALSE}
 2/0
 -12/0
 exp(-Inf)
@@ -171,20 +156,22 @@ sqrt(-1)
 0/0 
 Inf-Inf
 Inf/Inf
+mean(c(NA, NA), na.rm = TRUE)
 ```
 
 `NaN` é a abreviação para *Not a Number*. Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
 
-Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA`.
+Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela 1). 
 
-```{r chunk19}
-NA + 5
-NA - Inf
-sqrt(NA)
-NA^2
-NA/NaN
+```{r chunk19, echo=FALSE}
+oper_nas <- data.frame(
+    operação = c("NA + 5", "sqrt(NA)", "NA^2", "NA/NaN"),
+    resultado = c(NA + 5, sqrt(NA), NA ^ 2, NA / NaN)
+  )
+#tibble::as_tibble(oper_nas)
+kable(oper_nas, align = "c", caption = "Tabela 1. Operações com NA.")
 ```
 
 
@@ -325,6 +312,7 @@ totd
 
 ### Atribuição com a função `assign()`
 
+
 Outra forma de atribuição é através da função `assign()`:
 
 ```{r chunk34}
@@ -336,23 +324,7 @@ assign("u", 2.5)
 u
 ```
 
-Para ilustrar um caso em que a função `assign` pode ser útil, vamos supor que você tenha um vetor com os nomes que você deseja usar para definir alguns objetos, cujo resultado já está em um vetor previamente criado. 
-
-Considere os nomes dos meses do ano (`r month.abb`) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto `nums`, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto `nums` são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição `jan <- 1; fev <- 2, mar <- 3, ...`, podemos fazer um laço (ou *looping*) de 1 até o tamanho do vetor `nums` (ou seja 1:12) e usar o vetor `month.abb` para nomear os objetos.
-
-```{r chunk35}
-# vetor de 1 a 12
-nums <- 1:12
-for (i in nums) assign(month.abb[i], i)
-# verificando os valores dos objetos criados
-Jan
-Feb
-Mar
-Apr
-ls()
-```
-
-A função `for()` será explorada futuramente.
+Um exemplo de uso do assign para criar várias variáveis pode ser visto [aqui](https://gist.github.com/lhmet/d28856ed16690bb45d5be36ea4f5d458#file-assign-ex-rmd).
 
 ## Removendo variáveis
 
@@ -361,9 +333,19 @@ Para remover variáveis usa-se a função `rm()`.
 ```{r chunk36}
 # lista de variáveis existentes
 ls()
+```
+
+Vamos remover a variável `u` criada previamente e ver a lista de objetos no espaço de trabalho.
+
+```{r chunk36a}
 rm(u)
 # lista de variáveis existentes, sem u
 ls()
+```
+
+Podemos remover mais de uma variável ao mesmo tempo.
+
+```{r chunk36b}
 rm(es_hpa, es, tar, y1, y2)
 # lista de variáveis existentes, sem es_hpa, es, tar, y1, y2
 ls()

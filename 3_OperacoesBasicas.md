@@ -1,7 +1,7 @@
 ---
 title: "Operações Básicas"
 author: "Jônatan Tatsch"
-date: "26-03-2018"
+date: "04-04-2018"
 output:
   html_document:
     fig_caption: yes
@@ -9,8 +9,6 @@ output:
     highlight: kate
     keep_md: yes
     number_sections: yes
-    toc: yes
-  pdf_document:
     toc: yes
 ---
 
@@ -27,10 +25,10 @@ output:
 
 Nesta seção veremos:
 
-- como realizar operações aritméticas básicas com R
-- atribuir valores a uma variável
-- utilizar funções matemáticas internas do R
-- alguns valores numéricos especiais do R
+- operações aritméticas básicas com R
+- a atribuição de valores a uma variável
+- o uso de funções matemáticas internas do R
+- valores numéricos especiais do R
 - os cuidados ao nomear variáveis
 
 # CalculadoRa
@@ -44,62 +42,23 @@ Todas operações feitas em uma  calculadora podem ser realizadas na linha de co
 
 ```r
 10 + 2 + 4
-```
-
-```
-[1] 16
-```
-
-```r
+#> [1] 16
 # Exemplo de divisao 
 (5 + 14)/2
-```
-
-```
-[1] 9.5
-```
-
-```r
+#> [1] 9.5
 # exponenciação
 2^3
-```
-
-```
-[1] 8
-```
-
-```r
+#> [1] 8
 4^0.5
-```
-
-```
-[1] 2
-```
-
-```r
+#> [1] 2
 # operador artimético para se determinar o resto de uma divisao
 10 %% 2
-```
-
-```
-[1] 0
-```
-
-```r
+#> [1] 0
 2001 %% 2
-```
-
-```
-[1] 1
-```
-
-```r
+#> [1] 1
 # operador de divisão inteira
 11 %/% 2
-```
-
-```
-[1] 5
+#> [1] 5
 ```
 
 Conheça mais operadores aritméticos, digitando na linha de comando:
@@ -109,7 +68,7 @@ Conheça mais operadores aritméticos, digitando na linha de comando:
 ?"Arithmetic"
 ```
 
-A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R. Para sair dessa tela digite `q`
+A janela aberta mostrará outros operadores aritméticos disponíveis com o R. O texto mostrado faz parte do manual de ajuda do R.
 
 ## Constantes
 
@@ -118,10 +77,7 @@ O R possui algumas constantes pré-definidas, como o a constante pi (π).
 
 ```r
 pi
-```
-
-```
-[1] 3.141593
+#> [1] 3.141593
 ```
 
 O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos são:
@@ -129,39 +85,18 @@ O R também trabalha com caracteres, alguns vetores de caracteres pré-definidos
 
 ```r
 LETTERS
-```
-
-```
- [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
-[18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
-```
-
-```r
+#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
+#> [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 letters
-```
-
-```
- [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
-[18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
-```
-
-```r
+#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+#> [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
 month.abb
-```
-
-```
- [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov"
-[12] "Dec"
-```
-
-```r
+#>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov"
+#> [12] "Dec"
 month.name
-```
-
-```
- [1] "January"   "February"  "March"     "April"     "May"      
- [6] "June"      "July"      "August"    "September" "October"  
-[11] "November"  "December" 
+#>  [1] "January"   "February"  "March"     "April"     "May"      
+#>  [6] "June"      "July"      "August"    "September" "October"  
+#> [11] "November"  "December"
 ```
 
 Note que caracteres estão sempre entre aspas: `""`.
@@ -170,72 +105,45 @@ Note que caracteres estão sempre entre aspas: `""`.
 
 ```r
 vogais <- aeiou
-```
-
-```
-Error in eval(expr, envir, enclos): object 'aeiou' not found
+#> Error in eval(expr, envir, enclos): object 'aeiou' not found
 ```
 
 
 ```r
-vogais <- "abcde"
+vogais <- "aeiou"
 vogais
-```
-
-```
-[1] "abcde"
+#> [1] "aeiou"
 ```
 
 
 ## Funções matemáticas internas
 
-Existem diversas funções internas do R que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. Para usar uma função no R apenas digite o nome da função seguido de parênteses:
+Existem diversas funções internas do R que permitem, por exemplo, sortear números aleatóriamente, arrendondar números, calcular o fatorial, calcular o seno, cosseno de um ângulo e etc. A sintaxe para chamar uma função no R é:
+
+<span style="color:black; font-size:1.3em; font-weight: bold"> funcão(argumento) </span>
+
+
+Por exemplo:
+
 
 ```r
 # funções trigonométricas
 sin(pi/6)
-```
-
-```
-[1] 0.5
-```
-
-```r
+#> [1] 0.5
 cos(pi)
-```
-
-```
-[1] -1
-```
-
-```r
+#> [1] -1
 # raiz quadrada
 sqrt(100)
-```
-
-```
-[1] 10
-```
-
-```r
+#> [1] 10
 # exponencial
 exp(1)
-```
-
-```
-[1] 2.718282
-```
-
-```r
+#> [1] 2.718282
 # fatorial
 factorial(4)
+#> [1] 24
 ```
 
-```
-[1] 24
-```
-
-No R você verá que parênteses são frequentemente utilizados. Isso ocorre eles estão sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
+No R você verá que parênteses são frequentemente utilizados. Eles são sempre associados à funções. Qualquer palavra antecedendo um parênteses é uma função.
 
 Para ver a lista completa de funções trigonométricas:
 
@@ -243,66 +151,7 @@ Para ver a lista completa de funções trigonométricas:
 ?"Trig"
 ```
 
-<span style="color:red; font-size:1.7em;">Fim da aula 3 - notas de aula disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
-
-### Sorteando números aleatoriamente
-
-O código abaixo ilustra como sortear número(s) a partir de uma sequência numérica de 1 à 6. A função `set.seed()` especifica uma semente para geração de números aleatórios. Ao definirmos a semente (argumento *seed* da função `set.seed`) os números sorteados serão reproduzidos igualmente na sua máquina.
-
-
-```r
-set.seed(seed = 5)
-# sorteio de um número dentro da sequência de 1 a 6
-sample(x = 1:6, size = 1)
-```
-
-```
-[1] 2
-```
-
-```r
-# sorteio de 5 números dentro da sequência de 1 a 6
-sample(x = 1:6, size = 5)
-```
-
-```
-[1] 5 6 2 1 4
-```
-
-```r
-# sorteio de 5 números dentro da sequência de 1 a 6
-# resultado sem números repetidos
-sample(x = 1:6, size = 5, replace = TRUE)
-```
-
-```
-[1] 4 5 6 1 2
-```
-
-```r
-# sorteio de 20 números dentro da sequência de 1 a 6
-# nesse caso a reposição deve ser feita (size > 6) então podem 
-# ocorrer números repetidos
-sample(x = 1:6, size = 20, replace = TRUE)
-```
-
-```
- [1] 3 2 4 2 2 3 6 4 6 6 5 2 2 1 3 3 6 1 6 3
-```
-
-Os argumentos de uma função são obtidos pela função `args()`. Por exemplo quais são os argumentos da função `sample()`?
-
-
-```r
-args(sample)
-```
-
-```
-function (x, size, replace = FALSE, prob = NULL) 
-NULL
-```
-
-
+<span style="color:red; font-size:1.1em;"> notas de aula da aula 3 disponíveis [aqui](https://www.dropbox.com/sh/em7x1kh6xxull6k/AABix5FF0EqLJ67a7GrA2Hzga?dl=0) </span>
 
 
 ## Valores numéricos especiais
@@ -312,146 +161,48 @@ Um caso particular sobre operação aritméticas no R, são os valores numérico
 
 ```r
 2/0
-```
-
-```
-[1] Inf
-```
-
-```r
+#> [1] Inf
 -12/0
-```
-
-```
-[1] -Inf
-```
-
-```r
+#> [1] -Inf
 exp(-Inf)
-```
-
-```
-[1] 0
-```
-
-```r
+#> [1] 0
 log(0)
-```
-
-```
-[1] -Inf
-```
-
-```r
+#> [1] -Inf
 0/Inf
-```
-
-```
-[1] 0
-```
-
-```r
+#> [1] 0
 (0:3)^Inf
-```
-
-```
-[1]   0   1 Inf Inf
-```
-
-```r
+#> [1]   0   1 Inf Inf
 log(-0.5)
-```
-
-```
-Warning in log(-0.5): NaNs produced
-```
-
-```
-[1] NaN
-```
-
-```r
+#> Warning in log(-0.5): NaNs produced
+#> [1] NaN
 sqrt(-1)
-```
-
-```
-Warning in sqrt(-1): NaNs produced
-```
-
-```
-[1] NaN
-```
-
-```r
+#> Warning in sqrt(-1): NaNs produced
+#> [1] NaN
 0/0 
-```
-
-```
-[1] NaN
-```
-
-```r
+#> [1] NaN
 Inf-Inf
-```
-
-```
-[1] NaN
-```
-
-```r
+#> [1] NaN
 Inf/Inf
-```
-
-```
-[1] NaN
+#> [1] NaN
+mean(c(NA, NA), na.rm = TRUE)
+#> [1] NaN
 ```
 
 `NaN` é a abreviação para *Not a Number*. Geralmente surge quando um cálculo não tem sentido matemático ou não pode ser propriamente realizado.
 
 A demonstração das diferentes formas de se obter essas constantes especiais é importante para entender a origem delas durante a execução de um script mais extenso.
 
-Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA`.
+Outra constante especial do R é o `NA` (*Not Available*) que representa valor faltante, um problema comum em análise de dados. Qualquer operação envolvendo `NA` resultará em `NA` (Tabela 1). 
 
 
-```r
-NA + 5
-```
+Table: Tabela 1. Operações com NA.
 
-```
-[1] NA
-```
-
-```r
-NA - Inf
-```
-
-```
-[1] NA
-```
-
-```r
-sqrt(NA)
-```
-
-```
-[1] NA
-```
-
-```r
-NA^2
-```
-
-```
-[1] NA
-```
-
-```r
-NA/NaN
-```
-
-```
-[1] NA
-```
+ operação    resultado 
+----------  -----------
+  NA + 5        NA     
+ sqrt(NA)       NA     
+   NA^2         NA     
+  NA/NaN        NA     
 
 
 ## Notação científica e número de dígitos
@@ -461,74 +212,33 @@ Na maioria das vezes precisamos trabalhar com números grandes e consequentement
 
 ```r
 1.2e-6
+#> [1] 1.2e-06
+# expressões equivalentes
+1.2E6; 1.2*10^6  
+#> [1] 1200000
+#> [1] 1200000
 ```
 
-```
-[1] 1.2e-06
-```
-
-```r
-1.2E6
-```
-
-```
-[1] 1200000
-```
-
-R faz cálculos com alta precisão, mas o padrão é mostrar 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
+Os resultados dos cálculos no R são mostrados com 7 dígitos significativos, o que pode ser verificado pela `getOptions()`. É possível mudar para `n` dígitos usando a função `options()`, conforme exemplo abaixo.
 
 
 ```r
 # opção de dígitos padrão
 getOption("digits")
-```
-
-```
-[1] 7
-```
-
-```r
+#> [1] 7
 exp(1)
-```
-
-```
-[1] 2.718282
-```
-
-```r
+#> [1] 2.718282
 # alterando para 14
 options(digits = 14)
 exp(1)
-```
-
-```
-[1] 2.718281828459
-```
-
-```r
+#> [1] 2.718281828459
 getOption("digits")
-```
-
-```
-[1] 14
-```
-
-```r
-# redefinindo para o valor padrão
+#> [1] 14
+# redefinindo para o número de casas decimais padrão
 options(digits = 7)
+getOption("digits")
+#> [1] 7
 ```
-
-
-
-```r
-formatC(pi, digits = 3, width = 8, flag = '0', format = 'f')
-```
-
-```
-[1] "0003.142"
-```
-
-
 
 # Variáveis
 
@@ -545,19 +255,10 @@ O que é uma variável? É um nome usado para guardar os dados. Por exemplo para
 p <- 1013
 # para mostrar a variável digite o nome da variável
 p
-```
-
-```
-[1] 1013
-```
-
-```r
+#> [1] 1013
 # ou use a função print()
 print(p)
-```
-
-```
-[1] 1013
+#> [1] 1013
 ```
 
 O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variáveis diferentes.
@@ -565,18 +266,9 @@ O R diferencia letras maiúsculas de minúsculas. Portanto `p` e `P` são variá
 
 ```r
 p
-```
-
-```
-[1] 1013
-```
-
-```r
+#> [1] 1013
 P
-```
-
-```
-Error in eval(expr, envir, enclos): object 'P' not found
+#> Error in eval(expr, envir, enclos): object 'P' not found
 ```
 
 Como criamos apenas a variável `p`, `P` não foi encontrada. 
@@ -588,10 +280,7 @@ A variável `p` pode ser utilizado para criar outras variáveis.
 p_pa <- p * 100
 # pressão em Pascal
 p_pa
-```
-
-```
-[1] 101300
+#> [1] 101300
 ```
 
 A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de estarem sempre acompanhando uma função, também são usados para indicar a prioridade dos cálculos.
@@ -600,19 +289,10 @@ A seta de atribuição pode ser usada em qualquer sentido. Parênteses, além de
 ```r
 7/3 + 0.6 -> y1
  y1
-```
-
-```
-[1] 2.933333
-```
-
-```r
+#> [1] 2.933333
 7/(3 + 0.6) -> y2
  y2
-```
-
-```
-[1] 1.944444
+#> [1] 1.944444
 ```
 
 Os espaços em torno do símbolo de atribuição (` <- `) não são obrigatórios mas eles ajudam na legibilidade do código.
@@ -639,10 +319,7 @@ O total de dias nos meses de março e abril será armazenado na variável `totdi
 ```r
 totd <- nd3 + nd4
 totd
-```
-
-```
-[1] 61
+#> [1] 61
 ```
 
 A atribuição de um mesmo valor para diferentes variáveis pode ser feita da seguinte forma:
@@ -655,80 +332,44 @@ abr <- jun <- set <- nov <- 30
 fev <- 28
 # verificação
 jan; jul
-```
-
-```
-[1] 31
-```
-
-```
-[1] 31
-```
-
-```r
+#> [1] 31
+#> [1] 31
 jun; set
-```
-
-```
-[1] 30
-```
-
-```
-[1] 30
-```
-
-```r
+#> [1] 30
+#> [1] 30
 fev
-```
-
-```
-[1] 28
+#> [1] 28
 ```
 
 Nós estamos definindo a variável, digitando o nome dela na linha de comando e teclando enter para ver o resultado. Há uma forma mais prática de fazer isso e mostrar o resultado cercando a atribuição por parênteses:
 
 
 ```r
-(tar <- 20)
+# ao invés de 
+# tar <- 20
+# tar
+# é mais prático
+(tar <- 20) 
+#> [1] 20
 ```
 
-```
-[1] 20
-```
+Se desejamos calcular e já visualizar o valor da pressão de vapor de saturação obtida com a [equação de Tetens](https://en.wikipedia.org/wiki/Tetens_equation), podemos fazer:
 
-Na expressão note como a variável `tk` definida e já utilizada.
-
-
-```r
-(es <- 0.611 * exp(17.2694 * ((tk <- tar+273.16)-273.16) / ((tk)-35.86)))
-```
-
-```
-[1] 2.338938
-```
 
 ```r
-tk
+(es <- 0.611 * exp((17.269 * tar)/(tar + 237.3)))
+#> [1] 2.338865
 ```
-
-```
-[1] 293.16
-```
-
-Essa é mais uma utilidade dos `()` no R. Na expressão acima, conhecida como [fórmula de Teten](http://www.met.wau.nl/metlukweb/Reading/Clausius-Clapeyron.pdf) além de já mostrar o resultado da expressão, nós criamos as variáveis `tk` e `es` simultaneamente.
 
 Quando usamos a mesma variável numa sequência de atribuições o seu valor é sobrescrito. Portanto não é bom usar nomes que já foram usados antes, exceto se a intenção for realmente essa. Para saber os nomes das variáveis já usados use a função `ls()`[^1] para verificar as variáveis existentes:
 
 
 ```r
 ls()
-```
-
-```
- [1] "abr"    "ago"    "dez"    "es"     "fev"    "jan"    "jul"   
- [8] "jun"    "mai"    "mar"    "nd3"    "nd4"    "nov"    "out"   
-[15] "p"      "pcks"   "p_pa"   "set"    "tar"    "tk"     "totd"  
-[22] "vogais" "y1"     "y2"    
+#>  [1] "abr"      "ago"      "dez"      "es"       "fev"      "jan"     
+#>  [7] "jul"      "jun"      "mai"      "mar"      "nd3"      "nd4"     
+#> [13] "nov"      "oper_nas" "out"      "p"        "pcks"     "p_pa"    
+#> [19] "set"      "tar"      "totd"     "vogais"   "y1"       "y2"
 ```
 
 [^1]: Essa lista de variáveis também é mostrada no painel *Environment* do RStudio (canto direito superior, aba *Environment*).
@@ -738,111 +379,28 @@ ls()
 ```r
 totd <- jan*7; totd <- totd + fev; totd <- totd + 4*abr
 totd
-```
-
-```
-[1] 365
-```
-
-Quando fazemos a atribuição para diversas variáveis elas podem ser agrupadas com colchetes.
-
-
-```r
-{
-  tmax <- 32
-  tmin <- 23
-  amp <- tmax - tmin
-  tmed <- (tmax + tmin)/2
-}
+#> [1] 365
 ```
 
 ### Atribuição com a função `assign()`
+
 
 Outra forma de atribuição é através da função `assign()`:
 
 
 ```r
 es
-```
-
-```
-[1] 2.338938
-```
-
-```r
+#> [1] 2.338865
 assign(x = "es_hpa", value = es/10)
 es_hpa
-```
-
-```
-[1] 0.2338938
-```
-
-```r
+#> [1] 0.2338865
 # usando função assign sem nome dos parâmetros
 assign("u", 2.5)
 u
+#> [1] 2.5
 ```
 
-```
-[1] 2.5
-```
-
-Para ilustrar um caso em que a função `assign` pode ser útil, vamos supor que você tenha um vetor com os nomes que você deseja usar para definir alguns objetos, cujo resultado já está em um vetor previamente criado. 
-
-Considere os nomes dos meses do ano (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) para serem usados como nomes para os novos objetos. E os valores a serem atribuídos estão armazenados no objeto `nums`, que poderia ser um vetor com resultados de uma análise para cada mês. Mas para fins de ilustração, no código abaixo, os valores do objeto `nums` são simplesmente uma sequência de 1 a 12. Ao invés de repetirmos 12 vezes a atribuição `jan <- 1; fev <- 2, mar <- 3, ...`, podemos fazer um laço (ou *looping*) de 1 até o tamanho do vetor `nums` (ou seja 1:12) e usar o vetor `month.abb` para nomear os objetos.
-
-
-```r
-# vetor de 1 a 12
-nums <- 1:12
-for (i in nums) assign(month.abb[i], i)
-# verificando os valores dos objetos criados
-Jan
-```
-
-```
-[1] 1
-```
-
-```r
-Feb
-```
-
-```
-[1] 2
-```
-
-```r
-Mar
-```
-
-```
-[1] 3
-```
-
-```r
-Apr
-```
-
-```
-[1] 4
-```
-
-```r
-ls()
-```
-
-```
- [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "es"    
- [8] "es_hpa" "Feb"    "fev"    "i"      "jan"    "Jan"    "jul"   
-[15] "Jul"    "jun"    "Jun"    "mai"    "mar"    "Mar"    "May"   
-[22] "nd3"    "nd4"    "nov"    "Nov"    "nums"   "Oct"    "out"   
-[29] "p"      "pcks"   "p_pa"   "Sep"    "set"    "tar"    "tk"    
-[36] "totd"   "u"      "vogais" "y1"     "y2"    
-```
-
-A função `for()` será explorada futuramente.
+Um exemplo de uso do assign para criar várias variáveis pode ser visto [aqui](https://gist.github.com/lhmet/d28856ed16690bb45d5be36ea4f5d458#file-assign-ex-rmd).
 
 ## Removendo variáveis
 
@@ -852,44 +410,38 @@ Para remover variáveis usa-se a função `rm()`.
 ```r
 # lista de variáveis existentes
 ls()
+#>  [1] "abr"      "ago"      "dez"      "es"       "es_hpa"   "fev"     
+#>  [7] "jan"      "jul"      "jun"      "mai"      "mar"      "nd3"     
+#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "pcks"    
+#> [19] "p_pa"     "set"      "tar"      "totd"     "u"        "vogais"  
+#> [25] "y1"       "y2"
 ```
 
-```
- [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "es"    
- [8] "es_hpa" "Feb"    "fev"    "i"      "jan"    "Jan"    "jul"   
-[15] "Jul"    "jun"    "Jun"    "mai"    "mar"    "Mar"    "May"   
-[22] "nd3"    "nd4"    "nov"    "Nov"    "nums"   "Oct"    "out"   
-[29] "p"      "pcks"   "p_pa"   "Sep"    "set"    "tar"    "tk"    
-[36] "totd"   "u"      "vogais" "y1"     "y2"    
-```
+Vamos remover a variável `u` criada previamente e ver a lista de objetos no espaço de trabalho.
+
 
 ```r
 rm(u)
 # lista de variáveis existentes, sem u
 ls()
+#>  [1] "abr"      "ago"      "dez"      "es"       "es_hpa"   "fev"     
+#>  [7] "jan"      "jul"      "jun"      "mai"      "mar"      "nd3"     
+#> [13] "nd4"      "nov"      "oper_nas" "out"      "p"        "pcks"    
+#> [19] "p_pa"     "set"      "tar"      "totd"     "vogais"   "y1"      
+#> [25] "y2"
 ```
 
-```
- [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "es"    
- [8] "es_hpa" "Feb"    "fev"    "i"      "jan"    "Jan"    "jul"   
-[15] "Jul"    "jun"    "Jun"    "mai"    "mar"    "Mar"    "May"   
-[22] "nd3"    "nd4"    "nov"    "Nov"    "nums"   "Oct"    "out"   
-[29] "p"      "pcks"   "p_pa"   "Sep"    "set"    "tar"    "tk"    
-[36] "totd"   "vogais" "y1"     "y2"    
-```
+Podemos remover mais de uma variável ao mesmo tempo.
+
 
 ```r
 rm(es_hpa, es, tar, y1, y2)
 # lista de variáveis existentes, sem es_hpa, es, tar, y1, y2
 ls()
-```
-
-```
- [1] "abr"    "ago"    "Apr"    "Aug"    "Dec"    "dez"    "Feb"   
- [8] "fev"    "i"      "jan"    "Jan"    "jul"    "Jul"    "jun"   
-[15] "Jun"    "mai"    "mar"    "Mar"    "May"    "nd3"    "nd4"   
-[22] "nov"    "Nov"    "nums"   "Oct"    "out"    "p"      "pcks"  
-[29] "p_pa"   "Sep"    "set"    "tk"     "totd"   "vogais"
+#>  [1] "abr"      "ago"      "dez"      "fev"      "jan"      "jul"     
+#>  [7] "jun"      "mai"      "mar"      "nd3"      "nd4"      "nov"     
+#> [13] "oper_nas" "out"      "p"        "pcks"     "p_pa"     "set"     
+#> [19] "totd"     "vogais"
 ```
 
 Para remover todas variáveis do espaço de trabalho (use com cautela):
@@ -899,10 +451,7 @@ Para remover todas variáveis do espaço de trabalho (use com cautela):
 # apagando tudo
 rm(list = ls())
 ls()
-```
-
-```
-character(0)
+#> character(0)
 ```
 
 
@@ -935,13 +484,7 @@ variavel.teste <- 68
 
 ```r
 dia-1 <- 2
-```
-
-```
-Error in dia - 1 <- 2: object 'dia' not found
-```
-
-```r
+#> Error in dia - 1 <- 2: object 'dia' not found
 # alternativa
 dia_1 <- 2
 ```
@@ -961,13 +504,10 @@ dia_1 <- 2
 ```r
 verão <- "DJF"
 verão
-```
-
-```
-[1] "DJF"
+#> [1] "DJF"
 ```
    
-Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Style guide**](http://adv-r.had.co.nz/Style.html) do livro [**R Advanced**](http://adv-r.had.co.nz/).
+Uma boa prática de programação é usar nomes informativos para as variáveis para legibilidade do código. Uma boa referência para isso é a seção [**Sintaxe**](http://style.tidyverse.org/syntax.html) do [Guia de estilo tidyverse (ou universo arrumado)](http://style.tidyverse.org/).
 
 # Funções e operadores utilizados
 
@@ -990,14 +530,6 @@ Matemática
 Sequência regular
 
 - `:`
-
-Geração de números aleatórios
-
-- `set.seed()`
-- `sample()`
-
-Argumentos de uma função
-- `args()`
 
 Opções de configuração
 
