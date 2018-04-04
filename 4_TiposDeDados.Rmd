@@ -7,10 +7,7 @@ output:
     fig_caption: yes
     fig_width: 6
     highlight: kate
-    keep_md: yes
     number_sections: yes
-    toc: yes
-  pdf_document:
     toc: yes
 ---
 
@@ -22,7 +19,11 @@ rm(list=ls())
 pcks <- c("knitr", "knitcitations", "printr", "pander", "htmlTable")
 invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
 # configuraçoes knitr
-opts_chunk$set(cache = FALSE, fig.path = "figs/")
+# configuraçoes knitr
+opts_chunk$set(cache = FALSE, 
+               fig.path = "figs/", 
+               comment = "#>",
+               collapse = TRUE)
 ```
 
 - - -
@@ -56,16 +57,16 @@ Existem vários classes de dados no R. As mais utilizadas são:
 
 A classe dos dados de um objeto é verificada com a função `class()`.
 
-```{r chunk6, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk1}
 x <- 51
 class(x)
 ```
  
-## numeric
+## *numeric*
 
 É a classe de objeto mais usada. Essa classe é similar a *float* ou *double* em outras linguagens. Ele lida com inteiros e decimais, positivos e negativos e zero. Um valor numérico armazenado em um objeto é automaticamente assumido ser numérico. Para testar se um objeto é numérico usa-se a função `is.numeric()`.
 
-```{r chunk61, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk2}
 is.numeric(x)
 is.numeric(pi)
 ```
@@ -73,7 +74,7 @@ is.numeric(pi)
 Outro tipo é o `integer` (inteiro), ou seja não há parte decimal. Para definir um objeto como inteiro é necessário acrescentar ao valor numérico um `L`. Analogamente, uma forma de verificação se o objeto é inteiro é através função `is.integer()`.
 
 
-```{r chunk62, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk3}
 i <- 3L
 is.integer(i)
 is.integer(pi)
@@ -81,13 +82,13 @@ is.integer(pi)
  
 Mesmo com o objeto `i` sendo inteiro, ele também passa na verificação `is.numeric()`.
 
-```{r chunk63, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk4}
 is.numeric(i)
 ```
 
 O R converte inteiros para numéricos quando necessário. Vamos usar a função `typeof()` para determinar o tipo de dado e as conversões que o R faz. Por exemplo:
 
-```{r chunk64, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk5}
 ## integer * numeric
 typeof(5L)
 typeof(4.5)
@@ -102,11 +103,11 @@ typeof(3 + 2i)
 ```
 
 
-## character
+## *character*
 
 O tipo de dado *character* (*string*) é bastante utilizado e deve ser manipulado com cuidado. No R há duas principais formas de lidar com caracteres: a função `character()` e `factor()`. Embora pareçam similares eles são tratados de forma diferente.
 
-```{r chunk65, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk6}
 (char <- "Vai chover hoje?")
 charf <- factor("Vai chover hoje?")
 charf
@@ -121,45 +122,45 @@ ordered(charf)
 
 Para encontrar o tamanho de um `character` usamos a função `nchar()`.
         
-```{r chunk66, message=FALSE, comment="",eval = TRUE, echo=TRUE}
+```{r chunk7}
 nchar(char)
 nchar("abc")
 ```       
 
 Esta função não funcionará para um objeto do tipo `factor`.
 
-```{r chunk67, message=FALSE, comment="",eval = TRUE, echo=TRUE,error=TRUE}
+```{r chunk8, error=TRUE}
 nchar(charf)
 ```       
 
-## logical
+## *logical*
    
-`logical` (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). Numericamente, TRUE é o mesmo que 1 e FALSE é o mesmo que 0.
+`logical` (lógico) é uma forma de representar dados que podem assumir valores booleanos, isto é, **TRUE** (verdadeiro) ou **FALSE** (falso). 
 
-```{r chunk681, message=FALSE, comment="",prompt=FALSE }
+```{r chunk9}
 # variável lógica
 vl <- FALSE
 ``` 
 
-Então: 
+Então em operações aritméticas envolvendo dados lógicos eles serão convertidos numericamente para 1 (TRUE) e 0 (FALSE).
 
-```{r chunk68, message=FALSE, comment="",prompt=FALSE }
+```{r chunk10}
 vl * 5
 TRUE * 5
 TRUE + TRUE
 FALSE - TRUE
 ```
 
-Assim como as outras classes de dados existe um teste associado.
+Assim como as outras classes de dados existem funções para verificar a classe de dados lógicos.
 
-```{r chunk69, message=FALSE, comment="",prompt=FALSE }
+```{r chunk11}
 class(vl)
 is.logical(vl)
 ```
 
 O R aceita as abreviaturas T e F para representar TRUE e FALSE, respectivamente, mas não é recomendado usá-las, conforme exemplo abaixo.
 
-```{r chunk610, message=FALSE, comment="",prompt=FALSE }
+```{r chunk12, message=FALSE, comment="",prompt=FALSE }
 TRUE
 T
 class(T)
@@ -169,7 +170,7 @@ class(T)
 
 Valores lógicos resultam da comparação de números ou caracteres.
 
-```{r chunk611, message=FALSE, comment="",prompt=FALSE }
+```{r chunk13}
 4 == 3 # 4 é idêntico a 3?
 teste2i2 <- 2*2 == 2+2
 teste2i2
@@ -186,18 +187,18 @@ nchar("abc") < nchar("defg")
 
 <a name="tab_oper_log"></a>
 
-```{r, message=FALSE, comment="", prompt=FALSE, echo = FALSE}
+```{r chunck14, echo = FALSE}
 oper <- c("<", "<=", ">", ">=", "==","!=","!x","x | y","x & y","isTRUE(x)", "%in%") 
 desc <- c("menor que", " menor ou igual a", "maior que", "maior ou igual", "idêntico","diferente","não é x (negação)","x ou y","x e y","teste se x é verdadeiro", "está contido em") 
 operadores_logicos <- data.frame(Operador = oper, 
                                  Descrição = desc, 
                                  stringsAsFactors = FALSE)
-pander(operadores_logicos, caption = "Tabela 1. Operadores Lógicos")
+kable(operadores_logicos, caption = "Tabela 1. Operadores Lógicos", align = "c")
 ```
 
 
 
-## Date
+## *Date*
 
 Lidar com datas e horários pode ser difícil em qualquer linguagem e pode complicar mais ainda quando há diversas opções de classes de datas disponíveis, como no R.
 
@@ -209,7 +210,7 @@ As mais úteis são:
   
 
 `Date` armazena apenas a data enquanto `POSIXct` armazena a data e o horário. Ambos dados são representados como o número de dias (Date) ou segundos (POSIXct) decorridos  desde 1 de Janeiro de 1970.
-```{r chunk612, message=FALSE, comment="",prompt=FALSE }
+```{r chunk15}
 data1 <- as.Date("2012-06-28")
 data1
 class(data1)
@@ -224,7 +225,7 @@ A manipulação de dados da classe de datas e horários (`Date-time`) torna-se m
 
 Funções como `as.numeric()` e `as.Date()` não apenas mudam o formato de um objeto mas muda realmente a classe original do objeto.
 
-```{r chunk613, message=FALSE, comment="",prompt=FALSE }
+```{r chunk16}
 class(data1)
 class(as.numeric(data1))
 ```
@@ -233,7 +234,7 @@ class(as.numeric(data1))
 
 Além função `typeof()`, a família `is.*()` também permite descobrir o tipo de dado, p.ex.: `is.numeric()`, `is.character()` e etc.
 
-```{r, message=FALSE, comment="", prompt=FALSE, echo = TRUE}
+```{r}
 x; typeof(x)
 vl; typeof(vl)
 data1; typeof(data1)
@@ -254,7 +255,7 @@ is.na(x)
 
 Em algumas circunstâncias precisamos alterar o tipo de uma variável. A maioria das funções `is.*()` possui uma função `as.*()` correspondente de conversão para aquele tipo de dado.
 
-```{r, message=FALSE, comment="", prompt=FALSE, echo = TRUE}
+```{r}
 # de character para numeric
 as.numeric("12.34") 
 # ou
