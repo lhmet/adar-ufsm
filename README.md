@@ -71,6 +71,11 @@ Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Ex
 
 <br/> 
 
+# Notas de aula
+
+Neste [link](https://www.dropbox.com/sh/9pmeuj36r0odcdl/AAB9_zxFaCrHDtDMDCJliy_Ea?dl=0) estão disponíveis os scripts utilizados durante as aulas.
+
+<br/> 
 
 <p style="font-family: verdana; font-size: 14px; font-style: italic; background: whitesmoke; color: black; line-height: 14px;width: 900px;"> Próximo: [Apresentação do curso](https://rawgit.com/lhmet/adar-ufsm/master/apres_course.html)</p> 
 
