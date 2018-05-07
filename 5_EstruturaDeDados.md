@@ -1,6 +1,18 @@
-# Estruturas de dados
-Jônatan Tatsch  
-`r format(Sys.Date(), format = '%d-%m-%Y')`  
+---
+title: "Estruturas de dados"
+author: "Jônatan Tatsch"
+date: "07-05-2018"
+output:
+  html_document:
+    #code_folding: show
+    fig_caption: yes
+    fig_width: 6
+    highlight: kate
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+    #toc_float: yes
+---
 
 
 
@@ -86,34 +98,13 @@ Formas diferentes para criação de vetor que resultam num mesmo vetor:
 
 ```r
 (v_123 <- c(v1, v2, v3))
-```
-
-```
 [1] 1 2 4 6
-```
-
-```r
 (v_123a <- c(1, c(v2, v3)))
-```
-
-```
 [1] 1 2 4 6
-```
-
-```r
 (v_123b <- c(vetor_num, c(v1, v2), v3))
-```
-
-```
 [1] 5.0 2.5 4.5 1.0 2.0 4.0 6.0
-```
-
-```r
 v <- c(1, 2, 4, 6)
 v
-```
-
-```
 [1] 1 2 4 6
 ```
 
@@ -122,17 +113,8 @@ v
 
 ```r
 c("a", 1)
-```
-
-```
 [1] "a" "1"
-```
-
-```r
 as.numeric(c(FALSE, FALSE, TRUE))
-```
-
-```
 [1] 0 0 1
 ```
 
@@ -145,91 +127,40 @@ Vamos usar a coerção no seguinte caso. Imagine um vetor com valores de chuva m
 meses <- c(jan = 1, fev = 2, mar = 3 , abr = 4, mai = 5, jun = 6,
            jul = 7, ago = 8, set = 9, out = 10, nov = 11, dez = 12)
 meses
-```
-
-```
 jan fev mar abr mai jun jul ago set out nov dez 
   1   2   3   4   5   6   7   8   9  10  11  12 
-```
-
-```r
 # vetor definido e depois adiciona-se o nome das variáveis
 months <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 names(months) <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 months
-```
-
-```
 Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec 
   1   2   3   4   5   6   7   8   9  10  11  12 
-```
-
-```r
 # o atibuto mais comum de um vetor
 attributes(meses)
-```
-
-```
 $names
  [1] "jan" "fev" "mar" "abr" "mai" "jun" "jul" "ago" "set" "out" "nov"
 [12] "dez"
-```
-
-```r
 length(meses)
-```
-
-```
 [1] 12
-```
-
-```r
 # Vetor com dados de prec
 chuva <- c(100, 0, 20, 140, 110, 50, 90, 0, 0 , 10, 0, 6)
 length(chuva)
-```
-
-```
 [1] 12
-```
-
-```r
 # quando nao choveu?
 seco <- chuva == 0
 seco
-```
-
-```
  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
 [12] FALSE
-```
-
-```r
 # coerção de lógico para numérico
 seco01 <- as.numeric(seco)
 #seco01 <- as.integer(seco)
 seco01
-```
-
-```
  [1] 0 1 0 0 0 0 0 1 1 0 1 0
-```
-
-```r
 # total de meses secos no ano
 sum(seco01)
-```
-
-```
 [1] 4
-```
-
-```r
 # também funciona com vetores lógicos
 sum(seco)
-```
-
-```
 [1] 4
 ```
 
@@ -249,31 +180,16 @@ Nomes devem ser únicos (sem repetições), porque para filtragem de elementos d
 # Durante a criação:
 x <- c(a = 1, b = 2, c = 3)
 x
-```
-
-```
 a b c 
 1 2 3 
-```
-
-```r
 # Modificando um vetor: 
 x <- 1:3; names(x) <- c("a", "b", "c")
 x
-```
-
-```
 a b c 
 1 2 3 
-```
-
-```r
 # Criando um vetor modificado
 x <- setNames(1:3, c("a", "b", "c"))
 x
-```
-
-```
 a b c 
 1 2 3 
 ```
@@ -283,18 +199,9 @@ Nem todos elementos precisam ter nomes. Se os nomes são faltantes, `names()` re
 ```r
 y <- c(a = 1, 2, 3)
 names(y)
-```
-
-```
 [1] "a" ""  "" 
-```
-
-```r
 z <- c(1, 2, 3)
 names(z)
-```
-
-```
 NULL
 ```
 
@@ -304,35 +211,14 @@ Podemos criar um vetor sem nomes usando a função `unname(x)`, ou remover `name
 ```r
 a <- c(dia1 = 12, dia2 = 20, dia3 = 10)
 a
-```
-
-```
 dia1 dia2 dia3 
   12   20   10 
-```
-
-```r
 names(a)
-```
-
-```
 [1] "dia1" "dia2" "dia3"
-```
-
-```r
 a_sn <- unname(a)
 a_sn
-```
-
-```
 [1] 12 20 10
-```
-
-```r
 names(a_sn)
-```
-
-```
 NULL
 ```
 
@@ -345,58 +231,19 @@ Para multiplicar cada elemento de um vetor por um valor é usar o operador de mu
 ```r
 x <- 1:10
 x * 3
-```
-
-```
  [1]  3  6  9 12 15 18 21 24 27 30
-```
-
-```r
 x + 2
-```
-
-```
  [1]  3  4  5  6  7  8  9 10 11 12
-```
-
-```r
 x - 3
-```
-
-```
  [1] -2 -1  0  1  2  3  4  5  6  7
-```
-
-```r
 x/4
-```
-
-```
  [1] 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00 2.25 2.50
-```
-
-```r
 2^(x/4)
-```
-
-```
  [1] 1.189207 1.414214 1.681793 2.000000 2.378414 2.828427 3.363586
  [8] 4.000000 4.756828 5.656854
-```
-
-```r
 x^2
-```
-
-```
  [1]   1   4   9  16  25  36  49  64  81 100
-```
-
-```r
 sqrt(x)
-```
-
-```
  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751
  [8] 2.828427 3.000000 3.162278
 ```
@@ -410,83 +257,26 @@ x <- 1:10
 y <- -5:4
 # somando-os
 x + y
-```
-
-```
  [1] -4 -2  0  2  4  6  8 10 12 14
-```
-
-```r
 x - y
-```
-
-```
  [1] 6 6 6 6 6 6 6 6 6 6
-```
-
-```r
 x * y
-```
-
-```
  [1] -5 -8 -9 -8 -5  0  7 16 27 40
-```
-
-```r
 x/y
-```
-
-```
  [1] -0.2 -0.5 -1.0 -2.0 -5.0  Inf  7.0  4.0  3.0  2.5
-```
-
-```r
 x^y
-```
-
-```
  [1] 1.000000e+00 6.250000e-02 3.703704e-02 6.250000e-02 2.000000e-01
  [6] 1.000000e+00 7.000000e+00 6.400000e+01 7.290000e+02 1.000000e+04
-```
-
-```r
 2^x
-```
-
-```
  [1]    2    4    8   16   32   64  128  256  512 1024
-```
-
-```r
 x %% y
-```
-
-```
  [1] -4 -2  0  0  0 NA  0  0  0  2
-```
-
-```r
 # tamanho dos vetores
 length(x)
-```
-
-```
 [1] 10
-```
-
-```r
 length(y)
-```
-
-```
 [1] 10
-```
-
-```r
 length(x + y)
-```
-
-```
 [1] 10
 ```
 
@@ -497,9 +287,6 @@ Uma peculiaridade do R é o tratamento de operações com vetores de tamanhos di
 v1 <- c(3, 5, 88, 90)
 v2 <- c(2, 1)
 v1 + v2
-```
-
-```
 [1]  5  6 90 91
 ```
 
@@ -510,14 +297,8 @@ Se o vetor mais longo não é múltiplo do mais curto, o R imprime um aviso.
 v1 <- c(3, 5, 88, 90)
 v2 <- c(2, 1, 3)
 v1 + v2
-```
-
-```
 Warning in v1 + v2: longer object length is not a multiple of shorter
 object length
-```
-
-```
 [1]  5  6 91 92
 ```
 
@@ -526,18 +307,9 @@ A reciclagem é intrinsecamente usada em operações envolvendo vetores.
 
 ```r
 v1
-```
-
-```
 [1]  3  5 88 90
-```
-
-```r
 cte <- 4
 v1 * cte
-```
-
-```
 [1]  12  20 352 360
 ```
 
@@ -548,21 +320,9 @@ Avisos e erros:
 ```r
 v1 <- c(3, 5, 88, 90)
 srt(v1)
-```
-
-```
-Error in eval(expr, envir, enclos): could not find function "srt"
-```
-
-```r
+Error in srt(v1): could not find function "srt"
 sqrt(-v1)
-```
-
-```
 Warning in sqrt(-v1): NaNs produced
-```
-
-```
 [1] NaN NaN NaN NaN
 ```
 
@@ -571,25 +331,10 @@ Comparações também funcionam com vetores.
 
 ```r
 x <= 5
-```
-
-```
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-```
-
-```r
 x > y
-```
-
-```
  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-```
-
-```r
 x < y
-```
-
-```
  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
@@ -599,18 +344,9 @@ Entre os operadores lógicos vistos na [tabela 1 do tópico 4](https://rawgit.co
 ```r
 # operador está contido em 
 2:4 %in% x
-```
-
-```
 [1] TRUE TRUE TRUE
-```
-
-```r
 # 2:4 são elementos de x?
 is.element(2:4, x)
-```
-
-```
 [1] TRUE TRUE TRUE
 ```
 
@@ -619,17 +355,8 @@ A função `nchar()` também funciona sobre cada elemento do vetor. Esse é mais
 
 ```r
 nchar(month.name)
-```
-
-```
  [1] 7 8 5 5 3 4 4 6 9 7 8 8
-```
-
-```r
 nchar(y)
-```
-
-```
  [1] 2 2 2 2 2 1 1 1 1 1
 ```
 
@@ -640,17 +367,8 @@ nchar(y)
 ```r
 vetor <- c(0, 1, -1, -2, 3, 5, -5)
 all(vetor < 0)  # todas as posições são maiores que 0 ?
-```
-
-```
 [1] FALSE
-```
-
-```r
 any(vetor > 0)  # alguma posição é maior que 0?
-```
-
-```
 [1] TRUE
 ```
 
@@ -676,9 +394,6 @@ Sequências de números formam um vetor. Há diversas formas de se gerar sequên
 # dias do ano
 dda <- 1:365
 dda
-```
-
-```
   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
  [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
  [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
@@ -701,46 +416,22 @@ dda
 [324] 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340
 [341] 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357
 [358] 358 359 360 361 362 363 364 365
-```
-
-```r
 # sequencia de anos
 anos <- 1961:1990
 anos
-```
-
-```
  [1] 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974
 [15] 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988
 [29] 1989 1990
-```
-
-```r
 # sequencia de inteiros decrescente
 si_dec <- 10:-10
 si_dec
-```
-
-```
  [1]  10   9   8   7   6   5   4   3   2   1   0  -1  -2  -3  -4  -5  -6
 [18]  -7  -8  -9 -10
-```
-
-```r
 # sequencia de numeros não inteiros
 seqn <- 1.5:10
 seqn
-```
-
-```
 [1] 1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5
-```
-
-```r
 c(seqn, 10)
-```
-
-```
  [1]  1.5  2.5  3.5  4.5  5.5  6.5  7.5  8.5  9.5 10.0
 ```
 
@@ -751,9 +442,6 @@ Mas para gerar uma sequencia de números não inteiros há uma função específ
 ```r
 # igual a c(snum, 10), mas usando o seq
 (snum_b <- seq(from = 1.5, to = 10, by = 0.5))
-```
-
-```
  [1]  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
 [15]  8.5  9.0  9.5 10.0
 ```
@@ -765,51 +453,24 @@ Exemplos de sequência de anos, meses e dias.
 anos_dec <- seq(2010, 2011, length.out = 365*2)
 # para ver só o início do vetor ao invés de todo o vetor
 head(anos_dec)
-```
-
-```
 [1] 2010.000 2010.001 2010.003 2010.004 2010.005 2010.007
-```
-
-```r
 # mas não dá pra ver a parte decimal, vamos alterar as opções 
 # aumentando as casas decimais
 options(digits = 6)
 # verifique agora
 head(anos_dec)
-```
-
-```
 [1] 2010.00 2010.00 2010.00 2010.00 2010.01 2010.01
-```
-
-```r
 # só os primeiros 30 elementos
 head(anos_dec, 30)
-```
-
-```
  [1] 2010.00 2010.00 2010.00 2010.00 2010.01 2010.01 2010.01 2010.01
  [9] 2010.01 2010.01 2010.01 2010.02 2010.02 2010.02 2010.02 2010.02
 [17] 2010.02 2010.02 2010.02 2010.03 2010.03 2010.03 2010.03 2010.03
 [25] 2010.03 2010.03 2010.04 2010.04 2010.04 2010.04
-```
-
-```r
 # para ver só o final do vetor yrFrac
 tail(anos_dec)
-```
-
-```
 [1] 2010.99 2010.99 2011.00 2011.00 2011.00 2011.00
-```
-
-```r
 # para ver só os último 50 elementos do yrFrac
 tail(anos_dec, 50)
-```
-
-```
  [1] 2010.93 2010.93 2010.94 2010.94 2010.94 2010.94 2010.94 2010.94
  [9] 2010.94 2010.95 2010.95 2010.95 2010.95 2010.95 2010.95 2010.95
 [17] 2010.95 2010.96 2010.96 2010.96 2010.96 2010.96 2010.96 2010.96
@@ -817,9 +478,6 @@ tail(anos_dec, 50)
 [33] 2010.98 2010.98 2010.98 2010.98 2010.98 2010.98 2010.98 2010.99
 [41] 2010.99 2010.99 2010.99 2010.99 2010.99 2010.99 2011.00 2011.00
 [49] 2011.00 2011.00
-```
-
-```r
 # pentadas
 pent <- seq(from = 1, to = 365, by = 5)
 # dencendios
@@ -827,9 +485,6 @@ decd <- seq(from = 1, to = 365, by = 10)
 # fracoes de dia 
 frac_d30mn <- seq(0, 365, length.out = 365*48) + 1
 head(frac_d30mn, 48*2)
-```
-
-```
  [1] 1.00000 1.02083 1.04167 1.06250 1.08334 1.10417 1.12501 1.14584
  [9] 1.16668 1.18751 1.20835 1.22918 1.25001 1.27085 1.29168 1.31252
 [17] 1.33335 1.35419 1.37502 1.39586 1.41669 1.43752 1.45836 1.47919
@@ -842,13 +497,7 @@ head(frac_d30mn, 48*2)
 [73] 2.50009 2.52092 2.54175 2.56259 2.58342 2.60426 2.62509 2.64593
 [81] 2.66676 2.68760 2.70843 2.72927 2.75010 2.77093 2.79177 2.81260
 [89] 2.83344 2.85427 2.87511 2.89594 2.91678 2.93761 2.95845 2.97928
-```
-
-```r
 tail(frac_d30mn, 48*2)
-```
-
-```
  [1] 364.021 364.042 364.062 364.083 364.104 364.125 364.146 364.167
  [9] 364.187 364.208 364.229 364.250 364.271 364.292 364.312 364.333
 [17] 364.354 364.375 364.396 364.417 364.437 364.458 364.479 364.500
@@ -861,86 +510,32 @@ tail(frac_d30mn, 48*2)
 [73] 365.521 365.542 365.562 365.583 365.604 365.625 365.646 365.667
 [81] 365.687 365.708 365.729 365.750 365.771 365.792 365.812 365.833
 [89] 365.854 365.875 365.896 365.917 365.937 365.958 365.979 366.000
-```
-
-```r
 # diferentes funções para gerar uma sequência
 an <- c(1,7,2,5,3,2)
 # gerando uma sequencia a partir de um número
 seq_len(length.out = 6)
-```
-
-```
 [1] 1 2 3 4 5 6
-```
-
-```r
 # gerando uma sequência a partir de um número
 seq(6)
-```
-
-```
 [1] 1 2 3 4 5 6
-```
-
-```r
 # de acordo com o tamanho do vetor gera-se uma sequencia 
 seq(along = an)
-```
-
-```
 [1] 1 2 3 4 5 6
-```
-
-```r
 seq(along = 0) #! melhor opção para gerar sequencias do tamanho do vetor
-```
-
-```
 [1] 1
-```
-
-```r
 seq(0) #! cuidado, veja ?seq para entender a razão desse resultado inusitado
-```
-
-```
 [1] 1 0
-```
-
-```r
 # conflito entre parâmetros
 # a <-seq(from = -5, to = 5, by = 0.05, length.out=200)
 s5by <- seq(from = -5, to = 5, by = 0.05)
 length(s5by)
-```
-
-```
 [1] 201
-```
-
-```r
 tail(s5by)
-```
-
-```
 [1] 4.75 4.80 4.85 4.90 4.95 5.00
-```
-
-```r
 s5len <- seq(from = -5, to = 5, length.out = 200)
 length(s5len)
-```
-
-```
 [1] 200
-```
-
-```r
 tail(s5len)
-```
-
-```
 [1] 4.74874 4.79899 4.84925 4.89950 4.94975 5.00000
 ```
 
@@ -950,18 +545,9 @@ tail(s5len)
 ```r
 rep_t4 <- rep(1:2, times = 4)
 rep_t4
-```
-
-```
 [1] 1 2 1 2 1 2 1 2
-```
-
-```r
 rep_e31 <-rep(1:12, each = 31)
 rep_e31
-```
-
-```
   [1]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
  [24]  1  1  1  1  1  1  1  1  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2
  [47]  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  3  3  3  3  3  3  3
@@ -979,23 +565,11 @@ rep_e31
 [323] 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12
 [346] 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12
 [369] 12 12 12 12
-```
-
-```r
 rep_t13 <- rep(c("chuva","sol"), times = c(1,3))
 rep_t13
-```
-
-```
 [1] "chuva" "sol"   "sol"   "sol"  
-```
-
-```r
 rep_t13_t4 <- rep(rep(c("chuva","sol"), times = c(1,3)), times = 4)
 rep_t13_t4
-```
-
-```
  [1] "chuva" "sol"   "sol"   "sol"   "chuva" "sol"   "sol"   "sol"  
  [9] "chuva" "sol"   "sol"   "sol"   "chuva" "sol"   "sol"   "sol"  
 ```
@@ -1021,14 +595,8 @@ prec <- c(300, 150, 210, 12, 0, 0, 12, 22, 80, 100, 0, 280)
 meses <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago", "Set", "Out", "Nov", "Dez")
 names(prec) <- meses
 prec
-```
-
-```
 Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
 300 150 210  12   0   0  12  22  80 100   0 280 
-```
-
-```r
 # gráfico de barras
 barplot(prec)
 box()
@@ -1041,14 +609,8 @@ box()
 temp <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
 names(temp) <- meses
 temp
-```
-
-```
  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8 
-```
-
-```r
 plot(temp, type = "o")
 ```
 
@@ -1072,19 +634,10 @@ Para selecionar o valor de chuva e temperatura só para janeiro, digitamos:
 ```r
 prec_jan <- prec[1]
 prec_jan
-```
-
-```
 Jan 
 300 
-```
-
-```r
 temp_jan <- temp[1]
 temp_jan
-```
-
-```
 Jan 
  25 
 ```
@@ -1096,19 +649,10 @@ Como selecionar os últimos valores dos vetores de chuva e temperatura?
 # vetor de temperatura do ar média mensal de um ano qualquer
 temp_dez <- temp[length(temp)]
 temp_dez
-```
-
-```
  Dez 
 26.8 
-```
-
-```r
 prec_dez <- prec[length(prec)]
 prec_dez
-```
-
-```
 Dez 
 280 
 ```
@@ -1121,42 +665,21 @@ sel_prec <- c(6,7,8)
 # vetor de chuva JJA
 prec_jja <- prec[sel_prec]
 prec_jja
-```
-
-```
 Jun Jul Ago 
   0  12  22 
-```
-
-```r
 # total de chuva trimestral nesse ano
 prect_jja_tot <- sum(prec_jja)
 prect_jja_tot
-```
-
-```
 [1] 34
-```
-
-```r
 # vetor de temperatura DJF
 sel_temp <- c(12,1,2)
 temp_djf <- temp[sel_temp]
 temp_djf
-```
-
-```
  Dez  Jan  Fev 
 26.8 25.0 23.2 
-```
-
-```r
 # temp média trimestral nesse ano
 temp_djf_med <- mean(temp_djf)
 temp_djf_med
-```
-
-```
 [1] 25
 ```
 
@@ -1168,29 +691,14 @@ Como selecionar todos valores menos o primeiro e o último?
 ```r
 # exceto o primeiro e ultimo
 prec[-c(1, length(prec))]
-```
-
-```
 Fev Mar Abr Mai Jun Jul Ago Set Out Nov 
 150 210  12   0   0  12  22  80 100   0 
-```
-
-```r
 # exceto os 3 primeiros meses
 temp[-c(1:3)]
-```
-
-```
  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8 
-```
-
-```r
 # exceto os 3 últimos meses
 temp[-c(length(temp):(length(temp)-2))]
-```
-
-```
  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 
 ```
@@ -1200,18 +708,9 @@ temp[-c(length(temp):(length(temp)-2))]
 
 ```r
 prec["Jan"]
-```
-
-```
 Jan 
 300 
-```
-
-```r
 prec[c("Dez", "Fev", "Jun")]
-```
-
-```
 Dez Fev Jun 
 280 150   0 
 ```
@@ -1225,9 +724,6 @@ Vamos criar um vetor lógico e usá-lo para exemplificar a seleção lógica de 
 vetor_l <- c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, 
     FALSE, TRUE)
 meses[vetor_l]
-```
-
-```
 [1] "Jan" "Abr" "Mai" "Jul" "Set" "Dez"
 ```
 
@@ -1236,9 +732,6 @@ Os elementos de `vetor_l` correspondentes a `TRUE` foram selecionados. Aplicando
 
 ```r
 sum(vetor_l)
-```
-
-```
 [1] 6
 ```
 
@@ -1249,35 +742,14 @@ Vamos considerar agora a seguinte forma do vetor lógico (`vetor_l`) e relembrar
 # vetor lógico
 vetor_l <- c(TRUE, FALSE)
 meses[vetor_l]
-```
-
-```
 [1] "Jan" "Mar" "Mai" "Jul" "Set" "Nov"
-```
-
-```r
 vetor_l <- c(TRUE, FALSE, FALSE)
 meses[vetor_l]
-```
-
-```
 [1] "Jan" "Abr" "Jul" "Out"
-```
-
-```r
 prec[c(TRUE,FALSE)]
-```
-
-```
 Jan Mar Mai Jul Set Nov 
 300 210   0  12  80   0 
-```
-
-```r
 temp[c(rep(FALSE,3),TRUE)]
-```
-
-```
  Abr  Ago  Dez 
 21.0 19.7 26.8 
 ```
@@ -1288,90 +760,39 @@ A indexação pode ser feita também por comparações:
 ```r
 # vetor prec
 prec
-```
-
-```
 Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
 300 150 210  12   0   0  12  22  80 100   0 280 
-```
-
-```r
 # teste para chuva > 80 mm/mês
 prec > 80
-```
-
-```
   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE 
-```
-
-```r
 # salvando resultado do teste
 above80 <- prec > 80
 # extraindo valores atendidos ao teste
 prec[above80]
-```
-
-```
 Jan Fev Mar Out Dez 
 300 150 210 100 280 
-```
-
-```r
 # teste para meses com chuva abaixo da média mensal
 (prec_med <- mean(prec))
-```
-
-```
 [1] 97.1667
-```
-
-```r
 # salvando resultado do teste
 (below_avg <- prec < prec_med)
-```
-
-```
   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
 FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE 
-```
-
-```r
 # extraindo valores que atendem a condição
 prec[below_avg]
-```
-
-```
 Abr Mai Jun Jul Ago Set Nov 
  12   0   0  12  22  80   0 
-```
-
-```r
 # extraindo os 3 primeiros meses com prec abaixo da média
 prec[below_avg][1:3]
-```
-
-```
 Abr Mai Jun 
  12   0   0 
-```
-
-```r
 # forma equivalente em uma linha só
 prec[prec < mean(prec)][1:3]
-```
-
-```
 Abr Mai Jun 
  12   0   0 
-```
-
-```r
 # teste para meses com prec diferente de zero
 prec[prec != 0]
-```
-
-```
 Jan Fev Mar Abr Jul Ago Set Out Dez 
 300 150 210  12  12  22  80 100 280 
 ```
@@ -1399,21 +820,12 @@ As diferenças entre os operadores são mostradas nos exemplos a seguir.
 ```r
 # prec
 prec
-```
-
-```
 Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez 
 300 150 210  12   0   0  12  22  80 100   0 280 
-```
-
-```r
 # combinação de operador lógico e relacional
 below100 <- prec > 0 & prec <= 100
 prec_cond1 <- prec[below100]
 prec_cond1
-```
-
-```
 Abr Jul Ago Set Out 
  12  12  22  80 100 
 ```
@@ -1426,36 +838,27 @@ a <- c(1, 1, 0, 1)
 b <- c(2, 1, 0, 1)
 # forma normal verifica cada elemento de a e cada elemento de b
 a == 1 & b == 1
-```
-
-```
 [1] FALSE  TRUE FALSE  TRUE
-```
-
-```r
 # forma dupla verifica somente o primeiro elemento de a e o primeiro
 # elemento de b retornando somente um resultado
 a == 1 && b == 1
-```
-
-```
 [1] FALSE
 ```
 
 
 
 
-----------------------------------------------------------
- a   b   a==1   b==1   a == 1 & b == 1   a == 1 && b == 1 
---- --- ------ ------ ----------------- ------------------
- 1   2   TRUE  FALSE        FALSE             FALSE       
+------------------------------------------------------------
+ a   b   a==1    b==1    a == 1 & b == 1   a == 1 && b == 1 
+--- --- ------- ------- ----------------- ------------------
+ 1   2   TRUE    FALSE        FALSE             FALSE       
 
- 1   1   TRUE   TRUE        TRUE                          
+ 1   1   TRUE    TRUE         TRUE                          
 
- 0   0  FALSE  FALSE        FALSE                         
+ 0   0   FALSE   FALSE        FALSE                         
 
- 1   1   TRUE   TRUE        TRUE                          
-----------------------------------------------------------
+ 1   1   TRUE    TRUE         TRUE                          
+------------------------------------------------------------
 
 Table: Demostração da diferença entre & e &&.
 
@@ -1478,23 +881,11 @@ tar_hor <- c(19.9, 19.8, 19.5, 19.4, 19.4, 19.3,
 plot(horas, tar_hor, type = "o", pch = 20)
 # temperaturas noturnas abaixo de 20ºC
 (night_below20 <- (horas < 6 | horas > 18) & tar_hor < 20)
-```
-
-```
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
 [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
 [23]  TRUE  TRUE
-```
-
-```r
 tar_hor[night_below20]
-```
-
-```
 [1] 19.9 19.8 19.5 19.4 19.4 19.3 19.8 19.6 19.4
-```
-
-```r
 # destacando no gráfico
 points(x = horas[night_below20], 
        y = tar_hor[night_below20], 
@@ -1518,99 +909,36 @@ Vimos que a filtragem consiste em extrair elementos de um vetor que satisfaça u
 names(prec) <- NULL
 # combinação de operador lógico e relacional
 below100
-```
-
-```
   Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov   Dez 
 FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE 
-```
-
-```r
 which(below100)
-```
-
-```
 Abr Jul Ago Set Out 
   4   7   8   9  10 
-```
-
-```r
 # qual os meses em que a chuva foi acima da media
 which(prec > prec_med)
-```
-
-```
 [1]  1  2  3 10 12
-```
-
-```r
 prec[which(prec > prec_med)]
-```
-
-```
 [1] 300 150 210 100 280
-```
-
-```r
 # Qual a temp quando a chuva ou a temp foi acima da media?
 sel <- which(prec > prec_med | !temp < mean(temp))
 sel
-```
-
-```
 Jan Fev Mar Out Nov Dez 
   1   2   3  10  11  12 
-```
-
-```r
 prec[sel]
-```
-
-```
 [1] 300 150 210 100   0 280
-```
-
-```r
 # quais posições do vetor prec não choveu
 which(prec == 0)
-```
-
-```
 [1]  5  6 11
-```
-
-```r
 # quando ocorreu a prec max
 which(prec == max(prec))
-```
-
-```
 [1] 1
-```
-
-```r
 # equivalente a ...
 which.max(prec)
-```
-
-```
 [1] 1
-```
-
-```r
 # seleciona só a primeira ocorrência!
 which.min(prec)
-```
-
-```
 [1] 5
-```
-
-```r
 prec
-```
-
-```
  [1] 300 150 210  12   0   0  12  22  80 100   0 280
 ```
 
@@ -1620,44 +948,17 @@ Um outro operador útil para comparação entre vetores é o operador `%in%`, qu
 ```r
 # compare o tamanho dos vetores resultantes
 which(meses %in% c("JAN", "Feb", "Mar"))
-```
-
-```
 [1] 3
-```
-
-```r
 # note a diferença
 which(c("JAN", "Feb", "Mar") %in% meses)
-```
-
-```
 [1] 3
-```
-
-```r
 cond <- names(temp) %in% c("Jun", "Jul", "Ago")
 quais <- which(cond)
 quais
-```
-
-```
 [1] 6 7 8
-```
-
-```r
 prec[cond]
-```
-
-```
 [1]  0 12 22
-```
-
-```r
 prec[quais]
-```
-
-```
 [1]  0 12 22
 ```
 
@@ -1670,32 +971,17 @@ pos <- 10
 # valor da temperatura naquela posição
 old_temp <- temp[pos]   
 old_temp
-```
-
-```
 Out 
  22 
-```
-
-```r
 # vetor de temperatura
 temp
-```
-
-```
  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8 
-```
-
-```r
 # substituição do valor original por um novo valor
 new_temp <- 30
 # alterando temperatura do mês de outubro
 temp[pos] <- new_temp
 temp
-```
-
-```
  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 30.0 24.0 26.8 
 ```
@@ -1705,28 +991,13 @@ A substituição também pode ser feita também pelo nome das variáveis.
 
 ```r
 prec
-```
-
-```
  [1] 300 150 210  12   0   0  12  22  80 100   0 280
-```
-
-```r
 prec["Mai"] <- 5
 temp
-```
-
-```
  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 30.0 24.0 26.8 
-```
-
-```r
 temp[c("Mai", "Jul")] <- temp[c("Mai", "Jul")] + 2
 temp
-```
-
-```
  Jan  Fev  Mar  Abr  Mai  Jun  Jul  Ago  Set  Out  Nov  Dez 
 25.0 23.2 22.5 21.0 21.0 17.6 20.0 19.7 21.3 30.0 24.0 26.8 
 ```
@@ -1740,58 +1011,25 @@ Outra forma de se criar vetores é através da função `vector()`.
 # criação de vetor v
 v <- 3
 v
-```
-
-```
 [1] 3
-```
-
-```r
 # adicionando elementos
 v[2] <- 100
 v
-```
-
-```
 [1]   3 100
-```
-
-```r
 v[5] <- 6
 v
-```
-
-```
 [1]   3 100  NA  NA   6
-```
-
-```r
 # adicionando elementos de vetores
 x <- c(88, 5, 12, 13)
 x <- c(x[1:3], 168, x[4])  # insere 168 antes do 13
 x
-```
-
-```
 [1]  88   5  12 168  13
-```
-
-```r
 # outra opção
 k <- vector()
 class(k)
-```
-
-```
 [1] "logical"
-```
-
-```r
 # vetor k existe?
 ls()
-```
-
-```
  [1] "a"             "above80"       "an"            "anos"         
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cond"          "cte"          
@@ -1810,142 +1048,58 @@ ls()
 [61] "v_123b"        "v2"            "v3"            "vetor"        
 [65] "vetor_char"    "vetor_int"     "vetor_l"       "vetor_log"    
 [69] "vetor_num"     "x"             "y"             "z"            
-```
-
-```r
 # alocando o valor 45 no 3º elemento de k
 k[3] <- 45
 k
-```
-
-```
 [1] NA NA 45
-```
-
-```r
 class(k)
-```
-
-```
 [1] "numeric"
-```
-
-```r
 # diminuindo o tamanho de k
 length(k)
-```
-
-```
 [1] 3
-```
-
-```r
 length(k) <- 2
 k
-```
-
-```
 [1] NA NA
-```
-
-```r
 length(k) <- 0
 k
-```
-
-```
 numeric(0)
-```
-
-```r
 class(k)
-```
-
-```
 [1] "numeric"
-```
-
-```r
 is.null(k)
-```
-
-```
 [1] FALSE
-```
-
-```r
 # exemplo
 temp <- c(25, 23.2, 22.5, 21, 19, 17.6, 18, 19.7, 21.3, 22, 24, 26.8)
 temp_orig <- temp
 # mostrando o vetor temp
 temp
-```
-
-```
  [1] 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8
-```
-
-```r
 temp[]
-```
-
-```
  [1] 25.0 23.2 22.5 21.0 19.0 17.6 18.0 19.7 21.3 22.0 24.0 26.8
-```
-
-```r
 # substituir todos elementos do vetor temp por um vetor com apenas um valor
 temp <- 0
 temp
-```
-
-```
 [1] 0
-```
-
-```r
 # vamos redefinir temp e comparar o anterior com o obtido com o próximo
 # comando
 temp <- temp_orig
 temp[1:length(temp)] <- 0
 temp
-```
-
-```
  [1] 0 0 0 0 0 0 0 0 0 0 0 0
-```
-
-```r
 # qual diferença de x <- 0 e x[] <-0 ?
 temp <- temp_orig
 temp[] <- 0
 temp
-```
-
-```
  [1] 0 0 0 0 0 0 0 0 0 0 0 0
-```
-
-```r
 # Um vetor com tamanho pre-definido e do tipo numeric
 umvetor <- vector(mode = "numeric", length = 100)
 umvetor
-```
-
-```
   [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  [36] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  [71] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-```
-
-```r
 # populando o vetor
 umvetor[1] <- 10
 umvetor[10] <- 100
 umvetor
-```
-
-```
   [1]  10   0   0   0   0   0   0   0   0 100   0   0   0   0   0   0   0
  [18]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
  [35]   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
@@ -1963,132 +1117,51 @@ No R dados faltantes são representados pela string `NA`.
 ```r
 v1 <- c(1:8,NA)
 v1 > 5    # NA sai na resposta
-```
-
-```
 [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE    NA
-```
-
-```r
 # teste lógico com o operador idêntico "=="
 v1 == NA  
-```
-
-```
 [1] NA NA NA NA NA NA NA NA NA
-```
-
-```r
 # não funcionou, porque há funções específicas para vetores com NA
 onde_falta <- is.na(v1)
 # função apropriada p/ checar se tem NAs
 faltante <- which(is.na(v1));
 v1[-faltante]
-```
-
-```
 [1] 1 2 3 4 5 6 7 8
-```
-
-```r
 # ou 
 v1[!onde_falta]
-```
-
-```
 [1] 1 2 3 4 5 6 7 8
-```
-
-```r
 # vamos calcular a média de v1
 sum(v1)/length(v1)
-```
-
-```
 [1] NA
-```
-
-```r
 # vamos remover valores NA
 sum(v1[-faltante])/length(v1[-faltante])
-```
-
-```
 [1] 4.5
-```
-
-```r
 sum(v1[!onde_falta])/length(v1[!onde_falta])
-```
-
-```
 [1] 4.5
-```
-
-```r
 # mas o R possui a função mean 
 mean(v1) 
-```
-
-```
 [1] NA
-```
-
-```r
 # não retornou o que desejamos, removendo as posicoes dos dados faltantes
 mean(v1[-faltante])
-```
-
-```
 [1] 4.5
-```
-
-```r
 # ok, mas olhando o help ...
 #?mean
 mean(v1, na.rm=TRUE)
-```
-
-```
 [1] 4.5
-```
-
-```r
 # definir como faltante todos elementos de v1
 v1[] <- NA
 v1
-```
-
-```
 [1] NA NA NA NA NA NA NA NA NA
-```
-
-```r
 length(v1)
-```
-
-```
 [1] 9
-```
-
-```r
 # vetor com dados faltantes indicados por -999
 # substituir onde é -999 por NA
 x <- c(-999, 10, 15, -999, 50)
 x == -999
-```
-
-```
 [1]  TRUE FALSE FALSE  TRUE FALSE
-```
-
-```r
 x[x == -999] <- NA 
 # total de dados faltantes
 sum(!is.na(x))
-```
-
-```
 [1] 3
 ```
 
@@ -2101,9 +1174,6 @@ O `NULL` é um tipo de dado especial do R.
 ```r
 # v1 existe ?
 ls()
-```
-
-```
  [1] "a"             "above80"       "an"            "anos"         
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cond"          "cte"          
@@ -2123,23 +1193,11 @@ ls()
 [65] "v_123b"        "v2"            "v3"            "vetor"        
 [69] "vetor_char"    "vetor_int"     "vetor_l"       "vetor_log"    
 [73] "vetor_num"     "x"             "y"             "z"            
-```
-
-```r
 exists("v1")
-```
-
-```
 [1] TRUE
-```
-
-```r
 # vamos anular todo v1
 v1 <- NULL
 ls()
-```
-
-```
  [1] "a"             "above80"       "an"            "anos"         
  [5] "anos_dec"      "a_sn"          "b"             "below100"     
  [9] "below_avg"     "chuva"         "cond"          "cte"          
@@ -2159,140 +1217,50 @@ ls()
 [65] "v_123b"        "v2"            "v3"            "vetor"        
 [69] "vetor_char"    "vetor_int"     "vetor_l"       "vetor_log"    
 [73] "vetor_num"     "x"             "y"             "z"            
-```
-
-```r
 v1
-```
-
-```
 NULL
-```
-
-```r
 # NULL
 vetor1 <- c()
 vetor2 <- NULL
 is.null(c(vetor1, vetor2))
-```
-
-```
 [1] TRUE
-```
-
-```r
 # vetor1 e vetor2 são equivalentes?
 identical(vetor1, vetor2)
-```
-
-```
 [1] TRUE
-```
-
-```r
 # remoção de elementos de um vetor com NULL
 a <- c(10, 2, NA, 20)
 a
-```
-
-```
 [1] 10  2 NA 20
-```
-
-```r
 typeof(a)
-```
-
-```
 [1] "double"
-```
-
-```r
 # remover de a o dado faltante
 a <- a[!is.na(a)]
 a
-```
-
-```
 [1] 10  2 20
-```
-
-```r
 # é possível remover um elemento com o NULL?
 a[length(a)] <- NULL
-```
-
-```
 Error in a[length(a)] <- NULL: replacement has length zero
-```
-
-```r
 a
-```
-
-```
 [1] 10  2 20
-```
-
-```r
 a <- a[-length(a)]
 a
-```
-
-```
 [1] 10  2
-```
-
-```r
 typeof(a)
-```
-
-```
 [1] "double"
-```
-
-```r
 # anulando a
 a <- NULL
 # qual modo de um objeto nulo?
 typeof(a)
-```
-
-```
 [1] "NULL"
-```
-
-```r
 # qual modo de NA?
 b <- NA
 b
-```
-
-```
 [1] NA
-```
-
-```r
 typeof(b)
-```
-
-```
 [1] "logical"
-```
-
-```r
 length(a)
-```
-
-```
 [1] 0
-```
-
-```r
 length(b)
-```
-
-```
 [1] 1
 ```
 
@@ -2313,84 +1281,33 @@ O R reorganizará os elementos do vetor de acordo com as dimensões.
 ```r
 v <- vetor <- 1:12
 length(v)
-```
-
-```
 [1] 12
-```
-
-```r
 attributes(v)
-```
-
-```
 NULL
-```
-
-```r
 typeof(v)
-```
-
-```
 [1] "integer"
-```
-
-```r
 # conversão de vetor para matriz
 dim(v) <- c(3, 4)  # 1a dimensão: linhas , 2a dimensão: colunas 
 # v é vector?
 is.vector(v)
-```
-
-```
 [1] FALSE
-```
-
-```r
 # v é matrix?
 is.matrix(v)
-```
-
-```
 [1] TRUE
-```
-
-```r
 # classe de vetor
 class(v)
-```
-
-```
 [1] "matrix"
-```
-
-```r
 attributes(v)
-```
-
-```
 $dim
 [1] 3 4
-```
-
-```r
 v
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
-```
-
-```r
 # invertendo as dimensões
 dim(v) <- c(4, 3)
 v
-```
-
-```
      [,1] [,2] [,3]
 [1,]    1    5    9
 [2,]    2    6   10
@@ -2415,9 +1332,6 @@ Ao aplicarmos a função `matrix()` a um vetor sem especificar nenhum argumento 
 # atribuindo novas dimensões ao vetor
 m <- matrix(vetor)  # matriz de uma coluna
 m
-```
-
-```
       [,1]
  [1,]    1
  [2,]    2
@@ -2440,22 +1354,13 @@ Se desejamos construir uma matriz com 3 linhas e 4 colunas a partir do vetor `ve
 # criando a matriz gerada com dim
 mat <- matrix(vetor, nrow = 3, ncol = 4)
 mat
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
 [3,]    3    6    9   12
-```
-
-```r
 # não há necessidade de especificar ambos ncol e nrow
 mat <- matrix(vetor, nrow = 3)
 mat
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
@@ -2469,16 +1374,10 @@ A matriz `mat` poderia ser criada especificando os valores de cada elemento :
 # criando a matriz gerada com dim
 mat <- matrix(nrow = 3, ncol = 4)
 mat
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]   NA   NA   NA   NA
 [2,]   NA   NA   NA   NA
 [3,]   NA   NA   NA   NA
-```
-
-```r
 mat[1, 1] <- 1
 mat[2, 1] <- 2
 mat[3, 1] <- 3
@@ -2492,9 +1391,6 @@ mat[1, 4] <- 10
 mat[2, 4] <- 11
 mat[3, 4] <- 12
 mat
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    4    7   10
 [2,]    2    5    8   11
@@ -2507,9 +1403,6 @@ No exemplo a seguir os dados do vetor aparecem distribuídos ao longo das linhas
 ```r
 mat <- matrix(vetor, ncol = 4, byrow = TRUE)
 mat
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
 [2,]    5    6    7    8
@@ -2534,22 +1427,13 @@ temp92 <- c(23.2, 26.61, 18, 23.11, 26.8, 21.3, 18.22, 21.45, 19.7, 22.5, 24.07,
 # vetor com as temperaturas dos 3 anos
 vtemp <- c(temp90, temp91, temp92)
 vtemp
-```
-
-```
  [1] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 [12] 26.80 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45
 [23] 26.61 25.99 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70
 [34] 22.50 24.07 20.08
-```
-
-```r
 # arranjar matrix com meses ao longo das colunas e anos ao longo das linhas
 temp_mat <- matrix(vtemp, ncol = 12, byrow = TRUE)
 temp_mat
-```
-
-```
       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2558,9 +1442,6 @@ temp_mat
 [1,] 26.80
 [2,] 25.99
 [3,] 20.08
-```
-
-```r
 # cópia da matriz temp_mat (sem nomes)
 temp_matO <- temp_mat
 ```
@@ -2574,9 +1455,6 @@ rownames(temp_mat) <- c("ano1990", "ano1991", "ano1992")
 colnames(temp_mat) <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", 
     "Set", "Out", "Nov", "Dez")
 temp_mat
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2594,9 +1472,6 @@ Como acessamos o valor de temperatura de maio de 1991 na matriz `temp_mat`?
 
 ```r
 temp_mat  # matriz de temperaturas com nomes
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2605,13 +1480,7 @@ ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 26.80
 ano1991 25.99
 ano1992 20.08
-```
-
-```r
 temp_matO  # matriz de temperaturas sem nomes
-```
-
-```
       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 [1,] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 [2,] 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2620,27 +1489,15 @@ temp_matO  # matriz de temperaturas sem nomes
 [1,] 26.80
 [2,] 25.99
 [3,] 20.08
-```
-
-```r
 # qual a linha do ano de 1991
 linha <- 2
 # qual a coluna do mês de maio
 coluna <- 5
 # extraindo
 temp_mat[linha, coluna]
-```
-
-```
 [1] 18.29
-```
-
-```r
 # ou usando os nomes
 temp_mat["ano1991", "Mai"]
-```
-
-```
 [1] 18.29
 ```
 
@@ -2652,51 +1509,24 @@ Com o operador `[` podemos usar todos os esquemas de indexação vistos em vetor
 ```r
 # temperaturas de todos janeiros
 temp_mat[, 1]
-```
-
-```
 ano1990 ano1991 ano1992 
   25.00   24.89   23.20 
-```
-
-```r
 temp_mat[, "Jan"]
-```
-
-```
 ano1990 ano1991 ano1992 
   25.00   24.89   23.20 
-```
-
-```r
 # só as temperaturas de 1990 e 1993
 temp_mat[-2, ]
-```
-
-```
          Jan   Fev  Mar   Abr  Mai  Jun   Jul   Ago  Set  Out   Nov   Dez
 ano1990 25.0 23.20 22.5 21.00 19.0 17.6 18.00 19.70 21.3 22.0 24.00 26.80
 ano1992 23.2 26.61 18.0 23.11 26.8 21.3 18.22 21.45 19.7 22.5 24.07 20.08
-```
-
-```r
 # só as temperaturas dos verões
 temp_mat[, c(12, 1, 2)]
-```
-
-```
           Dez   Jan   Fev
 ano1990 26.80 25.00 23.20
 ano1991 25.99 24.89 24.07
 ano1992 20.08 23.20 26.61
-```
-
-```r
 # invertendo ordem das colunas
 temp_mat[, ncol(temp_mat):1]
-```
-
-```
           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev
 ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20
 ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07
@@ -2705,14 +1535,8 @@ ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61
 ano1990 25.00
 ano1991 24.89
 ano1992 23.20
-```
-
-```r
 # invertendo ordem das colunas e das linhas
 temp_mat[3:1, 12:1]
-```
-
-```
           Dez   Nov   Out   Set   Ago   Jul   Jun   Mai   Abr   Mar   Fev
 ano1992 20.08 24.07 22.50 19.70 21.45 18.22 21.30 26.80 23.11 18.00 26.61
 ano1991 25.99 26.61 21.45 20.08 19.37 16.72 18.22 18.29 23.11 23.56 24.07
@@ -2721,62 +1545,32 @@ ano1990 26.80 24.00 22.00 21.30 19.70 18.00 17.60 19.00 21.00 22.50 23.20
 ano1992 23.20
 ano1991 24.89
 ano1990 25.00
-```
-
-```r
 # invertendo ordem das colunas e das linhas
 temp_mat[c(2, 1, 3), c(6:1, 12, 10:8)]
-```
-
-```
           Jun   Mai   Abr   Mar   Fev   Jan   Dez   Out   Set   Ago
 ano1991 18.22 18.29 23.11 23.56 24.07 24.89 25.99 21.45 20.08 19.37
 ano1990 17.60 19.00 21.00 22.50 23.20 25.00 26.80 22.00 21.30 19.70
 ano1992 21.30 26.80 23.11 18.00 26.61 23.20 20.08 22.50 19.70 21.45
-```
-
-```r
 # só as temperaturas dos invernos
 temp_mat[, colnames(temp_mat) %in% c("Jun", "Jul", "Ago")]
-```
-
-```
           Jun   Jul   Ago
 ano1990 17.60 18.00 19.70
 ano1991 18.22 16.72 19.37
 ano1992 21.30 18.22 21.45
-```
-
-```r
 # exceto as temperaturas dos invernos
 temp_mat[, -which(colnames(temp_mat) %in% c("Jun", "Jul", "Ago"))]
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Set   Out   Nov   Dez
 ano1990 25.00 23.20 22.50 21.00 19.00 21.30 22.00 24.00 26.80
 ano1991 24.89 24.07 23.56 23.11 18.29 20.08 21.45 26.61 25.99
 ano1992 23.20 26.61 18.00 23.11 26.80 19.70 22.50 24.07 20.08
-```
-
-```r
 # seleção de colunas intercaladas da matriz: mês sim, mês nao
 temp_mat[, c(TRUE, FALSE)]
-```
-
-```
           Jan   Mar   Mai   Jul   Set   Nov
 ano1990 25.00 22.50 19.00 18.00 21.30 24.00
 ano1991 24.89 23.56 18.29 16.72 20.08 26.61
 ano1992 23.20 18.00 26.80 18.22 19.70 24.07
-```
-
-```r
 # 2 meses sim, 1 mes não
 temp_mat[, c(TRUE, TRUE, FALSE)]
-```
-
-```
           Jan   Fev   Abr   Mai   Jul   Ago   Out   Nov
 ano1990 25.00 23.20 21.00 19.00 18.00 19.70 22.00 24.00
 ano1991 24.89 24.07 23.11 18.29 16.72 19.37 21.45 26.61
@@ -2788,9 +1582,6 @@ Podemos fazer uso do operador `[` de forma aninhada:
 
 ```r
 temp_mat
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2799,33 +1590,15 @@ ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 26.80
 ano1991 25.99
 ano1992 20.08
-```
-
-```r
 temp_mat[, 1:6]
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22
 ano1992 23.20 26.61 18.00 23.11 26.80 21.30
-```
-
-```r
 temp_mat[, 1:6]["ano1991", ]
-```
-
-```
   Jan   Fev   Mar   Abr   Mai   Jun 
 24.89 24.07 23.56 23.11 18.29 18.22 
-```
-
-```r
 temp_mat[, 1:6]["ano1991", ][2:4]
-```
-
-```
   Fev   Mar   Abr 
 24.07 23.56 23.11 
 ```
@@ -2836,9 +1609,6 @@ Podemos substituir valores de uma submatriz da matriz:
 ```r
 M <- temp_mat
 M
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2847,37 +1617,19 @@ ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 26.80
 ano1991 25.99
 ano1992 20.08
-```
-
-```r
 # 1990 e 1992 os meses de jan e dez
 M[c(1, 3), c(1, 12)]
-```
-
-```
          Jan   Dez
 ano1990 25.0 26.80
 ano1992 23.2 20.08
-```
-
-```r
 # matriz com novos valores
 matrix(c(21, 22, 23, 24), ncol = 2)
-```
-
-```
      [,1] [,2]
 [1,]   21   23
 [2,]   22   24
-```
-
-```r
 # substituindo
 M[c(1, 3), c(1, 12)] <- matrix(c(21, 22, 23, 24), ncol = 2)
 M
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2895,20 +1647,11 @@ Partes de uma matriz podem ser substituídas ou alteradas.
 mx <- matrix(nrow = 3, ncol = 3)
 my <- matrix(c(4, 5, 2, 3), nrow = 2)
 my
-```
-
-```
      [,1] [,2]
 [1,]    4    2
 [2,]    5    3
-```
-
-```r
 mx[2:3, 2:3] <- my
 mx
-```
-
-```
      [,1] [,2] [,3]
 [1,]   NA   NA   NA
 [2,]   NA    4    2
@@ -2920,9 +1663,6 @@ mx
 
 ```r
 M
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 21.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -2931,29 +1671,11 @@ ano1992 22.00 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 23.00
 ano1991 25.99
 ano1992 24.00
-```
-
-```r
 ncol(temp_mat)
-```
-
-```
 [1] 12
-```
-
-```r
 nrow(temp_mat)
-```
-
-```
 [1] 3
-```
-
-```r
 dim(temp_mat)
-```
-
-```
 [1]  3 12
 ```
 
@@ -2963,159 +1685,78 @@ Existem funções específicas para saber a coluna e a linha de cada elemento de
 ```r
 # colunas de cada elemento da matriz
 col(temp_mat)
-```
-
-```
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]
 [1,]    1    2    3    4    5    6    7    8    9    10    11    12
 [2,]    1    2    3    4    5    6    7    8    9    10    11    12
 [3,]    1    2    3    4    5    6    7    8    9    10    11    12
-```
-
-```r
 # linhas de cada elemento da matriz
 row(temp_mat)
-```
-
-```
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]
 [1,]    1    1    1    1    1    1    1    1    1     1     1     1
 [2,]    2    2    2    2    2    2    2    2    2     2     2     2
 [3,]    3    3    3    3    3    3    3    3    3     3     3     3
-```
-
-```r
 # elementos de matriz
 m <- matrix(1:16, nrow = 4, byrow = TRUE)
 m
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
 [2,]    5    6    7    8
 [3,]    9   10   11   12
 [4,]   13   14   15   16
-```
-
-```r
 # nós veremos mais sobre a função paste futuramente
 elementos <- paste("m", row(m), col(m), sep = "")
 mel <- matrix(elementos, ncol = 4)
 mel
-```
-
-```
      [,1]  [,2]  [,3]  [,4] 
 [1,] "m11" "m12" "m13" "m14"
 [2,] "m21" "m22" "m23" "m24"
 [3,] "m31" "m32" "m33" "m34"
 [4,] "m41" "m42" "m43" "m44"
-```
-
-```r
 # qual colunas de M são idênticas a 1
 col(m) == 1
-```
-
-```
      [,1]  [,2]  [,3]  [,4]
 [1,] TRUE FALSE FALSE FALSE
 [2,] TRUE FALSE FALSE FALSE
 [3,] TRUE FALSE FALSE FALSE
 [4,] TRUE FALSE FALSE FALSE
-```
-
-```r
 # seleciona na M colunas idênticas a 1
 mel[col(m) == 1]
-```
-
-```
 [1] "m11" "m21" "m31" "m41"
-```
-
-```r
 # qual colunas de M são idênticas a 1 ou 3?
 col(m) == 1 | col(m) == 3
-```
-
-```
      [,1]  [,2] [,3]  [,4]
 [1,] TRUE FALSE TRUE FALSE
 [2,] TRUE FALSE TRUE FALSE
 [3,] TRUE FALSE TRUE FALSE
 [4,] TRUE FALSE TRUE FALSE
-```
-
-```r
 # Usando operadores relacionais
 row(m) == 1
-```
-
-```
       [,1]  [,2]  [,3]  [,4]
 [1,]  TRUE  TRUE  TRUE  TRUE
 [2,] FALSE FALSE FALSE FALSE
 [3,] FALSE FALSE FALSE FALSE
 [4,] FALSE FALSE FALSE FALSE
-```
-
-```r
 col(m) == 3
-```
-
-```
       [,1]  [,2] [,3]  [,4]
 [1,] FALSE FALSE TRUE FALSE
 [2,] FALSE FALSE TRUE FALSE
 [3,] FALSE FALSE TRUE FALSE
 [4,] FALSE FALSE TRUE FALSE
-```
-
-```r
 row(m) == 1 | col(m) == 3
-```
-
-```
       [,1]  [,2] [,3]  [,4]
 [1,]  TRUE  TRUE TRUE  TRUE
 [2,] FALSE FALSE TRUE FALSE
 [3,] FALSE FALSE TRUE FALSE
 [4,] FALSE FALSE TRUE FALSE
-```
-
-```r
 # seleciona valores de M posicionados na linha 1 OU na coluna 6
 mel[row(m) == 1 | col(m) == 4]
-```
-
-```
 [1] "m11" "m12" "m13" "m14" "m24" "m34" "m44"
-```
-
-```r
 m[row(m) == 1 | col(m) == 4]
-```
-
-```
 [1]  1  2  3  4  8 12 16
-```
-
-```r
 # seleciona valores de M posicionados na linha 1 E na coluna 6
 mel[row(m) == 4 & col(m) == 4]
-```
-
-```
 [1] "m44"
-```
-
-```r
 m[row(m) == 4 & col(m) == 4]
-```
-
-```
 [1] 16
 ```
 
@@ -3124,9 +1765,6 @@ m[row(m) == 4 & col(m) == 4]
 
 ```r
 (temp_mat_lin <- rbind(temp90, temp91, temp92))
-```
-
-```
         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 temp90 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 temp91 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -3135,13 +1773,7 @@ temp92 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 temp90 26.80
 temp91 25.99
 temp92 20.08
-```
-
-```r
 (temp_mat_col <- cbind(temp90, temp91, temp92))
-```
-
-```
       temp90 temp91 temp92
  [1,]   25.0  24.89  23.20
  [2,]   23.2  24.07  26.61
@@ -3155,30 +1787,15 @@ temp92 20.08
 [10,]   22.0  21.45  22.50
 [11,]   24.0  26.61  24.07
 [12,]   26.8  25.99  20.08
-```
-
-```r
 # recursão
 rbind(1:10, 11, 21:25)
-```
-
-```
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 [1,]    1    2    3    4    5    6    7    8    9    10
 [2,]   11   11   11   11   11   11   11   11   11    11
 [3,]   21   22   23   24   25   21   22   23   24    25
-```
-
-```r
 cbind(10:6, 5:4, 0)
-```
-
-```
 Warning in cbind(10:6, 5:4, 0): number of rows of result is not a multiple
 of vector length (arg 2)
-```
-
-```
      [,1] [,2] [,3]
 [1,]   10    5    0
 [2,]    9    4    0
@@ -3193,9 +1810,6 @@ A primeira entre as diversas funções de álgebra matricial no R é a transpost
 
 ```r
 temp_mat
-```
-
-```
           Jan   Fev   Mar   Abr   Mai   Jun   Jul   Ago   Set   Out   Nov
 ano1990 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 ano1991 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45 26.61
@@ -3204,13 +1818,7 @@ ano1992 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70 22.50 24.07
 ano1990 26.80
 ano1991 25.99
 ano1992 20.08
-```
-
-```r
 t(temp_mat)
-```
-
-```
     ano1990 ano1991 ano1992
 Jan    25.0   24.89   23.20
 Fev    23.2   24.07   26.61
@@ -3224,38 +1832,20 @@ Set    21.3   20.08   19.70
 Out    22.0   21.45   22.50
 Nov    24.0   26.61   24.07
 Dez    26.8   25.99   20.08
-```
-
-```r
 mel
-```
-
-```
      [,1]  [,2]  [,3]  [,4] 
 [1,] "m11" "m12" "m13" "m14"
 [2,] "m21" "m22" "m23" "m24"
 [3,] "m31" "m32" "m33" "m34"
 [4,] "m41" "m42" "m43" "m44"
-```
-
-```r
 t(mel)
-```
-
-```
      [,1]  [,2]  [,3]  [,4] 
 [1,] "m11" "m21" "m31" "m41"
 [2,] "m12" "m22" "m32" "m42"
 [3,] "m13" "m23" "m33" "m43"
 [4,] "m14" "m24" "m34" "m44"
-```
-
-```r
 # diagonal de mel
 diag(mel)
-```
-
-```
 [1] "m11" "m22" "m33" "m44"
 ```
 
@@ -3270,64 +1860,31 @@ Operações algébricas, incluindo a multiplicação `*`, atuam elemento a eleme
 # multiplicação de duas matrizes
 A <- matrix(c(2, 1, 4, 3, 0, 5), ncol = 2)
 A
-```
-
-```
      [,1] [,2]
 [1,]    2    3
 [2,]    1    0
 [3,]    4    5
-```
-
-```r
 B <- matrix(c(3, 2, 1, 4), ncol = 2)
 B
-```
-
-```
      [,1] [,2]
 [1,]    3    1
 [2,]    2    4
-```
-
-```r
 A * B
-```
-
-```
 Error in A * B: non-conformable arrays
-```
-
-```r
 prodMat <- A %*% B
 prodMat
-```
-
-```
      [,1] [,2]
 [1,]   12   14
 [2,]    3    1
 [3,]   22   24
-```
-
-```r
 # multiplicação de uma matriz por um escalar
 m
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
 [2,]    5    6    7    8
 [3,]    9   10   11   12
 [4,]   13   14   15   16
-```
-
-```r
 m * 2
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    2    4    6    8
 [2,]   10   12   14   16
@@ -3340,21 +1897,12 @@ m * 2
 
 ```r
 m
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    1    2    3    4
 [2,]    5    6    7    8
 [3,]    9   10   11   12
 [4,]   13   14   15   16
-```
-
-```r
 m + m
-```
-
-```
      [,1] [,2] [,3] [,4]
 [1,]    2    4    6    8
 [2,]   10   12   14   16
@@ -3369,18 +1917,9 @@ m + m
 u <- 1:3
 v <- c(5, 12, 13)
 u * v
-```
-
-```
 [1]  5 24 39
-```
-
-```r
 # produto escalar = u.v = 1*5 + 2*12 + 3*13
 crossprod(u, v)
-```
-
-```
      [,1]
 [1,]   68
 ```
@@ -3392,9 +1931,6 @@ crossprod(u, v)
 # matriz exemplo
 mat_ex <- matrix(c(1, -7, 3, 5, -9, 2, 6, 6, 1), ncol = 3)
 det(mat_ex)
-```
-
-```
 [1] 182
 ```
 
@@ -3411,9 +1947,6 @@ coefs <- matrix(c(1, -1, 1, 1), ncol = 2)
 y <- c(2, 4)
 x <- solve(coefs, y)
 x
-```
-
-```
 [1] -1  3
 ```
 
@@ -3426,167 +1959,77 @@ Frequentemente é mais conveniente trabalhar com um vetor do que com uma matriz,
 ```r
 # desmanchando matrizes
 mel
-```
-
-```
      [,1]  [,2]  [,3]  [,4] 
 [1,] "m11" "m12" "m13" "m14"
 [2,] "m21" "m22" "m23" "m24"
 [3,] "m31" "m32" "m33" "m34"
 [4,] "m41" "m42" "m43" "m44"
-```
-
-```r
 # note as diferenças
 mel[1,1]
-```
-
-```
 [1] "m11"
-```
-
-```r
 mel[1]
-```
-
-```
 [1] "m11"
-```
-
-```r
 # resulta em uma submatriz
 mel[1:4, 1:4]
-```
-
-```
      [,1]  [,2]  [,3]  [,4] 
 [1,] "m11" "m12" "m13" "m14"
 [2,] "m21" "m22" "m23" "m24"
 [3,] "m31" "m32" "m33" "m34"
 [4,] "m41" "m42" "m43" "m44"
-```
-
-```r
 # resulta em um vetor
 mel[1:4]
-```
-
-```
 [1] "m11" "m21" "m31" "m41"
-```
-
-```r
 # submatriz da temp_mat
 temp_mat[1:3,1:3]
-```
-
-```
           Jan   Fev   Mar
 ano1990 25.00 23.20 22.50
 ano1991 24.89 24.07 23.56
 ano1992 23.20 26.61 18.00
-```
-
-```r
 # vetor gerado de 3 elementos de mat
 temp_mat[1:3]
-```
-
-```
 [1] 25.00 24.89 23.20
-```
-
-```r
 # número de elementos na matriz
 nel <- nrow(temp_mat)*ncol(temp_mat)
 nel
-```
-
-```
 [1] 36
-```
-
-```r
 temp_mat[1: nrow(temp_mat)*ncol(temp_mat) ]
-```
-
-```
 [1] 23.11 21.45 20.08
-```
-
-```r
 # vetor de temperaturas
 vtemp <- temp_mat[1:(ncol(temp_mat)*nrow(temp_mat))]
 vtemp
-```
-
-```
  [1] 25.00 24.89 23.20 23.20 24.07 26.61 22.50 23.56 18.00 21.00 23.11
 [12] 23.11 19.00 18.29 26.80 17.60 18.22 21.30 18.00 16.72 18.22 19.70
 [23] 19.37 21.45 21.30 20.08 19.70 22.00 21.45 22.50 24.00 26.61 24.07
 [34] 26.80 25.99 20.08
-```
-
-```r
 # outra forma de converte temp_mat para vetor
 c(temp_mat)
-```
-
-```
  [1] 25.00 24.89 23.20 23.20 24.07 26.61 22.50 23.56 18.00 21.00 23.11
 [12] 23.11 19.00 18.29 26.80 17.60 18.22 21.30 18.00 16.72 18.22 19.70
 [23] 19.37 21.45 21.30 20.08 19.70 22.00 21.45 22.50 24.00 26.61 24.07
 [34] 26.80 25.99 20.08
-```
-
-```r
 # função formal para converter 
 as.vector(temp_mat)
-```
-
-```
  [1] 25.00 24.89 23.20 23.20 24.07 26.61 22.50 23.56 18.00 21.00 23.11
 [12] 23.11 19.00 18.29 26.80 17.60 18.22 21.30 18.00 16.72 18.22 19.70
 [23] 19.37 21.45 21.30 20.08 19.70 22.00 21.45 22.50 24.00 26.61 24.07
 [34] 26.80 25.99 20.08
-```
-
-```r
 # mais uma forma de converte temp_mat para vetor
 array(temp_mat)
-```
-
-```
  [1] 25.00 24.89 23.20 23.20 24.07 26.61 22.50 23.56 18.00 21.00 23.11
 [12] 23.11 19.00 18.29 26.80 17.60 18.22 21.30 18.00 16.72 18.22 19.70
 [23] 19.37 21.45 21.30 20.08 19.70 22.00 21.45 22.50 24.00 26.61 24.07
 [34] 26.80 25.99 20.08
-```
-
-```r
 # para desmanchar a matriz com os elementos seguindo a ordem das linhas 
 c(t(temp_mat))
-```
-
-```
  [1] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 [12] 26.80 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45
 [23] 26.61 25.99 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70
 [34] 22.50 24.07 20.08
-```
-
-```r
 as.vector(t(temp_mat))
-```
-
-```
  [1] 25.00 23.20 22.50 21.00 19.00 17.60 18.00 19.70 21.30 22.00 24.00
 [12] 26.80 24.89 24.07 23.56 23.11 18.29 18.22 16.72 19.37 20.08 21.45
 [23] 26.61 25.99 23.20 26.61 18.00 23.11 26.80 21.30 18.22 21.45 19.70
 [34] 22.50 24.07 20.08
-```
-
-```r
 # serie temporal de temp_mat
 stemp <- c(t(temp_mat))
 plot(stemp, type = "o")
@@ -3597,9 +2040,6 @@ plot(stemp, type = "o")
 ```r
 # criar matriz com colunas temp e meses 1:12
 cbind(rep(1:12, nrow(temp_mat)),stemp)
-```
-
-```
          stemp
  [1,]  1 25.00
  [2,]  2 23.20
@@ -3637,9 +2077,6 @@ cbind(rep(1:12, nrow(temp_mat)),stemp)
 [34,] 10 22.50
 [35,] 11 24.07
 [36,] 12 20.08
-```
-
-```r
 # dados de temp e meses
 tempdat <- cbind(1:12, stemp)
 # plot da temperatura pelos meses (os meses repetem)
@@ -3663,9 +2100,6 @@ cbind(meses = 1:12, temp = stemp,
       cores = rep(1:3, each = ncol(temp_mat)), # cores
       simb_tam = rep(seq(1, 2 , by = 0.5), each = ncol(temp_mat))
       ) # tamanho dos símbolos 
-```
-
-```
       meses  temp cores simb_tam
  [1,]     1 25.00     1      1.0
  [2,]     2 23.20     1      1.0
@@ -3725,9 +2159,6 @@ v <- 1:12
 # dim: 2
 dim(v) <- c(2, 2, 3)
 v
-```
-
-```
 , , 1
 
      [,1] [,2]
@@ -3745,48 +2176,18 @@ v
      [,1] [,2]
 [1,]    9   11
 [2,]   10   12
-```
-
-```r
 # ou
 a <- array(data = v, dim = c(3, 2, 2))
 dim(a)
-```
-
-```
 [1] 3 2 2
-```
-
-```r
 length(a)
-```
-
-```
 [1] 12
-```
-
-```r
 class(a)
-```
-
-```
 [1] "array"
-```
-
-```r
 mode(a)
-```
-
-```
 [1] "numeric"
-```
-
-```r
 # exemplo de inicialização de uma array
 array(data = 0, dim = c(3, 4, 2))
-```
-
-```
 , , 1
 
      [,1] [,2] [,3] [,4]
@@ -3838,9 +2239,6 @@ tempVals <- c(22.34, 19.8, 22.22, 19.27, 19.53, 19.81, 21.18, 24.44, 23.91,
 # array de temperaturas
 atemp <- array(tempVals, dim = c(4,5,12))
 atemp
-```
-
-```
 , , 1
 
       [,1]  [,2]  [,3]  [,4]  [,5]
@@ -3936,15 +2334,9 @@ atemp
 [2,] 19.62 19.07 16.97 25.41 19.47
 [3,] 22.73 20.34 22.93 18.74 23.96
 [4,] 20.12 17.10 19.59 20.56 17.15
-```
-
-```r
 colnames(atemp) <- -45:-41
 rownames(atemp) <- -19:-22
 atemp
-```
-
-```
 , , 1
 
       -45   -44   -43   -42   -41
@@ -4049,29 +2441,14 @@ Podemos usar as mesmos procedimentos de indexação de uma `matrix` para seleç�
 ```r
 # serie temporal do 1º ponto
 atemp[1, 1, ]
-```
-
-```
  [1] 22.34 19.52 19.76 23.26 19.67 20.30 20.22 19.75 22.37 19.46 17.79
 [12] 22.05
-```
-
-```r
 atemp["-19","-45", ]
-```
-
-```
  [1] 22.34 19.52 19.76 23.26 19.67 20.30 20.22 19.75 22.37 19.46 17.79
 [12] 22.05
-```
-
-```r
 # para 1a faixa de latitude (-19), 
 # os valores de temp das longitudes em todos tempos 
 atemp[1, , ]
-```
-
-```
      [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 -45 22.34 19.52 19.76 23.26 19.67 20.30 20.22 19.75 22.37 19.46 17.79
 -44 19.53 21.83 21.29 19.61 19.74 22.74 26.68 23.12 19.39 20.73 19.79
@@ -4084,9 +2461,6 @@ atemp[1, , ]
 -43 15.33
 -42 17.13
 -41 14.46
-```
-
-```r
 # plot de cada ponto
 matplot(t(atemp[1, , ]), type = "l")
 ```
@@ -4101,11 +2475,9 @@ boxplot(atemp[1, , ])
 ![](figs/Chun221a-2.png)<!-- -->
 
 ```r
+
 # para 2a faixa de longitude (-44), todas longitudes e tempos 
 atemp[ , 2, ]
-```
-
-```
      [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10] [,11]
 -19 19.53 21.83 21.29 19.61 19.74 22.74 26.68 23.12 19.39 20.73 19.79
 -20 19.81 19.16 23.24 14.89 20.91 19.90 20.73 19.25 17.53 15.97 17.80
@@ -4116,24 +2488,12 @@ atemp[ , 2, ]
 -20 19.07
 -21 20.34
 -22 17.10
-```
-
-```r
 # média meridional
 colMeans(atemp[ , 2, ])
-```
-
-```
  [1] 21.2400 19.6175 22.9075 18.0550 20.6575 21.7475 21.3350 19.8550
  [9] 18.4800 18.7825 19.9375 19.9650
-```
-
-```r
 # subdominio
 atemp[3:4, 2:3, ]
-```
-
-```
 , , 1
 
       -44   -43
@@ -4205,16 +2565,10 @@ atemp[3:4, 2:3, ]
       -44   -43
 -21 20.34 22.93
 -22 17.10 19.59
-```
-
-```r
 # sem a primeira linha
 # sem a última coluna
 # sem o primeiro e ultimo mes
 atemp[ -1, -5, -c( 1, 12)]
-```
-
-```
 , , 1
 
       -45   -44   -43   -42
@@ -4284,31 +2638,13 @@ atemp[ -1, -5, -c( 1, 12)]
 -20 18.97 17.80 18.15 21.23
 -21 19.20 19.36 16.48 22.40
 -22 20.59 22.80 19.09 17.89
-```
-
-```r
 # compare
 mean(atemp[ , , 1])
-```
-
-```
 [1] 21.272
-```
-
-```r
 mean(atemp[, , 2])
-```
-
-```
 [1] 19.7035
-```
-
-```r
 # demanchando uma array (conversão para vetor)
 c(atemp)
-```
-
-```
   [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
  [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44
  [23] 19.64 15.88 21.83 19.16 18.66 18.82 22.73 19.34 18.89 16.70 21.41
@@ -4331,27 +2667,15 @@ c(atemp)
 [210] 18.15 16.48 19.09 21.19 21.23 22.40 17.89 21.42 16.67 17.89 17.18
 [221] 22.05 19.62 22.73 20.12 23.35 19.07 20.34 17.10 15.33 16.97 22.93
 [232] 19.59 17.13 25.41 18.74 20.56 14.46 19.47 23.96 17.15
-```
-
-```r
 c(atemp[ , , 1])
-```
-
-```
  [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
 [12] 24.54 23.46 16.20 19.93 20.54 19.71 24.94 18.71 21.80
-```
-
-```r
 # para entender a forma como a matriz é convertida para vetor
 matref <- cbind(mes = rep(1:12, each = 20), 
                 elemat = rep(1:20, times = 12),  
                 valores = c(atemp), 
                 elearr = 1:(cumprod(dim(atemp))[3]))
 matref
-```
-
-```
        mes elemat valores elearr
   [1,]   1      1   22.34      1
   [2,]   1      2   19.80      2
@@ -4593,14 +2917,8 @@ matref
 [238,]  12     18   19.47    238
 [239,]  12     19   23.96    239
 [240,]  12     20   17.15    240
-```
-
-```r
 # seleção lógica e substituição
 atemp > 18
-```
-
-```
 , , 1
 
      -45  -44  -43   -42  -41
@@ -4696,13 +3014,7 @@ atemp > 18
 -20 TRUE  TRUE FALSE  TRUE  TRUE
 -21 TRUE  TRUE  TRUE  TRUE  TRUE
 -22 TRUE FALSE  TRUE  TRUE FALSE
-```
-
-```r
 which(atemp > 18)
-```
-
-```
   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  15  16  17  18
  [18]  19  20  21  22  23  25  26  27  28  29  30  31  33  34  36  37  39
  [35]  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56
@@ -4714,13 +3026,7 @@ which(atemp > 18)
 [137] 169 171 172 174 175 176 177 178 179 181 182 183 184 185 188 189 190
 [154] 191 192 194 195 196 199 200 202 203 204 205 207 208 210 212 213 214
 [171] 215 217 221 222 223 224 225 226 227 231 232 234 235 236 238 239
-```
-
-```r
 atemp[atemp > 18]
-```
-
-```
   [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
  [12] 24.54 23.46 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44 19.64
  [23] 21.83 19.16 18.66 18.82 22.73 19.34 18.89 21.41 21.88 18.54 23.17
@@ -4738,14 +3044,8 @@ atemp[atemp > 18]
 [155] 20.34 19.33 22.75 24.29 22.80 22.84 18.97 19.20 20.59 19.79 19.36
 [166] 22.80 18.15 19.09 21.19 21.23 22.40 21.42 22.05 19.62 22.73 20.12
 [177] 23.35 19.07 20.34 22.93 19.59 25.41 18.74 20.56 19.47 23.96
-```
-
-```r
 # verificando na matref
 matref[which(atemp > 18), "valores"]
-```
-
-```
   [1] 22.34 19.80 22.22 19.27 19.53 19.81 21.18 24.44 23.91 21.97 21.14
  [12] 24.54 23.46 19.93 20.54 19.71 24.94 18.71 21.80 19.52 23.44 19.64
  [23] 21.83 19.16 18.66 18.82 22.73 19.34 18.89 21.41 21.88 18.54 23.17
@@ -4763,15 +3063,9 @@ matref[which(atemp > 18), "valores"]
 [155] 20.34 19.33 22.75 24.29 22.80 22.84 18.97 19.20 20.59 19.79 19.36
 [166] 22.80 18.15 19.09 21.19 21.23 22.40 21.42 22.05 19.62 22.73 20.12
 [177] 23.35 19.07 20.34 22.93 19.59 25.41 18.74 20.56 19.47 23.96
-```
-
-```r
 # substituindo temperaturas acima de 18 por 18
 atemp[atemp > 18] <- 18
 atemp
-```
-
-```
 , , 1
 
     -45 -44 -43  -42 -41
@@ -4875,9 +3169,6 @@ atemp
 ```r
 library(abind)
 abind(atemp, atemp[, , 1])
-```
-
-```
 , , 1
 
     -45 -44 -43  -42 -41
@@ -5008,9 +3299,6 @@ Listas podem ser criadas com a função `list()`. A especificação do conteúdo
 # lista de dados heterogêneos
 lst <- list(1:4, c(1.1, 2.3, 5.9), c(TRUE, FALSE), "R", list(0, 1))
 lst
-```
-
-```
 [[1]]
 [1] 1 2 3 4
 
@@ -5029,14 +3317,8 @@ lst
 
 [[5]][[2]]
 [1] 1
-```
-
-```r
 # estrutura da lista
 str(lst)
-```
-
-```
 List of 5
  $ : int [1:4] 1 2 3 4
  $ : num [1:3] 1.1 2.3 5.9
@@ -5045,27 +3327,12 @@ List of 5
  $ :List of 2
   ..$ : num 0
   ..$ : num 1
-```
-
-```r
 # tamanho da lista (num. de componentes ou elementos)
 length(lst)
-```
-
-```
 [1] 5
-```
-
-```r
 # atribuindo nomes a lista
 names(lst)
-```
-
-```
 NULL
-```
-
-```r
 names(lst) <- c("vetor_int", "vetor_num", "logico", "char", "lista")
 ```
 
@@ -5077,9 +3344,6 @@ Veremos que no R, listas são frequentemente usadas para armazenar a saída de f
 ```r
 # lista é recursiva?
 is.recursive(lst)
-```
-
-```
 [1] TRUE
 ```
 
@@ -5091,9 +3355,6 @@ Vamos ver um exemplo onde criamos uma lista com informações de duas estações
 dados_sm <- cbind(tar = c(31, 35, 21, 23, 33, 17, 18, 16, 20, 25, 27, 30), 
                   prec = c(300, 200, 150, 120, 210, 110, 180, 140, 80, 160, 150, 100))
 dados_sm
-```
-
-```
       tar prec
  [1,]  31  300
  [2,]  35  200
@@ -5107,15 +3368,9 @@ dados_sm
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 # lista com informações da estação de santa maria
 sm_l <- list(c(-45, -23), 113, "Santa Maria", dados_sm)
 sm_l
-```
-
-```
 [[1]]
 [1] -45 -23
 
@@ -5139,15 +3394,9 @@ sm_l
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 # adicionar nomes aos elementos
 names(sm_l) <- c("coords", "alt", "cidade", "dados")
 sm_l
-```
-
-```
 $coords
 [1] -45 -23
 
@@ -5171,9 +3420,6 @@ $dados
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 # matriz de dados meteorológicos da estação de Júlio de Castilhos
 dados_jc <- cbind(tar  = c(22.5, 20, 18.75, 18, 20.25, 17.75, 19.5, 18.5, 17, 19, 18.75, 17.5),
                   prec = c(360, 310, 285, 270, 315, 265, 300, 280, 250, 290, 285, 260))
@@ -5184,9 +3430,6 @@ jc_l <- list(coords = c(-45.1, -23.2),
 # adicionar nomes aos elementos
 names(jc_l) <- names(sm_l)
 jc_l
-```
-
-```
 $coords
 [1] -45.1 -23.2
 
@@ -5219,9 +3462,6 @@ As informações de cada estação estão armazenadas em 2 listas. Mas é mais p
 # combinando listas mantendo os elementos separadamente
 dados_l <- list(sm_l, jc_l)
 dados_l
-```
-
-```
 [[1]]
 [[1]]$coords
 [1] -45 -23
@@ -5272,22 +3512,10 @@ dados_l
 [10,] 19.00  290
 [11,] 18.75  285
 [12,] 17.50  260
-```
-
-```r
 names(dados_l)
-```
-
-```
 NULL
-```
-
-```r
 names(dados_l) <- c("sm", "jc")
 dados_l
-```
-
-```
 $sm
 $sm$coords
 [1] -45 -23
@@ -5338,15 +3566,9 @@ $jc$dados
 [10,] 19.00  290
 [11,] 18.75  285
 [12,] 17.50  260
-```
-
-```r
 # como a lista é um tipo vetor, a função length() 
 # fornece o número de elementos da lista
 length(dados_l)
-```
-
-```
 [1] 2
 ```
 
@@ -5355,9 +3577,6 @@ Para resumir a estrutura de uma lista (ou *data frame*) podemos usar a função 
 
 ```r
 str(dados_l)
-```
-
-```
 List of 2
  $ sm:List of 4
   ..$ coords: num [1:2] -45 -23
@@ -5383,9 +3602,6 @@ As listas também poderiam ser combinadas com função concatena ou combina `c()
 ```r
 dados_l2 <- c(sm_l, jc_l)
 dados_l2
-```
-
-```
 $coords
 [1] -45 -23
 
@@ -5433,13 +3649,7 @@ $dados
 [10,] 19.00  290
 [11,] 18.75  285
 [12,] 17.50  260
-```
-
-```r
 str(dados_l2)
-```
-
-```
 List of 8
  $ coords: num [1:2] -45 -23
  $ alt   : num 113
@@ -5468,17 +3678,11 @@ z <- vector(mode = "list")
 z[[1]] <- 1:10
 z[["b"]] <- "teste"
 z
-```
-
-```
 [[1]]
  [1]  1  2  3  4  5  6  7  8  9 10
 
 $b
 [1] "teste"
-```
-
-```r
 # usando '$' para criar o elemento chamado c
 z$c <- c(FALSE, TRUE)
 ```
@@ -5492,45 +3696,24 @@ Assim como em vetores, podemos acessar os elementos de uma lista usando os colch
 
 ```r
 sm_l[1:2]
-```
-
-```
 $coords
 [1] -45 -23
 
 $alt
 [1] 113
-```
-
-```r
 sm_l[-(3:length(sm_l))]
-```
-
-```
 $coords
 [1] -45 -23
 
 $alt
 [1] 113
-```
-
-```r
 sm_l[c(TRUE, TRUE, FALSE, FALSE, FALSE)]
-```
-
-```
 $coords
 [1] -45 -23
 
 $alt
 [1] 113
-```
-
-```r
 sm_l[c("coords", "alt", "cidade")]
-```
-
-```
 $coords
 [1] -45 -23
 
@@ -5547,37 +3730,16 @@ O resultado da seleção do 1º e 2º elemento é uma lista menor que a original
 ```r
 # seleção do 1º elemento da lst
 lst[1]
-```
-
-```
 $vetor_int
 [1] 1 2 3 4
-```
-
-```r
 # o resultado da seleção é uma lista
 mode(lst[1])
-```
-
-```
 [1] "list"
-```
-
-```r
 # a função sum() espera como entrada um vetor
 sum(lst[1])
-```
-
-```
 Error in sum(lst[1]): invalid 'type' (list) of argument
-```
-
-```r
 # acessando elemento inexistente
 lst[6]
-```
-
-```
 $<NA>
 NULL
 ```
@@ -5593,35 +3755,14 @@ Entretanto na maioria das vezes estamos interessados no conteúdo dos elementos 
 ```r
 # 1º elemento de sm_l
 sm_l[[1]]
-```
-
-```
 [1] -45 -23
-```
-
-```r
 sm_l[["coords"]]
-```
-
-```
 [1] -45 -23
-```
-
-```r
 # modo de sm_l
 mode(sm_l)
-```
-
-```
 [1] "list"
-```
-
-```r
 # ultimo elemento de sm_l
 sm_l[[length(sm_l)]]
-```
-
-```
       tar prec
  [1,]  31  300
  [2,]  35  200
@@ -5635,13 +3776,7 @@ sm_l[[length(sm_l)]]
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 sm_l[["dados"]]
-```
-
-```
       tar prec
  [1,]  31  300
  [2,]  35  200
@@ -5655,14 +3790,8 @@ sm_l[["dados"]]
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 # subelementos
 dados_l[["sm"]][["cidade"]]
-```
-
-```
 [1] "Santa Maria"
 ```
 
@@ -5672,9 +3801,6 @@ Para acessar o conteúdo de elementos de uma lista que possui nomes podemos tamb
 ```r
 # seleção de dados por nomes usando o símbolo $
 dados_l$s
-```
-
-```
 $coords
 [1] -45 -23
 
@@ -5698,13 +3824,7 @@ $dados
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 dados_l$j
-```
-
-```
 $coords
 [1] -45.1 -23.2
 
@@ -5728,13 +3848,7 @@ $dados
 [10,] 19.00  290
 [11,] 18.75  285
 [12,] 17.50  260
-```
-
-```r
 dados_l$sm$dados
-```
-
-```
       tar prec
  [1,]  31  300
  [2,]  35  200
@@ -5748,33 +3862,15 @@ dados_l$sm$dados
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 dados_l$sm$dados[5:8,1:2]
-```
-
-```
      tar prec
 [1,]  33  210
 [2,]  17  110
 [3,]  18  180
 [4,]  16  140
-```
-
-```r
 dados_l$sm$dados[, "tar"]
-```
-
-```
  [1] 31 35 21 23 33 17 18 16 20 25 27 30
-```
-
-```r
 dados_l$sm$dados[, "tar", drop = FALSE]
-```
-
-```
       tar
  [1,]  31
  [2,]  35
@@ -5821,18 +3917,9 @@ Se quiséssemos o conteúdo do pacote seria `x[[1]][[1]]`
 ```r
 vet <- 1:10
 vet
-```
-
-```
  [1]  1  2  3  4  5  6  7  8  9 10
-```
-
-```r
 vet.list <- as.list(vet)
 vet.list
-```
-
-```
 [[1]]
 [1] 1
 
@@ -5862,32 +3949,14 @@ vet.list
 
 [[10]]
 [1] 10
-```
-
-```r
 # desmanchando a lista
 unlist(vet.list)
-```
-
-```
  [1]  1  2  3  4  5  6  7  8  9 10
-```
-
-```r
 # deletando um elemento de uma lista
 length(vet.list)
-```
-
-```
 [1] 10
-```
-
-```r
 vet.list[8] <- NULL
 vet.list
-```
-
-```
 [[1]]
 [1] 1
 
@@ -5914,13 +3983,7 @@ vet.list
 
 [[9]]
 [1] 10
-```
-
-```r
 length(vet.list)
-```
-
-```
 [1] 9
 ```
 
@@ -5929,9 +3992,6 @@ length(vet.list)
 
 ```r
 sm_l
-```
-
-```
 $coords
 [1] -45 -23
 
@@ -5955,17 +4015,11 @@ $dados
 [10,]  25  160
 [11,]  27  150
 [12,]  30  100
-```
-
-```r
 # ao invés da componente coords, criamos uma lon e lat
 sm_l$lon <- sm_l$coords[1]
 sm_l$lat <- sm_l$coords[2]
 sm_l$coords <- NULL
 sm_l
-```
-
-```
 $alt
 [1] 113
 
@@ -5992,15 +4046,9 @@ $lon
 
 $lat
 [1] -23
-```
-
-```r
 # convertendo para data.frame
 sm_df <- data.frame(sm_l)
 sm_df
-```
-
-```
    alt      cidade dados.tar dados.prec lon lat
 1  113 Santa Maria        31        300 -45 -23
 2  113 Santa Maria        35        200 -45 -23
@@ -6017,897 +4065,616 @@ sm_df
 ```
 
 
-# *Data frame*
+# Dataframe
 
-Um `data frame` é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
+Um dataframe é o objeto mais usado para guardar conjunto de dados na forma de tabela (tabulares ou planos).
 
-A estrutura de um *data frame*, é muito semelhante a de uma matriz. Mas a principal diferença e vantagem do *data frame* é possibilidade de armazenar dados de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogêna. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
+A estrutura de um *dataframe* é retangular como a de uma matriz. Mas tem a vantagem de armazenar vetores de diferentes tipos (`character`, `numeric`, `logical` e etc) nas suas colunas. O que não é possível em uma matriz. Ou seja é uma estrutura de armazenamento de dados heterogênea. *Matrix*, *arrays* e *vector* só armazenam dados homogêneos.
 
-Cada linha do *data frame* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
+Cada linha do *dataframe* corresponde a um registro da tabela. Cada coluna corresponde a uma variável a ser armazenada para cada registro da tabela.
 
 ## Criação
 
-Uma das formas mais simples de se criar um `data frame` é através da função `data.frame()`.
+Uma das formas mais simples de se criar um *dataframe* é através da função `data.frame()`.
 
 
 ```r
 # criando um dataframe
-dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
-                                 "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
-                                 "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
-                       cidade = rep("Santa Maria", 15),    
-                       tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32))  
-dados.df
+dados <- data.frame(
+  datas = c(
+    "2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05",
+    "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10",
+    "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"
+  ),
+  cidade = rep("Santa Maria", 15),
+  tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32)
+)
+dados
+#>         datas      cidade tar
+#> 1  2013-01-01 Santa Maria  31
+#> 2  2013-01-02 Santa Maria  35
+#> 3  2013-01-03 Santa Maria  21
+#> 4  2013-01-04 Santa Maria  23
+#> 5  2013-01-05 Santa Maria  33
+#> 6  2013-01-06 Santa Maria  17
+#> 7  2013-01-07 Santa Maria  18
+#> 8  2013-01-08 Santa Maria  16
+#> 9  2013-01-09 Santa Maria  34
+#> 10 2013-01-10 Santa Maria  27
+#> 11 2013-01-11 Santa Maria  15
+#> 12 2013-01-12 Santa Maria  28
+#> 13 2013-01-13 Santa Maria  22
+#> 14 2013-01-14 Santa Maria  29
+#> 15 2013-01-15 Santa Maria  32
+class(dados)
+#> [1] "data.frame"
+is.data.frame(dados)
+#> [1] TRUE
 ```
 
-```
-        dates      cidade tar
-1  2013-01-01 Santa Maria  31
-2  2013-01-02 Santa Maria  35
-3  2013-01-03 Santa Maria  21
-4  2013-01-04 Santa Maria  23
-5  2013-01-05 Santa Maria  33
-6  2013-01-06 Santa Maria  17
-7  2013-01-07 Santa Maria  18
-8  2013-01-08 Santa Maria  16
-9  2013-01-09 Santa Maria  34
-10 2013-01-10 Santa Maria  27
-11 2013-01-11 Santa Maria  15
-12 2013-01-12 Santa Maria  28
-13 2013-01-13 Santa Maria  22
-14 2013-01-14 Santa Maria  29
-15 2013-01-15 Santa Maria  32
-```
-
-```r
-class(dados.df)
-```
-
-```
-[1] "data.frame"
-```
-
-```r
-is.data.frame(dados.df)
-```
-
-```
-[1] TRUE
-```
-
-Para um diagnóstico rápido das variáveis de um `data frame` usamos a função `str()`: 
+Para um diagnóstico rápido das variáveis de um `dataframe` usamos a função `str()`: 
 
 
 ```r
 # descrição geral do conjunto de dados
-str(dados.df)
-```
-
-```
-'data.frame':	15 obs. of  3 variables:
- $ dates : Factor w/ 15 levels "2013-01-01","2013-01-02",..: 1 2 3 4 5 6 7 8 9 10 ...
- $ cidade: Factor w/ 1 level "Santa Maria": 1 1 1 1 1 1 1 1 1 1 ...
- $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
+str(dados)
+#> 'data.frame':	15 obs. of  3 variables:
+#>  $ datas : Factor w/ 15 levels "2013-01-01","2013-01-02",..: 1 2 3 4 5 6 7 8 9 10 ...
+#>  $ cidade: Factor w/ 1 level "Santa Maria": 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
 ```
 
 A saída da função `str()`indica que há duas variáveis da classe `factor`.
-Em um *data frame* vetores do tipo `character` são automaticamente convertidos em `factor`. Este comportamento *default* pode ser modificado configurando o parâmetro `stringsAsFactors = FALSE` na função `data.frame()`. Vamos recriar o *data frame* `dados.df` sem a conversão de `character` para `factor`.
+Em um *dataframe* vetores do tipo `character` são automaticamente convertidos em `factor`. Este é o comportamento *default* da função `data.frame()`. Para que essa conversão não seja feita você deve definir o parâmetro `stringsAsFactors = FALSE` na função `data.frame()`. Vamos recriar o *dataframe* `dados` sem a conversão de `character` para `factor`.
 
 
 
 ```r
 # criando um dataframe
-dados.df <- data.frame(dates = c("2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05", 
-                                 "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10", 
-                                 "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"), 
-                       cidade = rep("Santa Maria", 15),    
-                       tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32),
-                       stringsAsFactors = FALSE)  
-str(dados.df)
+dados <- data.frame(
+  datas = c(
+    "2013-01-01", "2013-01-02", "2013-01-03", "2013-01-04", "2013-01-05",
+    "2013-01-06", "2013-01-07", "2013-01-08", "2013-01-09", "2013-01-10",
+    "2013-01-11", "2013-01-12", "2013-01-13", "2013-01-14", "2013-01-15"
+  ),
+  cidade = rep("Santa Maria", 15),
+  tar = c(31, 35, 21, 23, 33, 17, 18, 16, 34, 27, 15, 28, 22, 29, 32),
+  stringsAsFactors = FALSE
+)
+str(dados)
+#> 'data.frame':	15 obs. of  3 variables:
+#>  $ datas : chr  "2013-01-01" "2013-01-02" "2013-01-03" "2013-01-04" ...
+#>  $ cidade: chr  "Santa Maria" "Santa Maria" "Santa Maria" "Santa Maria" ...
+#>  $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
 ```
 
-```
-'data.frame':	15 obs. of  3 variables:
- $ dates : chr  "2013-01-01" "2013-01-02" "2013-01-03" "2013-01-04" ...
- $ cidade: chr  "Santa Maria" "Santa Maria" "Santa Maria" "Santa Maria" ...
- $ tar   : num  31 35 21 23 33 17 18 16 34 27 ...
-```
-
-A função `summary()` fornece um resumo estatísticos dos valores das variáveis de um *data frame*.
+A função `summary()` fornece um resumo estatístico das variáveis (colunas) de um *dataframe*.
 
 
 ```r
 # resumo estatístico dos dados
-summary(dados.df)
+summary(dados)
+#>     datas              cidade               tar      
+#>  Length:15          Length:15          Min.   :15.0  
+#>  Class :character   Class :character   1st Qu.:19.5  
+#>  Mode  :character   Mode  :character   Median :27.0  
+#>                                        Mean   :25.4  
+#>                                        3rd Qu.:31.5  
+#>                                        Max.   :35.0
 ```
 
-```
-    dates              cidade               tar      
- Length:15          Length:15          Min.   :15.0  
- Class :character   Class :character   1st Qu.:19.5  
- Mode  :character   Mode  :character   Median :27.0  
-                                       Mean   :25.4  
-                                       3rd Qu.:31.5  
-                                       Max.   :35.0  
-```
+## Atributos de um *dataframe*
 
-## Atributos de um *data frame*
-
-*data frame* é uma estrutura de dados avançada e possui diversos atributos. 
+*dataframe* é uma estrutura de dados avançada e possui diversos atributos. 
 
 
 ```r
 # atributos
-length(dados.df)
-```
-
-```
-[1] 3
-```
-
-```r
+attributes(dados)
+#> $names
+#> [1] "datas"  "cidade" "tar"   
+#> 
+#> $row.names
+#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+#> 
+#> $class
+#> [1] "data.frame"
+# atributos armazenados em uma lista
+str(attributes(dados))
+#> List of 3
+#>  $ names    : chr [1:3] "datas" "cidade" "tar"
+#>  $ row.names: int [1:15] 1 2 3 4 5 6 7 8 9 10 ...
+#>  $ class    : chr "data.frame"
 # número de colunas
-ncol(dados.df)
-```
-
-```
-[1] 3
-```
-
-```r
+ncol(dados)
+#> [1] 3
 # número de linhas
-nrow(dados.df)
-```
-
-```
-[1] 15
-```
-
-```r
+nrow(dados)
+#> [1] 15
 # dimensões
-dim(dados.df)
-```
-
-```
-[1] 15  3
-```
-
-```r
+dim(dados)
+#> [1] 15  3
 # nomes podem ser atribuídos as linhas e as colunas
-rownames(dados.df)
-```
-
-```
- [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
-[15] "15"
-```
-
-```r
-# novos nomes para as linhas de dados.df
-rownames(dados.df) <- paste0("linha", rownames(dados.df))
-dados.df
-```
-
-```
-             dates      cidade tar
-linha1  2013-01-01 Santa Maria  31
-linha2  2013-01-02 Santa Maria  35
-linha3  2013-01-03 Santa Maria  21
-linha4  2013-01-04 Santa Maria  23
-linha5  2013-01-05 Santa Maria  33
-linha6  2013-01-06 Santa Maria  17
-linha7  2013-01-07 Santa Maria  18
-linha8  2013-01-08 Santa Maria  16
-linha9  2013-01-09 Santa Maria  34
-linha10 2013-01-10 Santa Maria  27
-linha11 2013-01-11 Santa Maria  15
-linha12 2013-01-12 Santa Maria  28
-linha13 2013-01-13 Santa Maria  22
-linha14 2013-01-14 Santa Maria  29
-linha15 2013-01-15 Santa Maria  32
-```
-
-```r
+rownames(dados)
+#>  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
+#> [15] "15"
+# novos nomes para as linhas de dados
+rownames(dados) <- paste0("linha", rownames(dados))
+dados
+#>              datas      cidade tar
+#> linha1  2013-01-01 Santa Maria  31
+#> linha2  2013-01-02 Santa Maria  35
+#> linha3  2013-01-03 Santa Maria  21
+#> linha4  2013-01-04 Santa Maria  23
+#> linha5  2013-01-05 Santa Maria  33
+#> linha6  2013-01-06 Santa Maria  17
+#> linha7  2013-01-07 Santa Maria  18
+#> linha8  2013-01-08 Santa Maria  16
+#> linha9  2013-01-09 Santa Maria  34
+#> linha10 2013-01-10 Santa Maria  27
+#> linha11 2013-01-11 Santa Maria  15
+#> linha12 2013-01-12 Santa Maria  28
+#> linha13 2013-01-13 Santa Maria  22
+#> linha14 2013-01-14 Santa Maria  29
+#> linha15 2013-01-15 Santa Maria  32
 # removendo nomes das linhas
-rownames(dados.df) <- NULL
-dados.df
+rownames(dados) <- NULL
+dados
+#>         datas      cidade tar
+#> 1  2013-01-01 Santa Maria  31
+#> 2  2013-01-02 Santa Maria  35
+#> 3  2013-01-03 Santa Maria  21
+#> 4  2013-01-04 Santa Maria  23
+#> 5  2013-01-05 Santa Maria  33
+#> 6  2013-01-06 Santa Maria  17
+#> 7  2013-01-07 Santa Maria  18
+#> 8  2013-01-08 Santa Maria  16
+#> 9  2013-01-09 Santa Maria  34
+#> 10 2013-01-10 Santa Maria  27
+#> 11 2013-01-11 Santa Maria  15
+#> 12 2013-01-12 Santa Maria  28
+#> 13 2013-01-13 Santa Maria  22
+#> 14 2013-01-14 Santa Maria  29
+#> 15 2013-01-15 Santa Maria  32
+# mesmo que names(dados)
+colnames(dados)
+#> [1] "datas"  "cidade" "tar"
+# ou simplesmente
+names(dados)
+#> [1] "datas"  "cidade" "tar"
 ```
 
-```
-        dates      cidade tar
-1  2013-01-01 Santa Maria  31
-2  2013-01-02 Santa Maria  35
-3  2013-01-03 Santa Maria  21
-4  2013-01-04 Santa Maria  23
-5  2013-01-05 Santa Maria  33
-6  2013-01-06 Santa Maria  17
-7  2013-01-07 Santa Maria  18
-8  2013-01-08 Santa Maria  16
-9  2013-01-09 Santa Maria  34
-10 2013-01-10 Santa Maria  27
-11 2013-01-11 Santa Maria  15
-12 2013-01-12 Santa Maria  28
-13 2013-01-13 Santa Maria  22
-14 2013-01-14 Santa Maria  29
-15 2013-01-15 Santa Maria  32
-```
+## Acesso as variáveis de um *dataframe* 
 
-```r
-# mesmo que names(dados.df)
-colnames(dados.df)
-```
-
-```
-[1] "dates"  "cidade" "tar"   
-```
-
-```r
-dimnames(dados.df)
-```
-
-```
-[[1]]
- [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14"
-[15] "15"
-
-[[2]]
-[1] "dates"  "cidade" "tar"   
-```
-
-```r
-attributes(dados.df)
-```
-
-```
-$names
-[1] "dates"  "cidade" "tar"   
-
-$row.names
- [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
-
-$class
-[1] "data.frame"
-```
-
-```r
-class(attributes(dados.df))
-```
-
-```
-[1] "list"
-```
-
-## Acesso as variáveis de um *data frame* {.tabset}
-
-Existem várias formas de acessar as variáveis de um *data frame*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
+Existem várias formas de acessar as variáveis de um *dataframe*. Os operadores para extração de elementos são os mesmos utilizados para extração de elementos de uma lista: `[`, `[[` e `$`. Mas observe a diferença nos resultados extraídos com cada operador.
 
 
 ```r
 # variáveis do dataframe
-names(dados.df)
-```
-
-```
-[1] "dates"  "cidade" "tar"   
-```
-
-```r
+names(dados)
+#> [1] "datas"  "cidade" "tar"
 # acessando os dados de temperatura
-dados.df[, 3]
-```
-
-```
- [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-```
-
-```r
+dados[, 3]
+#>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
 # ou
-dados.df[, "tar"]
-```
-
-```
- [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-```
-
-```r
+dados[, "tar"]
+#>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
 # ou
-dados.df$tar
-```
-
-```
- [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-```
-
-```r
-is.vector(dados.df$tar)
-```
-
-```
-[1] TRUE
-```
-
-```r
+dados$tar
+#>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
+is.vector(dados$tar)
+#> [1] TRUE
 # note a diferença no resultado da extração
-dados.df["tar"]
+dados["tar"]
+#>    tar
+#> 1   31
+#> 2   35
+#> 3   21
+#> 4   23
+#> 5   33
+#> 6   17
+#> 7   18
+#> 8   16
+#> 9   34
+#> 10  27
+#> 11  15
+#> 12  28
+#> 13  22
+#> 14  29
+#> 15  32
+class(dados["tar"])
+#> [1] "data.frame"
+dados[["tar"]]
+#>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
+class(dados[["tar"]])
+#> [1] "numeric"
+dados[, "tar"]
+#>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
+class(dados[, "tar"])
+#> [1] "numeric"
 ```
 
-```
-   tar
-1   31
-2   35
-3   21
-4   23
-5   33
-6   17
-7   18
-8   16
-9   34
-10  27
-11  15
-12  28
-13  22
-14  29
-15  32
-```
-
-```r
-class(dados.df["tar"])
-```
-
-```
-[1] "data.frame"
-```
-
-```r
-dados.df[["tar"]]
-```
-
-```
- [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-```
-
-```r
-class(dados.df[["tar"]])
-```
-
-```
-[1] "numeric"
-```
-
-```r
-dados.df[, "tar"]
-```
-
-```
- [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-```
-
-```r
-class(dados.df[, "tar"])
-```
-
-```
-[1] "numeric"
-```
-
-Portanto *data frames* tem as mesmas propriedades que matrizes (são retangulares)e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).
+Portanto *dataframes* tem estrutura retangular similar a das matrizes e algumas de listas (diferentes colunas podem conter diferentes tipos de objetos).
 
 ### Função `with()`
 
-O acesso as variáveis de um *data frame* também é possível com a função `with(data, expr)`.
+O acesso as variáveis de um *dataframe* também é possível com a função `with(data, expr)`.
 
 
 ```r
-# acesso a variáveis de um data frame
-with(data = dados.df, expr = tar)
-```
-
-```
- [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
-```
-
-```r
-tar_k <- with(data = dados.df, expr = tar + 273.15)
-tar_k
-```
-
-```
- [1] 304.15 308.15 294.15 296.15 306.15 290.15 291.15 289.15 307.15 300.15
-[11] 288.15 301.15 295.15 302.15 305.15
-```
-
-```r
-with(data = dados.df, expr = plot(tar + 273.15))
+# acesso a variáveis de um dataframe
+with(data = dados, expr = tar)
+#>  [1] 31 35 21 23 33 17 18 16 34 27 15 28 22 29 32
+tarK <- with(data = dados, expr = tar + 273.15)
+tarK
+#>  [1] 304.15 308.15 294.15 296.15 306.15 290.15 291.15 289.15 307.15 300.15
+#> [11] 288.15 301.15 295.15 302.15 305.15
+# gráfico de uma variável usando with()
+with(data = dados, 
+     # parâmetro expr geralmente não é mostrado
+       plot(tar + 273.15, type = "o")
+     )
 ```
 
 ![](figs/Chunk5310-1.png)<!-- -->
 
-O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *data frame* de entrada.
+O argumento pode ser substituído por qualquer expressão ou conjunto de expressões que envolvam as variáveis do *dataframe* de entrada.
 
-### Edição manual de um *data frame*
-
-É possível também editar os dados manualmente.
+Quando houver uma expressão com mais de uma linha você agrupa o código usando chaves `{}`.
 
 
 ```r
-# editar dados
-fix(dados.df)
-# inicializando um dataframe
-x <- data.frame()
-# digitando so dados
-fix(x)
+with(dados, 
+     {
+       dates <- as.Date(datas)
+       plot(dates, tar)
+     }
+)
 ```
 
-## Indexação, seleção e alteração 
+![](figs/unnamed-chunk-7-1.png)<!-- -->
 
-Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *data frames*.
+
+## Indexação, seleção e substituição 
+
+Todos esquemas de  indexação usados para matrizes (seleção por índices, nomes, vetores lógicos - *ver Aula9*) podem ser usados com *dataframes*.
 
 
 ```r
-# todos dados exceto o primeiro e último registro
-dados.df[-c(1, nrow(dados.df)), ]
-```
-
-```
-        dates      cidade tar
-2  2013-01-02 Santa Maria  35
-3  2013-01-03 Santa Maria  21
-4  2013-01-04 Santa Maria  23
-5  2013-01-05 Santa Maria  33
-6  2013-01-06 Santa Maria  17
-7  2013-01-07 Santa Maria  18
-8  2013-01-08 Santa Maria  16
-9  2013-01-09 Santa Maria  34
-10 2013-01-10 Santa Maria  27
-11 2013-01-11 Santa Maria  15
-12 2013-01-12 Santa Maria  28
-13 2013-01-13 Santa Maria  22
-14 2013-01-14 Santa Maria  29
-```
-
-```r
+# exclui a primeiro e a última observação para todas variáveis
+dados[-c(1, nrow(dados)), ]
+#>         datas      cidade tar
+#> 2  2013-01-02 Santa Maria  35
+#> 3  2013-01-03 Santa Maria  21
+#> 4  2013-01-04 Santa Maria  23
+#> 5  2013-01-05 Santa Maria  33
+#> 6  2013-01-06 Santa Maria  17
+#> 7  2013-01-07 Santa Maria  18
+#> 8  2013-01-08 Santa Maria  16
+#> 9  2013-01-09 Santa Maria  34
+#> 10 2013-01-10 Santa Maria  27
+#> 11 2013-01-11 Santa Maria  15
+#> 12 2013-01-12 Santa Maria  28
+#> 13 2013-01-13 Santa Maria  22
+#> 14 2013-01-14 Santa Maria  29
 # temperatura dos primeiros 5 dias
-dados.df[1:5, 3]
-```
-
-```
-[1] 31 35 21 23 33
-```
-
-```r
+dados[1:5, 3]
+#> [1] 31 35 21 23 33
 # temperatura no dia 2013-01-09
-dados.df[dados.df$dates == "2013-01-09", "tar"]
-```
-
-```
-[1] 34
-```
-
-```r
+dados[dados$datas == "2013-01-09", "tar"]
+#> [1] 34
 # acrescentar uma nova variavel
-dados.df$prec <- c(rep(0, 5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
-dados.df
+dados$prec <- c(rep(0, 5), 10, 18, 4, 0, 0, 5, 0, 0, 2, 0)
+dados
+#>         datas      cidade tar prec
+#> 1  2013-01-01 Santa Maria  31    0
+#> 2  2013-01-02 Santa Maria  35    0
+#> 3  2013-01-03 Santa Maria  21    0
+#> 4  2013-01-04 Santa Maria  23    0
+#> 5  2013-01-05 Santa Maria  33    0
+#> 6  2013-01-06 Santa Maria  17   10
+#> 7  2013-01-07 Santa Maria  18   18
+#> 8  2013-01-08 Santa Maria  16    4
+#> 9  2013-01-09 Santa Maria  34    0
+#> 10 2013-01-10 Santa Maria  27    0
+#> 11 2013-01-11 Santa Maria  15    5
+#> 12 2013-01-12 Santa Maria  28    0
+#> 13 2013-01-13 Santa Maria  22    0
+#> 14 2013-01-14 Santa Maria  29    2
+#> 15 2013-01-15 Santa Maria  32    0
 ```
 
-```
-        dates      cidade tar prec
-1  2013-01-01 Santa Maria  31    0
-2  2013-01-02 Santa Maria  35    0
-3  2013-01-03 Santa Maria  21    0
-4  2013-01-04 Santa Maria  23    0
-5  2013-01-05 Santa Maria  33    0
-6  2013-01-06 Santa Maria  17   10
-7  2013-01-07 Santa Maria  18   18
-8  2013-01-08 Santa Maria  16    4
-9  2013-01-09 Santa Maria  34    0
-10 2013-01-10 Santa Maria  27    0
-11 2013-01-11 Santa Maria  15    5
-12 2013-01-12 Santa Maria  28    0
-13 2013-01-13 Santa Maria  22    0
-14 2013-01-14 Santa Maria  29    2
-15 2013-01-15 Santa Maria  32    0
-```
-
-Uma função específica para gerar subconjunto de dados em *data frames* é a `subset()`. 
+Uma função específica para gerar subconjunto de dados em *dataframes* é a `subset()`. 
 
 
 ```r
 # subconjunto baseado em condição lógica
-ss1 <- subset(dados.df, dates == "2013-01-09", select = "tar")
+ss1 <- subset(dados, datas == "2013-01-09", select = "tar")
 ss1
-```
-
-```
-  tar
-9  34
-```
-
-```r
+#>   tar
+#> 9  34
 # subconjunto baseado em condição lógica
-ss2 <- subset(dados.df, tar > 26 & prec > 0)
+ss2 <- subset(dados, tar > 26 & prec > 0)
 ss2
-```
-
-```
-        dates      cidade tar prec
-14 2013-01-14 Santa Maria  29    2
-```
-
-```r
+#>         datas      cidade tar prec
+#> 14 2013-01-14 Santa Maria  29    2
 # subconjunto baseado em condição lógica
-ss3 <- subset(dados.df, tar > 26 | prec > 0)
+ss3 <- subset(dados, tar > 26 | prec > 0)
 ss3
-```
-
-```
-        dates      cidade tar prec
-1  2013-01-01 Santa Maria  31    0
-2  2013-01-02 Santa Maria  35    0
-5  2013-01-05 Santa Maria  33    0
-6  2013-01-06 Santa Maria  17   10
-7  2013-01-07 Santa Maria  18   18
-8  2013-01-08 Santa Maria  16    4
-9  2013-01-09 Santa Maria  34    0
-10 2013-01-10 Santa Maria  27    0
-11 2013-01-11 Santa Maria  15    5
-12 2013-01-12 Santa Maria  28    0
-14 2013-01-14 Santa Maria  29    2
-15 2013-01-15 Santa Maria  32    0
-```
-
-```r
+#>         datas      cidade tar prec
+#> 1  2013-01-01 Santa Maria  31    0
+#> 2  2013-01-02 Santa Maria  35    0
+#> 5  2013-01-05 Santa Maria  33    0
+#> 6  2013-01-06 Santa Maria  17   10
+#> 7  2013-01-07 Santa Maria  18   18
+#> 8  2013-01-08 Santa Maria  16    4
+#> 9  2013-01-09 Santa Maria  34    0
+#> 10 2013-01-10 Santa Maria  27    0
+#> 11 2013-01-11 Santa Maria  15    5
+#> 12 2013-01-12 Santa Maria  28    0
+#> 14 2013-01-14 Santa Maria  29    2
+#> 15 2013-01-15 Santa Maria  32    0
 # subconjunto baseado em condição lógica
-ss4 <- subset(dados.df, 
-              dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"), 
-              select = -cidade)
+ss4 <- subset(dados,
+  datas %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
+  select = -cidade
+)
 ss4
-```
-
-```
-        dates tar prec
-9  2013-01-09  34    0
-13 2013-01-13  22    0
-15 2013-01-15  32    0
-```
-
-```r
+#>         datas tar prec
+#> 9  2013-01-09  34    0
+#> 13 2013-01-13  22    0
+#> 15 2013-01-15  32    0
 # subconjunto baseado em condição lógica
-ss4 <- subset(dados.df, 
-              ! dates %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
-              select = -cidade)
+ss4 <- subset(dados,
+  !datas %in% c("2013-01-09", "2013-01-13", "2013-01-15"),
+  select = -cidade
+)
 ss4
+#>         datas tar prec
+#> 1  2013-01-01  31    0
+#> 2  2013-01-02  35    0
+#> 3  2013-01-03  21    0
+#> 4  2013-01-04  23    0
+#> 5  2013-01-05  33    0
+#> 6  2013-01-06  17   10
+#> 7  2013-01-07  18   18
+#> 8  2013-01-08  16    4
+#> 10 2013-01-10  27    0
+#> 11 2013-01-11  15    5
+#> 12 2013-01-12  28    0
+#> 14 2013-01-14  29    2
 ```
 
-```
-        dates tar prec
-1  2013-01-01  31    0
-2  2013-01-02  35    0
-3  2013-01-03  21    0
-4  2013-01-04  23    0
-5  2013-01-05  33    0
-6  2013-01-06  17   10
-7  2013-01-07  18   18
-8  2013-01-08  16    4
-10 2013-01-10  27    0
-11 2013-01-11  15    5
-12 2013-01-12  28    0
-14 2013-01-14  29    2
-```
-
-Uma função específica para alteração, remoção e inclusão de variáveis em um *data frame* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável de um *data frame*.
+Uma função específica para alteração, remoção e inclusão de variáveis em um *dataframe* é a `transform()`. Essa função é mais indicada para alteração de mais de uma variável (ao mesmo tempo) de um *dataframe*.
 
 
 ```r
 # mudança do dataframe, alteração de várias variáveis
-dados.df <- transform(dados.df,
-                      cidade = ifelse(1:nrow(dados.df) > 8, "Sao Sepe", cidade),
-                      dates = c(dates[1:8], dates[1:7]),
-                      anomalias = ifelse(cidade == "Santa Maria", 
-                                         tar-mean(tar[cidade == "Santa Maria"]), 
-                                         tar-mean(tar[cidade == "Sao Sepe"]))
-            )
-# alterar so uma variavel
-dados.df$anomalias.norm = ifelse(dados.df$cidade == "Santa Maria", 
-                                dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Santa Maria"]), 
-                                dados.df$anomalias/sd(dados.df$anomalias[dados.df$cidade == "Sao Sepe"]) )
-dados.df
+dados <- transform(dados,
+  cidade = ifelse(1:nrow(dados) > 8, "Sao Sepe", cidade),
+  datas = c(datas[1:8], datas[1:7]),
+  anomalias = ifelse(cidade == "Santa Maria",
+    tar - mean(tar[cidade == "Santa Maria"]),
+    tar - mean(tar[cidade == "Sao Sepe"])
+  )
+)
+dados
+#>         datas      cidade tar prec anomalias
+#> 1  2013-01-01 Santa Maria  31    0       5.6
+#> 2  2013-01-02 Santa Maria  35    0       9.6
+#> 3  2013-01-03 Santa Maria  21    0      -4.4
+#> 4  2013-01-04 Santa Maria  23    0      -2.4
+#> 5  2013-01-05 Santa Maria  33    0       7.6
+#> 6  2013-01-06 Santa Maria  17   10      -8.4
+#> 7  2013-01-07 Santa Maria  18   18      -7.4
+#> 8  2013-01-08 Santa Maria  16    4      -9.4
+#> 9  2013-01-01    Sao Sepe  34    0       8.6
+#> 10 2013-01-02    Sao Sepe  27    0       1.6
+#> 11 2013-01-03    Sao Sepe  15    5     -10.4
+#> 12 2013-01-04    Sao Sepe  28    0       2.6
+#> 13 2013-01-05    Sao Sepe  22    0      -3.4
+#> 14 2013-01-06    Sao Sepe  29    2       3.6
+#> 15 2013-01-07    Sao Sepe  32    0       6.6
+# alterar só uma variavel, anomalia normalizada
+dados$anomalias.norm <- ifelse(dados$cidade == "Santa Maria",
+  dados$anomalias / sd(dados$anomalias[dados$cidade == "Santa Maria"]),
+  dados$anomalias / sd(dados$anomalias[dados$cidade == "Sao Sepe"])
+)
+dados
+#>         datas      cidade tar prec anomalias anomalias.norm
+#> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167
+#> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143
+#> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274
+#> 4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786
+#> 5  2013-01-05 Santa Maria  33    0       7.6       0.993655
+#> 6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250
+#> 7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506
+#> 8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994
+#> 9  2013-01-01    Sao Sepe  34    0       8.6       1.339211
+#> 10 2013-01-02    Sao Sepe  27    0       1.6       0.249156
+#> 11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512
+#> 12 2013-01-04    Sao Sepe  28    0       2.6       0.404878
+#> 13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456
+#> 14 2013-01-06    Sao Sepe  29    2       3.6       0.560600
+#> 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767
 ```
 
-```
-        dates      cidade tar prec anomalias anomalias.norm
-1  2013-01-01 Santa Maria  31    0       5.6       0.732167
-2  2013-01-02 Santa Maria  35    0       9.6       1.255143
-3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274
-4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786
-5  2013-01-05 Santa Maria  33    0       7.6       0.993655
-6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250
-7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506
-8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994
-9  2013-01-01    Sao Sepe  34    0       8.6       1.339211
-10 2013-01-02    Sao Sepe  27    0       1.6       0.249156
-11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512
-12 2013-01-04    Sao Sepe  28    0       2.6       0.404878
-13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456
-14 2013-01-06    Sao Sepe  29    2       3.6       0.560600
-15 2013-01-07    Sao Sepe  32    0       6.6       1.027767
-```
-
-## Combinando *data frames*
+## Combinando *dataframes*
 
 
 ```r
-coords.df <- data.frame(lon = c(rep(-45, 8), rep(-45.1, 7)),  # longitudes
-                        lat = c(rep(-23, 8), rep(-23.1, 7)))  # latitudes
-d <- cbind(dados.df, coords.df)
+coords_df <- data.frame(
+  lon = c(rep(-45, 8), rep(-45.1, 7)), # longitudes
+  lat = c(rep(-23, 8), rep(-23.1, 7))
+) # latitudes
+d <- cbind(dados, coords_df)
 d
-```
-
-```
-        dates      cidade tar prec anomalias anomalias.norm   lon   lat
-1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
-2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
-3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
-4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
-5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
-6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
-7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
-8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
-9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
-10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
-11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
-12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
-13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
-14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
-15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
-```
-
-```r
+#>         datas      cidade tar prec anomalias anomalias.norm   lon   lat
+#> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
+#> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
+#> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
+#> 4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
+#> 5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
+#> 6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
+#> 7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
+#> 8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
+#> 9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
+#> 10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
+#> 11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
+#> 12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
+#> 13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
+#> 14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
+#> 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
 # usando a própria função data.frame()
-d2 <- data.frame(dados.df, coords.df, stringsAsFactors = FALSE)
+d2 <- data.frame(dados, coords_df, stringsAsFactors = FALSE)
 d2
-```
-
-```
-        dates      cidade tar prec anomalias anomalias.norm   lon   lat
-1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
-2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
-3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
-4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
-5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
-6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
-7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
-8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
-9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
-10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
-11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
-12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
-13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
-14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
-15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
-```
-
-```r
-# verificando se os dois data frames são idênticos
+#>         datas      cidade tar prec anomalias anomalias.norm   lon   lat
+#> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
+#> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
+#> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
+#> 4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
+#> 5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
+#> 6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
+#> 7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
+#> 8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
+#> 9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
+#> 10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
+#> 11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
+#> 12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
+#> 13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
+#> 14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
+#> 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
+# verificando se os dois dataframes são idênticos
 identical(d, d2)
-```
-
-```
-[1] TRUE
-```
-
-```r
+#> [1] TRUE
 # dados de Caçapava
-cacapava <- data.frame(dates = "2013-01-01", 
-                       cidade = "Cacapava", 
-                       tar = 19,
-                       prec= 0,
-                       anomalias = NA, 
-                       anomalias.norm = NA,
-                       lon = -45.1,
-                       lat = -23.2)
+cacapava <- data.frame(
+  datas = "2013-01-01",
+  cidade = "Cacapava",
+  tar = 19,
+  prec = 0,
+  anomalias = NA,
+  anomalias.norm = NA,
+  lon = -45.1,
+  lat = -23.2
+)
 d <- rbind(d, cacapava)
 d
-```
-
-```
-        dates      cidade tar prec anomalias anomalias.norm   lon   lat
-1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
-2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
-3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
-4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
-5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
-6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
-7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
-8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
-9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
-10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
-11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
-12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
-13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
-14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
-15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
-16 2013-01-01    Cacapava  19    0        NA             NA -45.1 -23.2
+#>         datas      cidade tar prec anomalias anomalias.norm   lon   lat
+#> 1  2013-01-01 Santa Maria  31    0       5.6       0.732167 -45.0 -23.0
+#> 2  2013-01-02 Santa Maria  35    0       9.6       1.255143 -45.0 -23.0
+#> 3  2013-01-03 Santa Maria  21    0      -4.4      -0.575274 -45.0 -23.0
+#> 4  2013-01-04 Santa Maria  23    0      -2.4      -0.313786 -45.0 -23.0
+#> 5  2013-01-05 Santa Maria  33    0       7.6       0.993655 -45.0 -23.0
+#> 6  2013-01-06 Santa Maria  17   10      -8.4      -1.098250 -45.0 -23.0
+#> 7  2013-01-07 Santa Maria  18   18      -7.4      -0.967506 -45.0 -23.0
+#> 8  2013-01-08 Santa Maria  16    4      -9.4      -1.228994 -45.0 -23.0
+#> 9  2013-01-01    Sao Sepe  34    0       8.6       1.339211 -45.1 -23.1
+#> 10 2013-01-02    Sao Sepe  27    0       1.6       0.249156 -45.1 -23.1
+#> 11 2013-01-03    Sao Sepe  15    5     -10.4      -1.619512 -45.1 -23.1
+#> 12 2013-01-04    Sao Sepe  28    0       2.6       0.404878 -45.1 -23.1
+#> 13 2013-01-05    Sao Sepe  22    0      -3.4      -0.529456 -45.1 -23.1
+#> 14 2013-01-06    Sao Sepe  29    2       3.6       0.560600 -45.1 -23.1
+#> 15 2013-01-07    Sao Sepe  32    0       6.6       1.027767 -45.1 -23.1
+#> 16 2013-01-01    Cacapava  19    0        NA             NA -45.1 -23.2
 ```
 
 ## Teste e Coerção
 
-Podemos converter um objeto para *data frame* com `as.data.frame()`:
+Podemos converter um objeto para *dataframe* com `as.data.frame()`:
 
-+ Um vetor é transformado em um *data frame* de uma coluna;
++ Um vetor é transformado em um *dataframe* de uma coluna;
 
 + Uma lista terá uma coluna para elemento, se os elementos não forem de mesmo tamanho haverá um erro;
-+ Uma matriz cria um *data frame* com mesma estrutura de uma matriz;
++ Uma matriz cria um *dataframe* com mesma estrutura de uma matriz;
 
 
 ```r
-# convertendo lista para data frame
+# convertendo lista para dataframe
 sm_l
-```
-
-```
-$alt
-[1] 113
-
-$cidade
-[1] "Santa Maria"
-
-$dados
-      tar prec
- [1,]  31  300
- [2,]  35  200
- [3,]  21  150
- [4,]  23  120
- [5,]  33  210
- [6,]  17  110
- [7,]  18  180
- [8,]  16  140
- [9,]  20   80
-[10,]  25  160
-[11,]  27  150
-[12,]  30  100
-
-$lon
-[1] -45
-
-$lat
-[1] -23
-```
-
-```r
+#> $alt
+#> [1] 113
+#> 
+#> $cidade
+#> [1] "Santa Maria"
+#> 
+#> $dados
+#>       tar prec
+#>  [1,]  31  300
+#>  [2,]  35  200
+#>  [3,]  21  150
+#>  [4,]  23  120
+#>  [5,]  33  210
+#>  [6,]  17  110
+#>  [7,]  18  180
+#>  [8,]  16  140
+#>  [9,]  20   80
+#> [10,]  25  160
+#> [11,]  27  150
+#> [12,]  30  100
+#> 
+#> $lon
+#> [1] -45
+#> 
+#> $lat
+#> [1] -23
 sm_l_df <- as.data.frame(sm_l)
-# convertendo array para data frame
+sm_l_df
+#>    alt      cidade dados.tar dados.prec lon lat
+#> 1  113 Santa Maria        31        300 -45 -23
+#> 2  113 Santa Maria        35        200 -45 -23
+#> 3  113 Santa Maria        21        150 -45 -23
+#> 4  113 Santa Maria        23        120 -45 -23
+#> 5  113 Santa Maria        33        210 -45 -23
+#> 6  113 Santa Maria        17        110 -45 -23
+#> 7  113 Santa Maria        18        180 -45 -23
+#> 8  113 Santa Maria        16        140 -45 -23
+#> 9  113 Santa Maria        20         80 -45 -23
+#> 10 113 Santa Maria        25        160 -45 -23
+#> 11 113 Santa Maria        27        150 -45 -23
+#> 12 113 Santa Maria        30        100 -45 -23
+# convertendo array para dataframe
 v
-```
-
-```
-, , 1
-
-     [,1] [,2]
-[1,]    1    3
-[2,]    2    4
-
-, , 2
-
-     [,1] [,2]
-[1,]    5    7
-[2,]    6    8
-
-, , 3
-
-     [,1] [,2]
-[1,]    9   11
-[2,]   10   12
-```
-
-```r
+#> , , 1
+#> 
+#>      [,1] [,2]
+#> [1,]    1    3
+#> [2,]    2    4
+#> 
+#> , , 2
+#> 
+#>      [,1] [,2]
+#> [1,]    5    7
+#> [2,]    6    8
+#> 
+#> , , 3
+#> 
+#>      [,1] [,2]
+#> [1,]    9   11
+#> [2,]   10   12
 v_df <- as.data.frame(v)
-# convertendo vetor para data frame
+# convertendo vetor para dataframe
 temp90_df <- as.data.frame(temp90)
-# convertendo matrix para data frame
+# convertendo matrix para dataframe
 mat_ex
-```
-
-```
-     [,1] [,2] [,3]
-[1,]    1    5    6
-[2,]   -7   -9    6
-[3,]    3    2    1
-```
-
-```r
+#>      [,1] [,2] [,3]
+#> [1,]    1    5    6
+#> [2,]   -7   -9    6
+#> [3,]    3    2    1
 mat_ex_df <- as.data.frame(mat_ex)
 names(mat_ex_df)
-```
-
-```
-[1] "V1" "V2" "V3"
-```
-
-```r
+#> [1] "V1" "V2" "V3"
+mat_ex_df
+#>   V1 V2 V3
+#> 1  1  5  6
+#> 2 -7 -9  6
+#> 3  3  2  1
 # testes
 is.data.frame(mat_ex_df)
-```
-
-```
-[1] TRUE
-```
-
-```r
+#> [1] TRUE
 class(v_df)
+#> [1] "data.frame"
 ```
-
-```
-[1] "data.frame"
-```
-
-```r
-mode(v_df)
-```
-
-```
-[1] "list"
-```
-
-- - - 
-
-# Funções novas utilizadas nessa seção 
-
-vector
-
-- `c()`
-- `length()`
-- `%in%`; `is.element()`
-- `nchar()`
-- `as.numeric()`; `as.character()`; `as.integer()`
-- `names()`; `setNames()`; `unname()`
-- `all()`; `any()`
-- `seq()`; `head()`;`tail()`; `options()`;
-- `seq_len()`
-- `rep()`
-- `[`
-- `plot()`
-- `&`, `&&`; `|`, `||`; 
-- `points()`; `abline()`
-- `which()`; `which.max()`; `which.min()`
-- `vector()`; `class()`
-- `ls()`; `is.null()`
-- `is.na()`
-- `ls()`; `is.null()`; `exists()`
-- `identical()`
-
-matrix
-
-- `dim()`; `is.vector()`; `is.matrix()`
-- `matrix()`; `attributes()`; `length()`
-- `rownames()`; `colnames()`
-- `nrow()`; `ncol()`;
-- `row()`; `col()`;
-- `paste()`
-- `rbind()`; `cbind()`;
-- `t()`; `diag()`; `%*%`; `crossprod()`; `det()`; `solve()`
-- `as.vector()`; 
-
-array
-
-- `array()`;
-- `mode()`; 
-- `matplot()`; `boxplot()`
-- `cumprod()`
-
-list 
-
-- `list()`; `str()`; `is.recursive()`
-- `[[`; `$`
-
-data frame
-
-- `data.frame()`; `is.data.frame()`; `str()`; `summary()`
-- `names()`; `rownames()`; `dimnames()`; `attributes()`
-- `$`; `with()`; `fix()`
-- `transform()`; `subset()`
-- `cbind()`; `rbind()`; `identical()`
-- `as.data.frame()`
-
 
 
 
