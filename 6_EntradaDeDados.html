@@ -2033,7 +2033,7 @@ inmet_estacoes
 <span class="co">#&gt;  $ Inicio Operação: POSIXct, format: &quot;1928-01-01&quot; &quot;1929-01-01&quot; ...</span>
 <span class="co">#&gt;  $ Fim Operação   : POSIXct, format: &quot;2016-02-01&quot; NA ...</span>
 <span class="co">#&gt;  $ Situação       : chr  &quot;Desativada&quot; NA NA NA ...</span></code></pre></div>
-<p>Para escrever um arquivo <code>xls</code> use a função <code>writeWorksheet()</code>.</p>
+<p>Para escrever um arquivo <code>xls</code> ou xlsx você pode usar a função <code>writeWorksheet()</code> do pacote <strong>XLConnect</strong>. Entretanto, você pode escrever o arquivo em CSV (com <code>write.csv()</code>), um format mais universal e acessível para qualquer usuário.</p>
 </div>
 <div id="bancos-de-dados-relacionais" class="section level2">
 <h2><span class="header-section-number">7.2</span> Bancos de dados relacionais</h2>
@@ -2653,9 +2653,9 @@ arq_name</code></pre></div>
 <span class="co"># tamanho, data de criação, permissões, etc </span>
 <span class="kw">file.info</span>(<span class="st">&quot;data/chuva_df.RData&quot;</span>)
 <span class="co">#&gt;                      size isdir mode               mtime</span>
-<span class="co">#&gt; data/chuva_df.RData 23031 FALSE  664 2018-05-07 13:16:53</span>
+<span class="co">#&gt; data/chuva_df.RData 23031 FALSE  664 2018-05-07 13:23:41</span>
 <span class="co">#&gt;                                   ctime               atime  uid  gid</span>
-<span class="co">#&gt; data/chuva_df.RData 2018-05-07 13:16:53 2018-05-07 13:16:53 1000 1000</span>
+<span class="co">#&gt; data/chuva_df.RData 2018-05-07 13:23:41 2018-05-07 13:23:41 1000 1000</span>
 <span class="co">#&gt;                                   uname              grname</span>
 <span class="co">#&gt; data/chuva_df.RData hidrometeorologista hidrometeorologista</span></code></pre></div>
 </div>
@@ -3717,9 +3717,9 @@ files2remove
 <p>Veja mais funções para manipulação de arquivos em <code>?connections</code>.</p>
 <p>Para criar arquivos e diretórios temporários podemos usar as funções <code>tempfile()</code> e <code>tempdir()</code>, respectivamente. O exemplo abaixo mostra como baixar o arquivo da internet em um arquivo temporário.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tempdir</span>()
-<span class="co">#&gt; [1] &quot;/tmp/RtmpP5ngBn&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpo4G6t9&quot;</span>
 <span class="kw">tempfile</span>()
-<span class="co">#&gt; [1] &quot;/tmp/RtmpP5ngBn/file3916656a5a02&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmpo4G6t9/file3a7e5c1a707c&quot;</span>
 <span class="co"># baixando dados da web</span>
 arq_temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;http://www.cpc.ncep.noaa.gov/data/indices/soi&quot;</span>,

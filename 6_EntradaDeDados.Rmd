@@ -935,7 +935,7 @@ str(inmet_estacoes)
 ```
 
 
-Para escrever um arquivo `xls` use a função `writeWorksheet()`.
+Para escrever um arquivo `xls` ou xlsx você pode usar a função `writeWorksheet()` do pacote **XLConnect**. Entretanto, você pode escrever o arquivo em CSV (com `write.csv()`), um format mais universal e acessível para qualquer usuário.
 
 ## Bancos de dados relacionais 
 

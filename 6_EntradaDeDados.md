@@ -2124,7 +2124,7 @@ str(inmet_estacoes)
 ```
 
 
-Para escrever um arquivo `xls` use a função `writeWorksheet()`.
+Para escrever um arquivo `xls` ou xlsx você pode usar a função `writeWorksheet()` do pacote **XLConnect**. Entretanto, você pode escrever o arquivo em CSV (com `write.csv()`), um format mais universal e acessível para qualquer usuário.
 
 ## Bancos de dados relacionais 
 
@@ -2800,9 +2800,9 @@ file.exists(file_name)
 # tamanho, data de criação, permissões, etc 
 file.info("data/chuva_df.RData")
 #>                      size isdir mode               mtime
-#> data/chuva_df.RData 23031 FALSE  664 2018-05-07 13:16:53
+#> data/chuva_df.RData 23031 FALSE  664 2018-05-07 13:23:41
 #>                                   ctime               atime  uid  gid
-#> data/chuva_df.RData 2018-05-07 13:16:53 2018-05-07 13:16:53 1000 1000
+#> data/chuva_df.RData 2018-05-07 13:23:41 2018-05-07 13:23:41 1000 1000
 #>                                   uname              grname
 #> data/chuva_df.RData hidrometeorologista hidrometeorologista
 ```
@@ -3888,9 +3888,9 @@ Para criar arquivos e diretórios temporários podemos usar as funções `tempfi
 
 ```r
 tempdir()
-#> [1] "/tmp/RtmpP5ngBn"
+#> [1] "/tmp/Rtmpo4G6t9"
 tempfile()
-#> [1] "/tmp/RtmpP5ngBn/file3916656a5a02"
+#> [1] "/tmp/Rtmpo4G6t9/file3a7e5c1a707c"
 # baixando dados da web
 arq_temp <- tempfile()
 download.file(url = "http://www.cpc.ncep.noaa.gov/data/indices/soi",
