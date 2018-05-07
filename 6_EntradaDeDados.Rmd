@@ -4,25 +4,28 @@ author: "Jônatan Tatsch"
 date: "`r format(Sys.Date(), format = '%d-%m-%Y')`"
 output:
   html_document:
-    #code_folding: show
     fig_caption: yes
     fig_width: 6
     highlight: kate
     keep_md: yes
     number_sections: yes
     toc: yes
-    #toc_float: yes
 ---
 
-```{r Chunk0, comment="",prompt=FALSE, echo=FALSE, eval=TRUE, error=TRUE,highlight=TRUE,message=FALSE,warning=FALSE, results='hide'}
+```{r Chunk0, echo=FALSE}
 rm(list=ls())
 # definindo globalmente tz = "GMT"
 #Sys.setenv(TZ = 'GMT')
-# data manipulation packages
-pcks <- c("knitr", "knitcitations", "pander", "htmlTable")
-invisible(sapply(pcks, require, character.only = TRUE, quietly = TRUE))
-# configuraçoes knitr
-opts_chunk$set(cache = FALSE, fig.path = "figs/")
+pcks <- c("knitr", "emo", "pander", "knitr", "knitcitations", "pander", "htmlTable") # , "htmlTable")
+# pcks <- c("knitr", "emo")
+easypackages::libraries(pcks)
+opts_chunk$set(
+  prompt = FALSE,
+  cache = FALSE,
+  fig.path = "figs/",
+  comment = "#>",
+  collapse = TRUE
+)
 ```
 
 - - -
@@ -48,7 +51,7 @@ O R permite ler dados de uma variedade de fontes e formatos. Nesta unidade verem
 
 Até agora nós trabalhamos com dados que criados a partir de comandos diretamente digitados no console do R. Para criação de vetores usamos a função `c` que combina valores em um vetor. 
 
-```{r Chunk10, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk10, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # Exemplo: vetor
 v1 <- c(1,3,4:8,10)
 v1
@@ -58,7 +61,7 @@ v1
 
 Nós podemos informar os números de um vetor a partir do teclado, um de cada vez usando e quando terminar teclar enter:
 
-```{r Chunk1110, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk1110, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
 # Exemplo: vetor
 v2 <- scan()
 # digite os números do v1, ao terminar, tecle enter
@@ -66,7 +69,7 @@ v2 <- scan()
 
 A função `scan()` também pode ler dados de arquivos, mas a sua saída é um vetor, ou seja ela não mantém a  estrutura dos dados contidos no arquivo.
 
-```{r Chunk1111, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk1111, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # Exemplo: vetor
 vetor_aq <- scan("data/airquality.txt")
 # parte inicial dos dados
@@ -78,10 +81,10 @@ is.vector(vetor_aq)
 mode(vetor_aq)
 ```
 
-Vimos que `Data-frames` são geralmente criados pela função `data.frame`, conforme o exemplo abaixo.
+Vimos que `dataframes` são geralmente criados pela função `data.frame`, conforme o exemplo abaixo.
 
-```{r Chunk1112, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-# Exemplo: data-frame 
+```{r Chunk1112, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+# Exemplo: dataframe 
 dados <- data.frame(dates = c("2013-01-01", "2013-01-01", "2013-01-01"),
                     cidade = c("Santa Maria", "Sao Sepe", "Caçapava"), 
                     temperatura = c(31, 35, 21),
@@ -93,14 +96,14 @@ dados
 
 Para ler apenas uma linha de dados a partir do teclado como `character` usamos a função **`readline()`**:
 
-```{r Chunk1120, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk1120, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 sentenca <- readline(prompt = "digite alguma coisa e tecle enter para continuar: ")
 sentenca
 ```
 
 Esta função pode ser utilizada como uma forma de controlar um *looping*. Esse exemplo ilustra o uso da função `lapply()` para execução de laços ou *loopings* ao longo de um vetor de índices. Essa função será vista futuramente no curso.
 
-```{r Chunk1121, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk1121, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
 # para reprodutibilidade
 set.seed(123)
 # looping ao longo da sequência de 1 a 5
@@ -123,7 +126,7 @@ l
 
 No modo interativo do R podemos imprimir os valores de um objeto na tela digitando o nome do objeto.
 
-```{r Chunk1130, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk1130, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 x <- 1:3
 y <- x^2
 y
@@ -133,7 +136,7 @@ print(x^2)
 
 Entretanto isso não é possível quando precisamos mostrar o valor de uma variável dentro do corpo de uma função ou dentro de um laço (*looping*). Nesse caso podemos usar a função `print()`:
 
-```{r Chunk1131, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk1131, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # dentro de uma função 
 # digitando o nome do objeto não imprimi na tela
 fcubo <- function(x) {
@@ -158,7 +161,7 @@ cubo(-3)  # imprime classe do objeto de entrada
 
 É melhor usar a função `cat()` ao invés da função `print()`, já que a `print()` permite a impressão de apenas um único objeto enquanto a `cat()` não. Compare os resultados das duas funções:
 
-```{r Chunk1132, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk1132, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 print("abc")
 cat("abc\n") # \n indica quebra de linha
 x
@@ -178,9 +181,9 @@ Imagine que você tivesse recebido essa amostra de dados por e-mail:
     2013-01-01 SS          30    10
     2013-01-01 CV          22    12
 
-Para converter essa pequena amostra de dados em um *data frame* nós podemos selecionar, copiar e colar o texto no primeiro argumento da função `textConnection`, e então usar a função `read.table`. 
+Para converter essa pequena amostra de dados em um *dataframe* nós podemos selecionar, copiar e colar o texto no primeiro argumento da função `textConnection`, e então usar a função `read.table`. 
 
-```{r Chunk120, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk120, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 texto <- "       dates      cidade temperatura chuva
     2013-01-01 SM          31     3
     2013-01-01 SS          35    10
@@ -198,7 +201,7 @@ x
 
 Uma função útil para passar os dados a alguém que precisa reproduzi-los é a função `dput()` (que pode ser traduzido como "despejar"). Ela escreve uma representação textual de um objeto R que pode ser escrita em um arquivo. Para recriar o objeto basta usar a função `dget()`.
 
-```{r Chunk210, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk210, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 x
 # representação textual do objeto x
 dput(x)
@@ -228,7 +231,7 @@ y
 
 Portanto diferente da escrita dos dados em si para um arquivo texto as funções `dump()` e `dput()` armazenam os **dados** e os **metadados**, assim outro usuário não precisa especificá-los novamente. Assim o usuário que recebe a saída do `dput()` em um arquivo, pode recriar os dados pelo comando `dget("nomedoarquivo")`. 
 
-```{r Chunk211, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk211, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # representação textual de um data.frame
 x2 <- structure(list(dates = c("2013-01-01", "2013-01-01", "2013-01-01"), 
                      cidade = c("SM", "SS", "CV"), 
@@ -257,7 +260,7 @@ Esse procedimento é geralmente recomendado para fornecer pequenas amostras de d
 
 O `R` possui diversos conjuntos de dados internos que são automaticamente carregados quando iniciado. Esses dados são usados nos exemplos do `help()` de diversas funções para ilustrar o uso e a aplicação delas. Esses dados podem ser carregados com a função `data`.
 
-```{r Chunk300, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk300, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 data()
 # Annual Precipitation in US Cities, p/ mais informações "?precip"
 data(precip)
@@ -275,7 +278,7 @@ Dados armazenados em um arquivo texto (do tipo [ASCII](http://pt.wikipedia.org/w
 
 O formato mais comum de armazenar uma tabela de dados num arquivo texto é com os registros ao longo das linhas e as variáveis ao longo das colunas. Os valores de cada coluna de uma linha são separados por um caractere separador: vírgula (`,`), espaço (`,`), tab (`\t`) e etc.
 
-**A função mais importante para leitura de dados de um arquivo texto é a `read.table()` que  armazena os dados no formato de uma data-frame**. Essa função possui diversos parâmetros para ajustar a importação de acordo com as peculiaridades do formato de dados do arquivo. O valor *default* do parâmetro `sep` é um ou mais caracteres de `espaço` e `tabs`. Devido as diversas opções de separadores existem outras funções essencialmente iguais a `read.table()` com a diferença no separador, por exemplo as funções: `read.csv(), read.csv2(), read.delim()` usam como o argumento separador `,`, `;` e `\t` . Para detalhes sobre essas funções o *help* de cada uma. Uma vez que essas funções aceitam qualquer argumento da `read.table()` elas são mais convenientes que usar a `read.table()` e configurar os argumentos apropriados manualmente.
+**A função mais importante para leitura de dados de um arquivo texto é a `read.table()` que  armazena os dados no formato de uma dataframe**. Essa função possui diversos parâmetros para ajustar a importação de acordo com as peculiaridades do formato de dados do arquivo. O valor *default* do parâmetro `sep` é um ou mais caracteres de `espaço` e `tabs`. Devido as diversas opções de separadores existem outras funções essencialmente iguais a `read.table()` com a diferença no separador, por exemplo as funções: `read.csv(), read.csv2(), read.delim()` usam como o argumento separador `,`, `;` e `\t` . Para detalhes sobre essas funções o *help* de cada uma. Uma vez que essas funções aceitam qualquer argumento da `read.table()` elas são mais convenientes que usar a `read.table()` e configurar os argumentos apropriados manualmente.
 
 Alguns argumentos da função `read.table()` são:
 
@@ -288,7 +291,7 @@ Alguns argumentos da função `read.table()` são:
 * `skip`, o número de linhas que devem ser "puladas" desde o início do arquivo
 * `stringsAsFactors`, lógico, as variáveis do tipo `character` devem ser codificadas como `factor`?
 
-Esse último argumento pode ser definido também através da configuração global de opções no R pelo comando: `options(stringsAsFactors=F)`.
+Esse último argumento pode ser definido também através da configuração global de opções no R pelo comando: `options(stringsAsFactors=FALSE)`.
 
 Quando se faz a leitura de dados com `read.table("nome_do_arquivo")` o R automaticamente: 
 
@@ -302,9 +305,9 @@ Para arquivos de tamanho moderado a pequeno essa forma de especificar os argumen
 
 ### [hidroweb-ANA](http://hidroweb.ana.gov.br/)
 
-```{r Chunk410, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk410, message=FALSE,    echo=TRUE, eval=TRUE}
 # definindo interpretação de caracteres: caracteres não devem ser tratados como fatores
-options(stringsAsFactors = F)
+options(stringsAsFactors = FALSE)
 # leitura de dados pluviométricos diários da ANA
 dprec <- read.csv2(file = "data/CHUVAS.TXT", 
                    skip = 15, 
@@ -324,7 +327,7 @@ tail(dprec)
 dprec2 <- read.table(file = "data/CHUVAS.TXT", 
                    skip = 15, 
                    head = T, 
-                   stringsAsFactors = F,
+                   stringsAsFactors = FALSE,
                    fill = T,
                    sep = ";",
                    dec = ",")
@@ -333,11 +336,11 @@ head(dprec2)
 
 ### [BDMEP-INMET](http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep)
 
-```{r Chunk411, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk411, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 x <- read.csv2(file = "data/83004.txt", 
-               header = F, 
+               header = FALSE, 
                skip = 16,
-               stringsAsFactors = F,
+               stringsAsFactors = FALSE,
                na.strings = ""
                )
 head(x)
@@ -353,11 +356,11 @@ Outro aspecto nos dados lidos é que aparecem vários `<NA>`, que é o símbolo 
 para imprimir na tela apenas a parte final do arquivo. 
 Para que os dados numéricos não sejam interpretados como caractere nós poderíamos executar a função `read.table(..., nrows = 5878)`, que ignoraria a última linha do arquivo e os dados seriam interpretados como `numeric`.
 
-```{r Chunk412, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk412, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 x1 <- read.csv2(file="data/83004.txt", 
-               header = F, 
+               header = FALSE, 
                skip = 16,
-               stringsAsFactors = F,
+               stringsAsFactors = FALSE,
                dec = ".",
                na.strings = "",
                nrows = 5878              
@@ -368,7 +371,7 @@ str(x1)
 
 Outra alternativa seria converter as colunas de interesse (todas exceto as de 1 a 3) para `numeric` através da função `as.numeric()` usando a função `apply` ao longo das colunas:
 
-```{r Chunk413, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk413, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # corrigindo classe dos dados
 # convertendo de character para numeric
 x[, -c(1:3)] <- apply(x[,-c(1:3)], 2, as.numeric)
@@ -381,17 +384,17 @@ Mas e o nome das variáveis?
 
 Nós ignoramos a linha de cabeçalho por que nos dados do INMET ocorre uma variável denominada `VelocidadeVentoInsolacao`. Essa *string* deveria ser separada em duas.
 
-```{r Chunk414, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk414, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # lendo somente o nome das variaveis
 vnames <- read.csv2(file="data/83004.txt", 
-                    header = F, 
+                    header = FALSE, 
                     skip = 15,
-                    stringsAsFactors = F,
+                    stringsAsFactors = FALSE,
                     dec = ".",
                     na.strings = "",
                     nrows = 1)
 vnames
-# convertendo de data frame para vetor
+# convertendo de dataframe para vetor
 vnames <- c(t(vnames))
 # número de variáveis é diferente do número de colunas do arquivo
 length(vnames) == ncol(x)
@@ -409,11 +412,11 @@ head(x)
 
 Finalmente vamos escrever os dados do INMET corretamente organizados.
 
-```{r Chunk415, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk415, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 write.csv2(x,
            file = "data/83004_clean.txt", 
            na = "-9999",
-           row.names = F)
+           row.names = FALSE)
 ```
 
 
@@ -422,16 +425,16 @@ write.csv2(x,
 Vamos importar o arquivo texto `airquality.txt` que possui algumas linhas e colunas faltantes.
 
 
-```{r Chunk420, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
+```{r Chunk420, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
 # leitura do arquivo airquality.txt
 aq0 <- read.table(file = "data/airquality.txt", 
                   na.strings = "-99.9", 
-                  head = F)
+                  head = FALSE)
 ```
 
 A função `count.fields()` permite contar o número de registros em cada linha. Assim encontramos as linhas com número de registros fora do padrão.
 
-```{r Chunk421, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk421, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # conta o num. de registros por linha
 cf <- count.fields(file = "data/airquality.txt", sep = " ")
 cf
@@ -444,7 +447,7 @@ qlinha
 # que preenche colunas faltantes com NA
 aq <- read.table(file = "data/airquality.txt", 
                  na.strings = "-99.9", 
-                 head = F, 
+                 head = FALSE, 
                  fill = T)
 names(aq) <-  c("Ozone",  "Solar.R", "Wind", "Temp", "Month", "Day")
 # primeiras linhas do dados
@@ -458,7 +461,7 @@ summary(aq)
 # provável erro de digitação para  o label de dado faltante
 aq <- read.table(file = "data/airquality.txt", 
                  na.strings =c("-99.9","-999"), 
-                 head = F, 
+                 head = FALSE, 
                  fill = T)
 names(aq) <- c("Ozone", "Solar.R", "Wind", "Temp", "Month", "Day")
 summary(aq)
@@ -468,14 +471,14 @@ write.table(x = aq,
             sep = "\t", 
             na = "-999", 
             dec = ".", 
-            row.names = F)
+            row.names = FALSE)
 # mostra arquivo
 file.show("data/aq.txt")
 ```
 
 Fazendo alterações manuais nos dados `aq` via R:
 
-```{r Chunk422, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk422, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
 # editar dados
 aq_new <- fix(aq)
 ```
@@ -484,24 +487,24 @@ aq_new <- fix(aq)
 
 Alguns arquivos texto com dados tabulares podem não conter separadores (para p.ex. economizar espaço de disco). Outros arquivos podem ser formatados usando largura fixa para reservar o espaço de cada variável, o que facilita a legibilidade dos dados. Nesses casos usamos a função `read.fwf()`. Vamos usar como exemplo o arquivo de dados do Índice de Oscilação Sul (SOI) obtido no site do [National Weather Service - Climate Prediction Center (NWS-CPC)](http://www.cpc.ncep.noaa.gov).
 
-```{r Chunk440, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk440, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # link para os dados do SOI
 link <- "http://www.cpc.ncep.noaa.gov/data/indices/soi"
 ```
 
 Abrindo o link dos dados no navegador para visualização do formato.
 
-```{r Chunk441, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk441, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
 browseURL(url = link)
 ```
 
 Leitura dos dados: 
 
-```{r Chunk442, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk442, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 #soi <- read.fwf(file = link,                           # nome do arquivo ou link
 soi <- read.fwf(file = "data/SOI.txt",                       # sem internet, usar esse arquivo
                 skip = 4,                               # pula 4 linhas
-                header = F,                             # sem cabeçalho
+                header = FALSE,                             # sem cabeçalho
                 nrows = 70,                             # num. de linhas
                 widths = c(4, rep(6,12)),                # largura dos campos das variáveis
                 na.strings = "-999.9",                  # string para dados faltantes
@@ -515,10 +518,10 @@ soi <- read.fwf(file = "data/SOI.txt",                       # sem internet, usa
 
 Vamos alterar a estrutura dos dados: ao invés dos dados serem distribuídos ao longo das colunas, vamos estruturá-los como série temporal, ou seja cada valor mensal corresponderá a uma linha. 
 
-```{r Chunk443, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk443, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # converte a matriz de dados para um vetor (em sequencia cronológica)
 soi_v <- c(t(soi[, -1]))
-# criando um data frame com valores de SOI, mes e ano
+# criando um dataframe com valores de SOI, mes e ano
 soi_df <- data.frame(ano = rep(soi$YEAR, each = 12),
                      mes = rep(1:12, length(soi[,1])),
                      soi = soi_v)
@@ -526,12 +529,12 @@ soi_df <- data.frame(ano = rep(soi$YEAR, each = 12),
 write.csv(x = soi_df, 
           file = "data/SOI.csv", 
           na = "-999.9", 
-          row.names = F)
+          row.names = FALSE)
 ```
 
 Vamos ler os dados reestruturados que foram salvos no formato [csv](http://en.wikipedia.org/wiki/Comma-separated_values) usando uma função que permite a escolha do arquivo de forma iterativa.
 
-```{r Chunk444, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk444, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
 # leitura de dados com escolha interativa do arquivo
 soi.df <- read.csv(file = file.choose(),
                    # file.choose só é válido em sistema *unix
@@ -542,13 +545,13 @@ soi.df <- read.csv(file = file.choose(),
 
 Clique duas vezes sobre o arquivo `SOI.csv`.
 
-```{r Chunk445, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=FALSE, eval=TRUE}
+```{r Chunk445, message=FALSE,    tidy=FALSE, echo=FALSE, eval=TRUE}
 soi.df <- read.csv(file = "data/SOI.csv",
                    header = T,
                    na.strings = "-999.9")
 ```
 
-```{r chunk446, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r chunk446, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 head(soi.df)
 str(soi.df)
 ```
@@ -562,7 +565,7 @@ A função `readLines()` é adequada para isso. Cada linha é tratada como um el
 
 Vamos importar os dados do INMET, mas dessa vez vamos focar no cabeçalho, onde estão as informações da estação meteorológica.
 
-```{r Chunk450, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk450, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # leitura do cabecalho do arquivo de dados de uma estação do inmet
 cab <- readLines("data/83004.txt")
 head(cab)
@@ -614,12 +617,12 @@ data.frame(Sys.info())
 ```
 
 
-É possível estimar a memória necessária para leitura de dados. Suponha um conjunto de dados de 1500000 linhas e 120 colunas, todas colunas são da classe `numeric`. Aproximadamente quanta memória é necessária para armazená-lo em um *data frame*? Vamos assumir que os dados sejam numéricos não inteiros (8 bytes/registro).
+É possível estimar a memória necessária para leitura de dados. Suponha um conjunto de dados de 1500000 linhas e 120 colunas, todas colunas são da classe `numeric`. Aproximadamente quanta memória é necessária para armazená-lo em um *dataframe*? Vamos assumir que os dados sejam numéricos não inteiros (8 bytes/registro).
 
 + 1500000 x 120 x 8 bytes/registro = 1440000000 bytes = 1440000000/(2^20^) bytes/MB = 1373.29 MB = 1,34 GB
 
 
-```{r Chunk430, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk430, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # cálculo de memória
 bytes_per_reg <- 8
 nlins <- 1500000
@@ -647,7 +650,7 @@ Em situações que os dados brutos exigem um processamento de dados significativ
 
 Para mostrar como usar as funções `save()` e `load()` vamos utilizar os dados pluviométricos lidos anteriormente e selecionar as colunas de interesse. Depois disso o objeto `chuva_df` será armazenado em arquivo binário do R com a extensão `.RData`.
 
-```{r Chunk6110, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk6110, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # primeiras linhas
 head(dprec[, 1:10])
 # selecionando somente dados diarios do dia 1 a 31 de cada ano
@@ -660,7 +663,7 @@ file.exists("data/chuva_df.RData")
 
 Como o objeto `chuva_df` foi salvo em um arquivo, vamos removê-lo e então recuperá-lo carregando os dados armazenado no arquivo `chuva_df.RData`.
 
-```{r Chunk6111, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
+```{r Chunk6111, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE, error=TRUE}
 # apagando chuva_df do ambiente de trabalho
 rm(chuva_df)
 # verifica existência de objeto
@@ -679,7 +682,7 @@ Se você deseja salvar o espaço de trabalho em outro momento use a função `sa
 
 Quando desejamos salvar só uma parte dos dados uma opção é usar a função `rm()` (uma abreviação de **remove**) para remover objetos que não são de interesse antes de finalizar a sessão do R. A função `save()`permite salvar *mais de um objeto* em um mesmo arquivo. 
 
-```{r Chunk6112, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk6112, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 save(cab, chuva_df, file = "data/dados_prec.RData")
 ls()
 rm(cab, chuva_df)
@@ -691,9 +694,9 @@ print(load("data/dados_prec.RData"))
 ### `readRDS()` e `saveRDS()`
 
 As funções `readRDS()` e `writeRDS()` são similares a `load()` e `save()`, respectivamente, exceto que elas lidam com **um único objeto**. Em contrapartida elas possuem a flexibilidade nomear o objeto lido com um nome diferente do qual ele foi salvo.
-Vamos alterar o formato da data do *data frame* `chuva_df` e salvá-lo no arquivo `chuva_df.rds`.
+Vamos alterar o formato da data do *dataframe* `chuva_df` e salvá-lo no arquivo `chuva_df.rds`.
 
-```{r Chunk6120, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk6120, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # salvar dados em um arquivo rds
 head(chuva_df[, 1:10])
 # alterando formato de datas da coluna Data
@@ -702,9 +705,9 @@ saveRDS(object = chuva_df, file = "data/chuva_df.rds")
 file.exists("data/chuva_df.rds")
 ```
 
-Após salvar o *data frame* `chuva_df` vamos removê-lo do ambiente da sessão e recuperá-lo com a função `readRDS()`.
+Após salvar o *dataframe* `chuva_df` vamos removê-lo do ambiente da sessão e recuperá-lo com a função `readRDS()`.
 
-```{r Chunk6121, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk6121, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # removendo chuva_df do ambiente
 rm(chuva_df)
 # recuperando dados do arquivo em uma variável com nome diferente do original
@@ -716,7 +719,7 @@ head(prec_ana[, 1:10])
 
 *Download* do arquivo binário com estimativa da precipitação pelo satélite TRMM. O produto 3B42  possui resolução espacial de 0.25º, cobertura espacial global e temporal de 3 horas.
 
-```{r Chunk6210, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=FALSE, eval=TRUE}
+```{r Chunk6210, message=FALSE,    tidy=FALSE, echo=FALSE, eval=TRUE}
 # CHUNCK OCULTO
 ftp_trmm_file <- "ftp://disc2.nascom.nasa.gov/data/TRMM/Gridded/3B42_V7/201407/3B42.140701.09z.7.precipitation.bin"
 if(file.exists(basename(ftp_trmm_file))){
@@ -729,7 +732,7 @@ if(file.exists(basename(ftp_trmm_file))){
 ```
 
 
-```{r Chunk6211, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk6211, message=FALSE,    tidy=FALSE, echo=TRUE, eval=FALSE}
 # ftp com aruivos binários de estimativa de precipitação a cada 3 h do TRMM 3B42
 ftp_trmm_file <- "ftp://disc2.nascom.nasa.gov/data/TRMM/Gridded/3B42_V7/201407/3B42.140701.09z.7.precipitation.bin"
 # download do arquivo
@@ -744,7 +747,7 @@ file.show("readme_TRMM.txt")
 
 Leitura do arquivo binário.
 
-```{r Chunk6212, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk6212, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # importando arquivo binário  
 bin_data <- readBin(con = file.path("data",basename(ftp_trmm_file)),
                     what = "numeric", 
@@ -754,7 +757,7 @@ bin_data <- readBin(con = file.path("data",basename(ftp_trmm_file)),
 ```
 
 
-```{r Chunk6213, message=FALSE, comment="",prompt=FALSE, echo=FALSE, eval=TRUE}
+```{r Chunk6213, message=FALSE,    echo=FALSE, eval=TRUE}
 is.vector(bin_data)
 # estruturando valores do arquivo como uma matriz
 m <- matrix(bin_data, ncol = 1440, byrow = TRUE)
@@ -763,7 +766,7 @@ str(m)
 
 Para visualizarmos os dados lidos, vamos usar a função `levelplot()` do pacote [lattice](http://cran.r-project.org/web/packages/lattice/index.html). Essa função permite rapidamente visualizar o campo espacial da precipitação. As cores que devem ser usados para colorir os níveis de variação da precipitação. Vamos remover os dados abaixo de 0.5 mm/h para destacar os sistemas precipitantes.
 
-```{r Chunk6214, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk6214, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # Visualização dos dados
 # install.packages(lattice, dep = TRUE)
 require(lattice)
@@ -801,7 +804,7 @@ Os exemplos a seguir usam o pacote [ncdf4](https://cran.r-project.org/web/packag
 
 Carregando pacotes necessários:
 
-```{r Chunk630, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk630, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # Se não tiver o pacote instale-o, p.ex.: 
 # install.packages("ncdf4", dep = TRUE)
 # depois carregamos os pacotes
@@ -814,7 +817,7 @@ library(fields)
 
 Abrindo arquivo NetCDF e obtendo informações básicas.
 
-```{r Chunk631, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk631, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # nome do arquivo netcdf
 ncname <- "data/cru10min30_tmp"
 ncfname <- paste(ncname, ".nc", sep = "")
@@ -833,11 +836,11 @@ mode(ncin)
 
 Agora, vamos ler as coordenadas de longitude e latitude. 
 
-```{r Chunk632, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk632, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 lon <- ncvar_get(ncin, "lon")
 nlon <- dim(lon)
 head(lon)
-lat <- ncvar_get(ncin, "lat", verbose = F)
+lat <- ncvar_get(ncin, "lat", verbose = FALSE)
 nlat <- dim(lat)
 head(lat)
 c(nlon, nlat)
@@ -845,7 +848,7 @@ c(nlon, nlat)
 
 Vamos obter a variável temporal e seus atributos usando as funções `ncvarget()` e `ncatt_get`. Depois fechamos o acesso ao arquivo NetCDF.
 
-```{r Chunk633, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk633, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 t <- ncvar_get(ncin, "time")
 (tunits <- ncatt_get(ncin, "time", "units"))
 (nt <- dim(t))
@@ -864,9 +867,9 @@ nc_close(ncin)
 
 As variáveis do arquivo NetCDF são lidas e escritas como vetores (p.ex.: longitudes), *arrays* bidimensionais (matrizes, campo espacial de um momento), ou *arrays* multidimensionais (campos espaciais de uma variável em diversos tempos).
 
-Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um data frame onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. Finalmente vamos exportar o data frame para um arquivo `csv`.
+Vamos extrair o campo espacial de um passo de tempo (1 dia), criar um dataframe onde cada linha será um ponto de grade e a coluna representa uma variável, por exemplo: longitude, latitude e temperatura. Finalmente vamos exportar o dataframe para um arquivo `csv`.
 
-```{r Chunk634, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk634, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 m <- 1
 # campo espacial do primeiro dia de dados
 tmp.slice <- tmp.array[, , m]
@@ -880,7 +883,7 @@ image.plot(lon, lat, tmp.slice, col = rev(brewer.pal(10, "RdBu")))
 
 Há funções no R que permitem importar dados diretamente de diversos softwares, inclusive de planilhas eletrônicas. O pacote `foreign` (estrangeiro em português) oferece diversas funções para importação dados de outros programas. Para verificar as funções disponíveis confira os comandos abaixo.
 
-```{r Chunk700, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk700, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # install.packages("foreign")
 require(foreign)
 library(help = foreign)
@@ -903,7 +906,7 @@ A solução mais simples é converter as planilhas Excel para `csv` usando algum
 Aqui vamos mostrar como usar o pacote [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html) para leitura de arquivos Excel, em ambos formatos `xls` e `xlsx`; com uma ou mais planilhas. A leitura pode ser feita em dois passos: 1) carregar o arquivo Excel, com a função `loadworkbook()`; 2) ler a(s) planilha(s) do arquivo carregado.
 
 
-```{r Chunk710, message=FALSE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE, warning=FALSE}
+```{r Chunk710, message=FALSE,    echo=TRUE, eval=TRUE, warning=FALSE}
 # sessionInfo()
 library(XLConnect)
 # nome do arquivo excel
@@ -923,7 +926,7 @@ str(lst)
 lst[[1]]
 ```
 
-Os dados lidos são armazenados em um *data frame*, quando especificado apenas uma planilha, ou uma lista, quando mais de uma planilha é especificada. É possível informar os intervalos de linhas e colunas de interesse usando argumentos adicionais da função `readWorksheet()`. `r names(formals(readWorksheet))`
+Os dados lidos são armazenados em um *dataframe*, quando especificado apenas uma planilha, ou uma lista, quando mais de uma planilha é especificada. É possível informar os intervalos de linhas e colunas de interesse usando argumentos adicionais da função `readWorksheet()`. `r names(formals(readWorksheet))`
 
 Para escrever um arquivo `xls` use a função `writeWorksheet()`.
 
@@ -937,7 +940,7 @@ Após carregar o pacote apropriado podemos usar as funções do `DBI` para acess
 
 Para conexão com o banco de dados [SQLite](http://pt.wikipedia.org/wiki/SQLite), primeiro precisamos instalar e carregar o pacote `DBI` e o pacote `RSQLite`.
 
-```{r Chunk720, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk720, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 #install.packages("DBI", dep = TRUE)
 library(DBI)
 #install.packages("RSQLite", dep = TRUE)
@@ -946,7 +949,7 @@ library(RSQLite)
 
 A seguir, definimos o *driver* do banco de dados como SQLite e configuramos a conexão ao banco de dados, nesse caso definindo uma variável com o nome do arquivo (`db_file`). 
 
-```{r Chunk721, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk721, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # nome do SGBDR
 driver <- dbDriver("SQLite")
 # nome do arquivo com banco de dados
@@ -958,14 +961,14 @@ conn
 
 A função `dbListTables()` extrai o nome das tabelas contidas no banco de dados conectado através do objeto `conn`. 
 
-```{r Chunk722, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk722, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 tab_list <- dbListTables(conn)
 tab_list
 ```
 
 Com a função `dbReadTable()` podemos ler uma tabela do banco de dados.
 
-```{r Chunk723, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk723, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # lendo tabela imagem_nuvem
 imagem_nuvem <- dbReadTable(conn, "imagem_nuvem")
 head(imagem_nuvem)
@@ -974,8 +977,8 @@ tail(imagem_nuvem)
 
 Para ler cada uma das tabela do banco e salvá-la com o mesmo nome usado no banco de dados podemos fazer um *looping* com a função `for()` e usar a função `assign()` para atribuir nomes as tabelas.
 
-```{r Chunk724, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
-# lendo cada tabela do banco e criando um data frame 
+```{r Chunk724, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
+# lendo cada tabela do banco e criando um dataframe 
 # com mesmo nome da tabela dentro do banco de dados
 for(i in tab_list) assign(i, dbReadTable(conn, i))
 # verificando se as tabelas foram criadas
@@ -984,7 +987,7 @@ all(tab_list %in% ls())
 
 Após a leitura das tabelas de interesse podemos desconectar o banco de dados e o *driver*.
 
-```{r Chunk725, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk725, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # desconectando do banco
 dbDisconnect(conn)
 dbUnloadDriver(driver)
@@ -994,7 +997,7 @@ O trabalho com banco de dados exige experiência que vai além das habilidades d
 
 ## Arquivos [Shapefiles do ArcGis](http://doc.arcgis.com/pt-br/arcgis-online/reference/shapefiles.htm)
 
-```{r Chunk730, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk730, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 #install.packages("raster", dep = TRUE)
 library(raster)
 bacias <- shapefile("data/Ottobacias_Nivel2.shp")
@@ -1013,7 +1016,7 @@ O R possui uma variedade de funções para se obter informações sobre arquivos
 
 Quando abrimos uma sessão no R, ela é associada a um diretório de trabalho (*working directory*, `wd`). Esse local é a primeiro diretório onde o R irá salvar ou ler um arquivo de dados, se o caminho completo até o arquivo não for especificado. Para saber qual é o diretório de trabalho usamos a função `getwd()`. Para alterar o `wd` usamos `setwd()`. Para listar o conteúdo de um diretório usamos a função `dir()`.
 
-```{r Chunk810, message=TRUE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk810, message=TRUE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # variável do tipo character com nome do diretório
 (wd <- getwd())
 class(wd)
@@ -1031,7 +1034,7 @@ Para saber o diretório de instalação do R, usamos `R.home()`. O local de inst
 
 Podemos construir o caminho até um arquivo usando o nome do diretório e do arquivo com a função `file.path()`. O que é equivalente a função `paste(a, b, sep = "/")`. A partir da `string` com o caminho completo para o arquivo, podemos extrair o diretório (`dirname()`), o nome do arquivo () e a extensão do arquivo.
 
-```{r Chunk820, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk820, message=TRUE,    echo=TRUE, eval=TRUE}
 # carregando pacote tools para usar função file_ext()
 library(tools)
 # emenda diretorio ao nome do aruivo com "/"
@@ -1049,13 +1052,13 @@ file_ext(file_name)
 
 A função `file.exists()` permite verificar se um arquivo já existe, o que pode ser usado para evitar de sobrescrever um arquivo com mesmo nome. Metadados do arquivo podem ser obtidos via `file.info()`.
 
-```{r Chunk821, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=FALSE}
+```{r Chunk821, message=TRUE,    echo=TRUE, eval=FALSE}
 # seleção iterativa de um arquivo
 arq_name <- file.choose()
 arq_name
 ```
 
-```{r Chunk822, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk822, message=TRUE,    echo=TRUE, eval=TRUE}
 # verifica existência do arquivo
 file.exists(file_name)
 # tamanho, data de criação, permissões, etc 
@@ -1067,7 +1070,7 @@ file.info("data/chuva_df.RData")
 Para listar o conteúdo de um diretório usamos as funções `dir()` e `list.dirs()`.
 A função `list.files()` permite listar arquivos usando [regex](http://pt.wikipedia.org/wiki/Express%C3%A3o_regular). Uma boa referência para aprender [regex](http://pt.wikipedia.org/wiki/Express%C3%A3o_regular) é o site do [Aurélio](http://aurelio.net/regex/guia/). Nós vamos ver aqui apenas algumas regex básicas para ilustrar o uso da `list.files()`.
 
-```{r Chunk830, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk830, message=TRUE,    echo=TRUE, eval=TRUE}
 # lista conteúdo do diretórios
 dir()
 # lista diretórios  e sub-dirs
@@ -1091,7 +1094,7 @@ Para ilustrar as funções de manipulação de arquivos e diretórios vamos real
 
 + Criar um diretório para armazenar dados utilizados no curso até agora;
 
-```{r Chunk850, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk850, message=TRUE,    echo=TRUE, eval=TRUE}
 (new_dir <- file.path("/home", Sys.getenv()[["LOGNAME"]], "dados_adar"))
 if(!dir.exists(new_dir)) dir.create(new_dir)
 dir.exists(new_dir)
@@ -1099,7 +1102,7 @@ dir.exists(new_dir)
 
 + selecionar os arquivos de dados do curso no diretório de trabalho
 
-```{r Chunk851, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk851, message=TRUE,    echo=TRUE, eval=TRUE}
 # lista dos 30 primeiros arquivos no wd
 head(all_files <- list.files(recursive = TRUE), 30)
 # extensões dos arquivos de dados usados no curso
@@ -1110,7 +1113,7 @@ extensoes <- c("txt", "TXT", "nc","xls", "bin", "csv", "RData", "rds", "zip", "a
 
 + copiar esses arquivos para o novo diretório;
 
-```{r Chunk852, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk852, message=TRUE,    echo=TRUE, eval=TRUE}
 file.copy(from = sel_files, 
           to = new_dir,
           overwrite = TRUE)
@@ -1118,7 +1121,7 @@ file.copy(from = sel_files,
 
 + remover alguns arquivos do novo diretório;
 
-```{r Chunk853, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk853, message=TRUE,    echo=TRUE, eval=TRUE}
 # arquivos que começam como "O" ou "S"
 files2remove <- list.files(path = new_dir, 
                            pattern = "^[O, S]",
@@ -1134,7 +1137,7 @@ Veja mais funções para manipulação de arquivos em `?connections`.
 
 Para criar arquivos e diretórios temporários podemos usar as funções `tempfile()` e `tempdir()`, respectivamente. O exemplo abaixo mostra como baixar o arquivo da internet em um arquivo temporário.
 
-```{r Chunk854, message=TRUE, comment="",prompt=FALSE, echo=TRUE, eval=TRUE}
+```{r Chunk854, message=TRUE,    echo=TRUE, eval=TRUE}
 tempdir()
 tempfile()
 # baixando dados da web
