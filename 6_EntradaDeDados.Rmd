@@ -12,7 +12,7 @@ output:
     toc: yes
 ---
 
-```{r Chunk0, echo=FALSE}
+```{r Chunk0, echo=FALSE, message=FALSE, warning=FALSE}
 rm(list=ls())
 # definindo globalmente tz = "GMT"
 #Sys.setenv(TZ = 'GMT')
@@ -897,36 +897,43 @@ O pacote `R.matlab` fornece a função `read.matlab()` para leitura de dados no 
 ## Excel 
 
 O armazenamento de dados em formato Excel (arquivos com extensões `.xls` e `.xlsx`) é uma prática muito popular. Mas infelizmente ler dados Excel não é tão simples, especialmente fora do ambiente Windows, apesar da variedade de pacotes disponíveis para tal tarefa. 
-Há uma razoável variedade de pacotes para resolver esse problema: **gdata, XLConnect, xlsReadWrite** e outros, mas todos tem alguma dependência, tal como, Java, Perl ou R 32 bit, que são geralmente inviáveis.
+Há uma razoável variedade de pacotes para resolver esse problema: [gdata](https://cran.r-project.org/web/packages/gdata/index.html), [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html) e [readxl](https://readxl.tidyverse.org/) e outros. mas todos tem alguma dependência, tal como, Java, Perl ou R 32 bit, que são geralmente inviáveis.
 
-Assim é bem provável que você terá que testar diferentes pacotes e as suas dependências para encontrar uma ferramenta que adeque a sua escolha de SO e tipo de arquivo Excel.
+Assim é bem provável que você terá que testar diferentes pacotes e as suas dependências para encontrar uma ferramenta que adeque a sua escolha de SO e tipo de arquivo Excel (`xls` ou `xlsx`).
 
-A solução mais simples é converter as planilhas Excel para `csv` usando algum programa.
+A solução mais usada é converter as planilhas Excel para `csv` usando algum programa.
 
-Aqui vamos mostrar como usar o pacote [XLConnect](https://cran.r-project.org/web/packages/XLConnect/index.html) para leitura de arquivos Excel, em ambos formatos `xls` e `xlsx`; com uma ou mais planilhas. A leitura pode ser feita em dois passos: 1) carregar o arquivo Excel, com a função `loadworkbook()`; 2) ler a(s) planilha(s) do arquivo carregado.
+Aqui vamos mostrar como usar o pacote [readxl](https://readxl.tidyverse.org/) para leitura de arquivos Excel, em ambos formatos `xls` e `xlsx`; com uma ou mais planilhas. 
 
 
-```{r Chunk710, message=FALSE,    echo=TRUE, eval=TRUE, warning=FALSE}
-# sessionInfo()
-library(XLConnect)
-# nome do arquivo excel
-xls_file <- "data/06_Junho-00.xls"
-# carregando planilhas do arquivo
-wb <- loadWorkbook(xls_file)
-# obtendo nome das planilhas do arquivo
-nomes_planilhas <- getSheets(wb)
-nomes_planilhas
-# lendo dados da planilha 1
-dados_planilha1 <- readWorksheet(wb, sheet = nomes_planilhas[1])
-str(dados_planilha1)
-# lista com dados de todas planilhas do arquivo excel
-lst <- readWorksheet(wb, sheet = nomes_planilhas)
-str(lst)
-# dados da planilha 1
-lst[[1]]
+```{r, message=FALSE, warning=FALSE}
+# install.packages("readxl")
+library(readxl)
+inmet_estacoes <- read_excel(
+  path = "data/Estações Normal Climatoógica 1981-2010.xls", 
+  col_names = TRUE, 
+  skip = 3)
+inmet_estacoes
+str(inmet_estacoes)
+class(inmet_estacoes)
 ```
 
-Os dados lidos são armazenados em um *dataframe*, quando especificado apenas uma planilha, ou uma lista, quando mais de uma planilha é especificada. É possível informar os intervalos de linhas e colunas de interesse usando argumentos adicionais da função `readWorksheet()`. `r names(formals(readWorksheet))`
+Os dados lidos são armazenados em um *dataframe*. É possível informar um intervalo células e a planilha através dos argumentos `range` e `sheet`. Veja o `?readxl` para mais detalhes. 
+
+Nos dados importados acima, a variável `Início Operação` não veio formatada corretamente como data.
+
+Você pode especificar a classe de cada variável do conjunto de dados.
+
+```{r}
+inmet_estacoes <- read_excel(
+  path = "data/Estações Normal Climatoógica 1981-2010.xls", 
+  col_names = TRUE, 
+  col_types = c("numeric", "numeric", "text", "text", "numeric", "numeric", "numeric", "date", "date", "text"),
+  skip = 3)
+#View(inmet_estacoes)
+str(inmet_estacoes)
+```
+
 
 Para escrever um arquivo `xls` use a função `writeWorksheet()`.
 
