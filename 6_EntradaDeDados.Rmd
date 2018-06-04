@@ -769,7 +769,7 @@ Para visualizarmos os dados lidos, vamos usar a função `levelplot()` do pacote
 ```{r Chunk6214, message=FALSE,    tidy=FALSE, echo=TRUE, eval=TRUE}
 # Visualização dos dados
 # install.packages(lattice, dep = TRUE)
-require(lattice)
+library(lattice)
 # definindo paleta de cores para o gráfico
 paleta <- rev(topo.colors(32)) # rev() inverte a ordem do vetor
 levelplot(t(m),
@@ -1000,7 +1000,7 @@ dbDisconnect(conn)
 dbUnloadDriver(driver)
 ```
 
-O trabalho com banco de dados exige experiência que vai além das habilidades de um típico usuário de R. Para os interessados nisso, um bom lugar para começar é baixar os pacotes citados e ler a documentação deles.
+O trabalho com banco de dados exige experiência que vai além das habilidades de um usuário iniciante de R. Para os interessados nisso, um bom lugar para começar é baixar os pacotes citados e ler a documentação deles.
 
 ## Arquivos [Shapefiles do ArcGis](http://doc.arcgis.com/pt-br/arcgis-online/reference/shapefiles.htm)
 
