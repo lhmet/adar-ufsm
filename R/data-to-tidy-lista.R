@@ -33,5 +33,12 @@ data_sm_wide <- data_sm %>%
   filter(year == 2010, month %in% c(1:6)) %>%
   arrange(id, year, month) 
 
+dcols <- names(data_sm_wide) %>% grep("d[0-9]", ., value = TRUE) 
+cols_sel <- dcols[order(readr::parse_number(dcols))]
+cols_sel
+
+data_sm_wide <- data_sm_wide %>%
+  select(., id:year, one_of(cols_sel))
+
 saveRDS(data_sm_wide, "data/data_sm_wide.RDS")
   
