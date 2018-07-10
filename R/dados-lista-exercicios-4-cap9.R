@@ -141,6 +141,7 @@ cols_sel
 data_sm_wide <- data_sm_wide %>%
   select(., id:year, one_of(cols_sel))
 
+dados_sm <- data_sm_wide
 #saveRDS(data_sm_wide, "data/data_sm_wide.RDS")
 
 
@@ -169,8 +170,14 @@ hora          0000    0600    1200    800    0000    0600    1200    1800
   )
 hdata 
 
+dados_zorra <- hdata
 
 ls()
 
 
+#------------------------------------------------------------------
+# Salvando todos em um unico arquivo RData
+
+save(soi, precd_ncdf, poluentes, dados_sm, dados_zorra,
+     file = "data/dados-lista-exerc4-cap9.RData")
 
