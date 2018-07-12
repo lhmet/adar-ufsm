@@ -150,8 +150,8 @@ dados_sm <- data_sm_wide
 
 hdata <- read.table(
   text = '
-data          tmax    tmax    tmax     tmax    tmin    tmin    tmin    tmin 
-hora          0000    0600    1200    800    0000    0600    1200    1800
+date          tmax    tmax    tmax     tmax    tmin    tmin    tmin    tmin 
+hour          0000    0600    1200    1800    0000    0600    1200    1800
 01-01-2010    22.1    21.0    26.4    27.0    16.0    13.5    18.2    24.1
 02-01-2010    26.0    25.0    29.4    29.5    19.0    13.7    16.3    22.3
 03-01-2010    25.7    26.3    28.4    29.0    21.0    14.1    17.2    26.0
@@ -159,7 +159,7 @@ hora          0000    0600    1200    800    0000    0600    1200    1800
   header = TRUE, 
   stringsAsFactors = FALSE
 ) %>% 
-  as_tibble(.) %>%
+ # as_tibble(.) %>%
   setNames(
     .,
     str_replace_all(
@@ -171,7 +171,15 @@ hora          0000    0600    1200    800    0000    0600    1200    1800
 hdata 
 
 dados_zorra <- hdata
-
+dados_zorra 
+slice(dados_zorra, -1)
+dados_zorra <- dados_zorra[-1, ]
+names(dados_zorra)[-1] <- paste(
+  names(dados_zorra)[-1],
+  hdata[1, -1] %>% t() %>% c(),
+  sep = "."
+  )
+dados_zorra
 ls()
 
 
