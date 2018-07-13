@@ -191,10 +191,21 @@ id        lat       lon
 2  42.049148  -88.273029
 3  39.110539  -90.324080'
 )
+
+#------------------------------------------------------------------
+# Exercício 8
+set.seed(1)
+datas_comp <- tibble(date = today() + 0:6)
+datas_obs <- tibble(date = today() + c(-2, 0, 1, 4),
+                    tar = rnorm(length(c(-2, 0, 1, 4)),
+                                mean = 20)
+                    )
+datas_obs
+
 #------------------------------------------------------------------
 # Salvando todos em um unico arquivo RData
 
 save(soi, precd_ncdf, poluentes, estacoes,
-     dados_sm, dados_zorra,
+     dados_sm, dados_zorra, datas_comp, datas_obs,
      file = "data/dados-lista-exerc4-cap9.RData")
 
