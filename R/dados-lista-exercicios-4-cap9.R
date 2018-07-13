@@ -204,6 +204,11 @@ datas_obs <- tibble(date = today() + c(-1, 0, 1, 4),
 datas_obs
 
 #------------------------------------------------------------------
+# Exercício 9 - 
+# dados EMA de santa maria
+# 
+
+#------------------------------------------------------------------
 # Salvando todos em um unico arquivo RData
 
 save(soi, precd_ncdf, poluentes, estacoes,
