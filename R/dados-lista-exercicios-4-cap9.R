@@ -182,10 +182,19 @@ names(dados_zorra)[-1] <- paste(
 dados_zorra
 ls()
 
-
+#------------------------------------------------------------------
+# Exercício 7
+estacoes <- read.table(header = TRUE, 
+                       text = '
+id        lat       lon 
+1  42.467573  -87.810047
+2  42.049148  -88.273029
+3  39.110539  -90.324080'
+)
 #------------------------------------------------------------------
 # Salvando todos em um unico arquivo RData
 
-save(soi, precd_ncdf, poluentes, dados_sm, dados_zorra,
+save(soi, precd_ncdf, poluentes, estacoes,
+     dados_sm, dados_zorra,
      file = "data/dados-lista-exerc4-cap9.RData")
 
