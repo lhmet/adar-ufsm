@@ -194,12 +194,12 @@ id        lat       lon
 
 #------------------------------------------------------------------
 # Exercício 8
-set.seed(1)
+set.seed(2)
 datas_comp <- tibble(date = today() + 0:6)
 datas_obs <- tibble(date = today() + c(-1, 0, 1, 4),
                     theta = runif(length(c(-2, 0, 1, 4)),
                                 min = 0.3,
-                                max = 0.45)
+                                max = 0.46)
                     )
 datas_obs
 
