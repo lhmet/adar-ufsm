@@ -1,7 +1,7 @@
 
 # dados para lista 4 do livro (capítulo 9)
 
-pcks <- c("inmetr", "tidyverse", "lubridate")
+pcks <- c("inmetr", "tidyverse", "lubridate", "fs", "openair")
 easypackages::libraries(pcks)
 
 
@@ -205,13 +205,54 @@ datas_obs
 
 #------------------------------------------------------------------
 # Exercício 9 - 
-# dados EMA de santa maria
-# 
+# dados EMAs do RS
+files_emas_rs <- dir_ls(path = ,
+"/home/pqgfapergs1/Dropbox/github/my_reps/lhmet/inmetr_old/output/sul",
+regexp = "data_inmet_sul_RS_.*.rds"
+)
+
+emas_rs <- purrr::map_dfr(files_emas_rs, rio::import) %>%
+  as_tibble(.) %>%
+  # temp media horária
+  mutate(
+    .,
+    tair = ifelse(
+      (is.na(tmax) | is.na(tmin)) & !is.na(tair),
+      tair,
+      (tmax + tmin) / 2
+    )
+  )
+  
+format(object.size(emas_rs), units = 'auto')
+
+# só dados desde 2008
+emas_rs_08 <- filter(emas_rs, year(date) >= 2008)
+format(object.size(emas_rs_08), units = 'auto')
+
+#emas_rs_08 %>%
+#  timePlot(., "tair", type = "site")
+
+names(emas_rs_08)
+
+dados_rs_08_16 <- emas_rs_08 %>% 
+  select(site, date, tair, rh, prec, rg, ws) #%>%
+format(object.size(dados_rs_08_16), units = 'auto')
+
+info_emas_rs <- dir_ls(path = ,
+                        "/home/pqgfapergs1/Dropbox/github/my_reps/lhmet/inmetr_old/output/sul",
+                        regexp = "info_inmet_sul_RS_.*.rds"
+)
+
+info_emas_rs_08_16 <- info_emas_rs %>%
+  purrr::map_dfr(., rio::import) %>%
+  as_tibble(.) %>%
+  distinct(.)
 
 #------------------------------------------------------------------
 # Salvando todos em um unico arquivo RData
 
 save(soi, precd_ncdf, poluentes, estacoes,
      dados_sm, dados_zorra, datas_comp, datas_obs,
+     dados_rs_08_16, info_emas_rs_08_16,
      file = "data/dados-lista-exerc4-cap9.RData")
 
