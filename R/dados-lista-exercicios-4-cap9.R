@@ -235,7 +235,8 @@ format(object.size(emas_rs_08), units = 'auto')
 names(emas_rs_08)
 
 dados_rs_08_16 <- emas_rs_08 %>% 
-  select(site, date, tair, rh, prec, rg, ws) #%>%
+  select(site, date, tair, rh, prec, rg, ws) %>%
+  mutate(date = date - 3*3600)
 format(object.size(dados_rs_08_16), units = 'auto')
 
 info_emas_rs <- dir_ls(path = ,
