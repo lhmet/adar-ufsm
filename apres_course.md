@@ -6,7 +6,7 @@ transition: none
 font-family: 'Helvetica'
 css: my_style.css
 author: Jonatan Tatsch, UFSM
-date: Santa Maria, 20, março de 2018
+date: Santa Maria, 18, março de 2019
 #date: Santa Maria, 7, de março de 2016
 
 </style>
@@ -279,7 +279,7 @@ Ementa do curso e sistema de avaliação
 <br/>
 Disponível no moodle
 
-https://ead06.proj.ufsm.br/moodle/mod/resource/view.php?id=485275
+https://ead06.proj.ufsm.br/course/view.php?id=31111
 
 Para saber mais sobre o R
 =======================

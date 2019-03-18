@@ -1,0 +1,923 @@
+---
+title: "Gráficos"
+author: "Jônatan Tatsch"
+date: "28-05-2015"
+output:
+  html_document
+---
+
+```{r setup, include=FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment = "#>",
+  prompt = FALSE,
+  collapse = TRUE,
+  include = TRUE,
+  fig.path = "figs/"
+)
+```
+
+
+
+
+
+# Pré-requisitos
+
+```{r, include = FALSE}
+# definindo globalmente o fuso horário como UTC
+Sys.setenv(TZ = "UTC")
+```
+
+## Pacotes
+
+Os pacotes necessários para reprodução dos códigos deste capítulo são carregados com a seguinte instrução:
+
+```{r pcks}
+pcks <- c(
+  #"lubridate", "stringr",
+  "tidyverse", "lattice", "psych", "grid"
+  # "ggplot2", "gcookbook", "pander",
+  #"R.utils", "magrittr", 
+)
+easypackages::libraries(pcks)
+```
+
+
+## Dados
+
+
+  + dados simulados de uma oscilação com amplitude variável
+  
+```{r }
+x1 <- seq(from = -100, to = 100, by = 0.05)
+A <-  seq(from = -1,
+          to = 1, 
+          length.out = length(x1)
+          ) %>% 
+  sin(x = .)
+y1 <- exp(-0.07 * A * x1) * cos(x1 + pi / 2)
+dados <- tibble(x1, y1)
+head(dados)
+```
+
+  + Dados de qualidade do ar em NY
+
+```{r }
+#help(airquality)
+head(airquality)
+# conversão da Temp de Farenheith para Celsius
+aq <- airquality %>%
+  mutate(Temp = (Temp - 32)/5,
+        # adicionando coluna date criada das colunas Day e Month
+        # o ano das medidas é 1973, conforme help
+         date = as.Date(
+           paste(Day, Month, "1973"),
+           format = "%d %m %Y")
+         ) %>%
+  # removendo as colunas Month e Day e reordenando as colunas
+  dplyr::select(., date, Ozone:Temp, -c(Month, Day))
+head(aq)
+```
+
+  + Séries de dados aleatórios acumulados (**random walk**)
+
+```{r}
+# matriz de dados para 5 plots
+# semente para reprodutibilidade
+set.seed(12)
+# laço para gerar uma matriz de 5 colunas
+# com números aleatórios acumulados 
+mat <- sapply(1:5, function(i) cumsum(rnorm(100)))
+head(as.data.frame(mat))
+```
+
+  + Precipitação climatológica mensal das estações climatológicas do [INMET](http://www.inmet.gov.br/portal/index.php?r=clima/normaisClimatologicas) 
+
+```{r }
+# importando dados
+prec <- readRDS("data/PrecAccInmet_61_90.rds")
+head(prec)
+## dados rain
+rain <- read.csv(file = "data/cityrain.csv", head = T)
+head(rain)
+```
+
+  + anomalias de temperatura do ar global Global de 1800 a 2011
+
+```{r}
+data(climate, package = "gcookbook")
+#help(climate,package = "gcookbook")
+head(climate)
+```
+
+  
+# Sistemas Gráficos 
+
+O R possui uma poderosa [plataforma de ferramentas gráficas](http://cran.r-project.org/web/views/Graphics.html) para análise e visualização de dados. Os sistemas gráficos são: 
+
++ **sistema base (ou tradicional, tradução do termo em inglês [*base system*])**
+    - 'modelo pintor', se errou, pega uma nova tela e começaa tudo de novo;
+    - originalmente desenvolvido para o R e sua principal função é a `plot()`; 
+
++ **sistema de grade (tradução do termo em inglês [*grid system*](https://www.stat.auckland.ac.nz/~paul/grid/grid.html))**
+    - fornece um conjunto de funções gráficas mais flexíveis para o *layout* de gráficos, como a criação de múltiplas regiões (*viewports*) em uma mesma página;
+    - requer especificações detalhadas de onde plotar os pontos, linhas, retângulos e consequentemente um gráfico é elaborado a partir de várias linhas de código. 
+    
+## Pacotes Gráficos 
+
+### graphics
+
+  - contém as funções do sistema *base*
+  - é carregado por *default* quando iniciamos o R; digite `sessionInfo()` para verificar nas informações de sua sessão os pacotes carregados, `demo("graphics")`para ver mais exemplos de gráficos e `library(help = "graphics")` para visualizar a lista de funções desse pacote.
+
+
+```{r, eval = FALSE}
+# lista de funções do pacote graphics da base do R
+library(help = "graphics")
+# vários exemplos para demonstração de diferentes gráficos
+demo("graphics")
+```
+
+Um exemplo simples de uso da função `graphics::plot()` é mostrado abaixo:
+
+```{r , fig.align='center'}
+with(
+  dados,
+  plot(x = x1, y = y1)
+)
+```
+
+Para ilustrar os diferentes sistemas gráficos disponíveis no R, vamos mostrar como gerar este mesmo gráfico usando o sistema *grid*, *lattice* e *ggplot2*.
+
+### grid
+
+  - contém as funções do sistema *grid*
+  - também faz parte da distribuição *base* do R, mas o pacote precisa ser carregado (`library(grid)`)
+    
+    
+```{r , fig.align='center'}
+## exemplo grid
+library(grid)
+## define tamanho da região para plot (viewport)
+pushViewport(plotViewport(c(5, 4, 2, 2)))
+## define intervalos de variação das escalas x e y
+pushViewport(dataViewport(xData = dados$x1, 
+                          yData = dados$y1, 
+                          name = "plotRegion"))
+## retângulo em torno da região do plot
+grid.rect()
+## eixos x e y
+grid.xaxis()
+grid.yaxis()
+## labels dos eixos x e y
+grid.text("x1",y = unit(-3,"lines"))
+grid.text("y1",x = unit(-3,"lines"),rot=90)
+## símbolos dos dados
+grid.points(x = dados$x1, y = dados$y1, name="dataSymbols")
+```    
+
+    
+### [lattice](http://lattice.r-forge.r-project.org/)
+
+  - baseado no sistema *grid*;
+  - gráficos são armazenados como variáveis (objetos que podem ser salvos)
+    + possibilita plotar, fazer alterações e atualizações
+  - usa a idéia de gráficos  *Trellis* (ou gráficos em facetas), desenvolvidos para análise de dados multivariados na linguagem S e S-Plus; 
+    + possibilita gráficos condicionados por grupos ou categorias facilitando a comparação
+  - funções gráficas no sistema *base* e **lattice** são incompatíveis entre si.
+    
+
+```{r ,fig.align='center'}
+# exemplo lattice
+library(lattice)
+ xyplot(y1 ~ x1, data = dados)
+```
+
+
+### [ggplot2](http://ggplot2.org/)
+
+  - assim como lattice também foi construído baseado no sistema *grid*.
+  - sistema mais moderno, **gg** significa **gramática de gráficos** [Wilkinson (1999)](http://www.cs.uic.edu/~wilkinson/TheGrammarOfGraphics/GOG.html), que usa os aspectos bons de ambos sistemas **base** e **lattice**; 
+  - modelo poderoso de gráficos que torna mais fácil a produção de gráficos complexos com multi-camadas.
+  - ambiente gráfico altamente **customizável**
+    
+```{r , fig.align='center'}
+## exemplo ggplot2
+library(ggplot2)
+ qplot(x = x1,y = y1, data = dados)
+```    
+
+
+### Terminologia: funções de alto e baixo nível
+
+- Funções de alto nível produzem um gráfico completo.
+
+```{r , fig.align='center'}
+# exemplo função gráfica de alto nível
+plot(x1, y1, las = 1)
+```
+
+- Funções de baixo nível adicionam saídas a um plot existente, logo vão sobrepor o que estiver na tela gráfica. 
+
+```{r , fig.align='center'}
+# exemplo função gráfica de alto nível
+plot(x1, y1, las = 1)
+# exemplo funções gráficas de baixo nível
+points(x1, y1,                    # adiciona pontos com cor e símbolo
+       col = 2,                   # cor do ponto
+       pch = 20,                  # tipo (círculo preenchido)
+       cex = 0.8)                 # tamanho relativo do símbolo (default =1) 
+grid()                            # adiciona linhas de grade
+abline(h = 0,col = "gray")        # linhade referência (y = 0)
+title(main = "Grafico a partir de funçoes de baixo nível")      # adiciona título ao gráfico
+box(lwd = 2)                      # adiciona retângulo em torna da região do gráfico, com linha mais larga
+```    
+
+Ambos sistemas *base* e *grid* fornecem funções gráficas de baixo nível. O sistema *grid* também oferece funções para interação com os gráficos de saída (como a edição, extração, remoção de partes de uma imagem).
+A Maioria das funções em pacotes gráficos produz gráficos completos e geralmente oferecem gráficos específicos para um tipo de análise ou campo de estudo.
+  
+Nesta aula será dado foco a produção de gráficos usando o **sistema *base*** do R.
+
+# Funções gráficas básicas
+
+## Função `plot()` 
+
+### Gráficos de diferentes dados de entrada
+
+A função `plot()` é o carro chefe do sistema base do R. Quando especificamos apenas uma variável de entrada é plotado a variável no eixo y em função de seu tamanho `1:length(x)` no eixo x.
+
+```{r , fig.align='center'}
+plot(y1)
+```    
+
+Gerando um gráfico especificando os parâmetros x e y. 
+
+```{r , fig.align='center'}
+plot(x = x1, y = y1)
+```    
+
+Também podemos especificar no primeiro argumento da `plot()` uma fórmula, p.ex.: `y1 ~ x1` que pode ser interpretada como y1 (variável) em função x1.
+
+```{r , fig.align='center'}
+plot(y1 ~ x1)
+```    
+
+Aplicando a `plot()` a um `data.frame` com duas variáveis resulta um gráfico equivalente ao caso anterior.
+
+```{r , fig.align='center'}
+plot(dados)
+```    
+
+### Gráficos de dispersão
+
+Aplicando a `plot()` a um `data.frame` com mais de duas variáveis resulta um gráfico de dispersão entre todas as variáveis do *dataframe*.
+
+```{r , fig.align='center'}
+## plot de todas colunas de aq, exceto a 1a coluna
+plot(aq[, -1])
+```    
+
+Cada gráfico desses é chamado de gráfico de dispersão. Através dele pode-se visualizar a relação entre duas variáveis. Nesse caso o gráfico resultante é uma matriz de gráficos de dispersão.
+
+Existe uma função gráfica específica para produção deste tipo de gráfico: a função `pairs()`. 
+
+```{r , fig.align='center'}
+# plote de pares
+pairs(aq[, -1])  # exclui coluna date
+```
+
+A função `pairs.panels()` do pacote `psych` fornece um gráfico de pares bastante informativo e foi expandida a partir da função `pairs()`.
+
+```{r , fig.align='center'}
+pairs.panels(x = aq[, -1])
+``` 
+
+Para fechar as janelas gráficas abertas:
+
+```{r , eval=FALSE}
+graphics.off()
+```
+- - - 
+
+# Parâmetros gráficos
+
+Podemos personalisar muitas características de um gráfico (cores, eixos, títulos) através de opções chamadas **parametros gráficos**.
+
+As opções são especificadas através da função `par()`. Os parâmetros assim definidos terão efeito até o fim da sessão ou até que eles sejam mudados.
+
+Digitando `par()` sem parâmetros produz uma lista das configurações gráficas atuais. Adicionando o parâmetro `no.readonly=TRUE` produz uma lista das configurações atuais que podem ser modificadas posteriormente.
+
+
+```{r , fig.align='center'}
+str(par())
+# cópia das configurações atuais
+old_par <- par(no.readonly = TRUE)
+# tipo de linha pontilhada, largura da linha, símbolo para plot (triângulo sólido)
+par(lty = 3, pch = 17)
+with(
+  aq,
+  plot(
+    x = date,
+    y = Wind,
+    type = "b"
+  )
+) # linha e ponto desconectados
+# restabelecendo parâmetros originais
+par(old_par)
+```
+
+Podemos definir `par()` quantas vezes forem necessárias.
+  
+A segunda forma de especificar parâmetros é `nome_opção = valor` diretamente na função gráfica de alto nível.
+  
+Mas nesse caso, as opções terão efeito (local) apenas para aquele gráfico específico , portanto diferindo da primeira forma em que a definição pode ser para toda sessão (global).
+  
+Poderíamos gerar o mesmo gráfico anterior  da seguinte forma:
+
+```{r , fig.align='center'}
+with(
+  aq,
+  plot(
+    x = date,
+    y = Wind,
+    type = "b",
+    lty = 3,
+    pch = 17
+  )
+)
+```
+
+Nem todas funções de alto nível permitem especificar todos parâmetros gráficos. Veja  o `help(plot)` para determinar quais parâmetros gráficos podem configurados dessa forma.
+
+```{r, eval = FALSE}
+?plot
+```
+
+A seguir veremos alguns importantes parâmetros gráficos que podemos configurar.
+
+## Símbolos e linhas
+
+Vimos que podemos especificar símbolos e linhas nos gráficos. Os parâmetros relevantes para essas opções são mostradas na tabela a seguir.
+
+| Parâmetro | Descrição                                                                                                                                       |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| **pch**       | define o símbolo a ser usado para pontos                                                                                                        |
+| **cex**       | tamanho do símbolo, cex é um nº indicando a quantidade pela qual símbolos devem ser relativos, Default = 1, 1.5 é 50 % maior, 0.5 é 50 % menor. |
+| **lty**       | tipo de linha                                                                                                                                   |
+| **lwd**       | largura da linha, expresso em relação ao default (=1), então lwd = 2 gera uma linha com o dobro de largura da linha default.                    |
+
+```{r , fig.align='center'}
+# plot(c(-1, 26), 0:1, type = "n", axes = FALSE, xlab = "", ylab = "")
+# text(0:25, 0.6, c(0:25), cex = 1)
+# points(0:25, rep(0.4, 26), pch = 0:25, bg = "grey")
+# mtext(text = "pch = ", side = 1, line = -14.5, cex = 2)
+# mtext(text = "símbolo", side = 1, line = -10.5, cex = 2)
+pchShow <-
+  function(extras = c("*", ".", "o", "O", "0", "+", "-", "|", "%", "#"),
+           cex = 3, ## good for both .Device=="postscript" and "x11"
+           col = "red3", bg = "gold", coltext = "brown", cextext = 1.2,
+           main = paste(
+             "Símbolos:  points(..., pch = *, cex =",
+             cex, ")"
+           )) {
+    nex <- length(extras)
+    np <- 26 + nex
+    ipch <- 0:(np - 1)
+    k <- floor(sqrt(np))
+    dd <- c(-1, 1) / 2
+    rx <- dd + range(ix <- ipch %/% k)
+    ry <- dd + range(iy <- 3 + (k - 1) - ipch %% k)
+    pch <- as.list(ipch) # list with integers & strings
+    if (nex > 0) pch[26 + 1:nex] <- as.list(extras)
+    plot(rx, ry, type = "n", axes = FALSE, xlab = "", ylab = "", main = main)
+    abline(v = ix, h = iy, col = "lightgray", lty = "dotted")
+    for (i in 1:np) {
+      pc <- pch[[i]]
+      ## 'col' symbols with a 'bg'-colored interior (where available) :
+      points(ix[i], iy[i], pch = pc, col = col, bg = bg, cex = cex)
+      if (cextext > 0) {
+        text(ix[i] - 0.3, iy[i], pc, col = coltext, cex = cextext)
+      }
+    }
+  }
+pchShow()
+```
+
+As opções de tipo de linha são mostradas abaixo.
+
+```{r Chunk611, message=FALSE, comment="",prompt=FALSE, tidy=FALSE, echo=TRUE, eval=TRUE, fig.align='center'}
+# linhas
+op <- par(lwd = 3,
+          cex = 1.5,
+          cex.axis = 1, 
+          cex.lab = 1, 
+          font = 2, 
+          font.axis = 2, 
+          font.lab = 2)
+plot(
+  x = c(0, 10),
+  y = c(1, 6),
+  type = "n",
+  xlab = "",
+  ylab = "",
+  main = "Amostra de tipo de linhas",
+  axes = FALSE,
+  frame.plot = FALSE
+)
+axis(
+  side = 2,
+  lwd = 3,
+  at = seq(1, 6, by = 1),
+  cex = 1.25,
+  font = 2,
+  col = "white"
+)
+mtext(
+  "Nº do tipo de linha (lty = )",
+  side = 2,
+  line = 2,
+  cex = 1.5,
+  font = 2
+)
+abline(h = 1:6, lty = 1:6)
+par(op)
+```
+
+Exemplo com as opções.
+
+```{r, fig.align='center'}
+with(
+  aq,
+  plot(
+    x = date,
+    y = Temp,
+    type = "b",
+    lty = 3,
+    pch = 15,
+    cex = 2
+  )
+)
+```
+
+
+## Cores
+
+Há diversos parâmetros relacionados a cores no R. A tabela abaixo mostra os mais comuns.
+
+| Parâmetro | Descrição                                                                                                  |
+|-----------|------------------------------------------------------------------------------------------------------------|
+| `col`       | cor default do gráfico. Algumas funções como `lines()` e `pie()` aceitam um vetor de cores que são recicladas |
+| `col.axis`  | cor do texto (título) nos eixos                                                                            |
+| `col.lab`   | cor dos rótulos dos eixos                                                                                     |
+| `col.main`  | cor do texto do título do gráfico                                                                          |
+| `col.sub`  | cor do sub-título                                                                                          |
+| `fg`        | cor do primeiro plano                                                                                      |
+| `bg`       | cor do plano de fundo                                                                                      |
+
+
+Podemos especificar as cores no R por índice, nome, hexadecimal, RGB ou HSV. Por exemplo `col = 0`, `col = "white"`, `col =FFFFF`, `col = rgb(1,1,1)` e `col = hsv(1,1,1)` são formas equivalentes de especificar a cor branca.
+
+A função `colors()` retorna o nome de todas as cores disponíveis.
+
+```{r,  fig.align='center'}
+colors()[1:20]
+n <- length(colors())
+op <- par(bg = "gray60")
+plot(
+  dados$x1[1:n], dados$y1[1:n],
+  type = "n",
+  xlab = "x",
+  ylab = "y",
+  main = "Várias cores",
+  sub = "Onda colorida",
+  col.axis = "green",
+  col.lab = "green",
+  col.axis = "yellow",
+  col.sub = "red"
+)
+usr <- par("usr")
+rect(usr[1], usr[3], usr[2], usr[4], col = "snow", border = "black", lwd = 2)
+points(
+  dados$x1[1:n], dados$y1[1:n],
+  col = colors()[1:n],
+  pch = 20,
+  cex = (1:n) / 60 * 4
+)
+par(op)
+```
+
+Para visualizar as cores e os nomes associados a cada uma veja [http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+
+O R também possui diversas funções para criar vetores de cores contínuas (paletas):
+
+```{r, fig.align='center'}
+plot(
+  x = dados$x1[1:n],
+  y = dados$y1[1:n],
+  type = "p",
+  xlab = "x",
+  ylab = "y",
+  main = "Várias cores",
+  sub = "Onda colorida",
+  col = rainbow(n), # função para paleta arco-íris
+  pch = 20,
+  cex = (1:n) / 60 * 4
+)
+plot(
+  x = dados$x1[1:n],
+  y = dados$y1[1:n],
+  type = "p",
+  xlab = "x",
+  ylab = "y",
+  main = "Várias cores",
+  sub = "Onda colorida",
+  col = heat.colors(n), # paleta com cores quentes
+  pch = 20,
+  cex = (1:n) / 60 * 4
+)
+plot(
+  x = dados$x1[1:n], 
+  y = dados$y1[1:n],
+  type = "p",
+  xlab = "x",
+  ylab = "y",
+  main = "Várias cores",
+  sub = "Onda colorida",
+  col = terrain.colors(n), # paleta terreno
+  pch = 20,
+  cex = (1:n) / 60 * 4
+)
+plot(
+  x = dados$x1[1:n], 
+  y = dados$y1[1:n],
+  type = "p",
+  xlab = "x",
+  ylab = "y",
+  main = "Várias cores",
+  sub = "Onda colorida",
+  col = topo.colors(n), # paleta topografia
+  pch = 20,
+  cex = (1:n) / 60 * 4
+)
+plot(
+  x = dados$x1[1:n], 
+  y = dados$y1[1:n],
+  type = "p",
+  xlab = "x",
+  ylab = "y",
+  main = "Várias cores",
+  sub = "Onda colorida",
+  col = cm.colors(n),
+  pch = 20,
+  cex = (1:n) / 60 * 4
+)
+
+```
+
+## Características de texto
+
+Parâmetros especificando tamanho do texto.
+
+| Parâmetro | Descrição                                                                                            |
+|-----------|------------------------------------------------------------------------------------------------------|
+| cex       | nº indicando a quantidade pela qual o texto plotado deve ser escalonado em relação ao default (=1).  |
+| cex.axis  | magnificação do texto dos eixos (títulos).                                                           |
+| cex.lab   | magnificação dos rótulos em relação ao cex.                                                          |
+| cex.main  | magnificação dos títulos em relação ao cex.                                                          |
+| cex.sub   | cor do sub-título                                                                                    |
+
+Parâmetros especificando família, tamanho e estilo da fonte.
+
+| Parâmetro | Descrição                                                                                                                   |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------|
+| font      | inteiro especificando a fonte a ser usada. 1 = normal, 2 = negrito, 3 = itálico, 4 = negrito e itálico, 5 = símbolo (adobe) |
+| font.axis | fonte para o texto do eixo                                                                                                  |
+| font.lab  | fonte para o rótulo do eixo                                                                                                 |
+| font.main | fonte para o título                                                                                                         |
+| font.sub  | fonte para o sub-título                                                                                                     |
+| ps        | tamanho do ponto da fonte (ps = 1/72 *cex)                                                                                  |
+| family    |                                                                                                                             |
+
+
+```{r , fig.align='center'}
+op <- par(font.lab = 3, cex.lab = 2, font.main = 4, cex.main = 2)
+plot(dados$x1[1:n], dados$y1[1:n], 
+     type = "p",
+     xlab = "x",
+     ylab = "y",
+     main = "Várias cores",
+     sub = "Onda colorida",
+     col = gray.colors(n), 
+     pch = 20, 
+     cex = (1:n)/60 * 4)
+par(op)
+```
+
+### Tipos de Gráficos 
+
+Até aqui já vimos como criar gráficos de dispersão com a função `plot()`. Mas existe uma ampla variedade de gráficos, além daqueles: *boxplots*, histogramas, gráficos de barra, gráficos de pizza, gráficos de imagens, gráficos 3D. Alguns exemplos são mostrados a seguir.
+
+
+```{r , fig.align='center'}
+# gráfico de barras
+barplot(
+  height = BOD$demand,
+  names.arg = BOD$Time,
+  col = 1
+)
+# gráfico de uma tabela de contagem
+barplot(height = table(mtcars$cyl))
+# histograma
+hist(x = mtcars$mpg)
+# Especificando o número aproximado de classes com parâmetro breaks
+hist(x = mtcars$mpg, breaks = 10)
+# boxplots
+# boxplot de todas colunas
+boxplot(aq[, -1])
+# usando formula
+boxplot(Temp ~ Month, data = airquality)
+# Curvas
+curve(x ^ 3 - 5 * x, from = -4, to = 4)
+# plot de uma função criada
+minhafun <- function(xvar) {
+  1 / (1 + exp(-xvar + 10))
+}
+curve(minhafun(x), from = 0, to = 20)
+# Add a line:
+curve(1 - minhafun(x), add = TRUE, col = "red")
+# Imagem
+dim(volcano)
+x <- 10 * (1:nrow(volcano))
+y <- 10 * (1:ncol(volcano))
+image(
+  x,
+  y,
+  volcano,
+  col = terrain.colors(100),
+  axes = FALSE
+)
+contour(
+  x,
+  y,
+  volcano,
+  levels = seq(90, 200, by = 5),
+  add = TRUE,
+  col = "peru"
+)
+axis(1, at = seq(100, 800, by = 100))
+axis(2, at = seq(100, 600, by = 100))
+box()
+title(
+  main = "Maunga Whau Volcano",
+  font.main = 4
+)
+```
+
+
+### Telas gráficas 
+
+#### Abrir e fechar uma tela gráfica 
+
+Para gerar gráficos vamos primeiro abrir uma tela gráfica, plotar os dados e então fechar a tela gráfica.
+
+```{r, eval=FALSE, fig.align='center'}
+# abre uma tela gráfica fora do ambiente do RStudio
+x11()  
+ # plot de uma variável
+ plot(y1)
+ # fechando tela gráfica
+dev.off()
+```    
+
+```{r , fig.align='center'}
+plot(y1)
+```    
+
+
+#### Fechar todas telas gráficas
+
+Vamos gerar 5 gráficos e apága-los de uma vez só.
+
+```{r , fig.align='center', eval = FALSE}
+# plotando cada coluna da matriz mat em uma nova tela gráfica
+sapply(
+  1:ncol(mat),
+  FUN = function(i) {
+    x11() # abrindo tela gráfica para plot
+    # plot da variável de cada coluna da matriz
+    plot(
+      mat[, i],
+      type = "l",
+      col = 4,
+      main = paste("Gráfico", i)
+    )
+    abline(h = 0) # linha de referência em x = 0
+    return(i)
+  }
+) # fim do apply
+```
+
+
+
+Para apagar todas as telas gráficas abertas de uma vez só usa-se a função `graphics.off()`.
+
+```{r , fig.align='center', eval = FALSE}
+graphics.off()
+``` 
+
+
+
+#### Salvando gráficos
+
+O R pode exportar um gráfico para diferentes saídas gráficas (*png, pdf, ps, jpeg* e etc). Uma lista completa das opções disponíveis está disponível em `?device`.
+
+```{r , fig.align='center'}
+plot(y1)
+```    
+
+Vamos usar o exemplo da matriz `mat` para salvar os gráficos das variáveis em cada coluna em um único arquivo **pdf**.
+
+```{r , fig.align='center', eval = FALSE}
+## fechando qualquer tela gráfica aberta
+graphics.off()
+## abrindo saída gráfica
+pdf(
+  file = file.path(tempdir(), "5plots1file.pdf"),
+  onefile = TRUE,
+  width = 7,
+  height = 4
+)
+## looping em cada coluna da matriz mat
+sapply(
+  1:ncol(mat),
+  ##  Função para plot da variável na coluna i
+  FUN = function(i) {
+    ## mostra tela o índice do looping em execução
+    cat(i, "\n")
+    ## plot da variável de cada coluna da matriz
+    plot(
+      mat[, i],
+      type = "l",
+      col = 4,
+      main = paste("Gráfico", i)
+    )
+    abline(h = 0) ## linha de referência em x = 0
+    return(i)
+  }
+) ## fim do apply
+## fechando pdf
+dev.off()
+``` 
+
+Para salvar cada gráfico em um arquivo a chamada da função `grDevices::pdf()` deve ser feita antes de cada gráfico. 
+
+```{r , fig.align='center', eval = FALSE}
+## fechando qualquer tela gráfica aberta
+graphics.off()
+## looping em cada coluna da matriz mat
+sapply(
+  1:ncol(mat),
+  ##  Função para plot da variável na coluna i
+  FUN = function(i) {
+    ## mostra tela o índice do looping em execução
+    cat(i, "\n")
+    ## criando nome do arquivo
+    arquivo <- file.path(tempdir(),paste("plot", i, "file", i, ".pdf", sep = ""))
+    ## abrindo saída gráfica
+    pdf(file = arquivo, onefile = TRUE, width = 7, height = 4)
+    # plot da variável de cada coluna da matriz
+    plot(mat[, i], 
+         type = "l", 
+         col = 4, 
+         main = paste("Gráfico", i))
+    # linha de referência em x = 0
+    abline(h = 0)
+    ## fechando pdf
+    dev.off()
+    return(i)
+  }
+) # fim do looping
+``` 
+
+- - - 
+
+## Plotando vários gráficos em uma mesma página
+
+```{r Chunk1011, fig.align='center',fig.height=10,fig.width=15}
+par(mfrow = c(2, 3))
+plot(x = aq$date, 
+     y = aq$Ozone,
+     type = "o") # linha e ponto conectados
+plot(x = aq$date, 
+     y = aq$Temp, 
+     type = "l") # linha
+plot(x = aq$date, 
+     y = aq$Wind,
+     type = "b") # linha e ponto desconectados
+plot(x = aq$date, 
+     y = aq$Solar.R, 
+     type = "h")
+plot(x = aq$date, 
+     y = (aq$Ozone) ^ 1 / 3, 
+     type = "o") # linha e ponto
+plot(1:10, 
+     1:10, 
+     type = "n", 
+     frame = F, 
+     axes = F, 
+     xlab = "", 
+     ylab = "")
+text(5, 5, "Gráficos \n em uma \n página", cex = 3)
+#par()
+```
+
+## Gráfico com 2 eixos
+
+```{r , fig.align='center'}
+plot(
+  x = aq$date,
+  y = aq$Ozone,
+  type = "l",
+  lwd = 2,
+  ylab = "",
+  xlab = "Data"
+)
+par(new = T)
+plot(
+  x = aq$date,
+  y = aq$Temp,
+  type = "l",
+  col = 2,
+  lwd = 2,
+  axes = FALSE,
+  ylab = "",
+  xlab = ""
+)
+axis(
+  side = 4,
+  col = 2,
+  col.axis = 2
+)
+mtext(
+  text = "Ozônio",
+  line = -2,
+  adj = 0.2
+)
+mtext(
+  text = "Temp",
+  col = 2,
+  line = -1,
+  adj = 0.2
+)
+```
+
+
+
+## Adicionando legenda
+
+```{r , fig.align='center'}
+plot(
+  rain$Tokyo,
+  type = "l",
+  col = "red",
+  ylim = c(0, 300),
+  main = "Chuva mensal em grandes cidades",
+  xlab = "Mês do ano",
+  ylab = "Chuva (mm)",
+  lwd = 2
+)
+lines(
+  rain$NewYork,
+  type = "l",
+  col = "blue",
+  lwd = 2
+)
+lines(
+  rain$London,
+  type = "l",
+  col = "green",
+  lwd = 2
+)
+lines(
+  rain$Berlin,
+  type = "l",
+  col = "orange",
+  lwd = 2
+)
+## legenda
+legend(
+  "topright",
+  legend = c("Tokyo", "NewYork", "London", "Berlin"),
+  col = c("red", "blue", "green", "orange"),
+  lty = 1,
+  lwd = 2,
+  bty = "n"
+)
+```
+
+
+
+
+
+
