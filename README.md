@@ -9,7 +9,7 @@ output: html_document
 
 Professor Responsável: *Jônatan Tatsch*
 
-Período: *1º Semestre de 2018*
+Período: *2º Semestre de 2019*
 <br/> 
 <br/>
 
@@ -67,7 +67,7 @@ Laboratório Setorial de Informática (LSI) do Centro de Ciências Naturais e Ex
 
 # Horários
 
-- 13:30-17:30 (2ª-feira)
+- 8:30-12:30 (6ª-feira)
 
 <br/> 
 
